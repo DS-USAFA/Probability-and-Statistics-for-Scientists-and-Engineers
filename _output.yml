@@ -1,0 +1,32 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li><a href="./">Probability and Statistics for Scientists and Engineers</a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    edit : https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/%s
+    sharing: null
+    info: no
+    download: no
+bookdown::bs4_book:
+  css: style.css
+  theme:
+    primary: "#00308f"
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li><a href="./">Computational Probability and Statistics</a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+  repo: https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes
+bookdown::epub_book: default

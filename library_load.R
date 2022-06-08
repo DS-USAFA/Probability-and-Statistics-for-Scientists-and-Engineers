@@ -1,0 +1,7 @@
+library(knitr)
+library(kableExtra)
+library(mosaic)
+library(openintro)
+library(ISLR)
+library(tidyverse)
+library(broom)

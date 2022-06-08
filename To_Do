@@ -1,0 +1,12 @@
+- Check spacing on homework problems
+X Update logistic regression section
+- Remove \Prob \mbox{P} stuff so no more warnings
+X Create reference section
+- Update preface section to give more description of code
+X Run pdf and decide if we want pdf download, NO
+- Add section on modeling to discuss loss function and optimization criteria as
+a lead in to ML in Math 378.
+- Solution: take out indent and problem number continue with 18
+
+- To produce pdf, take comment out of kable function for format.
+- Learn more about datatables in https://rstudio.github.io/DT/ 

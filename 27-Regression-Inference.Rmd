@@ -1,0 +1,588 @@
+# Linear Regression Inference {#LRINF}
+
+## Objectives
+
+1) Given a simple linear regression model, conduct inference on the coefficients $\beta_0$ and $\beta_1$.  
+2) Given a simple linear regression model, calculate the predicted response for a given value of the predictor.  
+3) Build and interpret confidence and prediction intervals for values of the response variable.  
+
+## Introduction  
+
+In this chapter we discuss uncertainty in the estimates of the slope and y-intercept for a regression line. This will allow us to perform inference and predictions. Just as we identified standard errors for point estimates in previous chapters, we first discuss standard errors for these new estimates. This chapter is a classical chapter in the sense that we will be using the normal distribution. We will assume that the errors are normally distributed with constant variance. Later in the book, we will relax these assumptions.
+
+### Regression  
+
+
+Last chapter, we introduced linear models using the simple linear regression model:
+$$
+Y=\beta_0+\beta_1X+e
+$$
+
+where now we assume the error term follows a normal distribution with mean 0 and constant standard deviation $\sigma$. Using the method of least squares, which does not require the assumption of normality, we obtain estimates of $\beta_0$ and $\beta_1$: 
+$$
+\hat{\beta}_1 = {\sum x_i y_i - n\bar{x}\bar{y} \over \sum x_i^2 -n\bar{x}^2}
+$$
+$$
+\hat{\beta}_0=\bar{y}-\hat{\beta}_1\bar{x}
+$$
+
+If we assume a probability distribution for the errors, we could also find point estimates using maximum likelihood methods. This will not be discussed in this book.  
+
+Using these estimates, for a given value of the predictor, $x_*$, we can obtain a prediction of the response variable. Here we are using the subscript $_*$ to denote a new value for the explanatory variable. The resulting prediction, which we will denote $\hat{Y}_*$, is the **average** or **expected value** of the response given predictor value $x_*$:  
+
+$$
+\hat{Y}_*=\hat{\beta}_0+\hat{\beta}_1x_*
+$$
+
+The reason this model returns the expected value of the response at the given value of the predictor is because the error term has an expected value of zero. As a review of the properties of expectation as well as last chapter, we have:
+
+$$
+E(Y|X=x)=E(\beta_0+\beta_1x+e)=Y=\beta_0+\beta_1x+E(e)=\beta_0+\beta_1x
+$$
+because $\beta_0$, $\beta_1$, and $x$ are constants.  
+
+It should be abundantly clear by now that $\hat{Y}_*$, $\hat{\beta}_0$, and $\hat{\beta}_1$ are ***estimators***. Being estimators, they are dependent on our random sample, our data. If we collect a new random sample from the same population, we will get new estimates from these estimators. Thus, we can think of $\hat{Y}_*$, $\hat{\beta}_0$, and $\hat{\beta}_1$ as **random variables**. Like all random variables, they have distributions. We can use the distribution of an estimator to build confidence intervals and conduct hypothesis tests about the true values of the parameter it is intended to estimate. The estimators based on least squares are unbiased, their distributions are centered around the actual values of $Y$, $\beta_0$ and $\beta_1$, respectively.
+
+### Review of assumptions
+
+We will review the assumptions of the least squares model because they are important for inference. Refer to Figure \@ref(fig:assump271-fig), which plots the linear regression in the top row and the residuals in the second row. We generally assume the following:
+
+1. **Fit**.  The data should show a linear trend. If there is a nonlinear trend, a transformation of the explanatory variable or a more advanced regression method should be applied. When looking at the residual plot, if the trend is linear, we should see a spread of points that are flat. The left column of Figure \@ref(fig:assump271-fig) is an example of a nonlinear relationship. The top plot is the regression plot and we can see what looks like a quadratic relationship instead of a linear one. The residual plot, the plot in the lower left corner of Figure \@ref(fig:assump271-fig), also exhibits this non-linear trend.     
+2. **Nearly normal residuals**.  Generally the residuals must be nearly normal to use a $t$ or $F$ for inference. When this assumption is found to be unreasonable, it is usually because of **outliers** or concerns about **influential** points. An example of non-normal residuals is shown in the second column of Figure \@ref(fig:assump271-fig). A **qq** plot is also useful as a diagnostic tool as we have seen. We can still use the **bootstrap** as an inference tool if the normality assumption is unreasonable.    
+3. **Constant variability**.  The variability of points around the least squares line remains roughly constant. An example of non-constant variability is shown in the third panel of Figure \@ref(fig:assump271-fig).  The constant variability assumption is needed for the $t$ and $F$ distributions. It is not required for the bootstrap method.  
+4. **Independent observations**.  Be cautious about applying regression to data collected sequentially in what is called a **time series**. Such data may have an underlying structure that should be considered in a model and analysis. An example of a time series where independence is violated is shown in the fourth panel of Figure \@ref(fig:assump271-fig). More advanced methods are required for time series data even including using a bootstrap. 
+
+In a later chapter we will explore more regression diagnostics.
+
+```{r echo=FALSE,message=FALSE}
+makeTube <- function(x, y, Z=2, R=1, col='#00000022', border='#00000000', type=c('lin', 'quad', 'robust'), homosk=TRUE, length.out=99, bw='default', plotTube=TRUE, addLine=TRUE, ...){
+	n <- length(x)
+	r <- range(x)
+	R <- abs(R)
+	R <- r + c(-R,R)*diff(r)
+	X <- seq(R[1], R[2], length.out=length.out)
+	type <- type[1]
+	if(type %in% c('l', 'L', 'lin', 'Lin', 'linear', 'Linear')){
+		g <- lm(y ~ x)
+		hold <- data.frame(x=X)
+		Y <- predict(g, hold)
+		S <- sd(g$residuals)
+	} else if(type %in% c('q', 'quad', 'Q', 'Quad')){
+		x2 <- x^2
+		g <- lm(y ~ x + x2)
+		hold <- data.frame(x=X, x2=X^2)
+		Y <- predict(g, hold)
+		S <- sd(g$residuals)
+	} else if(type %in% c('r', 'R', 'robust', 'Robust')){
+		if(bw[1] == 'default'){
+			bw <- bw.nrd0(x)
+		}
+		Y <- rep(NA, length(X))
+		for(i in 1:length(X)){
+			if(min(x - X[i]) < 2*bw){
+				temp <- dnorm(x-X[i], sd=bw)
+				Y[i] <- sum(y*temp)/sum(temp)
+			}
+		}
+		hold <- c()
+		for(i in 1:length(y)){
+			hold[i] <- Y[which.min(abs(X-x[i]))[1]]
+		}
+		S <- rep(sd(hold-y), length(Y))
+	} else {
+		stop('Argument "type" not recognized.\n')
+	}
+	if(!homosk){
+		if(bw[1] == 'default'){
+			bw <- bw.nrd0(x)
+		}
+		S <- rep(NA, length(X))
+		for(i in 1:length(X)){
+			if(min(abs(x - X[i])) < 2*bw){
+				temp <- dnorm(x-X[i], sd=bw)
+				if(sum(temp) > 2){
+					wtdV <- sum(temp*(y-Y[i])^2)/(sum(temp)-1)
+					S[i] <- sqrt(wtdV)
+				}
+			}
+		}
+		these <- !is.na(Y) & !is.na(S)
+		X <- X[these]
+		Y <- Y[these]
+		S <- S[these]
+	}
+	x <- c(X, rev(X))
+	y <- c(Y-Z*S, rev(Y+Z*S))
+	if(plotTube){
+		polygon(x, y, border=border, col=col, ...)
+	}
+	if(addLine){
+		lines(X, Y)
+	}
+	invisible(list(X=X, Y=Y, x=x, y=y))
+}
+
+```
+
+
+```{r echo=FALSE,message=FALSE}
+makeTubeAdv <- function(x, y, Z=2, R=1, col='#00000022', border='#00000000', type=c('lin', 'quad', 'robust'), variance=c('constant', 'linear', 'other'), length.out=99, bw='default', plotTube=TRUE, ...){
+	n <- length(x)
+	r <- range(x)
+	R <- abs(R)
+	R <- r + c(-R,R)*diff(r)
+	X <- seq(R[1], R[2], length.out=length.out)
+	type <- type[1]
+	if(type %in% c('l', 'L', 'lin', 'Lin', 'linear', 'Linear')){
+		g <- lm(y ~ x)
+		hold <- data.frame(x=X)
+		Y <- predict(g, hold)
+		S <- sd(g$residuals)
+	} else if(type %in% c('q', 'quad', 'Q', 'Quad')){
+		x2 <- x^2
+		g <- lm(y ~ x + x2)
+		hold <- data.frame(x=X, x2=X^2)
+		Y <- predict(g, hold)
+		S <- sd(g$residuals)
+	} else if(type %in% c('r', 'R', 'robust', 'Robust')){
+		if(bw[1] == 'default'){
+			bw <- bw.nrd0(x)
+		}
+		Y <- rep(NA, length(X))
+		for(i in 1:length(X)){
+			if(min(x - X[i]) < 2*bw){
+				temp <- dnorm(x-X[i], sd=bw)
+				Y[i] <- sum(y*temp)/sum(temp)
+			}
+		}
+		hold <- c()
+		for(i in 1:length(y)){
+			hold[i] <- Y[which.min(abs(X-x[i]))[1]]
+		}
+		S <- rep(sd(hold-y), length(Y))
+	} else {
+		stop('Argument "type" not recognized.\n')
+	}
+	variance <- variance[1]
+	if(variance %in% c('o', 'O', 'other', 'Other')){
+		if(bw[1] == 'default'){
+			bw <- bw.nrd0(x)
+		}
+		S <- rep(NA, length(X))
+		for(i in 1:length(X)){
+			if(min(x - X[i]) < 2*bw){
+				temp <- dnorm(x-X[i], sd=bw)
+				if(sum(temp) > 2){
+					wtdV <- sum(temp*(y-Y[i])^2)/(sum(temp)-1)
+					S[i] <- sqrt(wtdV)
+				}
+			}
+		}
+		these <- !is.na(Y) & !is.na(S)
+		X <- X[these]
+		Y <- Y[these]
+		S <- S[these]
+	} else if(variance %in% c('L', 'l', 'linear', 'Linear')){
+		if(bw[1] == 'default'){
+			bw <- bw.nrd0(x)
+		}
+		S <- rep(NA, length(X))
+		for(i in 1:length(X)){
+			if(min(x - X[i]) < 2*bw){
+				temp <- dnorm(x-X[i], sd=bw)
+				if(sum(temp) > 2){
+					wtdV <- sum(temp*(y-Y[i])^2)/(sum(temp)-1)
+					S[i] <- sqrt(wtdV)
+				}
+			}
+		}
+		g <- lm(S ~ X)
+		S <- predict(g, list(X=X))
+		these <- !is.na(Y) & !is.na(S) & (S > 0)
+		X <- X[these]
+		Y <- Y[these]
+		S <- S[these]
+	} else if(!(variance %in% c('c', 'C', 'constant', 'Constant'))){
+		stop('Did not recognize form of the "variance" argument.\n')
+	}
+	x <- c(X, rev(X))
+	y <- c(Y-Z*S, rev(Y+Z*S))
+	if(plotTube){
+		polygon(x, y, border=border, col=col, ...)
+	}
+	invisible(list(x=x, y=y))
+}
+```
+
+
+```{r assump271-fig,echo=FALSE,message=FALSE,fig.cap="Plots of linear regression and residual to illustrate the assumptions of the model."}
+data(COL)
+
+# load the makeTube function (ch7 folder)
+pch=20
+cex=1.75
+col='#22558888'
+
+layout(matrix(1:8, 2), c(1,1,1,1), c(2,1))
+#layout(matrix(c(1:2, 0, 5:6, 3:4, 0, 7:8), 5), c(1,1), c(2,1,0.3,2,1))
+par(mar=rep(0.5, 4))
+
+set.seed(1)
+x <- runif(100)
+y <- 25*x-20*x^2+rnorm(length(x), sd=1.5)
+plot(x,y, axes=FALSE, pch=pch, cex=cex, col="#00000000")
+box()
+makeTube(x,y, type='Q', addLine=FALSE, col=COL[7,3])
+points(x,y, pch=pch, cex=cex, col=COL[1,2])
+g <- lm(y ~ x)
+abline(g)
+yR <- range(g$residuals)
+yR <- yR + c(-1,1)*diff(yR)/10
+plot(x, g$residuals, axes=FALSE, pch=pch, cex=cex, col=COL[1,2], ylim=yR)
+abline(h=0, lty=2)
+box()
+
+set.seed(2)
+x <- c(-0.6, -0.46, -0.091, runif(97))
+y <- 25*x + rnorm(length(x))
+y[2] <- y[2] + 8
+y[1] <- y[1] + 1
+plot(x,y, axes=FALSE, pch=pch, cex=cex, col="#00000000")
+box()
+makeTube(x,y, addLine=FALSE, col=COL[7,3])
+points(x,y, pch=pch, cex=cex, col=COL[1,2])
+g <- lm(y ~ x)
+abline(g)
+yR <- range(g$residuals)
+yR <- yR + c(-1,1)*diff(yR)/10
+plot(x, g$residuals, axes=FALSE, pch=pch, cex=cex, col=COL[1,2], ylim=yR)
+abline(h=0, lty=2)
+box()
+
+set.seed(3)
+x <- runif(100)
+y <- 5*x + rnorm(length(x), sd=x)
+plot(x,y, axes=FALSE, pch=pch, cex=cex, col="#00000000")
+box()
+makeTubeAdv(x, y, type='l', variance='l', bw=0.03, Z=1.7, col=COL[7,3])
+#makeTube(x,y)
+points(x,y, pch=pch, cex=cex, col=COL[1,2])
+g <- lm(y ~ x)
+abline(g)
+yR <- range(g$residuals)
+yR <- yR + c(-1,1)*diff(yR)/10
+plot(x, g$residuals, axes=FALSE, pch=pch, cex=cex, col=COL[1,2], ylim=yR)
+abline(h=0, lty=2)
+box()
+
+stock <- read_csv("data/stock.csv")
+x <- 1:length(stock$Date)
+y<-stock$AAPL_Adj_Close
+#y <- cumprod(1+rev(gr$R))
+plot(x,y, axes=FALSE, pch=pch, cex=cex, col="#00000000")
+box()
+makeTube(x,y, addLine=FALSE, col=COL[7,3])
+points(x,y, pch=pch, cex=cex, col=COL[1,2])
+g <- lm(y ~ x)
+abline(g)
+yR <- range(g$residuals)
+yR <- yR + c(-1,1)*diff(yR)/10
+plot(x, g$residuals, axes=FALSE, pch=pch, cex=cex, col=COL[1,2], ylim=yR)
+abline(h=0, lty=2)
+box()
+
+makeTubeAdv(x,y, col=COL[7,3])
+
+```
+
+### Distribution of our estimators   
+
+With the assumption that the error term is normally distributed, we can find the distributions of our estimates, which turn out to be normal:  
+
+$$
+\hat{\beta}_0\sim N\left(\beta_0, \sigma\sqrt{{1\over n}+{\bar{x}^2\over \sum (x_i-\bar{x})^2}}\right)
+$$
+
+$$
+\hat{\beta}_1\sim N\left(\beta_1, {\sigma \over \sqrt{ \sum (x_i-\bar{x})^2}}\right)
+$$
+
+$$
+\hat{Y}_* \sim N\left(\beta_0+\beta_1x_*, \sigma\sqrt{{1\over n}+{(x_*-\bar{x})^2\over \sum (x_i-\bar{x})^2}}\right)
+$$
+
+Notice that all three of these are unbiased, the expected value is equal to the parameter being estimated. Looking at the variance of the slope estimate we can see that is a function of the underlying unexplained variance, $\sigma^2$ and the data. The denominator is increased by having a larger spread in the explanatory variable. The slope of the estimated line is more stable, less variable, if the independent variable has high variance. That is interesting. If you are designing an experiment, this gives you insight in how to select the range of values for your explanatory variable.   
+
+## Inference
+
+Now that we know how the coefficient estimates and the average predicted values behave, we can perform inference on their true values. Let's take $\hat{\beta}_1$ for demonstration:   
+
+$$
+\hat{\beta}_1\sim N\left(\beta_1, {\sigma \over \sqrt{ \sum (x_i-\bar{x})^2}}\right)
+$$
+
+Thus, 
+
+$$
+{\hat{\beta}_1-\beta_1 \over {\sigma \over \sqrt{ \sum (x_i-\bar{x})^2}}}\sim N\left(0, 1\right)
+$$
+
+However, note that the expression on the left depends on error standard deviation, $\sigma$. In reality, we will not know this value and will have to estimate it with
+
+$$
+\hat{\sigma}=\sqrt{{1\over n-2} \sum_{i=1}^n \hat{e}_i^2}
+$$
+
+where $\hat{e}_i$ is the observed $i$th **residual** ($\hat{e}_i=y_i-\hat{\beta}_0-\hat{\beta}_1x_i$).
+
+As we learned in the last block, if we replace population standard deviation ($\sigma$) with an estimation, the resulting random variable no longer has the standard normal distribution. In fact, it can be shown that   
+
+$$
+{\hat{\beta}_1-\beta_1 \over {\hat \sigma \over \sqrt{ \sum (x_i-\bar{x})^2}}}\sim \textsf{t}\left(n-2\right)
+$$
+We only have $n-2$ degrees of freedom because in the estimation of $\sigma^2$ we had to estimate two parameters, $\beta_0$ and $\beta_1$.  
+
+We can use this information to build a $(1-\alpha)*100\%$ confidence interval for $\beta_1$. First, we recognize that 
+
+$$
+\mbox{P}\left(-t_{\alpha/2,n-2} \leq {\hat{\beta}_1-\beta_1 \over {\hat \sigma \over \sqrt{ \sum (x_i-\bar{x})^2}}}\leq t_{\alpha/2,n-2} \right) = 1-\alpha
+$$
+
+Solving the expression inside the probability statement for $\beta_1$ yields a confidence interval of 
+
+$$
+\beta_1 \in \left(\hat{\beta_1} \pm t_{\alpha/2,n-2}{\hat \sigma \over \sqrt{\sum(x_i-\bar{x})^2}}\right)
+$$
+
+We can also evaluate the null hypothesis $H_0: \beta_1 =\beta^*_1$. If the true value of $\beta_1$ were $\beta^*_1$, then the estimated $\hat{\beta_1}$ should be around that value. In fact, if $H_0$ were true, the value  
+
+$$
+{\hat{\beta}_1-\beta^*_1 \over {\hat \sigma \over \sqrt{ \sum (x_i-\bar{x})^2}}}
+$$
+
+has the $\textsf{t}$ distribution with $n-2$ degrees of freedom. Thus, once we collect a sample and obtain the observed $\hat{\beta_1}$ and $\hat \sigma$, we can calculate this quantity and determine whether it is far enough from zero to reject $H_0$. 
+
+Similarly, we can use the distribution of $\hat \beta_0$ to build a confidence interval or conduct a hypothesis test on $\beta_0$, but we usually don't. This has to do with the interpretation of $\beta_0$. 
+
+### Starbucks
+
+That was a great deal of mathematics and theory. Let's put it to use on the example from Starbucks. In the file `data/starbucks.csv` we have nutritional facts for several Starbucks' food items. We used this data in the homework for last chapter.  We will use this data again to illustrate the ideas we have introduced in this section.  
+
+Read in the data.
+
+```{r warning=FALSE,message=FALSE}
+starbucks <- read_csv("data/starbucks.csv")  %>%
+  mutate(type=factor(type))
+```
+
+>**Exercise**:  
+Summarize and explore the data.
+
+Let's look at a summary of the data.
+
+```{r}
+glimpse(starbucks)
+```
+
+```{r warning=FALSE}
+inspect(starbucks)
+```
+
+Let's predict calories from the carbohydrate content. 
+
+>**Exercise**:  
+Create a scatterplot of calories and carbohydrate, carbs, content.  
+
+Figure \@ref(fig:scat271-fig) is the scatterplot.  
+
+```{r scat271-fig,fig.cap="Scatterplot of calories and carbohydrate content in Starbucks' products."}
+starbucks %>%
+  gf_point(calories~carb) %>%
+  gf_labs(x="Carbohydrates",y="Calories") %>%
+  gf_theme(theme_classic())
+```
+>**Exercise**:  
+Use `R` to fit a linear regression model by regressing `calories` on `carb`.
+
+The results of fitting a linear least squares model is stored in the `star_mod` object.
+
+```{r}
+star_mod <- lm(formula = calories ~ carb, data = starbucks)
+```
+
+```{r}
+summary(star_mod)
+``` 
+
+#### Hypothesis test  
+
+In the second row of the **Coefficients** portion of the table we have our point estimate, standard error, test statistic, and p-value for the slope.
+
+The hypotheses for this output is  
+$H_0$: $\beta_1 = 0$. The true linear model has slope zero. The carb content has no impact on the the calorie content.  
+$H_A$: $\beta_1 \neq 0$. The true linear model has a slope different than zero. The higher the carb content, the greater the average calorie content or vice-versa.
+
+Our estimate of the slope is 4.297 with a standard error of 0.5424. Just for demonstration purposes, we will use `R` to calculate the test statistic and p-value as a series of steps. The test statistic under the null hypothesis is:
+
+$$
+{\hat{\beta}_1-0 \over {\hat \sigma \over \sqrt{ \sum (x_i-\bar{x})^2}}}
+$$
+The denominator is the standard error of the estimate. The estimate of the residual standard deviation is reported in the last line as 78.26. But it is just the square root of the sum of squared residuals divided by the degrees of freedom.
+
+```{r}
+sighat<-sqrt(sum((star_mod$residuals)^2)/75)
+sighat
+```  
+
+The standard error of the slope estimate is, and confirmed in the table:
+
+```{r}
+std_er<-sighat/sqrt(sum((starbucks$carb-mean(starbucks$carb))^2))
+std_er
+```  
+
+The test statistic is 
+
+```{r}
+(4.2971-0)/std_er
+```  
+
+And the p-value
+
+```{r}
+2*pt((4.2971-0)/std_er,73,lower.tail = FALSE)
+```
+
+This is slightly different from the table value because of the precision of the computer and the small p-value.
+
+We reject $H_0$ in favor of $H_A$ because the data provide strong evidence that the true slope parameter is greater than zero. 
+
+The computer software uses zero in the null hypothesis, if you wanted to test another value of the slope then you would have to do the calculations step by step like we did above.
+
+By the way, this was not a `tidy` way to do the calculation. The **broom** package makes it easier to use `tidy` ideas on the regression model. We used these ideas in the last chapter.  
+
+As a reminder:
+
+```{r}
+library(broom)
+```
+
+```{r}
+tidy(star_mod) 
+```
+
+And step by step:
+
+```{r}
+tidy(star_mod) %>%
+  filter(term=="carb") %>%
+  summarize(test_stat=(estimate-0)/std.error,p_value=2*pt(test_stat,df=73,lower.tail = FALSE))
+```
+
+#### Confidence interval 
+
+We could calculate the confidence interval from the point estimate, standard error, and critical value but we will let `R` do it for us.
+
+```{r}
+confint(star_mod)
+```
+
+This confidence interval does not contain the value 0. This suggests that a value of 0 is probably not feasible for $\beta_1$.
+
+In the end, we would declare that carbohydrate and calorie content of Starbucks' menu items are linearly correlated. However, we DID NOT prove causation. We simply showed that the two variables are correlated. 
+
+## Inference on Predictions
+
+Similarly, we can take advantage of the distribution of $\hat Y_*$ to build a confidence interval on $Y_*$ (the average value of $Y$ at some value $x_*$): 
+
+$$
+Y_*\in \left(\hat Y_* \pm t_{\alpha/2,n-2}\hat \sigma \sqrt{{1\over n}+{(x_*-\bar{x})^2\over \sum (x_i-\bar{x})^2}} \right)
+$$
+
+There are a couple of things to point out about the above. First, note that the width of the confidence interval is dependent on how far $x_*$ is from the average value of $x$. The further we are from the center of the data, the wider the interval will be. 
+
+Second, note that this in an interval on $Y_*$ the ***average*** value of $Y$ at $x_*$. If we want to build an interval for a single observation of $Y$ ($Y_{new}$), we will need to build a *prediction* interval, which is considerably wider than a confidence interval on $Y_*$:  
+
+$$
+Y_{new}\in \left(\hat Y_* \pm t_{\alpha/2,n-2}\hat \sigma \sqrt{1+{1\over n}+{(x_*-\bar{x})^2\over \sum (x_i-\bar{x})^2}} \right)
+$$
+
+### Starbucks 
+
+Continuing with the `Starbucks` example. In plotting the data, we can have `R` plot the confidence and prediction bands, Figure \@ref(fig:ci271-fig). We will observe the width of both of these intervals increase as we move away from the center of the data and also that prediction intervals are wider than the confidence interval.
+
+```{r ci271-fig,fig.cap="Confidence and predictions bands for linear regression model of calories and carbs in Starbucks' products."}
+starbucks %>%
+  gf_point(calories~carb) %>%
+  gf_labs(x="Carbohydrates",y="Calories") %>%
+  gf_lm(stat="lm",interval="confidence") %>%
+  gf_lm(stat="lm",interval="prediction") %>%
+  gf_theme(theme_classic())
+```
+
+We have not done diagnostics yet and it may be that using a linear regression model for this data may not be appropriate. But for the sake of learning we will continue. To find these confidence intervals we need a value for `carb` so let's use 60 and 70.
+
+We create a data frame with the new values of `carb` in it. Then we will use the `predict` function to find the confidence interval. Using the option `interval` set to `confidence` will return a confidence interval for the average calorie content for each value in the new data frame.
+
+```{r}
+new_carb <- data.frame(carb=c(60,70))
+predict(star_mod, newdata = new_carb, interval = 'confidence')
+```
+
+Or using the **broom** package.
+
+```{r}
+augment(star_mod,newdata=new_carb,interval="confidence")
+```
+
+
+As an example, we are 95\% confident that the average calories in a Starbucks' menu item with 60 grams of carbs is between 379.7 and 428.0.
+
+>**Exercise**:
+Give the 95% confidence interval of average calories for 70 grams of carbohydrates.  
+
+We are 95\% confident that the average calories in a Starbucks' menu item with 70 grams carbs is between 414.4 and 479.3.
+
+For the prediction interval, we simply need to change the option in `interval`:
+
+```{r}
+new_carb <- data.frame(carb=c(60,70))
+predict(star_mod, newdata = new_carb, interval = 'prediction')
+```
+
+We are 95\% confident the next Starbucks' menu item that has 60 grams of carbs will have a calorie content between 246 and 561.  Notice how prediction intervals are wider since they are intervals on individual observations and not an averages.
+
+>**Exercise**:
+Give the 90% prediction interval of average calories for 70 grams of carbohydrates.  
+
+We changed the confidence level. Since we are less confident, the interval will be narrower than the 95% prediction interval we just calculated.
+
+```{r}
+predict(star_mod, newdata = new_carb, level=0.9, interval = 'prediction')
+```
+We are 90\% confident the next Starbucks' menu item that has 70 grams of carbs will have a calorie content between 313.7 and 579.9.  
+
+### Summary 
+
+This chapter has introduced the process of inference for a simple linear regression model. We tested the slope estimate as well as generated confidence intervals for average and individual predicted values.  
+
+## Homework Problems
+
+1. In the chapter reading, we noticed that the 95% prediction interval was much wider than the 95% confidence interval. In words, explain why this is. 
+
+2. Beer and blood alcohol content 
+
+Many people believe that gender, weight, drinking habits, and many other factors are much more important in predicting blood alcohol content (BAC) than simply considering the number of drinks a person consumed. Here we examine data from sixteen student volunteers at Ohio State University who each drank a randomly assigned number of cans of beer. These students were evenly divided between men and women, and they differed in weight and drinking habits. Thirty minutes later, a police officer measured their blood alcohol content (BAC) in grams of alcohol per deciliter of blood. The data is in the `bac.csv` file under the `data` folder.
+
+a. Create a scatterplot for cans of beer and blood alcohol level.  
+b. Describe the relationship between the number of cans of beer and BAC.  
+c. Write the equation of the regression line. Interpret the slope and intercept in context.  
+d. Do the data provide strong evidence that drinking more cans of beer is associated with an increase in blood alcohol? State the null and alternative hypotheses, report the p-value, and state your conclusion.  
+e. Build a 95% confidence interval for the slope and interpret it in the context of your hypothesis test from part d.  
+f. Suppose we visit a bar, ask people how many drinks they have had, and also take their BAC. Do you think the relationship between number of drinks and BAC would be as strong as the relationship found in the Ohio State study?  
+g. Predict the average BAC after two beers and build a 90% confidence interval around that prediction.   
+h. Repeat except build a 90% prediction interval and interpret.  
+i. Plot the data points with a regression line, confidence band, and prediction band.   
+
+3. Suppose I build a regression fitting a response variable to one predictor variable. I build a 95% confidence interval on $\beta_1$ and find that it contains 0, meaning that a slope of 0 is feasible. Does this mean that the response and the predictor are independent? 
+

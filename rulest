@@ -1,0 +1,36 @@
+Rules
+
+Packages in bold ** **
+Function in ` ` with ()
+data object ` `
+
+Figure from outside of R
+
+(ref:quote1) In February 2010, some media pundits cited one large snow storm as evidence against global warming. As comedian Jon Stewart pointed out, 'It's one storm, in one region, of one country.'
+
+```{r echo=FALSE,fig.align="center",fig.cap="(ref:quote1)"}
+knitr::include_graphics("./figures/mnwinter.JPG")  
+``` 
+R figure generated and referenced.
+
+```{r pov2-fig,fig.cap="(ref:ggfbold2)",warning=FALSE}
+county_M377 %>%
+  gf_point(fed_spend~poverty)
+```
+
+Figure \@ref(fig:pov2-fig) 
+
+No spaces between a, b in homework problems.  
+
+
+```{r contin1-tab,echo=FALSE}
+knitr::kable(
+  tally(~spam+number,data=email,margins = TRUE), booktabs=TRUE,
+  caption = 'A contingency table for the `email` data.'
+) %>%
+  kableExtra::add_header_above(c("Spam" = 1, "Number" = 3, " " = 1))
+```
+
+Add color to histograms
+
+gf_histogram(~sum,fill="cyan",color="black") 

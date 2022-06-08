@@ -1,0 +1,13 @@
+.Rproj.user
+.Rhistory
+.RData
+.Rbuildignore
+_publish.R
+_book
+_bookdown_files
+backup_files
+Original
+_main.*
+packages.bib
+Scripts
+fig
