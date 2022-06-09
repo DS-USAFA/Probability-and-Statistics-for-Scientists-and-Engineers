@@ -4,10 +4,10 @@ bookdown::gitbook:
     toc:
       collapse: section
       before: |
-        <li><a href="./">Probability and Statistics for Scientists and Engineers</a></li>
+        <li><a href="./">Computational Probability and Statistics</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit : https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/%s
+    edit : https://github.com/DS-USAFA/Probability-and-Statistics-MASTER/%s
     sharing: null
     info: no
     download: no
