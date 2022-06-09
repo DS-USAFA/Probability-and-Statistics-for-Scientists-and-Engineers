@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 7 Case Study | Probability and Statistics for Scientists and Engineers</title>
+<meta name="author" content="Matthew Davis">
+<meta name="author" content="Brianna Hitt">
+<meta name="author" content="Kenneth Horton">
+<meta name="author" content="Bradley Warner">
+<meta name="description" content="7.1 Objectives Use R to simulate a probabilistic model. Use basic counting methods.  7.2 Introduction to probability models In this second block of material we will focus on probability models. We...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 7 Case Study | Probability and Statistics for Scientists and Engineers">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/figures/Cover.png">
+<meta property="og:description" content="7.1 Objectives Use R to simulate a probabilistic model. Use basic counting methods.  7.2 Introduction to probability models In this second block of material we will focus on probability models. We...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 7 Case Study | Probability and Statistics for Scientists and Engineers">
+<meta name="twitter:description" content="7.1 Objectives Use R to simulate a probabilistic model. Use basic counting methods.  7.2 Introduction to probability models In this second block of material we will focus on probability models. We...">
+<meta name="twitter:image" content="/figures/Cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Probability and Statistics for Scientists and Engineers</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Preface</a></li>
+<li class="book-part">Descriptive Statistical Modeling</li>
+<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
+<li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
+<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
+<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
+<li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
+<li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
+<li class="book-part">Probability Modeling</li>
+<li><a class="active" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
+<li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
+<li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
+<li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
+<li><a class="" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
+<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
+<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
+<li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
+<li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
+<li class="book-part">Statistical Modeling</li>
+<li><a class="" href="CS3.html"><span class="header-section-number">16</span> Case Study</a></li>
+<li><a class="" href="HYPOTEST.html"><span class="header-section-number">17</span> Hypothesis Testing</a></li>
+<li><a class="" href="PVALUES.html"><span class="header-section-number">18</span> Empirical p-values</a></li>
+<li><a class="" href="CLT.html"><span class="header-section-number">19</span> Central Limit Theorem</a></li>
+<li><a class="" href="CI.html"><span class="header-section-number">20</span> Confidence Intervals</a></li>
+<li><a class="" href="BOOT.html"><span class="header-section-number">21</span> Bootstrap</a></li>
+<li><a class="" href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></li>
+<li class="book-part">Predictive Statistical Modeling</li>
+<li><a class="" href="CS4.html"><span class="header-section-number">23</span> Case Study</a></li>
+<li><a class="" href="LRBASICS.html"><span class="header-section-number">24</span> Linear Regression Basics</a></li>
+<li><a class="" href="LRINF.html"><span class="header-section-number">25</span> Linear Regression Inference</a></li>
+<li><a class="" href="LRDIAG.html"><span class="header-section-number">26</span> Regression Diagnostics</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">27</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRMULTI.html"><span class="header-section-number">28</span> Multiple Linear Regression</a></li>
+<li><a class="" href="LOGREG.html"><span class="header-section-number">29</span> Logistic Regression</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="CS2" class="section level1" number="7">
+<h1>
+<span class="header-section-number">7</span> Case Study<a class="anchor" aria-label="anchor" href="#CS2"><i class="fas fa-link"></i></a>
+</h1>
+<div id="objectives-6" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-6"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>Use R to simulate a probabilistic model.<br>
+</li>
+<li>Use basic counting methods.</li>
+</ol>
+</div>
+<div id="introduction-to-probability-models" class="section level2" number="7.2">
+<h2>
+<span class="header-section-number">7.2</span> Introduction to probability models<a class="anchor" aria-label="anchor" href="#introduction-to-probability-models"><i class="fas fa-link"></i></a>
+</h2>
+<p>In this second block of material we will focus on probability models. We will take two approaches, one is mathematical and the other is computational. In some cases we can use both methods on a problem and in others only the computational approach is feasible. The mathematical approach to probability modeling allows us insight into the problem and the ability to understand the process. Simulation has a much greater ability to generalize but can be time intensive to run and often requires the writing of custom functions.</p>
+<p>This case study is extensive and may seem overwhelming, do not worry we will discuss these ideas again in the many lessons we have coming up this block.</p>
+</div>
+<div id="probability-models" class="section level2" number="7.3">
+<h2>
+<span class="header-section-number">7.3</span> Probability models<a class="anchor" aria-label="anchor" href="#probability-models"><i class="fas fa-link"></i></a>
+</h2>
+<p>Probability models are an important tool for data analysts. They are used to explain variation in outcomes that cannot be explained by other variables. We will use these ideas in the Statistical Modeling Block to help us make decisions about our statistical models.</p>
+<p>Often probability models are used to answer a question of the form “What is the chance that …..?” This means that we typically have an experiment or trial where multiple outcomes are possible and we only have an idea of the frequency of those outcomes. We use this frequency as a measure of the probability of a particular outcome.</p>
+<p>For this block we will focus just on probability models. To apply a probability model we will need to</p>
+<ol style="list-style-type: decimal">
+<li>Select the experiment and its possible outcomes.</li>
+<li>Have probability values for the outcomes which may include <strong>parameters</strong> that determine the probabilities.</li>
+<li>Understand the assumptions behind the model</li>
+</ol>
+</div>
+<div id="case-study-1" class="section level2" number="7.4">
+<h2>
+<span class="header-section-number">7.4</span> Case study<a class="anchor" aria-label="anchor" href="#case-study-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>There is a famous example of a probability question that we will attack in this case study. The question we want to answer is “In a room of <span class="math inline">\(n\)</span> people what is the chance that at least two people have the same birthday?”</p>
+<blockquote>
+<p><strong>Exercise</strong>:<br>
+The typical classroom at USAFA has 18 students in it. What do you think the chance that at least two students have the same birthday?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The answer is around 34.7%, how close were you?&lt;/p&gt;"><sup>62</sup></a></p>
+</blockquote>
+<div id="break-down-the-question" class="section level3" number="7.4.1">
+<h3>
+<span class="header-section-number">7.4.1</span> Break down the question<a class="anchor" aria-label="anchor" href="#break-down-the-question"><i class="fas fa-link"></i></a>
+</h3>
+<p>The first action we should take is to understand what is being asked.</p>
+<ol style="list-style-type: decimal">
+<li>What is the experiment or trial?</li>
+<li>What does it mean to have the same birthday?</li>
+<li>What about leap years?</li>
+<li>What about the frequency of births? Are some days less likely than others?</li>
+</ol>
+<blockquote>
+<p><strong>Exercise</strong>:<br>
+Discuss these questions and others that you think are relevant.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Another question may be What does it mean at least two people have matching birthdays?&lt;/p&gt;"><sup>63</sup></a></p>
+</blockquote>
+<p>The best first step is to make a simple model, often these are the only ones that will have a mathematical solution. For our problem this means we answer the above questions.</p>
+<ol style="list-style-type: decimal">
+<li>We have a room of 18 people and we look at their birthdays. We either have two or more birthdays matching or not; thus there are two outcomes.</li>
+<li>We don’t care about the year, only the day and month. Thus two people born on May 16th are a match.</li>
+<li>We will ignore leap years.</li>
+<li>We will assume that a person has equal probability of being born on any of the 365 days of the year.</li>
+<li>At least two means we could have multiple matches on the same day or several different days where multiple people have matching birthdays.</li>
+</ol>
+</div>
+<div id="simulate-computational" class="section level3" number="7.4.2">
+<h3>
+<span class="header-section-number">7.4.2</span> Simulate (computational)<a class="anchor" aria-label="anchor" href="#simulate-computational"><i class="fas fa-link"></i></a>
+</h3>
+<p>Now that we have an idea about the structure of the problem, we next need to think about how we would simulate a single classroom. We have 18 students in the classroom and they all could have any of the 365 days of the year as a birthday. What we need to do is sample birthdays for each of the 18 students. But how do we code the days of the year?</p>
+<p>An easy solution is to just label the days from 1 to 365. The function <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> does this for us.</p>
+<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">days</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">365</span><span class="op">)</span></code></pre></div>
+<p>Next we need to pick one of the days using the sample function. Note that we set the seed to get repeatable results, this is not required.</p>
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2022</span><span class="op">)</span>
+<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 228</code></pre>
+<p>The first person was born on the 228th day of the year.</p>
+<p>Since <code>R</code> works on vectors, we don’t have to write a loop to select 18 days, we just have <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample()</a></code> do it for us.</p>
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">class</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">class</span></code></pre></div>
+<pre><code>##  [1] 206 311 331 196 262 191 206 123 233 270 248   7 349 112   1 307 288 354</code></pre>
+<p>What do we want <code>R</code> to do? Sample from the numbers 1 to 365 with replacement, which means a number can be picked more than once.</p>
+<p>Notice in our sample we have at least one match, although it is difficult to look at this list and see the match. Let’s sort them to make it easier for us to see.</p>
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">class</span><span class="op">)</span></code></pre></div>
+<pre><code>##  [1]   1   7 112 123 191 196 206 206 233 248 262 270 288 307 311 331 349 354</code></pre>
+<p>The next step is to find a way in <code>R</code> for the code to detect that there is a match.</p>
+<blockquote>
+<p><strong>Exercise</strong>:<br>
+What idea(s) can we use to determine if a match exists?</p>
+</blockquote>
+<p>We could sort the data and look at differences in sequential values and then check if the set of differences contains a zero. This seems to be computationally expensive. Instead we will use the function <code><a href="https://rdrr.io/r/base/unique.html">unique()</a></code> which gives a vector of unique values in an object. The function <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> gives the number of elements in the vector.</p>
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">class</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 17</code></pre>
+<p>Since we only have 17 unique values in a vector of size 18, we have a match. Now let’s put this all together to generate another classroom of size 18.</p>
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<p>The next problem that needs to be solved is how to repeat the classrooms and keep track of those that have a match. There are several functions we could use to include <code><a href="https://rdrr.io/r/base/lapply.html">replicate()</a></code> but we will use <code><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do()</a></code> from the <strong>mosaic</strong> package because it returns a data frame so we can use <code>tidyverse</code> verbs to wrangle the data.</p>
+<p>The <code><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do()</a></code> function allows us to repeat an operation many times. The following template</p>
+<pre><code>do(n) * {stuff to do}              # pseudo-code</code></pre>
+<p>where {stuff to do} is typically a single <code>R</code> command, but may be something more complicated.</p>
+<p>Load the libraries.</p>
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ProjectMOSAIC/mosaic">mosaic</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##   length
+## 1     18
+## 2     17
+## 3     17
+## 4     17
+## 5     18</code></pre>
+<p>Let’s repeat for a larger number of simulated classroom, remember you should be asking yourself:</p>
+<p><em>What do I want <code>R</code> to do?</em><br><em>What does <code>R</code> need to do this?</em></p>
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>match<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">length</span><span class="op">==</span><span class="fl">18</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">match</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##   prob
+## 1 0.36</code></pre>
+<p>This is within 2 decimal places of the mathematical solution we develop shortly.</p>
+<p>How many classrooms do we need to simulate to get an accurate estimate of the probability of a match? That is a statistical modeling question and it depends on how much variability we can accept. We will discuss these ideas later in the semester. For now, you can run the code multiple times and see how the estimate varies. If computational power is cheap, you can increase the number of simulations.</p>
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>match<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">length</span><span class="op">==</span><span class="fl">18</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">match</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##     prob
+## 1 0.3442</code></pre>
+</div>
+<div id="plotting" class="section level3" number="7.4.3">
+<h3>
+<span class="header-section-number">7.4.3</span> Plotting<a class="anchor" aria-label="anchor" href="#plotting"><i class="fas fa-link"></i></a>
+</h3>
+<p>By the way, the method we have used to create the data allows us to summarize the number of unique birthdays using a table or bar chart. Let’s do that now. Note that since the first argument in <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code> is not data then the <strong>pipe</strong> operator will not work without some extra effort. We must tell <code>R</code> that the data is the previous argument in the pipeline and thus use the symbol <strong>.</strong> to denote this.</p>
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">length</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span></code></pre></div>
+<pre><code>## length
+##  14  15  16  17  18 
+##   1   7  52 253 687</code></pre>
+<p>Figure <a href="CS2.html#fig:bar71-fig">7.1</a> is a plot of the number of unique birthdays in our sample.</p>
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span><span class="va">length</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Number of unique birthdays"</span>,y<span class="op">=</span><span class="st">"Count"</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:bar71-fig"></span>
+<img src="07-Probability-Case-Study_files/figure-html/bar71-fig-1.png" alt="Bar chart of the number of unique birthdays in the sample." width="672"><p class="caption">
+Figure 7.1: Bar chart of the number of unique birthdays in the sample.
+</p>
+</div>
+<blockquote>
+<p><strong>Exercise</strong>:<br>
+What does it mean if the length of unique birthdays is 16, in terms of matches?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;It is possible that 3 people all have the same birthday or two sets of 2 people have the same birthday but different from the other pair.&lt;/p&gt;"><sup>64</sup></a></p>
+</blockquote>
+</div>
+<div id="mathematical-solution" class="section level3" number="7.4.4">
+<h3>
+<span class="header-section-number">7.4.4</span> Mathematical solution<a class="anchor" aria-label="anchor" href="#mathematical-solution"><i class="fas fa-link"></i></a>
+</h3>
+<p>To solve this problem mathematically, we will step through the logic one step at a time. One of the key ideas that we will see many times is the idea of the <strong>multiplication</strong> rule. This idea is the foundation for <strong>permutation</strong> and <strong>combinations</strong> which are counting methods frequently used in probability calculations.</p>
+<p>The first step that we take is to understand the idea of 2 or more people with the same birthday. With 18 people, there are a great deal of possibilities for 2 or more birthdays. We could have exactly 2 people with the same birthday. We could have 18 people with the same birthday, We could have 3 people with the same birthday and another 2 people with the same birthday but different from the other 3. Accounting for all these possibilities is too large a counting process. Instead, we will take the approach of finding the probability of no one having a matching birthday. Then the probability of at least 2 people having a matching birthday is 1 minus the probability that no one has a matching birthday. This is known as a <strong>complementary</strong> probability. A simpler example is to think about rolling a single die. The probability of rolling a 6 is equivalent to 1 minus the probability of not rolling a 6.</p>
+<p>We first need to think about all the different ways we could get 18 birthdays. This is going to be our denominator in the probability calculation. First let’s just look at 2 people. The first person could have 365 different days for their birthday. The second person could also have 365 different birthdays. So for each birthday of the first person there could be 365 birthdays for the second. Thus for 2 people there are <span class="math inline">\(365^2\)</span> possible sets of birthdays. This is an example of the <em>multiplication rule</em>. For 18 people there are <span class="math inline">\(365^{18}\)</span> sets of birthdays. That is a large number. Again, this will be our denominator in calculating the probability.</p>
+<p>The numerator is the number of sets of birthdays with no matches. Again, let’s consider 2 people. The first person can have a birthday on any day of the year, so 365 possibilities. Since we don’t want a match, the second person can only have 364 possibilities for a birthday. Thus we have <span class="math inline">\(365 \times 364\)</span> possibilities for two people to have different birthdays.</p>
+<blockquote>
+<p>Exercise:<br>
+What is the number of possibilities for 18 people so that no one has the same birthday.</p>
+</blockquote>
+<p>The answer for 18 people is <span class="math inline">\(365 \times 364 \times 363 ... \times 349 \times 348\)</span>. This looks like a truncated factorial. Remember a factorial, written as <span class="math inline">\(n!\)</span> with an explanation point, is the product of successive positive integers. As an example <span class="math inline">\(3!\)</span> is <span class="math inline">\(3 \times 2 \times 1\)</span> or 6. We could write the multiplication for the numerator as <span class="math display">\[\frac{365!}{(365-n)!}\]</span> As we will learn, the multiplication rule for the numerator is known as a <strong>permutation</strong>.</p>
+<p>We are ready to put it all together. For 18 people, the probability of 2 or more people with the same birthday is 1 minus the probability that no one has the same birthday, which is</p>
+<p><span class="math display">\[1 - \frac{\frac{365!}{(365-18)!}}{365^{18}}\]</span> or</p>
+<p><span class="math display">\[1 - \frac{\frac{365!}{347!}}{365^{18}}\]</span></p>
+<p>In <code>R</code> there is a function called <code><a href="https://rdrr.io/r/base/Special.html">factorial()</a></code> but factorials get large fast and we will <strong>overflow</strong> the memory. Try <code>factorial(365)</code> in <code>R</code> to see what happens.</p>
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">365</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] Inf</code></pre>
+<p>It is returning <em>infinity</em> because the number is too large for the buffer. As is often the case we will have when using a computational method, we must be clever about our approach. Instead of using factorials we can make use of <code>R</code>s ability to work on vectors. If we provide <code>R</code> with a vector of values, the <code><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">prod()</a></code> will perform a product of all the elements.</p>
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">365</span><span class="op">*</span><span class="fl">364</span></code></pre></div>
+<pre><code>## [1] 132860</code></pre>
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">prod</a></span><span class="op">(</span><span class="fl">365</span><span class="op">:</span><span class="fl">364</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 132860</code></pre>
+<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">1</span><span class="op">-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">prod</a></span><span class="op">(</span><span class="fl">365</span><span class="op">:</span><span class="fl">348</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">365</span><span class="op">^</span><span class="fl">18</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.3469114</code></pre>
+</div>
+<div id="general-solution" class="section level3" number="7.4.5">
+<h3>
+<span class="header-section-number">7.4.5</span> General solution<a class="anchor" aria-label="anchor" href="#general-solution"><i class="fas fa-link"></i></a>
+</h3>
+<p>We now have the mathematics to understand the problem. We can easily generalize this to any number of people. To do this, we have to write a function in <code>R</code>. As with everything in <code>R</code>, we save a function as an object. The general format for creating a function is</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="CS2.html#cb142-1" aria-hidden="true" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(parameters){</span>
+<span id="cb142-2"><a href="CS2.html#cb142-2" aria-hidden="true" tabindex="-1"></a>  code <span class="cf">for</span> <span class="cf">function</span></span>
+<span id="cb142-3"><a href="CS2.html#cb142-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>For this problem we will call the function <code>birthday_prob()</code>. The only parameter we need is the number of people in the room, <code>n</code>. Let’s write this function.</p>
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">birthday_prob</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">=</span><span class="fl">20</span><span class="op">)</span><span class="op">{</span>
+  <span class="fl">1</span><span class="op">-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">prod</a></span><span class="op">(</span><span class="fl">365</span><span class="op">:</span><span class="op">(</span><span class="fl">365</span><span class="op">-</span><span class="op">(</span><span class="va">n</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">365</span><span class="op">^</span><span class="va">n</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>Notice we assigned the function to the name <code>birthday_prob</code>, we told <code>R</code> to expect one argument to the function, which we are calling <code>n</code>, and then we provide <code>R</code> with the code to find the probability. We set a default value for <code>n</code> in case one is not provided to prevent an error when the function is run. We will learn more about writing functions over this and the next semester.</p>
+<p>Test the code with a know answer.</p>
+<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">birthday_prob</span><span class="op">(</span><span class="fl">18</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.3469114</code></pre>
+<p>Now we can determine the probability for any size room. You may have heard that it only takes about 23 people in a room to have a 50% probability of at least 2 people matching birthdays.</p>
+<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">birthday_prob</span><span class="op">(</span><span class="fl">23</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.5072972</code></pre>
+<p>Let’s create a plot of the probability versus number of people in the room. To do this, we need to apply the function to a vector of values. The function <code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code> will work or we can also use <code><a href="https://rdrr.io/r/base/Vectorize.html">Vectorize()</a></code> to alter our existing function. We choose the latter option.</p>
+<p>First notice what happens if we input a vector into our function.</p>
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">birthday_prob</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning in 365:(365 - (n - 1)): numerical expression has 20 elements: only the
+## first used</code></pre>
+<pre><code>##  [1] 0.0000000 0.9972603 0.9999925 1.0000000 1.0000000 1.0000000 1.0000000
+##  [8] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000
+## [15] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000</code></pre>
+<p>It only uses the first value. There are several ways to solve this problem. We can use the <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> function in the <strong>purrr</strong> package. This idea of mapping a function to a vector is important in data science. It is used in scenarios where there is a lot of data. In this case the idea of map-reduce is used to make the analysis amenable to parallel computing.</p>
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,<span class="va">birthday_prob</span><span class="op">)</span></code></pre></div>
+<pre><code>##  [1] 0.000000000 0.002739726 0.008204166 0.016355912 0.027135574 0.040462484
+##  [7] 0.056235703 0.074335292 0.094623834 0.116948178 0.141141378 0.167024789
+## [13] 0.194410275 0.223102512 0.252901320 0.283604005 0.315007665 0.346911418
+## [19] 0.379118526 0.411438384</code></pre>
+<p>We could also just vectorize the function.</p>
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">birthday_prob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Vectorize.html">Vectorize</a></span><span class="op">(</span><span class="va">birthday_prob</span><span class="op">)</span></code></pre></div>
+<p>Now notice what happens.</p>
+<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">birthday_prob</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span></code></pre></div>
+<pre><code>##  [1] 0.000000000 0.002739726 0.008204166 0.016355912 0.027135574 0.040462484
+##  [7] 0.056235703 0.074335292 0.094623834 0.116948178 0.141141378 0.167024789
+## [13] 0.194410275 0.223102512 0.252901320 0.283604005 0.315007665 0.346911418
+## [19] 0.379118526 0.411438384</code></pre>
+<p>We are good to go. Let’s create our line plot, Figure <a href="CS2.html#fig:line71-fig">7.2</a>.</p>
+<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">gf_line</span><span class="op">(</span><span class="fu">birthday_prob</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">100</span><span class="op">)</span>,
+        xlab<span class="op">=</span><span class="st">"Number of People"</span>,
+        ylab<span class="op">=</span><span class="st">"Probability of Match"</span>,
+        title<span class="op">=</span><span class="st">"Probability of at least 2 people with matching birthdays"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:line71-fig"></span>
+<img src="07-Probability-Case-Study_files/figure-html/line71-fig-1.png" alt="The probability of at least 2 people having mathcing birthdays" width="672"><p class="caption">
+Figure 7.2: The probability of at least 2 people having mathcing birthdays
+</p>
+</div>
+<p>Is this what you expected the curve to look like? We, the authors, did not expect this. It has a sigmodial shape with a large increase in the middle range and flatten in the tails.</p>
+</div>
+<div id="data-science-approach" class="section level3" number="7.4.6">
+<h3>
+<span class="header-section-number">7.4.6</span> Data science approach<a class="anchor" aria-label="anchor" href="#data-science-approach"><i class="fas fa-link"></i></a>
+</h3>
+<p>The final approach we will take is one based on data, a data science approach. In the <strong>mosaicData</strong> package is a data set called <code>Births</code> that contains the number of births in the US from 1969 to 1988. This data will allow us to estimate the number of births on any day of the year. This allows us to eliminate the reliance on the assumption that each day is equally likely. Let’s first <code><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect()</a></code> the data object.</p>
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">Births</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## categorical variables:  
+##   name   class levels    n missing
+## 1 wday ordered      7 7305       0
+##                                    distribution
+## 1 Wed (14.3%), Thu (14.3%), Fri (14.3%) ...    
+## 
+## Date variables:  
+##   name class      first       last min_diff max_diff    n missing
+## 1 date  Date 1969-01-01 1988-12-31   1 days   1 days 7305       0
+## 
+## quantitative variables:  
+##              name   class  min   Q1 median    Q3   max        mean          sd
+## ...1       births integer 6675 8792   9622 10510 12851 9648.940178 1127.315229
+## ...2         year integer 1969 1974   1979  1984  1988 1978.501027    5.766735
+## ...3        month integer    1    4      7    10    12    6.522930    3.448939
+## ...4  day_of_year integer    1   93    184   275   366  183.753593  105.621885
+## ...5 day_of_month integer    1    8     16    23    31   15.729637    8.800694
+## ...6  day_of_week integer    1    2      4     6     7    4.000274    1.999795
+##         n missing
+## ...1 7305       0
+## ...2 7305       0
+## ...3 7305       0
+## ...4 7305       0
+## ...5 7305       0
+## ...6 7305       0</code></pre>
+<p>It could be argued that we could randomly pick one year and use it. Let’s see what happens if we just used 1969. Figure <a href="CS2.html#fig:scat71-fig">7.3</a> is a scatter plot of the number of births in 1969 for each day of the year.</p>
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Births</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">1969</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_point</span><span class="op">(</span><span class="va">births</span><span class="op">~</span><span class="va">day_of_year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Day of the Year"</span>,y<span class="op">=</span><span class="st">"Number of Births"</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:scat71-fig"></span>
+<img src="07-Probability-Case-Study_files/figure-html/scat71-fig-1.png" alt="The number of births for each day of the year in 1969" width="672"><p class="caption">
+Figure 7.3: The number of births for each day of the year in 1969
+</p>
+</div>
+<blockquote>
+<p><strong>Exercise</strong>:<br>
+What patterns do you see in Figure <a href="CS2.html#fig:scat71-fig">7.3</a>? What might explain them?</p>
+</blockquote>
+<p>There are definitely bands appearing in the data which could be the day of the week; there are less birthdays on the weekend. There is also seasonality with more birthdays in the summer and fall. There is also probably an impact from holidays.</p>
+<p>Quickly, let’s look at the impact of day of the week by using color for day of the week. Figure <a href="CS2.html#fig:scat72-fig">7.4</a> makes it clear that the weekends have less number of births as compared to the work week.</p>
+<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Births</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">1969</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_point</span><span class="op">(</span><span class="va">births</span><span class="op">~</span><span class="va">day_of_year</span>,color<span class="op">=</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">day_of_week</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Day of the Year"</span>,col<span class="op">=</span><span class="st">"Day of Week"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:scat72-fig"></span>
+<img src="07-Probability-Case-Study_files/figure-html/scat72-fig-1.png" alt="The number of births for each day of the year in 1969 broken down by day of the week" width="672"><p class="caption">
+Figure 7.4: The number of births for each day of the year in 1969 broken down by day of the week
+</p>
+</div>
+<p>By only using one year, this data might give poor results since holidays will fall on certain days of the week and the weekends will also be impacted. Note that we also still have the problem of leap years.</p>
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Births</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 20 x 2
+##     year     n
+##    &lt;int&gt; &lt;int&gt;
+##  1  1969   365
+##  2  1970   365
+##  3  1971   365
+##  4  1972   366
+##  5  1973   365
+##  6  1974   365
+##  7  1975   365
+##  8  1976   366
+##  9  1977   365
+## 10  1978   365
+## 11  1979   365
+## 12  1980   366
+## 13  1981   365
+## 14  1982   365
+## 15  1983   365
+## 16  1984   366
+## 17  1985   365
+## 18  1986   365
+## 19  1987   365
+## 20  1988   366</code></pre>
+<p>The years 1972, 1976, 1980, 1984, and 1988 are all leap years. At this point, to make the analysis easier, we will drop those years.</p>
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Births</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1972</span>,<span class="fl">1976</span>,<span class="fl">1980</span>,<span class="fl">1984</span>,<span class="fl">1988</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 15 x 2
+##     year     n
+##    &lt;int&gt; &lt;int&gt;
+##  1  1969   365
+##  2  1970   365
+##  3  1971   365
+##  4  1973   365
+##  5  1974   365
+##  6  1975   365
+##  7  1977   365
+##  8  1978   365
+##  9  1979   365
+## 10  1981   365
+## 11  1982   365
+## 12  1983   365
+## 13  1985   365
+## 14  1986   365
+## 15  1987   365</code></pre>
+<p>Notice in <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> we used the <code>%in%</code> argument. This is a <strong>logical</strong> argument checking if <code>year</code> is one of the values. The <code>!</code> at the front negates this in a sense requiring <code>year</code> not to be one of those values.`</p>
+<p>We are almost ready to simulate. We need to get the count of <code>births</code> on each day of the year for the non-leap years.</p>
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">birth_data</span> <span class="op">&lt;-</span> <span class="va">Births</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1972</span>,<span class="fl">1976</span>,<span class="fl">1980</span>,<span class="fl">1984</span>,<span class="fl">1988</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">day_of_year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="va">births</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">birth_data</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 2
+##   day_of_year      n
+##         &lt;int&gt;  &lt;int&gt;
+## 1           1 120635
+## 2           2 129042
+## 3           3 135901
+## 4           4 136298
+## 5           5 137319
+## 6           6 140044</code></pre>
+<p>Let’s look at a plot of the number of births versus day of the year. We combined years in Figure <a href="CS2.html#fig:scat73-fig">7.5</a>.</p>
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">birth_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_point</span><span class="op">(</span><span class="va">n</span><span class="op">~</span><span class="va">day_of_year</span>,
+          xlab<span class="op">=</span><span class="st">"Day of the year"</span>,
+          ylab<span class="op">=</span><span class="st">"Number of births"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:scat73-fig"></span>
+<img src="07-Probability-Case-Study_files/figure-html/scat73-fig-1.png" alt="Number of births by day of the year for all years." width="672"><p class="caption">
+Figure 7.5: Number of births by day of the year for all years.
+</p>
+</div>
+<p>This curve has the seasonal cycling we would expect. The smaller scale cycling is unexpected. Maybe because we are dropping the leap years, we are getting some days appearing in our time interval more frequently on weekends. We leave it to you to investigate this phenomenon.</p>
+<p>We use these counts as weights in a sampling process. Days with more births will have a higher probability of being selected. Days such as Christmas and Christmas Eve have a lower probability of being selected. Let’s save the weights in an object to use in the <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample()</a></code> function.</p>
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">birth_data_weights</span> <span class="op">&lt;-</span> <span class="va">birth_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/pull.html">pull()</a></code> function pulls the vectors of values out of the data frame format into a vector format which the <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample()</a></code> needs.</p>
+<p>Now let’s simulate the problem. The probability of a match should change slightly, maybe go down slightly?, but not much since most of the days have about the same probability or number of occurrences.</p>
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>
+<span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span>,prob<span class="op">=</span><span class="va">birth_data_weights</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>match<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">length</span><span class="op">==</span><span class="fl">18</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">match</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##    prob
+## 1 0.352</code></pre>
+<p>We could not solve this problem of varying frequency of birth days using mathematics, at least as far as we know.</p>
+<p>Cool stuff, let’s get to learning more about probability models in the next chapters.</p>
+</div>
+</div>
+<div id="homework-problems-6" class="section level2" number="7.5">
+<h2>
+<span class="header-section-number">7.5</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-6"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Exactly 2 people with the same birthday - Simulation</strong>. Complete a similar analysis for case where exactly 2 people in a room of 23 people have the same birthday. In this exercise you will use a computational simulation.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Create a new R Markdown file and create a report. Yes, we know you could use this file but we want you to practice generating your own report.<br>
+</li>
+<li>Simulate having 23 people in the class with each day of the year equally likely. Find the cases where exactly 2 people have the same birthday, you will have to alter the code from the Notes more than changing 18 to 23.<br>
+</li>
+<li>Plot the frequency of occurrences as a bar chart.<br>
+</li>
+<li>Estimate the probability of exactly two people having the same birthday.</li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>
+<strong>Exactly 2 people with the same birthday - Mathematical</strong>. Repeat problem 1 but do it mathematically. As a big hint, you will need to use the <code><a href="https://rdrr.io/r/base/Special.html">choose()</a></code> function. The idea is that with 23 people we need to choose 2 of them to match. We thus need to multiply, the multiplication rule again, by <code>choose(23,2)</code>. If you are having trouble, work with a total of 3 people in the room first.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Find a formula to determine the exact probability of exactly 2 people in a room of 23 having the same birthday.<br>
+</li>
+<li>Generalize your solution to any number <code>n</code> people in the room and create a function.<br>
+</li>
+<li>Vectorize the function.<br>
+</li>
+<li>Plot the probability of exactly 2 people having the same birthday versus number of people in the room.<br>
+</li>
+<li>Comment on the shape of the curve and explain it.</li>
+</ol>
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></div>
+<div class="next"><a href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#CS2"><span class="header-section-number">7</span> Case Study</a></li>
+<li><a class="nav-link" href="#objectives-6"><span class="header-section-number">7.1</span> Objectives</a></li>
+<li><a class="nav-link" href="#introduction-to-probability-models"><span class="header-section-number">7.2</span> Introduction to probability models</a></li>
+<li><a class="nav-link" href="#probability-models"><span class="header-section-number">7.3</span> Probability models</a></li>
+<li>
+<a class="nav-link" href="#case-study-1"><span class="header-section-number">7.4</span> Case study</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#break-down-the-question"><span class="header-section-number">7.4.1</span> Break down the question</a></li>
+<li><a class="nav-link" href="#simulate-computational"><span class="header-section-number">7.4.2</span> Simulate (computational)</a></li>
+<li><a class="nav-link" href="#plotting"><span class="header-section-number">7.4.3</span> Plotting</a></li>
+<li><a class="nav-link" href="#mathematical-solution"><span class="header-section-number">7.4.4</span> Mathematical solution</a></li>
+<li><a class="nav-link" href="#general-solution"><span class="header-section-number">7.4.5</span> General solution</a></li>
+<li><a class="nav-link" href="#data-science-approach"><span class="header-section-number">7.4.6</span> Data science approach</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#homework-problems-6"><span class="header-section-number">7.5</span> Homework Problems</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/07-Probability-Case-Study.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/07-Probability-Case-Study.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-22.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

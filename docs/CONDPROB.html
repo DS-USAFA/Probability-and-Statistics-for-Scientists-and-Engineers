@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 9 Conditional Probability | Probability and Statistics for Scientists and Engineers</title>
+<meta name="author" content="Matthew Davis">
+<meta name="author" content="Brianna Hitt">
+<meta name="author" content="Kenneth Horton">
+<meta name="author" content="Bradley Warner">
+<meta name="description" content="9.1 Objectives Define conditional probability and distinguish it from joint probability. Find a conditional probability using its definition. Using conditional probability, determine whether two...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 9 Conditional Probability | Probability and Statistics for Scientists and Engineers">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/figures/Cover.png">
+<meta property="og:description" content="9.1 Objectives Define conditional probability and distinguish it from joint probability. Find a conditional probability using its definition. Using conditional probability, determine whether two...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 9 Conditional Probability | Probability and Statistics for Scientists and Engineers">
+<meta name="twitter:description" content="9.1 Objectives Define conditional probability and distinguish it from joint probability. Find a conditional probability using its definition. Using conditional probability, determine whether two...">
+<meta name="twitter:image" content="/figures/Cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Probability and Statistics for Scientists and Engineers</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Preface</a></li>
+<li class="book-part">Descriptive Statistical Modeling</li>
+<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
+<li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
+<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
+<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
+<li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
+<li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
+<li class="book-part">Probability Modeling</li>
+<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
+<li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
+<li><a class="active" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
+<li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
+<li><a class="" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
+<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
+<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
+<li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
+<li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
+<li class="book-part">Statistical Modeling</li>
+<li><a class="" href="CS3.html"><span class="header-section-number">16</span> Case Study</a></li>
+<li><a class="" href="HYPOTEST.html"><span class="header-section-number">17</span> Hypothesis Testing</a></li>
+<li><a class="" href="PVALUES.html"><span class="header-section-number">18</span> Empirical p-values</a></li>
+<li><a class="" href="CLT.html"><span class="header-section-number">19</span> Central Limit Theorem</a></li>
+<li><a class="" href="CI.html"><span class="header-section-number">20</span> Confidence Intervals</a></li>
+<li><a class="" href="BOOT.html"><span class="header-section-number">21</span> Bootstrap</a></li>
+<li><a class="" href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></li>
+<li class="book-part">Predictive Statistical Modeling</li>
+<li><a class="" href="CS4.html"><span class="header-section-number">23</span> Case Study</a></li>
+<li><a class="" href="LRBASICS.html"><span class="header-section-number">24</span> Linear Regression Basics</a></li>
+<li><a class="" href="LRINF.html"><span class="header-section-number">25</span> Linear Regression Inference</a></li>
+<li><a class="" href="LRDIAG.html"><span class="header-section-number">26</span> Regression Diagnostics</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">27</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRMULTI.html"><span class="header-section-number">28</span> Multiple Linear Regression</a></li>
+<li><a class="" href="LOGREG.html"><span class="header-section-number">29</span> Logistic Regression</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="CONDPROB" class="section level1" number="9">
+<h1>
+<span class="header-section-number">9</span> Conditional Probability<a class="anchor" aria-label="anchor" href="#CONDPROB"><i class="fas fa-link"></i></a>
+</h1>
+<div id="objectives-8" class="section level2" number="9.1">
+<h2>
+<span class="header-section-number">9.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-8"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>Define conditional probability and distinguish it from joint probability.<br>
+</li>
+<li>Find a conditional probability using its definition.<br>
+</li>
+<li>Using conditional probability, determine whether two events are independent.<br>
+</li>
+<li>Apply Bayes’ Rule mathematically and via simulation.</li>
+</ol>
+</div>
+<div id="conditional-probability" class="section level2" number="9.2">
+<h2>
+<span class="header-section-number">9.2</span> Conditional Probability<a class="anchor" aria-label="anchor" href="#conditional-probability"><i class="fas fa-link"></i></a>
+</h2>
+<p>So far, we’ve covered the basic axioms of probability, the properties of events (set theory) and counting rules. Another important concept, perhaps one of the most important, is conditional probability. Often, we know a certain event or sequence of events has occurred and we are interested in the probability of another event.</p>
+<blockquote>
+<p><em>Example</em>:<br>
+Suppose you arrive at a rental car counter and they show you a list of available vehicles, and one is picked for you at random. The sample space in this experiment is
+<span class="math display">\[
+S=\{\mbox{red sedan}, \mbox{blue sedan}, \mbox{red truck}, \mbox{grey truck}, \mbox{grey SUV}, \mbox{black SUV}, \mbox{blue SUV}\}.
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>What is the probability that a blue vehicle is selected, given a sedan was selected?</p>
+</blockquote>
+<p>Since we know that a sedan was selected, our sample space has been reduced to just “red sedan” and “blue sedan”. The probability of selecting a blue vehicle out of this sample space is simply 1/2.</p>
+<p>In set notation, let <span class="math inline">\(A\)</span> be the event that a blue vehicle is selected. Let <span class="math inline">\(B\)</span> be the event that a sedan is selected. We are looking for <span class="math inline">\(\mbox{P}(A \mbox{ given } B)\)</span>, which is also written as <span class="math inline">\(\mbox{P}(A|B)\)</span>. By definition,
+<span class="math display">\[
+\mbox{P}(A|B)=\frac{\mbox{P}(A \cap B)}{\mbox{P}(B)}
+\]</span></p>
+<p>It is important to distinguish between the event <span class="math inline">\(A|B\)</span> and <span class="math inline">\(A \cap B\)</span>. This is a common misunderstanding about probability. <span class="math inline">\(A \cap B\)</span> is the event that an outcome was selected at random from the total sample space, and that outcome was contained in both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. On the other hand, <span class="math inline">\(A|B\)</span> assumes the <span class="math inline">\(B\)</span> has occurred, and an outcome was drawn from the remaining sample space, and that outcome was contained in <span class="math inline">\(A\)</span>.</p>
+<p>Another common misunderstanding involves the direction of conditional probability. Specifically, <span class="math inline">\(A|B\)</span> is NOT the same event as <span class="math inline">\(B|A\)</span>. For example, consider a medical test for a disease. The probability that someone tests positive given they had the disease is different than the probability that someone has the disease given they tested positive. We will explore this example further in our Bayes’ Rule section.</p>
+</div>
+<div id="independence" class="section level2" number="9.3">
+<h2>
+<span class="header-section-number">9.3</span> Independence<a class="anchor" aria-label="anchor" href="#independence"><i class="fas fa-link"></i></a>
+</h2>
+<p>Two events, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, are said to be independent if the probability of one occurring does not change whether or not the other has occurred. We looked at this last lesson but now we have another way of looking at it using conditional probabilities. For example, let’s say the probability that a randomly selected student has seen the latest superhero movie is 0.55. What if we randomly select a student and we see that he/she is wearing a black backpack? Does that probability change? Likely not, since movie attendance is probably not related to choice of backpack color. These two events are independent.</p>
+<p>Mathematically, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are considered independent if and only if
+<span class="math display">\[
+\mbox{P}(A|B)=\mbox{P}(A)
+\]</span></p>
+<p><em>Result</em>: <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if and only if
+<span class="math display">\[
+\mbox{P}(A\cap B)=\mbox{P}(A)\mbox{P}(B)
+\]</span></p>
+<p>This follows from the definition of conditional probability and from above:
+<span class="math display">\[
+\mbox{P}(A|B)=\frac{\mbox{P}(A\cap B)}{\mbox{P}(B)}=\mbox{P}(A)
+\]</span></p>
+<p>Thus, <span class="math inline">\(\mbox{P}(A\cap B)=\mbox{P}(A)\mbox{P}(B)\)</span>.</p>
+<blockquote>
+<p><em>Example</em>:
+Consider the example above. Recall events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. Let <span class="math inline">\(A\)</span> be the event that a blue vehicle is selected. Let <span class="math inline">\(B\)</span> be the event that a sedan is selected. Are <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> independent?</p>
+</blockquote>
+<p>No. First, recall that <span class="math inline">\(\mbox{P}(A|B)=0.5\)</span>. The probability of selecting a blue vehicle (<span class="math inline">\(\mbox{P}(A)\)</span>) is <span class="math inline">\(2/7\)</span> (the number of blue vehicles in our sample space divided by 7, the total number vehicles in <span class="math inline">\(S\)</span>). This value is different from 0.5; thus, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are not independent.</p>
+<p>We could also use the result above to determine whether <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent. Note that <span class="math inline">\(\mbox{P}(A)= 2/7\)</span>. Also, we know that <span class="math inline">\(\mbox{P}(B)=2/7\)</span>. So, <span class="math inline">\(\mbox{P}(A)\mbox{P}(B)=4/49\)</span>. But, <span class="math inline">\(\mbox{P}(A\cap B) = 1/7\)</span>, since there is just one blue sedan in the sample space. <span class="math inline">\(4/49\)</span> is not equal to <span class="math inline">\(1/7\)</span>; thus, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are not independent.</p>
+</div>
+<div id="bayes-rule" class="section level2" number="9.4">
+<h2>
+<span class="header-section-number">9.4</span> Bayes’ Rule<a class="anchor" aria-label="anchor" href="#bayes-rule"><i class="fas fa-link"></i></a>
+</h2>
+<p>As mentioned in the introduction to this section, <span class="math inline">\(\mbox{P}(A|B)\)</span> is not the same quantity as <span class="math inline">\(\mbox{P}(B|A)\)</span>. However, if we are given information about <span class="math inline">\(A|B\)</span> and <span class="math inline">\(B\)</span>, we can use Bayes’ Rule to find <span class="math inline">\(\mbox{P}(B|A)\)</span>. Let <span class="math inline">\(B_1, B_2, ..., B_n\)</span> be mutually exclusive and exhaustive events and let <span class="math inline">\(\mbox{P}(A)&gt;0\)</span>. Then,
+<span class="math display">\[
+\mbox{P}(B_k|A)=\frac{\mbox{P}(A|B_k)\mbox{P}(B_k)}{\sum_{i=1}^n \mbox{P}(A|B_i)\mbox{P}(B_i)}
+\]</span></p>
+<p>Let’s use an example to dig into where this comes from.</p>
+<blockquote>
+<p><em>Example</em>:<br>
+Suppose a doctor has developed a blood test for a certain rare disease (only one out of every 10,000 people have this disease). After careful and extensive evaluation of this blood test, the doctor determined the test’s sensitivity and specificity.</p>
+</blockquote>
+<p><strong>Sensitivity</strong> is the probability of detecting the disease for those who actually have it. Note that this is a conditional probability.</p>
+<p><strong>Specificity</strong> is the probability of correctly identifying “no disease” for those who do not have it. Again, another conditional probability.</p>
+<p>See Figure <a href="CONDPROB.html#fig:sens">9.1</a> for a visual representation of these terms and others related to what is termed a <strong>confusion matrix</strong>.</p>
+
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:sens"></span>
+<img src="figures/sensitivity-specificity_corrected.jpg" alt="A table of true results and test results for a hypothetical disease. The terminology is included in the table. These ideas are important when evaluating machine learning classification models." width="100%"><p class="caption">
+Figure 9.1: A table of true results and test results for a hypothetical disease. The terminology is included in the table. These ideas are important when evaluating machine learning classification models.
+</p>
+</div>
+<p>In fact, this test had a sensitivity of 100% and a specificity of 99.9%. Now suppose a patient walks in, the doctor administers the blood test, and it returns positive. What is the probability that that patient actually has the disease?</p>
+<p>This is a classic example of how probability could be misunderstood. Upon reading this question, you might guess that the answer to our question is quite high. After all, this is a nearly perfect test. After exploring the problem more in depth, we find a different result.</p>
+<div id="approach-using-whole-numbers" class="section level3" number="9.4.1">
+<h3>
+<span class="header-section-number">9.4.1</span> Approach using whole numbers<a class="anchor" aria-label="anchor" href="#approach-using-whole-numbers"><i class="fas fa-link"></i></a>
+</h3>
+<p>Without going directly to the formulaic expression above, let’s consider a collection of 100,000 randomly selected people. What do we know?</p>
+<ol style="list-style-type: decimal">
+<li><p>Based on the prevalence of this disease (one out of every 10,000 people have this disease), we know that 10 of them should have the disease.</p></li>
+<li><p>This test is perfectly sensitive. Thus, of the 10 people that have the disease, all of them test positive.</p></li>
+<li><p>This test has a specificity of 99.9%. Of the 99,990 that don’t have the disease, <span class="math inline">\(0.999*99990\approx 99890\)</span> will test negative. The remaining 100 will test positive.</p></li>
+</ol>
+<p>Thus, of our 100,000 randomly selected people, 110 will test positive. Of these 110, only 10 actually have the disease. Thus, the probability that someone has the disease given they’ve tested positive is actually around <span class="math inline">\(10/110 = 0.0909\)</span>.</p>
+</div>
+<div id="mathematical-approach" class="section level3" number="9.4.2">
+<h3>
+<span class="header-section-number">9.4.2</span> Mathematical approach<a class="anchor" aria-label="anchor" href="#mathematical-approach"><i class="fas fa-link"></i></a>
+</h3>
+<p>Now let’s put this in context of Bayes’ Rule as stated above. First, let’s define some events. Let <span class="math inline">\(D\)</span> be the event that someone has the disease. Thus, <span class="math inline">\(D'\)</span> would be the event that someone does not have the disease. Similarly, let <span class="math inline">\(T\)</span> be the event that someone has tested positive. What do we already know?
+<span class="math display">\[
+\mbox{P}(D) = 0.0001 \hspace{1cm} \mbox{P}(D')=0.9999 
+\]</span>
+<span class="math display">\[
+\mbox{P}(T|D)= 1 \hspace{1cm} \mbox{P}(T'|D)=0
+\]</span>
+<span class="math display">\[
+\mbox{P}(T'|D')=0.999 \hspace{1cm} \mbox{P}(T|D') = 0.001
+\]</span></p>
+<p>We are looking for <span class="math inline">\(\mbox{P}(D|T)\)</span>, the probability that someone has the disease, given he/she has tested positive. By the definition of conditional probability,
+<span class="math display">\[
+\mbox{P}(D|T)=\frac{\mbox{P}(D \cap T)}{\mbox{P}(T)}
+\]</span></p>
+<p>The numerator can be rewritten, again utilizing the definition of conditional probability: <span class="math inline">\(\mbox{P}(D\cap T)=\mbox{P}(T|D)\mbox{P}(D)\)</span>.</p>
+<p>The denominator can be rewritten using the Law of Total Probability (discussed <a href="PROBRULES.html#probability-properties">here</a>) and then the definition of conditional probability: <span class="math inline">\(\mbox{P}(T)=\mbox{P}(T\cap D) + \mbox{P}(T \cap D') = \mbox{P}(T|D)\mbox{P}(D) + \mbox{P}(T|D')\mbox{P}(D')\)</span>. So, putting it all together,
+<span class="math display">\[
+\mbox{P}(D|T)=\frac{\mbox{P}(T|D)\mbox{P}(D)}{\mbox{P}(T|D)\mbox{P}(D) + \mbox{P}(T|D')\mbox{P}(D')}
+\]</span></p>
+<p>Now we have stated our problem in the context of quantities we know:
+<span class="math display">\[
+\mbox{P}(D|T)=\frac{1\cdot 0.0001}{1\cdot 0.0001 + 0.001\cdot 0.9999} = 0.0909
+\]</span></p>
+<p>Note that in the original statement of Bayes’ Rule, we considered <span class="math inline">\(n\)</span> partitions, <span class="math inline">\(B_1, B_2,...,B_n\)</span>. In this example, we only have two: <span class="math inline">\(D\)</span> and <span class="math inline">\(D'\)</span>.</p>
+</div>
+<div id="simulation" class="section level3" number="9.4.3">
+<h3>
+<span class="header-section-number">9.4.3</span> Simulation<a class="anchor" aria-label="anchor" href="#simulation"><i class="fas fa-link"></i></a>
+</h3>
+<p>To do the simulation, we can think of it as flipping a coin. First let’s assume we are pulling 1,000,000 people from the population. The probability that any one person has the disease is 0.0001. We will use <code><a href="https://www.mosaic-web.org/mosaic/reference/rflip.html">rflip()</a></code> to get the 1,000,000 people and designate as no disease or disease.</p>
+<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">43</span><span class="op">)</span>
+<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/rflip.html">rflip</a></span><span class="op">(</span><span class="fl">1000000</span>,<span class="fl">0.0001</span>,summarize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">results</span></code></pre></div>
+<pre><code>##       n heads  tails  prob
+## 1 1e+06   100 999900 1e-04</code></pre>
+<p>In this case 100 people had the disease. Now let’s find the positive test results. Of the 100 with the disease, all will test positive. Of those without disease, there is a 0.001 probability of testing positive.</p>
+<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/rflip.html">rflip</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">results</span><span class="op">[</span><span class="st">'tails'</span><span class="op">]</span><span class="op">)</span>,prob<span class="op">=</span><span class="fl">.001</span>,summarize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>##        n heads  tails  prob
+## 1 999900   959 998941 0.001</code></pre>
+<p>Now 959 tested positive. Thus the probability of having the disease given a positive test result is approximately:</p>
+<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">100</span><span class="op">/</span><span class="op">(</span><span class="fl">100</span><span class="op">+</span><span class="fl">959</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.09442871</code></pre>
+</div>
+</div>
+<div id="homework-problems-8" class="section level2" number="9.5">
+<h2>
+<span class="header-section-number">9.5</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-8"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>Consider: <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are events such that <span class="math inline">\(\mbox{P}(A)=0.5\)</span>, <span class="math inline">\(\mbox{P}(B)=0.3\)</span>, <span class="math inline">\(\mbox{P}(C)=0.4\)</span>, <span class="math inline">\(\mbox{P}(A \cap B)=0.2\)</span>, <span class="math inline">\(\mbox{P}(B \cap C)=0.12\)</span>, <span class="math inline">\(\mbox{P}(A \cap C)=0.1\)</span>, and <span class="math inline">\(\mbox{P}(A \cap B \cap C)=0.05\)</span>.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Are <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> independent?<br>
+</li>
+<li>Are <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> independent?</li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Suppose I have a biased coin (the probability I flip a heads is 0.6). I flip that coin twice. Assume that the coin is memoryless (flips are independent of one another).</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>What is the probability that the second flip results in heads?<br>
+</li>
+<li>What is the probability that the second flip results in heads, given the first also resulted in heads?<br>
+</li>
+<li>What is the probability both flips result in heads?<br>
+</li>
+<li>What is the probability exactly one coin flip results in heads?<br>
+</li>
+<li>Now assume I flip the coin five times. What is the probability the result is 5 heads?<br>
+</li>
+<li>What is the probability the result is exactly 2 heads (out of 5 flips)?</li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Suppose there are three assistants working at a company: Moe, Larry and Curly. All three assist with a filing process. Only one filing assistant is needed at a time. Moe assists 60% of the time, Larry assists 30% of the time and Curly assists the remaining 10% of the time. Occasionally, they make errors (misfiles); Moe has a misfile rate of 0.01, Larry has a misfile rate of 0.025, and Curly has a rate of 0.05. Suppose a misfile was discovered, but it is unknown who was on schedule when it occurred. Who is most likely to have committed the misfile? Calculate the probabilities for each of the three assistants.</p></li>
+<li><p>You are playing a game where there are two coins. One coin is fair and the other comes up <em>heads</em> 80% of the time. One coin is flipped 3 times and the result is three <em>heads</em>, what is the probability that the coin flipped is the fair coin? You will need to make an assumption about the probability of either coin being selected.</p></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Use Bayes formula to solve this problem.<br>
+</li>
+<li>Use simulation to solve this problem.</li>
+</ol>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></div>
+<div class="next"><a href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#CONDPROB"><span class="header-section-number">9</span> Conditional Probability</a></li>
+<li><a class="nav-link" href="#objectives-8"><span class="header-section-number">9.1</span> Objectives</a></li>
+<li><a class="nav-link" href="#conditional-probability"><span class="header-section-number">9.2</span> Conditional Probability</a></li>
+<li><a class="nav-link" href="#independence"><span class="header-section-number">9.3</span> Independence</a></li>
+<li>
+<a class="nav-link" href="#bayes-rule"><span class="header-section-number">9.4</span> Bayes’ Rule</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#approach-using-whole-numbers"><span class="header-section-number">9.4.1</span> Approach using whole numbers</a></li>
+<li><a class="nav-link" href="#mathematical-approach"><span class="header-section-number">9.4.2</span> Mathematical approach</a></li>
+<li><a class="nav-link" href="#simulation"><span class="header-section-number">9.4.3</span> Simulation</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#homework-problems-8"><span class="header-section-number">9.5</span> Homework Problems</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/09-Conditional-Probability.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/09-Conditional-Probability.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-22.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

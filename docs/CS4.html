@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 23 Case Study | Probability and Statistics for Scientists and Engineers</title>
+<meta name="author" content="Matthew Davis">
+<meta name="author" content="Brianna Hitt">
+<meta name="author" content="Kenneth Horton">
+<meta name="author" content="Bradley Warner">
+<meta name="description" content="23.1 Objectives Using R, generate a linear regression model and use it to produce a prediction model. Using plots, check the assumptions of a linear regression model.  23.2 Introduction to linear...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 23 Case Study | Probability and Statistics for Scientists and Engineers">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/figures/Cover.png">
+<meta property="og:description" content="23.1 Objectives Using R, generate a linear regression model and use it to produce a prediction model. Using plots, check the assumptions of a linear regression model.  23.2 Introduction to linear...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 23 Case Study | Probability and Statistics for Scientists and Engineers">
+<meta name="twitter:description" content="23.1 Objectives Using R, generate a linear regression model and use it to produce a prediction model. Using plots, check the assumptions of a linear regression model.  23.2 Introduction to linear...">
+<meta name="twitter:image" content="/figures/Cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Probability and Statistics for Scientists and Engineers</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Preface</a></li>
+<li class="book-part">Descriptive Statistical Modeling</li>
+<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
+<li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
+<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
+<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
+<li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
+<li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
+<li class="book-part">Probability Modeling</li>
+<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
+<li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
+<li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
+<li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
+<li><a class="" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
+<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
+<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
+<li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
+<li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
+<li class="book-part">Statistical Modeling</li>
+<li><a class="" href="CS3.html"><span class="header-section-number">16</span> Case Study</a></li>
+<li><a class="" href="HYPOTEST.html"><span class="header-section-number">17</span> Hypothesis Testing</a></li>
+<li><a class="" href="PVALUES.html"><span class="header-section-number">18</span> Empirical p-values</a></li>
+<li><a class="" href="CLT.html"><span class="header-section-number">19</span> Central Limit Theorem</a></li>
+<li><a class="" href="CI.html"><span class="header-section-number">20</span> Confidence Intervals</a></li>
+<li><a class="" href="BOOT.html"><span class="header-section-number">21</span> Bootstrap</a></li>
+<li><a class="" href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></li>
+<li class="book-part">Predictive Statistical Modeling</li>
+<li><a class="active" href="CS4.html"><span class="header-section-number">23</span> Case Study</a></li>
+<li><a class="" href="LRBASICS.html"><span class="header-section-number">24</span> Linear Regression Basics</a></li>
+<li><a class="" href="LRINF.html"><span class="header-section-number">25</span> Linear Regression Inference</a></li>
+<li><a class="" href="LRDIAG.html"><span class="header-section-number">26</span> Regression Diagnostics</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">27</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRMULTI.html"><span class="header-section-number">28</span> Multiple Linear Regression</a></li>
+<li><a class="" href="LOGREG.html"><span class="header-section-number">29</span> Logistic Regression</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="CS4" class="section level1" number="23">
+<h1>
+<span class="header-section-number">23</span> Case Study<a class="anchor" aria-label="anchor" href="#CS4"><i class="fas fa-link"></i></a>
+</h1>
+<div id="objectives-21" class="section level2" number="23.1">
+<h2>
+<span class="header-section-number">23.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-21"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>Using <code>R</code>, generate a linear regression model and use it to produce a prediction model.<br>
+</li>
+<li>Using plots, check the assumptions of a linear regression model.</li>
+</ol>
+</div>
+<div id="introduction-to-linear-regression" class="section level2" number="23.2">
+<h2>
+<span class="header-section-number">23.2</span> Introduction to linear regression<a class="anchor" aria-label="anchor" href="#introduction-to-linear-regression"><i class="fas fa-link"></i></a>
+</h2>
+<p>Linear regression is often one of the first methods taught in a machine learning course. It is an excellent tool with a wide range of applications. It can be used solely to predict an outcome of interest, a prediction model, and/or be used for inference. In this book, we will mainly focus on its use for inference. Even so, this treatment barely scratches the surface of what can be done. There are entire courses devoted to the interpretation of linear regression models.</p>
+<p>When used as a predictive model, linear regression fits into the category of a function approximation method. The parameters of the model, function, are fit using an objective, loss, function and optimization procedure. For linear regression in this book, the loss function will be sum of squared errors which leads to closed form solution using differentiation. In machine learning courses you will learn about different types of loss functions to include penalized or regularized versions as well as different optimization engines. For software such as <code>tidymodels</code> in <code>R</code> or <code>scitkit-learn</code> in <code>python</code>, you will specify the loss function and optimization engine directly.</p>
+</div>
+<div id="case-study-introduction" class="section level2" number="23.3">
+<h2>
+<span class="header-section-number">23.3</span> Case study introduction<a class="anchor" aria-label="anchor" href="#case-study-introduction"><i class="fas fa-link"></i></a>
+</h2>
+<p>The Human Freedom Index is a report that attempts to summarize the idea of “freedom” through a bunch of different variables for many countries around the globe. It serves as a rough objective measure for the relationships between the different types of freedom - whether it’s political, religious, economical or personal freedom - and other social and economic circumstances. The Human Freedom Index is an annually co-published report by the Cato Institute, the Fraser Institute, and the Liberales Institut at the Friedrich Naumann Foundation for Freedom.</p>
+<p>In this case study, you’ll be analyzing data from Human Freedom Index reports from 2008-2016. Your aim will be to summarize a few of the relationships within the data both graphically and numerically in order to find which variables can help tell a story about freedom. This will be done using the tool of regression.</p>
+<p>Again, like our previous case studies, this chapter will introduce many of the ideas of the block. Don’t worry if they seem difficult and you feel overwhelmed a bit, we will come back to the ideas in the following chapters.</p>
+<div id="load-packages" class="section level3" number="23.3.1">
+<h3>
+<span class="header-section-number">23.3.1</span> Load packages<a class="anchor" aria-label="anchor" href="#load-packages"><i class="fas fa-link"></i></a>
+</h3>
+<p>Let’s load the packages.</p>
+<div class="sourceCode" id="cb730"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ProjectMOSAIC/mosaic">mosaic</a></span><span class="op">)</span></code></pre></div>
+</div>
+<div id="the-data-and-exploratory-analysis" class="section level3" number="23.3.2">
+<h3>
+<span class="header-section-number">23.3.2</span> The data and exploratory analysis<a class="anchor" aria-label="anchor" href="#the-data-and-exploratory-analysis"><i class="fas fa-link"></i></a>
+</h3>
+<p>The data we’re working with is in the file called <code>hfi.csv</code> under the <code>data</code> folder. The name <code>hfi</code> is
+short for Human Freedom Index.</p>
+<blockquote>
+<p><strong>Exercise</strong><br>
+Read the data into <code>R</code>. What are the dimensions of the dataset?</p>
+</blockquote>
+<div class="sourceCode" id="cb731"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">hfi</span><span class="op">&lt;-</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/hfi.csv"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb732"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">hfi</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 1458  123</code></pre>
+<p>There are 1458 observations and 123 variables in the data frame.</p>
+<blockquote>
+<p><strong>Exercise</strong><br>
+Create summaries of the first 10 variables in the data. We just don’t want a large printout.</p>
+</blockquote>
+<div class="sourceCode" id="cb734"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">hfi</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## categorical variables:  
+##        name     class levels    n missing
+## 1  ISO_code character    162 1458       0
+## 2 countries character    162 1458       0
+## 3    region character     10 1458       0
+##                                    distribution
+## 1 AGO (0.6%), ALB (0.6%), ARE (0.6%) ...       
+## 2 Albania (0.6%), Algeria (0.6%) ...           
+## 3 Sub-Saharan Africa (25.9%) ...               
+## 
+## quantitative variables:  
+##                            name   class  min          Q1      median
+## ...1                       year numeric 2008 2010.000000 2012.000000
+## ...2          pf_rol_procedural numeric    0    4.133333    5.300000
+## ...3               pf_rol_civil numeric    0    4.549550    5.300000
+## ...4            pf_rol_criminal numeric    0    3.789724    4.575189
+## ...5                     pf_rol numeric    0    4.131746    4.910797
+## ...6             pf_ss_homicide numeric    0    6.386978    8.638278
+## ...7 pf_ss_disappearances_disap numeric    0   10.000000   10.000000
+##               Q3         max        mean       sd    n missing
+## ...1 2014.000000 2016.000000 2012.000000 2.582875 1458       0
+## ...2    7.389499    9.700000    5.589355 2.080957  880     578
+## ...3    6.410975    8.773533    5.474770 1.428494  880     578
+## ...4    6.400000    8.719848    5.044070 1.724886  880     578
+## ...5    6.513178    8.723094    5.309641 1.529310 1378      80
+## ...6    9.454402    9.926568    7.412980 2.832947 1378      80
+## ...7   10.000000   10.000000    8.341855 3.225902 1369      89</code></pre>
+<blockquote>
+<p><strong>Exercise</strong><br>
+Create a scatter plot to display the relationship between the personal freedom score, <code>pf_score</code>, as the response and <code>pf_expression_control</code> as the predictor. Does the relationship look linear?</p>
+</blockquote>
+<div class="sourceCode" id="cb736"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">gf_lm</span><span class="op">(</span><span class="va">pf_score</span><span class="op">~</span><span class="va">pf_expression_control</span>,data<span class="op">=</span><span class="va">hfi</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_point</span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.3</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Personal freedom score versus Expression control"</span>,
+          x<span class="op">=</span><span class="st">"Political pressures and controls on media"</span>,
+          y<span class="op">=</span><span class="st">"Personal freedom score"</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:scat251-fig"></span>
+<img src="25-Linear-Regression-Case-Study_files/figure-html/scat251-fig-1.png" alt="A scatterplot of personal freedom versus expression control using the ggformula package." width="672"><p class="caption">
+Figure 23.1: A scatterplot of personal freedom versus expression control using the ggformula package.
+</p>
+</div>
+<div class="sourceCode" id="cb737"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">hfi</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pf_expression_control</span>,y<span class="op">=</span><span class="va">pf_score</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu">geom_lm</span><span class="op">(</span>color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"Personal freedom score versus Expression control"</span>,
+          x<span class="op">=</span><span class="st">"Political pressures and controls on media"</span>,
+          y<span class="op">=</span><span class="st">"Personal freedom score"</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:scat252-fig"></span>
+<img src="25-Linear-Regression-Case-Study_files/figure-html/scat252-fig-1.png" alt="A scatterplot of personal freedom versus expression control using the ggplot2 package." width="672"><p class="caption">
+Figure 23.2: A scatterplot of personal freedom versus expression control using the ggplot2 package.
+</p>
+</div>
+<p>Figures <a href="CS4.html#fig:scat251-fig">23.1</a> and <a href="CS4.html#fig:scat252-fig">23.2</a> are both scatterplots, we included both to demonstrate both the <strong>ggformula</strong> and <strong>ggplot2</strong> packages. In these figures, the relationship does look linear. Although, we should be uncomfortable using the model at the end points. That is because there are less points at the edge and and linear estimation has larger variance at the endpoints, the predictions at the endpoints is more suspect.</p>
+<blockquote>
+<p><strong>Exercise</strong><br>
+The relationship looks linear, quantify the strength of the
+relationship with the correlation coefficient.</p>
+</blockquote>
+<div class="sourceCode" id="cb738"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">hfi</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">cor</a></span><span class="op">(</span><span class="va">pf_expression_control</span>, <span class="va">pf_score</span>, use <span class="op">=</span> <span class="st">"complete.obs"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   `cor(pf_expression_control, pf_score, use = "complete.obs")`
+##                                                          &lt;dbl&gt;
+## 1                                                        0.796</code></pre>
+<p>The sample correlation coefficient, indicates a strong positive linear relationship between the variables.</p>
+<p>Note that we set the <code>use</code> argument to “complete.obs” since there are some observations with missing values, <code>NA</code>.</p>
+</div>
+</div>
+<div id="sum-of-squared-residuals" class="section level2" number="23.4">
+<h2>
+<span class="header-section-number">23.4</span> Sum of squared residuals<a class="anchor" aria-label="anchor" href="#sum-of-squared-residuals"><i class="fas fa-link"></i></a>
+</h2>
+<p>In this section, you will use an interactive function to investigate what we mean by “sum
+of squared residuals”. You will need to run this function in your console. Running the function also requires that the <code>hfi</code> data set is loaded in your environment, which we did above.</p>
+<p>Think back to the way that we described the distribution of a single variable. Recall that we discussed characteristics such as center, spread, and shape. It’s also useful to be able to describe the relationship of two numerical variables, such as <code>pf_expression_control</code> and <code>pf_score</code> above.</p>
+<blockquote>
+<p><strong>Exercise</strong><br>
+Looking at your scatterplot above, describe the relationship between these two variables. Make sure to discuss the form, direction, and strength of the relationship as well as any unusual observations.</p>
+</blockquote>
+<p>We would say that there is a strong positive linear relationship between the two variables.</p>
+<p>Just as you’ve used the mean and standard deviation to summarize a single variable, you can summarize the relationship between these two variables by finding the
+line that best follows their association. Use the following interactive function to select the line that you think does the best job of going through the cloud of points.</p>
+<p>First we must remove missing values from the data set and to make the visualization easier, we will just randomly sample 30 of the data points. We included <code>hf_score</code> because we will need it later.</p>
+<div class="sourceCode" id="cb740"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">4011</span><span class="op">)</span>
+<span class="va">hfi_sub</span> <span class="op">&lt;-</span> <span class="va">hfi</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">pf_expression_control</span>,<span class="va">pf_score</span>,<span class="va">hf_score</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">pf_expression_control</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
+<p>We used the function <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample()</a></code> to ensure we have unique values of <code>pf_expression_control</code> in our sample.</p>
+<blockquote>
+<p><strong>Exercise</strong><br>
+In your <code>R</code> console, run the code above to create the object <code>hfi_sub</code>. You are going to have to load packages and read in the <code>hfi</code> data set. Then execute the next lines of code. Pick two locations in the plot to create a line. Record the sum of squares.</p>
+</blockquote>
+<p>First, run this code chunk to create a function <code>plot_ss()</code> that you will use next.</p>
+<div class="sourceCode" id="cb741"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Function to create plot and residuals.</span>
+<span class="va">plot_ss</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">data</span>, <span class="va">showSquares</span> <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">leastSquares</span> <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> 
+<span class="op">{</span>
+    <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eval.html">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="va">data</span><span class="op">)</span>
+    <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eval.html">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>, <span class="va">data</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, asp <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fl">16</span><span class="op">)</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="va">leastSquares</span><span class="op">)</span> <span class="op">{</span>
+        <span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span><span class="op">)</span>
+        <span class="va">y.hat</span> <span class="op">&lt;-</span> <span class="va">m1</span><span class="op">$</span><span class="va">fit</span>
+    <span class="op">}</span>
+    <span class="kw">else</span> <span class="op">{</span>
+        <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Click two points to make a line."</span><span class="op">)</span>
+        <span class="va">pt1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/locator.html">locator</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
+        <span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">pt1</span><span class="op">$</span><span class="va">x</span>, <span class="va">pt1</span><span class="op">$</span><span class="va">y</span>, pch <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
+        <span class="va">pt2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/locator.html">locator</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
+        <span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">pt2</span><span class="op">$</span><span class="va">x</span>, <span class="va">pt2</span><span class="op">$</span><span class="va">y</span>, pch <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
+        <span class="va">pts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">pt1</span><span class="op">$</span><span class="va">x</span>, <span class="va">pt2</span><span class="op">$</span><span class="va">x</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">pt1</span><span class="op">$</span><span class="va">y</span>, <span class="va">pt2</span><span class="op">$</span><span class="va">y</span><span class="op">)</span><span class="op">)</span>
+        <span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, data <span class="op">=</span> <span class="va">pts</span><span class="op">)</span>
+        <span class="va">y.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m1</span>, newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
+    <span class="op">}</span>
+    <span class="va">r</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">-</span> <span class="va">y.hat</span>
+    <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span>
+    <span class="va">oSide</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">-</span> <span class="va">r</span>
+    <span class="va">LLim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">usr</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+    <span class="va">RLim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">usr</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>
+    <span class="va">oSide</span><span class="op">[</span><span class="va">oSide</span> <span class="op">&lt;</span> <span class="va">LLim</span> <span class="op">|</span> <span class="va">oSide</span> <span class="op">&gt;</span> <span class="va">RLim</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">x</span> <span class="op">+</span> <span class="va">r</span><span class="op">)</span><span class="op">[</span><span class="va">oSide</span> <span class="op">&lt;</span> <span class="va">LLim</span> <span class="op">|</span> 
+        <span class="va">oSide</span> <span class="op">&gt;</span> <span class="va">RLim</span><span class="op">]</span>
+    <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">y.hat</span><span class="op">)</span>
+    <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span>
+        <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="va">y.hat</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span>
+        <span class="kw">if</span> <span class="op">(</span><span class="va">showSquares</span><span class="op">)</span> <span class="op">{</span>
+            <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">oSide</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="va">y.hat</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">3</span>, 
+                col <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span>
+            <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">oSide</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="va">x</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">y.hat</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">3</span>, 
+                col <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span>
+            <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">oSide</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="va">x</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">3</span>, col <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span>
+        <span class="op">}</span>
+    <span class="op">}</span>
+    <span class="va">SS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="va">r</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"\r                                "</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Sum of Squares: "</span>, <span class="va">SS</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>Next run the next code chunk that for us resulted in Figure <a href="CS4.html#fig:plotss-expression-score">23.3</a>. You will have to pick to points on the plot that you think gives the best line.</p>
+<div class="sourceCode" id="cb742"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">plot_ss</span><span class="op">(</span>x <span class="op">=</span> <span class="va">pf_expression_control</span>, y <span class="op">=</span> <span class="va">pf_score</span>, data <span class="op">=</span> <span class="va">hfi_sub</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:plotss-expression-score"></span>
+<img src="25-Linear-Regression-Case-Study_files/figure-html/plotss-expression-score-1.png" alt="Plot of selected line and the associated residuals." width="672"><p class="caption">
+Figure 23.3: Plot of selected line and the associated residuals.
+</p>
+</div>
+<pre><code>## Click two points to make a line.
+                                
+## Call:
+## lm(formula = y ~ x, data = pts)
+## 
+## Coefficients:
+## (Intercept)            x  
+##      5.0272       0.4199  
+## 
+## Sum of Squares:  19.121</code></pre>
+<p>Once you’ve picked your two locations, the line you specified will be shown in black and the residuals in blue. Residuals are the difference between the observed values and the values predicted by the line:</p>
+<p><span class="math display">\[
+  e_i = y_i - \hat{y}_i
+\]</span></p>
+<p>The most common way to do linear regression is to select the line that minimizes the sum of squared residuals. To visualize the squared residuals, you can rerun
+the plot command and add the argument <code>showSquares = TRUE</code>.</p>
+<div class="sourceCode" id="cb744"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">plot_ss</span><span class="op">(</span>x <span class="op">=</span> <span class="va">pf_expression_control</span>, y <span class="op">=</span> <span class="va">pf_score</span>, data <span class="op">=</span> <span class="va">hfi_sub</span>, showSquares <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p>Note that the output from the <code>plot_ss</code> function provides you with the slope and intercept of your line as well as the sum of squares.</p>
+<blockquote>
+<p><strong>Exercise</strong>:<br>
+Using <code>plot_ss</code>, choose a line that does a good job of minimizing the sum of squares. Run the function several times. What was the smallest sum of squares that you got?</p>
+</blockquote>
+</div>
+<div id="the-linear-model" class="section level2" number="23.5">
+<h2>
+<span class="header-section-number">23.5</span> The linear model<a class="anchor" aria-label="anchor" href="#the-linear-model"><i class="fas fa-link"></i></a>
+</h2>
+<p>It is rather cumbersome to try to get the correct least squares line, i.e. the line that minimizes the sum of squared residuals, through trial and error. Instead, you can use the <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> function in <code>R</code> to fit the linear model (a.k.a.
+regression line).</p>
+<div class="sourceCode" id="cb745"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">pf_score</span> <span class="op">~</span> <span class="va">pf_expression_control</span>, data <span class="op">=</span> <span class="va">hfi_sub</span><span class="op">)</span></code></pre></div>
+<p>The first argument in the function <code>lm</code> is a formula that takes the form <code>y ~ x</code>. Here it can be read that we want to make a linear model of <code>pf_score</code> as a function of <code>pf_expression_control</code>. The second argument specifies
+that <code>R</code> should look in the <code>hfi_sub</code> data frame to find the two variables. This should be familiar to us since we have been doing this when we used the <strong>mosaic</strong> package.</p>
+<p>The output of <code>lm</code> is an object that contains all of the information we need about the linear model that was just fit. We can access this information using the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> function.</p>
+<div class="sourceCode" id="cb746"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = pf_score ~ pf_expression_control, data = hfi_sub)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.7559 -0.4512  0.1838  0.5369  1.2510 
+## 
+## Coefficients:
+##                       Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)            5.02721    0.23186  21.682  &lt; 2e-16 ***
+## pf_expression_control  0.41988    0.04312   9.736 1.26e-11 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.7288 on 36 degrees of freedom
+## Multiple R-squared:  0.7248, Adjusted R-squared:  0.7171 
+## F-statistic:  94.8 on 1 and 36 DF,  p-value: 1.262e-11</code></pre>
+<p>Let’s consider this output piece by piece. First, the formula used to describe the model is shown at the top. After the formula you find the five-number summary of the residuals. The “Coefficients” table shown next is key; its first
+column displays the linear model’s y-intercept and the coefficient of <code>pf_expression_control</code>. With this table, we can write down the least squares regression line for the
+linear model:</p>
+<p><span class="math display">\[
+  \hat{\text{pf_score}} = 5.02721 + 0.41988 \times \text{pf_expression_control}
+\]</span></p>
+<p>At least these are the values we got on our machine using the <em>seed</em> provided. Yours may differ slightly. One last piece of information we will discuss from the summary output is the <code>Multiple R-squared</code>, or more simply, <span class="math inline">\(R^2\)</span>. The <span class="math inline">\(R^2\)</span> value represents the proportion of variability in the response variable that is explained by the explanatory variable. For this model, 72.48% of the variability in <code>pf_score</code> is explained by <code>pr_expression_control</code>.</p>
+<blockquote>
+<p><strong>Exercise</strong>:<br>
+Fit a new model that uses <code>pf_expression_control</code> to predict <code>hf_score</code>, or the total human freedom score. Using the estimates from the <code>R</code> output, write the equation of the regression line. What does the slope tell us in the context of the relationship between human freedom and the amount of political pressure on media content?</p>
+</blockquote>
+<div class="sourceCode" id="cb748"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">m2</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">hf_score</span> <span class="op">~</span> <span class="va">pf_expression_control</span>, data <span class="op">=</span> <span class="va">hfi_sub</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb749"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m2</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = hf_score ~ pf_expression_control, data = hfi_sub)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.5151 -0.5776  0.2340  0.4622  1.0633 
+## 
+## Coefficients:
+##                       Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)            5.45660    0.21585  25.279  &lt; 2e-16 ***
+## pf_expression_control  0.30707    0.04015   7.649 4.72e-09 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.6785 on 36 degrees of freedom
+## Multiple R-squared:  0.6191, Adjusted R-squared:  0.6085 
+## F-statistic:  58.5 on 1 and 36 DF,  p-value: 4.718e-09</code></pre>
+<p><span class="math display">\[
+  \hat{\text{hf_score}} = 5.45660 + 0.30707 \times \text{pf_expression_control}
+\]</span>
+As the political pressure increases by one unit, the <strong>average</strong> human freedom score increases by 0.307.</p>
+</div>
+<div id="prediction-and-prediction-errors" class="section level2" number="23.6">
+<h2>
+<span class="header-section-number">23.6</span> Prediction and prediction errors<a class="anchor" aria-label="anchor" href="#prediction-and-prediction-errors"><i class="fas fa-link"></i></a>
+</h2>
+<p>Let’s create a scatterplot with the least squares line for <code>m1</code>, our first model, laid on top, Figure <a href="CS4.html#fig:reg-with-line">23.4</a>.</p>
+<div class="sourceCode" id="cb751"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">hfi_sub</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">pf_expression_control</span>, y <span class="op">=</span> <span class="va">pf_score</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+<span class="co">#  geom_lm(color="black") +</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">stat_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"Personal freedom score versus Expression control"</span>,
+          x<span class="op">=</span><span class="st">"Political pressures and controls on media"</span>,
+          y<span class="op">=</span><span class="st">"Personal freedom score"</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:reg-with-line"></span>
+<img src="25-Linear-Regression-Case-Study_files/figure-html/reg-with-line-1.png" alt="Scatterplot of personal expression control and personal freedom score." width="672"><p class="caption">
+Figure 23.4: Scatterplot of personal expression control and personal freedom score.
+</p>
+</div>
+<p>Here, we are literally adding a layer on top of our plot. The <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">stat_smooth()</a></code> function creates the line by fitting a linear model, we could use <code>geom_lm()</code> as well. It can also show us the standard error <code>se</code>
+associated with our line, but we’ll suppress that for now.</p>
+<p>This line can be used to predict <span class="math inline">\(y\)</span> at any value of <span class="math inline">\(x\)</span>. When predictions are made for values of <span class="math inline">\(x\)</span> that are beyond the range of the observed data, it is referred to as <em>extrapolation</em> and is not usually recommended. However,
+predictions made within the range of the data are more reliable. They’re also used to compute the residuals.</p>
+<blockquote>
+<p><strong>Exercise</strong>:<br>
+If someone saw the least squares regression line and not the actual data, how would they predict a country’s personal freedom score for one with a 6.75 rating for <code>pf_expression_control</code>? Is this an overestimate or an underestimate, and by how much? In other words, what is the residual for this prediction?</p>
+</blockquote>
+<p>To predict, we will use the predict function, but we have to send the new data as a data frame.</p>
+<div class="sourceCode" id="cb752"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m1</span>,newdata<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>pf_expression_control<span class="op">=</span><span class="fl">6.75</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##        1 
+## 7.861402</code></pre>
+<p>We thus predict a value of 7.86 for the average <code>pf_score</code>.</p>
+<p>The observed value is 8.628272.</p>
+<div class="sourceCode" id="cb754"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">hfi_sub</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">pf_expression_control</span><span class="op">==</span><span class="fl">6.75</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+## # Groups:   pf_expression_control [1]
+##   pf_expression_control pf_score hf_score
+##                   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1                  6.75     8.63     8.25</code></pre>
+<p>The residual is:</p>
+<div class="sourceCode" id="cb756"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">8.628272</span> <span class="op">-</span> <span class="fl">7.861402</span></code></pre></div>
+<pre><code>## [1] 0.76687</code></pre>
+<p>We underestimated the actual value.</p>
+<p>Another way to do this is to use the <strong>broom</strong> package.</p>
+<div class="sourceCode" id="cb758"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb759"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">pf_expression_control</span><span class="op">==</span><span class="fl">6.75</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 8
+##   pf_score pf_expression_control .fitted .resid   .hat .sigma .cooksd .std.resid
+##      &lt;dbl&gt;                 &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+## 1     8.63                  6.75    7.86  0.767 0.0421  0.727  0.0254       1.08</code></pre>
+</div>
+<div id="model-diagnostics" class="section level2" number="23.7">
+<h2>
+<span class="header-section-number">23.7</span> Model diagnostics<a class="anchor" aria-label="anchor" href="#model-diagnostics"><i class="fas fa-link"></i></a>
+</h2>
+<p>To assess whether the linear model is reliable, we need to check for</p>
+<ol style="list-style-type: decimal">
+<li>linearity,<br>
+</li>
+<li>independence,</li>
+<li>nearly normal residuals, and<br>
+</li>
+<li>constant variability.</li>
+</ol>
+<p><strong>Linearity</strong>: You already checked if the relationship between <code>pf_score</code> and <code>pf_expression_control</code> is linear using a scatterplot. We should also verify this condition with a plot of the residuals vs. fitted (predicted) values, Figure <a href="CS4.html#fig:residuals">23.5</a>.</p>
+<div class="sourceCode" id="cb761"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">m1</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">.fitted</span>, y <span class="op">=</span> <span class="va">.resid</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Fitted values"</span>,y<span class="op">=</span><span class="st">"Residuals"</span>,title<span class="op">=</span><span class="st">"Residual analysis"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:residuals"></span>
+<img src="25-Linear-Regression-Case-Study_files/figure-html/residuals-1.png" alt="Scatterplot of residuals and fitted values used to assess the assumptions of linearity and constant variance." width="672"><p class="caption">
+Figure 23.5: Scatterplot of residuals and fitted values used to assess the assumptions of linearity and constant variance.
+</p>
+</div>
+<p>Notice here that <code>m1</code> can also serve as a data set because stored within it are the fitted values (<span class="math inline">\(\hat{y}\)</span>) and the residuals. Also note that we’re getting more sophisticated with the code in Figure <a href="CS4.html#fig:residuals">23.5</a>. After creating the scatterplot on the first layer (first line of code), we overlay a horizontal dashed line at <span class="math inline">\(y = 0\)</span> (to help us check whether residuals are distributed around 0), and we also rename the axis labels to be more informative and add a title.</p>
+<blockquote>
+<p><strong>Exercise</strong>:<br>
+Is there any apparent pattern in the residuals plot? What does this indicate about the linearity of the relationship between the two variables?</p>
+</blockquote>
+<p>The width is constant and there is no trend in the data. The linearity assumption is not bad.</p>
+<p><strong>Independence</strong>: This is difficult to check with residuals and depends on how the data was collected.</p>
+<p><strong>Nearly normal residuals</strong>: To check this condition, we can look at a histogram, Figure <a href="CS4.html#fig:hist-res">23.6</a>.</p>
+<div class="sourceCode" id="cb762"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">m1</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">.resid</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">.4</span>,fill<span class="op">=</span><span class="st">"cyan"</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Residuals"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:hist-res"></span>
+<img src="25-Linear-Regression-Case-Study_files/figure-html/hist-res-1.png" alt="Histogram of residuals from linear regression model." width="672"><p class="caption">
+Figure 23.6: Histogram of residuals from linear regression model.
+</p>
+</div>
+<p>or a normal probability plot of the residuals, <a href="CS4.html#fig:qq-res">23.7</a>.</p>
+<div class="sourceCode" id="cb763"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">m1</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>sample <span class="op">=</span> <span class="va">.resid</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_qq.html">stat_qq</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>slope<span class="op">=</span><span class="fl">1</span>,intercept <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:qq-res"></span>
+<img src="25-Linear-Regression-Case-Study_files/figure-html/qq-res-1.png" alt="The quantile-quantile residual plot used to assess the normality assumption." width="672"><p class="caption">
+Figure 23.7: The quantile-quantile residual plot used to assess the normality assumption.
+</p>
+</div>
+<p>Note that the syntax for making a normal probability plot is a bit different than what you’re used to seeing: we set <code>sample</code> equal to the residuals instead of <code>x</code>, and we set a statistical method <code>qq</code>, which stands for “quantile-quantile”,
+another name commonly used for normal probability plots.</p>
+<p>It is a little difficult at first to understand how the <code>qq</code> plot indicated that the distribution was skewed to the left. The points indicate the quantile from the sample, standardized to have mean zero and standard deviation one, plotted against the same quantiles from a standard normal. It the sample matched a standard normal the points would align on the 45-degree line. From the plot, we see that as the theoretical quantile get larger, further from zero, the sample do not. That is why the trajectory of the points in the upper right looks flat, below the 45-degree line. Thus the distribution is compressed on the right making it skewed to the left.</p>
+<blockquote>
+<p><strong>Exercise</strong>:
+Based on the histogram and the normal probability plot, does the nearly normal residuals condition appear to be met?</p>
+</blockquote>
+<p>No, the sample is small but it appears the residual are skewed to the left.</p>
+<p><strong>Constant variability</strong>:</p>
+<blockquote>
+<p><strong>Exercise</strong>:
+Based on the residuals vs. fitted plot, does the constant variability condition appear to be met?</p>
+</blockquote>
+<p>Yes, the width of the plot seems constant.</p>
+</div>
+<div id="brief-summary" class="section level2" number="23.8">
+<h2>
+<span class="header-section-number">23.8</span> Brief summary<a class="anchor" aria-label="anchor" href="#brief-summary"><i class="fas fa-link"></i></a>
+</h2>
+<p>This case study introduced simple linear regression. We look at the criteria to find a best fit linear line between two variables. We also used <code>R</code> to fit the line. We examined the output from <code>R</code> and used it to explain and predict with our model. In the remainder of this block we will develop these ideas further and extend to multiple predictors and binary outcomes. This is a perfect introduction for Math 378.</p>
+</div>
+<div id="homework-problems-22" class="section level2" number="23.9">
+<h2>
+<span class="header-section-number">23.9</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-22"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>HFI</li>
+</ol>
+<p>Choose another freedom variable and a variable you think would strongly correlate with it. The <strong>openintro</strong> package contains the data set <code>hfi</code>. Type <code><a href="https://openintrostat.github.io/openintro/reference/hfi.html">?openintro::hfi</a></code> in the Console window in <code>RStudio</code> to learn more about the variables.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Produce a scatterplot of the two variables.<br>
+</li>
+<li>Quantify the strength of the relationship with the correlation coefficient.<br>
+</li>
+<li>Fit a linear model. At a glance, does there seem to be a linear relationship?<br>
+</li>
+<li>How does this relationship compare to the relationship between <code>pf_expression_control</code> and <code>pf_score</code>? Use the <span class="math inline">\(R^2\)</span> values from the two model summaries to compare. Does your independent variable seem to predict your dependent one better? Why or why not?<br>
+</li>
+<li>Display the model diagnostics for the regression model analyzing this relationship.<br>
+</li>
+<li>Predict the response from your explanatory variable for a value between the median and third quartile. Is this an overestimate or an underestimate, and by how much? In other words, what is the residual for this prediction?</li>
+</ol>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></div>
+<div class="next"><a href="LRBASICS.html"><span class="header-section-number">24</span> Linear Regression Basics</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#CS4"><span class="header-section-number">23</span> Case Study</a></li>
+<li><a class="nav-link" href="#objectives-21"><span class="header-section-number">23.1</span> Objectives</a></li>
+<li><a class="nav-link" href="#introduction-to-linear-regression"><span class="header-section-number">23.2</span> Introduction to linear regression</a></li>
+<li>
+<a class="nav-link" href="#case-study-introduction"><span class="header-section-number">23.3</span> Case study introduction</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#load-packages"><span class="header-section-number">23.3.1</span> Load packages</a></li>
+<li><a class="nav-link" href="#the-data-and-exploratory-analysis"><span class="header-section-number">23.3.2</span> The data and exploratory analysis</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#sum-of-squared-residuals"><span class="header-section-number">23.4</span> Sum of squared residuals</a></li>
+<li><a class="nav-link" href="#the-linear-model"><span class="header-section-number">23.5</span> The linear model</a></li>
+<li><a class="nav-link" href="#prediction-and-prediction-errors"><span class="header-section-number">23.6</span> Prediction and prediction errors</a></li>
+<li><a class="nav-link" href="#model-diagnostics"><span class="header-section-number">23.7</span> Model diagnostics</a></li>
+<li><a class="nav-link" href="#brief-summary"><span class="header-section-number">23.8</span> Brief summary</a></li>
+<li><a class="nav-link" href="#homework-problems-22"><span class="header-section-number">23.9</span> Homework Problems</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/25-Linear-Regression-Case-Study.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/25-Linear-Regression-Case-Study.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-22.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

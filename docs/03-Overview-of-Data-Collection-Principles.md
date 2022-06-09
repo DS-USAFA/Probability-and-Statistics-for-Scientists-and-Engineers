@@ -1,0 +1,158 @@
+# Overview of Data Collection Principles {#ODCP}
+
+
+
+## Objectives
+
+1) Define and use properly in context all new terminology.  
+2) From a description of a research project, at a minimum be able to describe the population of interest, the generalizability of the study, the response and predictor variables, differentiate whether it is observational or experimental, and determine the type of sample.  
+3) Explain in the context of a problem how to conduct a sample for the different types of sampling procedures.  
+
+
+## Overview of data collection principles
+
+The first step in conducting research is to identify topics or questions that are to be investigated. A clearly laid out research question is helpful in identifying what subjects or cases should be studied and what variables are important. It is also important to consider *how* data are collected so that they are reliable and help achieve the research goals.
+
+### Populations and samples
+
+
+Consider the following three research questions:
+
+1. What is the average mercury content in swordfish in the Atlantic Ocean?  
+2. Over the last 5 years, what is the average time to complete a degree for Duke undergraduate students?  
+3. Does a new drug reduce the number of deaths in patients with severe heart disease?  
+
+
+Each research question refers to a target **population**. In the first question, the target population is all swordfish in the Atlantic Ocean, and each fish represents a case. It is usually too expensive to collect data for every case in a population. Instead, a sample is taken. A **sample** represents a subset of the cases and is often a small fraction of the population. For instance, 60 swordfish (or some other number) in the population might be selected, and this sample data may be used to provide an estimate of the population average and answer the research question.
+
+> **Exercise**:  
+For the second and third questions above, identify the target population and what represents an individual case.^[ 2) Notice that the first question is only relevant to students who complete their degree; the average cannot be computed using a student who never finished her degree. Thus, only Duke undergraduate students who have graduated in the last five years represent cases in the population under consideration. Each such student would represent an individual case. 3) A person with severe heart disease represents a case. The population includes all people with severe heart disease.]
+
+### Anecdotal evidence
+
+Consider the following possible responses to the three research questions:
+
+1. A man on the news got mercury poisoning from eating swordfish, so the average mercury concentration in swordfish must be dangerously high. 
+2. I met two students who took more than 7 years to graduate from Duke, so it must take longer to graduate at Duke than at many other colleges. 
+3. My friend's dad had a heart attack and died after they gave him a new heart disease drug, so the drug must not work.
+
+Each conclusion is based on data. However, there are two problems. First, the data only represent one or two cases. Second, and more importantly, it is unclear whether these cases are actually representative of the population. Data collected in this haphazard fashion are called **anecdotal evidence**.
+
+(ref:quote1) In February 2010, some media pundits cited one large snow storm as evidence against global warming. As comedian Jon Stewart pointed out, *'It's one storm, in one region, of one country.'*
+
+<div class="figure" style="text-align: center">
+<img src="./figures/mnWinter.JPG" alt="(ref:quote1)" width="400" />
+<p class="caption">(\#fig:unnamed-chunk-1)(ref:quote1)</p>
+</div>
+
+
+> **Anecdotal evidence**: 
+Be careful of data collected haphazardly. Such evidence may be true and verifiable, but it may only represent extraordinary cases.
+
+Anecdotal evidence typically is composed of unusual cases that we recall based on their striking characteristics. For instance, we are more likely to remember the two people we met who took 7 years to graduate than the six others who graduated in four years. Instead of looking at the most unusual cases, we should examine a sample of many cases that represent the population.
+
+### Sampling from a population
+
+We might try to estimate the time to graduation for Duke undergraduates in the last 5 years by collecting a sample of students. All graduates in the last 5 years represent the *population*, and graduates who are selected for review are collectively called the *sample*. In general, we always seek to *randomly* select a sample from a population. The most basic type of random selection is equivalent to how raffles are conducted. For example, in selecting graduates, we could write each graduate's name on a raffle ticket and draw 100 tickets. The selected names would represent a random sample of 100 graduates. This is illustrated in Figure \@ref(fig:randsamp-fig). 
+
+<div class="figure">
+<img src="03-Overview-of-Data-Collection-Principles_files/figure-html/randsamp-fig-1.png" alt="In this graphic, five graduates are randomly selected from the population to be included in the sample." width="672" />
+<p class="caption">(\#fig:randsamp-fig)In this graphic, five graduates are randomly selected from the population to be included in the sample.</p>
+</div>
+
+
+
+
+Why pick a sample randomly? Why not just pick a sample by hand? Consider the following scenario.
+
+> **Example**:  
+Suppose we ask a student who happens to be majoring in nutrition to select several graduates for the study. What kind of students do you think she might collect? Do you think her sample would be representative of all graduates?
+^[Perhaps she would pick a disproportionate number of graduates from health-related fields. Or perhaps her selection would be well-representative of the population. When selecting samples by hand, we run the risk of picking a *biased* sample, even if that bias is unintentional or difficult to discern.]
+
+<div class="figure">
+<img src="03-Overview-of-Data-Collection-Principles_files/figure-html/biased-fig-1.png" alt="Instead of sampling from all graduates equally, a nutrition major might inadvertently pick graduates with health-related majors disproportionately often." width="672" />
+<p class="caption">(\#fig:biased-fig)Instead of sampling from all graduates equally, a nutrition major might inadvertently pick graduates with health-related majors disproportionately often.</p>
+</div>
+
+
+If someone was permitted to pick and choose exactly which graduates were included in the sample, it is entirely possible that the sample could be skewed to that person's interests, which may be entirely unintentional. This introduces **bias** into a sample, see Figure \@ref(fig:biased-fig). Sampling randomly helps resolve this problem. The most basic random sample is called a **simple random sample**, which is equivalent to using a raffle to select cases. This means that each case in the population has an equal chance of being included and there is no implied connection between the cases in the sample.
+
+Sometimes a simple random sample is difficult to implement and an alternative method is helpful. One such substitute is a **systematic sample**, where one case is sampled after letting a fixed number of others, say 10 other cases, pass by. Since this approach uses a mechanism that is not easily subject to personal biases, it often yields a reasonably representative sample. This course will focus on simple random samples since the use of systematic samples is uncommon and requires additional considerations of the context.
+
+The act of taking a simple random sample helps minimize bias. However, bias can crop up in other ways. Even when people are picked at random, e.g. for surveys, caution must be exercised if the **non-response** is high. For instance, if only 30\% of the people randomly sampled for a survey actually respond, and it is unclear whether the respondents are **representative** of the entire population, the survey might suffer from **non-response bias**.
+
+<div class="figure">
+<img src="03-Overview-of-Data-Collection-Principles_files/figure-html/convsamp-fig-1.png" alt="Due to the possibility of non-response, surveys studies may only reach a certain group within the population. It is difficult, and often impossible, to completely fix this problem" width="672" />
+<p class="caption">(\#fig:convsamp-fig)Due to the possibility of non-response, surveys studies may only reach a certain group within the population. It is difficult, and often impossible, to completely fix this problem</p>
+</div>
+
+Another common pitfall is a **convenience sample**, where individuals who are easily accessible are more likely to be included in the sample, see Figure \@ref(fig:convsamp-fig) . For instance, if a political survey is done by stopping people walking in the Bronx, it will not represent all of New York City. It is often difficult to discern what sub-population a convenience sample represents.
+
+>**Exercise**:  
+We can easily access ratings for products, sellers, and companies through websites. These ratings are based only on those people who go out of their way to provide a rating. If 50\% of online reviews for a product are negative, do you think this means that 50\% of buyers are dissatisfied with the product?^[Answers will vary. From our own anecdotal experiences, we believe people tend to rant more about products that fell below expectations than rave about those that perform as expected. For this reason, we suspect there is a negative bias in product ratings on sites like Amazon. However, since our experiences may not be representative, we also keep an open mind.]
+
+### Explanatory and response variables
+
+Consider the following question for the `county` data set:
+
+Is federal spending, on average, higher or lower in counties with high rates of poverty?
+
+If we suspect poverty might affect spending in a county, then poverty is the **explanatory** variable and federal spending is the **response** variable in the relationship.^[Sometimes the explanatory variable is called the **independent** variable and the response variable is called the **dependent** variable. However, this becomes confusing since a *pair* of variables might be independent or dependent, so be careful and consider the context when using or reading these words.] If there are many variables, it may be possible to consider a number of them as explanatory variables.
+
+> **Explanatory** and **response** variables  
+To identify the explanatory variable in a pair of variables, identify which of the two is suspected of affecting the other.
+
+> **Caution**: 
+Association does not imply causation. Labeling variables as *explanatory* and *response* does not guarantee the relationship between the two is actually causal, even if there is an association identified between the two variables. We use these labels only to keep track of which variable we suspect affects the other. We also use this language to help in our use of `R` and the formula notation.
+
+In some cases, there is no explanatory or response variable. Consider the following question:
+
+If homeownership in a particular county is lower than the national average, will the percent of multi-unit structures in that county likely be above or below the national average?
+
+It is difficult to decide which of these variables should be considered the explanatory and response variable; i.e. the direction is ambiguous, so no explanatory or response labels are suggested here.
+
+### Introducing observational studies and experiments
+
+There are two primary types of data collection: observational studies and experiments.
+
+Researchers perform an **observational study** when they collect data in a way that does not directly interfere with how the data arise. For instance, researchers may collect information via surveys, review medical or company records, or follow a **cohort** of many similar individuals to study why certain diseases might develop. In each of these situations, researchers merely observe what happens. In general, observational studies can provide evidence of a naturally occurring association between variables, but by themselves, they cannot show a causal connection.
+
+When researchers want to investigate the possibility of a causal connection, they conduct an **experiment**. Usually there will be both an explanatory and a response variable. For instance, we may suspect administering a drug will reduce mortality in heart attack patients over the following year. To check if there really is a causal connection between the explanatory variable and the response, researchers will collect a sample of individuals and split them into groups. The individuals in each group are *assigned* a treatment. When individuals are randomly assigned to a treatment group, the experiment is called a **randomized experiment**. For example, each heart attack patient in the drug trial could be randomly assigned, perhaps by flipping a coin, into one of two groups: the first group receives a **placebo** (fake treatment) and the second group receives the drug. The case study at the beginning of the semester is another example of an experiment, though that study did not employ a placebo. Math 359 is a course on the design and analysis of experimental data, DOE. In the Air Force these types of experiments are an important part of test and evaluation. Many Air Force analysts are expert practitioners of DOE. In this course we will minimize our discussion of DOE.
+
+> Association $\neq$ Causation  
+Again, association does not imply causation. In a data analysis, association does not imply causation, and causation can only be inferred from a randomized experiment. Although, a hot field is the analysis of causal relationships in observational data. This is important because consider cigarette smoking, how do we know it causes lung cancer? We only have observational data and clearly cannot do an experiment. We think analysts will be charged in the near future with using causal reasoning on observational data.
+
+
+## Homework Problems 
+
+1. **Generalizability and causality**. Identify the population of interest and the sample in the studies described below. These are the same studies from the previous lesson. Also comment on whether or not the results of the study can be generalized to the population and if the findings of the study can be used to establish causal relationships.
+
+a. Researchers collected data to examine the relationship between pollutants and preterm births in Southern California. During the study air pollution levels were measured by air quality monitoring stations. Specifically, levels of carbon monoxide were recorded in parts per million, nitrogen dioxide and ozone in parts per hundred million, and coarse particulate matter (PM$_{10}$) in $\mu g/m^3$. Length of gestation data were collected on 143,196 births between the years 1989 and 1993, and air pollution exposure during gestation was calculated for each birth. The analysis suggested that increased ambient PM$_{10}$ and, to a lesser degree, CO concentrations may be associated with the occurrence of preterm births.^[B. Ritz et al. [“Effect of air pollution on preterm birth among children born in Southern California
+between 1989 and 1993”](http://journals.lww.com/epidem/Abstract/2000/09000/Effect_of_Air_Pollution_on_Preterm_Birth_Among.4.aspx).  In:  Epidemiology 11.5 (2000), pp. 502–511.]  
+b. The Buteyko method is a shallow breathing technique developed by Konstantin Buteyko, a Russian doctor, in 1952. Anecdotal evidence suggests that the Buteyko method can reduce asthma symptoms and improve quality of life. In a scientific study to determine the effectiveness of this method, researchers recruited 600 asthma patients aged 18-69 who relied on medication for asthma treatment. These patients were split into two research groups: one practiced the Buteyko method and the other did not. Patients were scored on quality of life, activity, asthma symptoms, and medication reduction on a scale from 0 to 10. On average, the participants in the Buteyko group experienced a significant reduction in asthma symptoms and an improvement in quality of life.^[J. McGowan. "Health Education: Does the Buteyko Institute Method make a difference?" In: Thorax 58 (2003).]
+
+\pagebreak
+
+2. **GPA and study time**. A survey was conducted on 55 undergraduates from Duke University who took an introductory statistics course in Spring 2012. Among many other questions, this survey asked them about their GPA and the number of hours they spent studying per week. The scatterplot below displays the relationship between these two variables.
+
+<img src="03-Overview-of-Data-Collection-Principles_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+
+
+a. What is the explanatory variable and what is the response variable?
+b. Describe the relationship between the two variables. Make sure to discuss unusual observations, if any.
+c. Is this an experiment or an observational study?
+d. Can we conclude that studying longer hours leads to higher GPAs?  
+
+\pagebreak
+
+3. **Income and education** The scatterplot below shows the relationship between per capita income (in thousands of dollars) and percent of population with a bachelor's degree in 3,143 counties in the US in 2010.
+
+<img src="03-Overview-of-Data-Collection-Principles_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+
+a. What are the explanatory and response variables?  
+b. Describe the relationship between the two variables. Make sure to discuss unusual observations, if any.  
+c. Can we conclude that having a bachelor's degree increases one's income?  
+
+
+
+
