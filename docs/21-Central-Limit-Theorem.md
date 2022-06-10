@@ -1,7 +1,6 @@
 # Central Limit Theorem {#CLT}
 
 
-
 ## Objectives
 
 1) Explain the central limit theorem and when you can use it for inference.   

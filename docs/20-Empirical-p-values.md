@@ -58,12 +58,13 @@ That is a small p-value.
 
 Based on our data, if the listeners were guessing correct 50\% of the time, there is less than a $0.0013$ probability that only 42 or less or 78 or more listeners would get it right. This is much less than 0.05, so we reject that the listeners are guessing correctly half of the time.
 
-This decision region looks like the pmf in Figure \@ref(fig:dist201-fig), any observed values inside the red boundary lines would be consistent with the null hypothesis. Any values at the red line or more extreme would be in the rejection region.
+This decision region looks like the pmf in Figure \@ref(fig:dist201-fig), any observed values inside the red boundary lines would be consistent with the null hypothesis. Any values at the red line or more extreme would be in the rejection region. We also plotted the observed values in black.
 
 
 ```r
 gf_dist("binom",size=120,prob=.5,xlim=c(50,115)) %>%
-  gf_vline(xintercept = c(42,78),color="red") %>%
+  gf_vline(xintercept = c(49,71),color="red") %>%
+  gf_vline(xintercept = c(42),color="black") %>%
   gf_theme(theme_bw) %>%
   gf_labs(title="Binomial pmf",subtitle="Probability of success is 0.5",y="Probability")
 ```
@@ -141,7 +142,7 @@ head(results)
 ```r
 results %>%
   gf_histogram(~mean,fill="cyan",color="black") %>%
-  gf_vline(xintercept =c(obs,1-obs),color="red") %>%
+  gf_vline(xintercept =c(obs,1-obs),color="black") %>%
   gf_theme(theme_bw()) %>%
   gf_labs(x="Test statistic")
 ```
@@ -402,11 +403,11 @@ What would you propose for the test statistic?
 With four proportions, we need a way to combine them. This seems tricky, so let's just use a simple one. Let's take the maximum number of balls in any cell and subtract the minimum, this is called the range and we will denote the parameter as $R$. Under the null this should be zero. We could re-write our hypotheses as: 
 
 $H_0$: $R=0$  
-$H_A$:] $R>0$  
+$H_A$: $R>0$  
 
 Notice that $R$ will always be non-negative, thus this test is one-sided.
 
-The observed range is 34, $138 - 104$.
+The observed range is 34, 138 - 104.
 
 
 ```r
@@ -492,7 +493,7 @@ Figure \@ref(fig:dens204-fig) is a plot of the sampling distribution of the rang
 ```r
 results %>%
   gf_histogram(~diff,fill="cyan",color = "black") %>%
-  gf_vline(xintercept = obs,color="red") %>%
+  gf_vline(xintercept = obs,color="black") %>%
   gf_labs(title="Sampling Distribution of Range",subtitle="Multinomial with equal probability",
           x="Range") %>%
   gf_theme(theme_bw)
@@ -570,7 +571,7 @@ Figure \@ref(fig:dens205-fig) is a plot of the sampling distribution of the abso
 ```r
 results %>%
   gf_histogram(~sum,fill="cyan",color="black") %>%
-  gf_vline(xintercept = obs,color="red") %>%
+  gf_vline(xintercept = obs,color="black") %>%
   gf_labs(title="Sampling Distribution of Absolute Deviations",
           subtitle="Multinomial with equal probability",
           x="Absolute deviations") %>%

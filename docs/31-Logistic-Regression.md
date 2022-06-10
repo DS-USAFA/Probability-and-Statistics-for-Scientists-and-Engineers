@@ -4,8 +4,8 @@
 
 1) Using `R`, conduct logistic regression and interpret the output and perform model selection.  
 2) Write the logistic regression model and predict outputs for given inputs.  
-3) Find confidence intervals for parameter estimates and predictions.   
-4) Create and interpret a confusion matrix.   
+3) Find confidence intervals for parameter estimates and predictions.  
+4) Create and interpret a confusion matrix.  
 
 ## Logistic regression introduction
 
@@ -29,18 +29,18 @@ head(mariokart,n=10)
 
 ```
 ## # A tibble: 10 x 12
-##    id       duration n_bids cond  start_pr ship_pr total_pr ship_sp  seller_rate
-##    <chr>       <dbl>  <dbl> <chr>    <dbl>   <dbl>    <dbl> <chr>          <dbl>
-##  1 1503774~        3     20 new       0.99    4        51.6 standard        1580
-##  2 2604833~        7     13 used      0.99    3.99     37.0 firstCl~         365
-##  3 3204323~        3     16 new       0.99    3.5      45.5 firstCl~         998
-##  4 2804052~        3     18 new       0.99    0        44   standard           7
-##  5 1703922~        1     20 new       0.01    0        71   media            820
-##  6 3601951~        3     19 new       0.99    4        45   standard      270144
-##  7 1204777~        1     13 used      0.01    0        37.0 standard        7284
-##  8 3003555~        1     15 new       1       2.99     54.0 upsGrou~        4858
-##  9 2003920~        3     29 used      0.99    4        47   priority          27
-## 10 3303641~        7      8 used     20.0     4        50   firstCl~         201
+##    id        duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
+##    <chr>        <dbl>  <dbl> <chr>    <dbl>   <dbl>    <dbl> <chr>         <dbl>
+##  1 15037742~        3     20 new       0.99    4        51.6 standa~        1580
+##  2 26048337~        7     13 used      0.99    3.99     37.0 firstC~         365
+##  3 32043234~        3     16 new       0.99    3.5      45.5 firstC~         998
+##  4 28040522~        3     18 new       0.99    0        44   standa~           7
+##  5 17039222~        1     20 new       0.01    0        71   media           820
+##  6 36019515~        3     19 new       0.99    4        45   standa~      270144
+##  7 12047772~        1     13 used      0.01    0        37.0 standa~        7284
+##  8 30035550~        1     15 new       1       2.99     54.0 upsGro~        4858
+##  9 20039206~        3     29 used      0.99    4        47   priori~          27
+## 10 33036416~        7      8 used     20.0     4        50   firstC~         201
 ## # ... with 3 more variables: stock_photo <chr>, wheels <dbl>, title <chr>
 ```
 
@@ -932,7 +932,7 @@ do(1)*glm(cond=="new"~stock_photo+total_pr,
 
 ```
 ##   Intercept stock_photoyes  total_pr .row .index
-## 1 -10.42995       1.770165 0.1756818    1      1
+## 1 -9.569071       1.872591 0.1661531    1      1
 ```
 
 Again, it looks like what we expect. Now let's bootstrap the coefficients and summarize the results.

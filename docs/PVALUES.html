@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 20 Empirical p-values | Computational Probability and Statistics</title>
+<meta name="author" content="Matthew Davis">
+<meta name="author" content="Brianna Hitt">
+<meta name="author" content="Ken Horton">
+<meta name="author" content="Bradley Warner">
+<meta name="description" content="20.1 Objective Conduct all four steps of a hypothesis test using probability models.  20.2 Hypothesis testing using probability models As a lead into the central limit theorem and mathematical...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="Chapter 20 Empirical p-values | Computational Probability and Statistics">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/figures/Cover.png">
+<meta property="og:description" content="20.1 Objective Conduct all four steps of a hypothesis test using probability models.  20.2 Hypothesis testing using probability models As a lead into the central limit theorem and mathematical...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 20 Empirical p-values | Computational Probability and Statistics">
+<meta name="twitter:description" content="20.1 Objective Conduct all four steps of a hypothesis test using probability models.  20.2 Hypothesis testing using probability models As a lead into the central limit theorem and mathematical...">
+<meta name="twitter:image" content="/figures/Cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Computational Probability and Statistics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Preface</a></li>
+<li class="book-part">Descriptive Statistical Modeling</li>
+<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
+<li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
+<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
+<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
+<li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
+<li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
+<li class="book-part">Probability Modeling</li>
+<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
+<li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
+<li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
+<li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
+<li><a class="" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
+<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
+<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
+<li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
+<li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
+<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
+<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
+<li class="book-part">Statistical Modeling</li>
+<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
+<li><a class="" href="HYPOTEST.html"><span class="header-section-number">19</span> Hypothesis Testing</a></li>
+<li><a class="active" href="PVALUES.html"><span class="header-section-number">20</span> Empirical p-values</a></li>
+<li><a class="" href="CLT.html"><span class="header-section-number">21</span> Central Limit Theorem</a></li>
+<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
+<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
+<li><a class="" href="ADDTESTS.html"><span class="header-section-number">24</span> Additional Hypothesis Tests</a></li>
+<li class="book-part">Predictive Statistical Modeling</li>
+<li><a class="" href="CS4.html"><span class="header-section-number">25</span> Case Study</a></li>
+<li><a class="" href="LRBASICS.html"><span class="header-section-number">26</span> Linear Regression Basics</a></li>
+<li><a class="" href="LRINF.html"><span class="header-section-number">27</span> Linear Regression Inference</a></li>
+<li><a class="" href="LRDIAG.html"><span class="header-section-number">28</span> Regression Diagnostics</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">29</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRMULTI.html"><span class="header-section-number">30</span> Multiple Linear Regression</a></li>
+<li><a class="" href="LOGREG.html"><span class="header-section-number">31</span> Logistic Regression</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="PVALUES" class="section level1" number="20">
+<h1>
+<span class="header-section-number">20</span> Empirical p-values<a class="anchor" aria-label="anchor" href="#PVALUES"><i class="fas fa-link"></i></a>
+</h1>
+<div id="objective" class="section level2" number="20.1">
+<h2>
+<span class="header-section-number">20.1</span> Objective<a class="anchor" aria-label="anchor" href="#objective"><i class="fas fa-link"></i></a>
+</h2>
+<p>Conduct all four steps of a hypothesis test using probability models.</p>
+</div>
+<div id="hypothesis-testing-using-probability-models" class="section level2" number="20.2">
+<h2>
+<span class="header-section-number">20.2</span> Hypothesis testing using probability models<a class="anchor" aria-label="anchor" href="#hypothesis-testing-using-probability-models"><i class="fas fa-link"></i></a>
+</h2>
+<p>As a lead into the central limit theorem and mathematical sampling distributions, we will look at a class of hypothesis testing where the null hypothesis specifies a probability model. In some cases we can get an exact answer and in others we will use simulation to get an empirical p-value. By the way, a permutation test is an exact test; by this we mean we are finding all the possible permutations in the calculation of the p-value. However, since the complete enumeration of all permutations is often difficult, we approximate it with randomization, simulation. Thus the p-value from a randomization test is an approximation of the exact test.</p>
+<p>Let’s use three examples to illustrate the ideas of this lesson.</p>
+</div>
+<div id="tappers-and-listeners" class="section level2" number="20.3">
+<h2>
+<span class="header-section-number">20.3</span> Tappers and listeners<a class="anchor" aria-label="anchor" href="#tappers-and-listeners"><i class="fas fa-link"></i></a>
+</h2>
+<p>Here’s a game you can try with your friends or family: pick a simple, well-known song, tap that tune on your desk, and see if the other person can guess the song. In this simple game, you are the tapper, and the other person is the listener.</p>
+<p>A Stanford University graduate student named Elizabeth Newton conducted an experiment using the tapper-listener game.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;This case study is described in &lt;a href="http://www.openintro.org/redirect.php?go=made-to-stick&amp;amp;redirect=simulation_textbook_pdf_preliminary" class="uri"&gt;http://www.openintro.org/redirect.php?go=made-to-stick&amp;amp;redirect=simulation_textbook_pdf_preliminary&lt;/a&gt; Made to Stick by Chip and Dan Heath.&lt;/p&gt;'><sup>78</sup></a> In her study, she recruited 120 tappers and 120 listeners into the study. About 50% of the tappers expected that the listener would be able to guess the song. Newton wondered, is 50% a reasonable expectation?</p>
+<div id="step-1--state-the-null-and-alternative-hypotheses-2" class="section level3" number="20.3.1">
+<h3>
+<span class="header-section-number">20.3.1</span> Step 1- State the null and alternative hypotheses<a class="anchor" aria-label="anchor" href="#step-1--state-the-null-and-alternative-hypotheses-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Newton’s research question can be framed into two hypotheses:</p>
+<p><span class="math inline">\(H_0\)</span>: The tappers are correct, and generally 50% of the time listeners are able to guess the tune. <span class="math inline">\(p = 0.50\)</span><br><span class="math inline">\(H_A\)</span>: The tappers are incorrect, and either more than or less than 50% of listeners will be able to guess the tune. <span class="math inline">\(p \neq 0.50\)</span></p>
+<blockquote>
+<p><strong>Exercise</strong>:
+Is this a two-sided or one-sided hypothesis test? How many variables are in this model?</p>
+</blockquote>
+<p>The tappers think that listeners will guess the song 50% of the time, so this is a two-sided test since we don’t know before hand if listeners will be better or worse than this value.</p>
+<p>There is only one variable, is the listener correct?</p>
+</div>
+<div id="step-2---compute-a-test-statistic.-2" class="section level3" number="20.3.2">
+<h3>
+<span class="header-section-number">20.3.2</span> Step 2 - Compute a test statistic.<a class="anchor" aria-label="anchor" href="#step-2---compute-a-test-statistic.-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>In Newton’s study, only 42, (we changed the number to make this problem more interesting from an educational perspective) out of 120 listeners (<span class="math inline">\(\hat{p} = 0.35\)</span>) were able to guess the tune! From the perspective of the null hypothesis, we might wonder, how likely is it that we would get this result from chance alone? That is, what’s the chance we would happen to see such a small fraction if <span class="math inline">\(H_0\)</span> were true and the true correct-guess rate is 0.50?</p>
+<p>Now before we use simulation, let’s frame this as a probability model. The random variable <span class="math inline">\(X\)</span> is the number of correct out of 120. If the observations are independent and the probability of success is constant then we could use a binomial model. We can’t answer the validity of these assumptions without knowing more about the experiment, the subjects, and the data collection. For educational purposes, we will assume they are valid. Thus our test statistic is the number of successes in 120 trials. The observed value is 42.</p>
+</div>
+<div id="step-3---determine-the-p-value.-2" class="section level3" number="20.3.3">
+<h3>
+<span class="header-section-number">20.3.3</span> Step 3 - Determine the p-value.<a class="anchor" aria-label="anchor" href="#step-3---determine-the-p-value.-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>We now want to find the p-value as <span class="math inline">\(2 \cdot \mbox{P}(X \leq 42)\)</span> where <span class="math inline">\(X\)</span> is a binomial with <span class="math inline">\(p=0.5\)</span> and <span class="math inline">\(n=120\)</span>. Again, the p-value is the probability of the data or more extreme given the null hypothesis is true. Here the null hypothesis being true implies that the probability of success is 0.50. We will use <code>R</code> to get the one-sided p-value and then double to get the p-value for the problem. We selected <span class="math inline">\(\mbox{P}(X \leq 42)\)</span> because more extreme means the observed values and values further from the value you would get if the null hypothesis were true, which is 60 for this problem.</p>
+<div class="sourceCode" id="cb509"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">42</span>,<span class="fl">120</span>,prob<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.001299333</code></pre>
+<p>That is a small p-value.</p>
+</div>
+<div id="step-4---draw-a-conclusion-2" class="section level3" number="20.3.4">
+<h3>
+<span class="header-section-number">20.3.4</span> Step 4 - Draw a conclusion<a class="anchor" aria-label="anchor" href="#step-4---draw-a-conclusion-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Based on our data, if the listeners were guessing correct 50% of the time, there is less than a <span class="math inline">\(0.0013\)</span> probability that only 42 or less or 78 or more listeners would get it right. This is much less than 0.05, so we reject that the listeners are guessing correctly half of the time.</p>
+<p>This decision region looks like the pmf in Figure <a href="PVALUES.html#fig:dist201-fig">20.1</a>, any observed values inside the red boundary lines would be consistent with the null hypothesis. Any values at the red line or more extreme would be in the rejection region. We also plotted the observed values in black.</p>
+<div class="sourceCode" id="cb511"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"binom"</span>,size<span class="op">=</span><span class="fl">120</span>,prob<span class="op">=</span><span class="fl">.5</span>,xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">50</span>,<span class="fl">115</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">49</span>,<span class="fl">71</span><span class="op">)</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="va">theme_bw</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Binomial pmf"</span>,subtitle<span class="op">=</span><span class="st">"Probability of success is 0.5"</span>,y<span class="op">=</span><span class="st">"Probability"</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:dist201-fig"></span>
+<img src="20-Empirical-p-values_files/figure-html/dist201-fig-1.png" alt="Binomial pmf" width="672"><p class="caption">
+Figure 20.1: Binomial pmf
+</p>
+</div>
+</div>
+<div id="repeat-using-simulation" class="section level3" number="20.3.5">
+<h3>
+<span class="header-section-number">20.3.5</span> Repeat using simulation<a class="anchor" aria-label="anchor" href="#repeat-using-simulation"><i class="fas fa-link"></i></a>
+</h3>
+<p>We will repeat the analysis using an empirical p-value. Step 1 is the same.</p>
+</div>
+<div id="step-2---compute-a-test-statistic.-3" class="section level3" number="20.3.6">
+<h3>
+<span class="header-section-number">20.3.6</span> Step 2 - Compute a test statistic.<a class="anchor" aria-label="anchor" href="#step-2---compute-a-test-statistic.-3"><i class="fas fa-link"></i></a>
+</h3>
+<p>We will use the proportion of listeners that get the song correct instead of the number, this is a minor change since we are simply dividing by 120.</p>
+<div class="sourceCode" id="cb512"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">obs</span><span class="op">&lt;-</span><span class="fl">42</span><span class="op">/</span><span class="fl">120</span>
+<span class="va">obs</span></code></pre></div>
+<pre><code>## [1] 0.35</code></pre>
+</div>
+<div id="step-3---determine-the-p-value.-3" class="section level3" number="20.3.7">
+<h3>
+<span class="header-section-number">20.3.7</span> Step 3 - Determine the p-value.<a class="anchor" aria-label="anchor" href="#step-3---determine-the-p-value.-3"><i class="fas fa-link"></i></a>
+</h3>
+<p>To simulate 120 games under the null hypothesis where <span class="math inline">\(p = 0.50\)</span>, we could flip a coin 120 times. Each time the coin came up heads, this could represent the listener guessing correctly, and tails would represent the listener guessing incorrectly. For example, we can simulate 5 tapper-listener pairs by flipping a coin 5 times:</p>
+<p><span class="math display">\[
+\begin{array}{ccccc}
+H &amp; H &amp; T &amp; H &amp; T \\
+Correct &amp; Correct &amp; Wrong &amp; Correct &amp; Wrong \\
+\end{array}
+\]</span></p>
+<p>After flipping the coin 120 times, we got 56 heads for <span class="math inline">\(\hat{p}_{sim} = 0.467\)</span>. As we did with the randomization technique, seeing what would happen with one simulation isn’t enough. In order to evaluate whether our originally observed proportion of 0.35 is unusual or not, we should generate more simulations. Here we’ve repeated this simulation 10000 times:</p>
+<div class="sourceCode" id="cb514"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fl">120</span>, <span class="fl">0.5</span><span class="op">)</span> <span class="op">/</span> <span class="fl">120</span></code></pre></div>
+<p>Note, we could simulate it a number of ways. Here is a way using <code><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do()</a></code> that will look like how we have coded for other randomization tests.</p>
+<div class="sourceCode" id="cb515"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">604</span><span class="op">)</span>
+<span class="va">results</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,size<span class="op">=</span><span class="fl">120</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb516"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<pre><code>##        mean
+## 1 0.4250000
+## 2 0.5250000
+## 3 0.5916667
+## 4 0.5000000
+## 5 0.5250000
+## 6 0.5083333</code></pre>
+<div class="sourceCode" id="cb518"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">mean</span>,fill<span class="op">=</span><span class="st">"cyan"</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">obs</span>,<span class="fl">1</span><span class="op">-</span><span class="va">obs</span><span class="op">)</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Test statistic"</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:dens202-fig"></span>
+<img src="20-Empirical-p-values_files/figure-html/dens202-fig-1.png" alt="The estimated sampling distribution." width="672"><p class="caption">
+Figure 20.2: The estimated sampling distribution.
+</p>
+</div>
+<p>Notice in Figre <a href="PVALUES.html#fig:dens202-fig">20.2</a> how the sampling distribution is centered at 0.5 and looks symmetrical.</p>
+<p>The p-value is found using the <code>prop1</code> function, in this problem we really need the observed case added back in to prevent a p-value of zero.</p>
+<div class="sourceCode" id="cb519"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">mean</span><span class="op">&lt;=</span><span class="va">obs</span><span class="op">)</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<pre><code>##  prop_TRUE 
+## 0.00119988</code></pre>
+</div>
+<div id="step-4---draw-a-conclusion-3" class="section level3" number="20.3.8">
+<h3>
+<span class="header-section-number">20.3.8</span> Step 4 - Draw a conclusion<a class="anchor" aria-label="anchor" href="#step-4---draw-a-conclusion-3"><i class="fas fa-link"></i></a>
+</h3>
+<p>In these 10,000 simulations, we see very few results close to 0.35. Based on our data, if the listeners were guessing correct 50% of the time, there is less than a <span class="math inline">\(0.0012\)</span> probability that only 35% or less or 65% or more listeners would get it right. This is much less than 0.05, so we reject that the listeners are guessing correctly half of the time.</p>
+<blockquote>
+<p><strong>Exercise</strong>:
+In the context of the experiment, what is the p-value for the hypothesis test?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The p-value is the chance of seeing the data summary or something more in favor of the alternative hypothesis given that guessing has a probability of success of 0.5. Since we didn’t observe many even close to just 42 correct, the p-value will be small, around 1-in-1000 or smaller.&lt;/p&gt;"><sup>79</sup></a></p>
+</blockquote>
+<blockquote>
+<p><strong>Exercise</strong>:<br>
+Do the data provide statistically significant evidence against the null hypothesis? State an appropriate conclusion in the context of the research question.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The p-value is less than 0.05, so we reject the null hypothesis. There is statistically significant evidence, and the data provide strong evidence that the chance a listener will guess the correct tune is less than 50%.&lt;/p&gt;"><sup>80</sup></a></p>
+</blockquote>
+</div>
+</div>
+<div id="cardiopulmonary-resuscitation-cpr" class="section level2" number="20.4">
+<h2>
+<span class="header-section-number">20.4</span> Cardiopulmonary resuscitation (CPR)<a class="anchor" aria-label="anchor" href="#cardiopulmonary-resuscitation-cpr"><i class="fas fa-link"></i></a>
+</h2>
+<p>Let’s return to the CPR example from last lesson. As a reminder, we will repeat the background material.</p>
+<p>Cardiopulmonary resuscitation (CPR) is a procedure used on individuals suffering a heart attack when other emergency resources are unavailable. This procedure is helpful in providing some blood circulation to keep a person alive, but CPR chest compressions can also cause internal injuries. Internal bleeding and other injuries that can result from CPR complicate additional treatment efforts. For instance, blood thinners may be used to help release a clot that is causing the heart attack once a patient arrives in the hospital. However, blood thinners negatively affect internal injuries.</p>
+<p>Here we consider an experiment with patients who underwent CPR for a heart attack and were subsequently admitted to a hospital.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;“Efficacy and safety of thrombolytic therapy after initially unsuccessful cardiopulmonary resuscitation: a prospective clinical trial.” The Lancet, 2001.&lt;/p&gt;"><sup>81</sup></a> Each patient was randomly assigned to either receive a blood thinner (treatment group) or not receive a blood thinner (control group). The outcome variable of interest was whether the patient survived for at least 24 hours.</p>
+<div id="step-1--state-the-null-and-alternative-hypotheses-3" class="section level3" number="20.4.1">
+<h3>
+<span class="header-section-number">20.4.1</span> Step 1- State the null and alternative hypotheses<a class="anchor" aria-label="anchor" href="#step-1--state-the-null-and-alternative-hypotheses-3"><i class="fas fa-link"></i></a>
+</h3>
+<p>We want to understand whether blood thinners are helpful or harmful. We’ll consider both of these possibilities using a two-sided hypothesis test.</p>
+<p><span class="math inline">\(H_0\)</span>: Blood thinners do not have an overall survival effect, experimental treatment is independent of survival rate. <span class="math inline">\(p_c - p_t = 0\)</span>.<br><span class="math inline">\(H_A\)</span>: Blood thinners have an impact on survival, either positive or negative, but not zero. <span class="math inline">\(p_c - p_t \neq 0\)</span>.</p>
+<div class="sourceCode" id="cb521"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">thinner</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/blood_thinner.csv"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb522"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">thinner</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 2
+##   group     outcome 
+##   &lt;chr&gt;     &lt;chr&gt;   
+## 1 treatment survived
+## 2 control   survived
+## 3 control   died    
+## 4 control   died    
+## 5 control   died    
+## 6 treatment survived</code></pre>
+<p>Let’s put it in a table.</p>
+<div class="sourceCode" id="cb524"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">group</span><span class="op">+</span><span class="va">outcome</span>,data<span class="op">=</span><span class="va">thinner</span>,margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>##            outcome
+## group       died survived Total
+##   control     39       11    50
+##   treatment   26       14    40
+##   Total       65       25    90</code></pre>
+</div>
+<div id="step-2---compute-a-test-statistic.-4" class="section level3" number="20.4.2">
+<h3>
+<span class="header-section-number">20.4.2</span> Step 2 - Compute a test statistic.<a class="anchor" aria-label="anchor" href="#step-2---compute-a-test-statistic.-4"><i class="fas fa-link"></i></a>
+</h3>
+<p>In this case the data is from a <strong>hypergeometric</strong> distribution, this is really a binomial from a finite population. We can calculate the p-value using this probability distribution. The random variable is the number of control patients that survived from a population of 90, where 50 are control patients and 40 are treatment patients, and where a total of 25 survived.</p>
+</div>
+<div id="step-3---determine-the-p-value.-4" class="section level3" number="20.4.3">
+<h3>
+<span class="header-section-number">20.4.3</span> Step 3 - Determine the p-value.<a class="anchor" aria-label="anchor" href="#step-3---determine-the-p-value.-4"><i class="fas fa-link"></i></a>
+</h3>
+<p>In this case we want to find <span class="math inline">\(\mbox{P}(X \leq 11)\)</span> and double it since it is a two-sided test.</p>
+<div class="sourceCode" id="cb526"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">phyper</a></span><span class="op">(</span><span class="fl">11</span>,<span class="fl">50</span>,<span class="fl">40</span>,<span class="fl">25</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.2581356</code></pre>
+<p>Note: We could have picked the lower right cell as the reference cell. But now I want the <span class="math inline">\(\mbox{P}(X \geq 14)\)</span> with the appropriate change in parameter values. Notice we get the same answer.</p>
+<div class="sourceCode" id="cb528"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">2</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">phyper</a></span><span class="op">(</span><span class="fl">13</span>,<span class="fl">40</span>,<span class="fl">50</span>,<span class="fl">25</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.2581356</code></pre>
+<p>We could the same thing for the other two cells.</p>
+<div class="sourceCode" id="cb530"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">phyper</a></span><span class="op">(</span><span class="fl">26</span>,<span class="fl">40</span>,<span class="fl">50</span>,<span class="fl">65</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.2581356</code></pre>
+<div class="sourceCode" id="cb532"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">2</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">phyper</a></span><span class="op">(</span><span class="fl">38</span>,<span class="fl">50</span>,<span class="fl">40</span>,<span class="fl">65</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.2581356</code></pre>
+<p>Or <code>R</code> has a built in function, <code><a href="https://rdrr.io/r/stats/fisher.test.html">fisher.test()</a></code>, that we could use.</p>
+<div class="sourceCode" id="cb534"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/fisher.test.html">fisher.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">group</span><span class="op">+</span><span class="va">outcome</span>,data<span class="op">=</span><span class="va">thinner</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+##  Fisher's Exact Test for Count Data
+## 
+## data:  tally(~group + outcome, data = thinner)
+## p-value = 0.2366
+## alternative hypothesis: true odds ratio is not equal to 1
+## 95 percent confidence interval:
+##  0.6794355 5.4174460
+## sample estimates:
+## odds ratio 
+##   1.895136</code></pre>
+<p>The p-value is slightly different since the <strong>hypergeometric</strong> is not symmetric. Doubling the p-value from the single side result is not quite right. The algorithm in <code><a href="https://rdrr.io/r/stats/fisher.test.html">fisher.test()</a></code> finds and adds all probabilities less than or equal to value of <span class="math inline">\(\mbox{P}(X = 11)\)</span>, see Figure <a href="PVALUES.html#fig:dens203-fig">20.3</a>. This is the correct p-value.</p>
+<div class="sourceCode" id="cb536"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"hyper"</span>,m<span class="op">=</span><span class="fl">50</span>,n<span class="op">=</span><span class="fl">40</span>,k<span class="op">=</span><span class="fl">25</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_hline</span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">dhyper</a></span><span class="op">(</span><span class="fl">11</span>,<span class="fl">50</span>,<span class="fl">40</span>,<span class="fl">25</span><span class="op">)</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Hypergeometric pmf"</span>,subtitle<span class="op">=</span><span class="st">"Red line is P(X=11)"</span>,y<span class="op">=</span><span class="st">"Probability"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:dens203-fig"></span>
+<img src="20-Empirical-p-values_files/figure-html/dens203-fig-1.png" alt="Hypergeometric pmf showing the cutoff for p-value calculation." width="672"><p class="caption">
+Figure 20.3: Hypergeometric pmf showing the cutoff for p-value calculation.
+</p>
+</div>
+<p>This is how <code><a href="https://rdrr.io/r/stats/fisher.test.html">fisher.test()</a></code> is calculating the p-value:</p>
+<div class="sourceCode" id="cb537"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">temp</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">dhyper</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">25</span>,<span class="fl">50</span>,<span class="fl">40</span>,<span class="fl">25</span><span class="op">)</span>
+<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="va">temp</span><span class="op">[</span><span class="va">temp</span><span class="op">&lt;=</span><span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">dhyper</a></span><span class="op">(</span><span class="fl">11</span>,<span class="fl">50</span>,<span class="fl">40</span>,<span class="fl">25</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.2365928</code></pre>
+<p>The randomization test in the last lesson yielded a p-value of 0.257 so all tests are consistent.</p>
+</div>
+<div id="step-4---draw-a-conclusion-4" class="section level3" number="20.4.4">
+<h3>
+<span class="header-section-number">20.4.4</span> Step 4 - Draw a conclusion<a class="anchor" aria-label="anchor" href="#step-4---draw-a-conclusion-4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Since this p-value is larger than 0.05, we do not reject the null hypothesis. That is, we do not find statistically significant evidence that the blood thinner has any influence on survival of patients who undergo CPR prior to arriving at the hospital. Once again, we can discuss the causal conclusion since this is an experiment.</p>
+<p>Notice that in these first two examples, we had a test of a single proportion and a test of two proportions. The single proportion test did not have an equivalent randomization test since there is not a second variable to shuffle. We were able to get answers since we found a probability model that we could use in each case.</p>
+</div>
+</div>
+<div id="golf-balls" class="section level2" number="20.5">
+<h2>
+<span class="header-section-number">20.5</span> Golf Balls<a class="anchor" aria-label="anchor" href="#golf-balls"><i class="fas fa-link"></i></a>
+</h2>
+<p>Our last example will be interesting because the distribution has multiple parameters and a test metric is not obvious at this point.</p>
+<p>The owners of a residence located along a golf course collected the first 500 golf balls that landed on their property. Most golf balls are labeled with the make of the golf ball and a number, for example “Nike 1” or “Titleist 3”. The numbers are typically between 1 and 4, and the owners of the residence wondered if these numbers are equally likely (at least among golf balls used by golfers of poor enough quality that they lose them in the yards of the residences along the fairway.)</p>
+<p>We will use a significance level of <span class="math inline">\(\alpha = 0.05\)</span> since there is no reason to favor one error over the other.</p>
+<div id="step-1--state-the-null-and-alternative-hypotheses-4" class="section level3" number="20.5.1">
+<h3>
+<span class="header-section-number">20.5.1</span> Step 1- State the null and alternative hypotheses<a class="anchor" aria-label="anchor" href="#step-1--state-the-null-and-alternative-hypotheses-4"><i class="fas fa-link"></i></a>
+</h3>
+<p>We think that the numbers are not all equally likely. The question of one-sided versus two-sided is not relevant in this test, you will see this when we write the hypotheses.</p>
+<p><span class="math inline">\(H_0\)</span>: All of the numbers are equally likely.<span class="math inline">\(\pi_1 = \pi_2 = \pi_3 = \pi_4\)</span> Or <span class="math inline">\(\pi_1 = \frac{1}{4}, \pi_2 =\frac{1}{4}, \pi_3 =\frac{1}{4}, \pi_4 =\frac{1}{4}\)</span><br><span class="math inline">\(H_A\)</span>: There is some other distribution of percentages in the population. At least one population proportion is not <span class="math inline">\(\frac{1}{4}\)</span>.</p>
+<p>Notice that we switched to using <span class="math inline">\(\pi\)</span> instead of <span class="math inline">\(p\)</span> for the population parameter. There is no reason other than to make you aware that both are used.</p>
+<p>This problem is an extension of the binomial, instead of two outcomes, there are four outcomes. This is called a multinomial distribution. You can read more about it if you like, but our methods will not make it necessary to learn the probability mass function.</p>
+<p>Of the 500 golf balls collected, 486 of them had a number between 1 and 4. Let’s get the data from `golf_balls.csv”.</p>
+<div class="sourceCode" id="cb539"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">golf_balls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/golf_balls.csv"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb540"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">golf_balls</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## quantitative variables:  
+##        name   class min Q1 median Q3 max     mean       sd   n missing
+## ...1 number numeric   1  1      2  3   4 2.366255 1.107432 486       0</code></pre>
+<div class="sourceCode" id="cb542"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">number</span>,data<span class="op">=</span><span class="va">golf_balls</span><span class="op">)</span></code></pre></div>
+<pre><code>## number
+##   1   2   3   4 
+## 137 138 107 104</code></pre>
+</div>
+<div id="step-2---compute-a-test-statistic.-5" class="section level3" number="20.5.2">
+<h3>
+<span class="header-section-number">20.5.2</span> Step 2 - Compute a test statistic.<a class="anchor" aria-label="anchor" href="#step-2---compute-a-test-statistic.-5"><i class="fas fa-link"></i></a>
+</h3>
+<p>If all numbers were equally likely, we would expect to see 121.5 balls of each number, this is a point estimate and thus not an actual value that could be realized. Of course, in a sample we will have variation and thus departure from this state. We need a test statistic that will help us determine if the observed values are reasonable under the null hypothesis. Remember that the test statistics is a single number metric used to evaluate the hypothesis.</p>
+<blockquote>
+<p><strong>Exercise</strong>:<br>
+What would you propose for the test statistic?</p>
+</blockquote>
+<p>With four proportions, we need a way to combine them. This seems tricky, so let’s just use a simple one. Let’s take the maximum number of balls in any cell and subtract the minimum, this is called the range and we will denote the parameter as <span class="math inline">\(R\)</span>. Under the null this should be zero. We could re-write our hypotheses as:</p>
+<p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(R=0\)</span><br><span class="math inline">\(H_A\)</span>: <span class="math inline">\(R&gt;0\)</span></p>
+<p>Notice that <span class="math inline">\(R\)</span> will always be non-negative, thus this test is one-sided.</p>
+<p>The observed range is 34, 138 - 104.</p>
+<div class="sourceCode" id="cb544"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">number</span>,data<span class="op">=</span><span class="va">golf_balls</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">obs</span></code></pre></div>
+<pre><code>## [1] 34</code></pre>
+</div>
+<div id="step-3---determine-the-p-value.-5" class="section level3" number="20.5.3">
+<h3>
+<span class="header-section-number">20.5.3</span> Step 3 - Determine the p-value.<a class="anchor" aria-label="anchor" href="#step-3---determine-the-p-value.-5"><i class="fas fa-link"></i></a>
+</h3>
+<p>We don’t know the distribution of our test statistic so we will use simulation. We will simulate data from a multinomial under the null hypothesis and calculate a new value of the test statistic. We will repeat this 10000 times and this we give us an estimate of the sampling distribution.</p>
+<p>We will use the <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample()</a></code> function again to simulate the distribution of numbers under the null hypothesis. To help us understand the process and build the code, we are only initially using a sample size of 12 to keep the printout reasonable and easy to read.</p>
+<div class="sourceCode" id="cb546"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">3311</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>,size<span class="op">=</span><span class="fl">12</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>Notice this is not using <code>tidyverse</code> coding ideas. We don’t think we need tibbles or data frames so we went with straight nested <code>R</code> code. You can break this code down by starting with the code in the center.</p>
+<div class="sourceCode" id="cb548"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">3311</span><span class="op">)</span>
+<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>,size<span class="op">=</span><span class="fl">12</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>##  [1] 3 1 2 3 2 3 1 3 3 4 1 1</code></pre>
+<div class="sourceCode" id="cb550"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">3311</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>,size<span class="op">=</span><span class="fl">12</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## 1 2 3 4 
+## 4 2 5 1</code></pre>
+<div class="sourceCode" id="cb552"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">3311</span><span class="op">)</span>
+<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>,size<span class="op">=</span><span class="fl">12</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 1 5</code></pre>
+<div class="sourceCode" id="cb554"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">3311</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>,size<span class="op">=</span><span class="fl">12</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>We are now ready to ramp up to the full problem. Let’s simulated the data under the null hypothesis. We are sampling 486 golf balls with the numbers 1 through 4 on them. Each number is equally likely. We then find the range, our test statistic. Finally we repeat this 10,000 to get an estimate of the sampling distribution of our test statistic.</p>
+<div class="sourceCode" id="cb556"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>,size<span class="op">=</span><span class="fl">486</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Figure <a href="PVALUES.html#fig:dens204-fig">20.4</a> is a plot of the sampling distribution of the range.</p>
+<div class="sourceCode" id="cb557"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">diff</span>,fill<span class="op">=</span><span class="st">"cyan"</span>,color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">obs</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Sampling Distribution of Range"</span>,subtitle<span class="op">=</span><span class="st">"Multinomial with equal probability"</span>,
+          x<span class="op">=</span><span class="st">"Range"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="va">theme_bw</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:dens204-fig"></span>
+<img src="20-Empirical-p-values_files/figure-html/dens204-fig-1.png" alt="Sampling distribution of the range." width="672"><p class="caption">
+Figure 20.4: Sampling distribution of the range.
+</p>
+</div>
+<p>Notice how this distribution is skewed to the right.</p>
+<p>The p-value is 0.14, this value is greater than 0.05 so we fail to reject. However, it is not that much greater than 0.05, so the residents may want to repeat the study with more data.</p>
+<div class="sourceCode" id="cb558"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">diff</span><span class="op">&gt;=</span><span class="va">obs</span><span class="op">)</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<pre><code>## prop_TRUE 
+##  0.140286</code></pre>
+</div>
+<div id="step-4---draw-a-conclusion-5" class="section level3" number="20.5.4">
+<h3>
+<span class="header-section-number">20.5.4</span> Step 4 - Draw a conclusion<a class="anchor" aria-label="anchor" href="#step-4---draw-a-conclusion-5"><i class="fas fa-link"></i></a>
+</h3>
+<p>Since this p-value is larger than 0.05, we do not reject the null hypothesis. That is, based on our data, we do not find statistically significant evidence against the claim that the number on the golf balls are equally likely.</p>
+</div>
+</div>
+<div id="repeat-with-a-different-test-statistic" class="section level2" number="20.6">
+<h2>
+<span class="header-section-number">20.6</span> Repeat with a different test statistic<a class="anchor" aria-label="anchor" href="#repeat-with-a-different-test-statistic"><i class="fas fa-link"></i></a>
+</h2>
+<p>The test statistic we developed helped but it seems weak because we did not use the information in all four cells. So let’s devise a metric that does this. We will jump to step 2.</p>
+<div id="step-2---compute-a-test-statistic.-6" class="section level3" number="20.6.1">
+<h3>
+<span class="header-section-number">20.6.1</span> Step 2 - Compute a test statistic.<a class="anchor" aria-label="anchor" href="#step-2---compute-a-test-statistic.-6"><i class="fas fa-link"></i></a>
+</h3>
+<p>If each number were equally likely, we would have 121.5 balls in each bin. We can find a test statistic by looking at the deviation in each cell from 121.5.</p>
+<div class="sourceCode" id="cb560"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">number</span>,data<span class="op">=</span><span class="va">golf_balls</span><span class="op">)</span> <span class="op">-</span><span class="fl">121.5</span></code></pre></div>
+<pre><code>## number
+##     1     2     3     4 
+##  15.5  16.5 -14.5 -17.5</code></pre>
+<p>Now we need to collapse these into a single number. Just adding will always result in a value of 0, why? So let’s take the absolute value and then add.</p>
+<div class="sourceCode" id="cb562"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">number</span>,data<span class="op">=</span><span class="va">golf_balls</span><span class="op">)</span> <span class="op">-</span><span class="fl">121.5</span><span class="op">)</span><span class="op">)</span>
+<span class="va">obs</span></code></pre></div>
+<pre><code>## [1] 64</code></pre>
+<p>This will be our test statistic.</p>
+</div>
+<div id="step-3---determine-the-p-value.-6" class="section level3" number="20.6.2">
+<h3>
+<span class="header-section-number">20.6.2</span> Step 3 - Determine the p-value.<a class="anchor" aria-label="anchor" href="#step-3---determine-the-p-value.-6"><i class="fas fa-link"></i></a>
+</h3>
+<p>We will use similar code from above with our new metric.</p>
+<div class="sourceCode" id="cb564"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">9697</span><span class="op">)</span>
+<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>,size<span class="op">=</span><span class="fl">486</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">-</span><span class="fl">121.5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Figure <a href="PVALUES.html#fig:dens205-fig">20.5</a> is a plot of the sampling distribution of the absolute value of deviations.</p>
+<div class="sourceCode" id="cb565"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">sum</span>,fill<span class="op">=</span><span class="st">"cyan"</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">obs</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Sampling Distribution of Absolute Deviations"</span>,
+          subtitle<span class="op">=</span><span class="st">"Multinomial with equal probability"</span>,
+          x<span class="op">=</span><span class="st">"Absolute deviations"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="va">theme_bw</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:dens205-fig"></span>
+<img src="20-Empirical-p-values_files/figure-html/dens205-fig-1.png" alt="Sampling distribution of the absolute deviations." width="672"><p class="caption">
+Figure 20.5: Sampling distribution of the absolute deviations.
+</p>
+</div>
+<p>Notice how this distribution is skewed to the right and our test statistic seems to be more extreme.</p>
+<p>The p-value is 0.014, this value is much smaller than our previous result. The test statistic matters in our decision process as nothing about this problem has changed except the test statistic.</p>
+<div class="sourceCode" id="cb566"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">sum</span><span class="op">&gt;=</span><span class="va">obs</span><span class="op">)</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<pre><code>##  prop_TRUE 
+## 0.01359864</code></pre>
+</div>
+<div id="step-4---draw-a-conclusion-6" class="section level3" number="20.6.3">
+<h3>
+<span class="header-section-number">20.6.3</span> Step 4 - Draw a conclusion<a class="anchor" aria-label="anchor" href="#step-4---draw-a-conclusion-6"><i class="fas fa-link"></i></a>
+</h3>
+<p>Since this p-value is smaller than 0.05, we reject the null hypothesis. That is, based on our data, we find statistically significant evidence against the claim that the number on the golf balls are equally likely.</p>
+</div>
+</div>
+<div id="summary" class="section level2" number="20.7">
+<h2>
+<span class="header-section-number">20.7</span> Summary<a class="anchor" aria-label="anchor" href="#summary"><i class="fas fa-link"></i></a>
+</h2>
+<p>In this lesson we used probability models to help us make decisions from data. This lesson is different from the randomization section in that randomization had two variables and the null hypothesis of no difference. In the case of a 2 x 2 table, we were able to show that we could use the hypergeometric distribution to get an exact p-value under the assumptions of the model.</p>
+<p>We also found that the choice of test statistic has an impact on our decision. Even though we get valid p-values and the desired Type 1 error rate, if the information in the data is not used to its fullest, we will lose power. Note: <strong>power</strong> is the probability of rejecting the null hypothesis when the alternative hypothesis is true.</p>
+<p>In this next lesson we will learn about mathematical solutions to finding the sampling distribution. The key difference in all these methods is the selection of the test statistic and the assumptions made to derive a sampling distribution.</p>
+</div>
+<div id="homework-problems-19" class="section level2" number="20.8">
+<h2>
+<span class="header-section-number">20.8</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-19"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>Repeat the analysis of the yawning data from last lesson but this time use the hypergeometric distribution.</li>
+</ol>
+<p>Is yawning contagious?</p>
+<p>An experiment conducted by the , a science entertainment TV program on the Discovery Channel, tested if a person can be subconsciously influenced into yawning if another person near them yawns. 50 people were randomly assigned to two groups: 34 to a group where a person near them yawned (treatment) and 16 to a group where there wasn’t a person yawning near them (control). The following table shows the results of this experiment.</p>
+<p><span class="math display">\[
+\begin{array}{cc|ccc} &amp; &amp; &amp;\textbf{Group}\\
+&amp; &amp; \text{Treatment } &amp;  \text{Control} &amp; \text{Total}  \\
+&amp; \hline \text{Yawn}    &amp;   10      &amp; 4     &amp; 14  \\
+\textbf{Result} &amp; \text{Not Yawn}   &amp; 24        &amp; 12        &amp; 36   \\
+    &amp;\text{Total}       &amp; 34        &amp; 16        &amp; 50 \\
+\end{array}
+\]</span></p>
+<p>The data is in the file <code>yawn.csv</code>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>What are the hypotheses?<br>
+</li>
+<li>Calculate the observed statistic, pick a cell.<br>
+</li>
+<li>Find the p-value using the hypergeometric distribution.<br>
+</li>
+<li>Plot the the sampling distribution.<br>
+</li>
+<li>Determine the conclusion of the hypothesis test.<br>
+</li>
+<li>Compare your results with the randomization test.</li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Repeat the golf ball example using a different test statistic.</li>
+</ol>
+<p>Use a level of significance of 0.05.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State the null and alternative hypotheses.<br>
+</li>
+<li>Compute a test statistic.<br>
+</li>
+<li>Determine the p-value.<br>
+</li>
+<li>Draw a conclusion.</li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>Body Temperature</li>
+</ol>
+<p>Shoemaker<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;L. Shoemaker Allen (1996) What’s Normal? – Temperature, Gender, and Heart Rate, Journal of Statistics Education, 4:2&lt;/p&gt;"><sup>82</sup></a> cites a paper from the American Medical Association<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Mackowiak, P. A., Wasserman, S. S., and Levine, M. M. (1992), “A Critical Appraisal of 98.6 Degrees F, the Upper Limit of the Normal Body Temperature, and Other Legacies of Carl Reinhold August Wunderlich,” Journal of the American Medical Association, 268, 1578-1580.&lt;/p&gt;"><sup>83</sup></a> that questions conventional wisdom that the average body temperature of a human is 98.6. One of the main points of the original article – the traditional mean of 98.6 is, in essence, 100 years out of date. The authors cite problems with Wunderlich’s original methodology, diurnal fluctuations (up to 0.9 degrees F per day), and unreliable thermometers. The authors believe the average temperature is less than 98.6. Test the hypothesis.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State the null and alternative hypotheses.</li>
+<li>State the significance level that will be used.<br>
+</li>
+<li>Load the data from the file “temperature.csv” and generate summary statistics and a boxplot of the temperature data. We will not be using gender or heart rate for this problem.<br>
+</li>
+<li>Compute a test statistic. We are going to help you with this part. We cannot do a randomization test since we don’t have a second variable. It would be nice to use the mean as a test statistic but we don’t yet know the sampling distribution of the sample mean.</li>
+</ol>
+<p>Let’s get clever. If the distribution of the sample is symmetric, this is an assumption but look at the boxplot and summary statistics to determine if you are comfortable with it, then under the null hypothesis the observed values should be equally likely to either be greater or less than 98.6. Thus our test statistic is the number of cases that have a positive difference between the observed value and 98.6. This will be a binomial distribution with a probability of success of 0.5. You must also account for the possibility that there are observations of 98.6 in the data.</p>
+<ol start="5" style="list-style-type: lower-alpha">
+<li>Determine the p-value.<br>
+</li>
+<li>Draw a conclusion.</li>
+</ol>
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="HYPOTEST.html"><span class="header-section-number">19</span> Hypothesis Testing</a></div>
+<div class="next"><a href="CLT.html"><span class="header-section-number">21</span> Central Limit Theorem</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#PVALUES"><span class="header-section-number">20</span> Empirical p-values</a></li>
+<li><a class="nav-link" href="#objective"><span class="header-section-number">20.1</span> Objective</a></li>
+<li><a class="nav-link" href="#hypothesis-testing-using-probability-models"><span class="header-section-number">20.2</span> Hypothesis testing using probability models</a></li>
+<li>
+<a class="nav-link" href="#tappers-and-listeners"><span class="header-section-number">20.3</span> Tappers and listeners</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#step-1--state-the-null-and-alternative-hypotheses-2"><span class="header-section-number">20.3.1</span> Step 1- State the null and alternative hypotheses</a></li>
+<li><a class="nav-link" href="#step-2---compute-a-test-statistic.-2"><span class="header-section-number">20.3.2</span> Step 2 - Compute a test statistic.</a></li>
+<li><a class="nav-link" href="#step-3---determine-the-p-value.-2"><span class="header-section-number">20.3.3</span> Step 3 - Determine the p-value.</a></li>
+<li><a class="nav-link" href="#step-4---draw-a-conclusion-2"><span class="header-section-number">20.3.4</span> Step 4 - Draw a conclusion</a></li>
+<li><a class="nav-link" href="#repeat-using-simulation"><span class="header-section-number">20.3.5</span> Repeat using simulation</a></li>
+<li><a class="nav-link" href="#step-2---compute-a-test-statistic.-3"><span class="header-section-number">20.3.6</span> Step 2 - Compute a test statistic.</a></li>
+<li><a class="nav-link" href="#step-3---determine-the-p-value.-3"><span class="header-section-number">20.3.7</span> Step 3 - Determine the p-value.</a></li>
+<li><a class="nav-link" href="#step-4---draw-a-conclusion-3"><span class="header-section-number">20.3.8</span> Step 4 - Draw a conclusion</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#cardiopulmonary-resuscitation-cpr"><span class="header-section-number">20.4</span> Cardiopulmonary resuscitation (CPR)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#step-1--state-the-null-and-alternative-hypotheses-3"><span class="header-section-number">20.4.1</span> Step 1- State the null and alternative hypotheses</a></li>
+<li><a class="nav-link" href="#step-2---compute-a-test-statistic.-4"><span class="header-section-number">20.4.2</span> Step 2 - Compute a test statistic.</a></li>
+<li><a class="nav-link" href="#step-3---determine-the-p-value.-4"><span class="header-section-number">20.4.3</span> Step 3 - Determine the p-value.</a></li>
+<li><a class="nav-link" href="#step-4---draw-a-conclusion-4"><span class="header-section-number">20.4.4</span> Step 4 - Draw a conclusion</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#golf-balls"><span class="header-section-number">20.5</span> Golf Balls</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#step-1--state-the-null-and-alternative-hypotheses-4"><span class="header-section-number">20.5.1</span> Step 1- State the null and alternative hypotheses</a></li>
+<li><a class="nav-link" href="#step-2---compute-a-test-statistic.-5"><span class="header-section-number">20.5.2</span> Step 2 - Compute a test statistic.</a></li>
+<li><a class="nav-link" href="#step-3---determine-the-p-value.-5"><span class="header-section-number">20.5.3</span> Step 3 - Determine the p-value.</a></li>
+<li><a class="nav-link" href="#step-4---draw-a-conclusion-5"><span class="header-section-number">20.5.4</span> Step 4 - Draw a conclusion</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#repeat-with-a-different-test-statistic"><span class="header-section-number">20.6</span> Repeat with a different test statistic</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#step-2---compute-a-test-statistic.-6"><span class="header-section-number">20.6.1</span> Step 2 - Compute a test statistic.</a></li>
+<li><a class="nav-link" href="#step-3---determine-the-p-value.-6"><span class="header-section-number">20.6.2</span> Step 3 - Determine the p-value.</a></li>
+<li><a class="nav-link" href="#step-4---draw-a-conclusion-6"><span class="header-section-number">20.6.3</span> Step 4 - Draw a conclusion</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#summary"><span class="header-section-number">20.7</span> Summary</a></li>
+<li><a class="nav-link" href="#homework-problems-19"><span class="header-section-number">20.8</span> Homework Problems</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/20-Empirical-p-values.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/20-Empirical-p-values.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-10.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

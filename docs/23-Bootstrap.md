@@ -1,7 +1,6 @@
 # Bootstrap {#BOOT}
 
 
-
 ## Objectives
 
 1) Use the bootstrap to estimate the standard error, the standard deviation, of the sample statistic.  
@@ -181,7 +180,7 @@ This is not much different from the results using the $t$ distribution.
 
 ### Bootstrap
 
-The idea behind the bootstrap is that we will get an estimate of the distribution of the statistic of interest by sampling the original data with replacement. We must sample under the same regime as the original data was collected. In `R`, we will use the `resample()` function from the `mosaic` package. There are entire packages dedicated to resampling such as **boot** and this is a great deal of information about these types of packages online.
+The idea behind the bootstrap is that we will get an estimate of the distribution of the statistic of interest by sampling the original data with replacement. We must sample under the same regime as the original data was collected. In `R`, we will use the `resample()` function from the **mosaic** package. There are entire packages dedicated to resampling such as **boot** and this is a great deal of information about these types of packages online.
 
 When applied to a dataframe, the `resample()` function samples rows with replacement to produce a new data
 frame with the same number of rows as the original, but some rows will be duplicated and others missing.
@@ -781,7 +780,7 @@ Again, similar results.
 
 1. There are more types of bootstrap techniques, right?  
 
-Yes! There are many excellent bootstrap techniques. We have only chosen to present two bootstrap techniques that could be explained in a single lesson and that are also reasonably reliable. There are many adjustments that can be made to speed up and improve accuracy. Packages such as `resample` and `boot` are more appropriate for these situations.
+Yes! There are many excellent bootstrap techniques. We have only chosen to present two bootstrap techniques that could be explained in a single lesson and that are also reasonably reliable. There are many adjustments that can be made to speed up and improve accuracy. Packages such as **resample** and **boot** are more appropriate for these situations.
 
 
 2. I've heard the percentile bootstrap is very robust.  
@@ -840,7 +839,7 @@ The hypotheses are:
 $H_0$: $\mu_{diff}=0$. There is no difference in the average textbook price.  
 $H_A$: $\mu_{diff} \neq 0$. There is a difference in average prices.
  
-d. To use a $t$ distribution, the variable `diff` has to independent and normally distributed. Since the 73 books represent less than 10\% of the population, the assumption that the random sample is independent is reasonable. Check normality using `qqnorsim()` from the `openintro` package. It generates 8 qq plots of simulated normal data that you can use to judge the `diff` variable.  
+d. To use a $t$ distribution, the variable `diff` has to independent and normally distributed. Since the 73 books represent less than 10\% of the population, the assumption that the random sample is independent is reasonable. Check normality using `qqnorsim()` from the **openintro** package. It generates 8 qq plots of simulated normal data that you can use to judge the `diff` variable.  
 e. Run a $t$ test on the `diff` variable. Report the p-value and conclusion.  
 f. Create a bootstrap distribution and generate a 95\% confidence interval on the mean of the differences, the `diff` column.  
 g. If there is really no differences between book sources, the variable `more` is a binomial and under the null the probably of success is $\pi = 0.5$. Run a hypothesis test using the variable `more`.  

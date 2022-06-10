@@ -1,3 +1,8 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
 # (PART) Probability Modeling {-} 
 
 # Case Study {#CS2}
@@ -120,7 +125,7 @@ where {stuff to do} is typically a single `R` command, but may be something more
 
 Load the libraries.
 
-```{r message=FALSE,eval=FALSE}
+```{r message=FALSE, eval=FALSE}
 library(mosaic)
 library(tidyverse)
 ```

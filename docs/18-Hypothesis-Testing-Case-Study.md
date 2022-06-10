@@ -182,7 +182,7 @@ The `shuffle()` function randomly rearranges the gender column while keeping the
 > **Exercise**:
 What is the difference in promotion rates between the two simulated groups? How does this compare to the observed difference 29.2\% from the actual study?^[$18/24 - 17/24=0.042$ or about 4.2\% in favor of the men. This difference due to chance is much smaller than the difference observed in the actual groups.]
 
-Calculating by hand will not help in a simulation, so we must write a function or use an existing one. We will use `diffprop` from the `mosiac` package. The code to find the difference for the original data is:
+Calculating by hand will not help in a simulation, so we must write a function or use an existing one. We will use `diffprop` from the **mosiac** package. The code to find the difference for the original data is:
 
 
 ```r

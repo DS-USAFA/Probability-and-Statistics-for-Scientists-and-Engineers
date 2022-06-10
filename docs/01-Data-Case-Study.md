@@ -9,9 +9,9 @@
 2) Compile a report using `knitr`.
 
 
-## Introduction to Descriptive Statistical Modeling
+## Introduction to descriptive statistical modeling
 
-In this first block of material we will focus on data types, collection methods, summaries, and visualizations. We also intend to introduce computing via the `R` package. Programming in `R` requires some focus early in the course and we will supplement with some online courses. There is relatively little mathematics in this first block.
+In this first block of material, we will focus on data types, collection methods, summaries, and visualizations. We also intend to introduce computing via the `R` package. Programming in `R` requires some focus early in the course and we will supplement with some online courses. There is relatively little mathematics in this first block.
 
 ## The data analytic process
 
@@ -29,7 +29,7 @@ Scientists seek to answer questions using rigorous methods and careful observati
 
 6. Make decisions based on the conclusion. 
 
-This is typical of an explanatory process because it starts with a research question and proceeds. However, sometimes an analysis is exploratory. There is data but not necessarily a research question. The purpose of the analysis is to find interesting features in the data and sometimes generate hypotheses. In this course we focus on the explanatory aspects of analysis but we have examples of exploratory.
+This is typical of an explanatory process because it starts with a research question and proceeds. However, sometimes an analysis is exploratory in nature. There is data but not necessarily a research question. The purpose of the analysis is to find interesting features in the data and sometimes generate hypotheses. In this course we focus on the explanatory aspects of analysis.
 
 Statistics as a subject focuses on making stages 2-5 objective, rigorous, and efficient. That is, statistics has three primary components: 
 
@@ -64,22 +64,22 @@ Researchers studied the effect of stents at two time points: 30 days after enrol
 
 ### Import data 
 
-We begin our first use of `R`
+We begin our first use of `R`.
 
 If you need to install a package, most likely it will be on CRAN, the Comprehensive R Archive Network. Before
 a package can be used, it must be installed on the computer (once per computer or account) and loaded into a session (once per `R` session). When you exit `R`, the package stays installed on the computer but will not be reloaded when `R` is started again.
 
 In summary, `R` has packages that can be downloaded and installed from online repositories such as CRAN. When you install a package, which only needs to be done once per computer or account, in `R` all it is doing is placing the source code in a library folder designated during the installation of `R`. Packages are typically collections of functions and variables that are specific to a certain task or subject matter. 
 
-For example, to install the mosaic package, enter:
+For example, to install the **mosaic** package, enter:
 
 ```
 install.packages("mosaic") # fetch package from CRAN
 ```
 
-In RStudio there is a *Packages* tab that makes it easy to add and maintain packages.
+In RStudio, there is a *Packages* tab that makes it easy to add and maintain packages.
 
-To use a package in a session, we must load it which makes it available to the current session only. When you start `R` again, you will have to load packages again. The command `library()` with the package name supplied as the argument is all that is needed. For this session, we will load `tidyverse` and `mosaic`. Note: the box below is executing the `R` commands, this is known as reproducible research since you can see the code and then you can run or modify as you need.
+To use a package in a session, we must load it. This makes it available to the current session only. When you start `R` again, you will have to load packages again. The command `library()` with the package name supplied as the argument is all that is needed. For this session, we will load **tidyverse** and **mosaic**. Note: the box below is executing the `R` commands, this is known as reproducible research since you can see the code and then you can run or modify as you need.
 
 
 ```r
@@ -97,13 +97,13 @@ Next read in the data into the working environment.
 stent_study <- read_csv("data/stent_study.csv")
 ```
 
-Let's break this code down. We are reading from a .csv file and assigning the results into an object called `stent_study`. The assignment arrow `<-` means we assign what is on the right to what is on the left. The `R` function we use in this case is `read_csv()`; when using `R` functions, you should ask yourself:  
+Let's break this code down. We are reading from a .csv file and assigning the results into an object called `stent_study`. The assignment arrow `<-` means we assign what is on the right to what is on the left. The `R` function we use in this case is `read_csv()`. When using `R` functions, you should ask yourself:  
 
 1. What do I want `R` to do? 
 
 2. What information must I provide for `R` to do this? 
 
-We want `R` to read in a .csv file. We can get help on this function by typing `?read_csv` at the prompt. The only required input to `read_csv()` is the file location. We have our data stored in a folder called "data" under the working directory. We can determine the working directory by typing `getwd()` at the prompt.
+We want `R` to read in a .csv file. We can get help on this function by typing `?read_csv` or `help(read_csv)` at the prompt. The only required input to `read_csv()` is the file location. We have our data stored in a folder called "data" under the working directory. We can determine the working directory by typing `getwd()` at the prompt.
 
 
 ```r
@@ -114,7 +114,7 @@ Similarly, if we wish to change the working directory, we can do so by using the
 
 
 ```r
-setwd('C:/Users/Brad.Warner/Documents/Classes/Statistics/Another Folder')
+setwd('C:/Users/Brad.Warner/Documents/Classes/Prob Stat/Another Folder')
 ```
 
 In `R` if you use the `view()`, you will see the data in what looks like a standard spreadsheet.
@@ -127,11 +127,11 @@ view(stent_study)
 
 ### Explore data
 
-Before we attempt to answer the research question, let's look at the data. We want `R` to print out the first 10 rows of the data. The appropriate function is `head()` and it needs the data object. By default, `R` will output the first 6 rows. By using the `n=` argument, we can specify how many rows we want to view.
+Before we attempt to answer the research question, let's look at the data. We want `R` to print out the first 10 rows of the data. The appropriate function is `head()` and it needs the data object. By default, `R` will output the first 6 rows. By using the `n =` argument, we can specify how many rows we want to view.
 
 
 ```r
-head(stent_study,n=10)
+head(stent_study, n = 10)
 ```
 
 ```
@@ -171,12 +171,12 @@ inspect(stent_study)
 ```
 
 
-To keep things simple we will only look at the `outcome30` variable in this case study. We will summarize the data in a table. Later in the course, we will learn to do this using the `tidy` package; for now we use the `mosaic` package. This package makes use of the modeling formula that you will use extensively later in this course and in Math 378.
+To keep things simple, we will only look at the `outcome30` variable in this case study. We will summarize the data in a table. Later in the course, we will learn to do this using the **tidy** package; for now we use the **mosaic** package. This package makes use of the modeling formula that you will use extensively later in this course. The modeling formula is also used in Math 378.
 
-We want to summarize the data by making a table. In `mosaic` this is the `tally()` function. Before using this function, we have to understand the basic formula notation that `mosaic` uses. The basic format is:
+We want to summarize the data by making a table. From `mosaic`, we use the `tally()` function. Before using this function, we have to understand the basic formula notation that `mosaic` uses. The basic format is:
 
 ```
-goal( y ~ x, data = MyData, ... ) # pseudo-code for the formula template
+goal(y ~ x, data = MyData, ...) # pseudo-code for the formula template
 ```
 
 We read `y ~ x` as “y tilde x” and interpret it in the equivalent forms: “y broken down by x”; “y modeled by x”; “y explained by x”; “y depends on x”; or “y accounted for by x.” For graphics, it’s reasonable to read the formula as “y vs. x”, which is exactly the convention used for coordinate axes. 
@@ -185,7 +185,7 @@ For this exercise, we want to apply `tally()` to the variables `group` and `outc
 
 
 ```r
-tally(outcome30~group,data=stent_study,margins = TRUE)
+tally(outcome30 ~ group, data = stent_study, margins = TRUE)
 ```
 
 ```
@@ -202,7 +202,7 @@ Of the 224 patients in the treatment group, 33 had a stroke by the end of the fi
 
 
 ```r
-33/(33+191)
+33 / (33 + 191)
 ```
 
 ```
@@ -210,14 +210,14 @@ Of the 224 patients in the treatment group, 33 had a stroke by the end of the fi
 ```
 
 > **Exercise**:  
-What proportion of the control group had a stroke in the first 30 days of the experiment? And why is this proportion different from the proportion reported by `inspect()`?    
+What proportion of the control group had a stroke by the end of the first month? And why is this answer different from what `inspect()` reports?    
 
 
-Let's have `R` calculate proportions for us. Use `?` to look at the help menu for `tally()`. Note that one of the option arguments of the `tally()` function is `format=`. Setting this equal to `proportion` will output the proportions instead of the counts. 
+Let's have `R` calculate proportions for us. Use `?` or `help()` to look at the help menu for `tally()`. Note that one of the option arguments of the `tally()` function is `format =`. Setting this equal to `proportion` will output the proportions instead of the counts. 
 
 
 ```r
-tally(outcome30~group,data=stent_study,format='proportion',margins = TRUE)
+tally(outcome30 ~ group, data = stent_study, format = 'proportion', margins = TRUE)
 ```
 
 ```
@@ -228,19 +228,19 @@ tally(outcome30~group,data=stent_study,format='proportion',margins = TRUE)
 ##   Total    1.00000000 1.00000000
 ```
 
-We can compute summary statistics from the table. A **summary statistic** is a single number summarizing a large amount of data.^[Formally, a summary statistic is a value computed from the data. Some summary statistics are more useful than others.] For instance, the primary results of the study after 1 month could be described by two summary statistics: the proportion of people who had a stroke in the treatment and control groups.
+We can compute summary statistics from the table. A **summary statistic** is a single number summarizing a large amount of data.^[Formally, a summary statistic is a value computed from the data. Some summary statistics are more useful than others.] For instance, the primary results of the study after 1 month could be described by two summary statistics: the proportion of people who had a stroke in the treatment group and the proportion of people who had a stroke in the control group.
 
-* Proportion who had a stroke in the treatment (stent) group: $33/224 = 0.15 = 15\%$. 
+* Proportion who had a stroke in the treatment (stent) group: $33/224 = 0.15 = 15\%$ 
 
-* Proportion who had a stroke in the control group: $13/227 = 0.06 = 6\%$. 
+* Proportion who had a stroke in the control group: $13/227 = 0.06 = 6\%$ 
 
 ### Visualize the data 
 
-It is often important to visualize the data. The table is a type of visualization but in this section we will introduce a graphical method called bar charts.
+It is often important to visualize the data. The table is a type of visualization, but in this section we will introduce a graphical method called bar charts.
 
-We will use the [**ggformula**](https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html) package to visualize. It is a wrapper to the `ggplot2` package which is becoming the industry standard for generating professional graphics. However, its interface is difficult to learn and we will ease into by using `ggformula` which makes use of the formula notation introduced above. The **ggformula** package was loaded when we loaded **mosaic**.^[https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html]
+We will use the [**ggformula**](https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html) package to visualize the data. It is a wrapper to the **ggplot2** package which is becoming the industry standard for generating professional graphics. However, the interface for **ggplot2** can be difficult to learn and we will ease into it by using `ggformula`, which makes use of the formula notation introduced above. The **ggformula** package was loaded when we loaded `mosaic`.^[https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html]
 
-To generate a basic graphic, we need to ask ourselves what information we are trying to see, what particular type of graph is best, what corresponding `R` function to use, and what information that `R` function needs in order to build a plot. For categorical data we want a bar chart and the `R` function `gf_bar()` needs the data object and the variable(s) of interest.
+To generate a basic graphic, we need to ask ourselves what information we are trying to see, what particular type of graph is best, what corresponding `R` function to use, and what information that `R` function needs in order to build a plot. For categorical data, we want a bar chart and the `R` function `gf_bar()` needs the data object and the variable(s) of interest.
 
 Here is our first attempt. In Figure \@ref(fig:first-fig), we leave the `y` portion of our formula blank. Doing this implies that we simply want to view the number/count of `outcome30` by type. We will see the two levels of `outcome30` on the x-axis and counts on the y-axis.
 
@@ -248,7 +248,7 @@ Here is our first attempt. In Figure \@ref(fig:first-fig), we leave the `y` port
 
 
 ```r
-gf_bar(~outcome30,data=stent_study)
+gf_bar(~ outcome30, data = stent_study)
 ```
 
 <div class="figure">
@@ -257,21 +257,21 @@ gf_bar(~outcome30,data=stent_study)
 </div>
 
 > **Exercise**:  
-Explain Figure \@ref(fig:first-fig)..
+Explain Figure \@ref(fig:first-fig).
 
-This plot graphically shows us the total number of "stroke" and the total number of "no_event". However, this is not what we want. We want to compare the 30-day outcomes for both treatment groups. So we need to break the data into different groups based on treatment type. In the formula language we now update it to the form:
+This plot graphically shows us the total number of "stroke" and the total number of "no_event". However, this is not what we want. We want to compare the 30-day outcomes for both treatment groups. So, we need to break the data into different groups based on treatment type. In the formula notation, we now update it to the form:
 
 ```
-goal( y ~ x|z, data = MyData, ... ) # pseudo-code for the formula template
+goal(y ~ x|z, data = MyData, ...) # pseudo-code for the formula template
 ```
 
-We read `y ~ x|z` as “y tilde x by z” and interpret in the equivalent forms: “y modeled by x for each z”; “y explained by x within each z”; or “y accounted for by x within z.” For graphics, it’s reasonable to read the formula as “y vs. x for each z”. Figure \@ref(fig:split-fig) shows the results.
+We read `y ~ x|z` as “y tilde x by z” and interpret it in the equivalent forms: “y modeled by x for each z”; “y explained by x within each z”; or “y accounted for by x within z.” For graphics, it’s reasonable to read the formula as “y vs. x for each z”. Figure \@ref(fig:split-fig) shows the results.
 
 (ref:groupvar) Bar charts conditioned on the `group` variable.
 
 
 ```r
-gf_bar(~outcome30|group,data = stent_study) 
+gf_bar(~ outcome30 | group, data = stent_study) 
 ```
 
 <div class="figure">
@@ -282,16 +282,16 @@ gf_bar(~outcome30|group,data = stent_study)
 
 #### More advanced graphics
 
-As a prelude for things to come, the above graphic needs work. The labels don't help; there is no title; we could add color; does it make more sense to use proportions? Here is the code and results for a better graph, see Figure \@ref(fig:cs1-fig).. Don't worry if this seems a bit advanced, but feel free to examine each new component of this code.
+As a prelude for things to come, the above graphic needs work. The labels don't help and there is no title. We could add color. Does it make more sense to use proportions? Here is the code and results for a better graph, see Figure \@ref(fig:cs1-fig). Don't worry if this seems a bit advanced, but feel free to examine each new component of this code.
 
 
 ```r
 stent_study %>%
-gf_props(~group,fill=~outcome30,position='fill') %>%
-  gf_labs(title="Impact of Stents of Stroke",
-          subtitle='Experiment with 451 Patients',
-          x="Experimental Group",
-          y="Proportion of Events") %>%
+gf_props(~ group, fill = ~ outcome30, position = 'fill') %>%
+  gf_labs(title = "Impact of Stents of Stroke",
+          subtitle = 'Experiment with 451 Patients',
+          x = "Experimental Group",
+          y = "Number of Events") %>%
   gf_theme(theme_bw())
 ```
 
@@ -300,11 +300,11 @@ gf_props(~group,fill=~outcome30,position='fill') %>%
 <p class="caption">(\#fig:cs1-fig)Better graph.</p>
 </div>
 
-Notice that we used the pipe operator, `%>%`. This operator allows us to string functions together in a manner that makes it easier to read the code. In the above code we are sending the data object `stent_study` into the function `gf_props()` to use as data so we don't need the `data = ` argument. In math, this is a composition of functions. Instead of `f(g(x))` we could use a pipe `f(g(x)) = g(x) %>% f()`.
+Notice that we used the pipe operator, `%>%`. This operator allows us to string functions together in a manner that makes it easier to read the code. In the above code, we are sending the data object `stent_study` into the function `gf_props()` to use as data, so we don't need the `data =` argument. In math, this is a composition of functions. Instead of `f(g(x))` we could use a pipe `f(g(x)) = g(x) %>% f()`.
 
 ### Conclusion
 
-These two summary statistics are useful in looking for differences in the groups, and we are in for a surprise: an additional 9\% of patients in the treatment group had a stroke! This is important for two reasons. First, it is contrary to what doctors expected, which was that stents would *reduce* the rate of strokes. Second, it leads to a statistical question: do the data show a **real** difference due to the treatment?
+These two summary statistics (the proportions of people who had a stroke) are useful in looking for differences in the groups, and we are in for a surprise: an additional 9\% of patients in the treatment group had a stroke! This is important for two reasons. First, it is contrary to what doctors expected, which was that stents would *reduce* the rate of strokes. Second, it leads to a statistical question: do the data show a **real** difference due to the treatment?
 
 This second question is subtle. Suppose you flip a coin 100 times. While the chance a coin lands heads in any given coin flip is 50\%, we probably won't observe exactly 50 heads. This type of fluctuation is part of almost any type of data generating process. It is possible that the 9\% difference in the stent study is due to this natural variation. However, the larger the difference we observe (for a particular sample size), the less believable it is that the difference is due to chance. So what we are really asking is the following: is the difference so large that we should reject the notion that it was due to chance? 
 
@@ -315,21 +315,20 @@ This is a preview of step 4, analyze the data, and step 5, form a conclusion, of
 
 ## Homework Problems 
 
-Create an Rmd file `01 Data Case Study Application.Rmd` in R, it may be provided, and start by inserting your name in the header. Code blocks below can be inserted and then you can complete the code and answer the questions. When you are done, `knit` it into a pdf file.
+Create an Rmd file `01 Data Case Study Application.Rmd` in R (it may be provided), and start by inserting your name in the header. Code blocks below can be inserted and then you can complete the code and answer the questions. When you are done, `knit` it into a pdf file.
 
 To create an `R` code chunk, use CTRL-ALT-I or on the `insert` tab of the window, use the drop down to select `R`. Anything between the dashes is interpreted as `R` code.
 
-For more on RMarkdown see the video, https://www.youtube.com/watch?v=DNS7i2m4sB0. You can also take the first chapter of the Data Camp course "Reporting with R Markdown" to learn more about output file formats.
+For more on RMarkdown, see the following video: https://www.youtube.com/watch?v=DNS7i2m4sB0. This video assumes you are using `R` on your computer, but we are using RStudio Cloud. Thus we can `knit` to a pdf since it is setup for us. You can also take the first chapter of the Data Camp course, *Reporting with R Markdown*, to learn more.
 
-1. **Stent study continued**. Complete a similar analysis for the stent data but this time for the one year data. In particular
+1. **Stent study continued**. Complete a similar analysis for the stent data, but this time use the one year outcome. In particular,
 
   a. Read the data into your working directory.
   
 ```
-stent_study <-read_csv(___)
+stent_study <- read_csv(___)
 ```
   
-
 
   b. Complete similar steps as in the class notes. The start of code is provided below.  
     i. Use `inspect` on the data.  
@@ -337,38 +336,37 @@ stent_study <-read_csv(___)
     iii. Create a barchart of the data.  
     
 
-Summary  
+Using `inspect`:  
 
 ```
 inspect(___)
 ```
 
-Table
-
+The table: 
 
 ```
-tally(outcome365~___,data=stent_study,format=___,margins = TRUE)
+tally(outcome365 ~ ___, data = stent_study, format = ___, margins = TRUE)
 ```
 
-Barchart  
+Barchart:  
 
 ```
 stent_study %>%
-  gf_props(~___,fill=~___,position='fill') %>%
-  gf_labs(title=___
-  subtitle=___,
-  x=___,
-  y=___)
+  gf_props(~ ___, fill = ~ ___, position = 'fill') %>%
+  gf_labs(title = ___,
+          subtitle = ___,
+          x = ___,
+          y = ___)
 ```
 
 2. **Migraine and acupuncture**.  A migraine is a particularly painful type of headache, which patients sometimes wish to treat with acupuncture. To determine whether acupuncture relieves migraine pain, researchers conducted a randomized controlled study where 89 females diagnosed with migraine headaches were randomly assigned to one of two groups: treatment or control. 43 patients in the treatment group received acupuncture that is specifically designed to treat migraines. 46 patients in the control group received placebo acupuncture (needle insertion at nonacupoint locations). 24 hours after patients received acupuncture, they were asked if they were pain free.^[G. Allais et al. [“Ear acupuncture in the treatment of migraine attacks:  a randomized trial on the efficacy of appropriate versus inappropriate acupoints”.](http://www.ncbi.nlm.nih.gov/pubmed/21533739) In: Neurological Sci. 32.1 (2011), pp. 173–175.]
 
 
-The data is in the file `migraine_study.csv` in the folder `data`.
+The data is in the file `migraine_study.csv` in the `data` folder.
 
 Complete the following work:
 
-  a. Read the data an object called `migraine_study`.  
+  a. Read the data into an object called `migraine_study`.  
   
 ```
 migraine_study <- read_csv("data/___")

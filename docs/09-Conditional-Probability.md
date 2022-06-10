@@ -1,7 +1,6 @@
 # Conditional Probability {#CONDPROB}
 
 
-
 ## Objectives
 
 1) Define conditional probability and distinguish it from joint probability.  

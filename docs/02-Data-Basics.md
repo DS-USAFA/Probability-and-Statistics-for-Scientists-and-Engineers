@@ -2,14 +2,14 @@
 
 ## Objectives
 
-1) Define and use properly in context all new terminology to include but not limited to case, observational unit, variables, data frame, associated variables, independent, and discrete and continuous variables.   
+1) Define and use properly in context all new terminology to include, but not limited to, case, observational unit, variables, data frame, associated variables, independent, and discrete and continuous variables.   
 2) Identify and define the different types of variables.  
-3) From reading a study, explain the research question.  
+3) Given a study description, explain the research question.  
 4) Create a scatterplot in `R` and determine the association of two numerical variables from the plot.
 
 ## Data basics
 
-Effective presentation and description of data is a first step in most analyses. This lesson introduces one structure for organizing data as well as some terminology that will be used throughout this course.
+Effective presentation and description of data is a first step in most analyses. This lesson introduces one structure for organizing data, as well as some terminology that will be used throughout this course.
 
 ### Observations, variables, and data matrices
 
@@ -22,9 +22,9 @@ library(openintro)
 ```
 
 
-Table \@ref(tab:db1-tab) shows 4 rows of the `email50` data set and we have selected to only list 5 variables for ease of observation. 
+Table \@ref(tab:db1-tab) shows 4 rows of the `email50` data set and we have elected to only list 5 variables for ease of observation. 
 
-Each row in the table represents a single email or **case**.^[A case is also sometimes called a **unit of observation** or an **observational unit**] The columns represent characteristics, called **variables**, for each of the emails. For example, the first row represents email 1, which is not spam, contains 21,705 characters, 551 line breaks, is written in HTML format, and contains only small numbers.
+Each row in the table represents a single email or **case**.^[A case is also sometimes called a **unit of observation** or an **observational unit**.] The columns represent characteristics, called **variables**, for each of the emails. For example, the first row represents email 1, which is not spam, contains 21,705 characters, 551 line breaks, is written in HTML format, and contains only small numbers.
 
 <table>
 <caption>(\#tab:db1-tab)First 5 rows of email data frame</caption>
@@ -75,11 +75,11 @@ Let's look at the first 10 rows of data from `email50` using `R`. Remember to as
 
 *What must we give `R` for it to do this?*  
 
-We want the first 10 rows so we use `head` and `R` needs the data object and the number of rows. The data object is called `email50` and is accessible once the **openintro** package is loaded.
+We want the first 10 rows so we use `head()` and `R` needs the data object and the number of rows. The data object is called `email50` and is accessible once the **openintro** package is loaded.
 
 
 ```r
-head(email50,n=10)
+head(email50, n = 10)
 ```
 
 ```
@@ -110,7 +110,7 @@ In practice, it is especially important to ask clarifying questions to ensure im
 
 (Note that not all data sets will have associated documentation; the authors of **openintro** package included this documentation with the `email50` data set contained in the package.) 
 
-The data in `email50` represent a **data matrix** or in `R` terminology **data frame** or **tibble** ^[A tibble is a data frame with attributes for such things as better display and printing], which is a common way to organize data. Each row of a data matrix corresponds to a unique case, and each column corresponds to a variable. This is called **tidy data**.^[For more information on tidy data see the [blog](https://simplystatistics.org/2016/02/17/non-tidy-data/) and the [book](https://r4ds.had.co.nz/tidy-data.html#pivoting).] The data frame for the stroke study introduced in the previous lesson had patients as the cases and there were three variables recorded for each patient. If we are thinking of patients as the unit of observation, then this data is tidy. 
+The data in `email50` represent a **data matrix**, or in `R` terminology a **data frame** or **tibble** ^[A tibble is a data frame with attributes for such things as better display and printing.], which is a common way to organize data. Each row of a data matrix corresponds to a unique case, and each column corresponds to a variable. This is called **tidy data**.^[For more information on tidy data, see the [blog](https://simplystatistics.org/2016/02/17/non-tidy-data/) and the [book](https://r4ds.had.co.nz/tidy-data.html#pivoting).] The data frame for the stroke study introduced in the previous lesson had patients as the cases and there were three variables recorded for each patient. If we are thinking of patients as the unit of observation, then this data is tidy. 
 
 
 ```
@@ -129,7 +129,7 @@ The data in `email50` represent a **data matrix** or in `R` terminology **data f
 ## 10 control no_event  no_event
 ```
 
-If we think of an outcome as a unit of observation then it is not tidy since the two outcome columns are variable values (month or year). The tidy data for this case would be:
+If we think of an outcome as a unit of observation, then it is not tidy since the two outcome columns are variable values (month or year). The tidy data for this case would be:
 
 
 ```
@@ -166,37 +166,35 @@ Why ensure that your data is tidy? There are two main advantages:
 Data frames are a convenient way to record and store data. If another individual or case is added to the data set, an additional row can be easily added. Similarly, another column can be added for a new variable.
 
 > **Exercise**:    
-We consider a publicly available data set that summarizes information about the 3,142 counties in the United States, and we create a data set called `county_tidy` data set. This data set will include information about each county: its name, the state where it resides, its population in 2000 and 2010, per capita federal spending, poverty rate, and four additional characteristics, we create this data object in the code following this description. The parent data set is part of the `usdata` library and is called `county_complete`. The variables are summarized in help menu built into the `usdata` package^[[These data were collected from the US Census website.](http://quickfacts.census.gov/qfd/index.html)]. How might these data be organized in a data matrix? ^[Each county may be viewed as a case, and there are ten pieces of information recorded for each case. A table with 3,142 rows and 10 columns could hold these data, where each row represents a county and each column represents a particular piece of information.]
+We consider a publicly available data set that summarizes information about the 3,142 counties in the United States, and we create a data set called `county_subset` data set. This data set will include information about each county: its name, the state where it resides, its population in 2000 and 2010, per capita federal spending, poverty rate, and four additional characteristics. We create this data object in the code following this description. The parent data set is part of the `usdata` library and is called `county_complete`. The variables are summarized in the help menu built into the **usdata** package^[[These data were collected from the US Census website.](http://quickfacts.census.gov/qfd/index.html)]. How might these data be organized in a data matrix? ^[Each county may be viewed as a case, and there are ten pieces of information recorded for each case. A table with 3,142 rows and 10 columns could hold these data, where each row represents a county and each column represents a particular piece of information.]
 
 
 Using `R` we will create our data object. First we load the library `usdata`.
 
 
 ```r
-install.packages("usdata")
 library(usdata)
 ```
-
-
 
 
 We only want a subset of the columns and we will use the `select` verb in `dplyr` to select and rename columns. We also create a new variable which is federal spending per capita using the `mutate` function.  
 
 
 ```r
-county_tidy <- county_complete %>% 
-  select(name, state, pop2000, pop2010, fed_spend=fed_spending_2009, poverty=poverty_2010, 
-         homeownership = homeownership_2010, multi_unit = housing_multi_unit_2010, 
-         income = per_capita_income_2010, med_income = median_household_income_2010) %>%
-  mutate(fed_spend=fed_spend/pop2010)
+county_subset <- county_complete %>% 
+  select(name, state, pop2000, pop2010, fed_spend = fed_spending_2009, 
+         poverty = poverty_2010, homeownership = homeownership_2010, 
+         multi_unit = housing_multi_unit_2010, income = per_capita_income_2010, 
+         med_income = median_household_income_2010) %>%
+  mutate(fed_spend = fed_spend / pop2010)
 ```
 
-Using `R`, we will display seven rows of the `county` data frame. 
+Using `R`, we will display seven rows of the `county_subset` data frame. 
 
 
 
 ```r
-head(county_tidy,n=7)
+head(county_subset, n = 7)
 ```
 
 ```
@@ -218,17 +216,15 @@ head(county_tidy,n=7)
 ## 7       13.7  16916      30659
 ```
 
-
 ### Types of variables
-
 
 Examine the `fed_spend`, `pop2010`, and `state` variables in the `county` data set. Each of these variables is inherently different from the others, yet many of them share certain characteristics.
 
-First consider `fed_spend`, it is said to be a **numerical variable** since it can take a wide range of numerical values, and it is sensible to add, subtract, or take averages with those values. On the other hand, we would not classify a variable reporting telephone area codes as numerical; even though area codes are made up of numerical digits, their average, sum, and difference have no clear meaning.
+First consider `fed_spend`. It is said to be a **numerical variable** since it can take a wide range of numerical values, and it is sensible to add, subtract, or take averages with those values. On the other hand, we would not classify a variable reporting telephone area codes as numerical; even though area codes are made up of numerical digits, their average, sum, and difference have no clear meaning.
 
-The `pop2010` variable is also numerical; it is sensible to add, subtract, or take averages with those values, although it seems to be a little different than `fed_spend`. This variable of the population count can only be a whole non-negative number ($0$, $1$, $2$, $...$). For this reason, the population variable is said to be **discrete** since it can only take specific numerical values. On the other hand, the federal spending variable is said to be **continuous**. Now technically, there are no truly continuous numerical variables since all measurements are finite up to some level of accuracy or measurement precision. However, in this course we will treat both types of numerical variables the same, that is as continuous variables for statistical modeling. The only place this will be different in this course is in probability models which we see in the probability modeling section.
+The `pop2010` variable is also numerical; it is sensible to add, subtract, or take averages with those values, although it seems to be a little different than `fed_spend`. This variable of the population count can only be a whole non-negative number ($0$, $1$, $2$, $...$). For this reason, the population variable is said to be **discrete** since it can only take specific numerical values. On the other hand, the federal spending variable is said to be **continuous**. Now technically, there are no truly continuous numerical variables since all measurements are finite up to some level of accuracy or measurement precision. However, in this course we will treat both types of numerical variables the same, that is as continuous variables for statistical modeling. The only place this will be different in this course is in probability models, which we see in the probability modeling section.
 
-The variable **state** can take up to 51 values, after accounting for Washington, DC, and are summarized as: *Alabama*, ..., and *Wyoming*. Because the responses themselves are categories, `state` is called a **categorical** variable,^[Sometimes also called a **nominal** variable.] and the possible values are called the variable's **levels**.
+The variable **state** can take up to 51 values, after accounting for Washington, DC, and are summarized as: *Alabama*, *Alaska*, ..., and *Wyoming*. Because the responses themselves are categories, `state` is called a **categorical** variable,^[Sometimes also called a **nominal** variable.] and the possible values are called the variable's **levels**.
 
 <div class="figure">
 <img src="02-Data-Basics_files/figure-html/tax-fig-1.png" alt="Taxonomy of Variables." width="672" />
@@ -236,7 +232,7 @@ The variable **state** can take up to 51 values, after accounting for Washington
 </div>
 
 
-Finally, consider a hypothetical variable on education, which describes the highest level of education completed and takes on one of the values *noHS*, *HS*, *College* or *Graduate_school*. This variable seems to be a hybrid: it is a categorical variable but the levels have a natural ordering. A variable with these properties is called an **ordinal** variable. To simplify analyses, any ordinal variables in this course will be treated as categorical variables. In `R` categorical variables can be treated in different ways; one of the key differences is that we can leave them as character values or as factors. When `R` handles factors, it is only concerned about the *levels* of values of the factors. We will learn more about this as we progress.
+Finally, consider a hypothetical variable on education, which describes the highest level of education completed and takes on one of the values *noHS*, *HS*, *College* or *Graduate_school*. This variable seems to be a hybrid: it is a categorical variable but the levels have a natural ordering. A variable with these properties is called an **ordinal** variable. A categorical variable with levels that do not have a natural ordering is called a **nominal** variable. To simplify analyses, any ordinal variables in this course will be treated as nominal categorical variables. In `R`, categorical variables can be treated in different ways; one of the key differences is that we can leave them as character values or as factors. When `R` handles factors, it is only concerned about the *levels* of values of the factors. We will learn more about this as we progress.
 
 Figure \@ref(fig:tax-fig) captures this classification of variables we have described.
 
@@ -251,14 +247,14 @@ Consider the variables `group` and `outcome30` from the stent study in the case 
 
 ### Relationships between variables
 
-Many analyses are motivated by a researcher looking for a relationship between two or more variables, this is the heart of statistical modeling. A social scientist may like to answer some of the following questions:
+Many analyses are motivated by a researcher looking for a relationship between two or more variables. This is the heart of statistical modeling. A social scientist may like to answer some of the following questions:
 
 1. Is federal spending, on average, higher or lower in counties with high rates of poverty?  
 2. If homeownership is lower than the national average in one county, will the percent of multi-unit structures in that county likely be above or below the national average?   
 
-To answer these questions, data must be collected, such as the `county_complete` data set. Examining summary statistics could provide insights for each of the two questions about counties. Additionally, graphs can be used to visually summarize data and are useful for answering such questions as well.
+To answer these questions, data must be collected, such as the `county_complete` data set. Examining summary statistics could provide insights for each of the two questions about counties. Graphs can be used to visually summarize data and are useful for answering such questions as well.
 
-Scatterplots are one type of graph used to study the relationship between two numerical variables. Figure \@ref(fig:pov1-fig) compares the variables `fed_spend` and `poverty`. Each point on the plot represents a single county. For instance, the highlighted dot corresponds to County 1088 in the `county_tidy` data set: Owsley County, Kentucky, which had a poverty rate of 41.5\% and federal spending of \$21.50 per capita. The dense cloud in the scatterplot suggests a relationship between the two variables: counties with a high poverty rate also tend to have slightly more federal spending. We might brainstorm as to why this relationship exists and investigate each idea to determine which is the most reasonable explanation.
+Scatterplots are one type of graph used to study the relationship between two numerical variables. Figure \@ref(fig:pov1-fig) compares the variables `fed_spend` and `poverty`. Each point on the plot represents a single county. For instance, the highlighted dot corresponds to County 1088 in the `county_subset` data set: Owsley County, Kentucky, which had a poverty rate of 41.5\% and federal spending of \$21.50 per capita. The dense cloud in the scatterplot suggests a relationship between the two variables: counties with a high poverty rate also tend to have slightly more federal spending. We might brainstorm as to why this relationship exists and investigate each idea to determine which is the most reasonable explanation.
 
 <div class="figure">
 <img src="02-Data-Basics_files/figure-html/pov1-fig-1.png" alt="A scatterplot showing fed_spend against poverty. Owsley County of Kentucky, with a poverty rate of 41.5% and federal spending of $21.50 per capita, is highlighted." width="672" />
@@ -266,7 +262,7 @@ Scatterplots are one type of graph used to study the relationship between two nu
 </div>
 
 > **Exercise**:    
-Examine the variables in the `email50` data set. Create two questions about the relationships between these variables that are of interest to you.^[Two sample questions: (1) Intuition suggests that if there are many line breaks in an email then there would also tend to be many characters: does this hold true? (2) Is there a connection between whether an email format is plain text (versus HTML) and whether it is a spam message?]
+Examine the variables in the `email50` data set. Create two research questions about the relationships between these variables that are of interest to you.^[Two sample questions: (1) Intuition suggests that if there are many line breaks in an email then there would also tend to be many characters: does this hold true? (2) Is there a connection between whether an email format is plain text (versus HTML) and whether it is a spam message?]
 
 The `fed_spend` and `poverty` variables are said to be associated because the plot shows a discernible pattern. When two variables show some connection with one another, they are called **associated variables**. Associated variables can also be called **dependent** variables and vice-versa.
 
@@ -289,7 +285,7 @@ If two variables are not associated, then they are said to be **independent**. T
 ### Creating a scatterplot
 
 
-In this section we will create a simple scatterplot and then ask you to create one on your own. First we will recreate the scatterplot seen in Figure \@ref(fig:pov1-fig). This figure uses the `county_tidy` data set.
+In this section, we will create a simple scatterplot and then ask you to create one on your own. First, we will recreate the scatterplot seen in Figure \@ref(fig:pov1-fig). This figure uses the `county_subset` data set.
 
 Here are two questions:
 
@@ -297,14 +293,14 @@ Here are two questions:
 
 *What must we give `R` for it to do this?*   
 
-We want `R` to create a scatterplot and to do this it needs, at a minimum, the data object, what we want on the $x$-axis, and what we want on the $y$-axis. More information on [`ggformula`](https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html) can be found by clicking on the link.^[https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html]
+We want `R` to create a scatterplot and to do this it needs, at a minimum, the data object, what we want on the $x$-axis, and what we want on the $y$-axis. More information on [**ggformula**](https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html) can be found by clicking on the link.^[https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html]
 
 (ref:ggfbold2) Scatterplot with **ggformula**.
 
 
 ```r
-county_tidy %>%
-  gf_point(fed_spend~poverty)
+county_subset %>%
+  gf_point(fed_spend ~ poverty)
 ```
 
 <div class="figure">
@@ -312,17 +308,17 @@ county_tidy %>%
 <p class="caption">(\#fig:pov2-fig)(ref:ggfbold2)</p>
 </div>
 
-Figure \@ref(fig:pov2-fig) is bad, there are poor axis labels, no title, dense clustering of points, the $y$-axis is being driven by a couple of extreme points. We will need to clear this up. Again, try to read the code and use `help()` or `?` to determine the purpose of each command in Figure \@ref(fig:pov3-fig).
+Figure \@ref(fig:pov2-fig) is bad. There are poor axis labels, no title, dense clustering of points, and the $y$-axis is being driven by a couple of extreme points. We will need to clear this up. Again, try to read the code and use `help()` or `?` to determine the purpose of each command in Figure \@ref(fig:pov3-fig).
 
 
 ```r
-county_tidy %>%
-  filter(fed_spend<32) %>%
-  gf_point(fed_spend~poverty,
-           xlab="Poverty Rate (Percent)", 
-           ylab="Federal Spending Per Capita",
-           title="A scatterplot showing fed_spend against poverty", 
-           cex=1,alpha=0.2) %>%
+county_subset %>%
+  filter(fed_spend < 32) %>%
+  gf_point(fed_spend ~ poverty,
+           xlab = "Poverty Rate (Percent)", 
+           ylab = "Federal Spending Per Capita",
+           title = "A scatterplot showing fed_spend against poverty", 
+           cex = 1, alpha = 0.2) %>%
   gf_theme(theme_classic())
 ```
 
@@ -340,12 +336,12 @@ Create the scatterplot in Figure \@ref(fig:homeown-fig).
 
 Identify (i) the cases, (ii) the variables and their types, and (iii) the main research question in the studies described below.
 
-1. Researchers collected data to examine the relationship between pollutants and preterm births in Southern California. During the study air pollution levels were measured by air quality monitoring stations. Specifically, levels of carbon monoxide were recorded in parts per million, nitrogen dioxide and ozone in parts per hundred million, and coarse particulate matter (PM$_{10}$) in $\mu g/m^3$. Length of gestation data were collected on 143,196 births between the years 1989 and 1993, and air pollution exposure during gestation was calculated for each birth. The analysis suggested that increased ambient PM$_{10}$ and, to a lesser degree, CO concentrations may be associated with the occurrence of preterm births.^[B. Ritz et al. [“Effect of air pollution on preterm birth among children born in Southern California
+1. Researchers collected data to examine the relationship between pollutants and preterm births in Southern California. During the study, air pollution levels were measured by air quality monitoring stations. Specifically, levels of carbon monoxide were recorded in parts per million, nitrogen dioxide and ozone in parts per hundred million, and coarse particulate matter (PM$_{10}$) in $\mu g/m^3$. Length of gestation data were collected on 143,196 births between the years 1989 and 1993, and air pollution exposure during gestation was calculated for each birth. The analysis suggested that increased ambient PM$_{10}$ and, to a lesser degree, CO concentrations may be associated with the occurrence of preterm births.^[B. Ritz et al. [“Effect of air pollution on preterm birth among children born in Southern California
 between 1989 and 1993”](http://journals.lww.com/epidem/Abstract/2000/09000/Effect_of_Air_Pollution_on_Preterm_Birth_Among.4.aspx).  In:  Epidemiology 11.5 (2000), pp. 502–511.]
 
 
 2. The Buteyko method is a shallow breathing technique developed by Konstantin Buteyko, a Russian doctor, in 1952. Anecdotal evidence suggests that the Buteyko method can reduce asthma symptoms and improve quality of life. In a scientific study to determine the effectiveness of this method, researchers recruited 600 asthma patients aged 18-69 who relied on medication for asthma treatment. These patients were split into two research groups: one practiced the Buteyko method and the other did not. Patients were scored on quality of life, activity, asthma symptoms, and medication reduction on a scale from 0 to 10. On average, the participants in the Buteyko group experienced a significant reduction in asthma symptoms and an improvement in quality of life.^[J. McGowan. "Health Education: Does the Buteyko Institute Method make a difference?" In: Thorax 58 (2003).]
 
-3. In the package **Stat2Data** is a data set called `Election16`. Create a scatterplot for the percent of advanced degree versus per capita income in the state. Describe the relationship between these two variables. Note: you may have to install the package, load the library, and use the `data()` function to import the dataset.
+3. In the package **Stat2Data** is a data set called `Election16`. Create a scatterplot for the percent of advanced degree versus per capita income in the state. Describe the relationship between these two variables. Note: you may have to load the library.
  
 

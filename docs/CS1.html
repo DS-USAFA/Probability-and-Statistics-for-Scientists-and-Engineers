@@ -4,26 +4,52 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 1 Case Study | Probability and Statistics for Scientists and Engineers</title>
+<title>Chapter 1 Case Study | Computational Probability and Statistics</title>
 <meta name="author" content="Matthew Davis">
 <meta name="author" content="Brianna Hitt">
-<meta name="author" content="Kenneth Horton">
+<meta name="author" content="Ken Horton">
 <meta name="author" content="Bradley Warner">
-<meta name="description" content="1.1 Objectives Use R for basic analysis and visualization. Compile a report using knitr.  1.2 Introduction to Descriptive Statistical Modeling In this first block of material we will focus on data...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
-<meta property="og:title" content="Chapter 1 Case Study | Probability and Statistics for Scientists and Engineers">
+<meta name="description" content="1.1 Objectives Use R for basic analysis and visualization. Compile a report using knitr.  1.2 Introduction to descriptive statistical modeling In this first block of material, we will focus on...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="Chapter 1 Case Study | Computational Probability and Statistics">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover.png">
-<meta property="og:description" content="1.1 Objectives Use R for basic analysis and visualization. Compile a report using knitr.  1.2 Introduction to Descriptive Statistical Modeling In this first block of material we will focus on data...">
+<meta property="og:description" content="1.1 Objectives Use R for basic analysis and visualization. Compile a report using knitr.  1.2 Introduction to descriptive statistical modeling In this first block of material, we will focus on...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 1 Case Study | Probability and Statistics for Scientists and Engineers">
-<meta name="twitter:description" content="1.1 Objectives Use R for basic analysis and visualization. Compile a report using knitr.  1.2 Introduction to Descriptive Statistical Modeling In this first block of material we will focus on data...">
+<meta name="twitter:title" content="Chapter 1 Case Study | Computational Probability and Statistics">
+<meta name="twitter:description" content="1.1 Objectives Use R for basic analysis and visualization. Compile a report using knitr.  1.2 Introduction to descriptive statistical modeling In this first block of material, we will focus on...">
 <meta name="twitter:image" content="/figures/Cover.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -33,7 +59,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Probability and Statistics for Scientists and Engineers</a>
+        <a href="index.html" title="">Computational Probability and Statistics</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -63,22 +89,24 @@
 <li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
 <li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
 <li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
+<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
+<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
 <li class="book-part">Statistical Modeling</li>
-<li><a class="" href="CS3.html"><span class="header-section-number">16</span> Case Study</a></li>
-<li><a class="" href="HYPOTEST.html"><span class="header-section-number">17</span> Hypothesis Testing</a></li>
-<li><a class="" href="PVALUES.html"><span class="header-section-number">18</span> Empirical p-values</a></li>
-<li><a class="" href="CLT.html"><span class="header-section-number">19</span> Central Limit Theorem</a></li>
-<li><a class="" href="CI.html"><span class="header-section-number">20</span> Confidence Intervals</a></li>
-<li><a class="" href="BOOT.html"><span class="header-section-number">21</span> Bootstrap</a></li>
-<li><a class="" href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></li>
+<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
+<li><a class="" href="HYPOTEST.html"><span class="header-section-number">19</span> Hypothesis Testing</a></li>
+<li><a class="" href="PVALUES.html"><span class="header-section-number">20</span> Empirical p-values</a></li>
+<li><a class="" href="CLT.html"><span class="header-section-number">21</span> Central Limit Theorem</a></li>
+<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
+<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
+<li><a class="" href="ADDTESTS.html"><span class="header-section-number">24</span> Additional Hypothesis Tests</a></li>
 <li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">23</span> Case Study</a></li>
-<li><a class="" href="LRBASICS.html"><span class="header-section-number">24</span> Linear Regression Basics</a></li>
-<li><a class="" href="LRINF.html"><span class="header-section-number">25</span> Linear Regression Inference</a></li>
-<li><a class="" href="LRDIAG.html"><span class="header-section-number">26</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">27</span> Simulation Based Linear Regression</a></li>
-<li><a class="" href="LRMULTI.html"><span class="header-section-number">28</span> Multiple Linear Regression</a></li>
-<li><a class="" href="LOGREG.html"><span class="header-section-number">29</span> Logistic Regression</a></li>
+<li><a class="" href="CS4.html"><span class="header-section-number">25</span> Case Study</a></li>
+<li><a class="" href="LRBASICS.html"><span class="header-section-number">26</span> Linear Regression Basics</a></li>
+<li><a class="" href="LRINF.html"><span class="header-section-number">27</span> Linear Regression Inference</a></li>
+<li><a class="" href="LRDIAG.html"><span class="header-section-number">28</span> Regression Diagnostics</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">29</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRMULTI.html"><span class="header-section-number">30</span> Multiple Linear Regression</a></li>
+<li><a class="" href="LOGREG.html"><span class="header-section-number">31</span> Logistic Regression</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -103,9 +131,9 @@
 </div>
 <div id="introduction-to-descriptive-statistical-modeling" class="section level2" number="1.2">
 <h2>
-<span class="header-section-number">1.2</span> Introduction to Descriptive Statistical Modeling<a class="anchor" aria-label="anchor" href="#introduction-to-descriptive-statistical-modeling"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1.2</span> Introduction to descriptive statistical modeling<a class="anchor" aria-label="anchor" href="#introduction-to-descriptive-statistical-modeling"><i class="fas fa-link"></i></a>
 </h2>
-<p>In this first block of material we will focus on data types, collection methods, summaries, and visualizations. We also intend to introduce computing via the <code>R</code> package. Programming in <code>R</code> requires some focus early in the course and we will supplement with some online courses. There is relatively little mathematics in this first block.</p>
+<p>In this first block of material, we will focus on data types, collection methods, summaries, and visualizations. We also intend to introduce computing via the <code>R</code> package. Programming in <code>R</code> requires some focus early in the course and we will supplement with some online courses. There is relatively little mathematics in this first block.</p>
 </div>
 <div id="the-data-analytic-process" class="section level2" number="1.3">
 <h2>
@@ -120,7 +148,7 @@
 <li><p>Form a conclusion.</p></li>
 <li><p>Make decisions based on the conclusion.</p></li>
 </ol>
-<p>This is typical of an explanatory process because it starts with a research question and proceeds. However, sometimes an analysis is exploratory. There is data but not necessarily a research question. The purpose of the analysis is to find interesting features in the data and sometimes generate hypotheses. In this course we focus on the explanatory aspects of analysis but we have examples of exploratory.</p>
+<p>This is typical of an explanatory process because it starts with a research question and proceeds. However, sometimes an analysis is exploratory in nature. There is data but not necessarily a research question. The purpose of the analysis is to find interesting features in the data and sometimes generate hypotheses. In this course we focus on the explanatory aspects of analysis.</p>
 <p>Statistics as a subject focuses on making stages 2-5 objective, rigorous, and efficient. That is, statistics has three primary components:</p>
 <ul>
 <li>How best can we collect data?<br>
@@ -159,31 +187,31 @@
 <h3>
 <span class="header-section-number">1.4.3</span> Import data<a class="anchor" aria-label="anchor" href="#import-data"><i class="fas fa-link"></i></a>
 </h3>
-<p>We begin our first use of <code>R</code></p>
+<p>We begin our first use of <code>R</code>.</p>
 <p>If you need to install a package, most likely it will be on CRAN, the Comprehensive R Archive Network. Before
 a package can be used, it must be installed on the computer (once per computer or account) and loaded into a session (once per <code>R</code> session). When you exit <code>R</code>, the package stays installed on the computer but will not be reloaded when <code>R</code> is started again.</p>
 <p>In summary, <code>R</code> has packages that can be downloaded and installed from online repositories such as CRAN. When you install a package, which only needs to be done once per computer or account, in <code>R</code> all it is doing is placing the source code in a library folder designated during the installation of <code>R</code>. Packages are typically collections of functions and variables that are specific to a certain task or subject matter.</p>
-<p>For example, to install the mosaic package, enter:</p>
+<p>For example, to install the <strong>mosaic</strong> package, enter:</p>
 <pre><code>install.packages("mosaic") # fetch package from CRAN</code></pre>
-<p>In RStudio there is a <em>Packages</em> tab that makes it easy to add and maintain packages.</p>
-<p>To use a package in a session, we must load it which makes it available to the current session only. When you start <code>R</code> again, you will have to load packages again. The command <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> with the package name supplied as the argument is all that is needed. For this session, we will load <code>tidyverse</code> and <code>mosaic</code>. Note: the box below is executing the <code>R</code> commands, this is known as reproducible research since you can see the code and then you can run or modify as you need.</p>
+<p>In RStudio, there is a <em>Packages</em> tab that makes it easy to add and maintain packages.</p>
+<p>To use a package in a session, we must load it. This makes it available to the current session only. When you start <code>R</code> again, you will have to load packages again. The command <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> with the package name supplied as the argument is all that is needed. For this session, we will load <strong>tidyverse</strong> and <strong>mosaic</strong>. Note: the box below is executing the <code>R</code> commands, this is known as reproducible research since you can see the code and then you can run or modify as you need.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ProjectMOSAIC/mosaic">mosaic</a></span><span class="op">)</span></code></pre></div>
 <p>Next read in the data into the working environment.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">stent_study</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/stent_study.csv"</span><span class="op">)</span></code></pre></div>
-<p>Let’s break this code down. We are reading from a .csv file and assigning the results into an object called <code>stent_study</code>. The assignment arrow <code>&lt;-</code> means we assign what is on the right to what is on the left. The <code>R</code> function we use in this case is <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>; when using <code>R</code> functions, you should ask yourself:</p>
+<p>Let’s break this code down. We are reading from a .csv file and assigning the results into an object called <code>stent_study</code>. The assignment arrow <code>&lt;-</code> means we assign what is on the right to what is on the left. The <code>R</code> function we use in this case is <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>. When using <code>R</code> functions, you should ask yourself:</p>
 <ol style="list-style-type: decimal">
 <li><p>What do I want <code>R</code> to do?</p></li>
 <li><p>What information must I provide for <code>R</code> to do this?</p></li>
 </ol>
-<p>We want <code>R</code> to read in a .csv file. We can get help on this function by typing <code><a href="https://readr.tidyverse.org/reference/read_delim.html">?read_csv</a></code> at the prompt. The only required input to <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> is the file location. We have our data stored in a folder called “data” under the working directory. We can determine the working directory by typing <code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code> at the prompt.</p>
+<p>We want <code>R</code> to read in a .csv file. We can get help on this function by typing <code><a href="https://readr.tidyverse.org/reference/read_delim.html">?read_csv</a></code> or <code><a href="https://readr.tidyverse.org/reference/read_delim.html">help(read_csv)</a></code> at the prompt. The only required input to <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> is the file location. We have our data stored in a folder called “data” under the working directory. We can determine the working directory by typing <code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code> at the prompt.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Similarly, if we wish to change the working directory, we can do so by using the <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code> function:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">'C:/Users/Brad.Warner/Documents/Classes/Statistics/Another Folder'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">'C:/Users/Brad.Warner/Documents/Classes/Prob Stat/Another Folder'</span><span class="op">)</span></code></pre></div>
 <p>In <code>R</code> if you use the <code><a href="https://tibble.tidyverse.org/reference/view.html">view()</a></code>, you will see the data in what looks like a standard spreadsheet.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/view.html">view</a></span><span class="op">(</span><span class="va">stent_study</span><span class="op">)</span></code></pre></div>
@@ -192,9 +220,9 @@ a package can be used, it must be installed on the computer (once per computer o
 <h3>
 <span class="header-section-number">1.4.4</span> Explore data<a class="anchor" aria-label="anchor" href="#explore-data"><i class="fas fa-link"></i></a>
 </h3>
-<p>Before we attempt to answer the research question, let’s look at the data. We want <code>R</code> to print out the first 10 rows of the data. The appropriate function is <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> and it needs the data object. By default, <code>R</code> will output the first 6 rows. By using the <code>n=</code> argument, we can specify how many rows we want to view.</p>
+<p>Before we attempt to answer the research question, let’s look at the data. We want <code>R</code> to print out the first 10 rows of the data. The appropriate function is <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> and it needs the data object. By default, <code>R</code> will output the first 6 rows. By using the <code>n =</code> argument, we can specify how many rows we want to view.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">stent_study</span>,n<span class="op">=</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">stent_study</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 3
 ##    group   outcome30 outcome365
 ##    &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;     
@@ -221,13 +249,13 @@ a package can be used, it must be installed on the computer (once per computer o
 ## 1 control (50.3%), trmt (49.7%)                
 ## 2 no_event (89.8%), stroke (10.2%)             
 ## 3 no_event (83.8%), stroke (16.2%)</code></pre>
-<p>To keep things simple we will only look at the <code>outcome30</code> variable in this case study. We will summarize the data in a table. Later in the course, we will learn to do this using the <code>tidy</code> package; for now we use the <code>mosaic</code> package. This package makes use of the modeling formula that you will use extensively later in this course and in Math 378.</p>
-<p>We want to summarize the data by making a table. In <code>mosaic</code> this is the <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code> function. Before using this function, we have to understand the basic formula notation that <code>mosaic</code> uses. The basic format is:</p>
-<pre><code>goal( y ~ x, data = MyData, ... ) # pseudo-code for the formula template</code></pre>
+<p>To keep things simple, we will only look at the <code>outcome30</code> variable in this case study. We will summarize the data in a table. Later in the course, we will learn to do this using the <strong>tidy</strong> package; for now we use the <strong>mosaic</strong> package. This package makes use of the modeling formula that you will use extensively later in this course. The modeling formula is also used in Math 378.</p>
+<p>We want to summarize the data by making a table. From <code>mosaic</code>, we use the <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code> function. Before using this function, we have to understand the basic formula notation that <code>mosaic</code> uses. The basic format is:</p>
+<pre><code>goal(y ~ x, data = MyData, ...) # pseudo-code for the formula template</code></pre>
 <p>We read <code>y ~ x</code> as “y tilde x” and interpret it in the equivalent forms: “y broken down by x”; “y modeled by x”; “y explained by x”; “y depends on x”; or “y accounted for by x.” For graphics, it’s reasonable to read the formula as “y vs. x”, which is exactly the convention used for coordinate axes.</p>
 <p>For this exercise, we want to apply <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code> to the variables <code>group</code> and <code>outcome30</code>. In this case it does not matter which we call <code>y</code> and <code>x</code>; however, it is more natural to think of <code>outcome30</code> as a dependent variable.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">outcome30</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">stent_study</span>,margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">outcome30</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">stent_study</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>##           group
 ## outcome30  control trmt
 ##   no_event     214  191
@@ -236,37 +264,37 @@ a package can be used, it must be installed on the computer (once per computer o
 <p>The <code>margins</code> option totals the columns.</p>
 <p>Of the 224 patients in the treatment group, 33 had a stroke by the end of the first month. Using these two numbers, we can use <code>R</code> to compute the proportion of patients in the treatment group who had a stroke by the end of their first month.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">33</span><span class="op">/</span><span class="op">(</span><span class="fl">33</span><span class="op">+</span><span class="fl">191</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fl">33</span> <span class="op">/</span> <span class="op">(</span><span class="fl">33</span> <span class="op">+</span> <span class="fl">191</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.1473214</code></pre>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
-What proportion of the control group had a stroke in the first 30 days of the experiment? And why is this proportion different from the proportion reported by <code><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect()</a></code>?</p>
+What proportion of the control group had a stroke by the end of the first month? And why is this answer different from what <code><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect()</a></code> reports?</p>
 </blockquote>
-<p>Let’s have <code>R</code> calculate proportions for us. Use <code>?</code> to look at the help menu for <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code>. Note that one of the option arguments of the <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code> function is <code>format=</code>. Setting this equal to <code>proportion</code> will output the proportions instead of the counts.</p>
+<p>Let’s have <code>R</code> calculate proportions for us. Use <code>?</code> or <code>help()</code> to look at the help menu for <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code>. Note that one of the option arguments of the <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code> function is <code>format =</code>. Setting this equal to <code>proportion</code> will output the proportions instead of the counts.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">outcome30</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">stent_study</span>,format<span class="op">=</span><span class="st">'proportion'</span>,margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">outcome30</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">stent_study</span>, format <span class="op">=</span> <span class="st">'proportion'</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>##           group
 ## outcome30     control       trmt
 ##   no_event 0.94273128 0.85267857
 ##   stroke   0.05726872 0.14732143
 ##   Total    1.00000000 1.00000000</code></pre>
-<p>We can compute summary statistics from the table. A <strong>summary statistic</strong> is a single number summarizing a large amount of data.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Formally, a summary statistic is a value computed from the data. Some summary statistics are more useful than others.&lt;/p&gt;"><sup>3</sup></a> For instance, the primary results of the study after 1 month could be described by two summary statistics: the proportion of people who had a stroke in the treatment and control groups.</p>
+<p>We can compute summary statistics from the table. A <strong>summary statistic</strong> is a single number summarizing a large amount of data.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Formally, a summary statistic is a value computed from the data. Some summary statistics are more useful than others.&lt;/p&gt;"><sup>3</sup></a> For instance, the primary results of the study after 1 month could be described by two summary statistics: the proportion of people who had a stroke in the treatment group and the proportion of people who had a stroke in the control group.</p>
 <ul>
-<li><p>Proportion who had a stroke in the treatment (stent) group: <span class="math inline">\(33/224 = 0.15 = 15\%\)</span>.</p></li>
-<li><p>Proportion who had a stroke in the control group: <span class="math inline">\(13/227 = 0.06 = 6\%\)</span>.</p></li>
+<li><p>Proportion who had a stroke in the treatment (stent) group: <span class="math inline">\(33/224 = 0.15 = 15\%\)</span></p></li>
+<li><p>Proportion who had a stroke in the control group: <span class="math inline">\(13/227 = 0.06 = 6\%\)</span></p></li>
 </ul>
 </div>
 <div id="visualize-the-data" class="section level3" number="1.4.5">
 <h3>
 <span class="header-section-number">1.4.5</span> Visualize the data<a class="anchor" aria-label="anchor" href="#visualize-the-data"><i class="fas fa-link"></i></a>
 </h3>
-<p>It is often important to visualize the data. The table is a type of visualization but in this section we will introduce a graphical method called bar charts.</p>
-<p>We will use the <a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html"><strong>ggformula</strong></a> package to visualize. It is a wrapper to the <code>ggplot2</code> package which is becoming the industry standard for generating professional graphics. However, its interface is difficult to learn and we will ease into by using <code>ggformula</code> which makes use of the formula notation introduced above. The <strong>ggformula</strong> package was loaded when we loaded <strong>mosaic</strong>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html" class="uri"&gt;https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html&lt;/a&gt;&lt;/p&gt;'><sup>4</sup></a></p>
-<p>To generate a basic graphic, we need to ask ourselves what information we are trying to see, what particular type of graph is best, what corresponding <code>R</code> function to use, and what information that <code>R</code> function needs in order to build a plot. For categorical data we want a bar chart and the <code>R</code> function <code>gf_bar()</code> needs the data object and the variable(s) of interest.</p>
+<p>It is often important to visualize the data. The table is a type of visualization, but in this section we will introduce a graphical method called bar charts.</p>
+<p>We will use the <a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html"><strong>ggformula</strong></a> package to visualize the data. It is a wrapper to the <strong>ggplot2</strong> package which is becoming the industry standard for generating professional graphics. However, the interface for <strong>ggplot2</strong> can be difficult to learn and we will ease into it by using <code>ggformula</code>, which makes use of the formula notation introduced above. The <strong>ggformula</strong> package was loaded when we loaded <code>mosaic</code>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html" class="uri"&gt;https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html&lt;/a&gt;&lt;/p&gt;'><sup>4</sup></a></p>
+<p>To generate a basic graphic, we need to ask ourselves what information we are trying to see, what particular type of graph is best, what corresponding <code>R</code> function to use, and what information that <code>R</code> function needs in order to build a plot. For categorical data, we want a bar chart and the <code>R</code> function <code>gf_bar()</code> needs the data object and the variable(s) of interest.</p>
 <p>Here is our first attempt. In Figure <a href="CS1.html#fig:first-fig">1.1</a>, we leave the <code>y</code> portion of our formula blank. Doing this implies that we simply want to view the number/count of <code>outcome30</code> by type. We will see the two levels of <code>outcome30</code> on the x-axis and counts on the y-axis.</p>
 
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span><span class="va">outcome30</span>,data<span class="op">=</span><span class="va">stent_study</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span> <span class="va">outcome30</span>, data <span class="op">=</span> <span class="va">stent_study</span><span class="op">)</span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:first-fig"></span>
 <img src="01-Data-Case-Study_files/figure-html/first-fig-1.png" alt="Using ggformula to create a bar chart." width="672"><p class="caption">
@@ -275,14 +303,14 @@ Figure 1.1: Using <strong>ggformula</strong> to create a bar chart.
 </div>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
-Explain Figure <a href="CS1.html#fig:first-fig">1.1</a>..</p>
+Explain Figure <a href="CS1.html#fig:first-fig">1.1</a>.</p>
 </blockquote>
-<p>This plot graphically shows us the total number of “stroke” and the total number of “no_event”. However, this is not what we want. We want to compare the 30-day outcomes for both treatment groups. So we need to break the data into different groups based on treatment type. In the formula language we now update it to the form:</p>
-<pre><code>goal( y ~ x|z, data = MyData, ... ) # pseudo-code for the formula template</code></pre>
-<p>We read <code>y ~ x|z</code> as “y tilde x by z” and interpret in the equivalent forms: “y modeled by x for each z”; “y explained by x within each z”; or “y accounted for by x within z.” For graphics, it’s reasonable to read the formula as “y vs. x for each z”. Figure <a href="CS1.html#fig:split-fig">1.2</a> shows the results.</p>
+<p>This plot graphically shows us the total number of “stroke” and the total number of “no_event”. However, this is not what we want. We want to compare the 30-day outcomes for both treatment groups. So, we need to break the data into different groups based on treatment type. In the formula notation, we now update it to the form:</p>
+<pre><code>goal(y ~ x|z, data = MyData, ...) # pseudo-code for the formula template</code></pre>
+<p>We read <code>y ~ x|z</code> as “y tilde x by z” and interpret it in the equivalent forms: “y modeled by x for each z”; “y explained by x within each z”; or “y accounted for by x within z.” For graphics, it’s reasonable to read the formula as “y vs. x for each z”. Figure <a href="CS1.html#fig:split-fig">1.2</a> shows the results.</p>
 
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span><span class="va">outcome30</span><span class="op">|</span><span class="va">group</span>,data <span class="op">=</span> <span class="va">stent_study</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span> <span class="va">outcome30</span> <span class="op">|</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">stent_study</span><span class="op">)</span> </code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:split-fig"></span>
 <img src="01-Data-Case-Study_files/figure-html/split-fig-1.png" alt="Bar charts conditioned on the group variable." width="672"><p class="caption">
@@ -293,14 +321,14 @@ Figure 1.2: Bar charts conditioned on the <code>group</code> variable.
 <h4>
 <span class="header-section-number">1.4.5.1</span> More advanced graphics<a class="anchor" aria-label="anchor" href="#more-advanced-graphics"><i class="fas fa-link"></i></a>
 </h4>
-<p>As a prelude for things to come, the above graphic needs work. The labels don’t help; there is no title; we could add color; does it make more sense to use proportions? Here is the code and results for a better graph, see Figure <a href="CS1.html#fig:cs1-fig">1.3</a>.. Don’t worry if this seems a bit advanced, but feel free to examine each new component of this code.</p>
+<p>As a prelude for things to come, the above graphic needs work. The labels don’t help and there is no title. We could add color. Does it make more sense to use proportions? Here is the code and results for a better graph, see Figure <a href="CS1.html#fig:cs1-fig">1.3</a>. Don’t worry if this seems a bit advanced, but feel free to examine each new component of this code.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">stent_study</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-<span class="fu">gf_props</span><span class="op">(</span><span class="op">~</span><span class="va">group</span>,fill<span class="op">=</span><span class="op">~</span><span class="va">outcome30</span>,position<span class="op">=</span><span class="st">'fill'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Impact of Stents of Stroke"</span>,
-          subtitle<span class="op">=</span><span class="st">'Experiment with 451 Patients'</span>,
-          x<span class="op">=</span><span class="st">"Experimental Group"</span>,
-          y<span class="op">=</span><span class="st">"Proportion of Events"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+<span class="fu">gf_props</span><span class="op">(</span><span class="op">~</span> <span class="va">group</span>, fill <span class="op">=</span> <span class="op">~</span> <span class="va">outcome30</span>, position <span class="op">=</span> <span class="st">'fill'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Impact of Stents of Stroke"</span>,
+          subtitle <span class="op">=</span> <span class="st">'Experiment with 451 Patients'</span>,
+          x <span class="op">=</span> <span class="st">"Experimental Group"</span>,
+          y <span class="op">=</span> <span class="st">"Number of Events"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:cs1-fig"></span>
@@ -308,14 +336,14 @@ Figure 1.2: Bar charts conditioned on the <code>group</code> variable.
 Figure 1.3: Better graph.
 </p>
 </div>
-<p>Notice that we used the pipe operator, <code>%&gt;%</code>. This operator allows us to string functions together in a manner that makes it easier to read the code. In the above code we are sending the data object <code>stent_study</code> into the function <code>gf_props()</code> to use as data so we don’t need the <code>data =</code> argument. In math, this is a composition of functions. Instead of <code>f(g(x))</code> we could use a pipe <code>f(g(x)) = g(x) %&gt;% f()</code>.</p>
+<p>Notice that we used the pipe operator, <code>%&gt;%</code>. This operator allows us to string functions together in a manner that makes it easier to read the code. In the above code, we are sending the data object <code>stent_study</code> into the function <code>gf_props()</code> to use as data, so we don’t need the <code>data =</code> argument. In math, this is a composition of functions. Instead of <code>f(g(x))</code> we could use a pipe <code>f(g(x)) = g(x) %&gt;% f()</code>.</p>
 </div>
 </div>
 <div id="conclusion" class="section level3" number="1.4.6">
 <h3>
 <span class="header-section-number">1.4.6</span> Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"><i class="fas fa-link"></i></a>
 </h3>
-<p>These two summary statistics are useful in looking for differences in the groups, and we are in for a surprise: an additional 9% of patients in the treatment group had a stroke! This is important for two reasons. First, it is contrary to what doctors expected, which was that stents would <em>reduce</em> the rate of strokes. Second, it leads to a statistical question: do the data show a <strong>real</strong> difference due to the treatment?</p>
+<p>These two summary statistics (the proportions of people who had a stroke) are useful in looking for differences in the groups, and we are in for a surprise: an additional 9% of patients in the treatment group had a stroke! This is important for two reasons. First, it is contrary to what doctors expected, which was that stents would <em>reduce</em> the rate of strokes. Second, it leads to a statistical question: do the data show a <strong>real</strong> difference due to the treatment?</p>
 <p>This second question is subtle. Suppose you flip a coin 100 times. While the chance a coin lands heads in any given coin flip is 50%, we probably won’t observe exactly 50 heads. This type of fluctuation is part of almost any type of data generating process. It is possible that the 9% difference in the stent study is due to this natural variation. However, the larger the difference we observe (for a particular sample size), the less believable it is that the difference is due to chance. So what we are really asking is the following: is the difference so large that we should reject the notion that it was due to chance?</p>
 <p>This is a preview of step 4, analyze the data, and step 5, form a conclusion, of the analysis cycle. While we haven’t yet covered statistical tools to fully address these steps, we can comprehend the conclusions of the published analysis: there was compelling evidence of harm by stents in this study of stroke patients.</p>
 <p><strong>Be careful:</strong> do not generalize the results of this study to all patients and all stents. This study looked at patients with very specific characteristics who volunteered to be a part of this study and who may not be representative of all stroke patients. In addition, there are many types of stents and this study only considered the self-expanding Wingspan stent (Boston Scientific). However, this study does leave us with an important lesson: we should keep our eyes open for surprises.</p>
@@ -325,43 +353,43 @@ Figure 1.3: Better graph.
 <h2>
 <span class="header-section-number">1.5</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems"><i class="fas fa-link"></i></a>
 </h2>
-<p>Create an Rmd file <code>01 Data Case Study Application.Rmd</code> in R, it may be provided, and start by inserting your name in the header. Code blocks below can be inserted and then you can complete the code and answer the questions. When you are done, <code>knit</code> it into a pdf file.</p>
+<p>Create an Rmd file <code>01 Data Case Study Application.Rmd</code> in R (it may be provided), and start by inserting your name in the header. Code blocks below can be inserted and then you can complete the code and answer the questions. When you are done, <code>knit</code> it into a pdf file.</p>
 <p>To create an <code>R</code> code chunk, use CTRL-ALT-I or on the <code>insert</code> tab of the window, use the drop down to select <code>R</code>. Anything between the dashes is interpreted as <code>R</code> code.</p>
-<p>For more on RMarkdown see the video, <a href="https://www.youtube.com/watch?v=DNS7i2m4sB0" class="uri">https://www.youtube.com/watch?v=DNS7i2m4sB0</a>. You can also take the first chapter of the Data Camp course “Reporting with R Markdown” to learn more about output file formats.</p>
+<p>For more on RMarkdown, see the following video: <a href="https://www.youtube.com/watch?v=DNS7i2m4sB0" class="uri">https://www.youtube.com/watch?v=DNS7i2m4sB0</a>. This video assumes you are using <code>R</code> on your computer, but we are using RStudio Cloud. Thus we can <code>knit</code> to a pdf since it is setup for us. You can also take the first chapter of the Data Camp course, <em>Reporting with R Markdown</em>, to learn more.</p>
 <ol style="list-style-type: decimal">
 <li>
-<strong>Stent study continued</strong>. Complete a similar analysis for the stent data but this time for the one year data. In particular</li>
+<strong>Stent study continued</strong>. Complete a similar analysis for the stent data, but this time use the one year outcome. In particular,</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li>Read the data into your working directory.</li>
 </ol>
-<pre><code>stent_study &lt;-read_csv(___)</code></pre>
+<pre><code>stent_study &lt;- read_csv(___)</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Complete similar steps as in the class notes. The start of code is provided below.<br>
 i. Use <code>inspect</code> on the data.<br>
 ii. Create a table of <code>outcome365</code> and <code>group</code>. Comment on the results.<br>
 iii. Create a barchart of the data.</li>
 </ol>
-<p>Summary</p>
+<p>Using <code>inspect</code>:</p>
 <pre><code>inspect(___)</code></pre>
-<p>Table</p>
-<pre><code>tally(outcome365~___,data=stent_study,format=___,margins = TRUE)</code></pre>
-<p>Barchart</p>
+<p>The table:</p>
+<pre><code>tally(outcome365 ~ ___, data = stent_study, format = ___, margins = TRUE)</code></pre>
+<p>Barchart:</p>
 <pre><code>stent_study %&gt;%
-  gf_props(~___,fill=~___,position='fill') %&gt;%
-  gf_labs(title=___
-  subtitle=___,
-  x=___,
-  y=___)</code></pre>
+  gf_props(~ ___, fill = ~ ___, position = 'fill') %&gt;%
+  gf_labs(title = ___,
+          subtitle = ___,
+          x = ___,
+          y = ___)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>
 <strong>Migraine and acupuncture</strong>. A migraine is a particularly painful type of headache, which patients sometimes wish to treat with acupuncture. To determine whether acupuncture relieves migraine pain, researchers conducted a randomized controlled study where 89 females diagnosed with migraine headaches were randomly assigned to one of two groups: treatment or control. 43 patients in the treatment group received acupuncture that is specifically designed to treat migraines. 46 patients in the control group received placebo acupuncture (needle insertion at nonacupoint locations). 24 hours after patients received acupuncture, they were asked if they were pain free.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;G. Allais et al. &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/21533739"&gt;“Ear acupuncture in the treatment of migraine attacks: a randomized trial on the efficacy of appropriate versus inappropriate acupoints”.&lt;/a&gt; In: Neurological Sci. 32.1 (2011), pp. 173–175.&lt;/p&gt;'><sup>5</sup></a>
 </li>
 </ol>
-<p>The data is in the file <code>migraine_study.csv</code> in the folder <code>data</code>.</p>
+<p>The data is in the file <code>migraine_study.csv</code> in the <code>data</code> folder.</p>
 <p>Complete the following work:</p>
 <ol style="list-style-type: lower-alpha">
-<li>Read the data an object called <code>migraine_study</code>.</li>
+<li>Read the data into an object called <code>migraine_study</code>.</li>
 </ol>
 <pre><code>migraine_study &lt;- read_csv("data/___")</code></pre>
 <pre><code>head(migraine_study)</code></pre>
@@ -391,7 +419,7 @@ iii. Create a barchart of the data.</li>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#CS1"><span class="header-section-number">1</span> Case Study</a></li>
 <li><a class="nav-link" href="#objectives"><span class="header-section-number">1.1</span> Objectives</a></li>
-<li><a class="nav-link" href="#introduction-to-descriptive-statistical-modeling"><span class="header-section-number">1.2</span> Introduction to Descriptive Statistical Modeling</a></li>
+<li><a class="nav-link" href="#introduction-to-descriptive-statistical-modeling"><span class="header-section-number">1.2</span> Introduction to descriptive statistical modeling</a></li>
 <li><a class="nav-link" href="#the-data-analytic-process"><span class="header-section-number">1.3</span> The data analytic process</a></li>
 <li>
 <a class="nav-link" href="#case-study"><span class="header-section-number">1.4</span> Case study</a><ul class="nav navbar-nav">
@@ -421,7 +449,7 @@ iii. Create a barchart of the data.</li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Kenneth Horton, Bradley Warner. It was last built on 2022-03-22.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-10.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

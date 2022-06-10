@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 14 Multivariate Distributions | Computational Probability and Statistics</title>
+<meta name="author" content="Matthew Davis">
+<meta name="author" content="Brianna Hitt">
+<meta name="author" content="Ken Horton">
+<meta name="author" content="Bradley Warner">
+<meta name="description" content="14.1 Objectives Define (and distinguish between) the terms joint probability mass/density function, marginal pmf/pdf, and conditional pmf/pdf. Given a joint pmf/pdf, obtain the marginal and...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="Chapter 14 Multivariate Distributions | Computational Probability and Statistics">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/figures/Cover.png">
+<meta property="og:description" content="14.1 Objectives Define (and distinguish between) the terms joint probability mass/density function, marginal pmf/pdf, and conditional pmf/pdf. Given a joint pmf/pdf, obtain the marginal and...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 14 Multivariate Distributions | Computational Probability and Statistics">
+<meta name="twitter:description" content="14.1 Objectives Define (and distinguish between) the terms joint probability mass/density function, marginal pmf/pdf, and conditional pmf/pdf. Given a joint pmf/pdf, obtain the marginal and...">
+<meta name="twitter:image" content="/figures/Cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Computational Probability and Statistics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Preface</a></li>
+<li class="book-part">Descriptive Statistical Modeling</li>
+<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
+<li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
+<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
+<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
+<li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
+<li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
+<li class="book-part">Probability Modeling</li>
+<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
+<li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
+<li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
+<li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
+<li><a class="" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
+<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
+<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
+<li><a class="active" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
+<li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
+<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
+<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
+<li class="book-part">Statistical Modeling</li>
+<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
+<li><a class="" href="HYPOTEST.html"><span class="header-section-number">19</span> Hypothesis Testing</a></li>
+<li><a class="" href="PVALUES.html"><span class="header-section-number">20</span> Empirical p-values</a></li>
+<li><a class="" href="CLT.html"><span class="header-section-number">21</span> Central Limit Theorem</a></li>
+<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
+<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
+<li><a class="" href="ADDTESTS.html"><span class="header-section-number">24</span> Additional Hypothesis Tests</a></li>
+<li class="book-part">Predictive Statistical Modeling</li>
+<li><a class="" href="CS4.html"><span class="header-section-number">25</span> Case Study</a></li>
+<li><a class="" href="LRBASICS.html"><span class="header-section-number">26</span> Linear Regression Basics</a></li>
+<li><a class="" href="LRINF.html"><span class="header-section-number">27</span> Linear Regression Inference</a></li>
+<li><a class="" href="LRDIAG.html"><span class="header-section-number">28</span> Regression Diagnostics</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">29</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRMULTI.html"><span class="header-section-number">30</span> Multiple Linear Regression</a></li>
+<li><a class="" href="LOGREG.html"><span class="header-section-number">31</span> Logistic Regression</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="MULTIDISTS" class="section level1" number="14">
+<h1>
+<span class="header-section-number">14</span> Multivariate Distributions<a class="anchor" aria-label="anchor" href="#MULTIDISTS"><i class="fas fa-link"></i></a>
+</h1>
+<div id="objectives-13" class="section level2" number="14.1">
+<h2>
+<span class="header-section-number">14.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-13"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>Define (and distinguish between) the terms joint probability mass/density function, marginal pmf/pdf, and conditional pmf/pdf.<br>
+</li>
+<li>Given a joint pmf/pdf, obtain the marginal and conditional pmfs/pdfs.<br>
+</li>
+<li>Use joint, marginal and conditional pmfs/pdfs to obtain probabilities.</li>
+</ol>
+</div>
+<div id="multivariate-distributions" class="section level2" number="14.2">
+<h2>
+<span class="header-section-number">14.2</span> Multivariate distributions<a class="anchor" aria-label="anchor" href="#multivariate-distributions"><i class="fas fa-link"></i></a>
+</h2>
+<p>Multivariate situations are the more common in practice. We are often dealing with more than one variable. We have seen this in the previous block of material and will see multivariate distributions in the remainder of the book.</p>
+<p>The basic idea is that we want to determine the relationship between two or more variables to include variable(s) conditional on variables.</p>
+</div>
+<div id="joint-probability" class="section level2" number="14.3">
+<h2>
+<span class="header-section-number">14.3</span> Joint probability<a class="anchor" aria-label="anchor" href="#joint-probability"><i class="fas fa-link"></i></a>
+</h2>
+<p>Thus far, we have only considered situations involving one random variable. In some cases, we might be concerned with the behavior of multiple random variables simultaneously. This chapter and the next are dedicated to jointly distributed random variables.</p>
+<div id="discrete-random-variables" class="section level3" number="14.3.1">
+<h3>
+<span class="header-section-number">14.3.1</span> Discrete random variables<a class="anchor" aria-label="anchor" href="#discrete-random-variables"><i class="fas fa-link"></i></a>
+</h3>
+<p>In the discrete case, joint probability is described by the <em>joint probability mass function</em>. In the bivariate case, suppose <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are discrete random variables. The joint pmf is given by <span class="math inline">\(f_{X,Y}(x,y)\)</span> and represents <span class="math inline">\(\mbox{P}(X=x,Y=y) = \mbox{P}(X=x \cap Y=y)\)</span>. Note: it is common in statistical and probability models to use a comma to represent <strong>and</strong>, in fact the <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> function in <code>tidyverse</code> does this.</p>
+<p>The same rules of probability apply to the joint pmf. Each value of <span class="math inline">\(f\)</span> must be between 0 and 1, and the total probability must sum to 1:
+<span class="math display">\[
+\sum_{x\in S_X}\sum_{y \in S_Y} f_{X,Y}(x,y) = 1
+\]</span>
+This notation means that if we sum the joint probabilities over all values of the random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> we will get 1.</p>
+<p>If given a joint pmf, one can obtain the <em>marginal pmf</em> of individual variables. The marginal pmf is simply the mass function of an individual random variable, summing over the possible values of all the other variables. In the bivariate case, the marginal pmf of <span class="math inline">\(X\)</span>, <span class="math inline">\(f_X(x)\)</span> is found by:
+<span class="math display">\[
+f_X(x)=\sum_{y \in S_Y}f_{X,Y}(x,y)
+\]</span></p>
+<p>Notice that in the above summation, we summed over only the <span class="math inline">\(y\)</span> values.</p>
+<p>Similarly,
+<span class="math display">\[
+f_Y(y)=\sum_{x \in S_X}f_{X,Y}(x,y)
+\]</span></p>
+<p>The marginal pmf must be distinguished from the <em>conditional pmf</em>. The conditional pmf describes a discrete random variable given other random variables have taken particular values. In the bivariate case, the conditional pmf of <span class="math inline">\(X\)</span>, given <span class="math inline">\(Y=y\)</span>, is denoted as <span class="math inline">\(f_{X|Y=y}(x)\)</span> and is found by:
+<span class="math display">\[
+f_{X|Y=y}(x)=\mbox{P}(X=x|Y=y)=\frac{\mbox{P}(X=x,Y=y)}{\mbox{P}(Y=y)}=\frac{f_{X,Y}(x,y)}{f_Y(y)}
+\]</span></p>
+<blockquote>
+<p><em>Example</em>:<br>
+Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be discrete random variables with joint pmf below.</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{array}{cc|ccc} &amp; &amp; &amp; \textbf{Y} &amp;
+\\ &amp; &amp; 0 &amp; 1 &amp; 2  
+\\&amp;\hline0 &amp; 0.10 &amp; 0.08 &amp; 0.11  
+\\\textbf{X} &amp;2 &amp; 0.18 &amp; 0.20 &amp; 0.12  
+\\&amp;4 &amp; 0.07 &amp; 0.05 &amp; 0.09
+\end{array}
+\]</span></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Find the marginal pmfs of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p></li>
+<li><p>Find <span class="math inline">\(f_{X|Y=0}(x)\)</span> and <span class="math inline">\(f_{Y|X=2}(y)\)</span>.</p></li>
+</ol>
+<p>The marginal pmfs can be found by summing across the other variable. So, to find <span class="math inline">\(f_X(x)\)</span>, we simply sum across the rows:</p>
+<p><span class="math display">\[
+f_X(x)=\left\{\begin{array}{ll} 0.10+0.08+0.11, &amp; x=0 \\
+0.18+0.20+0.12, &amp; x=2 \\
+0.07+0.05+0.09, &amp; x=4 \\
+0, &amp; \mbox{otherwise}
+\end{array}\right. = \left\{\begin{array}{ll} 0.29, &amp; x=0 \\
+0.50, &amp; x=2 \\
+0.21, &amp; x=4 \\
+0, &amp; \mbox{otherwise}
+\end{array}\right.
+\]</span></p>
+<p>Similarly, <span class="math inline">\(f_Y(y)\)</span> can be found by summing down the columns of the joint pmf:
+<span class="math display">\[
+f_Y(y)=\left\{\begin{array}{ll} 0.35, &amp; y=0 \\
+0.33, &amp; y=1 \\
+0.32, &amp; y=2 \\
+0, &amp; \mbox{otherwise}
+\end{array}\right.
+\]</span></p>
+<p>To find the conditional pmf of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=0\)</span>, it helps to recognize that once we know that <span class="math inline">\(Y=0\)</span>, the overall sample space has changed. Now the only outcomes we consider are in the first column (corresponding to <span class="math inline">\(Y=0\)</span>):</p>
+<div class="inline-figure"><img src="figures/Lesson14Table.png" width="576" style="display: block; margin: auto;"></div>
+<p>We are looking for the distribution of <span class="math inline">\(X\)</span> within the circled area. So, we need to find the proportion of probability assigned to each outcome of <span class="math inline">\(X\)</span>. Mathematically:
+<span class="math display">\[
+f_{X|Y=0}(x)=\mbox{P}(X=x|Y=0)=\frac{\mbox{P}(X=x,Y=0)}{\mbox{P}(Y=0)}=\frac{f_{X,Y}(x,0)}{f_Y(0)}
+\]</span></p>
+<p>Above, we found the marginal pmf of <span class="math inline">\(Y\)</span>. We know that <span class="math inline">\(f_Y(0)=0.35\)</span>. So,
+<span class="math display">\[
+\renewcommand{\arraystretch}{1.25}
+f_{X|Y=0}(x)=\left\{\begin{array}{ll} \frac{0.10}{0.35}, &amp; x=0 \\
+\frac{0.18}{0.35}, &amp; x=2 \\
+\frac{0.07}{0.35}, &amp; x=4 \\
+0, &amp; \mbox{otherwise}
+\end{array}\right. = \left\{\begin{array}{ll} 0.286, &amp; x=0 \\
+0.514, &amp; x=2 \\
+0.200, &amp; x=4 \\
+0, &amp; \mbox{otherwise}
+\end{array}\right.
+\]</span></p>
+<p>Note that the probabilities in this pmf sum to 1. It is always wise to confirm this to ensure we did not make a simple computational error along the way.</p>
+<p>Similarly, we can find <span class="math inline">\(f_{Y|X=2}(y)\)</span>. First we recognize that <span class="math inline">\(f_X(2)=0.5\)</span>.
+<span class="math display">\[
+\renewcommand{\arraystretch}{1.25}
+f_{Y|X=2}(x)=\left\{\begin{array}{ll} \frac{0.18}{0.50}, &amp; y=0 \\
+\frac{0.20}{0.50}, &amp; y=1 \\
+\frac{0.12}{0.50}, &amp; y=2 \\
+0, &amp; \mbox{otherwise}
+\end{array}\right. = \left\{\begin{array}{ll} 0.36, &amp; y=0 \\
+0.40, &amp; y=1 \\
+0.24, &amp; y=2 \\
+0, &amp; \mbox{otherwise}
+\end{array}\right.
+\]</span></p>
+<p>Together, these pmfs can be used to find relevant probabilities. For example, see the homework exercises.</p>
+</div>
+<div id="continuous-random-variables-1" class="section level3" number="14.3.2">
+<h3>
+<span class="header-section-number">14.3.2</span> Continuous random variables<a class="anchor" aria-label="anchor" href="#continuous-random-variables-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Many of the ideas above for discrete random variables also apply to the case of multiple continuous random variables. Suppose <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are continuous random variables. Their joint probability is described by the <em>joint probability density function</em>. As in the discrete case, the joint pdf is represented by <span class="math inline">\(f_{X,Y}(x,y)\)</span>. Recall that while pmfs return probabilities, pdfs return <em>densities</em>, which are not equivalent to probabilities. In order to obtain probability from a pdf, one has to integrate the pdf across the applicable subset of the domain.</p>
+<p>The rules of a joint pdf are analogous to the univariate case. For all <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, <span class="math inline">\(f_{X,Y}(x,y)\geq 0\)</span> and the probability must sum to one:
+<span class="math display">\[
+\int_{S_X}\int_{S_Y}f_{X,Y}(x,y)\mathop{}\!\mathrm{d}y \mathop{}\!\mathrm{d}x = 1
+\]</span></p>
+<p>The marginal pdf is the density function of an individual random variable, integrating out all others. In the bivariate case, the marginal pdf of <span class="math inline">\(X\)</span>, <span class="math inline">\(f_X(x)\)</span>, is found by <em>summing</em>, integrating, across the other variable:
+<span class="math display">\[
+f_X(x)=\int_{S_Y}f_{X,Y}(x,y)\mathop{}\!\mathrm{d}y
+\]</span></p>
+<p>Similarly,
+<span class="math display">\[
+f_Y(y)=\int_{S_X}f_{X,Y}(x,y)\mathop{}\!\mathrm{d}x
+\]</span></p>
+<p>The conditional pdf of <span class="math inline">\(X\)</span>, given <span class="math inline">\(Y=y\)</span> is denoted as <span class="math inline">\(f_{X|Y=y}(x)\)</span> and is found in the same way as in the discrete case:
+<span class="math display">\[
+f_{X|Y=y}(x)=\frac{f_{X,Y}(x,y)}{f_Y(y)}
+\]</span></p>
+<p>Similarly,
+<span class="math display">\[
+f_{Y|X=x}(y)=\frac{f_{X,Y}(x,y)}{f_X(x)}
+\]</span></p>
+<p>Note that we are working with the pdf and not probabilities in this case. That is because we can’t determine the probability at a point for a continuous random variable. Thus we work with conditional pdfs to find probabilities for conditional statements.</p>
+<blockquote>
+<p><em>Example</em>:<br>
+Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be continuous random variables with joint pdf:<br><span class="math display">\[
+f_{X,Y}(x,y)=xy
+\]</span>
+for <span class="math inline">\(0\leq x \leq 2\)</span> and <span class="math inline">\(0 \leq y \leq 1\)</span>.</p>
+</blockquote>
+<ol style="list-style-type: lower-alpha">
+<li>Verify <span class="math inline">\(f\)</span> is a valid joint pdf.</li>
+</ol>
+<p>We need to ensure the total volume under the pdf is 1. Note that the double integral with constant limits of integration is just like doing single integrals. We just treat the other variable as a constant. In this book we will not work with limits of integration that have variables in them, this is the material of Calc III.</p>
+<p>For our simple case of constant limits of integration, the order of integration does not matter. We will arbitrarily integrate <span class="math inline">\(x\)</span> first, treating <span class="math inline">\(y\)</span> as a constant. Then integrate with respect to <span class="math inline">\(y\)</span>.</p>
+<p><span class="math display">\[
+\int_0^1 \int_0^2 xy \mathop{}\!\mathrm{d}x \mathop{}\!\mathrm{d}y = \int_0^1 \frac{x^2y}{2}\bigg|_0^2 \mathop{}\!\mathrm{d}y = \int_0^1 2y\mathop{}\!\mathrm{d}y = y^2\bigg|_0^1 = 1
+\]</span></p>
+<p>Using <code>R</code> to do this requires a new package <strong>cubature</strong>. You can install it from <code>RStudio</code> package tab or the command line using <code>install.packages("cubature")</code>. Then we can use it as follows:</p>
+<div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
+<code class="sourceCode R"> <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://bnaras.github.io/cubature/">cubature</a></span><span class="op">)</span> <span class="co"># load the package "cubature"</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span> <span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">*</span> <span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">}</span> <span class="co"># "x" is vector</span>
+<span class="fu"><a href="https://bnaras.github.io/cubature/reference/hcubature.html">adaptIntegrate</a></span><span class="op">(</span><span class="va">f</span>, lowerLimit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, upperLimit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## $integral
+## [1] 1
+## 
+## $error
+## [1] 0
+## 
+## $functionEvaluations
+## [1] 17
+## 
+## $returnCode
+## [1] 0</code></pre>
+<p>Notice the function <code>adaptIntegrate</code> returned four objects. You can read the help menu to learn more about them but we are only interested in the result contained in the object <code>integral</code>.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Find <span class="math inline">\(\mbox{P}(X &gt; 1, Y \leq 0.5)\)</span>.
+<span class="math display">\[
+\mbox{P}(X&gt;1,Y\leq 0.5)=\int_0^{0.5}\int_1^2 xy \mathop{}\!\mathrm{d}x \mathop{}\!\mathrm{d}y = \int_0^{0.5} \frac{x^2 y}{2}\bigg|_1^2 \mathop{}\!\mathrm{d}y = \int_0^{0.5}2y - \frac{y}{2}\mathop{}\!\mathrm{d}y
+\]</span>
+<span class="math display">\[
+= \frac{3y^2}{4}\bigg|_0^{0.5}=0.1875
+\]</span>
+</li>
+</ol>
+<div class="sourceCode" id="cb377"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span> <span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">*</span> <span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">}</span> <span class="co"># "x" is vector</span>
+<span class="fu"><a href="https://bnaras.github.io/cubature/reference/hcubature.html">adaptIntegrate</a></span><span class="op">(</span><span class="va">f</span>, lowerLimit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>, upperLimit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## $integral
+## [1] 0.1875
+## 
+## $error
+## [1] 2.775558e-17
+## 
+## $functionEvaluations
+## [1] 17
+## 
+## $returnCode
+## [1] 0</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Find the marginal pdfs of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.
+<span class="math display">\[
+f_X(x)=\int_0^1 xy \mathop{}\!\mathrm{d}y = \frac{xy^2}{2}\bigg|_0^1=\frac{x}{2}
+\]</span>
+</li>
+</ol>
+<p>where <span class="math inline">\(0 \leq x \leq 2\)</span>.</p>
+<p><span class="math display">\[
+f_Y(y)=\int_0^2 xy \mathop{}\!\mathrm{d}x = \frac{x^2y}{2}\bigg|_0^2= 2y
+\]</span></p>
+<p>where <span class="math inline">\(0 \leq y \leq 1\)</span>.</p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Find the conditional pdfs of <span class="math inline">\(X|Y=y\)</span> and <span class="math inline">\(Y|X=x\)</span>.
+<span class="math display">\[
+f_{X|Y=y}(x)=\frac{f_{X,Y}(x,y)}{f_Y(y)}=\frac{xy}{2y}=\frac{x}{2}
+\]</span>
+</li>
+</ol>
+<p>where <span class="math inline">\(0 \leq x \leq 2\)</span>.</p>
+<p>Similarly,
+<span class="math display">\[
+f_{Y|X=x}(y)=\frac{f_{X,Y}(x,y)}{f_X(x)}=\frac{xy}{\frac{x}{2}}=2y
+\]</span></p>
+<p>where <span class="math inline">\(0 \leq y \leq 1\)</span>.</p>
+</div>
+</div>
+<div id="homework-problems-13" class="section level2" number="14.4">
+<h2>
+<span class="header-section-number">14.4</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-13"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be continuous random variables with joint pdf:
+<span class="math display">\[
+f_{X,Y}(x,y)=x + y
+\]</span>
+</li>
+</ol>
+<p>where <span class="math inline">\(0 \leq x \leq 1\)</span> and <span class="math inline">\(0 \leq y \leq 1\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Verify that <span class="math inline">\(f\)</span> is a valid pdf.<br>
+</li>
+<li>Find the marginal pdfs of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.<br>
+</li>
+<li>Find the conditional pdfs of <span class="math inline">\(X|Y=y\)</span> and <span class="math inline">\(Y|X=x\)</span>.<br>
+</li>
+<li>Find the following probabilities: <span class="math inline">\(\mbox{P}(X&lt;0.5)\)</span>; <span class="math inline">\(\mbox{P}(Y&gt;0.8)\)</span>; <span class="math inline">\(\mbox{P}(X&lt;0.2,Y\geq 0.75)\)</span>; <span class="math inline">\(\mbox{P}(X&lt;0.2|Y\geq 0.75)\)</span>; <span class="math inline">\(\mbox{P}(X&lt;0.2|Y= 0.25)\)</span>; Optional - <span class="math inline">\(\mbox{P}(X\leq Y)\)</span>.</li>
+</ol>
+<p> </p>
+<ol start="2" style="list-style-type: decimal">
+<li>In the reading, we saw an example where <span class="math inline">\(f_X(x)=f_{X|Y=y}(x)\)</span> and <span class="math inline">\(f_Y(y)=f_{Y|X=x}(y)\)</span>. This is not common and is important. What does this imply about <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>?</li>
+</ol>
+<div style="page-break-after: always;"></div>
+<ol start="3" style="list-style-type: decimal">
+<li>ADVANCED: Recall on an earlier assignment, we came up with random variables to describe timeliness at an airport. Suppose over the course of 210 days, on each day we recorded the number of customer complaints regarding timeliness. Also on each day, we recorded the weather (our airport is located somewhere without snow and without substantial wind). The data are displayed below.</li>
+</ol>
+<p><span class="math display">\[
+\begin{array}{cc|cc} &amp; &amp; &amp;\textbf{Weather Status}\\
+&amp; &amp; \mbox{Clear} &amp; \mbox{Light Rain} &amp; \mbox{Rain}  \\
+&amp; \hline0 &amp; 28 &amp; 11 &amp; 4  \\
+&amp; 1 &amp; 18 &amp; 15 &amp; 8  \\
+&amp; 2 &amp; 17 &amp; 25 &amp; 12  \\
+\textbf{# of complaints} &amp; 3 &amp; 13 &amp; 15 &amp; 16  \\
+&amp; 4 &amp; 8 &amp; 8 &amp; 10 \\
+&amp; 5 &amp; 0 &amp; 1 &amp; 1 \\
+\end{array}
+\]</span></p>
+<p>First, define two random variables for this scenario. One of them (# of complaints) is essentially already a random variable. For the other (weather status) you will need to assign a number to each status.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Use the table above to build an empirical joint pmf of the two random variables.<br>
+</li>
+<li>Find the marginal pmfs of each random variable.<br>
+</li>
+<li>Find the probability of fewer than 3 complaints.<br>
+</li>
+<li>Find the probability of fewer than 3 complaints given there is no rain.</li>
+</ol>
+<p> </p>
+<p><strong>Optional</strong> for those of you that like Calc III and want a challenge.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be continuous random variables with joint pmf:
+<span class="math display">\[
+f_{X,Y}(x,y)=1
+\]</span>
+</li>
+</ol>
+<p>where <span class="math inline">\(0 \leq x \leq 1\)</span> and <span class="math inline">\(0 \leq y \leq 2x\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Verify that <span class="math inline">\(f\)</span> is a valid pdf.<br>
+</li>
+<li>Find the marginal pdfs of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.<br>
+</li>
+<li>Find the conditional pdfs of <span class="math inline">\(X|Y=y\)</span> and <span class="math inline">\(Y|X=x\)</span>.<br>
+</li>
+<li>Find the following probabilities: <span class="math inline">\(\mbox{P}(X&lt;0.5)\)</span>; <span class="math inline">\(\mbox{P}(Y&gt;1)\)</span>; <span class="math inline">\(\mbox{P}(X&lt;0.5,Y\leq 0.8)\)</span>; Optional <span class="math inline">\(\mbox{P}(X&lt;0.5|Y= 0.8)\)</span>; <span class="math inline">\(\mbox{P}(Y\leq 1-X)\)</span>. (It would probably help to draw some pictures.)</li>
+</ol>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></div>
+<div class="next"><a href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#MULTIDISTS"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
+<li><a class="nav-link" href="#objectives-13"><span class="header-section-number">14.1</span> Objectives</a></li>
+<li><a class="nav-link" href="#multivariate-distributions"><span class="header-section-number">14.2</span> Multivariate distributions</a></li>
+<li>
+<a class="nav-link" href="#joint-probability"><span class="header-section-number">14.3</span> Joint probability</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#discrete-random-variables"><span class="header-section-number">14.3.1</span> Discrete random variables</a></li>
+<li><a class="nav-link" href="#continuous-random-variables-1"><span class="header-section-number">14.3.2</span> Continuous random variables</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#homework-problems-13"><span class="header-section-number">14.4</span> Homework Problems</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/14-Multivariate-Distributions.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/14-Multivariate-Distributions.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-10.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

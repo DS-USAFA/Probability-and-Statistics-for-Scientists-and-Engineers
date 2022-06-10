@@ -366,7 +366,7 @@ The proof of this is left as a homework problem.
 
 1. Suppose we are flipping a fair coin, and the result of a single coin flip is either heads or tails. Let $X$ be a random variable representing the number of flips until the first heads. 
 
-a. Is $X$ discrete or continuous? What is the domain/support, of $X$?  
+a. Is $X$ discrete or continuous? What is the domain, support, of $X$?  
 b. What values do you *expect* $X$ to take? What do you think is the average of $X$? Don't actually do any formal math, just think about if you were flipping a regular coin, how long it would take you to get the first heads.  
 c. Advanced: In `R`, generate 10,000 observations from $X$. What is the empirical, from the simulation, pmf? What is the average value of $X$ based on this simulation? Create a bar chart of the proportions. Note: Unlike the example in the Notes, we don't have the pmf, so you will have to simulate the experiment and using `R` to find the number of flips until the first heads.  
 

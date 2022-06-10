@@ -4,7 +4,7 @@
 
 ## Objectives
 
-1) Using the bootstrap, generate confidence and estimates of standard error for parameter estimates from a linear regression model.  
+1) Using the bootstrap, generate confidence intervals and estimates of standard error for parameter estimates from a linear regression model.  
 2) Generate and interpret bootstrap confidence intervals for predicted values.  
 3) Generate bootstrap samples from sampling rows of the data or sampling residuals. Explain why you might prefer one over the other.  
 4) Interpret regression coefficients for a linear model with a categorical explanatory variable.  
