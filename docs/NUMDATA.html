@@ -1,53 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <title>Chapter 5 Numerical Data | Computational Probability and Statistics</title>
-
-    <meta name="author" content="Matthew Davis" />
-    <meta name="author" content="Brianna Hitt" />
-    <meta name="author" content="Ken Horton" />
-    <meta name="author" content="Bradley Warner" />
-  
-   <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-   <meta name="generator" content="placeholder" />
-  <meta property="og:title" content="Chapter 5 Numerical Data | Computational Probability and Statistics" />
-  <meta property="og:type" content="book" />
-  
-  <meta property="og:image" content="/figures/Cover.png" />
-  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Numerical Data | Computational Probability and Statistics" />
-  
-  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-  <meta name="twitter:image" content="/figures/Cover.png" />
-  <!-- JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
-    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
-    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
-    <script src="libs/bs3compat-0.3.1/transition.js"></script>
-    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
-    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
-    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
-    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
-    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
-
-  <!-- CSS -->
-  <style type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 5 Numerical Data | Computational Probability and Statistics</title>
+<meta name="author" content="Matthew Davis">
+<meta name="author" content="Brianna Hitt">
+<meta name="author" content="Ken Horton">
+<meta name="author" content="Bradley Warner">
+<meta name="description" content="5.1 Objectives Define and use properly in context all new terminology. Generate in R summary statistics for a numeric variable including breaking down by cases. Generate in R appropriate graphical...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="Chapter 5 Numerical Data | Computational Probability and Statistics">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/figures/Cover.png">
+<meta property="og:description" content="5.1 Objectives Define and use properly in context all new terminology. Generate in R summary statistics for a numeric variable including breaking down by cases. Generate in R appropriate graphical...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 5 Numerical Data | Computational Probability and Statistics">
+<meta name="twitter:description" content="5.1 Objectives Define and use properly in context all new terminology. Generate in R summary statistics for a numeric variable including breaking down by cases. Generate in R appropriate graphical...">
+<meta name="twitter:image" content="/figures/Cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
-    <style type="text/css">
+<style type="text/css">
     /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
     div.csl-bib-body { }
     div.csl-entry {
@@ -69,16 +49,13 @@
       margin-left: 2em;
     }
   </style>
-      <link rel="stylesheet" href="style.css" />
-  
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
-    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -90,81 +67,125 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-      </form>
+</form>
 
-      <nav aria-label="Table of contents">
-        <h2>Table of contents</h2>
-        <div id="book-toc"></div>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Preface</a></li>
+<li class="book-part">Descriptive Statistical Modeling</li>
+<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
+<li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
+<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
+<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
+<li><a class="active" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
+<li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
+<li class="book-part">Probability Modeling</li>
+<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
+<li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
+<li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
+<li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
+<li><a class="" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
+<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
+<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
+<li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
+<li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
+<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
+<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
+<li class="book-part">Statistical Modeling</li>
+<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
+<li><a class="" href="HYPOTEST.html"><span class="header-section-number">19</span> Hypothesis Testing</a></li>
+<li><a class="" href="PVALUES.html"><span class="header-section-number">20</span> Empirical p-values</a></li>
+<li><a class="" href="CLT.html"><span class="header-section-number">21</span> Central Limit Theorem</a></li>
+<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
+<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
+<li><a class="" href="ADDTESTS.html"><span class="header-section-number">24</span> Additional Hypothesis Tests</a></li>
+<li class="book-part">Predictive Statistical Modeling</li>
+<li><a class="" href="CS4.html"><span class="header-section-number">25</span> Case Study</a></li>
+<li><a class="" href="LRBASICS.html"><span class="header-section-number">26</span> Linear Regression Basics</a></li>
+<li><a class="" href="LRINF.html"><span class="header-section-number">27</span> Linear Regression Inference</a></li>
+<li><a class="" href="LRDIAG.html"><span class="header-section-number">28</span> Regression Diagnostics</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">29</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRMULTI.html"><span class="header-section-number">30</span> Multiple Linear Regression</a></li>
+<li><a class="" href="LOGREG.html"><span class="header-section-number">31</span> Logistic Regression</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
+          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
-    </div>
-  </header>
-
-  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
-<div id="NUMDATA" class="section level1" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Numerical Data</h1>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="NUMDATA" class="section level1" number="5">
+<h1>
+<span class="header-section-number">5</span> Numerical Data<a class="anchor" aria-label="anchor" href="#NUMDATA"><i class="fas fa-link"></i></a>
+</h1>
 <div id="objectives-4" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Objectives</h2>
+<h2>
+<span class="header-section-number">5.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-4"><i class="fas fa-link"></i></a>
+</h2>
 <ol style="list-style-type: decimal">
-<li>Define and use properly in context all new terminology.<br />
+<li>Define and use properly in context all new terminology.<br>
 </li>
-<li>Generate in <code>R</code> summary statistics for a numeric variable including breaking down by cases.<br />
+<li>Generate in <code>R</code> summary statistics for a numeric variable including breaking down by cases.<br>
 </li>
-<li>Generate in <code>R</code> appropriate graphical summaries of numerical variables.<br />
+<li>Generate in <code>R</code> appropriate graphical summaries of numerical variables.<br>
 </li>
 <li>Be able to interpret and explain output both graphically and numerically.</li>
 </ol>
 </div>
 <div id="numerical-data" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> Numerical Data</h2>
+<h2>
+<span class="header-section-number">5.2</span> Numerical Data<a class="anchor" aria-label="anchor" href="#numerical-data"><i class="fas fa-link"></i></a>
+</h2>
 <p>This lesson introduces techniques for exploring and summarizing numerical variables, and the <code>email50</code> and <code>mlb</code> data sets from the <strong>openintro</strong> package and a subset of <code>county_complete</code> from <code>usdata</code> provide rich opportunities for examples. Recall that outcomes of numerical variables are numbers on which it is reasonable to perform basic arithmetic operations. For example, the <code>pop2010</code> variable, which represents the populations of counties in 2010, is numerical since we can sensibly discuss the difference or ratio of the populations in two counties. On the other hand, area codes and zip codes are not numerical.</p>
 <div id="scatterplots-for-paired-data" class="section level3" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Scatterplots for paired data</h3>
+<h3>
+<span class="header-section-number">5.2.1</span> Scatterplots for paired data<a class="anchor" aria-label="anchor" href="#scatterplots-for-paired-data"><i class="fas fa-link"></i></a>
+</h3>
 <p>A <strong>scatterplot</strong> provides a case-by-case view of data for two numerical variables. In Figure <a href="NUMDATA.html#fig:scat5-fig">5.1</a>, we again present a scatterplot used to examine how federal spending and poverty were related in the <code>county</code> data set.</p>
-<div class="figure"><span style="display:block;" id="fig:scat5-fig"></span>
-<img src="05-Numerical-Data_files/figure-html/scat5-fig-1.png" alt="A scatterplot showing fed_spend against poverty. Owsley County of Kentucky, with a poverty rate of 41.5% and federal spending of $21.50 per capita, is highlighted." width="672" />
-<p class="caption">
+<div class="figure">
+<span style="display:block;" id="fig:scat5-fig"></span>
+<img src="05-Numerical-Data_files/figure-html/scat5-fig-1.png" alt="A scatterplot showing fed_spend against poverty. Owsley County of Kentucky, with a poverty rate of 41.5% and federal spending of $21.50 per capita, is highlighted." width="672"><p class="caption">
 Figure 5.1: A scatterplot showing fed_spend against poverty. Owsley County of Kentucky, with a poverty rate of 41.5% and federal spending of $21.50 per capita, is highlighted.
 </p>
 </div>
 <p>Another scatterplot is shown in Figure <a href="NUMDATA.html#fig:scat52-fig">5.2</a>, comparing the number of line breaks <code>line_breaks</code> and number of characters <code>num_char</code> in emails for the <code>email50</code> data set. In any scatterplot, each point represents a single case. Since there are 50 cases in <code>email50</code>, there are 50 points in Figure <a href="NUMDATA.html#fig:scat52-fig">5.2</a>.</p>
-<div class="figure"><span style="display:block;" id="fig:scat52-fig"></span>
-<img src="05-Numerical-Data_files/figure-html/scat52-fig-1.png" alt="A scatterplot of `line_breaks` versus `num_char` for the `email50` data." width="672" />
-<p class="caption">
+<div class="figure">
+<span style="display:block;" id="fig:scat52-fig"></span>
+<img src="05-Numerical-Data_files/figure-html/scat52-fig-1.png" alt="A scatterplot of `line_breaks` versus `num_char` for the `email50` data." width="672"><p class="caption">
 Figure 5.2: A scatterplot of <code>line_breaks</code> versus <code>num_char</code> for the <code>email50</code> data.
 </p>
 </div>
 <p>To put the number of characters in perspective, this paragraph has 357 characters. Looking at Figure <a href="NUMDATA.html#fig:scat52-fig">5.2</a>, it seems that some emails are incredibly long! Upon further investigation, we would actually find that most of the long emails use the HTML format, which means most of the characters in those emails are used to format the email rather than provide text.</p>
 <div style="page-break-after: always;"></div>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
-What do scatterplots reveal about the data, and how might they be useful?<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a></p>
+<p><strong>Exercise</strong>:<br>
+What do scatterplots reveal about the data, and how might they be useful?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Answers may vary. Scatterplots are helpful in quickly spotting associations between variables, whether those associations represent simple or more complex relationships.&lt;/p&gt;"><sup>35</sup></a></p>
 </blockquote>
 <blockquote>
-<p><em>Example</em>:<br />
-Consider a new data set of 54 cars with two variables: vehicle price and weight.<a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a> A scatterplot of vehicle price versus weight is shown in Figure <a href="NUMDATA.html#fig:scat53-fig">5.3</a>. What can be said about the relationship between these variables?</p>
+<p><em>Example</em>:<br>
+Consider a new data set of 54 cars with two variables: vehicle price and weight.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Subset of data from &lt;a href="http://www.amstat.org/publications/jse/v1n1/datasets.lock.html" class="uri"&gt;http://www.amstat.org/publications/jse/v1n1/datasets.lock.html&lt;/a&gt;&lt;/p&gt;'><sup>36</sup></a> A scatterplot of vehicle price versus weight is shown in Figure <a href="NUMDATA.html#fig:scat53-fig">5.3</a>. What can be said about the relationship between these variables?</p>
 </blockquote>
-<div class="figure"><span style="display:block;" id="fig:scat53-fig"></span>
-<img src="05-Numerical-Data_files/figure-html/scat53-fig-1.png" alt="A scatterplot of *price* versus *weight* for 54 cars." width="672" />
-<p class="caption">
+<div class="figure">
+<span style="display:block;" id="fig:scat53-fig"></span>
+<img src="05-Numerical-Data_files/figure-html/scat53-fig-1.png" alt="A scatterplot of *price* versus *weight* for 54 cars." width="672"><p class="caption">
 Figure 5.3: A scatterplot of <em>price</em> versus <em>weight</em> for 54 cars.
 </p>
 </div>
 <p>The relationship is evidently nonlinear, as highlighted by the dashed line. This is different from previous scatterplots we’ve seen which show relationships that are very linear.</p>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
-Describe two variables that would have a horseshoe shaped association in a scatterplot.<a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a></p>
+<p><strong>Exercise</strong>:<br>
+Describe two variables that would have a horseshoe shaped association in a scatterplot.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Consider the case where your vertical axis represents something ``good’’ and your horizontal axis represents something that is only good in moderation. Health and water consumption fit this description since water becomes toxic when consumed in excessive quantities.&lt;/p&gt;"><sup>37</sup></a></p>
 </blockquote>
 </div>
 <div id="dot-plots-and-the-mean" class="section level3" number="5.2.2">
-<h3><span class="header-section-number">5.2.2</span> Dot plots and the mean</h3>
+<h3>
+<span class="header-section-number">5.2.2</span> Dot plots and the mean<a class="anchor" aria-label="anchor" href="#dot-plots-and-the-mean"><i class="fas fa-link"></i></a>
+</h3>
 <p>Sometimes two variables are one too many: only one variable may be of interest. In these cases, a dot plot provides the most basic of displays. A <strong>dot plot</strong> is a one-variable scatterplot; an example using the number of characters from 50 emails is shown in Figure <a href="NUMDATA.html#fig:dot5-fig">5.4</a>.</p>
-<div class="figure"><span style="display:block;" id="fig:dot5-fig"></span>
-<img src="05-Numerical-Data_files/figure-html/dot5-fig-1.png" alt="A dot plot of `num_char` for the `email50` data set." width="672" />
-<p class="caption">
+<div class="figure">
+<span style="display:block;" id="fig:dot5-fig"></span>
+<img src="05-Numerical-Data_files/figure-html/dot5-fig-1.png" alt="A dot plot of `num_char` for the `email50` data set." width="672"><p class="caption">
 Figure 5.4: A dot plot of <code>num_char</code> for the <code>email50</code> data set.
 </p>
 </div>
@@ -172,7 +193,7 @@ Figure 5.4: A dot plot of <code>num_char</code> for the <code>email50</code> dat
 <p><span class="math display">\[\bar{x} = \frac{21.7 + 7.0 + \cdots + 15.8}{50} = 11.6\]</span></p>
 <p>The sample mean is often labeled <span class="math inline">\(\bar{x}\)</span>, a bar over the letter, and the letter <span class="math inline">\(x\)</span> is being used as a generic placeholder for the variable of interest, <code>num_char</code>.</p>
 <blockquote>
-<p><strong>Mean</strong><br />
+<p><strong>Mean</strong><br>
 The sample mean of a numerical variable is the sum of all of the observations divided by the number of observations, Equation <a href="NUMDATA.html#eq:mean5">(5.1)</a>.</p>
 </blockquote>
 <p><span class="math display" id="eq:mean5">\[\begin{equation}
@@ -181,12 +202,12 @@ The sample mean of a numerical variable is the sum of all of the observations di
 \end{equation}\]</span></p>
 <p>where <span class="math inline">\(x_1, x_2, \dots, x_n\)</span> represent the <span class="math inline">\(n\)</span> observed values.</p>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
-Examine the two equations above. What does <span class="math inline">\(x_1\)</span> correspond to? And <span class="math inline">\(x_2\)</span>? Can you infer a general meaning to what <span class="math inline">\(x_i\)</span> might represent?<a href="#fn38" class="footnote-ref" id="fnref38"><sup>38</sup></a></p>
+<p><strong>Exercise</strong>:<br>
+Examine the two equations above. What does <span class="math inline">\(x_1\)</span> correspond to? And <span class="math inline">\(x_2\)</span>? Can you infer a general meaning to what <span class="math inline">\(x_i\)</span> might represent?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(x_1\)&lt;/span&gt; corresponds to the number of characters in the first email in the sample (21.7, in thousands), &lt;span class="math inline"&gt;\(x_2\)&lt;/span&gt; to the number of characters in the second email (7.0, in thousands), and &lt;span class="math inline"&gt;\(x_i\)&lt;/span&gt; corresponds to the number of characters in the &lt;span class="math inline"&gt;\(i^{th}\)&lt;/span&gt; email in the data set.&lt;/p&gt;'><sup>38</sup></a></p>
 </blockquote>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
-What was <span class="math inline">\(n\)</span> in this sample of emails?<a href="#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a></p>
+<p><strong>Exercise</strong>:<br>
+What was <span class="math inline">\(n\)</span> in this sample of emails?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;The sample size was &lt;span class="math inline"&gt;\(n=50\)&lt;/span&gt;.&lt;/p&gt;'><sup>39</sup></a></p>
 </blockquote>
 <p>The <code>email50</code> data set is a sample from a larger population of emails that were received in January and March. We could compute a mean for this population in the same way as the sample mean. However, there is a difference in notation: the population mean has a special label: <span class="math inline">\(\mu\)</span>. The symbol <span class="math inline">\(\mu\)</span> is the Greek letter <em>mu</em> and represents the average of all observations in the population. Sometimes a subscript, such as <span class="math inline">\(_x\)</span>, is used to represent which variable the population mean refers to, e.g. <span class="math inline">\(\mu_x\)</span>.</p>
 <blockquote>
@@ -195,14 +216,16 @@ The average number of characters across all emails can be estimated using the sa
 </blockquote>
 <p>The sample mean, 11.6, may provide a reasonable estimate of <span class="math inline">\(\mu_x\)</span>. While this number will not be perfect, it provides a <strong>point estimate</strong> of the population mean. Later in the text, we will develop tools to characterize the accuracy of point estimates, and we will find that point estimates based on larger samples tend to be more accurate than those based on smaller samples.</p>
 <blockquote>
-<p><em>Example</em>:<br />
+<p><em>Example</em>:<br>
 We might like to compute the average income per person in the US. To do so, we might first think to take the mean of the per capita incomes from the 3,143 counties in the <code>county</code> data set. What would be a better approach?</p>
 </blockquote>
 <p>The <code>county</code> data set is special in that each county actually represents many individual people. If we were to simply average across the <code>income</code> variable, we would be treating counties with 5,000 and 5,000,000 residents equally in the calculations. Instead, we should compute the total income for each county, add up all the counties’ totals, and then divide by the number of people in all the counties. If we completed these steps with the <code>county</code> data, we would find that the per capita income for the US is $27,348.43. Had we computed the <em>simple</em> mean of per capita income across counties, the result would have been just $22,504.70!</p>
 <p>This previous example used what is called a <strong>weighted mean</strong>, which will be a key topic in the probability section. As a look ahead, the probability mass function gives the population proportions of each value and thus to find the population mean <span class="math inline">\(\mu\)</span>, we will use a weighted mean.</p>
 </div>
 <div id="histograms-and-shape" class="section level3" number="5.2.3">
-<h3><span class="header-section-number">5.2.3</span> Histograms and shape</h3>
+<h3>
+<span class="header-section-number">5.2.3</span> Histograms and shape<a class="anchor" aria-label="anchor" href="#histograms-and-shape"><i class="fas fa-link"></i></a>
+</h3>
 <p>Dot plots show the exact value of each observation. This is useful for small data sets, but they can become hard to read with larger samples. Rather than showing the value of each observation, think of the value as belonging to a <em>bin</em>. For example, in the <code>email50</code> data set, we create a table of counts for the number of cases with character counts between 0 and 5,000, then the number of cases between 5,000 and 10,000, and so on. Observations that fall on the boundary of a bin (e.g. 5,000) are allocated to the lower bin. This tabulation is shown below.</p>
 <pre><code>## 
 ##   (0,5]  (5,10] (10,15] (15,20] (20,25] (25,30] (30,35] (35,40] (40,45] (45,50] 
@@ -210,68 +233,71 @@ We might like to compute the average income per person in the US. To do so, we m
 ## (50,55] (55,60] (60,65] 
 ##       0       0       1</code></pre>
 <p>These binned counts are plotted as bars in Figure <a href="NUMDATA.html#fig:hist5-fig">5.5</a> into what is called a <strong>histogram</strong>.</p>
-<div class="figure"><span style="display:block;" id="fig:hist5-fig"></span>
-<img src="05-Numerical-Data_files/figure-html/hist5-fig-1.png" alt="A histogram of `num_char`. This distribution is very strongly skewed to the right." width="672" />
-<p class="caption">
+<div class="figure">
+<span style="display:block;" id="fig:hist5-fig"></span>
+<img src="05-Numerical-Data_files/figure-html/hist5-fig-1.png" alt="A histogram of `num_char`. This distribution is very strongly skewed to the right." width="672"><p class="caption">
 Figure 5.5: A histogram of <code>num_char</code>. This distribution is very strongly skewed to the right.
 </p>
 </div>
 <p>Histograms provide a view of the <strong>data density</strong>. Higher bars represent where the data are relatively more dense. For instance, there are many more emails between 0 and 10,000 characters than emails between 10,000 and 20,000 characters in the data set. The bars make it easy to see how the density of the data changes relative to the number of characters.</p>
-<p>Histograms are especially convenient for describing the shape of the data distribution. Figure <a href="NUMDATA.html#fig:hist5-fig">5.5</a> shows that most emails have a relatively small number of characters, while fewer emails have a very large number of characters. When data trail off to the right in this way and have a longer right <strong>tail</strong>, the shape is said to be <strong>right skewed</strong>.<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a></p>
+<p>Histograms are especially convenient for describing the shape of the data distribution. Figure <a href="NUMDATA.html#fig:hist5-fig">5.5</a> shows that most emails have a relatively small number of characters, while fewer emails have a very large number of characters. When data trail off to the right in this way and have a longer right <strong>tail</strong>, the shape is said to be <strong>right skewed</strong>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Other ways to describe data that are skewed to the right: &lt;strong&gt;skewed to the right&lt;/strong&gt;, &lt;strong&gt;skewed to the high end&lt;/strong&gt;, or &lt;strong&gt;skewed to the positive end&lt;/strong&gt;.&lt;/p&gt;"><sup>40</sup></a></p>
 <p>Data sets with the reverse characteristic – a long, thin tail to the left – are said to be <strong>left skewed</strong>. We also say that such a distribution has a long left tail. Data sets that show roughly equal trailing off in both directions are called <strong>symmetric</strong>.</p>
 <blockquote>
-<p><strong>Long tails to identify skew</strong><br />
+<p><strong>Long tails to identify skew</strong><br>
 When data trail off in one direction, the distribution has a <strong>long tail</strong>. If a distribution has a long left tail, it is left skewed. If a distribution has a long right tail, it is right skewed.</p>
 </blockquote>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
-Take a look at the dot plot above, Figure <a href="NUMDATA.html#fig:dot5-fig">5.4</a>. Can you see the skew in the data? Is it easier to see the skew in this histogram or the dot plots?<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a></p>
+<p><strong>Exercise</strong>:<br>
+Take a look at the dot plot above, Figure <a href="NUMDATA.html#fig:dot5-fig">5.4</a>. Can you see the skew in the data? Is it easier to see the skew in this histogram or the dot plots?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The skew is visible in all both plots, though the dot plot is the least useful.&lt;/p&gt;"><sup>41</sup></a></p>
 </blockquote>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
-Besides the mean, what can you see in the dot plot that you cannot see in the histogram?<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a></p>
+<p><strong>Exercise</strong>:<br>
+Besides the mean, what can you see in the dot plot that you cannot see in the histogram?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Character counts for individual emails.&lt;/p&gt;"><sup>42</sup></a></p>
 </blockquote>
 <div id="making-our-own-histogram" class="section level4" number="5.2.3.1">
-<h4><span class="header-section-number">5.2.3.1</span> Making our own histogram</h4>
+<h4>
+<span class="header-section-number">5.2.3.1</span> Making our own histogram<a class="anchor" aria-label="anchor" href="#making-our-own-histogram"><i class="fas fa-link"></i></a>
+</h4>
 <p>Let’s take some time to make a simple histogram. We will use the <strong>ggformula</strong> package which is a wrapper for the <strong>ggplot</strong> package.</p>
-<p>Here are two questions:<br />
-<em>What do we want <code>R</code> to do?</em> and<br />
-<em>What must we give <code>R</code> for it to do this?</em></p>
+<p>Here are two questions:<br><em>What do we want <code>R</code> to do?</em> and<br><em>What must we give <code>R</code> for it to do this?</em></p>
 <p>We want <code>R</code> to make a histogram. In <code>ggformula</code> the plots have the form <code>gf_XXXX</code> so we will use the <code>gf_histogram</code>. To find options and more information type:</p>
 <pre><code>?gf_histogram</code></pre>
 <p>To start we just have to give the formulas and data to <code>R</code>.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="NUMDATA.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_histogram</span>(<span class="sc">~</span>num_char,<span class="at">data=</span>email50,<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>)</span></code></pre></div>
-<p><img src="05-Numerical-Data_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span>,color<span class="op">=</span><span class="st">"black"</span>,fill<span class="op">=</span><span class="st">"cyan"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="05-Numerical-Data_files/figure-html/unnamed-chunk-4-1.png" width="672"></div>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
+<p><strong>Exercise</strong>:<br>
 Look at the help menu for <code>gf_histogram</code> and change the x-axis label, change the bin width to 5, and have the left bin start at 0.</p>
 </blockquote>
 <p>Here is the code for the exercise</p>
 <pre><code>email50 %&gt;%
    gf_histogram(~num_char,binwidth = 5,boundary=0,
-   xlab=&quot;The Number of Characters (in thousands)&quot;
-   ,color=&quot;black&quot;,fill=&quot;cyan&quot;) %&gt;%
+   xlab="The Number of Characters (in thousands)"
+   ,color="black",fill="cyan") %&gt;%
    gf_theme(theme_classic())</code></pre>
-<p>In addition to looking at whether a distribution is skewed or symmetric, histograms can be used to identify modes. A <strong>mode</strong> is represented by a prominent peak in the distribution.<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a> There is only one prominent peak in the histogram of <code>num_char</code>.</p>
+<p>In addition to looking at whether a distribution is skewed or symmetric, histograms can be used to identify modes. A <strong>mode</strong> is represented by a prominent peak in the distribution.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Another definition of mode, which is not typically used in statistics, is the value with the most occurrences. It is common to have &lt;em&gt;no&lt;/em&gt; observations with the same value in a data set, which makes this other definition useless for many real data sets.&lt;/p&gt;"><sup>43</sup></a> There is only one prominent peak in the histogram of <code>num_char</code>.</p>
 <p>Figure <a href="NUMDATA.html#fig:histmulti-fig">5.6</a> show histograms that have one, two, or three prominent peaks. Such distributions are called <strong>unimodal</strong>, <strong>bimodal</strong>, and <strong>multimodal</strong>, respectively. Any distribution with more than 2 prominent peaks is called multimodal. Notice that there was one prominent peak in the unimodal distribution with a second less prominent peak that was not counted since it only differs from its neighboring bins by a few observations.</p>
-<div class="figure"><span style="display:block;" id="fig:histmulti-fig"></span>
-<img src="05-Numerical-Data_files/figure-html/histmulti-fig-1.png" alt="Histograms that demonstrate unimodal, bimodal, and multimodal data." width="33%" /><img src="05-Numerical-Data_files/figure-html/histmulti-fig-2.png" alt="Histograms that demonstrate unimodal, bimodal, and multimodal data." width="33%" /><img src="05-Numerical-Data_files/figure-html/histmulti-fig-3.png" alt="Histograms that demonstrate unimodal, bimodal, and multimodal data." width="33%" />
-<p class="caption">
+<div class="figure">
+<span style="display:block;" id="fig:histmulti-fig"></span>
+<img src="05-Numerical-Data_files/figure-html/histmulti-fig-1.png" alt="Histograms that demonstrate unimodal, bimodal, and multimodal data." width="33%"><img src="05-Numerical-Data_files/figure-html/histmulti-fig-2.png" alt="Histograms that demonstrate unimodal, bimodal, and multimodal data." width="33%"><img src="05-Numerical-Data_files/figure-html/histmulti-fig-3.png" alt="Histograms that demonstrate unimodal, bimodal, and multimodal data." width="33%"><p class="caption">
 Figure 5.6: Histograms that demonstrate unimodal, bimodal, and multimodal data.
 </p>
 </div>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
-Height measurements of young students and adult teachers at a K-3 elementary school were taken. How many modes would you anticipate in this height data set?<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a></p>
+<p><strong>Exercise</strong>:<br>
+Height measurements of young students and adult teachers at a K-3 elementary school were taken. How many modes would you anticipate in this height data set?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;There might be two height groups visible in the data set: one of the students and one of the adults. That is, the data are probably bimodal. But it could be multimodal because within each group we may be able to see a difference in males and females.&lt;/p&gt;"><sup>44</sup></a></p>
 </blockquote>
 <blockquote>
-<p><strong>Looking for modes</strong><br />
+<p><strong>Looking for modes</strong><br>
 Looking for modes isn’t about finding a clear and correct answer about the number of modes in a distribution, which is why <strong>prominent</strong> is not rigorously defined in these notes. The important part of this examination is to better understand your data and how it might be structured.</p>
 </blockquote>
 </div>
 </div>
 <div id="variance-and-standard-deviation" class="section level3" number="5.2.4">
-<h3><span class="header-section-number">5.2.4</span> Variance and standard deviation</h3>
+<h3>
+<span class="header-section-number">5.2.4</span> Variance and standard deviation<a class="anchor" aria-label="anchor" href="#variance-and-standard-deviation"><i class="fas fa-link"></i></a>
+</h3>
 <p>The mean is used to describe the center of a data set, but the <em>variability</em> in the data is also important. Here, we introduce two measures of variability: the <strong>variance</strong> and the <strong>standard deviation</strong>. Both of these are very useful in data analysis, even though the formulas are a bit tedious to calculate by hand. The standard deviation is the easier of the two to conceptually understand, and it roughly describes how far away the typical observation is from the mean. Equation <a href="NUMDATA.html#eq:var5">(5.2)</a> is the equation for sample variance. We will demonstrate it with data so that the notation is easier to understand.</p>
 <p><span class="math display" id="eq:var5">\[\begin{equation}
   s^2 = \sum_{i=1}^{n}\frac{(x_i-\bar{x})^2}{n-1}=\frac{(x_1-\bar{x})^2 + (x_2-\bar{x})^2 + (x_3-\bar{x})^2 + \cdots + (x_n-\bar{x})^2}{n-1}
@@ -301,111 +327,120 @@ s_{}^2 &amp;= \frac{10.1_{}^2 + (-4.6)_{}^2 + (-11.0)_{}^2 + \cdots + 4.2_{}^2}{
 <span class="math display">\[s=\sqrt{172.44} = 13.13\]</span>
 The sample standard deviation of the number of characters in an email is 13.13 thousand. A subscript of <span class="math inline">\(_x\)</span> may be added to the variance and standard deviation, i.e. <span class="math inline">\(s_x^2\)</span> and <span class="math inline">\(s_x^{}\)</span>, as a reminder that these are the variance and standard deviation of the observations represented by <span class="math inline">\(x_1^{}\)</span>, <span class="math inline">\(x_2^{}\)</span>, …, <span class="math inline">\(x_n^{}\)</span>. The <span class="math inline">\(_{x}\)</span> subscript is usually omitted when it is clear which data the variance or standard deviation is referencing.</p>
 <blockquote>
-<p><strong>Variance and standard deviation</strong><br />
+<p><strong>Variance and standard deviation</strong><br>
 The variance is roughly the average squared distance from the mean. The standard deviation is the square root of the variance and describes how close the data are to the mean.</p>
 </blockquote>
-<p>Formulas and methods used to compute the variance and standard deviation for a population are similar to those used for a sample.<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a> However, like the mean, the population values have special symbols: <span class="math inline">\(\sigma_{}^2\)</span> for the variance and <span class="math inline">\(\sigma\)</span> for the standard deviation. The symbol <span class="math inline">\(\sigma\)</span> is the Greek letter <em>sigma</em>.</p>
+<p>Formulas and methods used to compute the variance and standard deviation for a population are similar to those used for a sample.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;The only difference is that the population variance has a division by &lt;span class="math inline"&gt;\(n\)&lt;/span&gt; instead of &lt;span class="math inline"&gt;\(n-1\)&lt;/span&gt;.&lt;/p&gt;'><sup>45</sup></a> However, like the mean, the population values have special symbols: <span class="math inline">\(\sigma_{}^2\)</span> for the variance and <span class="math inline">\(\sigma\)</span> for the standard deviation. The symbol <span class="math inline">\(\sigma\)</span> is the Greek letter <em>sigma</em>.</p>
 <blockquote>
-<p><strong>Tip: standard deviation describes variability</strong><br />
+<p><strong>Tip: standard deviation describes variability</strong><br>
 Focus on the conceptual meaning of the standard deviation as a descriptor of variability rather than the formulas. Usually 70% of the data will be within one standard deviation of the mean and about 95% will be within two standard deviations. However, as we have seen, these percentages are not strict rules.</p>
 </blockquote>
-<div class="figure"><span style="display:block;" id="fig:hist53-fig"></span>
-<img src="05-Numerical-Data_files/figure-html/hist53-fig-1.png" alt="The first of three very different population distributions with the same mean, 0, and standard deviation, 1." width="672" />
-<p class="caption">
+<div class="figure">
+<span style="display:block;" id="fig:hist53-fig"></span>
+<img src="05-Numerical-Data_files/figure-html/hist53-fig-1.png" alt="The first of three very different population distributions with the same mean, 0, and standard deviation, 1." width="672"><p class="caption">
 Figure 5.7: The first of three very different population distributions with the same mean, 0, and standard deviation, 1.
 </p>
 </div>
-<div class="figure"><span style="display:block;" id="fig:hist54-fig"></span>
-<img src="05-Numerical-Data_files/figure-html/hist54-fig-1.png" alt="The second plot with mean 0 and standard deviation 1." width="672" />
-<p class="caption">
+<div class="figure">
+<span style="display:block;" id="fig:hist54-fig"></span>
+<img src="05-Numerical-Data_files/figure-html/hist54-fig-1.png" alt="The second plot with mean 0 and standard deviation 1." width="672"><p class="caption">
 Figure 5.8: The second plot with mean 0 and standard deviation 1.
 </p>
 </div>
-<div class="figure"><span style="display:block;" id="fig:hist55-fig"></span>
-<img src="05-Numerical-Data_files/figure-html/hist55-fig-1.png" alt="The final plot with mean 0 and standard deviation 1." width="672" />
-<p class="caption">
+<div class="figure">
+<span style="display:block;" id="fig:hist55-fig"></span>
+<img src="05-Numerical-Data_files/figure-html/hist55-fig-1.png" alt="The final plot with mean 0 and standard deviation 1." width="672"><p class="caption">
 Figure 5.9: The final plot with mean 0 and standard deviation 1.
 </p>
 </div>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
-Earlier the concept of shape of a distribution was introduced. A good description of the shape of a distribution should include modality and whether the distribution is symmetric or skewed to one side. Using the three figures, Figures <a href="NUMDATA.html#fig:hist53-fig">5.7</a>, <a href="NUMDATA.html#fig:hist54-fig">5.8</a>, and <a href="NUMDATA.html#fig:hist55-fig">5.9</a> as an example, explain why such a description is important.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a></p>
+<p><strong>Exercise</strong>:<br>
+Earlier the concept of shape of a distribution was introduced. A good description of the shape of a distribution should include modality and whether the distribution is symmetric or skewed to one side. Using the three figures, Figures <a href="NUMDATA.html#fig:hist53-fig">5.7</a>, <a href="NUMDATA.html#fig:hist54-fig">5.8</a>, and <a href="NUMDATA.html#fig:hist55-fig">5.9</a> as an example, explain why such a description is important.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Starting with Figure &lt;a href="NUMDATA.html#fig:hist53-fig"&gt;5.7&lt;/a&gt;, the three figures show three distributions that look quite different, but all have the same mean, variance, and standard deviation. Using modality, we can distinguish between the first plot (bimodal) and the last two (unimodal). Using skewness, we can distinguish between the last plot (right skewed) and the first two. While a picture, like a histogram, tells a more complete story, we can use modality and shape (symmetry/skew) to characterize basic information about a distribution.&lt;/p&gt;'><sup>46</sup></a></p>
 </blockquote>
 <blockquote>
-<p><em>Example</em>:<br />
-Describe the distribution of the <code>num_char</code> variable using the histogram in Figure <a href="NUMDATA.html#fig:hist5-fig">5.5</a>. The description should incorporate the center, variability, and shape of the distribution, and it should also be placed in context: the number of characters in emails. Also note any especially unusual cases.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a></p>
+<p><em>Example</em>:<br>
+Describe the distribution of the <code>num_char</code> variable using the histogram in Figure <a href="NUMDATA.html#fig:hist5-fig">5.5</a>. The description should incorporate the center, variability, and shape of the distribution, and it should also be placed in context: the number of characters in emails. Also note any especially unusual cases.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The distribution of email character counts is unimodal and very strongly skewed to the high end. Many of the counts fall near the mean at 11,600, and most fall within one standard deviation (13,130) of the mean. There is one exceptionally long email with about 65,000 characters.&lt;/p&gt;"><sup>47</sup></a></p>
 </blockquote>
 <p>In practice, the variance and standard deviation are sometimes used as a means to an end, where the <em>end</em> is being able to accurately estimate the uncertainty associated with a sample statistic. For example, later in the course we will use the variance and standard deviation to assess how close the sample mean is to the population mean.</p>
 </div>
 <div id="box-plots-quartiles-and-the-median" class="section level3" number="5.2.5">
-<h3><span class="header-section-number">5.2.5</span> Box plots, quartiles, and the median</h3>
+<h3>
+<span class="header-section-number">5.2.5</span> Box plots, quartiles, and the median<a class="anchor" aria-label="anchor" href="#box-plots-quartiles-and-the-median"><i class="fas fa-link"></i></a>
+</h3>
 <p>A <strong>box plot</strong> summarizes a data set using five statistics while also plotting unusual observations. Figure <a href="NUMDATA.html#fig:box-fig">5.10</a> provides a vertical dot plot alongside a box plot of the <code>num_char</code> variable from the <code>email50</code> data set.</p>
-<div class="figure"><span style="display:block;" id="fig:box-fig"></span>
-<img src="05-Numerical-Data_files/figure-html/box-fig-1.png" alt="A vertical dot plot next to a labeled box plot for the number of characters in 50 emails. The median (6,890), splits the data into the bottom 50% and the top 50%, marked in the dot plot by horizontal dashes and open circles, respectively." width="672" />
-<p class="caption">
+<div class="figure">
+<span style="display:block;" id="fig:box-fig"></span>
+<img src="05-Numerical-Data_files/figure-html/box-fig-1.png" alt="A vertical dot plot next to a labeled box plot for the number of characters in 50 emails. The median (6,890), splits the data into the bottom 50% and the top 50%, marked in the dot plot by horizontal dashes and open circles, respectively." width="672"><p class="caption">
 Figure 5.10: A vertical dot plot next to a labeled box plot for the number of characters in 50 emails. The median (6,890), splits the data into the bottom 50% and the top 50%, marked in the dot plot by horizontal dashes and open circles, respectively.
 </p>
 </div>
 <p>The first step in building a box plot is drawing a dark line denoting the <strong>median</strong>, which splits the data in half. Figure <a href="NUMDATA.html#fig:box-fig">5.10</a> shows 50% of the data falling below the median (red dashes) and the other 50% falling above the median (blue open circles). There are 50 character counts in the data set (an even number) so the data are perfectly split into two groups of 25. We take the median in this case to be the average of the two observations closest to the <span class="math inline">\(50^{th}\)</span> percentile: <span class="math inline">\((\text{6,768} + \text{7,012}) / 2 = \text{6,890}\)</span>. When there are an odd number of observations, there will be exactly one observation that splits the data into two halves, and in this case that observation is the median (no average needed).</p>
 <blockquote>
-<p><strong>Median: the number in the middle</strong><br />
+<p><strong>Median: the number in the middle</strong><br>
 If the data are ordered from smallest to largest, the <strong>median</strong> is the observation right in the middle. If there are an even number of observations, there will be two values in the middle, and the median is taken as their average.</p>
 </blockquote>
 <p>The second step in building a box plot is drawing a rectangle to represent the middle 50% of the data. The total length of the box, shown vertically in Figure <a href="NUMDATA.html#fig:box-fig">5.10</a>, is called the <strong>interquartile range</strong> (IQR, for short). It, like the standard deviation, is a measure of variability in data. The more variable the data, the larger the standard deviation and IQR. The two boundaries of the box are called the <strong>first quartile</strong> (the <span class="math inline">\(25^{th}\)</span> percentile, i.e. 25% of the data fall below this value) and the <strong>third quartile</strong> (the <span class="math inline">\(75^{th}\)</span> percentile), and these are often labeled <span class="math inline">\(Q_1\)</span> and <span class="math inline">\(Q_3\)</span>, respectively.</p>
 <blockquote>
-<p><strong>Interquartile range (IQR)</strong><br />
+<p><strong>Interquartile range (IQR)</strong><br>
 The IQR is the length of the box in a box plot. It is computed as
 <span class="math display">\[ IQR = Q_3 - Q_1 \]</span>
 where <span class="math inline">\(Q_1\)</span> and <span class="math inline">\(Q_3\)</span> are the <span class="math inline">\(25^{th}\)</span> and <span class="math inline">\(75^{th}\)</span> percentiles.</p>
 </blockquote>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
-What percent of the data fall between <span class="math inline">\(Q_1\)</span> and the median? What percent is between the median and <span class="math inline">\(Q_3\)</span>?<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a></p>
+<p><strong>Exercise</strong>:<br>
+What percent of the data fall between <span class="math inline">\(Q_1\)</span> and the median? What percent is between the median and <span class="math inline">\(Q_3\)</span>?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Since &lt;span class="math inline"&gt;\(Q_1\)&lt;/span&gt; and &lt;span class="math inline"&gt;\(Q_3\)&lt;/span&gt; capture the middle 50% of the data and the median splits the data in the middle, 25% of the data fall between &lt;span class="math inline"&gt;\(Q_1\)&lt;/span&gt; and the median, and another 25% falls between the median and &lt;span class="math inline"&gt;\(Q_3\)&lt;/span&gt;.&lt;/p&gt;'><sup>48</sup></a></p>
 </blockquote>
-<p>Extending out from the box, the <strong>whiskers</strong> attempt to capture the data outside of the box, however, their reach is never allowed to be more than <span class="math inline">\(1.5\times IQR\)</span>.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a> They capture everything within this reach. In Figure <a href="NUMDATA.html#fig:box-fig">5.10</a>, the upper whisker does not extend to the last three points, which are beyond <span class="math inline">\(Q_3 + 1.5\times IQR\)</span>, and so it extends only to the last point below this limit. The lower whisker stops at the lowest value, 33, since there is no additional data to reach; the lower whisker’s limit is not shown in the figure because the plot does not extend down to <span class="math inline">\(Q_1 - 1.5\times IQR\)</span>. In a sense, the box is like the body of the box plot and the whiskers are like its arms trying to reach the rest of the data.</p>
+<p>Extending out from the box, the <strong>whiskers</strong> attempt to capture the data outside of the box, however, their reach is never allowed to be more than <span class="math inline">\(1.5\times IQR\)</span>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;While the choice of exactly 1.5 is arbitrary, it is the most commonly used value for box plots.&lt;/p&gt;"><sup>49</sup></a> They capture everything within this reach. In Figure <a href="NUMDATA.html#fig:box-fig">5.10</a>, the upper whisker does not extend to the last three points, which are beyond <span class="math inline">\(Q_3 + 1.5\times IQR\)</span>, and so it extends only to the last point below this limit. The lower whisker stops at the lowest value, 33, since there is no additional data to reach; the lower whisker’s limit is not shown in the figure because the plot does not extend down to <span class="math inline">\(Q_1 - 1.5\times IQR\)</span>. In a sense, the box is like the body of the box plot and the whiskers are like its arms trying to reach the rest of the data.</p>
 <p>Any observation that lies beyond the whiskers is labeled with a dot. The purpose of labeling these points – instead of just extending the whiskers to the minimum and maximum observed values – is to help identify any observations that appear to be unusually distant from the rest of the data. Unusually distant observations are called <strong>outliers</strong>. In this case, it would be reasonable to classify the emails with character counts of 41,623, 42,793, and 64,401 as outliers since they are numerically distant from most of the data.</p>
 <blockquote>
-<p><strong>Outliers are extreme</strong><br />
+<p><strong>Outliers are extreme</strong><br>
 An <strong>outlier</strong> is an observation that is extreme relative to the rest of the data.</p>
 </blockquote>
 <blockquote>
-<p><strong>Why it is important to look for outliers</strong><br />
-Examination of data for possible outliers serves many useful purposes, including<br />
-1. Identifying <strong>strong skew</strong> in the distribution.<br />
-2. Identifying data collection or entry errors. For instance, we re-examined the email purported to have 64,401 characters to ensure this value was accurate.<br />
+<p><strong>Why it is important to look for outliers</strong><br>
+Examination of data for possible outliers serves many useful purposes, including<br>
+1. Identifying <strong>strong skew</strong> in the distribution.<br>
+2. Identifying data collection or entry errors. For instance, we re-examined the email purported to have 64,401 characters to ensure this value was accurate.<br>
 3. Providing insight into interesting properties of the data.</p>
 </blockquote>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
-The observation with value 64,401, an outlier, was found to be an accurate observation. What would such an observation suggest about the nature of character counts in emails?<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a></p>
+<p><strong>Exercise</strong>:<br>
+The observation with value 64,401, an outlier, was found to be an accurate observation. What would such an observation suggest about the nature of character counts in emails?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;That occasionally there may be very long emails.&lt;/p&gt;"><sup>50</sup></a></p>
 </blockquote>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
-Using Figure <a href="NUMDATA.html#fig:box-fig">5.10</a>, estimate the following values for <code>num_char</code> in the <code>email50</code> data set:<br />
-(a) <span class="math inline">\(Q_1\)</span>,<br />
-(b) <span class="math inline">\(Q_3\)</span>, and<br />
-(c) IQR.<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a></p>
+<p><strong>Exercise</strong>:<br>
+Using Figure <a href="NUMDATA.html#fig:box-fig">5.10</a>, estimate the following values for <code>num_char</code> in the <code>email50</code> data set:<br>
+(a) <span class="math inline">\(Q_1\)</span>,<br>
+(b) <span class="math inline">\(Q_3\)</span>, and<br>
+(c) IQR.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;These visual estimates will vary a little from one person to the next: &lt;span class="math inline"&gt;\(Q_1\)&lt;/span&gt; ~ 3,000, &lt;span class="math inline"&gt;\(Q_3\)&lt;/span&gt; ~ 15,000, IQR=&lt;span class="math inline"&gt;\(Q_3 - Q_1\)&lt;/span&gt; ~ 12,000. (The true values: &lt;span class="math inline"&gt;\(Q_1=\)&lt;/span&gt; 2,536, &lt;span class="math inline"&gt;\(Q_3=\)&lt;/span&gt; 15,411, IQR = 12,875.)&lt;/p&gt;'><sup>51</sup></a></p>
 </blockquote>
 <p>Of course <code>R</code> can calculate these summary statistics for us. First we will do these calculations individually and then in one function call. Remember to ask what you want <code>R</code> to do and what it needs.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="NUMDATA.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="sc">~</span>num_char,<span class="at">data=</span>email50)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 11.59822</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="NUMDATA.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(<span class="sc">~</span>num_char,<span class="at">data=</span>email50)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 13.12526</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="NUMDATA.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(<span class="sc">~</span>num_char,<span class="at">data=</span>email50)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">quantile</a></span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span><span class="op">)</span></code></pre></div>
 <pre><code>##       0%      25%      50%      75%     100% 
 ##  0.05700  2.53550  6.88950 15.41075 64.40100</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="NUMDATA.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">iqr</span>(<span class="sc">~</span>num_char,<span class="at">data=</span>email50)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">iqr</a></span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 12.87525</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="NUMDATA.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(<span class="sc">~</span>num_char,<span class="at">data=</span>email50)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span><span class="op">)</span></code></pre></div>
 <pre><code>##    min     Q1 median       Q3    max     mean       sd  n missing
 ##  0.057 2.5355 6.8895 15.41075 64.401 11.59822 13.12526 50       0</code></pre>
 </div>
 <div id="robust-statistics" class="section level3" number="5.2.6">
-<h3><span class="header-section-number">5.2.6</span> Robust statistics</h3>
+<h3>
+<span class="header-section-number">5.2.6</span> Robust statistics<a class="anchor" aria-label="anchor" href="#robust-statistics"><i class="fas fa-link"></i></a>
+</h3>
 <p>How are the <em>sample statistics</em> of the <code>num_char</code> data set affected by the observation with value 64,401? What would have happened if this email wasn’t observed? What would happen to these <em>summary statistics</em> if the observation at 64,401 had been even larger, say 150,000? These scenarios are plotted alongside the original data in Figure <a href="NUMDATA.html#fig:box2-fig">5.11</a>, and sample statistics are computed in <code>R</code>.</p>
-<div class="figure"><span style="display:block;" id="fig:box2-fig"></span>
-<img src="05-Numerical-Data_files/figure-html/box2-fig-1.png" alt="Box plots of the original character count data and two modified data sets." width="672" />
-<p class="caption">
+<div class="figure">
+<span style="display:block;" id="fig:box2-fig"></span>
+<img src="05-Numerical-Data_files/figure-html/box2-fig-1.png" alt="Box plots of the original character count data and two modified data sets." width="672"><p class="caption">
 Figure 5.11: Box plots of the original character count data and two modified data sets.
 </p>
 </div>
@@ -414,54 +449,57 @@ Figure 5.11: Box plots of the original character count data and two modified dat
 ## 2 Increased 0.057 2.5355 6.8895 15.41075 150.000 13.31020 22.43436 50       0
 ## 3  Original 0.057 2.5355 6.8895 15.41075  64.401 11.59822 13.12526 50       0</code></pre>
 <p>The code used to generate this table is</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="NUMDATA.html#cb56-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> email50<span class="sc">$</span>num_char</span>
-<span id="cb56-2"><a href="NUMDATA.html#cb56-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> p1[<span class="sc">-</span><span class="fu">which.max</span>(p1)]</span>
-<span id="cb56-3"><a href="NUMDATA.html#cb56-3" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> p1</span>
-<span id="cb56-4"><a href="NUMDATA.html#cb56-4" aria-hidden="true" tabindex="-1"></a>p3[<span class="fu">which.max</span>(p1)] <span class="ot">&lt;-</span> <span class="dv">150</span></span>
-<span id="cb56-5"><a href="NUMDATA.html#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-6"><a href="NUMDATA.html#cb56-6" aria-hidden="true" tabindex="-1"></a>robust <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">value=</span> <span class="fu">c</span>(p1,p2,p3),<span class="at">group=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Original&quot;</span>,<span class="dv">50</span>),<span class="fu">rep</span>(<span class="st">&quot;Dropped&quot;</span>,<span class="dv">49</span>),<span class="fu">rep</span>(<span class="st">&quot;Increased&quot;</span>,<span class="dv">50</span>)))</span>
-<span id="cb56-7"><a href="NUMDATA.html#cb56-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-8"><a href="NUMDATA.html#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(value<span class="sc">~</span>group,<span class="at">data=</span>robust)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">email50</span><span class="op">$</span><span class="va">num_char</span>
+<span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p1</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span><span class="op">]</span>
+<span class="va">p3</span> <span class="op">&lt;-</span> <span class="va">p1</span>
+<span class="va">p3</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">150</span>
+
+<span class="va">robust</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>value<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">p1</span>,<span class="va">p2</span>,<span class="va">p3</span><span class="op">)</span>,group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Original"</span>,<span class="fl">50</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Dropped"</span>,<span class="fl">49</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Increased"</span>,<span class="fl">50</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">value</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">robust</span><span class="op">)</span></code></pre></div>
 <p>Notice by using the formula notation, we were able to calculate the summary statistics for each group.</p>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
-(a) Which is more affected by extreme observations, the mean or median? The data summary may be helpful.<br />
-(b) Is the standard deviation or IQR more affected by extreme observations?<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a></p>
+<p><strong>Exercise</strong>:<br>
+(a) Which is more affected by extreme observations, the mean or median? The data summary may be helpful.<br>
+(b) Is the standard deviation or IQR more affected by extreme observations?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;(a) Mean is affected more. (b) Standard deviation is affected more.&lt;/p&gt;"><sup>52</sup></a></p>
 </blockquote>
 <p>The median and IQR are called <strong>robust estimates</strong> because extreme observations have little effect on their values. The mean and standard deviation are much more affected by changes in extreme observations.</p>
 <blockquote>
-<p><em>Example</em>:<br />
-The median and IQR do not change much under the three scenarios above. Why might this be the case?<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a></p>
+<p><em>Example</em>:<br>
+The median and IQR do not change much under the three scenarios above. Why might this be the case?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;The median and IQR are only sensitive to numbers near &lt;span class="math inline"&gt;\(Q_1\)&lt;/span&gt;, the median, and &lt;span class="math inline"&gt;\(Q_3\)&lt;/span&gt;. Since values in these regions are relatively stable – there aren’t large jumps between observations – the median and IQR estimates are also quite stable.&lt;/p&gt;'><sup>53</sup></a></p>
 </blockquote>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
-The distribution of vehicle prices tends to be right skewed, with a few luxury and sports cars lingering out into the right tail. If you were searching for a new car and cared about price, should you be more interested in the mean or median price of vehicles sold, assuming you are in the market for a regular car?<a href="#fn54" class="footnote-ref" id="fnref54"><sup>54</sup></a></p>
+<p><strong>Exercise</strong>:<br>
+The distribution of vehicle prices tends to be right skewed, with a few luxury and sports cars lingering out into the right tail. If you were searching for a new car and cared about price, should you be more interested in the mean or median price of vehicles sold, assuming you are in the market for a regular car?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Buyers of a &lt;em&gt;regular car&lt;/em&gt; should be concerned about the median price. High-end car sales can drastically inflate the mean price while the median will be more robust to the influence of those sales.&lt;/p&gt;"><sup>54</sup></a></p>
 </blockquote>
 </div>
 <div id="transforming-data" class="section level3" number="5.2.7">
-<h3><span class="header-section-number">5.2.7</span> Transforming data</h3>
+<h3>
+<span class="header-section-number">5.2.7</span> Transforming data<a class="anchor" aria-label="anchor" href="#transforming-data"><i class="fas fa-link"></i></a>
+</h3>
 <p>When data are very strongly skewed, we sometimes transform them so they are easier to model. Consider the histogram of salaries for Major League Baseball players’ salaries from 2010, which is shown in Figure <a href="NUMDATA.html#fig:hist510-fig">5.12</a>.</p>
-<div class="figure"><span style="display:block;" id="fig:hist510-fig"></span>
-<img src="05-Numerical-Data_files/figure-html/hist510-fig-1.png" alt="Histogram of MLB player salaries for 2010, in millions of dollars." width="672" />
-<p class="caption">
+<div class="figure">
+<span style="display:block;" id="fig:hist510-fig"></span>
+<img src="05-Numerical-Data_files/figure-html/hist510-fig-1.png" alt="Histogram of MLB player salaries for 2010, in millions of dollars." width="672"><p class="caption">
 Figure 5.12: Histogram of MLB player salaries for 2010, in millions of dollars.
 </p>
 </div>
 <blockquote>
-<p><em>Example</em>:<br />
-The histogram of MLB player salaries is useful in that we can see the data are extremely skewed and centered (as gauged by the median) at about $1 million. What isn’t useful about this plot?<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a></p>
+<p><em>Example</em>:<br>
+The histogram of MLB player salaries is useful in that we can see the data are extremely skewed and centered (as gauged by the median) at about $1 million. What isn’t useful about this plot?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Most of the data are collected into one bin in the histogram and the data are so strongly skewed that many details in the data are obscured.&lt;/p&gt;"><sup>55</sup></a></p>
 </blockquote>
-<p>There are some standard transformations that are often applied when much of the data cluster near zero (relative to the larger values in the data set) and all observations are positive. A <strong>transformation</strong> is a rescaling of the data using a function. For instance, a plot of the natural logarithm<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a> of player salaries results in a new histogram in Figure <a href="NUMDATA.html#fig:hist512-fig">5.13</a>. Transformed data are sometimes easier to work with when applying statistical models because the transformed data are much less skewed and outliers are usually less extreme.</p>
-<div class="figure"><span style="display:block;" id="fig:hist512-fig"></span>
-<img src="05-Numerical-Data_files/figure-html/hist512-fig-1.png" alt="Histogram of the log-transformed MLB player salaries for 2010." width="672" />
-<p class="caption">
+<p>There are some standard transformations that are often applied when much of the data cluster near zero (relative to the larger values in the data set) and all observations are positive. A <strong>transformation</strong> is a rescaling of the data using a function. For instance, a plot of the natural logarithm<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Statisticians often write the natural logarithm as &lt;span class="math inline"&gt;\(\log\)&lt;/span&gt;. You might be more familiar with it being written as &lt;span class="math inline"&gt;\(\ln\)&lt;/span&gt;.&lt;/p&gt;'><sup>56</sup></a> of player salaries results in a new histogram in Figure <a href="NUMDATA.html#fig:hist512-fig">5.13</a>. Transformed data are sometimes easier to work with when applying statistical models because the transformed data are much less skewed and outliers are usually less extreme.</p>
+<div class="figure">
+<span style="display:block;" id="fig:hist512-fig"></span>
+<img src="05-Numerical-Data_files/figure-html/hist512-fig-1.png" alt="Histogram of the log-transformed MLB player salaries for 2010." width="672"><p class="caption">
 Figure 5.13: Histogram of the log-transformed MLB player salaries for 2010.
 </p>
 </div>
 <p>Transformations can also be applied to one or both variables in a scatterplot. A scatterplot of the <code>line_breaks</code> and <code>num_char</code> variables is shown in Figure <a href="NUMDATA.html#fig:scat52-fig">5.2</a> above. We can see a positive association between the variables and that many observations are clustered near zero. Later in this text, we might want to use a straight line to model the data. However, we’ll find that the data in their current state cannot be modeled very well. Figure <a href="NUMDATA.html#fig:scat513-fig">5.14</a> shows a scatterplot where both the <code>line_breaks</code> and <code>num_char</code> variables have been transformed using a log (base <span class="math inline">\(e\)</span>) transformation. While there is a positive association in each plot, the transformed data show a steadier trend, which is easier to model than the untransformed data.</p>
-<div class="figure"><span style="display:block;" id="fig:scat513-fig"></span>
-<img src="05-Numerical-Data_files/figure-html/scat513-fig-1.png" alt="A scatterplot of `line_breaks` versus `num_char` for the `email50` data but where each variable has been log-transformed." width="672" />
-<p class="caption">
+<div class="figure">
+<span style="display:block;" id="fig:scat513-fig"></span>
+<img src="05-Numerical-Data_files/figure-html/scat513-fig-1.png" alt="A scatterplot of `line_breaks` versus `num_char` for the `email50` data but where each variable has been log-transformed." width="672"><p class="caption">
 Figure 5.14: A scatterplot of <code>line_breaks</code> versus <code>num_char</code> for the <code>email50</code> data but where each variable has been log-transformed.
 </p>
 </div>
@@ -469,23 +507,25 @@ Figure 5.14: A scatterplot of <code>line_breaks</code> versus <code>num_char</co
 </div>
 </div>
 <div id="homework-problems-4" class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> Homework Problems</h2>
+<h2>
+<span class="header-section-number">5.3</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-4"><i class="fas fa-link"></i></a>
+</h2>
 <p>Create an Rmd file for the work including headers, file creation data, and explanation of your work. Make sure your plots have a title and the axes are labeled.</p>
 <ol style="list-style-type: decimal">
 <li><strong>Mammals exploratory</strong></li>
 </ol>
 <p>Data were collected on 39 species of mammals distributed over 13 orders. The data is in the <strong>openintro</strong> package as <code>mammals</code></p>
 <ol style="list-style-type: lower-alpha">
-<li>Using help, report the units for the variable <code>brain_Wt</code>.<br />
+<li>Using help, report the units for the variable <code>brain_Wt</code>.<br>
 </li>
-<li>Using <code>inspect</code> how many variables are numeric?<br />
+<li>Using <code>inspect</code> how many variables are numeric?<br>
 </li>
 <li>What type of variable is <code>danger</code>?</li>
-<li>Create a histogram of <code>total_sleep</code> and describe the distribution.<br />
+<li>Create a histogram of <code>total_sleep</code> and describe the distribution.<br>
 </li>
-<li>Create a boxplot of <code>life_span</code> and describe the distribution.<br />
+<li>Create a boxplot of <code>life_span</code> and describe the distribution.<br>
 </li>
-<li>Report the mean and median life span of a mammal.<br />
+<li>Report the mean and median life span of a mammal.<br>
 </li>
 <li>Calculate the summary statistics for <code>life_span</code> broken down by <code>danger</code>. What is the standard deviation of life span in danger outcome 5?</li>
 </ol>
@@ -494,7 +534,7 @@ Figure 5.14: A scatterplot of <code>line_breaks</code> versus <code>num_char</co
 </ol>
 <p>Continue using the <code>mammals</code> data set.</p>
 <ol style="list-style-type: lower-alpha">
-<li>Create side-by-side boxplots for <code>life_span</code> broken down by <code>exposure</code>. Note: you will have to change <code>exposure</code> to a <code>factor()</code>. Report on any findings.<br />
+<li>Create side-by-side boxplots for <code>life_span</code> broken down by <code>exposure</code>. Note: you will have to change <code>exposure</code> to a <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code>. Report on any findings.<br>
 </li>
 <li>What happened to the median and third quartile in exposure group 4?</li>
 <li>Create faceted histograms. What are the shortcomings of this plot?</li>
@@ -505,66 +545,53 @@ Figure 5.14: A scatterplot of <code>line_breaks</code> versus <code>num_char</co
 <li><strong>Mammals life spans continued</strong></li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>Create a scatterplot of life span versus length of gestation.<br />
+<li>Create a scatterplot of life span versus length of gestation.<br>
 </li>
-<li>What type of an association is apparent between life span and length of gestation?<br />
+<li>What type of an association is apparent between life span and length of gestation?<br>
 </li>
 <li>What type of an association would you expect to see if the axes of the plot were reversed, i.e. if we plotted length of gestation versus life span?</li>
-<li>Create the new scatterplot suggested in c.<br />
+<li>Create the new scatterplot suggested in c.<br>
 </li>
 <li>Are life span and length of gestation independent? Explain your reasoning.</li>
 </ol>
+</div>
+</div>
 
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="35">
-<li id="fn35"><p>Answers may vary. Scatterplots are helpful in quickly spotting associations between variables, whether those associations represent simple or more complex relationships.<a href="NUMDATA.html#fnref35" class="footnote-back">↩︎</a></p></li>
-<li id="fn36"><p>Subset of data from <a href="http://www.amstat.org/publications/jse/v1n1/datasets.lock.html" class="uri">http://www.amstat.org/publications/jse/v1n1/datasets.lock.html</a><a href="NUMDATA.html#fnref36" class="footnote-back">↩︎</a></p></li>
-<li id="fn37"><p>Consider the case where your vertical axis represents something ``good’’ and your horizontal axis represents something that is only good in moderation. Health and water consumption fit this description since water becomes toxic when consumed in excessive quantities.<a href="NUMDATA.html#fnref37" class="footnote-back">↩︎</a></p></li>
-<li id="fn38"><p><span class="math inline">\(x_1\)</span> corresponds to the number of characters in the first email in the sample (21.7, in thousands), <span class="math inline">\(x_2\)</span> to the number of characters in the second email (7.0, in thousands), and <span class="math inline">\(x_i\)</span> corresponds to the number of characters in the <span class="math inline">\(i^{th}\)</span> email in the data set.<a href="NUMDATA.html#fnref38" class="footnote-back">↩︎</a></p></li>
-<li id="fn39"><p>The sample size was <span class="math inline">\(n=50\)</span>.<a href="NUMDATA.html#fnref39" class="footnote-back">↩︎</a></p></li>
-<li id="fn40"><p>Other ways to describe data that are skewed to the right: <strong>skewed to the right</strong>, <strong>skewed to the high end</strong>, or <strong>skewed to the positive end</strong>.<a href="NUMDATA.html#fnref40" class="footnote-back">↩︎</a></p></li>
-<li id="fn41"><p>The skew is visible in all both plots, though the dot plot is the least useful.<a href="NUMDATA.html#fnref41" class="footnote-back">↩︎</a></p></li>
-<li id="fn42"><p>Character counts for individual emails.<a href="NUMDATA.html#fnref42" class="footnote-back">↩︎</a></p></li>
-<li id="fn43"><p>Another definition of mode, which is not typically used in statistics, is the value with the most occurrences. It is common to have <em>no</em> observations with the same value in a data set, which makes this other definition useless for many real data sets.<a href="NUMDATA.html#fnref43" class="footnote-back">↩︎</a></p></li>
-<li id="fn44"><p>There might be two height groups visible in the data set: one of the students and one of the adults. That is, the data are probably bimodal. But it could be multimodal because within each group we may be able to see a difference in males and females.<a href="NUMDATA.html#fnref44" class="footnote-back">↩︎</a></p></li>
-<li id="fn45"><p>The only difference is that the population variance has a division by <span class="math inline">\(n\)</span> instead of <span class="math inline">\(n-1\)</span>.<a href="NUMDATA.html#fnref45" class="footnote-back">↩︎</a></p></li>
-<li id="fn46"><p>Starting with Figure <a href="NUMDATA.html#fig:hist53-fig">5.7</a>, the three figures show three distributions that look quite different, but all have the same mean, variance, and standard deviation. Using modality, we can distinguish between the first plot (bimodal) and the last two (unimodal). Using skewness, we can distinguish between the last plot (right skewed) and the first two. While a picture, like a histogram, tells a more complete story, we can use modality and shape (symmetry/skew) to characterize basic information about a distribution.<a href="NUMDATA.html#fnref46" class="footnote-back">↩︎</a></p></li>
-<li id="fn47"><p>The distribution of email character counts is unimodal and very strongly skewed to the high end. Many of the counts fall near the mean at 11,600, and most fall within one standard deviation (13,130) of the mean. There is one exceptionally long email with about 65,000 characters.<a href="NUMDATA.html#fnref47" class="footnote-back">↩︎</a></p></li>
-<li id="fn48"><p>Since <span class="math inline">\(Q_1\)</span> and <span class="math inline">\(Q_3\)</span> capture the middle 50% of the data and the median splits the data in the middle, 25% of the data fall between <span class="math inline">\(Q_1\)</span> and the median, and another 25% falls between the median and <span class="math inline">\(Q_3\)</span>.<a href="NUMDATA.html#fnref48" class="footnote-back">↩︎</a></p></li>
-<li id="fn49"><p>While the choice of exactly 1.5 is arbitrary, it is the most commonly used value for box plots.<a href="NUMDATA.html#fnref49" class="footnote-back">↩︎</a></p></li>
-<li id="fn50"><p>That occasionally there may be very long emails.<a href="NUMDATA.html#fnref50" class="footnote-back">↩︎</a></p></li>
-<li id="fn51"><p>These visual estimates will vary a little from one person to the next: <span class="math inline">\(Q_1\)</span> ~ 3,000, <span class="math inline">\(Q_3\)</span> ~ 15,000, IQR=<span class="math inline">\(Q_3 - Q_1\)</span> ~ 12,000. (The true values: <span class="math inline">\(Q_1=\)</span> 2,536, <span class="math inline">\(Q_3=\)</span> 15,411, IQR = 12,875.)<a href="NUMDATA.html#fnref51" class="footnote-back">↩︎</a></p></li>
-<li id="fn52"><p>(a) Mean is affected more. (b) Standard deviation is affected more.<a href="NUMDATA.html#fnref52" class="footnote-back">↩︎</a></p></li>
-<li id="fn53"><p>The median and IQR are only sensitive to numbers near <span class="math inline">\(Q_1\)</span>, the median, and <span class="math inline">\(Q_3\)</span>. Since values in these regions are relatively stable – there aren’t large jumps between observations – the median and IQR estimates are also quite stable.<a href="NUMDATA.html#fnref53" class="footnote-back">↩︎</a></p></li>
-<li id="fn54"><p>Buyers of a <em>regular car</em> should be concerned about the median price. High-end car sales can drastically inflate the mean price while the median will be more robust to the influence of those sales.<a href="NUMDATA.html#fnref54" class="footnote-back">↩︎</a></p></li>
-<li id="fn55"><p>Most of the data are collected into one bin in the histogram and the data are so strongly skewed that many details in the data are obscured.<a href="NUMDATA.html#fnref55" class="footnote-back">↩︎</a></p></li>
-<li id="fn56"><p>Statisticians often write the natural logarithm as <span class="math inline">\(\log\)</span>. You might be more familiar with it being written as <span class="math inline">\(\ln\)</span>.<a href="NUMDATA.html#fnref56" class="footnote-back">↩︎</a></p></li>
-</ol>
-</div>
-  </main>
-
-  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page">
-      <h2>On this page</h2>
-      <div id="book-on-this-page"></div>
+  <div class="chapter-nav">
+<div class="prev"><a href="STUDY.html"><span class="header-section-number">4</span> Studies</a></div>
+<div class="next"><a href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#NUMDATA"><span class="header-section-number">5</span> Numerical Data</a></li>
+<li><a class="nav-link" href="#objectives-4"><span class="header-section-number">5.1</span> Objectives</a></li>
+<li>
+<a class="nav-link" href="#numerical-data"><span class="header-section-number">5.2</span> Numerical Data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#scatterplots-for-paired-data"><span class="header-section-number">5.2.1</span> Scatterplots for paired data</a></li>
+<li><a class="nav-link" href="#dot-plots-and-the-mean"><span class="header-section-number">5.2.2</span> Dot plots and the mean</a></li>
+<li><a class="nav-link" href="#histograms-and-shape"><span class="header-section-number">5.2.3</span> Histograms and shape</a></li>
+<li><a class="nav-link" href="#variance-and-standard-deviation"><span class="header-section-number">5.2.4</span> Variance and standard deviation</a></li>
+<li><a class="nav-link" href="#box-plots-quartiles-and-the-median"><span class="header-section-number">5.2.5</span> Box plots, quartiles, and the median</a></li>
+<li><a class="nav-link" href="#robust-statistics"><span class="header-section-number">5.2.6</span> Robust statistics</a></li>
+<li><a class="nav-link" href="#transforming-data"><span class="header-section-number">5.2.7</span> Transforming data</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#homework-problems-4"><span class="header-section-number">5.3</span> Homework Problems</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/05-Numerical-Data.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/05-Numerical-Data.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
-      </div>
+</div>
     </nav>
-  </div>
+</div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5">
-  <div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-14.</p>
@@ -575,11 +602,7 @@ Figure 5.14: A scatterplot of <code>line_breaks</code> versus <code>num_char</co
   </div>
 
 </div></div>
-</footer>
-
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -591,8 +614,7 @@ Figure 5.14: A scatterplot of <code>line_breaks</code> versus <code>num_char</co
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script>
-<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
 for (let popover of popovers) {
   const div = document.createElement('div');
   div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
@@ -610,5 +632,4 @@ for (let popover of popovers) {
 }
 </script>
 </body>
-
 </html>

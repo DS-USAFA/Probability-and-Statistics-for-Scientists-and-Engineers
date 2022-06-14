@@ -1,53 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <title>Chapter 8 Probability Rules | Computational Probability and Statistics</title>
-
-    <meta name="author" content="Matthew Davis" />
-    <meta name="author" content="Brianna Hitt" />
-    <meta name="author" content="Ken Horton" />
-    <meta name="author" content="Bradley Warner" />
-  
-   <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-   <meta name="generator" content="placeholder" />
-  <meta property="og:title" content="Chapter 8 Probability Rules | Computational Probability and Statistics" />
-  <meta property="og:type" content="book" />
-  
-  <meta property="og:image" content="/figures/Cover.png" />
-  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Probability Rules | Computational Probability and Statistics" />
-  
-  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-  <meta name="twitter:image" content="/figures/Cover.png" />
-  <!-- JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
-    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
-    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
-    <script src="libs/bs3compat-0.3.1/transition.js"></script>
-    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
-    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
-    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
-    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
-    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
-
-  <!-- CSS -->
-  <style type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 8 Probability Rules | Computational Probability and Statistics</title>
+<meta name="author" content="Matthew Davis">
+<meta name="author" content="Brianna Hitt">
+<meta name="author" content="Ken Horton">
+<meta name="author" content="Bradley Warner">
+<meta name="description" content="8.1 Objectives Define and use properly in context all new terminology related to probability to include but not limited to: outcome, event, sample space, probability. Apply basic probability and...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="Chapter 8 Probability Rules | Computational Probability and Statistics">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/figures/Cover.png">
+<meta property="og:description" content="8.1 Objectives Define and use properly in context all new terminology related to probability to include but not limited to: outcome, event, sample space, probability. Apply basic probability and...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 8 Probability Rules | Computational Probability and Statistics">
+<meta name="twitter:description" content="8.1 Objectives Define and use properly in context all new terminology related to probability to include but not limited to: outcome, event, sample space, probability. Apply basic probability and...">
+<meta name="twitter:image" content="/figures/Cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
-    <style type="text/css">
+<style type="text/css">
     /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
     div.csl-bib-body { }
     div.csl-entry {
@@ -69,16 +49,13 @@
       margin-left: 2em;
     }
   </style>
-      <link rel="stylesheet" href="style.css" />
-  
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
-    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -90,55 +67,101 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-      </form>
+</form>
 
-      <nav aria-label="Table of contents">
-        <h2>Table of contents</h2>
-        <div id="book-toc"></div>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Preface</a></li>
+<li class="book-part">Descriptive Statistical Modeling</li>
+<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
+<li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
+<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
+<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
+<li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
+<li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
+<li class="book-part">Probability Modeling</li>
+<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
+<li><a class="active" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
+<li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
+<li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
+<li><a class="" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
+<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
+<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
+<li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
+<li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
+<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
+<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
+<li class="book-part">Statistical Modeling</li>
+<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
+<li><a class="" href="HYPOTEST.html"><span class="header-section-number">19</span> Hypothesis Testing</a></li>
+<li><a class="" href="PVALUES.html"><span class="header-section-number">20</span> Empirical p-values</a></li>
+<li><a class="" href="CLT.html"><span class="header-section-number">21</span> Central Limit Theorem</a></li>
+<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
+<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
+<li><a class="" href="ADDTESTS.html"><span class="header-section-number">24</span> Additional Hypothesis Tests</a></li>
+<li class="book-part">Predictive Statistical Modeling</li>
+<li><a class="" href="CS4.html"><span class="header-section-number">25</span> Case Study</a></li>
+<li><a class="" href="LRBASICS.html"><span class="header-section-number">26</span> Linear Regression Basics</a></li>
+<li><a class="" href="LRINF.html"><span class="header-section-number">27</span> Linear Regression Inference</a></li>
+<li><a class="" href="LRDIAG.html"><span class="header-section-number">28</span> Regression Diagnostics</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">29</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRMULTI.html"><span class="header-section-number">30</span> Multiple Linear Regression</a></li>
+<li><a class="" href="LOGREG.html"><span class="header-section-number">31</span> Logistic Regression</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
+          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
-    </div>
-  </header>
-
-  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
-<div id="PROBRULES" class="section level1" number="8">
-<h1><span class="header-section-number">Chapter 8</span> Probability Rules</h1>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="PROBRULES" class="section level1" number="8">
+<h1>
+<span class="header-section-number">8</span> Probability Rules<a class="anchor" aria-label="anchor" href="#PROBRULES"><i class="fas fa-link"></i></a>
+</h1>
 <div id="objectives-7" class="section level2" number="8.1">
-<h2><span class="header-section-number">8.1</span> Objectives</h2>
+<h2>
+<span class="header-section-number">8.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-7"><i class="fas fa-link"></i></a>
+</h2>
 <ol style="list-style-type: decimal">
-<li>Define and use properly in context all new terminology related to probability to include but not limited to: outcome, event, sample space, probability.<br />
+<li>Define and use properly in context all new terminology related to probability to include but not limited to: outcome, event, sample space, probability.<br>
 </li>
-<li>Apply basic probability and counting rules to find probabilities.<br />
+<li>Apply basic probability and counting rules to find probabilities.<br>
 </li>
-<li>Describe the basic axioms of probability.<br />
+<li>Describe the basic axioms of probability.<br>
 </li>
 <li>Use <code>R</code> to calculate and simulate probabilities of events.</li>
 </ol>
 </div>
 <div id="probability-vs-statistics" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> Probability vs Statistics</h2>
+<h2>
+<span class="header-section-number">8.2</span> Probability vs Statistics<a class="anchor" aria-label="anchor" href="#probability-vs-statistics"><i class="fas fa-link"></i></a>
+</h2>
 <p>As a review, remember this course is divided into four general blocks: data collection/summary, probability models, inference and statistical modeling/prediction. This second block, probability, is the study of stochastic (random) processes and their properties. Specifically, we will explore random experiments. As its name suggests, a random experiment is an experiment whose outcome is not predictable with exact certainty. In the statistical models we develop in the last two blocks of this course, we will use other variables to explain the variance of the outcome of interest. Any remaining variance is modeled with probability models.</p>
 <p>Even though an outcome is determined by chance, this does not mean that we know nothing about the random experiment. Our favorite simple example is that of a coin flip. If we flip a coin, the possible outcomes are heads and tails. We don’t know for sure what outcome will occur, but this doesn’t mean we don’t know anything about the experiment. If we assume the coin is fair, we know that each outcome is equally likely. Also, we know that if we flip the coin 100 times (independently), we are likely, the highest frequency event, to see around 50 heads, and very unlikely to see 10 heads or fewer.</p>
 <p>It is important to distinguish probability from inference and modeling. In probability, we consider a known random experiment, including knowing the parameters, and answer questions about what we expect to see from this random experiment. In statistics (inference and modeling), we consider data (the results of a mysterious random experiment) and infer about the underlying process. For example, suppose we have a coin and we are unsure whether this coin is fair or unfair, the parameter is unknown. We flipped it 20 times and it landed on heads 14 times. Inferential statistics will help us answer questions about the underlying process (could this coin be unfair?).</p>
 <p>This block (9 lessons or so) is devoted to the study of random experiments. First, we will explore simple experiments, counting rule problems, and conditional probability. Next, we will introduce the concept of a random variable and the properties of random variables. Following this, we will cover common distributions of discrete and continuous random variables. We will end the block on multivariate probability (joint distributions and covariance).</p>
 </div>
 <div id="basic-probability-terms" class="section level2" number="8.3">
-<h2><span class="header-section-number">8.3</span> Basic probability terms</h2>
+<h2>
+<span class="header-section-number">8.3</span> Basic probability terms<a class="anchor" aria-label="anchor" href="#basic-probability-terms"><i class="fas fa-link"></i></a>
+</h2>
 <p>We will start our work with some definitions and examples.</p>
 <div id="sample-space" class="section level3" number="8.3.1">
-<h3><span class="header-section-number">8.3.1</span> Sample space</h3>
+<h3>
+<span class="header-section-number">8.3.1</span> Sample space<a class="anchor" aria-label="anchor" href="#sample-space"><i class="fas fa-link"></i></a>
+</h3>
 <p>Suppose we have a random experiment. The <em>sample space</em> of this experiment, <span class="math inline">\(S\)</span>, is the set of all possible results of that experiment. For example, in the case of a coin flip, we could write <span class="math inline">\(S=\{H,T\}\)</span>. Each element of the sample space is considered an <em>outcome</em>. An <em>event</em> is a set of outcomes, it is a subset of the sample space.</p>
 <blockquote>
-<p><em>Example</em>:<br />
+<p><em>Example</em>:<br>
 Let’s let <code>R</code> flip a coin for us and record the number of heads and tails. We will have <code>R</code> flip the coin twice. What is the sample space, what is an example of an outcome, and what is an example of an event.</p>
 </blockquote>
-<p>We will load the <strong>mosaic</strong> package as it has a function <code>rflip()</code> that will simulate flipping a coin.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="PROBRULES.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span></code></pre></div>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="PROBRULES.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">18</span>)</span>
-<span id="cb173-2"><a href="PROBRULES.html#cb173-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rflip</span>(<span class="dv">2</span>)</span></code></pre></div>
+<p>We will load the <strong>mosaic</strong> package as it has a function <code><a href="https://www.mosaic-web.org/mosaic/reference/rflip.html">rflip()</a></code> that will simulate flipping a coin.</p>
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ProjectMOSAIC/mosaic">mosaic</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">18</span><span class="op">)</span>
+<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/rflip.html">rflip</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## Flipping 2 coins [ Prob(Heads) = 0.5 ] ...
 ## 
@@ -147,7 +170,7 @@ Let’s let <code>R</code> flip a coin for us and record the number of heads and
 ## Number of Heads: 2 [Proportion Heads: 1]</code></pre>
 <p>The sample space is <span class="math inline">\(S=\{HH, TH, HT, TT\}\)</span>, an example of an outcome is <span class="math inline">\(HH\)</span> which we see in the output from <code>R</code>, and finally an example of an event is the number of heads, which in this case takes on the values 0, 1, and 2. Another example of an event is “At least one heads”. In this case the event would be <span class="math inline">\(\{HH,TH, HT\}\)</span>. Also notice that <span class="math inline">\(TH\)</span> is different from <span class="math inline">\(HT\)</span> as an outcome; this is because those are different outcomes from flipping a coin twice.</p>
 <blockquote>
-<p><em>Example of Event</em>:<br />
+<p><em>Example of Event</em>:<br>
 Suppose you arrive at a rental car counter and they show you a list of available vehicles, and one is picked for you at random. The sample space in this experiment is
 <span class="math display">\[
 S=\{\mbox{red sedan}, \mbox{blue sedan}, \mbox{red truck}, \mbox{grey truck}, \mbox{grey SUV}, \mbox{black SUV}, \mbox{blue SUV}\}.
@@ -156,18 +179,20 @@ S=\{\mbox{red sedan}, \mbox{blue sedan}, \mbox{red truck}, \mbox{grey truck}, \m
 <p>Each vehicle represents a possible outcome of the experiment. Let <span class="math inline">\(A\)</span> be the event that a blue vehicle is selected. This event contains the outcomes <code>blue sedan</code> and <code>blue SUV</code>.</p>
 </div>
 <div id="union-and-intersection" class="section level3" number="8.3.2">
-<h3><span class="header-section-number">8.3.2</span> Union and intersection</h3>
+<h3>
+<span class="header-section-number">8.3.2</span> Union and intersection<a class="anchor" aria-label="anchor" href="#union-and-intersection"><i class="fas fa-link"></i></a>
+</h3>
 <p>Suppose we have two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.</p>
 <ol style="list-style-type: decimal">
 <li><p><span class="math inline">\(A\)</span> is considered a <em>subset</em> of <span class="math inline">\(B\)</span> if all of the outcomes of <span class="math inline">\(A\)</span> are also contained in <span class="math inline">\(B\)</span>. This is denoted as <span class="math inline">\(A \subset B\)</span>.</p></li>
 <li><p>The <em>intersection</em> of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is all of the outcomes contained in both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. This is denoted as <span class="math inline">\(A \cap B\)</span>.</p></li>
 <li><p>The <em>union</em> of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is all of the outcomes contained in either <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span>, or both. This is denoted as <span class="math inline">\(A \cup B\)</span>.</p></li>
-<li><p>The <em>complement</em> of <span class="math inline">\(A\)</span> is all of the outcomes not contained in <span class="math inline">\(A\)</span>. This is denoted as <span class="math inline">\(A^C\)</span> or <span class="math inline">\(A&#39;\)</span>.</p></li>
+<li><p>The <em>complement</em> of <span class="math inline">\(A\)</span> is all of the outcomes not contained in <span class="math inline">\(A\)</span>. This is denoted as <span class="math inline">\(A^C\)</span> or <span class="math inline">\(A'\)</span>.</p></li>
 </ol>
 <p>Note: Here we are treating events as sets and the above definitions are basic set operations.</p>
 <p>It is sometimes helpful when reading probability notation to think of Union as an <em>or</em> and Intersection as an <em>and</em>.</p>
 <blockquote>
-<p><em>Example</em>:<br />
+<p><em>Example</em>:<br>
 Consider our rental car example above. Let <span class="math inline">\(A\)</span> be the event that a blue vehicle is selected, let <span class="math inline">\(B\)</span> be the event that a black vehicle is selected, and let <span class="math inline">\(C\)</span> be the event that an SUV is selected.</p>
 </blockquote>
 <p>First, let’s list all of the outcomes of each event. <span class="math inline">\(A = \{\mbox{blue sedan},\mbox{blue SUV}\}\)</span>, <span class="math inline">\(B=\{\mbox{black SUV}\}\)</span>, and <span class="math inline">\(C= \{\mbox{grey SUV}, \mbox{black SUV}, \mbox{blue SUV}\}\)</span>.</p>
@@ -175,7 +200,9 @@ Consider our rental car example above. Let <span class="math inline">\(A\)</span
 </div>
 </div>
 <div id="probability" class="section level2" number="8.4">
-<h2><span class="header-section-number">8.4</span> Probability</h2>
+<h2>
+<span class="header-section-number">8.4</span> Probability<a class="anchor" aria-label="anchor" href="#probability"><i class="fas fa-link"></i></a>
+</h2>
 <p><em>Probability</em> is a number assigned to an event or outcome that describes how likely it is to occur. A probability model assigns a probability to each element of the sample space. What makes a probability model is not just the values assigned to each element but the idea this model contains all the information about the outcomes and there are no other explanatory variables involved.</p>
 <p>A probability model can be thought of as a function that maps outcomes, or events, to a real number in the interval <span class="math inline">\([0,1]\)</span>.</p>
 <p>There are some basic axioms of probability you should know, although this list is not complete. Let <span class="math inline">\(S\)</span> be the sample space of a random experiment and let <span class="math inline">\(A\)</span> be an event where <span class="math inline">\(A\subset S\)</span>.</p>
@@ -185,11 +212,13 @@ Consider our rental car example above. Let <span class="math inline">\(A\)</span
 </ol>
 <p>These two axioms essentially say that probability must be positive, and the probability of all outcomes must sum to 1.</p>
 <div id="probability-properties" class="section level3" number="8.4.1">
-<h3><span class="header-section-number">8.4.1</span> Probability properties</h3>
+<h3>
+<span class="header-section-number">8.4.1</span> Probability properties<a class="anchor" aria-label="anchor" href="#probability-properties"><i class="fas fa-link"></i></a>
+</h3>
 <p>Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> be events in a random experiment. Most of these can be proven fairly easily.</p>
 <ol style="list-style-type: decimal">
 <li><p><span class="math inline">\(\mbox{P}(\emptyset)=0\)</span></p></li>
-<li><p><span class="math inline">\(\mbox{P}(A&#39;)=1-\mbox{P}(A)\)</span> We used this in the case study.</p></li>
+<li><p><span class="math inline">\(\mbox{P}(A')=1-\mbox{P}(A)\)</span> We used this in the case study.</p></li>
 <li><p>If <span class="math inline">\(A\subset B\)</span>, then <span class="math inline">\(\mbox{P}(A)\leq \mbox{P}(B)\)</span>.</p></li>
 <li><p><span class="math inline">\(\mbox{P}(A\cup B) = \mbox{P}(A)+\mbox{P}(B)-\mbox{P}(A\cap B)\)</span>. This property can be generalized to more than two events. The intersection is subtracted because outcomes in both events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> get counted twice in the first sum.</p></li>
 <li><p>Law of Total Probability: Let <span class="math inline">\(B_1, B_2,...,B_n\)</span> be <strong>mutually exclusive</strong>, this means disjoint or no outcomes in common, and <strong>exhaustive</strong>, this means the union of all the events labeled with a <span class="math inline">\(B\)</span> is the sample space. Then</p></li>
@@ -197,33 +226,36 @@ Consider our rental car example above. Let <span class="math inline">\(A\)</span
 <p><span class="math display">\[
 \mbox{P}(A)=\mbox{P}(A\cap B_1)+\mbox{P}(A\cap B_2)+...+\mbox{P}(A\cap B_n)
 \]</span></p>
-<p>A specific application of this law appears in Bayes’ Rule (more to follow). It says that <span class="math inline">\(\mbox{P}(A)=\mbox{P}(A \cap B)+\mbox{P}(A \cap B&#39;)\)</span>. Essentially, it points out that <span class="math inline">\(A\)</span> can be partitioned into two parts: 1) everything in <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> and 2) everything in <span class="math inline">\(A\)</span> and not in <span class="math inline">\(B\)</span>.</p>
+<p>A specific application of this law appears in Bayes’ Rule (more to follow). It says that <span class="math inline">\(\mbox{P}(A)=\mbox{P}(A \cap B)+\mbox{P}(A \cap B')\)</span>. Essentially, it points out that <span class="math inline">\(A\)</span> can be partitioned into two parts: 1) everything in <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> and 2) everything in <span class="math inline">\(A\)</span> and not in <span class="math inline">\(B\)</span>.</p>
 <blockquote>
-<p><em>Example</em>:<br />
+<p><em>Example</em>:<br>
 Consider rolling a six sided die. Let event <span class="math inline">\(A\)</span> be the number showing is less than 5. Let event <span class="math inline">\(B\)</span> be the number is even. Then</p>
 </blockquote>
-<p><span class="math display">\[\mbox{P}(A)=\mbox{P}(A \cap B) + \mbox{P}(A \cap B&#39;)\]</span></p>
+<p><span class="math display">\[\mbox{P}(A)=\mbox{P}(A \cap B) + \mbox{P}(A \cap B')\]</span></p>
 <p><span class="math display">\[
 \mbox{P}(&lt; 5)=\mbox{P}(&lt;5 \cap Even)+\mbox{P}(&lt;5 \cap Odd)
 \]</span></p>
 <ol start="6" style="list-style-type: decimal">
 <li>DeMorgan’s Laws:
 <span class="math display">\[
-\mbox{P}((A \cup B)&#39;)=\mbox{P}(A&#39; \cap B&#39;)
+\mbox{P}((A \cup B)')=\mbox{P}(A' \cap B')
 \]</span>
 <span class="math display">\[
-\mbox{P}((A \cap B)&#39;)=\mbox{P}(A&#39; \cup B&#39;)
-\]</span></li>
+\mbox{P}((A \cap B)')=\mbox{P}(A' \cup B')
+\]</span>
+</li>
 </ol>
 </div>
 <div id="equally-likely-scenarios" class="section level3" number="8.4.2">
-<h3><span class="header-section-number">8.4.2</span> Equally likely scenarios</h3>
+<h3>
+<span class="header-section-number">8.4.2</span> Equally likely scenarios<a class="anchor" aria-label="anchor" href="#equally-likely-scenarios"><i class="fas fa-link"></i></a>
+</h3>
 <p>In some random experiments, outcomes can be defined such that each individual outcome is equally likely. In this case, probability becomes a counting problem. Let <span class="math inline">\(A\)</span> be an event in an experiment where each outcome is equally likely.
 <span class="math display">\[
 \mbox{P}(A)=\frac{\mbox{# of outcomes in A}}{\mbox{# of outcomes in S}}
 \]</span></p>
 <blockquote>
-<p><em>Example</em>:<br />
+<p><em>Example</em>:<br>
 Suppose a family has three children, with each child being either a boy (B) or girl (G). Assume that the likelihood of boys and girls are equal and <strong>independent</strong>, this is the idea that the probability of the gender of the second child does not change based on the gender of the first child. The sample space can be written as:
 <span class="math display">\[
 S=\{\mbox{BBB},\mbox{BBG},\mbox{BGB},\mbox{BGG},\mbox{GBB},\mbox{GBG},\mbox{GGB},\mbox{GGG}\}
@@ -233,25 +265,29 @@ What is the probability that the family has exactly 2 girls?</p>
 <p>This only happens in three ways: BGG, GBG, and GGB. Thus, the probability of exactly 2 girls is 3/8 or 0.375.</p>
 </div>
 <div id="using-r-equally-likely-scenarios" class="section level3" number="8.4.3">
-<h3><span class="header-section-number">8.4.3</span> Using <code>R</code> (Equally likely scenarios)</h3>
+<h3>
+<span class="header-section-number">8.4.3</span> Using <code>R</code> (Equally likely scenarios)<a class="anchor" aria-label="anchor" href="#using-r-equally-likely-scenarios"><i class="fas fa-link"></i></a>
+</h3>
 <p>The previous example above is an example of an “Equally Likely” scenario, where the sample space of a random experiment contains a list of outcomes that are equally likely. In these cases, we can sometimes use <code>R</code> to list out the possible outcomes and count them to determine probability. We can also use <code>R</code> to simulate.</p>
 <blockquote>
-<p><em>Example</em>:<br />
+<p><em>Example</em>:<br>
 Use <code>R</code> to simulate the family of three children where each child has the same probability of being a boy or a girl.</p>
 </blockquote>
-<p>Instead of writing our own function, we can use <code>rflip()</code> in the <strong>mosaic</strong> package. We will let <span class="math inline">\(H\)</span> stand for girl.</p>
+<p>Instead of writing our own function, we can use <code><a href="https://www.mosaic-web.org/mosaic/reference/rflip.html">rflip()</a></code> in the <strong>mosaic</strong> package. We will let <span class="math inline">\(H\)</span> stand for girl.</p>
 <p>First simulate one family.</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="PROBRULES.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">73</span>)</span>
-<span id="cb175-2"><a href="PROBRULES.html#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rflip</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">73</span><span class="op">)</span>
+<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/rflip.html">rflip</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## Flipping 3 coins [ Prob(Heads) = 0.5 ] ...
 ## 
 ## T T H
 ## 
 ## Number of Heads: 1 [Proportion Heads: 0.333333333333333]</code></pre>
-<p>In this case we got 1 girl. Next we will use the <code>do()</code> function to repeat this simulation.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="PROBRULES.html#cb177-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">rflip</span>(<span class="dv">3</span>)</span>
-<span id="cb177-2"><a href="PROBRULES.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results)</span></code></pre></div>
+<p>In this case we got 1 girl. Next we will use the <code><a href="https://dplyr.tidyverse.org/reference/do.html">do()</a></code> function to repeat this simulation.</p>
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/rflip.html">rflip</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>##   n heads tails      prop
 ## 1 3     1     2 0.3333333
 ## 2 3     3     0 1.0000000
@@ -260,27 +296,31 @@ Use <code>R</code> to simulate the family of three children where each child has
 ## 5 3     1     2 0.3333333
 ## 6 3     1     2 0.3333333</code></pre>
 <p>Next we can visualize the distribution of the number of girls, heads, in Figure <a href="PROBRULES.html#fig:bar81-fig">8.1</a>.</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="PROBRULES.html#cb179-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb179-2"><a href="PROBRULES.html#cb179-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_bar</span>(<span class="sc">~</span>heads) <span class="sc">%&gt;%</span></span>
-<span id="cb179-3"><a href="PROBRULES.html#cb179-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb179-4"><a href="PROBRULES.html#cb179-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;NUmber of girls&quot;</span>,<span class="at">y=</span><span class="st">&quot;Count&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:bar81-fig"></span>
-<img src="08-Probability-Rules_files/figure-html/bar81-fig-1.png" alt="Number of girls in a family of size 3." width="672" />
-<p class="caption">
+<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span><span class="va">heads</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"NUmber of girls"</span>,y<span class="op">=</span><span class="st">"Count"</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:bar81-fig"></span>
+<img src="08-Probability-Rules_files/figure-html/bar81-fig-1.png" alt="Number of girls in a family of size 3." width="672"><p class="caption">
 Figure 8.1: Number of girls in a family of size 3.
 </p>
 </div>
 <p>Finally we can estimate the probability of exactly 2 girls. We need the <strong>tidyverse</strong> library.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="PROBRULES.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="PROBRULES.html#cb181-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb181-2"><a href="PROBRULES.html#cb181-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(heads<span class="sc">==</span><span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb181-3"><a href="PROBRULES.html#cb181-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prob=</span><span class="fu">n</span>()<span class="sc">/</span><span class="dv">10000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">heads</span><span class="op">==</span><span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span><span class="op">)</span></code></pre></div>
 <pre><code>##     prob
 ## 1 0.3782</code></pre>
 <p>Or slightly different code.</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="PROBRULES.html#cb183-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb183-2"><a href="PROBRULES.html#cb183-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(heads) <span class="sc">%&gt;%</span></span>
-<span id="cb183-3"><a href="PROBRULES.html#cb183-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop=</span>n<span class="sc">/</span><span class="fu">sum</span>(n))</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">heads</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prop<span class="op">=</span><span class="va">n</span><span class="op">/</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##   heads    n   prop
 ## 1     0 1241 0.1241
 ## 2     1 3786 0.3786
@@ -288,8 +328,9 @@ Figure 8.1: Number of girls in a family of size 3.
 ## 4     3 1191 0.1191</code></pre>
 <p>Not a bad estimate of the exact probability.</p>
 <p>Let’s now use an example of cards to simulate some probabilities as well as learning more about counting. The file <code>Cards.csv</code> contains the data for cards from a 52 card deck. Let’s read it in and summarize.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="PROBRULES.html#cb185-1" aria-hidden="true" tabindex="-1"></a>Cards <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/Cards.csv&quot;</span>)</span>
-<span id="cb185-2"><a href="PROBRULES.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(Cards)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Cards</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/Cards.csv"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">Cards</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
 ##   name     class levels  n missing
@@ -304,7 +345,8 @@ Figure 8.1: Number of girls in a family of size 3.
 ## ...1 probs numeric 0.01923077 0.01923077 0.01923077 0.01923077 0.01923077
 ##            mean sd  n missing
 ## ...1 0.01923077  0 52       0</code></pre>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="PROBRULES.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Cards)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">Cards</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   rank  suit   probs
 ##   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;
@@ -316,13 +358,14 @@ Figure 8.1: Number of girls in a family of size 3.
 ## 6 7     Club  0.0192</code></pre>
 <p>We can see 4 suits, and 13 ranks, the value on the face of the card.</p>
 <blockquote>
-<p><em>Example</em>:<br />
+<p><em>Example</em>:<br>
 Suppose we draw one card out of a standard deck. Let <span class="math inline">\(A\)</span> be the event that we draw a Club. Let <span class="math inline">\(B\)</span> be the event that we draw a 10 or a face card (Jack, Queen, King or Ace). We can use <code>R</code> to define these events and find probabilities.</p>
 </blockquote>
 <p>Let’s find all the Clubs.</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="PROBRULES.html#cb189-1" aria-hidden="true" tabindex="-1"></a>Cards <span class="sc">%&gt;%</span></span>
-<span id="cb189-2"><a href="PROBRULES.html#cb189-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(suit <span class="sc">==</span> <span class="st">&quot;Club&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb189-3"><a href="PROBRULES.html#cb189-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank,suit)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Cards</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">suit</span> <span class="op">==</span> <span class="st">"Club"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">rank</span>,<span class="va">suit</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 13 x 2
 ##    rank  suit 
 ##    &lt;chr&gt; &lt;chr&gt;
@@ -342,8 +385,9 @@ Suppose we draw one card out of a standard deck. Let <span class="math inline">\
 <p>So just by counting, we find the probability of drawing a Club is <span class="math inline">\(\frac{13}{52}\)</span> or 0.25.</p>
 <p>We can do this by simulation, this is over kill but gets the idea of simulation across.</p>
 <p>Remember, ask what do we want <code>R</code> to do and what does <code>R</code> need to do this?</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="PROBRULES.html#cb191-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">sample</span>(Cards,<span class="dv">1</span>)</span>
-<span id="cb191-2"><a href="PROBRULES.html#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">Cards</span>,<span class="fl">1</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##   rank  suit   probs orig.id  .row .index
 ##   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;  &lt;dbl&gt;
@@ -353,16 +397,18 @@ Suppose we draw one card out of a standard deck. Let <span class="math inline">\
 ## 4 7     Heart 0.0192 32          1      4
 ## 5 4     Club  0.0192 3           1      5
 ## 6 A     Spade 0.0192 52          1      6</code></pre>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="PROBRULES.html#cb193-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb193-2"><a href="PROBRULES.html#cb193-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(suit <span class="sc">==</span> <span class="st">&quot;Club&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb193-3"><a href="PROBRULES.html#cb193-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prob=</span><span class="fu">n</span>()<span class="sc">/</span><span class="dv">10000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">suit</span> <span class="op">==</span> <span class="st">"Club"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##    prob
 ##   &lt;dbl&gt;
 ## 1 0.243</code></pre>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="PROBRULES.html#cb195-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb195-2"><a href="PROBRULES.html#cb195-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(suit) <span class="sc">%&gt;%</span></span>
-<span id="cb195-3"><a href="PROBRULES.html#cb195-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prob=</span>n<span class="sc">/</span><span class="fu">sum</span>(n))</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">suit</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prob<span class="op">=</span><span class="va">n</span><span class="op">/</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##   suit        n  prob
 ##   &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt;
@@ -371,9 +417,10 @@ Suppose we draw one card out of a standard deck. Let <span class="math inline">\
 ## 3 Heart    2417 0.242
 ## 4 Spade    2593 0.259</code></pre>
 <p>Now let’s count the number of outcomes in <span class="math inline">\(B\)</span>.</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="PROBRULES.html#cb197-1" aria-hidden="true" tabindex="-1"></a>Cards <span class="sc">%&gt;%</span></span>
-<span id="cb197-2"><a href="PROBRULES.html#cb197-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="st">&quot;J&quot;</span>, <span class="st">&quot;Q&quot;</span>, <span class="st">&quot;K&quot;</span>, <span class="st">&quot;A&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb197-3"><a href="PROBRULES.html#cb197-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank,suit)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Cards</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="st">"J"</span>, <span class="st">"Q"</span>, <span class="st">"K"</span>, <span class="st">"A"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">rank</span>,<span class="va">suit</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 20 x 2
 ##    rank  suit   
 ##    &lt;chr&gt; &lt;chr&gt;  
@@ -399,11 +446,12 @@ Suppose we draw one card out of a standard deck. Let <span class="math inline">\
 ## 20 A     Spade</code></pre>
 <p>So just by counting, we find the probability of drawing a 10 or greater is <span class="math inline">\(\frac{20}{52}\)</span> or 0.3846154.</p>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
+<p><strong>Exercise</strong>:<br>
 Using simulation to estimate the probability of 10 or higher.</p>
 </blockquote>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="PROBRULES.html#cb199-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">sample</span>(Cards,<span class="dv">1</span>)</span>
-<span id="cb199-2"><a href="PROBRULES.html#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">Cards</span>,<span class="fl">1</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##   rank  suit   probs orig.id  .row .index
 ##   &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;  &lt;dbl&gt;
@@ -413,26 +461,29 @@ Using simulation to estimate the probability of 10 or higher.</p>
 ## 4 J     Heart 0.0192 36          1      4
 ## 5 Q     Spade 0.0192 50          1      5
 ## 6 10    Club  0.0192 9           1      6</code></pre>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="PROBRULES.html#cb201-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb201-2"><a href="PROBRULES.html#cb201-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="st">&quot;J&quot;</span>, <span class="st">&quot;Q&quot;</span>, <span class="st">&quot;K&quot;</span>, <span class="st">&quot;A&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb201-3"><a href="PROBRULES.html#cb201-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prob=</span><span class="fu">n</span>()<span class="sc">/</span><span class="dv">10000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="st">"J"</span>, <span class="st">"Q"</span>, <span class="st">"K"</span>, <span class="st">"A"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##    prob
 ##   &lt;dbl&gt;
 ## 1 0.389</code></pre>
-<p>Notice that this code is not robust to change the number of simulations. If we change from 10000, then we have to change the denominator in the <code>summarize()</code> function. We can change this by using <code>mutate()</code> instead of <code>filter()</code>.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="PROBRULES.html#cb203-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb203-2"><a href="PROBRULES.html#cb203-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">face=</span>rank <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="st">&quot;J&quot;</span>, <span class="st">&quot;Q&quot;</span>, <span class="st">&quot;K&quot;</span>, <span class="st">&quot;A&quot;</span>))<span class="sc">%&gt;%</span></span>
-<span id="cb203-3"><a href="PROBRULES.html#cb203-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prob=</span><span class="fu">mean</span>(face))</span></code></pre></div>
+<p>Notice that this code is not robust to change the number of simulations. If we change from 10000, then we have to change the denominator in the <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> function. We can change this by using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> instead of <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>.</p>
+<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>face<span class="op">=</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="st">"J"</span>, <span class="st">"Q"</span>, <span class="st">"K"</span>, <span class="st">"A"</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">face</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##    prob
 ##   &lt;dbl&gt;
 ## 1 0.389</code></pre>
-<p>Notice that in the <code>mutate()</code> function, we are creating a new logical variable called <code>face</code>. This variable takes on the values of TRUE and FALSE. In the next line we use a <code>summarize()</code> command with the function <code>mean()</code>. In <code>R</code> a function that requires numeric input takes a logical variable and converts the TRUE into 1 and the FALSE into 0. Thus the <code>mean()</code> will find the proportion of TRUE values and that is why we report it as a probability.</p>
+<p>Notice that in the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> function, we are creating a new logical variable called <code>face</code>. This variable takes on the values of TRUE and FALSE. In the next line we use a <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> command with the function <code><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean()</a></code>. In <code>R</code> a function that requires numeric input takes a logical variable and converts the TRUE into 1 and the FALSE into 0. Thus the <code><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean()</a></code> will find the proportion of TRUE values and that is why we report it as a probability.</p>
 <p>Next, let’s find a card that is 10 or greater <strong>and</strong> a club.</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="PROBRULES.html#cb205-1" aria-hidden="true" tabindex="-1"></a>Cards <span class="sc">%&gt;%</span></span>
-<span id="cb205-2"><a href="PROBRULES.html#cb205-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="st">&quot;J&quot;</span>, <span class="st">&quot;Q&quot;</span>, <span class="st">&quot;K&quot;</span>, <span class="st">&quot;A&quot;</span>),suit<span class="sc">==</span><span class="st">&quot;Club&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb205-3"><a href="PROBRULES.html#cb205-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank,suit)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Cards</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="st">"J"</span>, <span class="st">"Q"</span>, <span class="st">"K"</span>, <span class="st">"A"</span><span class="op">)</span>,<span class="va">suit</span><span class="op">==</span><span class="st">"Club"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">rank</span>,<span class="va">suit</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 2
 ##   rank  suit 
 ##   &lt;chr&gt; &lt;chr&gt;
@@ -443,40 +494,47 @@ Using simulation to estimate the probability of 10 or higher.</p>
 ## 5 A     Club</code></pre>
 <p>We find the probability of drawing a 10 or greater club is <span class="math inline">\(\frac{5}{52}\)</span> or 0.0961538.</p>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
+<p><strong>Exercise</strong>:<br>
 Simulate drawing one card and estimate the probability of a club that is 10 or greater.</p>
 </blockquote>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="PROBRULES.html#cb207-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb207-2"><a href="PROBRULES.html#cb207-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">face=</span>(rank <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="st">&quot;J&quot;</span>, <span class="st">&quot;Q&quot;</span>, <span class="st">&quot;K&quot;</span>, <span class="st">&quot;A&quot;</span>))<span class="sc">&amp;</span>(suit<span class="sc">==</span><span class="st">&quot;Club&quot;</span>))<span class="sc">%&gt;%</span></span>
-<span id="cb207-3"><a href="PROBRULES.html#cb207-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prob=</span><span class="fu">mean</span>(face))</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>face<span class="op">=</span><span class="op">(</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="st">"J"</span>, <span class="st">"Q"</span>, <span class="st">"K"</span>, <span class="st">"A"</span><span class="op">)</span><span class="op">)</span><span class="op">&amp;</span><span class="op">(</span><span class="va">suit</span><span class="op">==</span><span class="st">"Club"</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">face</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##     prob
 ##    &lt;dbl&gt;
 ## 1 0.0963</code></pre>
 </div>
 <div id="note" class="section level3" number="8.4.4">
-<h3><span class="header-section-number">8.4.4</span> Note</h3>
+<h3>
+<span class="header-section-number">8.4.4</span> Note<a class="anchor" aria-label="anchor" href="#note"><i class="fas fa-link"></i></a>
+</h3>
 <p>We have been using <code>R</code> to count the number of outcomes in an event. This helped us to determine probabilities. We limited the problems to simple ones. In our cards example, it would be more interesting for us to explore more complex events such as drawing 5 cards from a standard deck. Each draw of 5 cards is equally likely, so in order to find the probability of a flush (5 cards of the same suit), we could simply list all the possible flushes and compare that to the sample space. Because of the large number of possible outcomes, this becomes difficult. Thus we need to explore counting rules in more detail to help us solve more complex problems. In this course we will limit our discussion to three basic cases. You should know that there are entire courses on discrete math and counting rules, so we will still be limited in our methods and the type of problems we can solve in this course.</p>
 </div>
 </div>
 <div id="counting-rules" class="section level2" number="8.5">
-<h2><span class="header-section-number">8.5</span> Counting rules</h2>
+<h2>
+<span class="header-section-number">8.5</span> Counting rules<a class="anchor" aria-label="anchor" href="#counting-rules"><i class="fas fa-link"></i></a>
+</h2>
 <p>There are three types of counting problems we will consider. In each case, the multiplication rule is being used and all that changes is whether an element is allowed to be reused, replacement, and whether the order of selection matters. This latter question is difficult. Each case will be demonstrated with an example.</p>
 <div id="multiplication-rule-1-order-matters-sample-with-replacement" class="section level3" number="8.5.1">
-<h3><span class="header-section-number">8.5.1</span> Multiplication rule 1: Order matters, sample with replacement</h3>
+<h3>
+<span class="header-section-number">8.5.1</span> Multiplication rule 1: Order matters, sample with replacement<a class="anchor" aria-label="anchor" href="#multiplication-rule-1-order-matters-sample-with-replacement"><i class="fas fa-link"></i></a>
+</h3>
 <p>The multiplication rule is at the center of each of the three methods. In this first case we are using the idea that order matters and items can be reused. Let’s use an example to help.</p>
 <blockquote>
-<p><em>Example</em>:<br />
+<p><em>Example</em>:<br>
 A license plate consists of three numeric digits (0-9) followed by three single letters (A-Z). How many possible license plates exist?</p>
 </blockquote>
-<p>We can divide this problem into two sections. In the numeric section, we are selecting 3 objects from 10, with replacement. This means that a number can be used more than once. Order clearly matters because a license plate starting with “432” is distinct from a license plate starting with “234”. There are <span class="math inline">\(10^3 = 1000\)</span> ways to select the first three digits; 10 for the first, 10 for the second, and 10 for the third. Why do you multiply and not add?<a href="#fn65" class="footnote-ref" id="fnref65"><sup>65</sup></a></p>
+<p>We can divide this problem into two sections. In the numeric section, we are selecting 3 objects from 10, with replacement. This means that a number can be used more than once. Order clearly matters because a license plate starting with “432” is distinct from a license plate starting with “234”. There are <span class="math inline">\(10^3 = 1000\)</span> ways to select the first three digits; 10 for the first, 10 for the second, and 10 for the third. Why do you multiply and not add?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Multiplication is repeated adding so in a sense we are adding. However in a more serious tone, for this problem for every first number there are 10 possibilities for the second number and for every second number there are 10 possibilities for the third numbers. This is multiplication.&lt;/p&gt;"><sup>65</sup></a></p>
 <p>In the alphabet section, we are selecting 3 objects from 26, where order matters. Thus, there are <span class="math inline">\(26^3=17576\)</span> ways to select the last three letters of the plate. Combined, there are <span class="math inline">\(10^3 \times 26^3 = 17576000\)</span> ways to select license plates. Visually,
 <span class="math display">\[
 \underbrace{\underline{\quad 10 \quad }}_\text{number} \times \underbrace{\underline{\quad 10 \quad }}_\text{number} \times \underbrace{\underline{\quad 10 \quad }}_\text{number} \times \underbrace{\underline{\quad 26 \quad }}_\text{letter} \times \underbrace{\underline{\quad 26 \quad }}_\text{letter} \times \underbrace{\underline{\quad 26 \quad }}_\text{letter} = 17,576,000
 \]</span></p>
 <p>Next we are going to use this new counting method to find a probability.</p>
 <blockquote>
-<p><em>Exercise</em>:<br />
+<p><em>Exercise</em>:<br>
 What is the probability a license plate starts with the number “8” or “0” and ends with the letter “B”?</p>
 </blockquote>
 <p>In order to find this probability, we simply need to determine the number of ways to select a license plate starting with “8” or “0” and ending with the letter “B”. We can visually represent this event:
@@ -484,21 +542,24 @@ What is the probability a license plate starts with the number “8” or “0�
 \underbrace{\underline{\quad 2 \quad }}_\text{8 or 0} \times \underbrace{\underline{\quad 10 \quad }}_\text{number} \times \underbrace{\underline{\quad 10 \quad }}_\text{number} \times \underbrace{\underline{\quad 26 \quad }}_\text{letter} \times \underbrace{\underline{\quad 26 \quad }}_\text{letter} \times \underbrace{\underline{\quad 1 \quad }}_\text{B} = 135,200
 \]</span></p>
 <p>Dividing this number by the total number of possible license plates yields the probability of this event occurring.</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="PROBRULES.html#cb209-1" aria-hidden="true" tabindex="-1"></a>denom<span class="ot">&lt;-</span><span class="dv">10</span><span class="sc">*</span><span class="dv">10</span><span class="sc">*</span><span class="dv">10</span><span class="sc">*</span><span class="dv">26</span><span class="sc">*</span><span class="dv">26</span><span class="sc">*</span><span class="dv">26</span></span>
-<span id="cb209-2"><a href="PROBRULES.html#cb209-2" aria-hidden="true" tabindex="-1"></a>num<span class="ot">&lt;-</span><span class="dv">2</span><span class="sc">*</span><span class="dv">10</span><span class="sc">*</span><span class="dv">10</span><span class="sc">*</span><span class="dv">26</span><span class="sc">*</span><span class="dv">26</span><span class="sc">*</span><span class="dv">1</span></span>
-<span id="cb209-3"><a href="PROBRULES.html#cb209-3" aria-hidden="true" tabindex="-1"></a>num<span class="sc">/</span>denom</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">denom</span><span class="op">&lt;-</span><span class="fl">10</span><span class="op">*</span><span class="fl">10</span><span class="op">*</span><span class="fl">10</span><span class="op">*</span><span class="fl">26</span><span class="op">*</span><span class="fl">26</span><span class="op">*</span><span class="fl">26</span>
+<span class="va">num</span><span class="op">&lt;-</span><span class="fl">2</span><span class="op">*</span><span class="fl">10</span><span class="op">*</span><span class="fl">10</span><span class="op">*</span><span class="fl">26</span><span class="op">*</span><span class="fl">26</span><span class="op">*</span><span class="fl">1</span>
+<span class="va">num</span><span class="op">/</span><span class="va">denom</span></code></pre></div>
 <pre><code>## [1] 0.007692308</code></pre>
 <p>The probability of obtaining a license plate starting with “8” or “0” and ending with “B” is 0.0077. Simulating this would be difficult because we would need special functions to check the first number and last letter. This gets into <strong>text mining</strong> an important subject in data science but unfortunately we don’t have much time in this course for the topic.</p>
 </div>
 <div id="multiplication-rule-2-permutation-order-matters-sampling-without-replacement" class="section level3" number="8.5.2">
-<h3><span class="header-section-number">8.5.2</span> Multiplication rule 2 (Permutation): Order Matters, Sampling Without Replacement</h3>
+<h3>
+<span class="header-section-number">8.5.2</span> Multiplication rule 2 (Permutation): Order Matters, Sampling Without Replacement<a class="anchor" aria-label="anchor" href="#multiplication-rule-2-permutation-order-matters-sampling-without-replacement"><i class="fas fa-link"></i></a>
+</h3>
 <p>Consider a random experiment where we sample from a group of size <span class="math inline">\(n\)</span>, <strong>without</strong> replacement, and the outcome of the experiment depends on the order of the outcomes. The number of ways to select <span class="math inline">\(k\)</span> objects is given by <span class="math inline">\(n(n-1)(n-2)...(n-k+1)\)</span>. This is known as a permutation and is sometimes written as
 <span class="math display">\[
 {}_nP_{k} = \frac{n!}{(n-k)!}
 \]</span></p>
 <p>Recall that <span class="math inline">\(n!\)</span> is read as <span class="math inline">\(n\)</span> factorial and represents the number of ways to arrange <span class="math inline">\(n\)</span> objects.</p>
 <blockquote>
-<p><em>Example</em>:<br />
+<p><em>Example</em>:<br>
 Twenty-five friends participate in a Halloween costume party. Three prizes are given during the party: most creative costume, scariest costume, and funniest costume. No one can win more than one prize. How many possible ways can the prizes by distributed?</p>
 </blockquote>
 <p>There are <span class="math inline">\(k=3\)</span> prizes to be assigned to <span class="math inline">\(n=25\)</span> people. Once someone is selected for a prize, they are removed from the pool of eligibles. In other words, we are sampling without replacement. Also, order matters. For example, if Tom, Mike, and Jane, win most creative, scariest and funniest costume, respectively, this is a different outcome than if Mike won creative, Jane won scariest and Tom won funniest. Thus, the number of ways the prizes can be distributed is given by <span class="math inline">\({}_{25}P_3 = \frac{25!}{22!} = 13,800\)</span>. A more visually pleasing way to express this would be:
@@ -508,7 +569,7 @@ Twenty-five friends participate in a Halloween costume party. Three prizes are g
 <p>Notice that it is sometime difficult to determine if order matters or not in a problem, but in this example the name of the prize was a hint that indeed order matters.</p>
 <p>Let’s use the idea of a permutation to calculate a probability.</p>
 <blockquote>
-<p><em>Exercise</em>:<br />
+<p><em>Exercise</em>:<br>
 Assume that all 25 participants are equally likely to win any one of the three prizes. What is the probability that Tom doesn’t win any of them?</p>
 </blockquote>
 <p>Just like in the previous probability calculation, we simply need to count the number of ways Tom doesn’t win any prize. In other words, we need to count the number of ways that prizes are distributed without Tom. So, remove Tom from the group of 25 eligible participants. The number of ways Tom doesn’t get a prize is <span class="math inline">\({}_{24}P_3 = \frac{24!}{21!}=12,144\)</span>. Again visually:
@@ -516,21 +577,24 @@ Assume that all 25 participants are equally likely to win any one of the three p
 \underbrace{\underline{\quad 24 \quad }}_\text{most creative} \times \underbrace{\underline{\quad 23 \quad }}_\text{scariest} \times \underbrace{\underline{\quad 22 \quad }}_\text{funniest} = 12,144
 \]</span></p>
 <p>The probability Tom doesn’t get a prize is simply the second number divided by the first:</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="PROBRULES.html#cb211-1" aria-hidden="true" tabindex="-1"></a>denom<span class="ot">&lt;-</span><span class="fu">factorial</span>(<span class="dv">25</span>)<span class="sc">/</span><span class="fu">factorial</span>(<span class="dv">25-3</span>)</span>
-<span id="cb211-2"><a href="PROBRULES.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Or, denom&lt;-25*24*23</span></span>
-<span id="cb211-3"><a href="PROBRULES.html#cb211-3" aria-hidden="true" tabindex="-1"></a>num<span class="ot">&lt;-</span><span class="dv">24</span><span class="sc">*</span><span class="dv">23</span><span class="sc">*</span><span class="dv">22</span></span>
-<span id="cb211-4"><a href="PROBRULES.html#cb211-4" aria-hidden="true" tabindex="-1"></a>num<span class="sc">/</span>denom</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">denom</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">25</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">25</span><span class="op">-</span><span class="fl">3</span><span class="op">)</span>
+<span class="co"># Or, denom&lt;-25*24*23</span>
+<span class="va">num</span><span class="op">&lt;-</span><span class="fl">24</span><span class="op">*</span><span class="fl">23</span><span class="op">*</span><span class="fl">22</span>
+<span class="va">num</span><span class="op">/</span><span class="va">denom</span></code></pre></div>
 <pre><code>## [1] 0.88</code></pre>
 </div>
 <div id="multiplication-rule-3-combination-order-does-not-matter-sampling-without-replacement" class="section level3" number="8.5.3">
-<h3><span class="header-section-number">8.5.3</span> Multiplication rule 3 (Combination): Order Does Not Matter, Sampling Without Replacement</h3>
+<h3>
+<span class="header-section-number">8.5.3</span> Multiplication rule 3 (Combination): Order Does Not Matter, Sampling Without Replacement<a class="anchor" aria-label="anchor" href="#multiplication-rule-3-combination-order-does-not-matter-sampling-without-replacement"><i class="fas fa-link"></i></a>
+</h3>
 <p>Consider a random experiment where we sample from a group of size <span class="math inline">\(n\)</span>, without replacement, and the outcome of the experiment does not depend on the order of the outcomes. The number of ways to select <span class="math inline">\(k\)</span> objects is given by <span class="math inline">\(\frac{n!} {(n-k)!k!}\)</span>. This is known as a combination and is written as:
 <span class="math display">\[
 \binom{n}{k} = \frac{n!}{(n-k)!k!}
 \]</span></p>
 <p>This is read as “<span class="math inline">\(n\)</span> choose <span class="math inline">\(k\)</span>”. Take a moment to compare combinations to permutations, discussed in Rule 2. The difference between these two rules is that in a combination, order no longer matters. A combination is equivalent to a permutation divided by <span class="math inline">\(k!\)</span>, the number of ways to arrange the <span class="math inline">\(k\)</span> objects selected.</p>
 <blockquote>
-<p><em>Example</em>:<br />
+<p><em>Example</em>:<br>
 Suppose we draw 5 cards out of a standard deck (52 cards, no jokers). How many possible 5 card hands are there?</p>
 </blockquote>
 <p>In this example, order does not matter. I don’t care if I receive 3 jacks then 2 queens or 2 queens then 3 jacks. Either way, it’s the same collection of 5 cards. Also, we are drawing without replacement. Once a card is selected, it cannot be selected again. Thus, the number of ways to select 5 cards is given by:
@@ -538,7 +602,7 @@ Suppose we draw 5 cards out of a standard deck (52 cards, no jokers). How many p
 \binom{52}{5} = \frac{52!}{(52-5)!5!} = 2,598,960
 \]</span></p>
 <blockquote>
-<p><em>Example</em>:<br />
+<p><em>Example</em>:<br>
 When drawing 5 cards, what is the probability of drawing a “flush” (5 cards of the same suit)?</p>
 </blockquote>
 <p>Let’s determine how many ways to draw a flush. There are four suits (clubs, hearts, diamonds and spades). Each suit has 13 cards. We would like to pick 5 of those 13 cards and 0 of the remaining 39. Let’s consider just one of those suits (clubs):
@@ -550,49 +614,57 @@ When drawing 5 cards, what is the probability of drawing a “flush” (5 cards 
 <span class="math display">\[
 \mbox{P}(\mbox{flush})=\frac{\binom{4}{1}\binom{13}{5}\binom{39}{0}}{\binom{52}{5}}
 \]</span></p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="PROBRULES.html#cb213-1" aria-hidden="true" tabindex="-1"></a>num<span class="ot">&lt;-</span><span class="dv">4</span><span class="sc">*</span><span class="fu">choose</span>(<span class="dv">13</span>,<span class="dv">5</span>)<span class="sc">*</span><span class="dv">1</span></span>
-<span id="cb213-2"><a href="PROBRULES.html#cb213-2" aria-hidden="true" tabindex="-1"></a>denom<span class="ot">&lt;-</span><span class="fu">choose</span>(<span class="dv">52</span>,<span class="dv">5</span>)</span>
-<span id="cb213-3"><a href="PROBRULES.html#cb213-3" aria-hidden="true" tabindex="-1"></a>num<span class="sc">/</span>denom</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">num</span><span class="op">&lt;-</span><span class="fl">4</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">13</span>,<span class="fl">5</span><span class="op">)</span><span class="op">*</span><span class="fl">1</span>
+<span class="va">denom</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">52</span>,<span class="fl">5</span><span class="op">)</span>
+<span class="va">num</span><span class="op">/</span><span class="va">denom</span></code></pre></div>
 <pre><code>## [1] 0.001980792</code></pre>
 <p>There is a probability of 0.0020 of drawing a flush in a draw of 5 cards from a standard deck of cards.</p>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
+<p><strong>Exercise</strong>:<br>
 When drawing 5 cards, what is the probability of drawing a “full house” (3 cards of the same rank and the other 2 of the same rank)?</p>
 </blockquote>
 <p>This problem uses several ideas from this lesson. We need to pick the rank of the three of a kind. Then pick 3 cards from the 4 possible. Next we pick the rank of the pair from the remaining 12 ranks. Finally pick 2 cards of that rank from the 4 possible.</p>
 <p><span class="math display">\[
 \mbox{P}(\mbox{full house})=\frac{\binom{13}{1}\binom{4}{3}\binom{12}{1}\binom{4}{2}}{\binom{52}{5}}
 \]</span></p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="PROBRULES.html#cb215-1" aria-hidden="true" tabindex="-1"></a>num<span class="ot">&lt;-</span><span class="fu">choose</span>(<span class="dv">13</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">4</span>,<span class="dv">3</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">12</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">4</span>,<span class="dv">2</span>)</span>
-<span id="cb215-2"><a href="PROBRULES.html#cb215-2" aria-hidden="true" tabindex="-1"></a>denom<span class="ot">&lt;-</span><span class="fu">choose</span>(<span class="dv">52</span>,<span class="dv">5</span>)</span>
-<span id="cb215-3"><a href="PROBRULES.html#cb215-3" aria-hidden="true" tabindex="-1"></a>num<span class="sc">/</span>denom</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">num</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">13</span>,<span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">3</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">12</span>,<span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">2</span><span class="op">)</span>
+<span class="va">denom</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">52</span>,<span class="fl">5</span><span class="op">)</span>
+<span class="va">num</span><span class="op">/</span><span class="va">denom</span></code></pre></div>
 <pre><code>## [1] 0.001440576</code></pre>
-<p>Why not use <span class="math inline">\(\binom{13}{2}\)</span> instead of <span class="math inline">\(\binom{13}{1}\binom{12}{1}\)</span>?<a href="#fn66" class="footnote-ref" id="fnref66"><sup>66</sup></a></p>
+<p>Why not use <span class="math inline">\(\binom{13}{2}\)</span> instead of <span class="math inline">\(\binom{13}{1}\binom{12}{1}\)</span>?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Because this implies the order selection of the ranks does not matter. In other words, this assumes that for example 3 Kings and 2 fours is the same full house as 3 fours and 2 Kings. This is not true so we break the rank selection about essentially making it a permutation.&lt;/p&gt;"><sup>66</sup></a></p>
 <p>We have just determined that a full house has a lower probability of occurring than a flush. This is why in gambling, a flush is valued less than a full house.</p>
 </div>
 </div>
 <div id="homework-problems-7" class="section level2" number="8.6">
-<h2><span class="header-section-number">8.6</span> Homework Problems</h2>
+<h2>
+<span class="header-section-number">8.6</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-7"><i class="fas fa-link"></i></a>
+</h2>
 <ol style="list-style-type: decimal">
 <li>Let <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> be events such that <span class="math inline">\(\mbox{P}(A)=0.5\)</span>, <span class="math inline">\(\mbox{P}(B)=0.3\)</span>, and <span class="math inline">\(\mbox{P}(C)=0.4\)</span>. Also, we know that <span class="math inline">\(\mbox{P}(A \cap B)=0.2\)</span>, <span class="math inline">\(\mbox{P}(B \cap C)=0.12\)</span>, <span class="math inline">\(\mbox{P}(A \cap C)=0.1\)</span>, and <span class="math inline">\(\mbox{P}(A \cap B \cap C)=0.05\)</span>. Find the following:</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><span class="math inline">\(\mbox{P}(A\cup B)\)</span><br />
+<li>
+<span class="math inline">\(\mbox{P}(A\cup B)\)</span><br>
 </li>
-<li><span class="math inline">\(\mbox{P}(A\cup B \cup C)\)</span><br />
+<li>
+<span class="math inline">\(\mbox{P}(A\cup B \cup C)\)</span><br>
 </li>
-<li><span class="math inline">\(\mbox{P}(B&#39;\cap C&#39;)\)</span><br />
+<li>
+<span class="math inline">\(\mbox{P}(B'\cap C')\)</span><br>
 </li>
-<li><span class="math inline">\(\mbox{P}(A\cup (B\cap C))\)</span><br />
+<li>
+<span class="math inline">\(\mbox{P}(A\cup (B\cap C))\)</span><br>
 </li>
-<li><span class="math inline">\(\mbox{P}((A\cup B \cup C)\cap (A\cap B \cap C)&#39;)\)</span></li>
+<li><span class="math inline">\(\mbox{P}((A\cup B \cup C)\cap (A\cap B \cap C)')\)</span></li>
 </ol>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Consider the example of the family in the reading. What is the probability that the family has at least one boy?</p></li>
 <li><p>The Birthday Problem Revisited.</p></li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>Suppose there are <span class="math inline">\(n=20\)</span> students in a classroom. My birthday, the instructor, is April 3rd. What is the probability that at least one student shares my birthday? Assume only 365 days in a year and assume that all birthdays are equally likely.<br />
+<li>Suppose there are <span class="math inline">\(n=20\)</span> students in a classroom. My birthday, the instructor, is April 3rd. What is the probability that at least one student shares my birthday? Assume only 365 days in a year and assume that all birthdays are equally likely.<br>
 </li>
 <li>In <code>R</code>, find the probability that at least one other person shares my birthday for each value of <span class="math inline">\(n\)</span> from 1 to 300. Plot these probabilities with <span class="math inline">\(n\)</span> on the <span class="math inline">\(x\)</span>-axis and probability on the <span class="math inline">\(y\)</span>-axis. At what value of <span class="math inline">\(n\)</span> would the probability be at least 50%?</li>
 </ol>
@@ -600,9 +672,9 @@ When drawing 5 cards, what is the probability of drawing a “full house” (3 c
 <li>Thinking of the cards again. Answer the following questions:</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>Define two events that are mutually exclusive.<br />
+<li>Define two events that are mutually exclusive.<br>
 </li>
-<li>Define two events that are independent.<br />
+<li>Define two events that are independent.<br>
 </li>
 <li>Define an event and its complement.</li>
 </ol>
@@ -610,7 +682,7 @@ When drawing 5 cards, what is the probability of drawing a “full house” (3 c
 <li>Consider the license plate example from the reading.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>What is the probability that a license plate contains <strong>exactly</strong> one “B”?<br />
+<li>What is the probability that a license plate contains <strong>exactly</strong> one “B”?<br>
 </li>
 <li>What is the probability that a license plate contains <strong>at least one</strong> “B”?</li>
 </ol>
@@ -618,7 +690,7 @@ When drawing 5 cards, what is the probability of drawing a “full house” (3 c
 <li>Consider the party example in the reading.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>Suppose 8 people showed up to the party dressed as zombies. What is the probability that all three awards are won by people dressed as zombies?<br />
+<li>Suppose 8 people showed up to the party dressed as zombies. What is the probability that all three awards are won by people dressed as zombies?<br>
 </li>
 <li>What is the probability that zombies win “most creative” and “funniest” but not “scariest”?</li>
 </ol>
@@ -626,44 +698,62 @@ When drawing 5 cards, what is the probability of drawing a “full house” (3 c
 <li>Consider the cards example from the reading.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>How many ways can we obtain a “two pairs” (2 of one number, 2 of another, and the final different)?<br />
+<li>How many ways can we obtain a “two pairs” (2 of one number, 2 of another, and the final different)?<br>
 </li>
 <li>What is the probability of drawing a “four of a kind” (four cards of the same value)?</li>
 </ol>
 <ol start="8" style="list-style-type: decimal">
 <li>Advanced Question: Consider rolling 5 dice. What is the <strong>probability</strong> of a pour resulting in a full house?</li>
 </ol>
+</div>
+</div>
 
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="65">
-<li id="fn65"><p>Multiplication is repeated adding so in a sense we are adding. However in a more serious tone, for this problem for every first number there are 10 possibilities for the second number and for every second number there are 10 possibilities for the third numbers. This is multiplication.<a href="PROBRULES.html#fnref65" class="footnote-back">↩︎</a></p></li>
-<li id="fn66"><p>Because this implies the order selection of the ranks does not matter. In other words, this assumes that for example 3 Kings and 2 fours is the same full house as 3 fours and 2 Kings. This is not true so we break the rank selection about essentially making it a permutation.<a href="PROBRULES.html#fnref66" class="footnote-back">↩︎</a></p></li>
-</ol>
-</div>
-  </main>
-
-  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page">
-      <h2>On this page</h2>
-      <div id="book-on-this-page"></div>
+  <div class="chapter-nav">
+<div class="prev"><a href="CS2.html"><span class="header-section-number">7</span> Case Study</a></div>
+<div class="next"><a href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#PROBRULES"><span class="header-section-number">8</span> Probability Rules</a></li>
+<li><a class="nav-link" href="#objectives-7"><span class="header-section-number">8.1</span> Objectives</a></li>
+<li><a class="nav-link" href="#probability-vs-statistics"><span class="header-section-number">8.2</span> Probability vs Statistics</a></li>
+<li>
+<a class="nav-link" href="#basic-probability-terms"><span class="header-section-number">8.3</span> Basic probability terms</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#sample-space"><span class="header-section-number">8.3.1</span> Sample space</a></li>
+<li><a class="nav-link" href="#union-and-intersection"><span class="header-section-number">8.3.2</span> Union and intersection</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#probability"><span class="header-section-number">8.4</span> Probability</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#probability-properties"><span class="header-section-number">8.4.1</span> Probability properties</a></li>
+<li><a class="nav-link" href="#equally-likely-scenarios"><span class="header-section-number">8.4.2</span> Equally likely scenarios</a></li>
+<li><a class="nav-link" href="#using-r-equally-likely-scenarios"><span class="header-section-number">8.4.3</span> Using R (Equally likely scenarios)</a></li>
+<li><a class="nav-link" href="#note"><span class="header-section-number">8.4.4</span> Note</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#counting-rules"><span class="header-section-number">8.5</span> Counting rules</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#multiplication-rule-1-order-matters-sample-with-replacement"><span class="header-section-number">8.5.1</span> Multiplication rule 1: Order matters, sample with replacement</a></li>
+<li><a class="nav-link" href="#multiplication-rule-2-permutation-order-matters-sampling-without-replacement"><span class="header-section-number">8.5.2</span> Multiplication rule 2 (Permutation): Order Matters, Sampling Without Replacement</a></li>
+<li><a class="nav-link" href="#multiplication-rule-3-combination-order-does-not-matter-sampling-without-replacement"><span class="header-section-number">8.5.3</span> Multiplication rule 3 (Combination): Order Does Not Matter, Sampling Without Replacement</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#homework-problems-7"><span class="header-section-number">8.6</span> Homework Problems</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/08-Probability-Rules.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/08-Probability-Rules.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
-      </div>
+</div>
     </nav>
-  </div>
+</div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5">
-  <div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-14.</p>
@@ -674,11 +764,7 @@ When drawing 5 cards, what is the probability of drawing a “full house” (3 c
   </div>
 
 </div></div>
-</footer>
-
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -690,8 +776,7 @@ When drawing 5 cards, what is the probability of drawing a “full house” (3 c
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script>
-<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
 for (let popover of popovers) {
   const div = document.createElement('div');
   div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
@@ -709,5 +794,4 @@ for (let popover of popovers) {
 }
 </script>
 </body>
-
 </html>
