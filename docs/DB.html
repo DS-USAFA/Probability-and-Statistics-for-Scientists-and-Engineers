@@ -1,53 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <title>Chapter 2 Data Basics | Computational Probability and Statistics</title>
-
-    <meta name="author" content="Matthew Davis" />
-    <meta name="author" content="Brianna Hitt" />
-    <meta name="author" content="Ken Horton" />
-    <meta name="author" content="Bradley Warner" />
-  
-   <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-   <meta name="generator" content="placeholder" />
-  <meta property="og:title" content="Chapter 2 Data Basics | Computational Probability and Statistics" />
-  <meta property="og:type" content="book" />
-  
-  <meta property="og:image" content="/figures/Cover.png" />
-  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Data Basics | Computational Probability and Statistics" />
-  
-  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-  <meta name="twitter:image" content="/figures/Cover.png" />
-  <!-- JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
-    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
-    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
-    <script src="libs/bs3compat-0.3.1/transition.js"></script>
-    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
-    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
-    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
-    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
-    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
-
-  <!-- CSS -->
-  <style type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 2 Data Basics | Computational Probability and Statistics</title>
+<meta name="author" content="Matthew Davis">
+<meta name="author" content="Brianna Hitt">
+<meta name="author" content="Ken Horton">
+<meta name="author" content="Bradley Warner">
+<meta name="description" content="2.1 Objectives Define and use properly in context all new terminology to include, but not limited to, case, observational unit, variables, data frame, associated variables, independent, and...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="Chapter 2 Data Basics | Computational Probability and Statistics">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/figures/Cover.png">
+<meta property="og:description" content="2.1 Objectives Define and use properly in context all new terminology to include, but not limited to, case, observational unit, variables, data frame, associated variables, independent, and...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 2 Data Basics | Computational Probability and Statistics">
+<meta name="twitter:description" content="2.1 Objectives Define and use properly in context all new terminology to include, but not limited to, case, observational unit, variables, data frame, associated variables, independent, and...">
+<meta name="twitter:image" content="/figures/Cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
-    <style type="text/css">
+<style type="text/css">
     /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
     div.csl-bib-body { }
     div.csl-entry {
@@ -69,16 +49,13 @@
       margin-left: 2em;
     }
   </style>
-      <link rel="stylesheet" href="style.css" />
-  
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
-    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -90,50 +67,92 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-      </form>
+</form>
 
-      <nav aria-label="Table of contents">
-        <h2>Table of contents</h2>
-        <div id="book-toc"></div>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Preface</a></li>
+<li class="book-part">Descriptive Statistical Modeling</li>
+<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
+<li><a class="active" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
+<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
+<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
+<li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
+<li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
+<li class="book-part">Probability Modeling</li>
+<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
+<li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
+<li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
+<li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
+<li><a class="" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
+<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
+<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
+<li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
+<li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
+<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
+<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
+<li class="book-part">Statistical Modeling</li>
+<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
+<li><a class="" href="HYPOTEST.html"><span class="header-section-number">19</span> Hypothesis Testing</a></li>
+<li><a class="" href="PVALUES.html"><span class="header-section-number">20</span> Empirical p-values</a></li>
+<li><a class="" href="CLT.html"><span class="header-section-number">21</span> Central Limit Theorem</a></li>
+<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
+<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
+<li><a class="" href="ADDTESTS.html"><span class="header-section-number">24</span> Additional Hypothesis Tests</a></li>
+<li class="book-part">Predictive Statistical Modeling</li>
+<li><a class="" href="CS4.html"><span class="header-section-number">25</span> Case Study</a></li>
+<li><a class="" href="LRBASICS.html"><span class="header-section-number">26</span> Linear Regression Basics</a></li>
+<li><a class="" href="LRINF.html"><span class="header-section-number">27</span> Linear Regression Inference</a></li>
+<li><a class="" href="LRDIAG.html"><span class="header-section-number">28</span> Regression Diagnostics</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">29</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRMULTI.html"><span class="header-section-number">30</span> Multiple Linear Regression</a></li>
+<li><a class="" href="LOGREG.html"><span class="header-section-number">31</span> Logistic Regression</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
+          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
-    </div>
-  </header>
-
-  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
-<div id="DB" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Data Basics</h1>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="DB" class="section level1" number="2">
+<h1>
+<span class="header-section-number">2</span> Data Basics<a class="anchor" aria-label="anchor" href="#DB"><i class="fas fa-link"></i></a>
+</h1>
 <div id="objectives-1" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Objectives</h2>
+<h2>
+<span class="header-section-number">2.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-1"><i class="fas fa-link"></i></a>
+</h2>
 <ol style="list-style-type: decimal">
-<li>Define and use properly in context all new terminology to include, but not limited to, case, observational unit, variables, data frame, associated variables, independent, and discrete and continuous variables.<br />
+<li>Define and use properly in context all new terminology to include, but not limited to, case, observational unit, variables, data frame, associated variables, independent, and discrete and continuous variables.<br>
 </li>
-<li>Identify and define the different types of variables.<br />
+<li>Identify and define the different types of variables.<br>
 </li>
-<li>Given a study description, explain the research question.<br />
+<li>Given a study description, explain the research question.<br>
 </li>
 <li>Create a scatterplot in <code>R</code> and determine the association of two numerical variables from the plot.</li>
 </ol>
 </div>
 <div id="data-basics" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Data basics</h2>
+<h2>
+<span class="header-section-number">2.2</span> Data basics<a class="anchor" aria-label="anchor" href="#data-basics"><i class="fas fa-link"></i></a>
+</h2>
 <p>Effective presentation and description of data is a first step in most analyses. This lesson introduces one structure for organizing data, as well as some terminology that will be used throughout this course.</p>
 <div id="observations-variables-and-data-matrices" class="section level3" number="2.2.1">
-<h3><span class="header-section-number">2.2.1</span> Observations, variables, and data matrices</h3>
+<h3>
+<span class="header-section-number">2.2.1</span> Observations, variables, and data matrices<a class="anchor" aria-label="anchor" href="#observations-variables-and-data-matrices"><i class="fas fa-link"></i></a>
+</h3>
 <p>For reference we will be using a data set concerning 50 emails received in 2012. These observations will be referred to as the <code>email50</code> data set, and they are a random sample from a larger data set. This data is in the <strong>openintro</strong> package so let’s install and then load this package.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="DB.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;openintro&quot;</span>)</span>
-<span id="cb29-2"><a href="DB.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"openintro"</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://openintrostat.github.io/openintro/">openintro</a></span><span class="op">)</span></code></pre></div>
 <p>Table <a href="DB.html#tab:db1-tab">2.1</a> shows 4 rows of the <code>email50</code> data set and we have elected to only list 5 variables for ease of observation.</p>
-<p>Each row in the table represents a single email or <strong>case</strong>.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> The columns represent characteristics, called <strong>variables</strong>, for each of the emails. For example, the first row represents email 1, which is not spam, contains 21,705 characters, 551 line breaks, is written in HTML format, and contains only small numbers.</p>
-<table>
+<p>Each row in the table represents a single email or <strong>case</strong>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;A case is also sometimes called a &lt;strong&gt;unit of observation&lt;/strong&gt; or an &lt;strong&gt;observational unit&lt;/strong&gt;.&lt;/p&gt;"><sup>6</sup></a> The columns represent characteristics, called <strong>variables</strong>, for each of the emails. For example, the first row represents email 1, which is not spam, contains 21,705 characters, 551 line breaks, is written in HTML format, and contains only small numbers.</p>
+<div class="inline-table"><table class="table table-sm">
 <caption>
 <span id="tab:db1-tab">Table 2.1: </span>First 5 rows of email data frame
 </caption>
-<thead>
-<tr>
+<thead><tr>
 <th style="text-align:left;">
 spam
 </th>
@@ -149,8 +168,7 @@ format
 <th style="text-align:left;">
 number
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
@@ -221,12 +239,13 @@ small
 </td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Let’s look at the first 10 rows of data from <code>email50</code> using <code>R</code>. Remember to ask the two questions:</p>
 <p><em>What do we want <code>R</code> to do?</em> and</p>
 <p><em>What must we give <code>R</code> for it to do this?</em></p>
-<p>We want the first 10 rows so we use <code>head()</code> and <code>R</code> needs the data object and the number of rows. The data object is called <code>email50</code> and is accessible once the <strong>openintro</strong> package is loaded.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="DB.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(email50, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p>We want the first 10 rows so we use <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> and <code>R</code> needs the data object and the number of rows. The data object is called <code>email50</code> and is accessible once the <strong>openintro</strong> package is loaded.</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">email50</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 21
 ##    spam  to_multiple from     cc sent_email time                image attach
 ##    &lt;fct&gt; &lt;fct&gt;       &lt;fct&gt; &lt;int&gt; &lt;fct&gt;      &lt;dttm&gt;              &lt;dbl&gt;  &lt;dbl&gt;
@@ -245,9 +264,9 @@ small
 ## #   format &lt;fct&gt;, re_subj &lt;fct&gt;, exclaim_subj &lt;dbl&gt;, urgent_subj &lt;fct&gt;,
 ## #   exclaim_mess &lt;dbl&gt;, number &lt;fct&gt;</code></pre>
 <p>In practice, it is especially important to ask clarifying questions to ensure important aspects of the data are understood. For instance, it is always important to be sure we know what each variable means and the units of measurement. Descriptions of all variables in the <code>email50</code> data set are given in its documentation which can be accessed in <code>R</code> by using the <code>?</code> command:</p>
-<pre><code>?email50</code></pre>
+<pre><code><a href="https://openintrostat.github.io/openintro/reference/email50.html">?email50</a></code></pre>
 <p>(Note that not all data sets will have associated documentation; the authors of <strong>openintro</strong> package included this documentation with the <code>email50</code> data set contained in the package.)</p>
-<p>The data in <code>email50</code> represent a <strong>data matrix</strong>, or in <code>R</code> terminology a <strong>data frame</strong> or <strong>tibble</strong> <a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>, which is a common way to organize data. Each row of a data matrix corresponds to a unique case, and each column corresponds to a variable. This is called <strong>tidy data</strong>.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> The data frame for the stroke study introduced in the previous lesson had patients as the cases and there were three variables recorded for each patient. If we are thinking of patients as the unit of observation, then this data is tidy.</p>
+<p>The data in <code>email50</code> represent a <strong>data matrix</strong>, or in <code>R</code> terminology a <strong>data frame</strong> or <strong>tibble</strong> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;A tibble is a data frame with attributes for such things as better display and printing.&lt;/p&gt;"><sup>7</sup></a>, which is a common way to organize data. Each row of a data matrix corresponds to a unique case, and each column corresponds to a variable. This is called <strong>tidy data</strong>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;For more information on tidy data, see the &lt;a href="https://simplystatistics.org/2016/02/17/non-tidy-data/"&gt;blog&lt;/a&gt; and the &lt;a href="https://r4ds.had.co.nz/tidy-data.html#pivoting"&gt;book&lt;/a&gt;.&lt;/p&gt;'><sup>8</sup></a> The data frame for the stroke study introduced in the previous lesson had patients as the cases and there were three variables recorded for each patient. If we are thinking of patients as the unit of observation, then this data is tidy.</p>
 <pre><code>## # A tibble: 10 x 3
 ##    group   outcome30 outcome365
 ##    &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;     
@@ -277,9 +296,9 @@ small
 ## 10          5 trmt    year  no_event</code></pre>
 <p>There are three interrelated rules which make a data set tidy:</p>
 <ol style="list-style-type: decimal">
-<li>Each variable must have its own column.<br />
+<li>Each variable must have its own column.<br>
 </li>
-<li>Each observation must have its own row.<br />
+<li>Each observation must have its own row.<br>
 </li>
 <li>Each value must have its own cell.</li>
 </ol>
@@ -290,20 +309,23 @@ small
 </ol>
 <p>Data frames are a convenient way to record and store data. If another individual or case is added to the data set, an additional row can be easily added. Similarly, another column can be added for a new variable.</p>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
-We consider a publicly available data set that summarizes information about the 3,142 counties in the United States, and we create a data set called <code>county_subset</code> data set. This data set will include information about each county: its name, the state where it resides, its population in 2000 and 2010, per capita federal spending, poverty rate, and four additional characteristics. We create this data object in the code following this description. The parent data set is part of the <code>usdata</code> library and is called <code>county_complete</code>. The variables are summarized in the help menu built into the <strong>usdata</strong> package<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>. How might these data be organized in a data matrix? <a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+<p><strong>Exercise</strong>:<br>
+We consider a publicly available data set that summarizes information about the 3,142 counties in the United States, and we create a data set called <code>county_subset</code> data set. This data set will include information about each county: its name, the state where it resides, its population in 2000 and 2010, per capita federal spending, poverty rate, and four additional characteristics. We create this data object in the code following this description. The parent data set is part of the <code>usdata</code> library and is called <code>county_complete</code>. The variables are summarized in the help menu built into the <strong>usdata</strong> package<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://quickfacts.census.gov/qfd/index.html"&gt;These data were collected from the US Census website.&lt;/a&gt;&lt;/p&gt;'><sup>9</sup></a>. How might these data be organized in a data matrix? <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Each county may be viewed as a case, and there are ten pieces of information recorded for each case. A table with 3,142 rows and 10 columns could hold these data, where each row represents a county and each column represents a particular piece of information.&lt;/p&gt;"><sup>10</sup></a></p>
 </blockquote>
 <p>Using <code>R</code> we will create our data object. First we load the library <code>usdata</code>.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="DB.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usdata)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/OpenIntroStat/usdata">usdata</a></span><span class="op">)</span></code></pre></div>
 <p>We only want a subset of the columns and we will use the <code>select</code> verb in <code>dplyr</code> to select and rename columns. We also create a new variable which is federal spending per capita using the <code>mutate</code> function.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="DB.html#cb36-1" aria-hidden="true" tabindex="-1"></a>county_subset <span class="ot">&lt;-</span> county_complete <span class="sc">%&gt;%</span> </span>
-<span id="cb36-2"><a href="DB.html#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, state, pop2000, pop2010, <span class="at">fed_spend =</span> fed_spending_2009, </span>
-<span id="cb36-3"><a href="DB.html#cb36-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">poverty =</span> poverty_2010, <span class="at">homeownership =</span> homeownership_2010, </span>
-<span id="cb36-4"><a href="DB.html#cb36-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">multi_unit =</span> housing_multi_unit_2010, <span class="at">income =</span> per_capita_income_2010, </span>
-<span id="cb36-5"><a href="DB.html#cb36-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">med_income =</span> median_household_income_2010) <span class="sc">%&gt;%</span></span>
-<span id="cb36-6"><a href="DB.html#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fed_spend =</span> fed_spend <span class="sc">/</span> pop2010)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">county_subset</span> <span class="op">&lt;-</span> <span class="va">county_complete</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">state</span>, <span class="va">pop2000</span>, <span class="va">pop2010</span>, fed_spend <span class="op">=</span> <span class="va">fed_spending_2009</span>, 
+         poverty <span class="op">=</span> <span class="va">poverty_2010</span>, homeownership <span class="op">=</span> <span class="va">homeownership_2010</span>, 
+         multi_unit <span class="op">=</span> <span class="va">housing_multi_unit_2010</span>, income <span class="op">=</span> <span class="va">per_capita_income_2010</span>, 
+         med_income <span class="op">=</span> <span class="va">median_household_income_2010</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fed_spend <span class="op">=</span> <span class="va">fed_spend</span> <span class="op">/</span> <span class="va">pop2010</span><span class="op">)</span></code></pre></div>
 <p>Using <code>R</code>, we will display seven rows of the <code>county_subset</code> data frame.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="DB.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(county_subset, <span class="at">n =</span> <span class="dv">7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">county_subset</span>, n <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></code></pre></div>
 <pre><code>##             name   state pop2000 pop2010 fed_spend poverty homeownership
 ## 1 Autauga County Alabama   43671   54571  6.068095    10.6          77.5
 ## 2 Baldwin County Alabama  140415  182265  6.139862    12.2          76.7
@@ -322,58 +344,62 @@ We consider a publicly available data set that summarizes information about the 
 ## 7       13.7  16916      30659</code></pre>
 </div>
 <div id="types-of-variables" class="section level3" number="2.2.2">
-<h3><span class="header-section-number">2.2.2</span> Types of variables</h3>
+<h3>
+<span class="header-section-number">2.2.2</span> Types of variables<a class="anchor" aria-label="anchor" href="#types-of-variables"><i class="fas fa-link"></i></a>
+</h3>
 <p>Examine the <code>fed_spend</code>, <code>pop2010</code>, and <code>state</code> variables in the <code>county</code> data set. Each of these variables is inherently different from the others, yet many of them share certain characteristics.</p>
 <p>First consider <code>fed_spend</code>. It is said to be a <strong>numerical variable</strong> since it can take a wide range of numerical values, and it is sensible to add, subtract, or take averages with those values. On the other hand, we would not classify a variable reporting telephone area codes as numerical; even though area codes are made up of numerical digits, their average, sum, and difference have no clear meaning.</p>
 <p>The <code>pop2010</code> variable is also numerical; it is sensible to add, subtract, or take averages with those values, although it seems to be a little different than <code>fed_spend</code>. This variable of the population count can only be a whole non-negative number (<span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span>, <span class="math inline">\(2\)</span>, <span class="math inline">\(...\)</span>). For this reason, the population variable is said to be <strong>discrete</strong> since it can only take specific numerical values. On the other hand, the federal spending variable is said to be <strong>continuous</strong>. Now technically, there are no truly continuous numerical variables since all measurements are finite up to some level of accuracy or measurement precision. However, in this course we will treat both types of numerical variables the same, that is as continuous variables for statistical modeling. The only place this will be different in this course is in probability models, which we see in the probability modeling section.</p>
-<p>The variable <strong>state</strong> can take up to 51 values, after accounting for Washington, DC, and are summarized as: <em>Alabama</em>, <em>Alaska</em>, …, and <em>Wyoming</em>. Because the responses themselves are categories, <code>state</code> is called a <strong>categorical</strong> variable,<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> and the possible values are called the variable’s <strong>levels</strong>.</p>
-<div class="figure"><span style="display:block;" id="fig:tax-fig"></span>
-<img src="02-Data-Basics_files/figure-html/tax-fig-1.png" alt="Taxonomy of Variables." width="672" />
-<p class="caption">
+<p>The variable <strong>state</strong> can take up to 51 values, after accounting for Washington, DC, and are summarized as: <em>Alabama</em>, <em>Alaska</em>, …, and <em>Wyoming</em>. Because the responses themselves are categories, <code>state</code> is called a <strong>categorical</strong> variable,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Sometimes also called a &lt;strong&gt;nominal&lt;/strong&gt; variable.&lt;/p&gt;"><sup>11</sup></a> and the possible values are called the variable’s <strong>levels</strong>.</p>
+<div class="figure">
+<span style="display:block;" id="fig:tax-fig"></span>
+<img src="02-Data-Basics_files/figure-html/tax-fig-1.png" alt="Taxonomy of Variables." width="672"><p class="caption">
 Figure 2.1: Taxonomy of Variables.
 </p>
 </div>
 <p>Finally, consider a hypothetical variable on education, which describes the highest level of education completed and takes on one of the values <em>noHS</em>, <em>HS</em>, <em>College</em> or <em>Graduate_school</em>. This variable seems to be a hybrid: it is a categorical variable but the levels have a natural ordering. A variable with these properties is called an <strong>ordinal</strong> variable. A categorical variable with levels that do not have a natural ordering is called a <strong>nominal</strong> variable. To simplify analyses, any ordinal variables in this course will be treated as nominal categorical variables. In <code>R</code>, categorical variables can be treated in different ways; one of the key differences is that we can leave them as character values or as factors. When <code>R</code> handles factors, it is only concerned about the <em>levels</em> of values of the factors. We will learn more about this as we progress.</p>
 <p>Figure <a href="DB.html#fig:tax-fig">2.1</a> captures this classification of variables we have described.</p>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
+<p><strong>Exercise</strong>:<br>
 Data were collected about students in a statistics course. Three variables were recorded for each student: number of siblings, student height, and whether the student had previously taken a statistics course. Classify each of the variables as continuous numerical, discrete numerical, or categorical.</p>
 </blockquote>
 <p>The number of siblings and student height represent numerical variables. Because the number of siblings is a count, it is discrete. Height varies continuously, so it is a continuous numerical variable. The last variable classifies students into two categories – those who have and those who have not taken a statistics course – which makes this variable categorical.</p>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
-Consider the variables <code>group</code> and <code>outcome30</code> from the stent study in the case study lesson. Are these numerical or categorical variables? <a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
+<p><strong>Exercise</strong>:<br>
+Consider the variables <code>group</code> and <code>outcome30</code> from the stent study in the case study lesson. Are these numerical or categorical variables? <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;There are only two possible values for each variable, and in both cases they describe categories. Thus, each is a categorical variable.&lt;/p&gt;"><sup>12</sup></a></p>
 </blockquote>
 </div>
 <div id="relationships-between-variables" class="section level3" number="2.2.3">
-<h3><span class="header-section-number">2.2.3</span> Relationships between variables</h3>
+<h3>
+<span class="header-section-number">2.2.3</span> Relationships between variables<a class="anchor" aria-label="anchor" href="#relationships-between-variables"><i class="fas fa-link"></i></a>
+</h3>
 <p>Many analyses are motivated by a researcher looking for a relationship between two or more variables. This is the heart of statistical modeling. A social scientist may like to answer some of the following questions:</p>
 <ol style="list-style-type: decimal">
-<li>Is federal spending, on average, higher or lower in counties with high rates of poverty?<br />
+<li>Is federal spending, on average, higher or lower in counties with high rates of poverty?<br>
 </li>
 <li>If homeownership is lower than the national average in one county, will the percent of multi-unit structures in that county likely be above or below the national average?</li>
 </ol>
 <p>To answer these questions, data must be collected, such as the <code>county_complete</code> data set. Examining summary statistics could provide insights for each of the two questions about counties. Graphs can be used to visually summarize data and are useful for answering such questions as well.</p>
 <p>Scatterplots are one type of graph used to study the relationship between two numerical variables. Figure <a href="DB.html#fig:pov1-fig">2.2</a> compares the variables <code>fed_spend</code> and <code>poverty</code>. Each point on the plot represents a single county. For instance, the highlighted dot corresponds to County 1088 in the <code>county_subset</code> data set: Owsley County, Kentucky, which had a poverty rate of 41.5% and federal spending of $21.50 per capita. The dense cloud in the scatterplot suggests a relationship between the two variables: counties with a high poverty rate also tend to have slightly more federal spending. We might brainstorm as to why this relationship exists and investigate each idea to determine which is the most reasonable explanation.</p>
-<div class="figure"><span style="display:block;" id="fig:pov1-fig"></span>
-<img src="02-Data-Basics_files/figure-html/pov1-fig-1.png" alt="A scatterplot showing fed_spend against poverty. Owsley County of Kentucky, with a poverty rate of 41.5% and federal spending of $21.50 per capita, is highlighted." width="672" />
-<p class="caption">
+<div class="figure">
+<span style="display:block;" id="fig:pov1-fig"></span>
+<img src="02-Data-Basics_files/figure-html/pov1-fig-1.png" alt="A scatterplot showing fed_spend against poverty. Owsley County of Kentucky, with a poverty rate of 41.5% and federal spending of $21.50 per capita, is highlighted." width="672"><p class="caption">
 Figure 2.2: A scatterplot showing fed_spend against poverty. Owsley County of Kentucky, with a poverty rate of 41.5% and federal spending of $21.50 per capita, is highlighted.
 </p>
 </div>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
-Examine the variables in the <code>email50</code> data set. Create two research questions about the relationships between these variables that are of interest to you.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
+<p><strong>Exercise</strong>:<br>
+Examine the variables in the <code>email50</code> data set. Create two research questions about the relationships between these variables that are of interest to you.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Two sample questions: (1) Intuition suggests that if there are many line breaks in an email then there would also tend to be many characters: does this hold true? (2) Is there a connection between whether an email format is plain text (versus HTML) and whether it is a spam message?&lt;/p&gt;"><sup>13</sup></a></p>
 </blockquote>
 <p>The <code>fed_spend</code> and <code>poverty</code> variables are said to be associated because the plot shows a discernible pattern. When two variables show some connection with one another, they are called <strong>associated variables</strong>. Associated variables can also be called <strong>dependent</strong> variables and vice-versa.</p>
 <blockquote>
-<p><em>Example</em>:<br />
+<p><em>Example</em>:<br>
 The relationship between the homeownership rate and the percent of units in multi-unit structures (e.g. apartments, condos) is visualized using a scatterplot in Figure <a href="DB.html#fig:homeown-fig">2.3</a>. Are these variables associated?</p>
 </blockquote>
 <p>It appears that the larger the fraction of units in multi-unit structures, the lower the homeownership rate. Since there is some relationship between the variables, they are associated.</p>
-<div class="figure"><span style="display:block;" id="fig:homeown-fig"></span>
-<img src="02-Data-Basics_files/figure-html/homeown-fig-1.png" alt="A scatterplot of the homeownership rate versus the percent of units that are in multi-unit structures for all 3,143 counties." width="672" />
-<p class="caption">
+<div class="figure">
+<span style="display:block;" id="fig:homeown-fig"></span>
+<img src="02-Data-Basics_files/figure-html/homeown-fig-1.png" alt="A scatterplot of the homeownership rate versus the percent of units that are in multi-unit structures for all 3,143 counties." width="672"><p class="caption">
 Figure 2.3: A scatterplot of the homeownership rate versus the percent of units that are in multi-unit structures for all 3,143 counties.
 </p>
 </div>
@@ -384,92 +410,93 @@ Figure 2.3: A scatterplot of the homeownership rate versus the percent of units 
 </blockquote>
 </div>
 <div id="creating-a-scatterplot" class="section level3" number="2.2.4">
-<h3><span class="header-section-number">2.2.4</span> Creating a scatterplot</h3>
+<h3>
+<span class="header-section-number">2.2.4</span> Creating a scatterplot<a class="anchor" aria-label="anchor" href="#creating-a-scatterplot"><i class="fas fa-link"></i></a>
+</h3>
 <p>In this section, we will create a simple scatterplot and then ask you to create one on your own. First, we will recreate the scatterplot seen in Figure <a href="DB.html#fig:pov1-fig">2.2</a>. This figure uses the <code>county_subset</code> data set.</p>
 <p>Here are two questions:</p>
 <p><em>What do we want <code>R</code> to do?</em> and</p>
 <p><em>What must we give <code>R</code> for it to do this?</em></p>
-<p>We want <code>R</code> to create a scatterplot and to do this it needs, at a minimum, the data object, what we want on the <span class="math inline">\(x\)</span>-axis, and what we want on the <span class="math inline">\(y\)</span>-axis. More information on <a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html"><strong>ggformula</strong></a> can be found by clicking on the link.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
+<p>We want <code>R</code> to create a scatterplot and to do this it needs, at a minimum, the data object, what we want on the <span class="math inline">\(x\)</span>-axis, and what we want on the <span class="math inline">\(y\)</span>-axis. More information on <a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html"><strong>ggformula</strong></a> can be found by clicking on the link.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html" class="uri"&gt;https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html&lt;/a&gt;&lt;/p&gt;'><sup>14</sup></a></p>
 
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="DB.html#cb39-1" aria-hidden="true" tabindex="-1"></a>county_subset <span class="sc">%&gt;%</span></span>
-<span id="cb39-2"><a href="DB.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(fed_spend <span class="sc">~</span> poverty)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:pov2-fig"></span>
-<img src="02-Data-Basics_files/figure-html/pov2-fig-1.png" alt="Scatterplot with ggformula." width="672" />
-<p class="caption">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">county_subset</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_point</span><span class="op">(</span><span class="va">fed_spend</span> <span class="op">~</span> <span class="va">poverty</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:pov2-fig"></span>
+<img src="02-Data-Basics_files/figure-html/pov2-fig-1.png" alt="Scatterplot with ggformula." width="672"><p class="caption">
 Figure 2.4: Scatterplot with <strong>ggformula</strong>.
 </p>
 </div>
 <p>Figure <a href="DB.html#fig:pov2-fig">2.4</a> is bad. There are poor axis labels, no title, dense clustering of points, and the <span class="math inline">\(y\)</span>-axis is being driven by a couple of extreme points. We will need to clear this up. Again, try to read the code and use <code>help()</code> or <code>?</code> to determine the purpose of each command in Figure <a href="DB.html#fig:pov3-fig">2.5</a>.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="DB.html#cb40-1" aria-hidden="true" tabindex="-1"></a>county_subset <span class="sc">%&gt;%</span></span>
-<span id="cb40-2"><a href="DB.html#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(fed_spend <span class="sc">&lt;</span> <span class="dv">32</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb40-3"><a href="DB.html#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(fed_spend <span class="sc">~</span> poverty,</span>
-<span id="cb40-4"><a href="DB.html#cb40-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">&quot;Poverty Rate (Percent)&quot;</span>, </span>
-<span id="cb40-5"><a href="DB.html#cb40-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylab =</span> <span class="st">&quot;Federal Spending Per Capita&quot;</span>,</span>
-<span id="cb40-6"><a href="DB.html#cb40-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">title =</span> <span class="st">&quot;A scatterplot showing fed_spend against poverty&quot;</span>, </span>
-<span id="cb40-7"><a href="DB.html#cb40-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb40-8"><a href="DB.html#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>())</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:pov3-fig"></span>
-<img src="02-Data-Basics_files/figure-html/pov3-fig-1.png" alt="Better example of a scatterplot." width="672" />
-<p class="caption">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">county_subset</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">fed_spend</span> <span class="op">&lt;</span> <span class="fl">32</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_point</span><span class="op">(</span><span class="va">fed_spend</span> <span class="op">~</span> <span class="va">poverty</span>,
+           xlab <span class="op">=</span> <span class="st">"Poverty Rate (Percent)"</span>, 
+           ylab <span class="op">=</span> <span class="st">"Federal Spending Per Capita"</span>,
+           title <span class="op">=</span> <span class="st">"A scatterplot showing fed_spend against poverty"</span>, 
+           cex <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:pov3-fig"></span>
+<img src="02-Data-Basics_files/figure-html/pov3-fig-1.png" alt="Better example of a scatterplot." width="672"><p class="caption">
 Figure 2.5: Better example of a scatterplot.
 </p>
 </div>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
+<p><strong>Exercise</strong>:<br>
 Create the scatterplot in Figure <a href="DB.html#fig:homeown-fig">2.3</a>.</p>
 </blockquote>
 </div>
 </div>
 <div id="homework-problems-1" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Homework Problems</h2>
+<h2>
+<span class="header-section-number">2.3</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-1"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Identify study components</strong></p>
 <p>Identify (i) the cases, (ii) the variables and their types, and (iii) the main research question in the studies described below.</p>
 <ol style="list-style-type: decimal">
-<li><p>Researchers collected data to examine the relationship between pollutants and preterm births in Southern California. During the study, air pollution levels were measured by air quality monitoring stations. Specifically, levels of carbon monoxide were recorded in parts per million, nitrogen dioxide and ozone in parts per hundred million, and coarse particulate matter (PM<span class="math inline">\(_{10}\)</span>) in <span class="math inline">\(\mu g/m^3\)</span>. Length of gestation data were collected on 143,196 births between the years 1989 and 1993, and air pollution exposure during gestation was calculated for each birth. The analysis suggested that increased ambient PM<span class="math inline">\(_{10}\)</span> and, to a lesser degree, CO concentrations may be associated with the occurrence of preterm births.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a></p></li>
-<li><p>The Buteyko method is a shallow breathing technique developed by Konstantin Buteyko, a Russian doctor, in 1952. Anecdotal evidence suggests that the Buteyko method can reduce asthma symptoms and improve quality of life. In a scientific study to determine the effectiveness of this method, researchers recruited 600 asthma patients aged 18-69 who relied on medication for asthma treatment. These patients were split into two research groups: one practiced the Buteyko method and the other did not. Patients were scored on quality of life, activity, asthma symptoms, and medication reduction on a scale from 0 to 10. On average, the participants in the Buteyko group experienced a significant reduction in asthma symptoms and an improvement in quality of life.<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a></p></li>
+<li><p>Researchers collected data to examine the relationship between pollutants and preterm births in Southern California. During the study, air pollution levels were measured by air quality monitoring stations. Specifically, levels of carbon monoxide were recorded in parts per million, nitrogen dioxide and ozone in parts per hundred million, and coarse particulate matter (PM<span class="math inline">\(_{10}\)</span>) in <span class="math inline">\(\mu g/m^3\)</span>. Length of gestation data were collected on 143,196 births between the years 1989 and 1993, and air pollution exposure during gestation was calculated for each birth. The analysis suggested that increased ambient PM<span class="math inline">\(_{10}\)</span> and, to a lesser degree, CO concentrations may be associated with the occurrence of preterm births.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;B. Ritz et al. &lt;a href="http://journals.lww.com/epidem/Abstract/2000/09000/Effect_of_Air_Pollution_on_Preterm_Birth_Among.4.aspx"&gt;“Effect of air pollution on preterm birth among children born in Southern California
+between 1989 and 1993”&lt;/a&gt;. In: Epidemiology 11.5 (2000), pp. 502–511.&lt;/p&gt;'><sup>15</sup></a></p></li>
+<li><p>The Buteyko method is a shallow breathing technique developed by Konstantin Buteyko, a Russian doctor, in 1952. Anecdotal evidence suggests that the Buteyko method can reduce asthma symptoms and improve quality of life. In a scientific study to determine the effectiveness of this method, researchers recruited 600 asthma patients aged 18-69 who relied on medication for asthma treatment. These patients were split into two research groups: one practiced the Buteyko method and the other did not. Patients were scored on quality of life, activity, asthma symptoms, and medication reduction on a scale from 0 to 10. On average, the participants in the Buteyko group experienced a significant reduction in asthma symptoms and an improvement in quality of life.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;J. McGowan. “Health Education: Does the Buteyko Institute Method make a difference?” In: Thorax 58 (2003).&lt;/p&gt;"><sup>16</sup></a></p></li>
 <li><p>In the package <strong>Stat2Data</strong> is a data set called <code>Election16</code>. Create a scatterplot for the percent of advanced degree versus per capita income in the state. Describe the relationship between these two variables. Note: you may have to load the library.</p></li>
 </ol>
+</div>
+</div>
 
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="6">
-<li id="fn6"><p>A case is also sometimes called a <strong>unit of observation</strong> or an <strong>observational unit</strong>.<a href="DB.html#fnref6" class="footnote-back">↩︎</a></p></li>
-<li id="fn7"><p>A tibble is a data frame with attributes for such things as better display and printing.<a href="DB.html#fnref7" class="footnote-back">↩︎</a></p></li>
-<li id="fn8"><p>For more information on tidy data, see the <a href="https://simplystatistics.org/2016/02/17/non-tidy-data/">blog</a> and the <a href="https://r4ds.had.co.nz/tidy-data.html#pivoting">book</a>.<a href="DB.html#fnref8" class="footnote-back">↩︎</a></p></li>
-<li id="fn9"><p><a href="http://quickfacts.census.gov/qfd/index.html">These data were collected from the US Census website.</a><a href="DB.html#fnref9" class="footnote-back">↩︎</a></p></li>
-<li id="fn10"><p>Each county may be viewed as a case, and there are ten pieces of information recorded for each case. A table with 3,142 rows and 10 columns could hold these data, where each row represents a county and each column represents a particular piece of information.<a href="DB.html#fnref10" class="footnote-back">↩︎</a></p></li>
-<li id="fn11"><p>Sometimes also called a <strong>nominal</strong> variable.<a href="DB.html#fnref11" class="footnote-back">↩︎</a></p></li>
-<li id="fn12"><p>There are only two possible values for each variable, and in both cases they describe categories. Thus, each is a categorical variable.<a href="DB.html#fnref12" class="footnote-back">↩︎</a></p></li>
-<li id="fn13"><p>Two sample questions: (1) Intuition suggests that if there are many line breaks in an email then there would also tend to be many characters: does this hold true? (2) Is there a connection between whether an email format is plain text (versus HTML) and whether it is a spam message?<a href="DB.html#fnref13" class="footnote-back">↩︎</a></p></li>
-<li id="fn14"><p><a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html" class="uri">https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html</a><a href="DB.html#fnref14" class="footnote-back">↩︎</a></p></li>
-<li id="fn15"><p>B. Ritz et al. <a href="http://journals.lww.com/epidem/Abstract/2000/09000/Effect_of_Air_Pollution_on_Preterm_Birth_Among.4.aspx">“Effect of air pollution on preterm birth among children born in Southern California
-between 1989 and 1993”</a>. In: Epidemiology 11.5 (2000), pp. 502–511.<a href="DB.html#fnref15" class="footnote-back">↩︎</a></p></li>
-<li id="fn16"><p>J. McGowan. “Health Education: Does the Buteyko Institute Method make a difference?” In: Thorax 58 (2003).<a href="DB.html#fnref16" class="footnote-back">↩︎</a></p></li>
-</ol>
-</div>
-  </main>
-
-  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page">
-      <h2>On this page</h2>
-      <div id="book-on-this-page"></div>
+  <div class="chapter-nav">
+<div class="prev"><a href="CS1.html"><span class="header-section-number">1</span> Case Study</a></div>
+<div class="next"><a href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#DB"><span class="header-section-number">2</span> Data Basics</a></li>
+<li><a class="nav-link" href="#objectives-1"><span class="header-section-number">2.1</span> Objectives</a></li>
+<li>
+<a class="nav-link" href="#data-basics"><span class="header-section-number">2.2</span> Data basics</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#observations-variables-and-data-matrices"><span class="header-section-number">2.2.1</span> Observations, variables, and data matrices</a></li>
+<li><a class="nav-link" href="#types-of-variables"><span class="header-section-number">2.2.2</span> Types of variables</a></li>
+<li><a class="nav-link" href="#relationships-between-variables"><span class="header-section-number">2.2.3</span> Relationships between variables</a></li>
+<li><a class="nav-link" href="#creating-a-scatterplot"><span class="header-section-number">2.2.4</span> Creating a scatterplot</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#homework-problems-1"><span class="header-section-number">2.3</span> Homework Problems</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/02-Data-Basics.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/02-Data-Basics.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
-      </div>
+</div>
     </nav>
-  </div>
+</div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5">
-  <div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-14.</p>
@@ -480,11 +507,7 @@ between 1989 and 1993”</a>. In: Epidemiology 11.5 (2000), pp. 502–511.<a hr
   </div>
 
 </div></div>
-</footer>
-
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -496,8 +519,7 @@ between 1989 and 1993”</a>. In: Epidemiology 11.5 (2000), pp. 502–511.<a hr
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script>
-<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
 for (let popover of popovers) {
   const div = document.createElement('div');
   div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
@@ -515,5 +537,4 @@ for (let popover of popovers) {
 }
 </script>
 </body>
-
 </html>
