@@ -373,7 +373,7 @@ Figure 12.3: The cdf of the Poisson random variable in Figure <a href="DISCRETEN
 </h3>
 <p>Consider an experiment where <span class="math inline">\(k\)</span> objects are to be selected from a larger, but finite, group consisting of <span class="math inline">\(m\)</span> “successes” and <span class="math inline">\(n\)</span> “failures”. This is similar to the binomial process; after all, we are selecting successes and failures. However, in this case, the results are effectively selected <em>without replacement</em>. If the random variable <span class="math inline">\(X\)</span> represents the number of successes selected in our sample of size <span class="math inline">\(k\)</span>, then <span class="math inline">\(X\)</span> follows a hypergeometric distribution with parameters <span class="math inline">\(m\)</span>, <span class="math inline">\(n\)</span>, and <span class="math inline">\(k\)</span>. The pmf of <span class="math inline">\(X\)</span> is given by:</p>
 <p><span class="math display">\[
-f_X(x) = \frac{{m \choose{x}}{n \choose{k-x}}}{{{m+n} \choose{k}}} , \hspace{0.3cm} x = 0,1,...,m
+f_X(x) = \frac{{m\choose{x}}{n\choose{k-x}}}{{{m+n}\choose{k}}}, \qquad x = 0,1,...,m
 \]</span></p>
 <p>Also, <span class="math inline">\(\mbox{E}(X)=\frac{km}{m+n}\)</span> and <span class="math inline">\(\mbox{Var}(X)=k\frac{m}{m+n}\frac{n}{m+n}\frac{m+n-k}{m+n-1}\)</span></p>
 <p>If you draw on your knowledge of combinations, you can see why this pmf makes sense.</p>
