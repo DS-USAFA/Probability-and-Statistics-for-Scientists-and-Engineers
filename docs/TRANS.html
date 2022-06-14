@@ -1,53 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <title>Chapter 16 Transformations | Computational Probability and Statistics</title>
-
-    <meta name="author" content="Matthew Davis" />
-    <meta name="author" content="Brianna Hitt" />
-    <meta name="author" content="Ken Horton" />
-    <meta name="author" content="Bradley Warner" />
-  
-   <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-   <meta name="generator" content="placeholder" />
-  <meta property="og:title" content="Chapter 16 Transformations | Computational Probability and Statistics" />
-  <meta property="og:type" content="book" />
-  
-  <meta property="og:image" content="/figures/Cover.png" />
-  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 16 Transformations | Computational Probability and Statistics" />
-  
-  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
-  <meta name="twitter:image" content="/figures/Cover.png" />
-  <!-- JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
-    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
-    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
-    <script src="libs/bs3compat-0.3.1/transition.js"></script>
-    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
-    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
-    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
-    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
-    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
-
-  <!-- CSS -->
-  <style type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 16 Transformations | Computational Probability and Statistics</title>
+<meta name="author" content="Matthew Davis">
+<meta name="author" content="Brianna Hitt">
+<meta name="author" content="Ken Horton">
+<meta name="author" content="Bradley Warner">
+<meta name="description" content="16.1 Objectives Given a discrete random variable, determine the distribution of a transformation of that random variable. Given a continuous random variable, use the cdf method to determine the...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="Chapter 16 Transformations | Computational Probability and Statistics">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/figures/Cover.png">
+<meta property="og:description" content="16.1 Objectives Given a discrete random variable, determine the distribution of a transformation of that random variable. Given a continuous random variable, use the cdf method to determine the...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 16 Transformations | Computational Probability and Statistics">
+<meta name="twitter:description" content="16.1 Objectives Given a discrete random variable, determine the distribution of a transformation of that random variable. Given a continuous random variable, use the cdf method to determine the...">
+<meta name="twitter:image" content="/figures/Cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
-    <style type="text/css">
+<style type="text/css">
     /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
     div.csl-bib-body { }
     div.csl-entry {
@@ -69,16 +49,13 @@
       margin-left: 2em;
     }
   </style>
-      <link rel="stylesheet" href="style.css" />
-  
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
-    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -90,45 +67,87 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-      </form>
+</form>
 
-      <nav aria-label="Table of contents">
-        <h2>Table of contents</h2>
-        <div id="book-toc"></div>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Preface</a></li>
+<li class="book-part">Descriptive Statistical Modeling</li>
+<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
+<li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
+<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
+<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
+<li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
+<li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
+<li class="book-part">Probability Modeling</li>
+<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
+<li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
+<li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
+<li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
+<li><a class="" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
+<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
+<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
+<li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
+<li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
+<li><a class="active" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
+<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
+<li class="book-part">Statistical Modeling</li>
+<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
+<li><a class="" href="HYPOTEST.html"><span class="header-section-number">19</span> Hypothesis Testing</a></li>
+<li><a class="" href="PVALUES.html"><span class="header-section-number">20</span> Empirical p-values</a></li>
+<li><a class="" href="CLT.html"><span class="header-section-number">21</span> Central Limit Theorem</a></li>
+<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
+<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
+<li><a class="" href="ADDTESTS.html"><span class="header-section-number">24</span> Additional Hypothesis Tests</a></li>
+<li class="book-part">Predictive Statistical Modeling</li>
+<li><a class="" href="CS4.html"><span class="header-section-number">25</span> Case Study</a></li>
+<li><a class="" href="LRBASICS.html"><span class="header-section-number">26</span> Linear Regression Basics</a></li>
+<li><a class="" href="LRINF.html"><span class="header-section-number">27</span> Linear Regression Inference</a></li>
+<li><a class="" href="LRDIAG.html"><span class="header-section-number">28</span> Regression Diagnostics</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">29</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRMULTI.html"><span class="header-section-number">30</span> Multiple Linear Regression</a></li>
+<li><a class="" href="LOGREG.html"><span class="header-section-number">31</span> Logistic Regression</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
+          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
-    </div>
-  </header>
-
-  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
-<div id="TRANS" class="section level1" number="16">
-<h1><span class="header-section-number">Chapter 16</span> Transformations</h1>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="TRANS" class="section level1" number="16">
+<h1>
+<span class="header-section-number">16</span> Transformations<a class="anchor" aria-label="anchor" href="#TRANS"><i class="fas fa-link"></i></a>
+</h1>
 <div id="objectives-15" class="section level2" number="16.1">
-<h2><span class="header-section-number">16.1</span> Objectives</h2>
+<h2>
+<span class="header-section-number">16.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-15"><i class="fas fa-link"></i></a>
+</h2>
 <ol style="list-style-type: decimal">
-<li>Given a discrete random variable, determine the distribution of a transformation of that random variable.<br />
+<li>Given a discrete random variable, determine the distribution of a transformation of that random variable.<br>
 </li>
-<li>Given a continuous random variable, use the cdf method to determine the distribution of a transformation of that random variable.<br />
+<li>Given a continuous random variable, use the cdf method to determine the distribution of a transformation of that random variable.<br>
 </li>
 <li>Use simulation methods to find the distribution of a transform of single or multivariate random variables.</li>
 </ol>
 </div>
 <div id="transformations" class="section level2" number="16.2">
-<h2><span class="header-section-number">16.2</span> Transformations</h2>
+<h2>
+<span class="header-section-number">16.2</span> Transformations<a class="anchor" aria-label="anchor" href="#transformations"><i class="fas fa-link"></i></a>
+</h2>
 <p>Throughout our coverage of random variables, we have mentioned transformations of random variables. These have been in the context of linear transformations. We have discussed expected value and variance of linear transformations. Recall that <span class="math inline">\(\mbox{E}(aX+b)=a\mbox{E}(X)+b\)</span> and <span class="math inline">\(\mbox{Var}(aX+b)=a^2\mbox{Var}(X)\)</span>.</p>
 <p>In this chapter, we will discuss transformations of random variables in general, beyond the linear case.</p>
 <div id="transformations-of-discrete-random-variables" class="section level3" number="16.2.1">
-<h3><span class="header-section-number">16.2.1</span> Transformations of discrete random variables</h3>
+<h3>
+<span class="header-section-number">16.2.1</span> Transformations of discrete random variables<a class="anchor" aria-label="anchor" href="#transformations-of-discrete-random-variables"><i class="fas fa-link"></i></a>
+</h3>
 <p>Let <span class="math inline">\(X\)</span> be a discrete random variable and let <span class="math inline">\(g\)</span> be a function. The variable <span class="math inline">\(Y=g(X)\)</span> is a discrete random variable with pmf:
 <span class="math display">\[
 f_Y(y)=\mbox{P}(Y=y)=\sum_{\forall x: g(x)=y}\mbox{P}(X=x)=\sum_{\forall x: g(x)=y}f_X(x)
 \]</span></p>
 <p>An example would help since the notation can be confusing.</p>
 <blockquote>
-<p><em>Example</em>:<br />
+<p><em>Example</em>:<br>
 Suppose <span class="math inline">\(X\)</span> is a discrete random variable with pmf:
 <span class="math display">\[
 f_X(x)=\left\{\begin{array}{ll} 0.05, &amp; x=-2 \\
@@ -161,11 +180,15 @@ f_Y(y)=\left\{\begin{array}{ll} 0.35, &amp; y=0 \\
 <p>The key idea is to find the support of the new random variable and then go back to the original random variable and sum all the probabilities that get mapped into that new support element.</p>
 </div>
 <div id="transformations-of-continuous-random-variables" class="section level3" number="16.2.2">
-<h3><span class="header-section-number">16.2.2</span> Transformations of continuous random variables</h3>
+<h3>
+<span class="header-section-number">16.2.2</span> Transformations of continuous random variables<a class="anchor" aria-label="anchor" href="#transformations-of-continuous-random-variables"><i class="fas fa-link"></i></a>
+</h3>
 <p>The methodology above will not work directly in the case of continuous random variables. This is because in the continuous case, the pdf, <span class="math inline">\(f_X(x)\)</span>, represents <strong>density</strong> and not <strong>probability</strong>.</p>
 </div>
 <div id="the-cdf-method" class="section level3" number="16.2.3">
-<h3><span class="header-section-number">16.2.3</span> The cdf method</h3>
+<h3>
+<span class="header-section-number">16.2.3</span> The cdf method<a class="anchor" aria-label="anchor" href="#the-cdf-method"><i class="fas fa-link"></i></a>
+</h3>
 <p>The <strong>cdf method</strong> is one of several methods that can be used for transformations of continuous random variables. The idea is to find the cdf of the new random variable and then find the pdf by way of the fundamental theorem of calculus.</p>
 <p>Suppose <span class="math inline">\(X\)</span> is a continuous random variable with cdf <span class="math inline">\(F_X(x)\)</span>. Let <span class="math inline">\(Y=g(X)\)</span>. We can find the cdf of <span class="math inline">\(Y\)</span> as:</p>
 <p><span class="math display">\[
@@ -191,27 +214,33 @@ f_Y(y)=\frac{1}{2\sqrt{y}}
 \int_0^1 \frac{1}{2\sqrt{y}} \mathop{}\!\mathrm{d}y = \sqrt{y}\bigg|_0^1 = 1
 \]</span>
 We can also do this using <code>R</code> but we first have to create a function that can take vector input.</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="TRANS.html#cb402-1" aria-hidden="true" tabindex="-1"></a>y_pdf <span class="ot">&lt;-</span> <span class="cf">function</span>(y) {</span>
-<span id="cb402-2"><a href="TRANS.html#cb402-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(y))</span>
-<span id="cb402-3"><a href="TRANS.html#cb402-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="TRANS.html#cb403-1" aria-hidden="true" tabindex="-1"></a>y_pdf<span class="ot">&lt;-</span> <span class="fu">Vectorize</span>(y_pdf)</span></code></pre></div>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="TRANS.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(y_pdf,<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">y_pdf</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fl">1</span><span class="op">/</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">y_pdf</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Vectorize.html">Vectorize</a></span><span class="op">(</span><span class="va">y_pdf</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="va">y_pdf</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## 1 with absolute error &lt; 2.9e-15</code></pre>
 <p>Notice that since the domain of the original random variable was non-negative, the squared function had an inverse.</p>
 <p>The pdf of the random variable <span class="math inline">\(Y\)</span> is plotted in Figure <a href="TRANS.html#fig:pdf161-fig">16.1</a>.</p>
 
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="TRANS.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_line</span>(<span class="fu">y_pdf</span>(<span class="fu">seq</span>(<span class="fl">0.01</span>,<span class="dv">1</span>,.<span class="dv">01</span>))<span class="sc">~</span><span class="fu">seq</span>(<span class="fl">0.01</span>,<span class="dv">1</span>,.<span class="dv">01</span>),<span class="at">xlab=</span><span class="st">&quot;Y&quot;</span>,<span class="at">ylab=</span><span class="fu">expression</span>(<span class="fu">f</span>(y))) <span class="sc">%&gt;%</span></span>
-<span id="cb406-2"><a href="TRANS.html#cb406-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:pdf161-fig"></span>
-<img src="16-Transformations_files/figure-html/pdf161-fig-1.png" alt="The pdf of the transformed random variable \(Y\)." width="672" />
-<p class="caption">
+<div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">gf_line</span><span class="op">(</span><span class="fu">y_pdf</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.01</span>,<span class="fl">1</span>,<span class="fl">.01</span><span class="op">)</span><span class="op">)</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.01</span>,<span class="fl">1</span>,<span class="fl">.01</span><span class="op">)</span>,xlab<span class="op">=</span><span class="st">"Y"</span>,ylab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu">f</span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:pdf161-fig"></span>
+<img src="16-Transformations_files/figure-html/pdf161-fig-1.png" alt="The pdf of the transformed random variable \(Y\)." width="672"><p class="caption">
 Figure 16.1: The pdf of the transformed random variable <span class="math inline">\(Y\)</span>.
 </p>
 </div>
 <p>We can see that the density is much larger at we approach 0.</p>
 </div>
 <div id="the-pdf-method" class="section level3" number="16.2.4">
-<h3><span class="header-section-number">16.2.4</span> The pdf method</h3>
+<h3>
+<span class="header-section-number">16.2.4</span> The pdf method<a class="anchor" aria-label="anchor" href="#the-pdf-method"><i class="fas fa-link"></i></a>
+</h3>
 <p>The cdf method of transforming continuous random variables also yields to another method called the <strong>pdf method</strong>. Recall that the cdf method tells us that if <span class="math inline">\(X\)</span> is a continuous random variable with cdf <span class="math inline">\(F_X\)</span>, and <span class="math inline">\(Y=g(X)\)</span>, then</p>
 <p><span class="math display">\[
 F_Y(y)=F_X(g^{-1}(y))
@@ -226,7 +255,7 @@ f_Y(y)=\frac{\mathop{}\!\mathrm{d}}{\mathop{}\!\mathrm{d}y}F_Y(y)=\frac{\mathop{
 F_Y(y)=\mbox{P}(Y\leq y)=\mbox{P}(g(X) \leq y)=\mbox{P}(X \geq g^{-1}(y))= 1 - F_X(g^{-1}(y))
 \]</span></p>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
+<p><strong>Exercise</strong>:<br>
 Repeat the previous example using the pdf method.</p>
 </blockquote>
 <p>Since <span class="math inline">\(X\)</span> has the uniform distribution, we know that <span class="math inline">\(f_X(x)=1\)</span> for <span class="math inline">\(0\leq x \leq 1\)</span>. Also, <span class="math inline">\(g(x)=x^2\)</span> and <span class="math inline">\(g^{-1}(y)=\sqrt{y}\)</span>, which is differentiable. So,</p>
@@ -235,7 +264,9 @@ f_Y(y)=f_X(\sqrt{y})\bigg|\frac{\mathop{}\!\mathrm{d}}{\mathop{}\!\mathrm{d}y} \
 \]</span></p>
 </div>
 <div id="simulation-2" class="section level3" number="16.2.5">
-<h3><span class="header-section-number">16.2.5</span> Simulation</h3>
+<h3>
+<span class="header-section-number">16.2.5</span> Simulation<a class="anchor" aria-label="anchor" href="#simulation-2"><i class="fas fa-link"></i></a>
+</h3>
 <p>We can also get an estimate of the distribution by simulating the random variable. If we have the cdf and can find its inverse, then just like we did in an earlier lesson, we sample from a uniform distribution and apply the inverse to get the distribution.</p>
 <p>In an earlier chapter we had the example:</p>
 <blockquote>
@@ -243,9 +274,11 @@ f_Y(y)=f_X(\sqrt{y})\bigg|\frac{\mathop{}\!\mathrm{d}}{\mathop{}\!\mathrm{d}y} \
 </blockquote>
 <p>Now let’s find an approximation to the distribution of <span class="math inline">\(Y = \ln{X}\)</span> using simulation.</p>
 <p>The cdf of <span class="math inline">\(X\)</span> is <span class="math inline">\(F_X(x)=x^2\)</span> where <span class="math inline">\(0 \leq x \leq 1\)</span>. We will draw a uniform random variable and then take the square root to simulate a random variable from <span class="math inline">\(f_X(x)\)</span>. We will replicate this 10,000 times. In <code>R</code> our code, which we have done before, is:</p>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="TRANS.html#cb407-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Remember, we are using the square root because we want the inverse of the cdf and not, for this method, the inverse of the transformation function as when we were using the mathematical method. This can be a point of confusion.</p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="TRANS.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
 ##      name   class         min        Q1    median        Q3       max      mean
@@ -253,31 +286,35 @@ f_Y(y)=f_X(\sqrt{y})\bigg|\frac{\mathop{}\!\mathrm{d}}{\mathop{}\!\mathrm{d}y} \
 ##             sd     n missing
 ## ...1 0.2350824 10000       0</code></pre>
 <p>Figure <a href="TRANS.html#fig:dens161-fig">16.2</a> is a density plot of the simulated original random variable.</p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="TRANS.html#cb410-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb410-2"><a href="TRANS.html#cb410-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_density</span>(<span class="sc">~</span>sqrt,<span class="at">xlab=</span><span class="st">&quot;X&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb410-3"><a href="TRANS.html#cb410-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb410-4"><a href="TRANS.html#cb410-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:dens161-fig"></span>
-<img src="16-Transformations_files/figure-html/dens161-fig-1.png" alt="The density plot of the original using simulation." width="672" />
-<p class="caption">
+<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_density</span><span class="op">(</span><span class="op">~</span><span class="va">sqrt</span>,xlab<span class="op">=</span><span class="st">"X"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>y<span class="op">=</span><span class="st">""</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:dens161-fig"></span>
+<img src="16-Transformations_files/figure-html/dens161-fig-1.png" alt="The density plot of the original using simulation." width="672"><p class="caption">
 Figure 16.2: The density plot of the original using simulation.
 </p>
 </div>
 <p>Now to find the distribution of <span class="math inline">\(Y\)</span> we just apply the transformation.</p>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="TRANS.html#cb411-1" aria-hidden="true" tabindex="-1"></a>y_results <span class="ot">&lt;-</span> results <span class="sc">%&gt;%</span></span>
-<span id="cb411-2"><a href="TRANS.html#cb411-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">y=</span><span class="fu">log</span>(sqrt))</span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">y_results</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">sqrt</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Figure <a href="TRANS.html#fig:dens162-fig">16.3</a> is the density plot of the transformed random variable from the simulation. We can see that the support for <span class="math inline">\(Y\)</span> is <span class="math inline">\(-\infty &lt; y \leq 0\)</span> and the density is tight near zero but skewed to the left.</p>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="TRANS.html#cb412-1" aria-hidden="true" tabindex="-1"></a>y_results <span class="sc">%&gt;%</span></span>
-<span id="cb412-2"><a href="TRANS.html#cb412-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_density</span>(<span class="sc">~</span>y,<span class="at">xlab=</span><span class="st">&quot;X&quot;</span>)  <span class="sc">%&gt;%</span></span>
-<span id="cb412-3"><a href="TRANS.html#cb412-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb412-4"><a href="TRANS.html#cb412-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:dens162-fig"></span>
-<img src="16-Transformations_files/figure-html/dens162-fig-1.png" alt="The density plot of the transformed random variable from the simulation." width="672" />
-<p class="caption">
+<div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">y_results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_density</span><span class="op">(</span><span class="op">~</span><span class="va">y</span>,xlab<span class="op">=</span><span class="st">"X"</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>y<span class="op">=</span><span class="st">""</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:dens162-fig"></span>
+<img src="16-Transformations_files/figure-html/dens162-fig-1.png" alt="The density plot of the transformed random variable from the simulation." width="672"><p class="caption">
 Figure 16.3: The density plot of the transformed random variable from the simulation.
 </p>
 </div>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="TRANS.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(y_results)</span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">y_results</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
 ##      name   class       min         Q1     median         Q3           max
@@ -286,7 +323,9 @@ Figure 16.3: The density plot of the transformed random variable from the simula
 ## ...1 -0.4940434 0.4979518 10000       0</code></pre>
 </div>
 <div id="multivariate-transformations" class="section level3" number="16.2.6">
-<h3><span class="header-section-number">16.2.6</span> Multivariate Transformations</h3>
+<h3>
+<span class="header-section-number">16.2.6</span> Multivariate Transformations<a class="anchor" aria-label="anchor" href="#multivariate-transformations"><i class="fas fa-link"></i></a>
+</h3>
 <p>For the discrete case, if you have the joint pmf, then if the transformation is to a univariate random variable, the process is similar to what see learned above. For continuous random variables, the mathematics are a little more difficult so we will just use simulation.</p>
 <p>Here’s the scenario. Suppose <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent random variables, both uniformly distributed on <span class="math inline">\([5,6]\)</span>.
 <span class="math display">\[
@@ -300,9 +339,11 @@ X\sim \textsf{Unif}(5,6)\hspace{1.5cm} Y\sim \textsf{Unif}(5,6)
 <p><strong>Exercise</strong>:</p>
 </blockquote>
 <p>Complete the code on your own before looking at the code below.</p>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="TRANS.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">354</span>)</span>
-<span id="cb415-2"><a href="TRANS.html#cb415-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">100000</span>)<span class="sc">*</span><span class="fu">abs</span>(<span class="fu">diff</span>(<span class="fu">runif</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">6</span>)))</span></code></pre></div>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="TRANS.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">354</span><span class="op">)</span>
+<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">100000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>##          abs
 ## 1 0.03171229
 ## 2 0.77846706
@@ -311,28 +352,31 @@ X\sim \textsf{Unif}(5,6)\hspace{1.5cm} Y\sim \textsf{Unif}(5,6)
 ## 5 0.08663187
 ## 6 0.40622840</code></pre>
 <p>Figure <a href="TRANS.html#fig:dens163-fig">16.4</a> is a plot of the estimated density of the transformation.</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="TRANS.html#cb418-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb418-2"><a href="TRANS.html#cb418-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_density</span>(<span class="sc">~</span>abs) <span class="sc">%&gt;%</span></span>
-<span id="cb418-3"><a href="TRANS.html#cb418-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb418-4"><a href="TRANS.html#cb418-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;|X-Y|&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:dens163-fig"></span>
-<img src="16-Transformations_files/figure-html/dens163-fig-1.png" alt="The density of the absolute value of the difference in uniform random variables." width="672" />
-<p class="caption">
+<div class="sourceCode" id="cb418"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_density</span><span class="op">(</span><span class="op">~</span><span class="va">abs</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"|X-Y|"</span>,y<span class="op">=</span><span class="st">""</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:dens163-fig"></span>
+<img src="16-Transformations_files/figure-html/dens163-fig-1.png" alt="The density of the absolute value of the difference in uniform random variables." width="672"><p class="caption">
 Figure 16.4: The density of the absolute value of the difference in uniform random variables.
 </p>
 </div>
 <p>Or as a histogram in Figure <a href="TRANS.html#fig:hist163-fig">16.5</a>.</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="TRANS.html#cb419-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
-<span id="cb419-2"><a href="TRANS.html#cb419-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>abs)<span class="sc">%&gt;%</span></span>
-<span id="cb419-3"><a href="TRANS.html#cb419-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb419-4"><a href="TRANS.html#cb419-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;|X-Y|&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:hist163-fig"></span>
-<img src="16-Transformations_files/figure-html/hist163-fig-1.png" alt="Histogram of the absolute value of the difference in random variables." width="672" />
-<p class="caption">
+<div class="sourceCode" id="cb419"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">abs</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"|X-Y|"</span>,y<span class="op">=</span><span class="st">""</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:hist163-fig"></span>
+<img src="16-Transformations_files/figure-html/hist163-fig-1.png" alt="Histogram of the absolute value of the difference in random variables." width="672"><p class="caption">
 Figure 16.5: Histogram of the absolute value of the difference in random variables.
 </p>
 </div>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="TRANS.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
 ##      name   class          min       Q1    median        Q3       max     mean
@@ -340,41 +384,49 @@ Figure 16.5: Histogram of the absolute value of the difference in random variabl
 ##             sd      n missing
 ## ...1 0.2358863 100000       0</code></pre>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
+<p><strong>Exercise</strong>:<br>
 Now suppose whomever arrives first will only wait 5 minutes and then leave. What is the probability you eat together?</p>
 </blockquote>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="TRANS.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(results) <span class="sc">%&gt;%</span></span>
-<span id="cb422-2"><a href="TRANS.html#cb422-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(abs<span class="sc">&lt;=</span><span class="dv">5</span><span class="sc">/</span><span class="dv">60</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">abs</span><span class="op">&lt;=</span><span class="fl">5</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##   mean(abs &lt;= 5/60)
 ## 1           0.15966</code></pre>
 <blockquote>
-<p><strong>Exercise</strong>:<br />
+<p><strong>Exercise</strong>:<br>
 How long should the first person wait so that there is at least a 50% probability of you eating together?</p>
 </blockquote>
 <p>Let’s write a function to find the cdf.</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="TRANS.html#cb424-1" aria-hidden="true" tabindex="-1"></a>z_cdf <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb424-2"><a href="TRANS.html#cb424-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(results<span class="sc">$</span>abs<span class="sc">&lt;=</span>x)</span>
-<span id="cb424-3"><a href="TRANS.html#cb424-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="TRANS.html#cb425-1" aria-hidden="true" tabindex="-1"></a>z_cdf<span class="ot">&lt;-</span> <span class="fu">Vectorize</span>(z_cdf)</span></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">z_cdf</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">results</span><span class="op">$</span><span class="va">abs</span><span class="op">&lt;=</span><span class="va">x</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">z_cdf</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Vectorize.html">Vectorize</a></span><span class="op">(</span><span class="va">z_cdf</span><span class="op">)</span></code></pre></div>
 <p>Now test for 5 minutes to make sure our function is correct since we determined above that this value should be 0.15966.</p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="TRANS.html#cb426-1" aria-hidden="true" tabindex="-1"></a><span class="fu">z_cdf</span>(<span class="dv">5</span><span class="sc">/</span><span class="dv">60</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">z_cdf</span><span class="op">(</span><span class="fl">5</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.15966</code></pre>
 <p>Let’s plot to see what the cdf looks like.</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="TRANS.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_line</span>(<span class="fu">z_cdf</span>(<span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">01</span>))<span class="sc">~</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">01</span>),<span class="at">xlab=</span><span class="st">&quot;Time Difference&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;CDF&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb428-2"><a href="TRANS.html#cb428-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
-<p><img src="16-Transformations_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<p>It looks like somewhere around 15 minutes, a quarter of an hour. But we will find a better answer by finding the root. In the code that follows we want to find where the cdf equals 0.5. The function <code>uniroot()</code> solves the given equations for roots so we want to put in the cdf minus 0.5. In other words, <code>uniroot()</code> solves <span class="math inline">\(f(x)=0\)</span> for x.</p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="TRANS.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(<span class="cf">function</span>(x)<span class="fu">z_cdf</span>(x)<span class="sc">-</span>.<span class="dv">5</span>,<span class="fu">c</span>(.<span class="dv">25</span>,<span class="dv">35</span>))<span class="sc">$</span>root</span></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">gf_line</span><span class="op">(</span><span class="fu">z_cdf</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">.01</span><span class="op">)</span><span class="op">)</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">.01</span><span class="op">)</span>,xlab<span class="op">=</span><span class="st">"Time Difference"</span>,ylab<span class="op">=</span><span class="st">"CDF"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="16-Transformations_files/figure-html/unnamed-chunk-16-1.png" width="672"></div>
+<p>It looks like somewhere around 15 minutes, a quarter of an hour. But we will find a better answer by finding the root. In the code that follows we want to find where the cdf equals 0.5. The function <code><a href="https://rdrr.io/r/stats/uniroot.html">uniroot()</a></code> solves the given equations for roots so we want to put in the cdf minus 0.5. In other words, <code><a href="https://rdrr.io/r/stats/uniroot.html">uniroot()</a></code> solves <span class="math inline">\(f(x)=0\)</span> for x.</p>
+<div class="sourceCode" id="cb429"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/uniroot.html">uniroot</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="fu">z_cdf</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">-</span><span class="fl">.5</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.25</span>,<span class="fl">35</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">root</span></code></pre></div>
 <pre><code>## [1] 0.2916077</code></pre>
 <p>So it is actually 0.292 hours, 17.5 minutes. So round up and wait 18 minutes.</p>
 </div>
 </div>
 <div id="homework-problems-15" class="section level2" number="16.3">
-<h2><span class="header-section-number">16.3</span> Homework Problems</h2>
+<h2>
+<span class="header-section-number">16.3</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-15"><i class="fas fa-link"></i></a>
+</h2>
 <ol style="list-style-type: decimal">
 <li>Let <span class="math inline">\(X\)</span> be a random variable and let <span class="math inline">\(g\)</span> be a function. By this point, it should be clear that <span class="math inline">\(\mbox{E}[g(X)]\)</span> is not necessarily equal to <span class="math inline">\(g(\mbox{E}[X])\)</span>.</li>
 </ol>
-<p>Let <span class="math inline">\(X\sim \textsf{Expon}(\lambda=0.5)\)</span> and <span class="math inline">\(g(X)=X^2\)</span>. We know that <span class="math inline">\(\mbox{E}(X)=\frac{1}{0.5}=2\)</span> so <span class="math inline">\(g(\mbox{E}(X))=\mbox{E}(X)^2=4\)</span>. Use <code>R</code> to find <span class="math inline">\(\mbox{E}[g(X)]\)</span>. Make use of the fact that <code>R</code> has <code>rexp()</code> built into it, so you don’t have to create your own random variable generator.</p>
+<p>Let <span class="math inline">\(X\sim \textsf{Expon}(\lambda=0.5)\)</span> and <span class="math inline">\(g(X)=X^2\)</span>. We know that <span class="math inline">\(\mbox{E}(X)=\frac{1}{0.5}=2\)</span> so <span class="math inline">\(g(\mbox{E}(X))=\mbox{E}(X)^2=4\)</span>. Use <code>R</code> to find <span class="math inline">\(\mbox{E}[g(X)]\)</span>. Make use of the fact that <code>R</code> has <code><a href="https://rdrr.io/r/stats/Exponential.html">rexp()</a></code> built into it, so you don’t have to create your own random variable generator.</p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Let <span class="math inline">\(X\sim \textsf{Binom}(n,\pi)\)</span>. What is the pmf for <span class="math inline">\(Y = X+3\)</span>? Make sure you specify the domain of <span class="math inline">\(Y\)</span>. [Note, we have used <span class="math inline">\(p\)</span> for the probability of success in a binomial distribution in past chapters but some references use <span class="math inline">\(\pi\)</span> instead.]</p></li>
 <li><p>Let <span class="math inline">\(X\sim \textsf{Expon}(\lambda)\)</span>. Let <span class="math inline">\(Y=X^2\)</span>. Find the pdf of <span class="math inline">\(Y\)</span>.</p></li>
@@ -385,59 +437,72 @@ How long should the first person wait so that there is at least a 50% probabilit
 f_T(t)= \frac{-t}{200}+\frac{3}{20}; 10 \leq t \leq30
 \]</span></p>
 <p>Figure <a href="TRANS.html#fig:fig1">16.6</a> is a plot of the pdf.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig1"></span>
-<img src="16-Transformations_files/figure-html/fig1-1.png" alt="pdf of $T$" width="672" />
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:fig1"></span>
+<img src="16-Transformations_files/figure-html/fig1-1.png" alt="pdf of $T$" width="672"><p class="caption">
 Figure 16.6: pdf of <span class="math inline">\(T\)</span>
 </p>
 </div>
 <p>We want to find the probability our combined time is less than 40 minutes, <span class="math inline">\(\mbox{P}(T_1 + T_2 &lt; 40)\)</span>. We will solve this in steps in this problem. We are going to use a computational method because the mathematics is long and algebra intensive. You are welcome to try a mathematical solution if you like but we will not provide a mathematical solution.</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>Use the <code>integrate()</code> function to confirm this is a valid pdf.</p></li>
+<li><p>Use the <code><a href="https://rdrr.io/r/stats/integrate.html">integrate()</a></code> function to confirm this is a valid pdf.</p></li>
 <li><p>Find the cdf of <span class="math inline">\(T\)</span> mathematically.</p></li>
-<li><p>To use the cdf to simulate random variables from this distribution, we need the inverse of the cdf which means we have to solve a quadratic equation. We can do this mathematically or just use the function <code>uniroot()</code>. So first, we will make sure we understand how to use <code>uniroot()</code>.</p></li>
+<li><p>To use the cdf to simulate random variables from this distribution, we need the inverse of the cdf which means we have to solve a quadratic equation. We can do this mathematically or just use the function <code><a href="https://rdrr.io/r/stats/uniroot.html">uniroot()</a></code>. So first, we will make sure we understand how to use <code><a href="https://rdrr.io/r/stats/uniroot.html">uniroot()</a></code>.</p></li>
 </ol>
 <p>As a check, we know the median of the distribution is approximately 15.857. Here is code to show that 15.857 is approximately the median. We are integrating the pdf from 10 to 15.857 to confirm that this is 0.5.</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="TRANS.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)<span class="sc">-</span>x<span class="sc">/</span><span class="dv">200</span><span class="sc">+</span><span class="dv">3</span><span class="sc">/</span><span class="dv">20</span>,<span class="dv">10</span>,<span class="fl">15.857</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">-</span><span class="va">x</span><span class="op">/</span><span class="fl">200</span><span class="op">+</span><span class="fl">3</span><span class="op">/</span><span class="fl">20</span>,<span class="fl">10</span>,<span class="fl">15.857</span><span class="op">)</span></code></pre></div>
 <pre><code>## 0.4999389 with absolute error &lt; 5.6e-15</code></pre>
-<p>Use <code>uniroot()</code> and your cdf to confirm that 15.857 is the median.</p>
+<p>Use <code><a href="https://rdrr.io/r/stats/uniroot.html">uniroot()</a></code> and your cdf to confirm that 15.857 is the median.</p>
 <ol start="4" style="list-style-type: lower-alpha">
 <li>We will create a function to take a random uniform variable on the interval <span class="math inline">\([0,1]\)</span> and return a value of our random variable, <span class="math inline">\(T\)</span>, exercise time. We can then use this function to simulate each of the exercise times and then create a new random variable that is the sum. Complete the <code>R</code> code and check that it returns the median.</li>
 </ol>
 <pre><code>T &lt;- function(y){
-  uniroot(function(x)&quot;YOUR CDF HERE as a function of x&quot;-y,c(10,30))$root
+  uniroot(function(x)"YOUR CDF HERE as a function of x"-y,c(10,30))$root
 }</code></pre>
 <p>We made it a function of <span class="math inline">\(y\)</span> since we are using <span class="math inline">\(x\)</span> in our cdf. There are two function calls here, can you see why?</p>
 <ol start="5" style="list-style-type: lower-alpha">
-<li><p>Vectorize the function you just created using the <code>Vectorize()</code> function. Check that it is vectorized by entering <code>c(.5,.75)</code> into the function. You should get 15.85786 20.00000 as an output.</p></li>
+<li><p>Vectorize the function you just created using the <code><a href="https://rdrr.io/r/base/Vectorize.html">Vectorize()</a></code> function. Check that it is vectorized by entering <code>c(.5,.75)</code> into the function. You should get 15.85786 20.00000 as an output.</p></li>
 <li><p>We are ready. Let’s create a data frame with 10000 simulation for our time and another 10000 for our teammates. Remember to set a seed. At this point it may be hard to remember what we have done. The function we created takes as input a vector of random number from a uniform distribution and then applies the inverse cdf to generate a random sample from our given pdf.</p></li>
 <li><p>Do a numerical summary of the data and plot a density plot of your exercise times to give us confidence that we simulated the process correctly.</p></li>
 <li><p>Create the new variable that is the sum of the two exercise time and then find the probability that the sum is less than 40.</p></li>
 </ol>
-
 </div>
 </div>
-  </main>
-
-  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page">
-      <h2>On this page</h2>
-      <div id="book-on-this-page"></div>
+  <div class="chapter-nav">
+<div class="prev"><a href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></div>
+<div class="next"><a href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#TRANS"><span class="header-section-number">16</span> Transformations</a></li>
+<li><a class="nav-link" href="#objectives-15"><span class="header-section-number">16.1</span> Objectives</a></li>
+<li>
+<a class="nav-link" href="#transformations"><span class="header-section-number">16.2</span> Transformations</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#transformations-of-discrete-random-variables"><span class="header-section-number">16.2.1</span> Transformations of discrete random variables</a></li>
+<li><a class="nav-link" href="#transformations-of-continuous-random-variables"><span class="header-section-number">16.2.2</span> Transformations of continuous random variables</a></li>
+<li><a class="nav-link" href="#the-cdf-method"><span class="header-section-number">16.2.3</span> The cdf method</a></li>
+<li><a class="nav-link" href="#the-pdf-method"><span class="header-section-number">16.2.4</span> The pdf method</a></li>
+<li><a class="nav-link" href="#simulation-2"><span class="header-section-number">16.2.5</span> Simulation</a></li>
+<li><a class="nav-link" href="#multivariate-transformations"><span class="header-section-number">16.2.6</span> Multivariate Transformations</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#homework-problems-15"><span class="header-section-number">16.3</span> Homework Problems</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/16-Transformations.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/16-Transformations.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
-      </div>
+</div>
     </nav>
-  </div>
+</div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5">
-  <div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-14.</p>
@@ -448,11 +513,7 @@ Figure 16.6: pdf of <span class="math inline">\(T\)</span>
   </div>
 
 </div></div>
-</footer>
-
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -464,8 +525,7 @@ Figure 16.6: pdf of <span class="math inline">\(T\)</span>
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script>
-<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
 for (let popover of popovers) {
   const div = document.createElement('div');
   div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
@@ -483,5 +543,4 @@ for (let popover of popovers) {
 }
 </script>
 </body>
-
 </html>
