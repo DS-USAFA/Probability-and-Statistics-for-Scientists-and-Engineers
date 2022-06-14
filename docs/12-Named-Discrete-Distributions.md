@@ -382,7 +382,7 @@ gf_dist("pois",lambda=2.8,kind="cdf") %>%
 Consider an experiment where $k$ objects are to be selected from a larger, but finite, group consisting of $m$ "successes" and $n$ "failures". This is similar to the binomial process; after all, we are selecting successes and failures. However, in this case, the results are effectively selected *without replacement*. If the random variable $X$ represents the number of successes selected in our sample of size $k$, then $X$ follows a hypergeometric distribution with parameters $m$, $n$, and $k$. The pmf of $X$ is given by:
 
 $$
-f_X(x) = \frac{{m\choose{x}}{n\choose{k-x}}}{{{m+n}\choose{k}}}, \qquad x = 0,1,...,m
+f_X(x) = \frac{{m \choose{x}}{n \choose{k-x}}}{{m+n \choose{k}}}, \qquad x = 0,1,...,m
 $$
 
 Also, $\E(X)=\frac{km}{m+n}$ and $\Var(X)=k\frac{m}{m+n}\frac{n}{m+n}\frac{m+n-k}{m+n-1}$
