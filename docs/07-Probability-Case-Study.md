@@ -22,7 +22,7 @@ This case study is extensive and may seem overwhelming, do not worry we will dis
 
 ## Probability models
 
-Probability models are an important tool for data analysts. They are used to explain variation in outcomes that cannot be explained by other variables. We will use these ideas later in this text to help us make decisions about our statistical models. 
+Probability models are an important tool for data analysts. They are used to explain variation in outcomes that cannot be explained by other variables. We will use these ideas in the Statistical Modeling Block to help us make decisions about our statistical models. 
 
 Often probability models are used to answer a question of the form "What is the chance that .....?" This means that we typically have an experiment or trial where multiple outcomes are possible and we only have an idea of the frequency of those outcomes. We use this frequency as a measure of the probability of a particular outcome.
 
