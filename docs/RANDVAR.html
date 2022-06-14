@@ -1,33 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 10 Random Variables | Computational Probability and Statistics</title>
-<meta name="author" content="Matthew Davis">
-<meta name="author" content="Brianna Hitt">
-<meta name="author" content="Ken Horton">
-<meta name="author" content="Bradley Warner">
-<meta name="description" content="10.1 Objectives Define and use properly in context all new terminology. Given a discrete random variable, obtain the pmf and cdf, and use them to obtain probabilities of events. Simulate random...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
-<meta property="og:title" content="Chapter 10 Random Variables | Computational Probability and Statistics">
-<meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover.png">
-<meta property="og:description" content="10.1 Objectives Define and use properly in context all new terminology. Given a discrete random variable, obtain the pmf and cdf, and use them to obtain probabilities of events. Simulate random...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 10 Random Variables | Computational Probability and Statistics">
-<meta name="twitter:description" content="10.1 Objectives Define and use properly in context all new terminology. Given a discrete random variable, obtain the pmf and cdf, and use them to obtain probabilities of events. Simulate random...">
-<meta name="twitter:image" content="/figures/Cover.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Chapter 10 Random Variables | Computational Probability and Statistics</title>
+
+    <meta name="author" content="Matthew Davis" />
+    <meta name="author" content="Brianna Hitt" />
+    <meta name="author" content="Ken Horton" />
+    <meta name="author" content="Bradley Warner" />
+  
+   <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="Chapter 10 Random Variables | Computational Probability and Statistics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/figures/Cover.png" />
+  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Random Variables | Computational Probability and Statistics" />
+  
+  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta name="twitter:image" content="/figures/Cover.png" />
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.3.1/transition.js"></script>
+    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
+    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  <style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
-<style type="text/css">
+    <style type="text/css">
     /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
     div.csl-bib-body { }
     div.csl-entry {
@@ -49,13 +69,16 @@
       margin-left: 2em;
     }
   </style>
-<link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style.css" />
+  
 </head>
+
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -67,81 +90,41 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
+      </form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Preface</a></li>
-<li class="book-part">Descriptive Statistical Modeling</li>
-<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
-<li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
-<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
-<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
-<li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
-<li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
-<li class="book-part">Probability Modeling</li>
-<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
-<li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
-<li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
-<li><a class="active" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
-<li><a class="" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
-<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
-<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
-<li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
-<li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
-<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
-<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
-<li class="book-part">Statistical Modeling</li>
-<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
-<li><a class="" href="HYPOTEST.html"><span class="header-section-number">19</span> Hypothesis Testing</a></li>
-<li><a class="" href="PVALUES.html"><span class="header-section-number">20</span> Empirical p-values</a></li>
-<li><a class="" href="CLT.html"><span class="header-section-number">21</span> Central Limit Theorem</a></li>
-<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
-<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
-<li><a class="" href="ADDTESTS.html"><span class="header-section-number">24</span> Additional Hypothesis Tests</a></li>
-<li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">25</span> Case Study</a></li>
-<li><a class="" href="LRBASICS.html"><span class="header-section-number">26</span> Linear Regression Basics</a></li>
-<li><a class="" href="LRINF.html"><span class="header-section-number">27</span> Linear Regression Inference</a></li>
-<li><a class="" href="LRDIAG.html"><span class="header-section-number">28</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">29</span> Simulation Based Linear Regression</a></li>
-<li><a class="" href="LRMULTI.html"><span class="header-section-number">30</span> Multiple Linear Regression</a></li>
-<li><a class="" href="LOGREG.html"><span class="header-section-number">31</span> Logistic Regression</a></li>
-<li><a class="" href="references.html">References</a></li>
-</ul>
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
         </div>
       </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="RANDVAR" class="section level1" number="10">
-<h1>
-<span class="header-section-number">10</span> Random Variables<a class="anchor" aria-label="anchor" href="#RANDVAR"><i class="fas fa-link"></i></a>
-</h1>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="RANDVAR" class="section level1" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Random Variables</h1>
 <div id="objectives-9" class="section level2" number="10.1">
-<h2>
-<span class="header-section-number">10.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-9"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">10.1</span> Objectives</h2>
 <ol style="list-style-type: decimal">
-<li>Define and use properly in context all new terminology.<br>
+<li>Define and use properly in context all new terminology.<br />
 </li>
-<li>Given a discrete random variable, obtain the pmf and cdf, and use them to obtain probabilities of events.<br>
+<li>Given a discrete random variable, obtain the pmf and cdf, and use them to obtain probabilities of events.<br />
 </li>
-<li>Simulate random variable for a discrete distribution.<br>
+<li>Simulate random variable for a discrete distribution.<br />
 </li>
-<li>Find the moments of a discrete random variable.<br>
+<li>Find the moments of a discrete random variable.<br />
 </li>
 <li>Find the expected value of a linear transformation of a random variable.</li>
 </ol>
 </div>
 <div id="random-variables" class="section level2" number="10.2">
-<h2>
-<span class="header-section-number">10.2</span> Random variables<a class="anchor" aria-label="anchor" href="#random-variables"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">10.2</span> Random variables</h2>
 <p>We have already discussed random experiments. We have also discussed <span class="math inline">\(S\)</span>, the sample space for an experiment. A random variable essentially maps the events in the sample space to the real number line. For a formal definition: A random variable <span class="math inline">\(X\)</span> is a function <span class="math inline">\(X: S\rightarrow \mathbb{R}\)</span> that assigns exactly one number to each outcome in an experiment.</p>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 Suppose you flip a coin three times. The sample space, <span class="math inline">\(S\)</span>, of this experiment is
 <span class="math display">\[
 S=\{\mbox{HHH}, \mbox{HHT}, \mbox{HTH}, \mbox{HTT}, \mbox{THH}, \mbox{THT}, \mbox{TTH}, \mbox{TTT}\}
@@ -157,9 +140,7 @@ S_X=\{0,1,2,3\}
 \]</span></p>
 <p>Because the sample space of <span class="math inline">\(X\)</span> is a countable list of numbers, we consider <span class="math inline">\(X\)</span> to be a <em>discrete</em> random variable (more on that later).</p>
 <div id="how-does-this-help" class="section level3" number="10.2.1">
-<h3>
-<span class="header-section-number">10.2.1</span> How does this help?<a class="anchor" aria-label="anchor" href="#how-does-this-help"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">10.2.1</span> How does this help?</h3>
 <p>Sticking with our example, we can now frame a problem of interest in the context of our random variable <span class="math inline">\(X\)</span>. For example, suppose we wanted to know the probability of at least two heads. Without our random variable, we have to write this as:
 <span class="math display">\[
 \mbox{P}(\mbox{at least two heads})= \mbox{P}(\{\mbox{HHH},\mbox{HHT},\mbox{HTH},\mbox{THH}\})
@@ -168,24 +149,18 @@ S_X=\{0,1,2,3\}
 <p>Essentially, a random variable often helps us reduce a complex random experiment to a simple variable that is easy to characterize.</p>
 </div>
 <div id="discrete-vs-continuous" class="section level3" number="10.2.2">
-<h3>
-<span class="header-section-number">10.2.2</span> Discrete vs Continuous<a class="anchor" aria-label="anchor" href="#discrete-vs-continuous"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">10.2.2</span> Discrete vs Continuous</h3>
 <p>A <em>discrete</em> random variable has a sample space that consists of a countable set of values. <span class="math inline">\(X\)</span> in our example above is a discrete random variable. Note that “countable” does not necessarily mean “finite”. For example, a random variable with a Poisson distribution (a topic for a later lesson) has a sample space of <span class="math inline">\(\{0,1,2,...\}\)</span>. This sample space is unbounded, but it is considered <em>countably</em> infinite, and thus the random variable would be considered discrete.</p>
 <p>A <em>continuous</em> random variable has a sample space that is a continuous interval. For example, let <span class="math inline">\(Y\)</span> be the random variable corresponding to the height of a randomly selected individual. <span class="math inline">\(Y\)</span> is a continuous random variable because a person could measure 68.1 inches, 68.2 inches, or perhaps any value in between. Note that when we measure height, our precision is limited by our measuring device, so we are technically “discretizing” height. However, even in these cases, we typically consider height to be a continuous random variable.</p>
 <p>A <em>mixed</em> random variable is exactly what it sounds like. It has a sample space that is both discrete and continuous. How could such a thing occur? Consider an experiment where a person rolls a standard six-sided die. If it lands on anything other than one, the result of the die roll is recorded. If it lands on one, the person spins a wheel, and the angle in degrees of the resulting spin, divided by 360, is recorded. If our random variable <span class="math inline">\(Z\)</span> is the number that is recorded in this experiment, the sample space of <span class="math inline">\(Z\)</span> is <span class="math inline">\([0,1] \cup \{2,3,4,5,6\}\)</span>. We will not be spending much time on mixed random variables. However they do occur in practice, consider the job of analyzing bomb error data. If the bomb hits within a certain radius, the error is 0. Otherwise it is measured in a radial direction. This data is mixed.</p>
 </div>
 <div id="discrete-distribution-functions" class="section level3" number="10.2.3">
-<h3>
-<span class="header-section-number">10.2.3</span> Discrete distribution functions<a class="anchor" aria-label="anchor" href="#discrete-distribution-functions"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">10.2.3</span> Discrete distribution functions</h3>
 <p>Once we have defined a random variable, we need a way to describe its behavior and we will use probabilities for this purpose.</p>
 <p><em>Distribution functions</em> describe the behavior of random variables. We can use these functions to determine the probability that a random variable takes a value or a range of values. For discrete random variables, there are two distribution functions of interest: the <em>probability mass function</em> (pmf) and the <em>cumulative distribution function</em> (cdf).</p>
 </div>
 <div id="probability-mass-function" class="section level3" number="10.2.4">
-<h3>
-<span class="header-section-number">10.2.4</span> Probability mass function<a class="anchor" aria-label="anchor" href="#probability-mass-function"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">10.2.4</span> Probability mass function</h3>
 <p>Let <span class="math inline">\(X\)</span> be a discrete random variable. The probability mass function (pmf) of <span class="math inline">\(X\)</span>, given by <span class="math inline">\(f_X(x)\)</span>, is a function that assigns probability to each possible outcome of <span class="math inline">\(X\)</span>.
 <span class="math display">\[
 f_X(x)=\mbox{P}(X=x)
@@ -196,7 +171,7 @@ f_X(x)=\mbox{P}(X=x)
 <li><p><span class="math inline">\(\sum_x f_X(x) = 1\)</span>, where the <span class="math inline">\(x\)</span> in the index of the sum simply denotes that we are summing across the entire domain or support of <span class="math inline">\(X\)</span>.</p></li>
 </ol>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 Recall our example again. You flip a coin three times and let <span class="math inline">\(X\)</span> be the number of heads in those three coin flips. We know that <span class="math inline">\(X\)</span> can only take values 0, 1, 2 or 3. But at what probability does it take these three values? In that example, we had listed out the possible outcomes of the experiment and denoted what value of <span class="math inline">\(X\)</span> corresponds to each outcome.
 <span class="math display">\[
 S=\{\underbrace{\mbox{HHH}}_{X=3}, \underbrace{\mbox{HHT}}_{X=2}, \underbrace{\mbox{HTH}}_{X=2}, \underbrace{\mbox{HTT}}_{X=1}, \underbrace{\mbox{THH}}_{X=2}, \underbrace{\mbox{THT}}_{X=1}, \underbrace{\mbox{TTH}}_{X=1}, \underbrace{\mbox{TTT}}_{X=0}\}
@@ -212,14 +187,14 @@ f_X(x)=\left\{ \renewcommand{\arraystretch}{1.4} \begin{array}{ll} \frac{1}{8}, 
 \]</span></p>
 <p>Note that this function specifies the probability that <span class="math inline">\(X\)</span> takes any of the four values in the sample space (0, 1, 2, and 3). Also, it specifies that the probability that <span class="math inline">\(X\)</span> takes any other value is 0.</p>
 <p>Graphically, the pmf is not terribly interesting. The pmf is 0 at all values of <span class="math inline">\(X\)</span> except for 0, 1, 2 and 3, Figure <a href="RANDVAR.html#fig:pmf101-fig">10.1</a>.</p>
-<div class="figure">
-<span style="display:block;" id="fig:pmf101-fig"></span>
-<img src="10-RandomVariables_files/figure-html/pmf101-fig-1.png" alt="Probability Mass Function of $X$ from Coin Flip Example" width="672"><p class="caption">
+<div class="figure"><span style="display:block;" id="fig:pmf101-fig"></span>
+<img src="10-RandomVariables_files/figure-html/pmf101-fig-1.png" alt="Probability Mass Function of $X$ from Coin Flip Example" width="672" />
+<p class="caption">
 Figure 10.1: Probability Mass Function of <span class="math inline">\(X\)</span> from Coin Flip Example
 </p>
 </div>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 We can use a pmf to answer questions about an experiment. For example, consider the same context. What is the probability that we flip at least one heads? We can write this in the context of <span class="math inline">\(X\)</span>:
 <span class="math display">\[
 \mbox{P}(\mbox{at least one heads})=\mbox{P}(X\geq 1)=\mbox{P}(X=1)+\mbox{P}(X=2)+\mbox{P}(X=3)=\frac{3}{8} + \frac{3}{8}+\frac{1}{8}=\frac{7}{8}
@@ -228,9 +203,7 @@ We can use a pmf to answer questions about an experiment. For example, consider 
 <p>Alternatively, we can recognize that <span class="math inline">\(\mbox{P}(X\geq 1)=1-\mbox{P}(X=0)=1-\frac{1}{8}=\frac{7}{8}\)</span>.</p>
 </div>
 <div id="cumulative-distribution-function" class="section level3" number="10.2.5">
-<h3>
-<span class="header-section-number">10.2.5</span> Cumulative distribution function<a class="anchor" aria-label="anchor" href="#cumulative-distribution-function"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">10.2.5</span> Cumulative distribution function</h3>
 <p>Let <span class="math inline">\(X\)</span> be a discrete random variable. The cumulative distribution function (cdf) of <span class="math inline">\(X\)</span>, given by <span class="math inline">\(F_X(x)\)</span>, is a function that assigns to each value of <span class="math inline">\(X\)</span> the probability that <span class="math inline">\(X\)</span> takes that value or lower:
 <span class="math display">\[
 F_X(x)=\mbox{P}(X\leq x)
@@ -242,7 +215,7 @@ F_X(x)=\mbox{P}(X\leq x)=\sum_{y\leq x} f_X(y)
 \]</span></p>
 <p>Like the pmf, the cdf must be between 0 and 1. Also, since the pmf is always non-negative, the cdf must be non-decreasing.</p>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 Obtain and plot the cdf of <span class="math inline">\(X\)</span> of the previous example.
 <span class="math display">\[
 F_X(x)=\mbox{P}(X\leq x)=\left\{\renewcommand{\arraystretch}{1.4} \begin{array}{ll} 0, &amp; x &lt;0 \\
@@ -253,70 +226,58 @@ F_X(x)=\mbox{P}(X\leq x)=\left\{\renewcommand{\arraystretch}{1.4} \begin{array}{
 \]</span></p>
 </blockquote>
 <p>Visually, the cdf of a discrete random variable has a stairstep appearance. In this example, the cdf takes a value 0 up until <span class="math inline">\(X=0\)</span>, at which point the cdf increases to 1/8. It stays at this value until <span class="math inline">\(X=1\)</span>, and so on. At and beyond <span class="math inline">\(X=3\)</span>, the cdf is equal to 1, Figure <a href="RANDVAR.html#fig:cdf101-fig">10.2</a>.</p>
-<div class="figure">
-<span style="display:block;" id="fig:cdf101-fig"></span>
-<img src="10-RandomVariables_files/figure-html/cdf101-fig-1.png" alt="Cumulative Distribution Function of $X$ from Coin Flip Example" width="672"><p class="caption">
+<div class="figure"><span style="display:block;" id="fig:cdf101-fig"></span>
+<img src="10-RandomVariables_files/figure-html/cdf101-fig-1.png" alt="Cumulative Distribution Function of $X$ from Coin Flip Example" width="672" />
+<p class="caption">
 Figure 10.2: Cumulative Distribution Function of <span class="math inline">\(X\)</span> from Coin Flip Example
 </p>
 </div>
 </div>
 <div id="simulating-random-variables" class="section level3" number="10.2.6">
-<h3>
-<span class="header-section-number">10.2.6</span> Simulating random variables<a class="anchor" aria-label="anchor" href="#simulating-random-variables"><i class="fas fa-link"></i></a>
-</h3>
-<p>We can simulate values from a random variable using the cdf, we will use a similar idea for continuous random variables. Since the range of the cdf is in the interval <span class="math inline">\([0,1]\)</span> we will generate a random number in that same interval and then use the inverse function to find the value of the random variable. The pseudo code is:<br>
-1) Generate a random number, <span class="math inline">\(U\)</span>.<br>
+<h3><span class="header-section-number">10.2.6</span> Simulating random variables</h3>
+<p>We can simulate values from a random variable using the cdf, we will use a similar idea for continuous random variables. Since the range of the cdf is in the interval <span class="math inline">\([0,1]\)</span> we will generate a random number in that same interval and then use the inverse function to find the value of the random variable. The pseudo code is:<br />
+1) Generate a random number, <span class="math inline">\(U\)</span>.<br />
 2) Find the index <span class="math inline">\(k\)</span> such that <span class="math inline">\(\sum_{j=1}^{k-1}f_X(x_{j}) \leq U &lt; \sum_{j=1}^{k}f_X(x_{j})\)</span> or <span class="math inline">\(F_x(k-1) \leq U &lt; F_{x}(k)\)</span>.</p>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 Simulate a random variable for the number of heads in flipping a coin three times.</p>
 </blockquote>
 <p>First we will create the pmf.</p>
-<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pmf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">8</span>,<span class="fl">3</span><span class="op">/</span><span class="fl">8</span>,<span class="fl">3</span><span class="op">/</span><span class="fl">8</span>,<span class="fl">1</span><span class="op">/</span><span class="fl">8</span><span class="op">)</span>
-<span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>
-<span class="va">pmf</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="RANDVAR.html#cb223-1" aria-hidden="true" tabindex="-1"></a>pmf <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>,<span class="dv">3</span><span class="sc">/</span><span class="dv">8</span>,<span class="dv">3</span><span class="sc">/</span><span class="dv">8</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>)</span>
+<span id="cb223-2"><a href="RANDVAR.html#cb223-2" aria-hidden="true" tabindex="-1"></a>values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb223-3"><a href="RANDVAR.html#cb223-3" aria-hidden="true" tabindex="-1"></a>pmf</span></code></pre></div>
 <pre><code>## [1] 0.125 0.375 0.375 0.125</code></pre>
 <p>We get the cdf from the cumulative sum.</p>
-<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">pmf</span><span class="op">)</span>
-<span class="va">cdf</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="RANDVAR.html#cb225-1" aria-hidden="true" tabindex="-1"></a>cdf <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(pmf)</span>
+<span id="cb225-2"><a href="RANDVAR.html#cb225-2" aria-hidden="true" tabindex="-1"></a>cdf</span></code></pre></div>
 <pre><code>## [1] 0.125 0.500 0.875 1.000</code></pre>
 <p>Next, we will generate a random number between 0 and 1.</p>
-<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1153</span><span class="op">)</span>
-<span class="va">ran_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-<span class="va">ran_num</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="RANDVAR.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1153</span>)</span>
+<span id="cb227-2"><a href="RANDVAR.html#cb227-2" aria-hidden="true" tabindex="-1"></a>ran_num <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
+<span id="cb227-3"><a href="RANDVAR.html#cb227-3" aria-hidden="true" tabindex="-1"></a>ran_num</span></code></pre></div>
 <pre><code>## [1] 0.7381891</code></pre>
 <p>Finally, we will find the value of the random variable. We will do each step separately first so you can understand the code.</p>
-<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="RANDVAR.html#cb229-1" aria-hidden="true" tabindex="-1"></a>ran_num <span class="sc">&lt;</span> cdf</span></code></pre></div>
 <pre><code>## [1] FALSE FALSE  TRUE  TRUE</code></pre>
-<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="RANDVAR.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(ran_num <span class="sc">&lt;</span> cdf)</span></code></pre></div>
 <pre><code>## [1] 3 4</code></pre>
-<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="RANDVAR.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(ran_num <span class="sc">&lt;</span> cdf)[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">values</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="RANDVAR.html#cb235-1" aria-hidden="true" tabindex="-1"></a>values[<span class="fu">which</span>(ran_num <span class="sc">&lt;</span> cdf)[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>Let’s make this a function.</p>
-<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">simple_rv</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">values</span>,<span class="va">cdf</span><span class="op">)</span><span class="op">{</span>
-<span class="va">ran_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">values</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="RANDVAR.html#cb237-1" aria-hidden="true" tabindex="-1"></a>simple_rv <span class="ot">&lt;-</span> <span class="cf">function</span>(values,cdf){</span>
+<span id="cb237-2"><a href="RANDVAR.html#cb237-2" aria-hidden="true" tabindex="-1"></a>ran_num <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
+<span id="cb237-3"><a href="RANDVAR.html#cb237-3" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(values[<span class="fu">which</span>(ran_num <span class="sc">&lt;</span> cdf)[<span class="dv">1</span>]])</span>
+<span id="cb237-4"><a href="RANDVAR.html#cb237-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now let’s generate 10000 values from this random variable.</p>
-<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu">simple_rv</span><span class="op">(</span><span class="va">values</span>,<span class="va">cdf</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="RANDVAR.html#cb238-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">simple_rv</span>(values,cdf)</span>
+<span id="cb238-2"><a href="RANDVAR.html#cb238-2" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(results)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
 ##           name   class min Q1 median Q3 max   mean       sd     n missing
 ## ...1 simple_rv numeric   0  1      2  2   3 1.5048 0.860727 10000       0</code></pre>
-<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">simple_rv</span>,data<span class="op">=</span><span class="va">results</span>,format<span class="op">=</span><span class="st">"proportion"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="RANDVAR.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>simple_rv,<span class="at">data=</span>results,<span class="at">format=</span><span class="st">&quot;proportion&quot;</span>)</span></code></pre></div>
 <pre><code>## simple_rv
 ##      0      1      2      3 
 ## 0.1207 0.3785 0.3761 0.1247</code></pre>
@@ -324,30 +285,24 @@ Simulate a random variable for the number of heads in flipping a coin three time
 </div>
 </div>
 <div id="moments" class="section level2" number="10.3">
-<h2>
-<span class="header-section-number">10.3</span> Moments<a class="anchor" aria-label="anchor" href="#moments"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">10.3</span> Moments</h2>
 <p>Distribution functions are excellent characterizations of random variables. The pmf and cdf will tell you exactly how often the random variables takes particular values. However, distribution functions are often a lot of information. Sometimes, we may want to describe a random variable <span class="math inline">\(X\)</span> with a single value or small set of values. For example, we may want to know the average or some measure of center of <span class="math inline">\(X\)</span>. We also may want to know a measure of spread of <span class="math inline">\(X\)</span>. <em>Moments</em> are values that summarize random variables with single numbers. Since we are dealing with the population, these moments are population values and not summary statistics as we used in the first block of material.</p>
 <div id="expectation" class="section level3" number="10.3.1">
-<h3>
-<span class="header-section-number">10.3.1</span> Expectation<a class="anchor" aria-label="anchor" href="#expectation"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">10.3.1</span> Expectation</h3>
 <p>At this point, we should define the term <em>expectation</em>. Let <span class="math inline">\(g(X)\)</span> be some function of a discrete random variable <span class="math inline">\(X\)</span>. The expected value of <span class="math inline">\(g(X)\)</span> is given by:
 <span class="math display">\[
 \mbox{E}(g(X))=\sum_x g(x) \cdot f_X(x)
 \]</span></p>
 </div>
 <div id="mean" class="section level3" number="10.3.2">
-<h3>
-<span class="header-section-number">10.3.2</span> Mean<a class="anchor" aria-label="anchor" href="#mean"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">10.3.2</span> Mean</h3>
 <p>The most common moments used to describe random variables are <em>mean</em> and <em>variance</em>. The mean (often referred to as the expected value of <span class="math inline">\(X\)</span>), is simply the average value of a random variable. It is denoted as <span class="math inline">\(\mu_X\)</span> or <span class="math inline">\(\mbox{E}(X)\)</span>. In the discrete case, the mean is found by:
 <span class="math display">\[
 \mu_X=\mbox{E}(X)=\sum_x x \cdot f_X(x)
 \]</span></p>
 <p>The mean is also known as the first moment of <span class="math inline">\(X\)</span> around the origin. It is a weighted sum with the weight being the probability. If each outcome were equally likely, the expected value would just be the average of the values of the random variable since each weight is the reciprocal of the number of values.</p>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 Find the expected value (or mean) of <span class="math inline">\(X\)</span>: the number of heads in three flips of a fair coin.
 <span class="math display">\[
 \mbox{E}(X)=\sum_x x\cdot f_X(x) = 0*\frac{1}{8} + 1*\frac{3}{8} + 2*\frac{3}{8} + 3*\frac{1}{8}=1.5
@@ -355,14 +310,11 @@ Find the expected value (or mean) of <span class="math inline">\(X\)</span>: the
 </blockquote>
 <p>We are using <span class="math inline">\(\mu\)</span> because it is a population parameter.</p>
 <p>From our simulation above, we can find the mean as an estimate of the expected value. This is really a statistic since our simulation is data from the population and thus will have variance from sample to sample.</p>
-<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="op">~</span><span class="va">simple_rv</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="RANDVAR.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="sc">~</span>simple_rv,<span class="at">data=</span>results)</span></code></pre></div>
 <pre><code>## [1] 1.5048</code></pre>
 </div>
 <div id="variance" class="section level3" number="10.3.3">
-<h3>
-<span class="header-section-number">10.3.3</span> Variance<a class="anchor" aria-label="anchor" href="#variance"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">10.3.3</span> Variance</h3>
 <p>Variance is a measure of spread of a random variable. The variance of <span class="math inline">\(X\)</span> is denoted as <span class="math inline">\(\sigma^2_X\)</span> or <span class="math inline">\(\mbox{Var}(X)\)</span>. It is equivalent to the average squared deviation from the mean:
 <span class="math display">\[
 \sigma^2_X=\mbox{Var}(X)=\mbox{E}[(X-\mu_X)^2]
@@ -374,7 +326,7 @@ Find the expected value (or mean) of <span class="math inline">\(X\)</span>: the
 <p>Variance is also known as the second moment of <span class="math inline">\(X\)</span> around the mean.</p>
 <p>The square root of <span class="math inline">\(\mbox{Var}(X)\)</span> is denoted as <span class="math inline">\(\sigma_X\)</span>, the standard deviation of <span class="math inline">\(X\)</span>. The standard deviation is often reported because it is measured in the same units as <span class="math inline">\(X\)</span>, while the variance is measured in squared units and is thus harder to interpret.</p>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 Find the variance of <span class="math inline">\(X\)</span>: the number of heads in three flips of a fair coin.</p>
 </blockquote>
 <p><span class="math display">\[
@@ -384,19 +336,15 @@ Find the variance of <span class="math inline">\(X\)</span>: the number of heads
 = (0-1.5)^2 \times \frac{1}{8} + (1-1.5)^2 \times \frac{3}{8}+(2-1.5)^2 \times \frac{3}{8} + (3-1.5)^2\times \frac{1}{8}
 \]</span>
 In <code>R</code> this is:</p>
-<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="fl">0</span><span class="op">-</span><span class="fl">1.5</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">1</span><span class="op">/</span><span class="fl">8</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fl">1.5</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">3</span><span class="op">/</span><span class="fl">8</span> <span class="op">+</span> <span class="op">(</span><span class="fl">2</span><span class="op">-</span><span class="fl">1.5</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">3</span><span class="op">/</span><span class="fl">8</span> <span class="op">+</span> <span class="op">(</span><span class="fl">3</span><span class="op">-</span><span class="fl">1.5</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">1</span><span class="op">/</span><span class="fl">8</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="RANDVAR.html#cb244-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span><span class="fl">-1.5</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">1</span><span class="sc">/</span><span class="dv">8</span> <span class="sc">+</span> (<span class="dv">1</span><span class="fl">-1.5</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">3</span><span class="sc">/</span><span class="dv">8</span> <span class="sc">+</span> (<span class="dv">2</span><span class="fl">-1.5</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">3</span><span class="sc">/</span><span class="dv">8</span> <span class="sc">+</span> (<span class="dv">3</span><span class="fl">-1.5</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">1</span><span class="sc">/</span><span class="dv">8</span></span></code></pre></div>
 <pre><code>## [1] 0.75</code></pre>
 <p>The variance of <span class="math inline">\(X\)</span> is 0.75.</p>
 <p>We can find the variance of the simulation but <code>R</code> uses the sample variance and this is the population variance. So we need to multiply by <span class="math inline">\(\frac{n-1}{n}\)</span></p>
-<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">var</a></span><span class="op">(</span><span class="op">~</span><span class="va">simple_rv</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fl">10000</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="RANDVAR.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(<span class="sc">~</span>simple_rv,<span class="at">data=</span>results)<span class="sc">*</span>(<span class="dv">10000-1</span>)<span class="sc">/</span><span class="dv">10000</span></span></code></pre></div>
 <pre><code>## [1] 0.740777</code></pre>
 </div>
 <div id="mean-and-variance-of-linear-transformations" class="section level3" number="10.3.4">
-<h3>
-<span class="header-section-number">10.3.4</span> Mean and variance of Linear Transformations<a class="anchor" aria-label="anchor" href="#mean-and-variance-of-linear-transformations"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">10.3.4</span> Mean and variance of Linear Transformations</h3>
 <p><strong>Lemma</strong>: Let <span class="math inline">\(X\)</span> be a discrete random variable, and let <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> be constants. Then:
 <span class="math display">\[
 \mbox{E}(aX+b)=a\mbox{E}(X)+b
@@ -409,23 +357,21 @@ and
 </div>
 </div>
 <div id="homework-problems-9" class="section level2" number="10.4">
-<h2>
-<span class="header-section-number">10.4</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-9"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">10.4</span> Homework Problems</h2>
 <ol style="list-style-type: decimal">
 <li>Suppose we are flipping a fair coin, and the result of a single coin flip is either heads or tails. Let <span class="math inline">\(X\)</span> be a random variable representing the number of flips until the first heads.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>Is <span class="math inline">\(X\)</span> discrete or continuous? What is the domain, support, of <span class="math inline">\(X\)</span>?<br>
+<li>Is <span class="math inline">\(X\)</span> discrete or continuous? What is the domain, support, of <span class="math inline">\(X\)</span>?<br />
 </li>
-<li>What values do you <em>expect</em> <span class="math inline">\(X\)</span> to take? What do you think is the average of <span class="math inline">\(X\)</span>? Don’t actually do any formal math, just think about if you were flipping a regular coin, how long it would take you to get the first heads.<br>
+<li>What values do you <em>expect</em> <span class="math inline">\(X\)</span> to take? What do you think is the average of <span class="math inline">\(X\)</span>? Don’t actually do any formal math, just think about if you were flipping a regular coin, how long it would take you to get the first heads.<br />
 </li>
 <li>Advanced: In <code>R</code>, generate 10,000 observations from <span class="math inline">\(X\)</span>. What is the empirical, from the simulation, pmf? What is the average value of <span class="math inline">\(X\)</span> based on this simulation? Create a bar chart of the proportions. Note: Unlike the example in the Notes, we don’t have the pmf, so you will have to simulate the experiment and using <code>R</code> to find the number of flips until the first heads.</li>
 </ol>
 <p>Note: There are many ways to do this. Below is a description of one approach. It assumes we are extremely unlikely to go past 1000 flips.</p>
 <ul>
-<li><p>First, let’s sample with replacement from the vector c(“H”,“T”), 1000 times with replacement, use <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample()</a></code>.</p></li>
-<li><p>As we did in the reading, use <code><a href="https://rdrr.io/r/base/which.html">which()</a></code> and a logical argument to find the first occurrence of a heads.</p></li>
+<li><p>First, let’s sample with replacement from the vector c(“H”,“T”), 1000 times with replacement, use <code>sample()</code>.</p></li>
+<li><p>As we did in the reading, use <code>which()</code> and a logical argument to find the first occurrence of a heads.</p></li>
 </ul>
 <ol start="4" style="list-style-type: lower-alpha">
 <li>Find the theoretical distribution, use math to come up with a closed for solution for the pmf.</li>
@@ -441,11 +387,11 @@ and
 </ol>
 <p>Prior to building the report, you will need to conduct some analysis. To aid you in this, create a list of at least three random variables that will help you address timeliness at the airport. For each of your random variables,</p>
 <ol style="list-style-type: lower-alpha">
-<li>Determine whether it is discrete or continuous.<br>
+<li>Determine whether it is discrete or continuous.<br />
 </li>
-<li>Report its domain.<br>
+<li>Report its domain.<br />
 </li>
-<li>What is the experimental unit?<br>
+<li>What is the experimental unit?<br />
 </li>
 <li>Explain how this random variable will be useful in addressing timeliness at the airport.</li>
 </ol>
@@ -455,13 +401,13 @@ and
 <li>Consider the experiment of rolling two fair six-sided dice. Let the random variable <span class="math inline">\(Y\)</span> be the absolute difference between the two numbers that appear upon rolling the dice.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>What is the domain/support of <span class="math inline">\(Y\)</span>?<br>
+<li>What is the domain/support of <span class="math inline">\(Y\)</span>?<br />
 </li>
-<li>What values do you <em>expect</em> <span class="math inline">\(Y\)</span> to take? What do you think is the average of <span class="math inline">\(Y\)</span>? Don’t actually do any formal math, just think about the experiment.<br>
+<li>What values do you <em>expect</em> <span class="math inline">\(Y\)</span> to take? What do you think is the average of <span class="math inline">\(Y\)</span>? Don’t actually do any formal math, just think about the experiment.<br />
 </li>
-<li>Find the probability mass function and cumulative distribution function of <span class="math inline">\(Y\)</span>.<br>
+<li>Find the probability mass function and cumulative distribution function of <span class="math inline">\(Y\)</span>.<br />
 </li>
-<li>Find the expected value and variance of <span class="math inline">\(Y\)</span>.<br>
+<li>Find the expected value and variance of <span class="math inline">\(Y\)</span>.<br />
 </li>
 <li>Advanced: In <code>R</code>, obtain 10,000 realizations of <span class="math inline">\(Y\)</span>. In other words, simulate the roll of two fair dice, record the absolute difference and repeat this 10,000 times. Construct a frequency table of your results (what percentage of time did you get a difference of 0? difference of 1? etc.) Find the mean and variance of your simulated sample of <span class="math inline">\(Y\)</span>. Were they close to your answers in part d?</li>
 </ol>
@@ -473,50 +419,30 @@ and
 <ol start="6" style="list-style-type: decimal">
 <li>We saw that <span class="math inline">\(\mbox{Var}(X)=\mbox{E}[(X-\mu_X)^2]\)</span>. Show that <span class="math inline">\(\mbox{Var}(X)\)</span> is also equal to <span class="math inline">\(\mbox{E}(X^2)-[\mbox{E}(X)]^2\)</span>.</li>
 </ol>
+
 </div>
 </div>
-  <div class="chapter-nav">
-<div class="prev"><a href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></div>
-<div class="next"><a href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#RANDVAR"><span class="header-section-number">10</span> Random Variables</a></li>
-<li><a class="nav-link" href="#objectives-9"><span class="header-section-number">10.1</span> Objectives</a></li>
-<li>
-<a class="nav-link" href="#random-variables"><span class="header-section-number">10.2</span> Random variables</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#how-does-this-help"><span class="header-section-number">10.2.1</span> How does this help?</a></li>
-<li><a class="nav-link" href="#discrete-vs-continuous"><span class="header-section-number">10.2.2</span> Discrete vs Continuous</a></li>
-<li><a class="nav-link" href="#discrete-distribution-functions"><span class="header-section-number">10.2.3</span> Discrete distribution functions</a></li>
-<li><a class="nav-link" href="#probability-mass-function"><span class="header-section-number">10.2.4</span> Probability mass function</a></li>
-<li><a class="nav-link" href="#cumulative-distribution-function"><span class="header-section-number">10.2.5</span> Cumulative distribution function</a></li>
-<li><a class="nav-link" href="#simulating-random-variables"><span class="header-section-number">10.2.6</span> Simulating random variables</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#moments"><span class="header-section-number">10.3</span> Moments</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#expectation"><span class="header-section-number">10.3.1</span> Expectation</a></li>
-<li><a class="nav-link" href="#mean"><span class="header-section-number">10.3.2</span> Mean</a></li>
-<li><a class="nav-link" href="#variance"><span class="header-section-number">10.3.3</span> Variance</a></li>
-<li><a class="nav-link" href="#mean-and-variance-of-linear-transformations"><span class="header-section-number">10.3.4</span> Mean and variance of Linear Transformations</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#homework-problems-9"><span class="header-section-number">10.4</span> Homework Problems</a></li>
-</ul>
+  </main>
+
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/10-RandomVariables.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/10-RandomVariables.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
-</div>
+      </div>
     </nav>
-</div>
+  </div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-14.</p>
@@ -527,7 +453,11 @@ and
   </div>
 
 </div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+</footer>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -539,7 +469,8 @@ and
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+</script>
+<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
 for (let popover of popovers) {
   const div = document.createElement('div');
   div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
@@ -557,4 +488,5 @@ for (let popover of popovers) {
 }
 </script>
 </body>
+
 </html>

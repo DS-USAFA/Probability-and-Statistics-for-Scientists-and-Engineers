@@ -1,33 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 26 Linear Regression Basics | Computational Probability and Statistics</title>
-<meta name="author" content="Matthew Davis">
-<meta name="author" content="Brianna Hitt">
-<meta name="author" content="Ken Horton">
-<meta name="author" content="Bradley Warner">
-<meta name="description" content="26.1 Objectives Obtain parameter estimates of a simple linear regression model given a sample of data. Interpret the coefficients of a simple linear regression. Create a scatterplot with a...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
-<meta property="og:title" content="Chapter 26 Linear Regression Basics | Computational Probability and Statistics">
-<meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover.png">
-<meta property="og:description" content="26.1 Objectives Obtain parameter estimates of a simple linear regression model given a sample of data. Interpret the coefficients of a simple linear regression. Create a scatterplot with a...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 26 Linear Regression Basics | Computational Probability and Statistics">
-<meta name="twitter:description" content="26.1 Objectives Obtain parameter estimates of a simple linear regression model given a sample of data. Interpret the coefficients of a simple linear regression. Create a scatterplot with a...">
-<meta name="twitter:image" content="/figures/Cover.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Chapter 26 Linear Regression Basics | Computational Probability and Statistics</title>
+
+    <meta name="author" content="Matthew Davis" />
+    <meta name="author" content="Brianna Hitt" />
+    <meta name="author" content="Ken Horton" />
+    <meta name="author" content="Bradley Warner" />
+  
+   <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="Chapter 26 Linear Regression Basics | Computational Probability and Statistics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/figures/Cover.png" />
+  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 26 Linear Regression Basics | Computational Probability and Statistics" />
+  
+  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta name="twitter:image" content="/figures/Cover.png" />
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.3.1/transition.js"></script>
+    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
+    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  <style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
-<style type="text/css">
+    <style type="text/css">
     /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
     div.csl-bib-body { }
     div.csl-entry {
@@ -49,13 +69,16 @@
       margin-left: 2em;
     }
   </style>
-<link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style.css" />
+  
 </head>
+
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -67,78 +90,38 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
+      </form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Preface</a></li>
-<li class="book-part">Descriptive Statistical Modeling</li>
-<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
-<li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
-<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
-<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
-<li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
-<li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
-<li class="book-part">Probability Modeling</li>
-<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
-<li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
-<li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
-<li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
-<li><a class="" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
-<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
-<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
-<li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
-<li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
-<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
-<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
-<li class="book-part">Statistical Modeling</li>
-<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
-<li><a class="" href="HYPOTEST.html"><span class="header-section-number">19</span> Hypothesis Testing</a></li>
-<li><a class="" href="PVALUES.html"><span class="header-section-number">20</span> Empirical p-values</a></li>
-<li><a class="" href="CLT.html"><span class="header-section-number">21</span> Central Limit Theorem</a></li>
-<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
-<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
-<li><a class="" href="ADDTESTS.html"><span class="header-section-number">24</span> Additional Hypothesis Tests</a></li>
-<li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">25</span> Case Study</a></li>
-<li><a class="active" href="LRBASICS.html"><span class="header-section-number">26</span> Linear Regression Basics</a></li>
-<li><a class="" href="LRINF.html"><span class="header-section-number">27</span> Linear Regression Inference</a></li>
-<li><a class="" href="LRDIAG.html"><span class="header-section-number">28</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">29</span> Simulation Based Linear Regression</a></li>
-<li><a class="" href="LRMULTI.html"><span class="header-section-number">30</span> Multiple Linear Regression</a></li>
-<li><a class="" href="LOGREG.html"><span class="header-section-number">31</span> Logistic Regression</a></li>
-<li><a class="" href="references.html">References</a></li>
-</ul>
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
         </div>
       </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="LRBASICS" class="section level1" number="26">
-<h1>
-<span class="header-section-number">26</span> Linear Regression Basics<a class="anchor" aria-label="anchor" href="#LRBASICS"><i class="fas fa-link"></i></a>
-</h1>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="LRBASICS" class="section level1" number="26">
+<h1><span class="header-section-number">Chapter 26</span> Linear Regression Basics</h1>
 <div id="objectives-24" class="section level2" number="26.1">
-<h2>
-<span class="header-section-number">26.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-24"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">26.1</span> Objectives</h2>
 <ol style="list-style-type: decimal">
-<li>Obtain parameter estimates of a simple linear regression model given a sample of data.<br>
+<li>Obtain parameter estimates of a simple linear regression model given a sample of data.<br />
 </li>
-<li>Interpret the coefficients of a simple linear regression.<br>
+<li>Interpret the coefficients of a simple linear regression.<br />
 </li>
-<li>Create a scatterplot with a regression line.<br>
+<li>Create a scatterplot with a regression line.<br />
 </li>
-<li>Explain and check the assumptions of linear regression.<br>
+<li>Explain and check the assumptions of linear regression.<br />
 </li>
 <li>Use and be able to explain all new terms.</li>
 </ol>
 </div>
 <div id="linear-regression-models" class="section level2" number="26.2">
-<h2>
-<span class="header-section-number">26.2</span> Linear regression models<a class="anchor" aria-label="anchor" href="#linear-regression-models"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">26.2</span> Linear regression models</h2>
 <p>The rest of this block will serve as a brief introduction to linear models. In general, a model estimates the relationship between one variable (a <strong>response</strong>) and one or more other variables (<strong>predictors</strong>). Models typically serve two purposes: <em>prediction</em> and <em>inference</em>. A model allows us to predict the value of a response given particular values of predictors. Also, a model allows us to make inferences about the relationship between the response and the predictors.</p>
 <p>Not all models are used or built on the same principles. Some models are better for inference and others are better for prediction. Some models are better for qualitative responses and others are better for quantitative responses. Also, many models require making assumptions about the nature of the relationship between variables. If these assumptions are violated, the model loses usefulness. In a machine learning course, a wide array of models are discussed but most of which are used for the purpose of prediction.</p>
 <p>In this block, we will focus on <em>linear models</em> and the use of linear regression to produce and evaluate the model. Linear regression is a very powerful statistical technique. Many people have some familiarity with regression just from reading the news, where graphs with straight lines are overlaid on scatterplots, much like we did in the last lesson. Linear models can be used for prediction or to evaluate whether there is a linear relationship between two numerical variables.</p>
@@ -158,25 +141,22 @@ Y=\beta_0+\beta_1 X^2
 <p>Technically, we can write the parameters as a vector and the explanatory variables as a matrix. The response will then be an inner product of this vector and matrix and thus a linear combination.</p>
 <p>Even if we expect two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> to share a linear relationship, we don’t expect it to be perfect. There will be some scatter around the estimated line. For example, consider the head length and total length of 104 brushtail possums from Australia. The data is in the file <code>possum.csv</code> in the <code>data</code> folder.</p>
 <blockquote>
-<p><strong>Exercise</strong>:<br>
+<p><strong>Exercise</strong>:<br />
 Read in the data from <code>data/possum.csv</code> and look at the first few rows of data.</p>
 </blockquote>
-<div class="sourceCode" id="cb804"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">possum</span><span class="op">&lt;-</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/possum.csv"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb805"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">possum</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb804"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb804-1"><a href="LRBASICS.html#cb804-1" aria-hidden="true" tabindex="-1"></a>possum<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/possum.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb805-1"><a href="LRBASICS.html#cb805-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(possum)</span></code></pre></div>
 <pre><code>## Rows: 104
 ## Columns: 8
 ## $ site    &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,~
-## $ pop     &lt;chr&gt; "Vic", "Vic", "Vic", "Vic", "Vic", "Vic", "Vic", "Vic", "Vic",~
-## $ sex     &lt;chr&gt; "m", "f", "f", "f", "f", "f", "m", "f", "f", "f", "f", "f", "m~
+## $ pop     &lt;chr&gt; &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;, &quot;Vic&quot;,~
+## $ sex     &lt;chr&gt; &quot;m&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;m&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;m~
 ## $ age     &lt;dbl&gt; 8, 6, 6, 6, 2, 1, 2, 6, 9, 6, 9, 5, 5, 3, 5, 4, 1, 2, 5, 4, 3,~
 ## $ head_l  &lt;dbl&gt; 94.1, 92.5, 94.0, 93.2, 91.5, 93.1, 95.3, 94.8, 93.4, 91.8, 93~
 ## $ skull_w &lt;dbl&gt; 60.4, 57.6, 60.0, 57.1, 56.3, 54.8, 58.2, 57.6, 56.3, 58.0, 57~
 ## $ total_l &lt;dbl&gt; 89.0, 91.5, 95.5, 92.0, 85.5, 90.5, 89.5, 91.0, 91.5, 89.5, 89~
 ## $ tail_l  &lt;dbl&gt; 36.0, 36.5, 39.0, 38.0, 36.0, 35.5, 36.0, 37.0, 37.0, 37.5, 39~</code></pre>
-<div class="sourceCode" id="cb807"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">possum</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb807-1"><a href="LRBASICS.html#cb807-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(possum)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 8
 ##    site pop   sex     age head_l skull_w total_l tail_l
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
@@ -188,17 +168,16 @@ Read in the data from <code>data/possum.csv</code> and look at the first few row
 ## 6     1 Vic   f         1   93.1    54.8    90.5   35.5</code></pre>
 <p>We think the head and total length variables are linearly associated. Possums with an above average total length also tend to have above average head lengths. To visualize this data, we will use a scatterplot. We have used scatterplots multiple times in this book. Scatterplots are a graphical technique to present two numerical variables simultaneously. Such plots permit the relationship between the variables to be examined with ease. The following figure shows a scatterplot for the head length and total length of the possums. Each point represents a single possum from the data.</p>
 <blockquote>
-<p><strong>Exercise</strong>:<br>
+<p><strong>Exercise</strong>:<br />
 Create a scatterplot of head length and total length.</p>
 </blockquote>
-<div class="sourceCode" id="cb809"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">possum</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_point</span><span class="op">(</span><span class="va">head_l</span><span class="op">~</span><span class="va">total_l</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Total Length (cm)"</span>,y<span class="op">=</span><span class="st">"Head Length (mm)"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:scat261-fig"></span>
-<img src="26-Linear-Regression-Basics_files/figure-html/scat261-fig-1.png" alt="A scatterplot of possum total length and head length." width="672"><p class="caption">
+<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb809-1"><a href="LRBASICS.html#cb809-1" aria-hidden="true" tabindex="-1"></a>possum <span class="sc">%&gt;%</span></span>
+<span id="cb809-2"><a href="LRBASICS.html#cb809-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(head_l<span class="sc">~</span>total_l) <span class="sc">%&gt;%</span></span>
+<span id="cb809-3"><a href="LRBASICS.html#cb809-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Total Length (cm)&quot;</span>,<span class="at">y=</span><span class="st">&quot;Head Length (mm)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb809-4"><a href="LRBASICS.html#cb809-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>())</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:scat261-fig"></span>
+<img src="26-Linear-Regression-Basics_files/figure-html/scat261-fig-1.png" alt="A scatterplot of possum total length and head length." width="672" />
+<p class="caption">
 Figure 26.1: A scatterplot of possum total length and head length.
 </p>
 </div>
@@ -212,19 +191,17 @@ Y=\beta_0+\beta_1X+e
 <p>and what will change in our modeling process is how we specify the <span class="math inline">\(\text{Fit}\)</span>.</p>
 <p>The error term is assumed to follow a normal distribution with mean 0 and constant standard deviation <span class="math inline">\(\sigma\)</span>. Note: the assumption of normality is only for inference using the <span class="math inline">\(t\)</span> and <span class="math inline">\(F\)</span> distributions and we can relax this assumption by using a bootstrap. Among other things, these assumptions imply that a linear model should only be used when the response variable is continuous in nature. There are other approaches for non-continuous response variables (for example logistic regression).</p>
 <div id="estimation-1" class="section level3" number="26.2.1">
-<h3>
-<span class="header-section-number">26.2.1</span> Estimation<a class="anchor" aria-label="anchor" href="#estimation-1"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">26.2.1</span> Estimation</h3>
 <p>We want to describe the relationship between the head length and total length variables in the possum data set using a line. In this example, we will use the total length as the predictor variable, <span class="math inline">\(x\)</span>, to predict a possum’s head length, <span class="math inline">\(y\)</span>. Just as a side note, the choice of the predictor and response are not arbitrary. The response is typically what we want to predict or in the case of experiments is the causal result of the predictor(s).</p>
 <p>In the possum data we have <span class="math inline">\(n = 104\)</span> observations: <span class="math inline">\((x_1,y_1), (x_2,y_2),...,(x_{104},y_{104})\)</span>. Then for each observation the implied linear model is:</p>
 <p><span class="math display">\[
 y_i=\beta_0+\beta x_i + e_i
 \]</span></p>
-<p>We could fit the linear relationship by eye like we did in the case study and obtain estimates of the slope and intercept but this is too ad hoc.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;If you want to do try this again use the &lt;code&gt;plot_ss()&lt;/code&gt; from the last lesson.&lt;/p&gt;"><sup>90</sup></a> So, given a set of data like the <code>possum</code>, how do we actually obtain estimates of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>? What is the <strong>best</strong> fit line?</p>
+<p>We could fit the linear relationship by eye like we did in the case study and obtain estimates of the slope and intercept but this is too ad hoc.<a href="#fn90" class="footnote-ref" id="fnref90"><sup>90</sup></a> So, given a set of data like the <code>possum</code>, how do we actually obtain estimates of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>? What is the <strong>best</strong> fit line?</p>
 <p>We begin by thinking about what we mean by ``best’’. Mathematically, we want a line that has small residuals. There are multiple methods, but the most common is the <em>method of least squares</em>. In this method, our goal is to find the values of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> that minimize the squared vertical distance between the points and the resulting line, the <strong>residuals</strong>. See <a href="LRBASICS.html#fig:resid1-fig">26.2</a> for a visual representation involving only four observations from <em>made up</em> data.</p>
-<div class="figure">
-<span style="display:block;" id="fig:resid1-fig"></span>
-<img src="26-Linear-Regression-Basics_files/figure-html/resid1-fig-1.png" alt="An illustration of the least squares method." width="672"><p class="caption">
+<div class="figure"><span style="display:block;" id="fig:resid1-fig"></span>
+<img src="26-Linear-Regression-Basics_files/figure-html/resid1-fig-1.png" alt="An illustration of the least squares method." width="672" />
+<p class="caption">
 Figure 26.2: An illustration of the least squares method.
 </p>
 </div>
@@ -232,13 +209,13 @@ Figure 26.2: An illustration of the least squares method.
 <p><span class="math display">\[e_{1}^2 + e_{2}^2 + \dots + e_{n}^2\]</span></p>
 <p>The following are three possible reasons to choose the least squares criterion over other criteria such as the sum of the absolute value of residuals:</p>
 <ol style="list-style-type: lower-roman">
-<li>It is the most commonly used method.<br>
+<li>It is the most commonly used method.<br />
 </li>
-<li>Computing a line based on least squares was much easier by hand when computers were not available.<br>
+<li>Computing a line based on least squares was much easier by hand when computers were not available.<br />
 </li>
 <li>In many applications, a residual twice as large as another residual is more than twice as bad. For example, being off by 4 is usually more than twice as bad as being off by 2. Squaring the residuals accounts for this discrepancy.</li>
 </ol>
-<p>The first two reasons are largely for tradition and convenience; the last reason explains why least squares is typically helpful.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;There are applications where least absolute deviation may be more useful, and there are plenty of other criteria we might consider. However, this course only applies the least squares criterion. Math 378 will look at other criteria such as a shrinkage method called the lasso.&lt;/p&gt;"><sup>91</sup></a></p>
+<p>The first two reasons are largely for tradition and convenience; the last reason explains why least squares is typically helpful.<a href="#fn91" class="footnote-ref" id="fnref91"><sup>91</sup></a></p>
 <p>So, we need to find <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> that minimize the expression, observed minus expected:
 <span class="math display">\[
 \sum_{i=1}^n (y_i-\beta_0-\beta_1 x_i)^2
@@ -264,16 +241,12 @@ Figure 26.2: An illustration of the least squares method.
 <p>where <span class="math inline">\(\hat{e}_i\)</span> is the observed <span class="math inline">\(i\)</span>th <strong>residual</strong> (<span class="math inline">\(\hat{e}_i=y_i-\hat{\beta}_0-\hat{\beta}_1x_i\)</span>). This estimate is based only on the assumption of constant variance.</p>
 </div>
 <div id="possum-example" class="section level3" number="26.2.2">
-<h3>
-<span class="header-section-number">26.2.2</span> Possum example<a class="anchor" aria-label="anchor" href="#possum-example"><i class="fas fa-link"></i></a>
-</h3>
-<p>We will let <code>R</code> do the heavy work of minimizing the sum of squares. The function is <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> as we learned in the case study. This function needs a formula and data for input. The formula notation should be easy for us since we have worked with formulas so much in the <strong>mosaic</strong> package.</p>
+<h3><span class="header-section-number">26.2.2</span> Possum example</h3>
+<p>We will let <code>R</code> do the heavy work of minimizing the sum of squares. The function is <code>lm()</code> as we learned in the case study. This function needs a formula and data for input. The formula notation should be easy for us since we have worked with formulas so much in the <strong>mosaic</strong> package.</p>
 <p>First create the model:</p>
-<div class="sourceCode" id="cb810"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">poss_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">head_l</span><span class="op">~</span><span class="va">total_l</span>,data<span class="op">=</span><span class="va">possum</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb810"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb810-1"><a href="LRBASICS.html#cb810-1" aria-hidden="true" tabindex="-1"></a>poss_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(head_l<span class="sc">~</span>total_l,<span class="at">data=</span>possum)</span></code></pre></div>
 <p>The output of the model object is minimal with just the estimated slope and intercept.</p>
-<div class="sourceCode" id="cb811"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">poss_mod</span></code></pre></div>
+<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb811-1"><a href="LRBASICS.html#cb811-1" aria-hidden="true" tabindex="-1"></a>poss_mod</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = head_l ~ total_l, data = possum)
@@ -281,9 +254,8 @@ Figure 26.2: An illustration of the least squares method.
 ## Coefficients:
 ## (Intercept)      total_l  
 ##     42.7098       0.5729</code></pre>
-<p>We can get more information using the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> function:</p>
-<div class="sourceCode" id="cb813"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">poss_mod</span><span class="op">)</span></code></pre></div>
+<p>We can get more information using the <code>summary()</code> function:</p>
+<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb813-1"><a href="LRBASICS.html#cb813-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(poss_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = head_l ~ total_l, data = possum)
@@ -297,36 +269,32 @@ Figure 26.2: An illustration of the least squares method.
 ## (Intercept) 42.70979    5.17281   8.257 5.66e-13 ***
 ## total_l      0.57290    0.05933   9.657 4.68e-16 ***
 ## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 2.595 on 102 degrees of freedom
 ## Multiple R-squared:  0.4776, Adjusted R-squared:  0.4725 
 ## F-statistic: 93.26 on 1 and 102 DF,  p-value: 4.681e-16</code></pre>
-<p>The model object, <code>poss_mod</code>, contains much more information. Using the function <code><a href="https://rdrr.io/r/base/names.html">names()</a></code> function on the model objects, gives you a list of other quantities available, such as residuals.</p>
-<div class="sourceCode" id="cb815"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">poss_mod</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] "coefficients"  "residuals"     "effects"       "rank"         
-##  [5] "fitted.values" "assign"        "qr"            "df.residual"  
-##  [9] "xlevels"       "call"          "terms"         "model"</code></pre>
+<p>The model object, <code>poss_mod</code>, contains much more information. Using the function <code>names()</code> function on the model objects, gives you a list of other quantities available, such as residuals.</p>
+<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb815-1"><a href="LRBASICS.html#cb815-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(poss_mod)</span></code></pre></div>
+<pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
+##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
+##  [9] &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;         &quot;model&quot;</code></pre>
 <p>Figure <a href="LRBASICS.html#fig:scat262-fig">26.3</a> is a plot the data points and least squares line together.</p>
-<div class="sourceCode" id="cb817"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">possum</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_point</span><span class="op">(</span> <span class="va">head_l</span> <span class="op">~</span> <span class="va">total_l</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_lm</span><span class="op">(</span>color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Total Length (cm)"</span>,y<span class="op">=</span><span class="st">"Head Length (mm)"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Possum data including regression line"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:scat262-fig"></span>
-<img src="26-Linear-Regression-Basics_files/figure-html/scat262-fig-1.png" alt="A scatterplot of possum total length and head length including a regression line." width="672"><p class="caption">
+<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb817-1"><a href="LRBASICS.html#cb817-1" aria-hidden="true" tabindex="-1"></a>possum <span class="sc">%&gt;%</span></span>
+<span id="cb817-2"><a href="LRBASICS.html#cb817-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>( head_l <span class="sc">~</span> total_l) <span class="sc">%&gt;%</span></span>
+<span id="cb817-3"><a href="LRBASICS.html#cb817-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_lm</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb817-4"><a href="LRBASICS.html#cb817-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Total Length (cm)&quot;</span>,<span class="at">y=</span><span class="st">&quot;Head Length (mm)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb817-5"><a href="LRBASICS.html#cb817-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Possum data including regression line&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb817-6"><a href="LRBASICS.html#cb817-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) </span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:scat262-fig"></span>
+<img src="26-Linear-Regression-Basics_files/figure-html/scat262-fig-1.png" alt="A scatterplot of possum total length and head length including a regression line." width="672" />
+<p class="caption">
 Figure 26.3: A scatterplot of possum total length and head length including a regression line.
 </p>
 </div>
 </div>
 <div id="interpretation" class="section level3" number="26.2.3">
-<h3>
-<span class="header-section-number">26.2.3</span> Interpretation<a class="anchor" aria-label="anchor" href="#interpretation"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">26.2.3</span> Interpretation</h3>
 <p>Interpreting parameters in a regression model is often one of the most important steps in the analysis. The intercept term, <span class="math inline">\(\beta_0\)</span>, is usually uninteresting. It represents the <strong>average</strong> value of the response when the predictor is 0. Unless we center our predictor variable around 0, the actual value of the intercept is usually not important; it typically just gives the slope more flexibility to fit the data. The slope term, <span class="math inline">\(\beta_1\)</span> represents the <strong>average</strong> increase in the response variable per unit increase in the predictor variable. We keep using the word <strong>average</strong> in our discussion. With the assumption of a mean of 0 for the residuals, which least squares ensures with a line going through the point <span class="math inline">\(\left(\bar{x},\bar{y} \right)\)</span>, the output of the model is the expected or average response for the given input. Mathematically we have:</p>
 <p><span class="math display">\[
 E(Y|X=x)=E(\beta_0+\beta_1x+e) = E(\beta_0+\beta_1x)+E(e)=\beta_0+\beta_1x
@@ -342,33 +310,27 @@ E(Y|X=x)=E(\beta_0+\beta_1x+e) = E(\beta_0+\beta_1x)+E(e)=\beta_0+\beta_1x
 <p><strong>Exercise</strong>
 Find the slope from the correlation and standard deviations.</p>
 </blockquote>
-<div class="sourceCode" id="cb818"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">possum</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>correlation<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">cor</a></span><span class="op">(</span><span class="va">head_l</span>,<span class="va">total_l</span><span class="op">)</span>,sd_head<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">head_l</span><span class="op">)</span>,
-            sd_total<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">total_l</span><span class="op">)</span>,slope<span class="op">=</span><span class="va">correlation</span><span class="op">*</span><span class="va">sd_head</span><span class="op">/</span><span class="va">sd_total</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb818"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb818-1"><a href="LRBASICS.html#cb818-1" aria-hidden="true" tabindex="-1"></a>possum <span class="sc">%&gt;%</span></span>
+<span id="cb818-2"><a href="LRBASICS.html#cb818-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">correlation=</span><span class="fu">cor</span>(head_l,total_l),<span class="at">sd_head=</span><span class="fu">sd</span>(head_l),</span>
+<span id="cb818-3"><a href="LRBASICS.html#cb818-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_total=</span><span class="fu">sd</span>(total_l),<span class="at">slope=</span>correlation<span class="sc">*</span>sd_head<span class="sc">/</span>sd_total)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 4
 ##   correlation sd_head sd_total slope
 ##         &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
 ## 1       0.691    3.57     4.31 0.573</code></pre>
 </div>
 <div id="extrapolation-is-dangerous" class="section level3" number="26.2.4">
-<h3>
-<span class="header-section-number">26.2.4</span> Extrapolation is dangerous<a class="anchor" aria-label="anchor" href="#extrapolation-is-dangerous"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">26.2.4</span> Extrapolation is dangerous</h3>
 <blockquote>
 <p>“When those blizzards hit the East Coast this winter, it proved to my satisfaction that global warming was a fraud. That snow was freezing cold. But in an alarming trend, temperatures this spring have risen. Consider this: On February <span class="math inline">\(6^{th}\)</span> it was 10 degrees. Today it hit almost 80. At this rate, by August it will be 220 degrees. So clearly folks the climate debate rages on.”
 <em>Stephen Colbert</em>
-April 6th, 2010<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.colbertnation.com/the-colbert-report-videos/269929/" class="uri"&gt;http://www.colbertnation.com/the-colbert-report-videos/269929/&lt;/a&gt;&lt;/p&gt;'><sup>92</sup></a></p>
+April 6th, 2010<a href="#fn92" class="footnote-ref" id="fnref92"><sup>92</sup></a></p>
 </blockquote>
 <p>Linear models can be used to approximate the relationship between two variables and are built on an observed random sample. These models have real limitations as linear regression is simply a modeling framework. The truth is almost always much more complex than our simple line. <em>Extrapolation</em> occurs when one tries to make a prediction of a response given a value of the predictor that is outside the range of values used to build the model. We only have information about the relationship between two variables in the region around our observed data. We do not know how the data outside of our limited window will behave. Be careful about extrapolating.</p>
 </div>
 <div id="reading-computer-output" class="section level3" number="26.2.5">
-<h3>
-<span class="header-section-number">26.2.5</span> Reading computer output<a class="anchor" aria-label="anchor" href="#reading-computer-output"><i class="fas fa-link"></i></a>
-</h3>
-<p>We stored the results of our linear regression model for the possum data in the object <code>poss_mod</code> but it provided only the bare minimum of information. We can get more information using the function <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>.</p>
-<div class="sourceCode" id="cb820"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">poss_mod</span><span class="op">)</span></code></pre></div>
+<h3><span class="header-section-number">26.2.5</span> Reading computer output</h3>
+<p>We stored the results of our linear regression model for the possum data in the object <code>poss_mod</code> but it provided only the bare minimum of information. We can get more information using the function <code>summary()</code>.</p>
+<div class="sourceCode" id="cb820"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb820-1"><a href="LRBASICS.html#cb820-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(poss_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = head_l ~ total_l, data = possum)
@@ -382,7 +344,7 @@ April 6th, 2010<a class="footnote-ref" tabindex="0" data-toggle="popover" data-c
 ## (Intercept) 42.70979    5.17281   8.257 5.66e-13 ***
 ## total_l      0.57290    0.05933   9.657 4.68e-16 ***
 ## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 2.595 on 102 degrees of freedom
 ## Multiple R-squared:  0.4776, Adjusted R-squared:  0.4725 
@@ -390,25 +352,22 @@ April 6th, 2010<a class="footnote-ref" tabindex="0" data-toggle="popover" data-c
 <p>The first line repeats the model formula. The second line is a descriptive summary of the residuals, plots of the residuals are more useful than this summary. We then have a table of the model fit. The first column of numbers provides estimates for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, respectively. For the next columns, we’ll describe the meaning of the columns using the second row, which corresponds to information about the slope estimate. Again, the first column provides the point estimate for <span class="math inline">\(\beta_1\)</span>. The second column is a standard error for this point estimate. The third column is a <span class="math inline">\(t\)</span> test statistic for the null hypothesis that <span class="math inline">\(\beta_1 = 0\)</span>: <span class="math inline">\(T=9.657\)</span>. The last column is the p-value for the <span class="math inline">\(t\)</span> test statistic for the null hypothesis <span class="math inline">\(\beta_1=0\)</span> and a two-sided alternative hypothesis. We will get into more of these details in the next chapters.</p>
 <p>The row with the residual standard error is an estimate of the unexplained variance. The next rows give a summary of the model fit and we will discuss in the next chapters.</p>
 <p>In the <code>tidyverse</code> we may want to have the table above in a <code>tibble</code>. The <strong>broom</strong> package, which we have seen before, helps with this effort.</p>
-<div class="sourceCode" id="cb822"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb823"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">poss_mod</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb822-1"><a href="LRBASICS.html#cb822-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
+<div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb823-1"><a href="LRBASICS.html#cb823-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(poss_mod)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)   42.7      5.17        8.26 5.66e-13
 ## 2 total_l        0.573    0.0593      9.66 4.68e-16</code></pre>
 <blockquote>
-<p><strong>Exercise</strong>:<br>
+<p><strong>Exercise</strong>:<br />
 The <code>cars</code> dataset (built-in to <code>R</code>) contains 50 observations of 2 variables. The data give the speed of cars (in mph) and the corresponding distance (in feet) that it took to stop. Attempt to answer the following questions.</p>
 </blockquote>
 <ol style="list-style-type: lower-alpha">
 <li>Build a simple linear regression model fitting distance against speed.</li>
 </ol>
-<div class="sourceCode" id="cb825"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cars_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">dist</span><span class="op">~</span><span class="va">speed</span>,data<span class="op">=</span><span class="va">cars</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">cars_mod</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb825-1"><a href="LRBASICS.html#cb825-1" aria-hidden="true" tabindex="-1"></a>cars_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist<span class="sc">~</span>speed,<span class="at">data=</span>cars)</span>
+<span id="cb825-2"><a href="LRBASICS.html#cb825-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = dist ~ speed, data = cars)
@@ -422,21 +381,20 @@ The <code>cars</code> dataset (built-in to <code>R</code>) contains 50 observati
 ## (Intercept) -17.5791     6.7584  -2.601   0.0123 *  
 ## speed         3.9324     0.4155   9.464 1.49e-12 ***
 ## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 15.38 on 48 degrees of freedom
 ## Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
 ## F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
 <p>Figure <a href="LRBASICS.html#fig:scat263-fig">26.4</a> is a scatterplot of the <code>cars</code> data set.</p>
-<div class="sourceCode" id="cb827"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_point</span><span class="op">(</span><span class="va">dist</span><span class="op">~</span><span class="va">speed</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_lm</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Speed (mph)"</span>,y<span class="op">=</span><span class="st">"Stopping distance (ft)"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:scat263-fig"></span>
-<img src="26-Linear-Regression-Basics_files/figure-html/scat263-fig-1.png" alt="A scatterplot of speed and stopping distance." width="672"><p class="caption">
+<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb827-1"><a href="LRBASICS.html#cb827-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">%&gt;%</span></span>
+<span id="cb827-2"><a href="LRBASICS.html#cb827-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_point</span>(dist<span class="sc">~</span>speed) <span class="sc">%&gt;%</span></span>
+<span id="cb827-3"><a href="LRBASICS.html#cb827-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_lm</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb827-4"><a href="LRBASICS.html#cb827-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Speed (mph)&quot;</span>,<span class="at">y=</span><span class="st">&quot;Stopping distance (ft)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb827-5"><a href="LRBASICS.html#cb827-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:scat263-fig"></span>
+<img src="26-Linear-Regression-Basics_files/figure-html/scat263-fig-1.png" alt="A scatterplot of speed and stopping distance." width="672" />
+<p class="caption">
 Figure 26.4: A scatterplot of speed and stopping distance.
 </p>
 </div>
@@ -452,21 +410,19 @@ Figure 26.4: A scatterplot of speed and stopping distance.
 <p>The estimated standard deviation of the error (residual), <span class="math inline">\(\hat{\sigma}\)</span> is equal to 15.4.</p>
 </div>
 <div id="assumptions-1" class="section level3" number="26.2.6">
-<h3>
-<span class="header-section-number">26.2.6</span> Assumptions<a class="anchor" aria-label="anchor" href="#assumptions-1"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">26.2.6</span> Assumptions</h3>
 <p>Anytime we build a model, there are assumptions behind it that, if violated, could invalidate the conclusions of the model. In the description of simple linear regression, we briefly mentioned these assumptions. Next chapter, we will discuss how to validate these assumptions.</p>
 <p><strong>Fit</strong>. When we build a simple linear regression, we assume that the relationship between the response and the predictor is as we specify in the fit formula. This in simple linear regression is often just a linear relationship. Suppose two variables are non-linearly related, see <a href="LRBASICS.html#fig:resid2-fig">26.5</a>. While we could build a linear regression model between the two, the resulting model would not be very useful. If we built a model with the fit formulated as a quadratic, a similar plot of the residuals would look flat. We will discuss this more in a later chapter.</p>
-<div class="figure">
-<span style="display:block;" id="fig:resid2-fig"></span>
-<img src="26-Linear-Regression-Basics_files/figure-html/resid2-fig-1.png" alt="An example of non-linear relationship between two variables fitted with a linear regression line." width="672"><p class="caption">
+<div class="figure"><span style="display:block;" id="fig:resid2-fig"></span>
+<img src="26-Linear-Regression-Basics_files/figure-html/resid2-fig-1.png" alt="An example of non-linear relationship between two variables fitted with a linear regression line." width="672" />
+<p class="caption">
 Figure 26.5: An example of non-linear relationship between two variables fitted with a linear regression line.
 </p>
 </div>
 <p><strong>Independent Observations</strong>. Another assumption is that all observations in a data set are independent of one another. A common way this assumption is violated is by using time as the predictor variable. For example, suppose we were interested in how an individual’s weight changes over time. While it may be tempting to plot this and fit a regression line through the data, the resulting model is inappropriate, as simple linear regression assumes that each observation is independent. Figure <a href="LRBASICS.html#fig:resid3-fig">26.6</a> shows correlated data fitted with a linear regression line.</p>
-<div class="figure">
-<span style="display:block;" id="fig:resid3-fig"></span>
-<img src="26-Linear-Regression-Basics_files/figure-html/resid3-fig-1.png" alt="A scatterplot of correlated data fit using a linear regression model with the assumption of independence." width="672"><p class="caption">
+<div class="figure"><span style="display:block;" id="fig:resid3-fig"></span>
+<img src="26-Linear-Regression-Basics_files/figure-html/resid3-fig-1.png" alt="A scatterplot of correlated data fit using a linear regression model with the assumption of independence." width="672" />
+<p class="caption">
 Figure 26.6: A scatterplot of correlated data fit using a linear regression model with the assumption of independence.
 </p>
 </div>
@@ -475,14 +431,12 @@ Figure 26.6: A scatterplot of correlated data fit using a linear regression mode
 <p>The last three assumptions are important not necessarily for estimating the relationship, but for <em>inferring</em> about the relationship. In future chapters, we will discuss how to use a model for prediction, and how to build a confidence/prediction interval around a prediction. Also, we will discuss inference about the coefficient estimates in a model. Violation of one of the last three assumptions will impact our ability to conduct inference about the population parameters.</p>
 </div>
 <div id="residual-plots" class="section level3" number="26.2.7">
-<h3>
-<span class="header-section-number">26.2.7</span> Residual plots<a class="anchor" aria-label="anchor" href="#residual-plots"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">26.2.7</span> Residual plots</h3>
 <p>One purpose of residual plots is to identify characteristics or patterns still apparent in data after fitting a model. These can help to evaluate the assumptions.</p>
 <p>Figure <a href="LRBASICS.html#fig:resid4-fig">26.7</a> shows three scatterplots with linear models in the first row and residual plots in the second row.</p>
-<div class="figure">
-<span style="display:block;" id="fig:resid4-fig"></span>
-<img src="26-Linear-Regression-Basics_files/figure-html/resid4-fig-1.png" alt="Residual plots and associated scatterplots." width="672"><p class="caption">
+<div class="figure"><span style="display:block;" id="fig:resid4-fig"></span>
+<img src="26-Linear-Regression-Basics_files/figure-html/resid4-fig-1.png" alt="Residual plots and associated scatterplots." width="672" />
+<p class="caption">
 Figure 26.7: Residual plots and associated scatterplots.
 </p>
 </div>
@@ -491,84 +445,73 @@ Figure 26.7: Residual plots and associated scatterplots.
 <p>In the last plot the spread, variance of the data, seems to increase as the explanatory variable increases. We can see this clearly in the residual plot. To make inference using the <span class="math inline">\(t\)</span> or <span class="math inline">\(F\)</span> distribution would require a transformation to equalize the variance.</p>
 </div>
 <div id="summary-1" class="section level3" number="26.2.8">
-<h3>
-<span class="header-section-number">26.2.8</span> Summary<a class="anchor" aria-label="anchor" href="#summary-1"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">26.2.8</span> Summary</h3>
 <p>We have introduced the ideas of linear regression in this lesson. There are many new terms as well as new <code>R</code> functions to learn. We will continue to use these ideas in the remainder of this block of material. Next we will learn about inference and prediction.</p>
 </div>
 </div>
 <div id="homework-problems-25" class="section level2" number="26.3">
-<h2>
-<span class="header-section-number">26.3</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-25"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">26.3</span> Homework Problems</h2>
 <ol style="list-style-type: decimal">
 <li>Nutrition at Starbucks</li>
 </ol>
 <p>In the <code>data</code> folder is a file named <code>starbucks.csv</code>. Use it to answer the questions below.</p>
 <ol style="list-style-type: lower-alpha">
-<li>Create a scatterplot of number of calories and amount of carbohydrates.<br>
+<li>Create a scatterplot of number of calories and amount of carbohydrates.<br />
 </li>
-<li>Describe the relationship in the graph.<br>
+<li>Describe the relationship in the graph.<br />
 </li>
-<li>In this scenario, what are the explanatory and response variables?<br>
+<li>In this scenario, what are the explanatory and response variables?<br />
 </li>
-<li>Why might we want to fit a regression line to these data?<br>
+<li>Why might we want to fit a regression line to these data?<br />
 </li>
-<li>Create a scatterplot of number of calories and amount of carbohydrates with the regression line included.<br>
+<li>Create a scatterplot of number of calories and amount of carbohydrates with the regression line included.<br />
 </li>
-<li>Using ’lm()` fit a least squares line to the data.<br>
+<li>Using ’lm()` fit a least squares line to the data.<br />
 </li>
-<li>Report and interpret the slope coefficient.<br>
+<li>Report and interpret the slope coefficient.<br />
 </li>
-<li>For a menu item with 51 g of carbs, what is the estimated calorie count?<br>
+<li>For a menu item with 51 g of carbs, what is the estimated calorie count?<br />
 </li>
-<li>Could we use the model for a menu item with 100 g of carbs?<br>
+<li>Could we use the model for a menu item with 100 g of carbs?<br />
 </li>
-<li>Does the assumption of constant variance seem reasonable for this problem?<br>
+<li>Does the assumption of constant variance seem reasonable for this problem?<br />
 </li>
-<li>Verify that the line passes through the mean carb and mean calories, do this mathematically.<br>
+<li>Verify that the line passes through the mean carb and mean calories, do this mathematically.<br />
 </li>
 <li>What is the estimate of the standard deviation of the residuals? How could you use this information?</li>
 </ol>
-</div>
-</div>
 
-  <div class="chapter-nav">
-<div class="prev"><a href="CS4.html"><span class="header-section-number">25</span> Case Study</a></div>
-<div class="next"><a href="LRINF.html"><span class="header-section-number">27</span> Linear Regression Inference</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#LRBASICS"><span class="header-section-number">26</span> Linear Regression Basics</a></li>
-<li><a class="nav-link" href="#objectives-24"><span class="header-section-number">26.1</span> Objectives</a></li>
-<li>
-<a class="nav-link" href="#linear-regression-models"><span class="header-section-number">26.2</span> Linear regression models</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#estimation-1"><span class="header-section-number">26.2.1</span> Estimation</a></li>
-<li><a class="nav-link" href="#possum-example"><span class="header-section-number">26.2.2</span> Possum example</a></li>
-<li><a class="nav-link" href="#interpretation"><span class="header-section-number">26.2.3</span> Interpretation</a></li>
-<li><a class="nav-link" href="#extrapolation-is-dangerous"><span class="header-section-number">26.2.4</span> Extrapolation is dangerous</a></li>
-<li><a class="nav-link" href="#reading-computer-output"><span class="header-section-number">26.2.5</span> Reading computer output</a></li>
-<li><a class="nav-link" href="#assumptions-1"><span class="header-section-number">26.2.6</span> Assumptions</a></li>
-<li><a class="nav-link" href="#residual-plots"><span class="header-section-number">26.2.7</span> Residual plots</a></li>
-<li><a class="nav-link" href="#summary-1"><span class="header-section-number">26.2.8</span> Summary</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#homework-problems-25"><span class="header-section-number">26.3</span> Homework Problems</a></li>
-</ul>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="90">
+<li id="fn90"><p>If you want to do try this again use the <code>plot_ss()</code> from the last lesson.<a href="LRBASICS.html#fnref90" class="footnote-back">↩︎</a></p></li>
+<li id="fn91"><p>There are applications where least absolute deviation may be more useful, and there are plenty of other criteria we might consider. However, this course only applies the least squares criterion. Math 378 will look at other criteria such as a shrinkage method called the lasso.<a href="LRBASICS.html#fnref91" class="footnote-back">↩︎</a></p></li>
+<li id="fn92"><p><a href="http://www.colbertnation.com/the-colbert-report-videos/269929/" class="uri">http://www.colbertnation.com/the-colbert-report-videos/269929/</a><a href="LRBASICS.html#fnref92" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+  </main>
+
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/26-Linear-Regression-Basics.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/26-Linear-Regression-Basics.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
-</div>
+      </div>
     </nav>
-</div>
+  </div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-14.</p>
@@ -579,7 +522,11 @@ Figure 26.7: Residual plots and associated scatterplots.
   </div>
 
 </div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+</footer>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -591,7 +538,8 @@ Figure 26.7: Residual plots and associated scatterplots.
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+</script>
+<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
 for (let popover of popovers) {
   const div = document.createElement('div');
   div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
@@ -609,4 +557,5 @@ for (let popover of popovers) {
 }
 </script>
 </body>
+
 </html>

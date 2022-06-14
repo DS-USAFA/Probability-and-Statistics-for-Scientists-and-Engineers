@@ -1,33 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 6 Categorical Data | Computational Probability and Statistics</title>
-<meta name="author" content="Matthew Davis">
-<meta name="author" content="Brianna Hitt">
-<meta name="author" content="Ken Horton">
-<meta name="author" content="Bradley Warner">
-<meta name="description" content="6.1 Objectives Define and use properly in context all new terminology. Generate in R tables for categorical variable(s). Generate in R appropriate graphical summaries of categorical and numerical...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
-<meta property="og:title" content="Chapter 6 Categorical Data | Computational Probability and Statistics">
-<meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover.png">
-<meta property="og:description" content="6.1 Objectives Define and use properly in context all new terminology. Generate in R tables for categorical variable(s). Generate in R appropriate graphical summaries of categorical and numerical...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 6 Categorical Data | Computational Probability and Statistics">
-<meta name="twitter:description" content="6.1 Objectives Define and use properly in context all new terminology. Generate in R tables for categorical variable(s). Generate in R appropriate graphical summaries of categorical and numerical...">
-<meta name="twitter:image" content="/figures/Cover.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Chapter 6 Categorical Data | Computational Probability and Statistics</title>
+
+    <meta name="author" content="Matthew Davis" />
+    <meta name="author" content="Brianna Hitt" />
+    <meta name="author" content="Ken Horton" />
+    <meta name="author" content="Bradley Warner" />
+  
+   <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="Chapter 6 Categorical Data | Computational Probability and Statistics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/figures/Cover.png" />
+  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Categorical Data | Computational Probability and Statistics" />
+  
+  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta name="twitter:image" content="/figures/Cover.png" />
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.3.1/transition.js"></script>
+    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
+    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  <style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
-<style type="text/css">
+    <style type="text/css">
     /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
     div.csl-bib-body { }
     div.csl-entry {
@@ -49,13 +69,16 @@
       margin-left: 2em;
     }
   </style>
-<link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style.css" />
+  
 </head>
+
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -67,88 +90,44 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
+      </form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Preface</a></li>
-<li class="book-part">Descriptive Statistical Modeling</li>
-<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
-<li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
-<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
-<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
-<li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
-<li><a class="active" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
-<li class="book-part">Probability Modeling</li>
-<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
-<li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
-<li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
-<li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
-<li><a class="" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
-<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
-<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
-<li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
-<li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
-<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
-<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
-<li class="book-part">Statistical Modeling</li>
-<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
-<li><a class="" href="HYPOTEST.html"><span class="header-section-number">19</span> Hypothesis Testing</a></li>
-<li><a class="" href="PVALUES.html"><span class="header-section-number">20</span> Empirical p-values</a></li>
-<li><a class="" href="CLT.html"><span class="header-section-number">21</span> Central Limit Theorem</a></li>
-<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
-<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
-<li><a class="" href="ADDTESTS.html"><span class="header-section-number">24</span> Additional Hypothesis Tests</a></li>
-<li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">25</span> Case Study</a></li>
-<li><a class="" href="LRBASICS.html"><span class="header-section-number">26</span> Linear Regression Basics</a></li>
-<li><a class="" href="LRINF.html"><span class="header-section-number">27</span> Linear Regression Inference</a></li>
-<li><a class="" href="LRDIAG.html"><span class="header-section-number">28</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">29</span> Simulation Based Linear Regression</a></li>
-<li><a class="" href="LRMULTI.html"><span class="header-section-number">30</span> Multiple Linear Regression</a></li>
-<li><a class="" href="LOGREG.html"><span class="header-section-number">31</span> Logistic Regression</a></li>
-<li><a class="" href="references.html">References</a></li>
-</ul>
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
         </div>
       </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="CATDATA" class="section level1" number="6">
-<h1>
-<span class="header-section-number">6</span> Categorical Data<a class="anchor" aria-label="anchor" href="#CATDATA"><i class="fas fa-link"></i></a>
-</h1>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="CATDATA" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Categorical Data</h1>
 <div id="objectives-5" class="section level2" number="6.1">
-<h2>
-<span class="header-section-number">6.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-5"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">6.1</span> Objectives</h2>
 <ol style="list-style-type: decimal">
 <li>Define and use properly in context all new terminology.</li>
-<li>Generate in <code>R</code> tables for categorical variable(s).<br>
+<li>Generate in <code>R</code> tables for categorical variable(s).<br />
 </li>
-<li>Generate in <code>R</code> appropriate graphical summaries of categorical and numerical variables.<br>
+<li>Generate in <code>R</code> appropriate graphical summaries of categorical and numerical variables.<br />
 </li>
 <li>Be able to interpret and explain output both graphically and numerically.</li>
 </ol>
 </div>
 <div id="categorical-data" class="section level2" number="6.2">
-<h2>
-<span class="header-section-number">6.2</span> Categorical data<a class="anchor" aria-label="anchor" href="#categorical-data"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">6.2</span> Categorical data</h2>
 <p>Like numerical data, categorical data can also be organized and analyzed. This section introduces tables and other basic tools for categorical data. Remember at the beginning of this block of material, our case study had categorical data so we have seen some of the ideas in this lesson.</p>
 <p>The <code>email50</code> data set represents a sample from a larger email data set called <code>email</code>. This larger data set contains information on 3,921 emails. In this section we will use the email data set to examine whether the presence of numbers, small or large, in an email provides any useful value in classifying email as spam or not spam.</p>
 <div id="contingency-tables-and-bar-plots" class="section level3" number="6.2.1">
-<h3>
-<span class="header-section-number">6.2.1</span> Contingency tables and bar plots<a class="anchor" aria-label="anchor" href="#contingency-tables-and-bar-plots"><i class="fas fa-link"></i></a>
-</h3>
-<p>In the <code>email</code> data set we have two variables: <code>spam</code> and <code>number</code> that we want to summarize. Let’s use <code><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect()</a></code> to get information and insight about the two variables. We can also type <code><a href="https://openintrostat.github.io/openintro/reference/email.html">?email</a></code> to learn more about the data. First load the <code>openintro</code> library.</p>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://openintrostat.github.io/openintro/">openintro</a></span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">email</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">spam</span>,<span class="va">number</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<h3><span class="header-section-number">6.2.1</span> Contingency tables and bar plots</h3>
+<p>In the <code>email</code> data set we have two variables: <code>spam</code> and <code>number</code> that we want to summarize. Let’s use <code>inspect()</code> to get information and insight about the two variables. We can also type <code>?email</code> to learn more about the data. First load the <code>openintro</code> library.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="CATDATA.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="CATDATA.html#cb58-1" aria-hidden="true" tabindex="-1"></a>email <span class="sc">%&gt;%</span></span>
+<span id="cb58-2"><a href="CATDATA.html#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(spam,number) <span class="sc">%&gt;%</span></span>
+<span id="cb58-3"><a href="CATDATA.html#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inspect</span>()</span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
 ##     name  class levels    n missing
@@ -157,9 +136,9 @@
 ##                                    distribution
 ## 1 0 (90.6%), 1 (9.4%)                          
 ## 2 small (72.1%), none (14%) ...</code></pre>
-<p>Notice the use of the <code>pipe</code> operator and how it adds to the ease of reading the code. The <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> function allows us to narrow the variables down to the two of interest. Then <code><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect()</a></code> gives us information about those variables. We read from top line; we start with the data set <code>email</code>, input it into <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> and select variables from it, and then use <code><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect()</a></code> to summarize the variables.</p>
+<p>Notice the use of the <code>pipe</code> operator and how it adds to the ease of reading the code. The <code>select()</code> function allows us to narrow the variables down to the two of interest. Then <code>inspect()</code> gives us information about those variables. We read from top line; we start with the data set <code>email</code>, input it into <code>select()</code> and select variables from it, and then use <code>inspect()</code> to summarize the variables.</p>
 <p>As is indicated <code>number</code> is a categorical variable that describes whether an email contains no numbers, only small numbers (values under 1 million), or at least one big number (a value of 1 million or more). The variable <code>spam</code> is a numeric variable where <code>1</code> indicates the email is spam. To treat it as categorical we will want to change it to a <strong>factor</strong> but first we will build a table that summarizes data for the two variables, see Table <a href="CATDATA.html#tab:contin1-tab">6.1</a>. This table is called a <strong>contingency table</strong>. Each value in the table represents the number of times a particular combination of variable outcomes occurred. We will show you the code to generate the contingency table.</p>
-<div class="inline-table"><table class="table table-sm">
+<table>
 <caption>
 <span id="tab:contin1-tab">Table 6.1: </span>A contingency table for the <code>email</code> data.
 </caption>
@@ -248,24 +227,21 @@ Total
 </td>
 </tr>
 </tbody>
-</table></div>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">spam</span><span class="op">+</span><span class="va">number</span>,data<span class="op">=</span><span class="va">email</span>,margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+</table>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="CATDATA.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>spam<span class="sc">+</span>number,<span class="at">data=</span>email,<span class="at">margins =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##        number
 ## spam    none small  big Total
 ##   0      400  2659  495  3554
 ##   1      149   168   50   367
 ##   Total  549  2827  545  3921</code></pre>
 <p>The value 149 corresponds to the number of emails in the data set that are spam <em>and</em> had no number listed in the email. Row and column totals are also included. The <strong>row totals</strong> provide the total counts across each row (e.g. <span class="math inline">\(149 + 168 + 50 = 367\)</span>), and <strong>column totals</strong> are total counts down each column. The row and column totals are known as <strong>marginal</strong> counts and the values in the table, such as 149, as <strong>joint</strong> counts.</p>
-<p>Let’s turn <code>spam</code> into a factor and update the <code>email</code> data object. We will use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to do this.</p>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="va">email</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>spam <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">email</span><span class="op">$</span><span class="va">spam</span>,levels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>,labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"spam"</span>,<span class="st">"not spam"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Let’s turn <code>spam</code> into a factor and update the <code>email</code> data object. We will use <code>mutate()</code> to do this.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="CATDATA.html#cb62-1" aria-hidden="true" tabindex="-1"></a>email <span class="ot">&lt;-</span> email <span class="sc">%&gt;%</span></span>
+<span id="cb62-2"><a href="CATDATA.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">spam =</span> <span class="fu">factor</span>(email<span class="sc">$</span>spam,<span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;spam&quot;</span>,<span class="st">&quot;not spam&quot;</span>)))</span></code></pre></div>
 <p>Now checking the data again.</p>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">email</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">spam</span>,<span class="va">number</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="CATDATA.html#cb63-1" aria-hidden="true" tabindex="-1"></a>email <span class="sc">%&gt;%</span></span>
+<span id="cb63-2"><a href="CATDATA.html#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(spam,number) <span class="sc">%&gt;%</span></span>
+<span id="cb63-3"><a href="CATDATA.html#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inspect</span>()</span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
 ##     name  class levels    n missing
@@ -275,84 +251,73 @@ Total
 ## 1 not spam (90.6%), spam (9.4%)                
 ## 2 small (72.1%), none (14%) ...</code></pre>
 <p>Let’s generate the table again.</p>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">spam</span><span class="op">+</span><span class="va">number</span>,data<span class="op">=</span><span class="va">email</span>,margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="CATDATA.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>spam<span class="sc">+</span>number,<span class="at">data=</span>email,<span class="at">margins =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##           number
 ## spam       none small  big Total
 ##   spam      149   168   50   367
 ##   not spam  400  2659  495  3554
 ##   Total     549  2827  545  3921</code></pre>
 <p>A table for a single variable is called a <strong>frequency table</strong>. The table below is a frequency table for the <code>number</code> variable.</p>
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">number</span>,data<span class="op">=</span><span class="va">email</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="CATDATA.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>number,<span class="at">data=</span>email)</span></code></pre></div>
 <pre><code>## number
 ##  none small   big 
 ##   549  2827   545</code></pre>
 <p>If we replaced the counts with percentages or proportions, the table would be called a <strong>relative frequency table</strong>.</p>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">number</span>,data<span class="op">=</span><span class="va">email</span>,format<span class="op">=</span><span class="st">'proportion'</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="CATDATA.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>number,<span class="at">data=</span>email,<span class="at">format=</span><span class="st">&#39;proportion&#39;</span>)</span></code></pre></div>
 <pre><code>## number
 ##      none     small       big 
 ## 0.1400153 0.7209895 0.1389952</code></pre>
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">number</span>,data<span class="op">=</span><span class="va">email</span>,format<span class="op">=</span><span class="st">'percent'</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="CATDATA.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">tally</span>(<span class="sc">~</span>number,<span class="at">data=</span>email,<span class="at">format=</span><span class="st">&#39;percent&#39;</span>),<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## number
 ##  none small   big 
 ##  14.0  72.1  13.9</code></pre>
 <p>A bar plot is a common way to display a single categorical variable. Figure <a href="CATDATA.html#fig:bar61-fig">6.1</a> shows a <strong>bar plot</strong> for the <code>number</code> variable.</p>
 
-<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">email</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span><span class="va">number</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Size of Number"</span>,y<span class="op">=</span><span class="st">"Count"</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:bar61-fig"></span>
-<img src="06-Categorical-Data_files/figure-html/bar61-fig-1.png" alt="Bar chart of the number variable." width="672"><p class="caption">
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="CATDATA.html#cb73-1" aria-hidden="true" tabindex="-1"></a>email <span class="sc">%&gt;%</span></span>
+<span id="cb73-2"><a href="CATDATA.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_bar</span>(<span class="sc">~</span>number) <span class="sc">%&gt;%</span></span>
+<span id="cb73-3"><a href="CATDATA.html#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb73-4"><a href="CATDATA.html#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Size of Number&quot;</span>,<span class="at">y=</span><span class="st">&quot;Count&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:bar61-fig"></span>
+<img src="06-Categorical-Data_files/figure-html/bar61-fig-1.png" alt="Bar chart of the number variable." width="672" />
+<p class="caption">
 Figure 6.1: Bar chart of the <code>number</code> variable.
 </p>
 </div>
 <p>Next the counts are converted into proportions (e.g. <span class="math inline">\(549/3921=0.140\)</span> for <code>none</code>) in Figure <a href="CATDATA.html#fig:bar62-fig">6.2</a>.</p>
 
-<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">email</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_props</span><span class="op">(</span><span class="op">~</span><span class="va">number</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Size of Number"</span>,y<span class="op">=</span><span class="st">"Proportion"</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:bar62-fig"></span>
-<img src="06-Categorical-Data_files/figure-html/bar62-fig-1.png" alt="Bar chart of the number variable as a proportion." width="672"><p class="caption">
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="CATDATA.html#cb74-1" aria-hidden="true" tabindex="-1"></a>email <span class="sc">%&gt;%</span></span>
+<span id="cb74-2"><a href="CATDATA.html#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_props</span>(<span class="sc">~</span>number) <span class="sc">%&gt;%</span></span>
+<span id="cb74-3"><a href="CATDATA.html#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb74-4"><a href="CATDATA.html#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Size of Number&quot;</span>,<span class="at">y=</span><span class="st">&quot;Proportion&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:bar62-fig"></span>
+<img src="06-Categorical-Data_files/figure-html/bar62-fig-1.png" alt="Bar chart of the number variable as a proportion." width="672" />
+<p class="caption">
 Figure 6.2: Bar chart of the <code>number</code> variable as a proportion.
 </p>
 </div>
 <p>Again, let’s clean up the plot into a style that we could use in a report.</p>
-<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">email</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_props</span><span class="op">(</span><span class="op">~</span><span class="va">number</span>,title<span class="op">=</span><span class="st">"The proportions of emails with a number in it"</span>,
-           subtitle<span class="op">=</span><span class="st">"From 2012"</span>,xlab<span class="op">=</span><span class="st">"Type of number in the email"</span>,
-           ylab<span class="op">=</span><span class="st">"Proportion of emails"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="06-Categorical-Data_files/figure-html/unnamed-chunk-11-1.png" width="672"></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="CATDATA.html#cb75-1" aria-hidden="true" tabindex="-1"></a>email <span class="sc">%&gt;%</span></span>
+<span id="cb75-2"><a href="CATDATA.html#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_props</span>(<span class="sc">~</span>number,<span class="at">title=</span><span class="st">&quot;The proportions of emails with a number in it&quot;</span>,</span>
+<span id="cb75-3"><a href="CATDATA.html#cb75-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">subtitle=</span><span class="st">&quot;From 2012&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Type of number in the email&quot;</span>,</span>
+<span id="cb75-4"><a href="CATDATA.html#cb75-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylab=</span><span class="st">&quot;Proportion of emails&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb75-5"><a href="CATDATA.html#cb75-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<p><img src="06-Categorical-Data_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 </div>
 <div id="column-proportions" class="section level3" number="6.2.2">
-<h3>
-<span class="header-section-number">6.2.2</span> Column proportions<a class="anchor" aria-label="anchor" href="#column-proportions"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">6.2.2</span> Column proportions</h3>
 <p>The table below shows the column proportions. The <strong>column proportions</strong> are computed as the counts divided by their column totals. The value 149 at the intersection of <em>spam</em> and <em>none</em> is replaced by <span class="math inline">\(149/549=0.271\)</span>, i.e. 149 divided by its column total, 549. So what does 0.271 represent? It corresponds to the proportion of emails in the sample with no numbers that are spam. We are <strong>conditioning</strong>, restricting, on emails with no number. This rate of spam is much higher than emails with only small numbers (5.9%) or big numbers (9.2%). Because these spam rates vary between the three levels of <code>number</code> (<em>none</em>, <em>small</em>, <em>big</em>), this provides evidence that the <code>spam</code> and <code>number</code> variables are associated.</p>
-<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">spam</span><span class="op">~</span><span class="va">number</span>,data<span class="op">=</span><span class="va">email</span>,margins <span class="op">=</span> <span class="cn">TRUE</span>,format<span class="op">=</span><span class="st">'proportion'</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="CATDATA.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(spam<span class="sc">~</span>number,<span class="at">data=</span>email,<span class="at">margins =</span> <span class="cn">TRUE</span>,<span class="at">format=</span><span class="st">&#39;proportion&#39;</span>)</span></code></pre></div>
 <pre><code>##           number
 ## spam             none      small        big
 ##   spam     0.27140255 0.05942695 0.09174312
 ##   not spam 0.72859745 0.94057305 0.90825688
 ##   Total    1.00000000 1.00000000 1.00000000</code></pre>
-<p>The <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code> function will always condition on the variable on the right hand side of the tilde, ~, when calculating proportions and thus only generate column proportions. The more general <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> function of <code>R</code> will allow either column or row proportions.</p>
+<p>The <code>tally()</code> function will always condition on the variable on the right hand side of the tilde, ~, when calculating proportions and thus only generate column proportions. The more general <code>table()</code> function of <code>R</code> will allow either column or row proportions.</p>
 <blockquote>
-<p><strong>Exercise</strong>:<br>
+<p><strong>Exercise</strong>:<br />
 Create a table of column proportions where the variable <code>spam</code> is the column variable.</p>
 </blockquote>
-<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">number</span><span class="op">~</span><span class="va">spam</span>,data<span class="op">=</span><span class="va">email</span>,margins <span class="op">=</span> <span class="cn">TRUE</span>,format<span class="op">=</span><span class="st">'proportion'</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="CATDATA.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(number<span class="sc">~</span>spam,<span class="at">data=</span>email,<span class="at">margins =</span> <span class="cn">TRUE</span>,<span class="at">format=</span><span class="st">&#39;proportion&#39;</span>)</span></code></pre></div>
 <pre><code>##        spam
 ## number       spam  not spam
 ##   none  0.4059946 0.1125492
@@ -360,21 +325,19 @@ Create a table of column proportions where the variable <code>spam</code> is the
 ##   big   0.1362398 0.1392797
 ##   Total 1.0000000 1.0000000</code></pre>
 <blockquote>
-<p><strong>Exercise</strong>:<br>
-In the table you just created, what does 0.748 represent?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;0.748 represents the proportions of emails with no spam that had a small number in it.&lt;/p&gt;"><sup>57</sup></a></p>
+<p><strong>Exercise</strong>:<br />
+In the table you just created, what does 0.748 represent?<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a></p>
 </blockquote>
 <blockquote>
-<p><em>Example</em>:<br>
-Data scientists use statistics to filter spam from incoming email messages. By noting specific characteristics of an email, a data scientist may be able to classify some emails as spam or not spam with high accuracy. One of those characteristics is whether the email contains no numbers, small numbers, or big numbers. Another characteristic is whether or not an email has any HTML content. A contingency table for the <code>spam</code> and <code>format</code> variables is needed.<br>
-1 Make <code>format</code> into a categorical factor variable.The levels should be “text” and “HTML”.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;From the help menu on the data HTML is coded as a 1&lt;/p&gt;"><sup>58</sup></a><br>
+<p><em>Example</em>:<br />
+Data scientists use statistics to filter spam from incoming email messages. By noting specific characteristics of an email, a data scientist may be able to classify some emails as spam or not spam with high accuracy. One of those characteristics is whether the email contains no numbers, small numbers, or big numbers. Another characteristic is whether or not an email has any HTML content. A contingency table for the <code>spam</code> and <code>format</code> variables is needed.<br />
+1 Make <code>format</code> into a categorical factor variable.The levels should be “text” and “HTML”.<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a><br />
 2 Create a contingency table from the <code>email</code> data set with <code>format</code> in the columns and <code>spam</code> in the rows.</p>
 </blockquote>
 <p>In deciding which variable to use as a column, the data scientist would be interested in how the proportion of spam changes within each email format. This corresponds to column proportions based on <code>format</code>: the proportion of spam in plain text emails and the proportion of spam in HTML emails.</p>
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">email</span> <span class="op">&lt;-</span> <span class="va">email</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">email</span><span class="op">$</span><span class="va">format</span>,levels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>,labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"HTML"</span>,<span class="st">"text"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">spam</span><span class="op">~</span><span class="va">format</span>,data<span class="op">=</span><span class="va">email</span>,margins <span class="op">=</span> <span class="cn">TRUE</span>,format<span class="op">=</span><span class="st">"proportion"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="CATDATA.html#cb80-1" aria-hidden="true" tabindex="-1"></a>email <span class="ot">&lt;-</span> email <span class="sc">%&gt;%</span></span>
+<span id="cb80-2"><a href="CATDATA.html#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">format =</span> <span class="fu">factor</span>(email<span class="sc">$</span>format,<span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;HTML&quot;</span>,<span class="st">&quot;text&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="CATDATA.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(spam<span class="sc">~</span>format,<span class="at">data=</span>email,<span class="at">margins =</span> <span class="cn">TRUE</span>,<span class="at">format=</span><span class="st">&quot;proportion&quot;</span>)</span></code></pre></div>
 <pre><code>##           format
 ## spam             HTML       text
 ##   spam     0.05796038 0.17489540
@@ -383,18 +346,16 @@ Data scientists use statistics to filter spam from incoming email messages. By n
 <p>In generating the column proportions, we can see that a higher fraction of plain text emails are spam (<span class="math inline">\(209/1195 = 17.5\%\)</span>) than compared to HTML emails (<span class="math inline">\(158/2726 = 5.8\%\)</span>). This information on its own is insufficient to classify an email as spam or not spam, as over 80% of plain text emails are not spam. Yet, when we carefully combine this information with many other characteristics, such as <code>number</code> and other variables, we stand a reasonable chance of being able to classify some email as spam or not spam.</p>
 <p>In constructing a table, we need to think about which variable we want in the column and which in the row. The formula format in some way makes us think about the response and predictor variables. However in some cases, it is not clear which variable should be in the column and row and the analyst must decide the point to be made with the table. Before settling on one form for a table, it is important to consider the audience and the message they are to receive from the table.</p>
 <blockquote>
-<p><strong>Exercise</strong>:<br>
-Create two tables with <code>number</code> and <code>spam</code> where each are in the column, so two tables where you change which variable is in the column. Which would be more useful to someone hoping to identify spam emails using the <code>number</code> variable?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The column proportions with &lt;code&gt;number&lt;/code&gt; in the columns will probably be most useful, which makes it easier to see that emails with small numbers are spam about 5.9% of the time (relatively rare). We would also see that about 27.1% of emails with no numbers are spam, and 9.2% of emails with big numbers are spam.&lt;/p&gt;"><sup>59</sup></a></p>
+<p><strong>Exercise</strong>:<br />
+Create two tables with <code>number</code> and <code>spam</code> where each are in the column, so two tables where you change which variable is in the column. Which would be more useful to someone hoping to identify spam emails using the <code>number</code> variable?<a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a></p>
 </blockquote>
-<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">spam</span><span class="op">~</span><span class="va">number</span>,<span class="va">email</span>,format<span class="op">=</span><span class="st">'proportion'</span>,margin<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="CATDATA.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(spam<span class="sc">~</span>number,email,<span class="at">format=</span><span class="st">&#39;proportion&#39;</span>,<span class="at">margin=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##           number
 ## spam             none      small        big
 ##   spam     0.27140255 0.05942695 0.09174312
 ##   not spam 0.72859745 0.94057305 0.90825688
 ##   Total    1.00000000 1.00000000 1.00000000</code></pre>
-<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">number</span><span class="op">~</span><span class="va">spam</span>,<span class="va">email</span>,format<span class="op">=</span><span class="st">'proportion'</span>,margin<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="CATDATA.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(number<span class="sc">~</span>spam,email,<span class="at">format=</span><span class="st">&#39;proportion&#39;</span>,<span class="at">margin=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##        spam
 ## number       spam  not spam
 ##   none  0.4059946 0.1125492
@@ -403,38 +364,34 @@ Create two tables with <code>number</code> and <code>spam</code> where each are 
 ##   Total 1.0000000 1.0000000</code></pre>
 </div>
 <div id="segmented-bar-and-mosaic-plots" class="section level3" number="6.2.3">
-<h3>
-<span class="header-section-number">6.2.3</span> Segmented bar and mosaic plots<a class="anchor" aria-label="anchor" href="#segmented-bar-and-mosaic-plots"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">6.2.3</span> Segmented bar and mosaic plots</h3>
 <p>Contingency tables using column proportions are especially useful for examining how two categorical variables are related. Segmented bar and mosaic plots provide a way to visualize the information in these tables.</p>
 <p>A <strong>segmented bar plot</strong> is a graphical display of contingency table information. For example, a segmented bar plot representing the table with <code>number</code> in the column is shown in Figure <a href="CATDATA.html#fig:barseg61-fig">6.3</a>, where we have first created a bar plot using the <code>number</code> variable and then separated each group by the levels of <code>spam</code>.</p>
 
-<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">email</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span><span class="va">number</span>,fill<span class="op">=</span><span class="op">~</span><span class="va">spam</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Size of Number"</span>,y<span class="op">=</span><span class="st">"Count"</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:barseg61-fig"></span>
-<img src="06-Categorical-Data_files/figure-html/barseg61-fig-1.png" alt="Segmented bar plot for numbers found in emails, where the counts have been further broken down by spam." width="672"><p class="caption">
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="CATDATA.html#cb87-1" aria-hidden="true" tabindex="-1"></a>email <span class="sc">%&gt;%</span></span>
+<span id="cb87-2"><a href="CATDATA.html#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_bar</span>(<span class="sc">~</span>number,<span class="at">fill=</span><span class="sc">~</span>spam) <span class="sc">%&gt;%</span></span>
+<span id="cb87-3"><a href="CATDATA.html#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb87-4"><a href="CATDATA.html#cb87-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Size of Number&quot;</span>,<span class="at">y=</span><span class="st">&quot;Count&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:barseg61-fig"></span>
+<img src="06-Categorical-Data_files/figure-html/barseg61-fig-1.png" alt="Segmented bar plot for numbers found in emails, where the counts have been further broken down by spam." width="672" />
+<p class="caption">
 Figure 6.3: Segmented bar plot for numbers found in <code>emails</code>, where the counts have been further broken down by <code>spam</code>.
 </p>
 </div>
 <p>The column proportions of the table have been translated into a standardized segmented bar plot in Figure <a href="CATDATA.html#fig:barseg62-fig">6.4</a>, which is a helpful visualization of the fraction of spam emails in each level of <code>number</code>.</p>
 
-<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">email</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_props</span><span class="op">(</span><span class="op">~</span><span class="va">number</span>,fill<span class="op">=</span><span class="op">~</span><span class="va">spam</span>,position<span class="op">=</span><span class="st">'fill'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Size of Number"</span>,y<span class="op">=</span><span class="st">"Proportion"</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:barseg62-fig"></span>
-<img src="06-Categorical-Data_files/figure-html/barseg62-fig-1.png" alt="Standardized version of Figure 6.3." width="672"><p class="caption">
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="CATDATA.html#cb88-1" aria-hidden="true" tabindex="-1"></a>email <span class="sc">%&gt;%</span></span>
+<span id="cb88-2"><a href="CATDATA.html#cb88-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_props</span>(<span class="sc">~</span>number,<span class="at">fill=</span><span class="sc">~</span>spam,<span class="at">position=</span><span class="st">&#39;fill&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb88-3"><a href="CATDATA.html#cb88-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb88-4"><a href="CATDATA.html#cb88-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Size of Number&quot;</span>,<span class="at">y=</span><span class="st">&quot;Proportion&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:barseg62-fig"></span>
+<img src="06-Categorical-Data_files/figure-html/barseg62-fig-1.png" alt="Standardized version of Figure 6.3." width="672" />
+<p class="caption">
 Figure 6.4: Standardized version of Figure <a href="CATDATA.html#fig:barseg61-fig">6.3</a>.
 </p>
 </div>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 Examine both of the segmented bar plots. Which is more useful?</p>
 </blockquote>
 <p>Figure <a href="CATDATA.html#fig:barseg61-fig">6.3</a> contains more information, but Figure <a href="CATDATA.html#fig:barseg62-fig">6.4</a> presents the information more clearly. This second plot makes it clear that emails with no number have a relatively high rate of spam email – about 27%! On the other hand, less than 10% of email with small or big numbers are spam.</p>
@@ -442,45 +399,39 @@ Examine both of the segmented bar plots. Which is more useful?</p>
 <p>In some other cases, a segmented bar plot that is not standardized will be more useful in communicating important information. Before settling on a particular segmented bar plot, create standardized and non-standardized forms and decide which is more effective at communicating features of the data.</p>
 <p>A <strong>mosaic plot</strong> is a graphical display of contingency table information that is similar to a bar plot for one variable or a segmented bar plot when using two variables. It seems strange, but mosaic plots are not part of the <strong>mosaic</strong> package. We must load another set of packages called <strong>vcd</strong> and <strong>vcdExtra</strong>. Mosaic plot displays help to visualize the pattern of associations among variables in two-way and larger tables. Mosaic plots are controversial since they rely on the perception of area. Human vision is not good at distinguishing areas.</p>
 <p>We will introduce mosaic plots because it is another way to visualize contingency tables. Figure <a href="CATDATA.html#fig:mosaic61-fig">6.5</a> shows a mosaic plot for the <code>number</code> variable. Each row represents a level of <code>number</code>, and the row heights correspond to the proportion of emails of each number type. For instance, there are fewer emails with no numbers than emails with only small numbers, so the <code>none</code> outcome row is shorter in height. In general, mosaic plots use box <em>areas</em> to represent the number of observations. Since there is only one variable, the widths are all constant. Thus area is simply related to row height making this visual easy to read.</p>
-<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">vcd</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="CATDATA.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span></code></pre></div>
 
-<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/vcd/man/mosaic.html">mosaic</a></span><span class="op">(</span><span class="op">~</span><span class="va">number</span>,data<span class="op">=</span><span class="va">email</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:mosaic61-fig"></span>
-<img src="06-Categorical-Data_files/figure-html/mosaic61-fig-1.png" alt="Mosaic plot where emails are grouped by the number variable." width="672"><p class="caption">
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="CATDATA.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaic</span>(<span class="sc">~</span>number,<span class="at">data=</span>email)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:mosaic61-fig"></span>
+<img src="06-Categorical-Data_files/figure-html/mosaic61-fig-1.png" alt="Mosaic plot where emails are grouped by the number variable." width="672" />
+<p class="caption">
 Figure 6.5: Mosaic plot where emails are grouped by the <code>number</code> variable.
 </p>
 </div>
 <p>This one-variable mosaic plot can be further divided into pieces as in Figure <a href="CATDATA.html#fig:mosaic62-fig">6.6</a> using the <code>spam</code> variable. The first variable in the formula is used to determine row height. That is, each row is split proportionally according to the fraction of emails in each number category, these heights are similar to Figure <a href="CATDATA.html#fig:mosaic61-fig">6.5</a>. Next each row is split horizontally according to the proportion of emails that were spam in that number group. For example, the second row, representing emails with only small numbers, was divided into emails that were spam (left) and not spam (right). The area of the rectangles is proportional to the proportions in the table where each cell count is divided by the total count. First we will generate the table and then represent it as a mosaic plot.</p>
-<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">number</span><span class="op">+</span><span class="va">spam</span>,data<span class="op">=</span><span class="va">email</span>,format<span class="op">=</span><span class="st">'proportion'</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="CATDATA.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>number<span class="sc">+</span>spam,<span class="at">data=</span>email,<span class="at">format=</span><span class="st">&#39;proportion&#39;</span>)</span></code></pre></div>
 <pre><code>##        spam
 ## number        spam   not spam
 ##   none  0.03800051 0.10201479
 ##   small 0.04284621 0.67814333
 ##   big   0.01275185 0.12624331</code></pre>
 
-<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/vcd/man/mosaic.html">mosaic</a></span><span class="op">(</span><span class="op">~</span><span class="va">number</span><span class="op">+</span><span class="va">spam</span>,data<span class="op">=</span><span class="va">email</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:mosaic62-fig"></span>
-<img src="06-Categorical-Data_files/figure-html/mosaic62-fig-1.png" alt="Mosaic plot with number as the first variable." width="672"><p class="caption">
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="CATDATA.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaic</span>(<span class="sc">~</span>number<span class="sc">+</span>spam,<span class="at">data=</span>email)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:mosaic62-fig"></span>
+<img src="06-Categorical-Data_files/figure-html/mosaic62-fig-1.png" alt="Mosaic plot with number as the first variable." width="672" />
+<p class="caption">
 Figure 6.6: Mosaic plot with <code>number</code> as the first variable.
 </p>
 </div>
 <p>These plots are hard to use in a visual comparison of area. For example, is the area for <em>small</em> number <em>spam</em> emails different from <em>none</em> number <em>spam</em> emails? The rectangles have different shapes but from the table we can tell the areas are close.</p>
 <p>An important use of the mosaic plot is to determine if an association between variables may be present. The bottom of the first column represents spam emails that had big numbers, and the bottom row of the second column represents regular emails that had big numbers. We can again use this plot to see that the <code>spam</code> and <code>number</code> variables are associated since some rows are divided in different vertical locations than others, which was the same technique used for checking an association in the standardized version of the segmented bar plot.</p>
 <p>In a similar way, a mosaic plot representing column proportions where <em>spam</em> is in the column could be constructed. To completely understand the mosaic plot as shown in Figure <a href="CATDATA.html#fig:mosaic63-fig">6.7</a> let’s first find the proportions of <code>spam</code>.</p>
-<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">spam</span>,data<span class="op">=</span><span class="va">email</span>,format<span class="op">=</span><span class="st">"proportion"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="CATDATA.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>spam,<span class="at">data=</span>email,<span class="at">format=</span><span class="st">&quot;proportion&quot;</span>)</span></code></pre></div>
 <pre><code>## spam
 ##       spam   not spam 
 ## 0.09359857 0.90640143</code></pre>
 <p>So the row heights will be split 90-10. Next let’s find the proportions of number within each value of spam. In the spam row, <em>none</em> will be 41%, <em>small</em> will be 46%, and <em>big</em> will be 13%.</p>
-<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">number</span><span class="op">~</span><span class="va">spam</span>,data<span class="op">=</span><span class="va">email</span>,margins <span class="op">=</span> <span class="cn">TRUE</span>,format<span class="op">=</span><span class="st">"proportion"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="CATDATA.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(number<span class="sc">~</span>spam,<span class="at">data=</span>email,<span class="at">margins =</span> <span class="cn">TRUE</span>,<span class="at">format=</span><span class="st">&quot;proportion&quot;</span>)</span></code></pre></div>
 <pre><code>##        spam
 ## number       spam  not spam
 ##   none  0.4059946 0.1125492
@@ -489,54 +440,45 @@ Figure 6.6: Mosaic plot with <code>number</code> as the first variable.
 ##   Total 1.0000000 1.0000000</code></pre>
 <p>However, because it is more insightful for this application to consider the fraction of spam in each category of the <code>number</code> variable, we prefer Figure <a href="CATDATA.html#fig:mosaic62-fig">6.6</a>.</p>
 
-<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/vcd/man/mosaic.html">mosaic</a></span><span class="op">(</span><span class="op">~</span><span class="va">spam</span><span class="op">+</span><span class="va">number</span>,data<span class="op">=</span><span class="va">email</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:mosaic63-fig"></span>
-<img src="06-Categorical-Data_files/figure-html/mosaic63-fig-1.png" alt="Mosaic plot with spam as the first variable" width="672"><p class="caption">
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="CATDATA.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaic</span>(<span class="sc">~</span>spam<span class="sc">+</span>number,<span class="at">data=</span>email)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:mosaic63-fig"></span>
+<img src="06-Categorical-Data_files/figure-html/mosaic63-fig-1.png" alt="Mosaic plot with spam as the first variable" width="672" />
+<p class="caption">
 Figure 6.7: Mosaic plot with <code>spam</code> as the first variable
 </p>
 </div>
 </div>
 <div id="the-only-pie-chart-you-will-see-in-this-course-hopefully" class="section level3" number="6.2.4">
-<h3>
-<span class="header-section-number">6.2.4</span> The only pie chart you will see in this course, hopefully<a class="anchor" aria-label="anchor" href="#the-only-pie-chart-you-will-see-in-this-course-hopefully"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">6.2.4</span> The only pie chart you will see in this course, hopefully</h3>
 <p>While pie charts are well known, they are not typically as useful as other charts in a data analysis. A <strong>pie chart</strong> is shown in Figure <a href="CATDATA.html#fig:pie61-fig">6.8</a>. It is generally more difficult to compare group sizes in a pie chart than in a bar plot, especially when categories have nearly identical counts or proportions. In the case of the <em>none</em> and <em>big</em> categories, the difference is so slight you may be unable to distinguish any difference in group sizes.</p>
-<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/pie.html">pie</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">email</span><span class="op">$</span><span class="va">number</span><span class="op">)</span>, col<span class="op">=</span><span class="va">COL</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">]</span>, radius<span class="op">=</span><span class="fl">0.75</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:pie61-fig"></span>
-<img src="06-Categorical-Data_files/figure-html/pie61-fig-1.png" alt="A pie chart number for the email data set." width="672"><p class="caption">
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="CATDATA.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">table</span>(email<span class="sc">$</span>number), <span class="at">col=</span>COL[<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>)], <span class="at">radius=</span><span class="fl">0.75</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:pie61-fig"></span>
+<img src="06-Categorical-Data_files/figure-html/pie61-fig-1.png" alt="A pie chart number for the email data set." width="672" />
+<p class="caption">
 Figure 6.8: A pie chart number for the email data set.
 </p>
 </div>
 <p>Pie charts are popular in the Air Force due to the ease of generating them in Excel and PowerPoint. However, the values for each slice are often printed on top of the chart making the chart irrelevant. We recommend a minimum use of pie charts in your work.</p>
 </div>
 <div id="comparing-numerical-data-across-groups" class="section level3" number="6.2.5">
-<h3>
-<span class="header-section-number">6.2.5</span> Comparing numerical data across groups<a class="anchor" aria-label="anchor" href="#comparing-numerical-data-across-groups"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">6.2.5</span> Comparing numerical data across groups</h3>
 <p>Some of the more interesting investigations can be considered by examining numerical data across groups. This is the case where one variable is categorical and the other is numerical. The methods required here aren’t really new. All that is required is to make a numerical plot for each group. Here two convenient methods are introduced: side-by-side box plots and density plots.</p>
 <p>We will take a look again at the subset of <code>county_complete</code> data set and compare the median household income for counties that gained population from 2000 to 2010 versus counties that had no gain. While we might like to make a causal connection here, remember that these are observational data and so such an interpretation would be unjustified.</p>
 <p>This section will give us a chance to perform some data wrangling. We will be using the <code>tidyverse</code> verbs in the process. Data wrangling is an important part of analysis work and typically takes a significant portion of the analysis work.</p>
 <p>Here is the code to generate the data we need.</p>
-<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/OpenIntroStat/usdata">usdata</a></span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">county_tidy</span> <span class="op">&lt;-</span> <span class="va">county_complete</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">state</span>, <span class="va">pop2000</span>, <span class="va">pop2010</span>, fed_spend<span class="op">=</span><span class="va">fed_spending_2009</span>, poverty<span class="op">=</span><span class="va">poverty_2010</span>, 
-         homeownership <span class="op">=</span> <span class="va">homeownership_2010</span>, multi_unit <span class="op">=</span> <span class="va">housing_multi_unit_2010</span>, 
-         income <span class="op">=</span> <span class="va">per_capita_income_2010</span>, med_income <span class="op">=</span> <span class="va">median_household_income_2010</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fed_spend<span class="op">=</span><span class="va">fed_spend</span><span class="op">/</span><span class="va">pop2010</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="CATDATA.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usdata)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="CATDATA.html#cb101-1" aria-hidden="true" tabindex="-1"></a>county_tidy <span class="ot">&lt;-</span> county_complete <span class="sc">%&gt;%</span> </span>
+<span id="cb101-2"><a href="CATDATA.html#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, state, pop2000, pop2010, <span class="at">fed_spend=</span>fed_spending_2009, <span class="at">poverty=</span>poverty_2010, </span>
+<span id="cb101-3"><a href="CATDATA.html#cb101-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">homeownership =</span> homeownership_2010, <span class="at">multi_unit =</span> housing_multi_unit_2010, </span>
+<span id="cb101-4"><a href="CATDATA.html#cb101-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">income =</span> per_capita_income_2010, <span class="at">med_income =</span> median_household_income_2010) <span class="sc">%&gt;%</span></span>
+<span id="cb101-5"><a href="CATDATA.html#cb101-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fed_spend=</span>fed_spend<span class="sc">/</span>pop2010)</span></code></pre></div>
 <p>First, as a reminder, let’s look at the data.</p>
 <p><em>What do we want <code>R</code> to do</em>? We want to select the variables <code>pop2000</code>, <code>pop2010</code>, and <code>med_income</code>.</p>
 <p><em>What does <code>R</code> need</em>? It needs the data object, and variable names.</p>
-<p>We will use the <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> and <code><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect()</a></code> functions.</p>
-<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">county_tidy</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">pop2000</span>,<span class="va">pop2010</span>,<span class="va">med_income</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>We will use the <code>select()</code> and <code>inspect()</code> functions.</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="CATDATA.html#cb102-1" aria-hidden="true" tabindex="-1"></a>county_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb102-2"><a href="CATDATA.html#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(pop2000,pop2010,med_income) <span class="sc">%&gt;%</span></span>
+<span id="cb102-3"><a href="CATDATA.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inspect</span>()</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
 ##            name   class   min       Q1 median    Q3     max     mean        sd
@@ -548,23 +490,19 @@ Figure 6.8: A pie chart number for the email data set.
 ## ...2 3142       0
 ## ...3 3142       0</code></pre>
 <p>Notice that three counties are missing population values, reported as <code>NA</code>. Let’s remove them and find which counties increased population by creating a new variable.</p>
-<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cc_reduced</span> <span class="op">&lt;-</span> <span class="va">county_tidy</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">pop2000</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">pop2000</span>,<span class="va">pop2010</span>,<span class="va">med_income</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pop_gain <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sign.html">sign</a></span><span class="op">(</span><span class="va">pop2010</span><span class="op">-</span><span class="va">pop2000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">pop_gain</span>,data<span class="op">=</span><span class="va">cc_reduced</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="CATDATA.html#cb104-1" aria-hidden="true" tabindex="-1"></a>cc_reduced <span class="ot">&lt;-</span> county_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb104-2"><a href="CATDATA.html#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(pop2000) <span class="sc">%&gt;%</span></span>
+<span id="cb104-3"><a href="CATDATA.html#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(pop2000,pop2010,med_income) <span class="sc">%&gt;%</span></span>
+<span id="cb104-4"><a href="CATDATA.html#cb104-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pop_gain =</span> <span class="fu">sign</span>(pop2010<span class="sc">-</span>pop2000))</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="CATDATA.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>pop_gain,<span class="at">data=</span>cc_reduced)</span></code></pre></div>
 <pre><code>## pop_gain
 ##   -1    0    1 
 ## 1097    1 2041</code></pre>
-<p>There were 2,041 counties where the population increased from 2000 to 2010, and there were 1,098 counties with no gain, only 1 county had a net of zero, or a loss. Let’s just look at the counties with a gain or loss in side-by-side boxplot. Again, we will use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> to select the two groups and then make the variable <code>pop_gain</code> into a categorical variable, more data wrangling.</p>
-<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cc_reduced</span> <span class="op">&lt;-</span> <span class="va">cc_reduced</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">pop_gain</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pop_gain <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">pop_gain</span>,levels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>,labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Loss"</span>,<span class="st">"Gain"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">cc_reduced</span><span class="op">)</span></code></pre></div>
+<p>There were 2,041 counties where the population increased from 2000 to 2010, and there were 1,098 counties with no gain, only 1 county had a net of zero, or a loss. Let’s just look at the counties with a gain or loss in side-by-side boxplot. Again, we will use <code>filter()</code> to select the two groups and then make the variable <code>pop_gain</code> into a categorical variable, more data wrangling.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="CATDATA.html#cb107-1" aria-hidden="true" tabindex="-1"></a>cc_reduced <span class="ot">&lt;-</span> cc_reduced <span class="sc">%&gt;%</span></span>
+<span id="cb107-2"><a href="CATDATA.html#cb107-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pop_gain <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb107-3"><a href="CATDATA.html#cb107-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pop_gain =</span> <span class="fu">factor</span>(pop_gain,<span class="at">levels=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>),<span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;Loss&quot;</span>,<span class="st">&quot;Gain&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="CATDATA.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(cc_reduced)</span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
 ##       name  class levels    n missing
@@ -582,45 +520,41 @@ Figure 6.8: A pie chart number for the email data set.
 ## ...2 313133.28 3138       0
 ## ...3  11528.95 3138       0</code></pre>
 <p>The <strong>side-by-side box plot</strong> is a traditional tool for comparing across groups. An example is shown in Figure <a href="CATDATA.html#fig:sbysbox61-fig">6.9</a> where there are two box plots, one for each group and drawn on the same scale.</p>
-<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cc_reduced</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_boxplot</span><span class="op">(</span><span class="va">med_income</span><span class="op">~</span><span class="va">pop_gain</span>,
-             subtitle<span class="op">=</span><span class="st">"The income data were collected between 2006 and 2010."</span>,
-             xlab<span class="op">=</span><span class="st">"Population change from 2000 to 2010"</span>,
-             ylab<span class="op">=</span><span class="st">"Median Household Income"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:sbysbox61-fig"></span>
-<img src="06-Categorical-Data_files/figure-html/sbysbox61-fig-1.png" alt="Side-by-side box plot for median household income, where the counties are split by whether there was a population gain or loss from 2000 to 2010." width="672"><p class="caption">
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="CATDATA.html#cb110-1" aria-hidden="true" tabindex="-1"></a>cc_reduced <span class="sc">%&gt;%</span></span>
+<span id="cb110-2"><a href="CATDATA.html#cb110-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_boxplot</span>(med_income<span class="sc">~</span>pop_gain,</span>
+<span id="cb110-3"><a href="CATDATA.html#cb110-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">subtitle=</span><span class="st">&quot;The income data were collected between 2006 and 2010.&quot;</span>,</span>
+<span id="cb110-4"><a href="CATDATA.html#cb110-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">xlab=</span><span class="st">&quot;Population change from 2000 to 2010&quot;</span>,</span>
+<span id="cb110-5"><a href="CATDATA.html#cb110-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">ylab=</span><span class="st">&quot;Median Household Income&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb110-6"><a href="CATDATA.html#cb110-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>())</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:sbysbox61-fig"></span>
+<img src="06-Categorical-Data_files/figure-html/sbysbox61-fig-1.png" alt="Side-by-side box plot for median household income, where the counties are split by whether there was a population gain or loss from 2000 to 2010." width="672" />
+<p class="caption">
 Figure 6.9: Side-by-side box plot for median household income, where the counties are split by whether there was a population gain or loss from 2000 to 2010.
 </p>
 </div>
 <p>Another useful plotting method uses <strong>density plots</strong> to compare numerical data across groups. A histogram bins data but is highly dependent on the number and boundary of the bins. A density plot also estimates the distribution of a numerical variable but does this by estimating the density of data points in a small window around each data point. The overall curve is the sum of this small density estimate. A density plot can be thought of as a smooth version of the histogram. Several options go into a density estimate such as the width of the window and type of smoothing function. These ideas are beyond the point here and we will just use the default options. Figure <a href="CATDATA.html#fig:dens61-fig">6.10</a> is a plot of the two density curves.</p>
-<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cc_reduced</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_dens</span><span class="op">(</span><span class="op">~</span><span class="va">med_income</span>,color<span class="op">=</span><span class="op">~</span><span class="va">pop_gain</span>,lwd<span class="op">=</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Median household income"</span>,y<span class="op">=</span><span class="st">""</span>,col<span class="op">=</span><span class="st">"Population \nChange"</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:dens61-fig"></span>
-<img src="06-Categorical-Data_files/figure-html/dens61-fig-1.png" alt="Density plots of median household income for counties with population gain versus population loss" width="672"><p class="caption">
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="CATDATA.html#cb111-1" aria-hidden="true" tabindex="-1"></a>cc_reduced <span class="sc">%&gt;%</span></span>
+<span id="cb111-2"><a href="CATDATA.html#cb111-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dens</span>(<span class="sc">~</span>med_income,<span class="at">color=</span><span class="sc">~</span>pop_gain,<span class="at">lwd=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb111-3"><a href="CATDATA.html#cb111-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb111-4"><a href="CATDATA.html#cb111-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Median household income&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>,<span class="at">col=</span><span class="st">&quot;Population </span><span class="sc">\n</span><span class="st">Change&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:dens61-fig"></span>
+<img src="06-Categorical-Data_files/figure-html/dens61-fig-1.png" alt="Density plots of median household income for counties with population gain versus population loss" width="672" />
+<p class="caption">
 Figure 6.10: Density plots of median household income for counties with population gain versus population loss
 </p>
 </div>
 <blockquote>
-<p><strong>Exercise</strong>:<br>
-Use the box plots and density plots to compare the incomes for counties across the two groups. What do you notice about the approximate center of each group? What do you notice about the variability between groups? Is the shape relatively consistent between groups? How many <em>prominent</em> modes are there for each group?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Answers may vary a little. The counties with population gains tend to have higher income (median of about $45,000) versus counties without a gain (median of about $40,000). The variability is also slightly larger for the population gain group. This is evident in the IQR, which is about 50% bigger in the &lt;em&gt;gain&lt;/em&gt; group. Both distributions show slight to moderate right skew and are unimodal. There is a secondary small bump at about $60,000 for the &lt;em&gt;no gain&lt;/em&gt; group, visible in the density plot, that seems out of place. (Looking into the data set, we would find that 8 of these 15 counties are in Alaska and Texas.) The box plots indicate there are many observations far above the median in each group, though we should anticipate that many observations will fall beyond the whiskers when using such a large data set.&lt;/p&gt;"><sup>60</sup></a></p>
+<p><strong>Exercise</strong>:<br />
+Use the box plots and density plots to compare the incomes for counties across the two groups. What do you notice about the approximate center of each group? What do you notice about the variability between groups? Is the shape relatively consistent between groups? How many <em>prominent</em> modes are there for each group?<a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a></p>
 </blockquote>
 <blockquote>
-<p><strong>Exercise</strong>:<br>
-What components of each plot in Figures 8 and 9 do you find most useful?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The side-by-side box plots are especially useful for comparing centers and spreads, while the density plots are more useful for seeing distribution shape, skew, and groups of anomalies.&lt;/p&gt;"><sup>61</sup></a></p>
+<p><strong>Exercise</strong>:<br />
+What components of each plot in Figures 8 and 9 do you find most useful?<a href="#fn61" class="footnote-ref" id="fnref61"><sup>61</sup></a></p>
 </blockquote>
 </div>
 </div>
 <div id="homework-problems-5" class="section level2" number="6.3">
-<h2>
-<span class="header-section-number">6.3</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-5"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">6.3</span> Homework Problems</h2>
 <p>Create an Rmd file for the work including headers, file creation data, and explanation of your work. Make sure your plots have a title and the axes are labeled.</p>
 <ol style="list-style-type: decimal">
 <li><strong>Views on immigration</strong></li>
@@ -628,7 +562,7 @@ What components of each plot in Figures 8 and 9 do you find most useful?<a class
 <p>910 randomly sampled registered voters from Tampa, FL were asked if they thought workers who have illegally entered the US should be (i) allowed to keep their jobs and apply for US citizenship, (ii) allowed to keep their jobs as temporary guest workers but not allowed to apply for US citizenship, or (iii) lose their jobs and have to leave the country.</p>
 <p>The data is in the <strong>openintro</strong> package in the <code>immigration</code> data object.</p>
 <ol style="list-style-type: lower-alpha">
-<li>How many levels of <em>political</em> are there?<br>
+<li>How many levels of <em>political</em> are there?<br />
 </li>
 <li>Create a table using <code>tally</code>.</li>
 <li>What percent of these Tampa, FL voters identify themselves as conservatives?</li>
@@ -639,8 +573,7 @@ What components of each plot in Figures 8 and 9 do you find most useful?<a class
 <li>Using your plot, do political ideology and views on immigration appear to be independent? Explain your reasoning.</li>
 </ol>
 <ol start="2" style="list-style-type: decimal">
-<li>
-<strong>Views on the DREAM Act</strong> The same survey from Exercise 1 also asked respondents if they support the DREAM Act, a proposed law which would provide a path to citizenship for people brought illegally to the US as children.</li>
+<li><strong>Views on the DREAM Act</strong> The same survey from Exercise 1 also asked respondents if they support the DREAM Act, a proposed law which would provide a path to citizenship for people brought illegally to the US as children.</li>
 </ol>
 <p>The data is in the <strong>openintro</strong> package in the <code>dream</code> data object.</p>
 <ol style="list-style-type: lower-alpha">
@@ -659,45 +592,43 @@ What components of each plot in Figures 8 and 9 do you find most useful?<a class
 <li>Using the variable <code>survtime</code>, create side-by-side boxplots for the control and treatment groups.</li>
 <li>What do the box plots suggest about the efficacy (effectiveness) of transplants?</li>
 </ol>
+
 </div>
 </div>
 
 
 
+<div class="footnotes">
+<hr />
+<ol start="57">
+<li id="fn57"><p>0.748 represents the proportions of emails with no spam that had a small number in it.<a href="CATDATA.html#fnref57" class="footnote-back">↩︎</a></p></li>
+<li id="fn58"><p>From the help menu on the data HTML is coded as a 1<a href="CATDATA.html#fnref58" class="footnote-back">↩︎</a></p></li>
+<li id="fn59"><p>The column proportions with <code>number</code> in the columns will probably be most useful, which makes it easier to see that emails with small numbers are spam about 5.9% of the time (relatively rare). We would also see that about 27.1% of emails with no numbers are spam, and 9.2% of emails with big numbers are spam.<a href="CATDATA.html#fnref59" class="footnote-back">↩︎</a></p></li>
+<li id="fn60"><p>Answers may vary a little. The counties with population gains tend to have higher income (median of about $45,000) versus counties without a gain (median of about $40,000). The variability is also slightly larger for the population gain group. This is evident in the IQR, which is about 50% bigger in the <em>gain</em> group. Both distributions show slight to moderate right skew and are unimodal. There is a secondary small bump at about $60,000 for the <em>no gain</em> group, visible in the density plot, that seems out of place. (Looking into the data set, we would find that 8 of these 15 counties are in Alaska and Texas.) The box plots indicate there are many observations far above the median in each group, though we should anticipate that many observations will fall beyond the whiskers when using such a large data set.<a href="CATDATA.html#fnref60" class="footnote-back">↩︎</a></p></li>
+<li id="fn61"><p>The side-by-side box plots are especially useful for comparing centers and spreads, while the density plots are more useful for seeing distribution shape, skew, and groups of anomalies.<a href="CATDATA.html#fnref61" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+  </main>
 
-  <div class="chapter-nav">
-<div class="prev"><a href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></div>
-<div class="next"><a href="CS2.html"><span class="header-section-number">7</span> Case Study</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#CATDATA"><span class="header-section-number">6</span> Categorical Data</a></li>
-<li><a class="nav-link" href="#objectives-5"><span class="header-section-number">6.1</span> Objectives</a></li>
-<li>
-<a class="nav-link" href="#categorical-data"><span class="header-section-number">6.2</span> Categorical data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#contingency-tables-and-bar-plots"><span class="header-section-number">6.2.1</span> Contingency tables and bar plots</a></li>
-<li><a class="nav-link" href="#column-proportions"><span class="header-section-number">6.2.2</span> Column proportions</a></li>
-<li><a class="nav-link" href="#segmented-bar-and-mosaic-plots"><span class="header-section-number">6.2.3</span> Segmented bar and mosaic plots</a></li>
-<li><a class="nav-link" href="#the-only-pie-chart-you-will-see-in-this-course-hopefully"><span class="header-section-number">6.2.4</span> The only pie chart you will see in this course, hopefully</a></li>
-<li><a class="nav-link" href="#comparing-numerical-data-across-groups"><span class="header-section-number">6.2.5</span> Comparing numerical data across groups</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#homework-problems-5"><span class="header-section-number">6.3</span> Homework Problems</a></li>
-</ul>
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/06-Categorical-Data.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/06-Categorical-Data.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
-</div>
+      </div>
     </nav>
-</div>
+  </div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-14.</p>
@@ -708,7 +639,11 @@ What components of each plot in Figures 8 and 9 do you find most useful?<a class
   </div>
 
 </div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+</footer>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -720,7 +655,8 @@ What components of each plot in Figures 8 and 9 do you find most useful?<a class
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+</script>
+<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
 for (let popover of popovers) {
   const div = document.createElement('div');
   div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
@@ -738,4 +674,5 @@ for (let popover of popovers) {
 }
 </script>
 </body>
+
 </html>

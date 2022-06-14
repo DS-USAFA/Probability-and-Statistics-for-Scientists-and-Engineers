@@ -1,33 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 29 Simulation Based Linear Regression | Computational Probability and Statistics</title>
-<meta name="author" content="Matthew Davis">
-<meta name="author" content="Brianna Hitt">
-<meta name="author" content="Ken Horton">
-<meta name="author" content="Bradley Warner">
-<meta name="description" content="29.1 Objectives Using the bootstrap, generate confidence intervals and estimates of standard error for parameter estimates from a linear regression model. Generate and interpret bootstrap...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
-<meta property="og:title" content="Chapter 29 Simulation Based Linear Regression | Computational Probability and Statistics">
-<meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover.png">
-<meta property="og:description" content="29.1 Objectives Using the bootstrap, generate confidence intervals and estimates of standard error for parameter estimates from a linear regression model. Generate and interpret bootstrap...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 29 Simulation Based Linear Regression | Computational Probability and Statistics">
-<meta name="twitter:description" content="29.1 Objectives Using the bootstrap, generate confidence intervals and estimates of standard error for parameter estimates from a linear regression model. Generate and interpret bootstrap...">
-<meta name="twitter:image" content="/figures/Cover.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Chapter 29 Simulation Based Linear Regression | Computational Probability and Statistics</title>
+
+    <meta name="author" content="Matthew Davis" />
+    <meta name="author" content="Brianna Hitt" />
+    <meta name="author" content="Ken Horton" />
+    <meta name="author" content="Bradley Warner" />
+  
+   <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="Chapter 29 Simulation Based Linear Regression | Computational Probability and Statistics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/figures/Cover.png" />
+  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 29 Simulation Based Linear Regression | Computational Probability and Statistics" />
+  
+  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta name="twitter:image" content="/figures/Cover.png" />
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.3.1/transition.js"></script>
+    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
+    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  <style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
-<style type="text/css">
+    <style type="text/css">
     /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
     div.csl-bib-body { }
     div.csl-entry {
@@ -49,13 +69,16 @@
       margin-left: 2em;
     }
   </style>
-<link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style.css" />
+  
 </head>
+
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -67,106 +90,59 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
+      </form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Preface</a></li>
-<li class="book-part">Descriptive Statistical Modeling</li>
-<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
-<li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
-<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
-<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
-<li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
-<li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
-<li class="book-part">Probability Modeling</li>
-<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
-<li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
-<li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
-<li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
-<li><a class="" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
-<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
-<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
-<li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
-<li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
-<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
-<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
-<li class="book-part">Statistical Modeling</li>
-<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
-<li><a class="" href="HYPOTEST.html"><span class="header-section-number">19</span> Hypothesis Testing</a></li>
-<li><a class="" href="PVALUES.html"><span class="header-section-number">20</span> Empirical p-values</a></li>
-<li><a class="" href="CLT.html"><span class="header-section-number">21</span> Central Limit Theorem</a></li>
-<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
-<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
-<li><a class="" href="ADDTESTS.html"><span class="header-section-number">24</span> Additional Hypothesis Tests</a></li>
-<li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">25</span> Case Study</a></li>
-<li><a class="" href="LRBASICS.html"><span class="header-section-number">26</span> Linear Regression Basics</a></li>
-<li><a class="" href="LRINF.html"><span class="header-section-number">27</span> Linear Regression Inference</a></li>
-<li><a class="" href="LRDIAG.html"><span class="header-section-number">28</span> Regression Diagnostics</a></li>
-<li><a class="active" href="LRSIM.html"><span class="header-section-number">29</span> Simulation Based Linear Regression</a></li>
-<li><a class="" href="LRMULTI.html"><span class="header-section-number">30</span> Multiple Linear Regression</a></li>
-<li><a class="" href="LOGREG.html"><span class="header-section-number">31</span> Logistic Regression</a></li>
-<li><a class="" href="references.html">References</a></li>
-</ul>
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
         </div>
       </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="LRSIM" class="section level1" number="29">
-<h1>
-<span class="header-section-number">29</span> Simulation Based Linear Regression<a class="anchor" aria-label="anchor" href="#LRSIM"><i class="fas fa-link"></i></a>
-</h1>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="LRSIM" class="section level1" number="29">
+<h1><span class="header-section-number">Chapter 29</span> Simulation Based Linear Regression</h1>
 <div id="objectives-27" class="section level2" number="29.1">
-<h2>
-<span class="header-section-number">29.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-27"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">29.1</span> Objectives</h2>
 <ol style="list-style-type: decimal">
-<li>Using the bootstrap, generate confidence intervals and estimates of standard error for parameter estimates from a linear regression model.<br>
+<li>Using the bootstrap, generate confidence intervals and estimates of standard error for parameter estimates from a linear regression model.<br />
 </li>
-<li>Generate and interpret bootstrap confidence intervals for predicted values.<br>
+<li>Generate and interpret bootstrap confidence intervals for predicted values.<br />
 </li>
-<li>Generate bootstrap samples from sampling rows of the data or sampling residuals. Explain why you might prefer one over the other.<br>
+<li>Generate bootstrap samples from sampling rows of the data or sampling residuals. Explain why you might prefer one over the other.<br />
 </li>
 <li>Interpret regression coefficients for a linear model with a categorical explanatory variable.</li>
 </ol>
 </div>
 <div id="introduction-5" class="section level2" number="29.2">
-<h2>
-<span class="header-section-number">29.2</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction-5"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">29.2</span> Introduction</h2>
 <p>In the last couple of chapters we examined how to perform inference for a simple linear regression model assuming the errors were independent normally distributed random variables. We examined diagnostic tools to check assumptions and look for outliers. In this chapter we will use the <strong>bootstrap</strong> to create confidence and prediction intervals.</p>
 <p>There are at least two ways we can consider creating a bootstrap distribution for a linear model. We can easily fit a linear model to a resampled data set. But in some situations this may have undesirable features. Influential observations, for example, will appear duplicated in some resamples and be missing entirely from other resamples.</p>
 <p>Another option is to use “residual resampling”. In residual resampling, the new data set has all of the predictor values from the original data set and a new response is created by adding to the fitted function a resampled residual.</p>
-<p>In summary, suppose we have <span class="math inline">\(n\)</span> observations, each with <span class="math inline">\(Y\)</span> and some number of <span class="math inline">\(X\)</span>’s, with each observation stored as a row in a data set. The two basic procedures when bootstrapping regression are:<br>
-a. bootstrap observations, and<br>
-b. bootstrap residuals.<br>
+<p>In summary, suppose we have <span class="math inline">\(n\)</span> observations, each with <span class="math inline">\(Y\)</span> and some number of <span class="math inline">\(X\)</span>’s, with each observation stored as a row in a data set. The two basic procedures when bootstrapping regression are:<br />
+a. bootstrap observations, and<br />
+b. bootstrap residuals.<br />
 The latter is a special case of a more general rule: sample <span class="math inline">\(Y\)</span> from its estimated conditional distribution given <span class="math inline">\(X\)</span>.</p>
 <p>In bootstrapping observations, we sample with replacement from the rows of the data; each <span class="math inline">\(Y\)</span> comes with the corresponding <span class="math inline">\(X\)</span>’s. In any bootstrap sample some observations may be repeated multiple times, and others not included. This is the same idea we used before when we used the bootstrap for hypothesis testing.</p>
 <p>In bootstrapping residuals, we fit the regression model, compute predicted values <span class="math inline">\(\hat{Y}_i\)</span> and residuals <span class="math inline">\(e_i = Y_i - \hat{Y}_i\)</span>, then create a bootstrap sample using the same <span class="math inline">\(X\)</span> values as in the original data, but with new <span class="math inline">\(Y\)</span> values obtained using the prediction plus a random residual, <span class="math inline">\(Y^{*}_i = \hat{Y}_i + e^{*}_i\)</span>, where the residuals <span class="math inline">\(e^{*}_i\)</span> are sampled randomly with replacement from the original residuals. We still have the chance of selecting a large residual from an outlier, but if it paired with an <span class="math inline">\(x\)</span> value near <span class="math inline">\(\bar{x}\)</span>, it will have little leverage.</p>
 <p>Bootstrapping residuals corresponds to a designed experiment, where the <span class="math inline">\(x\)</span> values are fixed and only <span class="math inline">\(Y\)</span> is random. If we bootstrap observations, then essentially both <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are sampled. By the principle of sampling the way the data were drawn, the second method implies that both <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> are random.</p>
 </div>
 <div id="confidence-intervals-for-parameters" class="section level2" number="29.3">
-<h2>
-<span class="header-section-number">29.3</span> Confidence intervals for parameters<a class="anchor" aria-label="anchor" href="#confidence-intervals-for-parameters"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">29.3</span> Confidence intervals for parameters</h2>
 <p>To build a confidence interval for the slope parameter, we will resample the data or residuals and generate a new regression model. This process does not assume normality of the residuals. We will use functions from the <strong>mosaic</strong> package to complete this work. However, know that <strong>tidymodels</strong> and <strong>purrr</strong> are more sophisticated tools for doing this work.</p>
 <div id="resampling" class="section level3" number="29.3.1">
-<h3>
-<span class="header-section-number">29.3.1</span> Resampling<a class="anchor" aria-label="anchor" href="#resampling"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">29.3.1</span> Resampling</h3>
 <p>To make this ideas more salient, let’s use the Starbucks example again.</p>
 <p>First read the data into <code>R</code>:</p>
-<div class="sourceCode" id="cb880"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">starbucks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/starbucks.csv"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb880"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb880-1"><a href="LRSIM.html#cb880-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/starbucks.csv&quot;</span>)</span></code></pre></div>
 <p>Build the model:</p>
-<div class="sourceCode" id="cb881"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">star_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">calories</span><span class="op">~</span><span class="va">carb</span>,data<span class="op">=</span><span class="va">starbucks</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb881"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb881-1"><a href="LRSIM.html#cb881-1" aria-hidden="true" tabindex="-1"></a>star_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(calories<span class="sc">~</span>carb,<span class="at">data=</span>starbucks)</span></code></pre></div>
 <p>Let’s see the output of the model:</p>
-<div class="sourceCode" id="cb882"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb882"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb882-1"><a href="LRSIM.html#cb882-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(star_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = calories ~ carb, data = starbucks)
@@ -180,31 +156,27 @@ The latter is a special case of a more general rule: sample <span class="math in
 ## (Intercept) 146.0204    25.9186   5.634 2.93e-07 ***
 ## carb          4.2971     0.5424   7.923 1.67e-11 ***
 ## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 78.26 on 75 degrees of freedom
 ## Multiple R-squared:  0.4556, Adjusted R-squared:  0.4484 
 ## F-statistic: 62.77 on 1 and 75 DF,  p-value: 1.673e-11</code></pre>
-<p>In preparation for resampling, let’s see how <code><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do()</a></code> treats a linear model object.</p>
-<div class="sourceCode" id="cb884"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">401</span><span class="op">)</span>
-<span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="va">star_mod</span>
-<span class="va">obs</span></code></pre></div>
+<p>In preparation for resampling, let’s see how <code>do()</code> treats a linear model object.</p>
+<div class="sourceCode" id="cb884"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb884-1"><a href="LRSIM.html#cb884-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">401</span>)</span>
+<span id="cb884-2"><a href="LRSIM.html#cb884-2" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">1</span>)<span class="sc">*</span>star_mod</span>
+<span id="cb884-3"><a href="LRSIM.html#cb884-3" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
 <pre><code>##   Intercept     carb    sigma r.squared        F numdf dendf .row .index
 ## 1  146.0204 4.297084 78.25956 0.4556237 62.77234     1    75    1      1</code></pre>
-<p>Nice. To resample the data we use <code><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do()</a></code> with <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample()</a></code>. This will sample the rows, what we were referring to above as the first method.</p>
-<div class="sourceCode" id="cb886"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">calories</span><span class="op">~</span><span class="va">carb</span>,data<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">starbucks</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Nice. To resample the data we use <code>do()</code> with <code>resample()</code>. This will sample the rows, what we were referring to above as the first method.</p>
+<div class="sourceCode" id="cb886"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb886-1"><a href="LRSIM.html#cb886-1" aria-hidden="true" tabindex="-1"></a><span class="fu">do</span>(<span class="dv">2</span>)<span class="sc">*</span><span class="fu">lm</span>(calories<span class="sc">~</span>carb,<span class="at">data=</span><span class="fu">resample</span>(starbucks))</span></code></pre></div>
 <pre><code>##   Intercept     carb    sigma r.squared        F numdf dendf .row .index
 ## 1  145.6345 4.089065 73.32243 0.4980692 74.42299     1    75    1      1
 ## 2  160.0193 3.828742 66.81016 0.4298148 56.53621     1    75    1      2</code></pre>
 <p>Perfect, we are ready to scale up.</p>
-<div class="sourceCode" id="cb888"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">532</span><span class="op">)</span>
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">calories</span><span class="op">~</span><span class="va">carb</span>,data<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">starbucks</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb888"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb888-1"><a href="LRSIM.html#cb888-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">532</span>)</span>
+<span id="cb888-2"><a href="LRSIM.html#cb888-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">lm</span>(calories<span class="sc">~</span>carb,<span class="at">data=</span><span class="fu">resample</span>(starbucks))</span></code></pre></div>
 <p>Now let’s look at the first 6 rows of <code>results</code>.</p>
-<div class="sourceCode" id="cb889"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb889"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb889-1"><a href="LRSIM.html#cb889-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results)</span></code></pre></div>
 <pre><code>##   Intercept     carb    sigma r.squared        F numdf dendf .row .index
 ## 1  154.7670 4.176327 78.94717 0.4127581 52.71568     1    75    1      1
 ## 2  166.8589 3.807697 72.09482 0.4032196 50.67437     1    75    1      2
@@ -213,75 +185,66 @@ The latter is a special case of a more general rule: sample <span class="math in
 ## 5  194.9190 3.457191 83.74624 0.2670279 27.32313     1    75    1      5
 ## 6  183.1159 3.549460 73.90153 0.3931691 48.59292     1    75    1      6</code></pre>
 <p>If we plot all the slopes, the red lines in Figure <a href="LRSIM.html#fig:slope291-fig">29.1</a>, we get a sense of the variability in the estimated slope and intercept. This also gives us an idea of the width of the confidence interval on the estimated mean response. We plotted the confidence interval in a gray shade and we can see it matches the red shaded region of the bootstrap slopes. We can see that the confidence interval will be wider at the extreme values of the predictor.</p>
-<div class="sourceCode" id="cb891"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">starbucks</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">carb</span>, y<span class="op">=</span><span class="va">calories</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">results</span>,
-              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>slope <span class="op">=</span>  <span class="va">carb</span>, intercept <span class="op">=</span> <span class="va">Intercept</span><span class="op">)</span>, 
-              alpha <span class="op">=</span> <span class="fl">0.01</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Carbohydrates (g)"</span>,y<span class="op">=</span><span class="st">"Calories"</span>,title<span class="op">=</span><span class="st">"Bootstrap Slopes"</span>,subtitle <span class="op">=</span><span class="st">"1000 Slopes"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_lm</span><span class="op">(</span>interval<span class="op">=</span><span class="st">"confidence"</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:slope291-fig"></span>
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/slope291-fig-1.png" alt="Plot of slopes from resampled regression." width="672"><p class="caption">
+<div class="sourceCode" id="cb891"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb891-1"><a href="LRSIM.html#cb891-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(starbucks, <span class="fu">aes</span>(<span class="at">x=</span>carb, <span class="at">y=</span>calories)) <span class="sc">+</span></span>
+<span id="cb891-2"><a href="LRSIM.html#cb891-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">data =</span> results,</span>
+<span id="cb891-3"><a href="LRSIM.html#cb891-3" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">slope =</span>  carb, <span class="at">intercept =</span> Intercept), </span>
+<span id="cb891-4"><a href="LRSIM.html#cb891-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.01</span>,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb891-5"><a href="LRSIM.html#cb891-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb891-6"><a href="LRSIM.html#cb891-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb891-7"><a href="LRSIM.html#cb891-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Carbohydrates (g)&quot;</span>,<span class="at">y=</span><span class="st">&quot;Calories&quot;</span>,<span class="at">title=</span><span class="st">&quot;Bootstrap Slopes&quot;</span>,<span class="at">subtitle =</span><span class="st">&quot;1000 Slopes&quot;</span>) <span class="sc">+</span></span>
+<span id="cb891-8"><a href="LRSIM.html#cb891-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_lm</span>(<span class="at">interval=</span><span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:slope291-fig"></span>
+<img src="29-Simulation-Based-Linear-Regression_files/figure-html/slope291-fig-1.png" alt="Plot of slopes from resampled regression." width="672" />
+<p class="caption">
 Figure 29.1: Plot of slopes from resampled regression.
 </p>
 </div>
 <p>With all this data in <code>results</code>, we can generate confidence intervals for the slope, <span class="math inline">\(R\)</span>-squared (<span class="math inline">\(R^2\)</span>), and the <span class="math inline">\(F\)</span> statistic. Figure <a href="LRSIM.html#fig:hist291-fig">29.2</a> is a histogram of slope values from resampling.</p>
-<div class="sourceCode" id="cb892"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">carb</span>,fill<span class="op">=</span><span class="st">"cyan"</span>,color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">obs</span><span class="op">$</span><span class="va">carb</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Carbohydrate regression slope."</span>,y<span class="op">=</span><span class="st">""</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:hist291-fig"></span>
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/hist291-fig-1.png" alt="Histogram of slopes from resampled regression." width="672"><p class="caption">
+<div class="sourceCode" id="cb892"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb892-1"><a href="LRSIM.html#cb892-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb892-2"><a href="LRSIM.html#cb892-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>carb,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb892-3"><a href="LRSIM.html#cb892-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> obs<span class="sc">$</span>carb,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb892-4"><a href="LRSIM.html#cb892-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb892-5"><a href="LRSIM.html#cb892-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Carbohydrate regression slope.&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:hist291-fig"></span>
+<img src="29-Simulation-Based-Linear-Regression_files/figure-html/hist291-fig-1.png" alt="Histogram of slopes from resampled regression." width="672" />
+<p class="caption">
 Figure 29.2: Histogram of slopes from resampled regression.
 </p>
 </div>
-<p>The confidence interval is found using <code><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata()</a></code>.</p>
-<div class="sourceCode" id="cb893"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">carb</span>,data<span class="op">=</span><span class="va">results</span>,p<span class="op">=</span><span class="fl">0.95</span><span class="op">)</span></code></pre></div>
+<p>The confidence interval is found using <code>cdata()</code>.</p>
+<div class="sourceCode" id="cb893"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb893-1"><a href="LRSIM.html#cb893-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cdata</span>(<span class="sc">~</span>carb,<span class="at">data=</span>results,<span class="at">p=</span><span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>##         lower    upper central.p
 ## 2.5% 3.166546 5.377743      0.95</code></pre>
 <p>We are 95% confident that the true slope is between 3.17 and 5.37. As a reminder, using the normality assumption we had a 95% confidence interval of <span class="math inline">\((3.21,5.38)\)</span>:</p>
-<div class="sourceCode" id="cb895"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/confint.html">confint</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb895"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb895-1"><a href="LRSIM.html#cb895-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(star_mod)</span></code></pre></div>
 <pre><code>##                 2.5 %     97.5 %
 ## (Intercept) 94.387896 197.652967
 ## carb         3.216643   5.377526</code></pre>
 <p>The bootstrap confidence interval for <span class="math inline">\(R^2\)</span> is:</p>
-<div class="sourceCode" id="cb897"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">r.squared</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb897"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb897-1"><a href="LRSIM.html#cb897-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cdata</span>(<span class="sc">~</span>r.squared,<span class="at">data=</span>results)</span></code></pre></div>
 <pre><code>##          lower     upper central.p
 ## 2.5% 0.2837033 0.6234751      0.95</code></pre>
 <p>And the bootstrap sampling distribution of <span class="math inline">\(R^2\)</span> is displayed in Figure <a href="LRSIM.html#fig:hist292-fig">29.3</a>.</p>
 
-<div class="sourceCode" id="cb899"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">r.squared</span>,fill<span class="op">=</span><span class="st">"cyan"</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">obs</span><span class="op">$</span><span class="va">r.squared</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>y<span class="op">=</span><span class="st">""</span>,x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">R</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:hist292-fig"></span>
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/hist292-fig-1.png" alt="A histogram of the \(R^2\) values from resampled regression." width="672"><p class="caption">
+<div class="sourceCode" id="cb899"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb899-1"><a href="LRSIM.html#cb899-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb899-2"><a href="LRSIM.html#cb899-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>r.squared,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb899-3"><a href="LRSIM.html#cb899-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> obs<span class="sc">$</span>r.squared,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb899-4"><a href="LRSIM.html#cb899-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb899-5"><a href="LRSIM.html#cb899-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">y=</span><span class="st">&quot;&quot;</span>,<span class="at">x=</span><span class="fu">expression</span>(R<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:hist292-fig"></span>
+<img src="29-Simulation-Based-Linear-Regression_files/figure-html/hist292-fig-1.png" alt="A histogram of the \(R^2\) values from resampled regression." width="672" />
+<p class="caption">
 Figure 29.3: A histogram of the <span class="math inline">\(R^2\)</span> values from resampled regression.
 </p>
 </div>
 <p>This is nice work. So powerful.</p>
 <p>Let’s see how we could accomplish this same work using the <strong>infer</strong> package.</p>
-<div class="sourceCode" id="cb900"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidymodels/infer">infer</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb900"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb900-1"><a href="LRSIM.html#cb900-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(infer)</span></code></pre></div>
 <p>To check that we can use this package, let’s find the slope estimate.</p>
-<div class="sourceCode" id="cb901"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">slope_estimate</span> <span class="op">&lt;-</span> <span class="va">starbucks</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span><span class="va">calories</span> <span class="op">~</span> <span class="va">carb</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://infer.tidymodels.org/reference/calculate.html">calculate</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"slope"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb902"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">slope_estimate</span></code></pre></div>
+<div class="sourceCode" id="cb901"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb901-1"><a href="LRSIM.html#cb901-1" aria-hidden="true" tabindex="-1"></a>slope_estimate <span class="ot">&lt;-</span> starbucks <span class="sc">%&gt;%</span></span>
+<span id="cb901-2"><a href="LRSIM.html#cb901-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(calories <span class="sc">~</span> carb) <span class="sc">%&gt;%</span></span>
+<span id="cb901-3"><a href="LRSIM.html#cb901-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat=</span><span class="st">&quot;slope&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb902"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb902-1"><a href="LRSIM.html#cb902-1" aria-hidden="true" tabindex="-1"></a>slope_estimate</span></code></pre></div>
 <pre><code>## Response: calories (numeric)
 ## Explanatory: carb (numeric)
 ## # A tibble: 1 x 1
@@ -289,12 +252,11 @@ Figure 29.3: A histogram of the <span class="math inline">\(R^2\)</span> values 
 ##   &lt;dbl&gt;
 ## 1  4.30</code></pre>
 <p>Good, let’s get the bootstrap sampling distribution of the regression slope.</p>
-<div class="sourceCode" id="cb904"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results2</span> <span class="op">&lt;-</span> <span class="va">starbucks</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://infer.tidymodels.org/reference/specify.html">specify</a></span><span class="op">(</span><span class="va">calories</span><span class="op">~</span><span class="va">carb</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://infer.tidymodels.org/reference/generate.html">generate</a></span><span class="op">(</span>reps<span class="op">=</span><span class="fl">1000</span>,type<span class="op">=</span><span class="st">"bootstrap"</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://infer.tidymodels.org/reference/calculate.html">calculate</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"slope"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results2</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb904"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb904-1"><a href="LRSIM.html#cb904-1" aria-hidden="true" tabindex="-1"></a>results2 <span class="ot">&lt;-</span> starbucks <span class="sc">%&gt;%</span></span>
+<span id="cb904-2"><a href="LRSIM.html#cb904-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(calories<span class="sc">~</span>carb) <span class="sc">%&gt;%</span></span>
+<span id="cb904-3"><a href="LRSIM.html#cb904-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps=</span><span class="dv">1000</span>,<span class="at">type=</span><span class="st">&quot;bootstrap&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb904-4"><a href="LRSIM.html#cb904-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat=</span><span class="st">&quot;slope&quot;</span>)</span>
+<span id="cb904-5"><a href="LRSIM.html#cb904-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results2)</span></code></pre></div>
 <pre><code>## Response: calories (numeric)
 ## Explanatory: carb (numeric)
 ## # A tibble: 6 x 2
@@ -307,37 +269,32 @@ Figure 29.3: A histogram of the <span class="math inline">\(R^2\)</span> values 
 ## 5         5  4.38
 ## 6         6  3.63</code></pre>
 <p>Next the confidence interval.</p>
-<div class="sourceCode" id="cb906"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">slope_ci</span><span class="op">&lt;-</span><span class="va">results2</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://infer.tidymodels.org/reference/get_confidence_interval.html">get_confidence_interval</a></span><span class="op">(</span>level<span class="op">=</span><span class="fl">0.95</span><span class="op">)</span>
-<span class="va">slope_ci</span></code></pre></div>
+<div class="sourceCode" id="cb906"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb906-1"><a href="LRSIM.html#cb906-1" aria-hidden="true" tabindex="-1"></a>slope_ci<span class="ot">&lt;-</span>results2 <span class="sc">%&gt;%</span></span>
+<span id="cb906-2"><a href="LRSIM.html#cb906-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_confidence_interval</span>(<span class="at">level=</span><span class="fl">0.95</span>)</span>
+<span id="cb906-3"><a href="LRSIM.html#cb906-3" aria-hidden="true" tabindex="-1"></a>slope_ci</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 2
 ##   lower_ci upper_ci
 ##      &lt;dbl&gt;    &lt;dbl&gt;
 ## 1     3.14     5.26</code></pre>
 <p>This matches the work we have already done. Finally, let’s visualize the results, Figure <a href="LRSIM.html#fig:infer291-fig">29.4</a>.</p>
-<div class="sourceCode" id="cb908"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results2</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://infer.tidymodels.org/reference/visualize.html">visualize</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://infer.tidymodels.org/reference/shade_confidence_interval.html">shade_confidence_interval</a></span><span class="op">(</span><span class="va">slope_ci</span>,color<span class="op">=</span><span class="st">"blue"</span>,fill<span class="op">=</span><span class="st">"lightblue"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">slope_estimate</span><span class="op">$</span><span class="va">stat</span>,color<span class="op">=</span><span class="st">"black"</span>,size<span class="op">=</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Estimated Slope"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:infer291-fig"></span>
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/infer291-fig-1.png" alt="Sampling distribution of the slope using resampling. (Black line is estimate slope from original data and blue lines are the confidence bounds.)" width="672"><p class="caption">
+<div class="sourceCode" id="cb908"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb908-1"><a href="LRSIM.html#cb908-1" aria-hidden="true" tabindex="-1"></a>results2 <span class="sc">%&gt;%</span></span>
+<span id="cb908-2"><a href="LRSIM.html#cb908-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
+<span id="cb908-3"><a href="LRSIM.html#cb908-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_confidence_interval</span>(slope_ci,<span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">fill=</span><span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb908-4"><a href="LRSIM.html#cb908-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> slope_estimate<span class="sc">$</span>stat,<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb908-5"><a href="LRSIM.html#cb908-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Estimated Slope&quot;</span>) <span class="sc">+</span></span>
+<span id="cb908-6"><a href="LRSIM.html#cb908-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:infer291-fig"></span>
+<img src="29-Simulation-Based-Linear-Regression_files/figure-html/infer291-fig-1.png" alt="Sampling distribution of the slope using resampling. (Black line is estimate slope from original data and blue lines are the confidence bounds.)" width="672" />
+<p class="caption">
 Figure 29.4: Sampling distribution of the slope using resampling. (Black line is estimate slope from original data and blue lines are the confidence bounds.)
 </p>
 </div>
 </div>
 <div id="resample-residuals" class="section level3" number="29.3.2">
-<h3>
-<span class="header-section-number">29.3.2</span> Resample residuals<a class="anchor" aria-label="anchor" href="#resample-residuals"><i class="fas fa-link"></i></a>
-</h3>
-<p>We could also resample the residuals instead of the data. This makes a stronger assumption that the linear model is appropriate. However, it guarantees that every <span class="math inline">\(X\)</span> value is in the resample data frame. In the <code>lm</code> function, we send the model instead of the data to resample the residuals. Since <code>R</code> is an object oriented programming language, in sending a model object to the <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample()</a></code> function, the code automatically resample from the residuals.</p>
-<div class="sourceCode" id="cb909"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results_resid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span> <span class="va">calories</span><span class="op">~</span><span class="va">carb</span>, data <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span><span class="op">)</span> <span class="co"># resampled residuals</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results_resid</span><span class="op">)</span></code></pre></div>
+<h3><span class="header-section-number">29.3.2</span> Resample residuals</h3>
+<p>We could also resample the residuals instead of the data. This makes a stronger assumption that the linear model is appropriate. However, it guarantees that every <span class="math inline">\(X\)</span> value is in the resample data frame. In the <code>lm</code> function, we send the model instead of the data to resample the residuals. Since <code>R</code> is an object oriented programming language, in sending a model object to the <code>resample()</code> function, the code automatically resample from the residuals.</p>
+<div class="sourceCode" id="cb909"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb909-1"><a href="LRSIM.html#cb909-1" aria-hidden="true" tabindex="-1"></a>results_resid <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">lm</span>( calories<span class="sc">~</span>carb, <span class="at">data =</span> <span class="fu">resample</span>(star_mod)) <span class="co"># resampled residuals</span></span>
+<span id="cb909-2"><a href="LRSIM.html#cb909-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results_resid)</span></code></pre></div>
 <pre><code>##   Intercept     carb    sigma r.squared        F numdf dendf .row .index
 ## 1  151.9999 4.356740 73.07024 0.4967052 74.01804     1    75    1      1
 ## 2  101.6226 5.280410 82.24346 0.5336627 85.82779     1    75    1      2
@@ -346,39 +303,33 @@ Figure 29.4: Sampling distribution of the slope using resampling. (Black line is
 ## 5  167.9957 3.981328 67.50240 0.4912807 72.42905     1    75    1      5
 ## 6  198.5458 3.239953 86.11143 0.2821237 29.47482     1    75    1      6</code></pre>
 <p>Next a plot of the bootstrap sampling distribution, Figure <a href="LRSIM.html#fig:hist293-fig">29.5</a>.</p>
-<div class="sourceCode" id="cb911"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results_resid</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">carb</span>,fill<span class="op">=</span><span class="st">"cyan"</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">obs</span><span class="op">$</span><span class="va">carb</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Estimated slope of carbs"</span>,y<span class="op">=</span><span class="st">""</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:hist293-fig"></span>
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/hist293-fig-1.png" alt="Histogram of estimated regression slope using resampling from residuals." width="672"><p class="caption">
+<div class="sourceCode" id="cb911"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb911-1"><a href="LRSIM.html#cb911-1" aria-hidden="true" tabindex="-1"></a>results_resid <span class="sc">%&gt;%</span></span>
+<span id="cb911-2"><a href="LRSIM.html#cb911-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>carb,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb911-3"><a href="LRSIM.html#cb911-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> obs<span class="sc">$</span>carb,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb911-4"><a href="LRSIM.html#cb911-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb911-5"><a href="LRSIM.html#cb911-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Estimated slope of carbs&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:hist293-fig"></span>
+<img src="29-Simulation-Based-Linear-Regression_files/figure-html/hist293-fig-1.png" alt="Histogram of estimated regression slope using resampling from residuals." width="672" />
+<p class="caption">
 Figure 29.5: Histogram of estimated regression slope using resampling from residuals.
 </p>
 </div>
 <p>And finally the confidence interval for the slope.</p>
-<div class="sourceCode" id="cb912"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">carb</span>,data<span class="op">=</span><span class="va">results_resid</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb912"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb912-1"><a href="LRSIM.html#cb912-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cdata</span>(<span class="sc">~</span>carb,<span class="at">data=</span>results_resid)</span></code></pre></div>
 <pre><code>##        lower    upper central.p
 ## 2.5% 3.24622 5.323031      0.95</code></pre>
 <p>Similar to the previous bootstrap confidence interval just a little narrower.</p>
 </div>
 </div>
 <div id="confidence-intervals-for-prediction" class="section level2" number="29.4">
-<h2>
-<span class="header-section-number">29.4</span> Confidence intervals for prediction<a class="anchor" aria-label="anchor" href="#confidence-intervals-for-prediction"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">29.4</span> Confidence intervals for prediction</h2>
 <p>We now want to generate a confidence interval for the average calories from 60 grams of carbohydrates.</p>
 <p>Using the normal assumption, we had</p>
-<div class="sourceCode" id="cb914"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">star_mod</span>,newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>carb<span class="op">=</span><span class="fl">60</span><span class="op">)</span>,interval<span class="op">=</span><span class="st">"confidence"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb914"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb914-1"><a href="LRSIM.html#cb914-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(star_mod,<span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">carb=</span><span class="dv">60</span>),<span class="at">interval=</span><span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 403.8455 379.7027 427.9883</code></pre>
 <p>We have all the bootstrap slope and intercept estimates in the <code>results</code> object. We can use <code>tidyverse</code> functions to find the confidence interval by predicting the response for each of these slope and intercept estimate.</p>
-<div class="sourceCode" id="cb916"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb916"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb916-1"><a href="LRSIM.html#cb916-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results)</span></code></pre></div>
 <pre><code>##   Intercept     carb    sigma r.squared        F numdf dendf .row .index
 ## 1  154.7670 4.176327 78.94717 0.4127581 52.71568     1    75    1      1
 ## 2  166.8589 3.807697 72.09482 0.4032196 50.67437     1    75    1      2
@@ -386,39 +337,32 @@ Figure 29.5: Histogram of estimated regression slope using resampling from resid
 ## 4  227.4138 2.805156 79.97902 0.2467094 24.56317     1    75    1      4
 ## 5  194.9190 3.457191 83.74624 0.2670279 27.32313     1    75    1      5
 ## 6  183.1159 3.549460 73.90153 0.3931691 48.59292     1    75    1      6</code></pre>
-<div class="sourceCode" id="cb918"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pred<span class="op">=</span><span class="va">Intercept</span><span class="op">+</span><span class="va">carb</span><span class="op">*</span><span class="fl">60</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">pred</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb918"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb918-1"><a href="LRSIM.html#cb918-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb918-2"><a href="LRSIM.html#cb918-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pred=</span>Intercept<span class="sc">+</span>carb<span class="sc">*</span><span class="dv">60</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb918-3"><a href="LRSIM.html#cb918-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdata</span>(<span class="sc">~</span>pred,<span class="at">data=</span>.)</span></code></pre></div>
 <pre><code>##         lower    upper central.p
 ## 2.5% 385.2706 423.6689      0.95</code></pre>
 <p>This is similar to the interval we found last chapter. We are 95% confident that the average calorie content for a menu item with 60 grams of carbohydrates is between 380.8 and 425.7.</p>
 <div id="prediction-interval" class="section level3" number="29.4.1">
-<h3>
-<span class="header-section-number">29.4.1</span> Prediction interval<a class="anchor" aria-label="anchor" href="#prediction-interval"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">29.4.1</span> Prediction interval</h3>
 <p>The prediction interval is more difficult to perform with a bootstrap. We would have to account for the variability of the slope but also the residual variability since this is an individual observation. We can’t just add the residual to the predicted value. Remember the variance of a sum of independent variables is the sum of the variances. But here we have standard deviations and we can’t just add them.</p>
 <p>Let’s look at what would happen if we try. First as a reminder, the prediction interval at 60 grams of <code>carb</code> using the assumption of normally distributed errors from last lesson is:</p>
-<div class="sourceCode" id="cb920"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">star_mod</span>,newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>carb<span class="op">=</span><span class="fl">60</span><span class="op">)</span>,interval<span class="op">=</span><span class="st">"prediction"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb920"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb920-1"><a href="LRSIM.html#cb920-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(star_mod,<span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">carb=</span><span class="dv">60</span>),<span class="at">interval=</span><span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 403.8455 246.0862 561.6048</code></pre>
 <p>If we are generating a bootstrap of size 1000, we will resample from the residuals 1000 times.</p>
-<div class="sourceCode" id="cb922"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pred<span class="op">=</span><span class="va">Intercept</span><span class="op">+</span><span class="va">carb</span><span class="op">*</span><span class="fl">60</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>resid<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">$</span><span class="va">residuals</span>,size<span class="op">=</span><span class="fl">1000</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pred_ind<span class="op">=</span><span class="va">pred</span><span class="op">+</span><span class="va">resid</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">pred_ind</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb922"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb922-1"><a href="LRSIM.html#cb922-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb922-2"><a href="LRSIM.html#cb922-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pred=</span>Intercept<span class="sc">+</span>carb<span class="sc">*</span><span class="dv">60</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb922-3"><a href="LRSIM.html#cb922-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(<span class="at">resid=</span><span class="fu">sample</span>(star_mod<span class="sc">$</span>residuals,<span class="at">size=</span><span class="dv">1000</span>,<span class="at">replace =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb922-4"><a href="LRSIM.html#cb922-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pred_ind=</span>pred<span class="sc">+</span>resid) <span class="sc">%&gt;%</span></span>
+<span id="cb922-5"><a href="LRSIM.html#cb922-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdata</span>(<span class="sc">~</span>pred_ind,<span class="at">data=</span>.)</span></code></pre></div>
 <pre><code>##         lower    upper central.p
 ## 2.5% 277.4886 577.0957      0.95</code></pre>
 <p>This prediction interval appears to be biased. Thus generating a prediction interval is beyond the scope of this book.</p>
 </div>
 </div>
 <div id="categorical-predictor" class="section level2" number="29.5">
-<h2>
-<span class="header-section-number">29.5</span> Categorical predictor<a class="anchor" aria-label="anchor" href="#categorical-predictor"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">29.5</span> Categorical predictor</h2>
 <p>We want to finish up simple linear regression by discussing a categorical predictor. It somewhat changes the interpretation of the regression model.</p>
 <p>Thus far, we have only discussed regression in the context of a quantitative, continuous, response AND a quantitative, continuous, predictor. We can build linear models with categorical predictor variables as well.</p>
 <p>In the case of a binary covariate, nothing about the linear model changes. The two levels of the binary covariate are typically coded as 1 and 0, and the model is built, evaluated and interpreted in an analogous fashion as before. The difference between the continuous predictor and categorical is that there are only two values the predictor can take and the regression model will simply predict the average value of the response within each value of the predictor.</p>
@@ -429,63 +373,52 @@ Figure 29.5: Histogram of estimated regression slope using resampling from resid
 <p>When the covariate takes the value C, <span class="math inline">\(\mbox{E}(Y|X=C)=\beta_0\)</span>.</p>
 <p>Based on this, think about how you would interpret the coefficients <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, and <span class="math inline">\(\beta_2\)</span>.</p>
 <div id="lending-club" class="section level3" number="29.5.1">
-<h3>
-<span class="header-section-number">29.5.1</span> Lending Club<a class="anchor" aria-label="anchor" href="#lending-club"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">29.5.1</span> Lending Club</h3>
 <p>Let’s do an example with some data.</p>
 <p>The Lending Club data set represents thousands of loans made through the Lending Club platform, which is a platform that allows individuals to lend to other individuals. Of course, not all loans are created equal. Someone who is essentially a sure bet to pay back a loan will have an easier time getting a loan with a low interest rate than someone who appears to be riskier. And for people who are very risky? They may not even get a loan offer, or they may not have accepted the loan offer due to a high interest rate. It is important to keep that last part in mind, since this data set only represents loans actually made, i.e. do not mistake this data for loan applications! The data set is <code>loans.csv</code> from the <code>data</code> folder.</p>
-<div class="sourceCode" id="cb924"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">loans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/loans.csv"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb924"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb924-1"><a href="LRSIM.html#cb924-1" aria-hidden="true" tabindex="-1"></a>loans <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/loans.csv&quot;</span>)</span></code></pre></div>
 <p>Let’s look at the size of the data:</p>
-<div class="sourceCode" id="cb925"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">loans</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb925"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb925-1"><a href="LRSIM.html#cb925-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(loans)</span></code></pre></div>
 <pre><code>## [1] 10000    55</code></pre>
 <p>This is a big data set. For educational purposes, we will sample 100 points from the original data. We only need the variables <code>interest_rate</code> and <code>homeownership</code>. First let’s break down the <code>homeownership</code> variable.</p>
-<div class="sourceCode" id="cb927"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">homeownership</span>,data<span class="op">=</span><span class="va">loans</span>,format<span class="op">=</span><span class="st">"proportion"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb927"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb927-1"><a href="LRSIM.html#cb927-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>homeownership,<span class="at">data=</span>loans,<span class="at">format=</span><span class="st">&quot;proportion&quot;</span>)</span></code></pre></div>
 <pre><code>## homeownership
 ## MORTGAGE      OWN     RENT 
 ##   0.4789   0.1353   0.3858</code></pre>
 <p>We want to sample the data so that each level of home ownership has the same proportion as the original, a stratified sample.</p>
-<div class="sourceCode" id="cb929"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">905</span><span class="op">)</span>
-<span class="va">loans100</span> <span class="op">&lt;-</span> <span class="va">loans</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">interest_rate</span>,<span class="va">homeownership</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>homeownership<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">homeownership</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">homeownership</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>prop<span class="op">=</span><span class="fl">0.01</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb930"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">loans100</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb929"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb929-1"><a href="LRSIM.html#cb929-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">905</span>)</span>
+<span id="cb929-2"><a href="LRSIM.html#cb929-2" aria-hidden="true" tabindex="-1"></a>loans100 <span class="ot">&lt;-</span> loans <span class="sc">%&gt;%</span></span>
+<span id="cb929-3"><a href="LRSIM.html#cb929-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(interest_rate,homeownership) <span class="sc">%&gt;%</span></span>
+<span id="cb929-4"><a href="LRSIM.html#cb929-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">homeownership=</span><span class="fu">factor</span>(homeownership)) <span class="sc">%&gt;%</span></span>
+<span id="cb929-5"><a href="LRSIM.html#cb929-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(homeownership) <span class="sc">%&gt;%</span></span>
+<span id="cb929-6"><a href="LRSIM.html#cb929-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">prop=</span><span class="fl">0.01</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb929-7"><a href="LRSIM.html#cb929-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb930"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb930-1"><a href="LRSIM.html#cb930-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(loans100)</span></code></pre></div>
 <pre><code>## [1] 98  2</code></pre>
 <p>Not quite a 100 observations, but we preserved the proportion of homeownership.</p>
-<div class="sourceCode" id="cb932"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">homeownership</span>,data<span class="op">=</span><span class="va">loans100</span>,format<span class="op">=</span><span class="st">"proportion"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb932"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb932-1"><a href="LRSIM.html#cb932-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>homeownership,<span class="at">data=</span>loans100,<span class="at">format=</span><span class="st">&quot;proportion&quot;</span>)</span></code></pre></div>
 <pre><code>## homeownership
 ##  MORTGAGE       OWN      RENT 
 ## 0.4795918 0.1326531 0.3877551</code></pre>
 <p>Let’s look at the data with a boxplot, Figure <a href="LRSIM.html#fig:box291-fig">29.6</a>.</p>
-<div class="sourceCode" id="cb934"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">loans100</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_boxplot</span><span class="op">(</span><span class="va">interest_rate</span><span class="op">~</span><span class="va">homeownership</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Lending Club"</span>,x<span class="op">=</span><span class="st">"Homeownership"</span>,y<span class="op">=</span><span class="st">"Interest Rate"</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:box291-fig"></span>
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/box291-fig-1.png" alt="Boxplot of loan interest rates from the Lending Club based on homeownership status." width="672"><p class="caption">
+<div class="sourceCode" id="cb934"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb934-1"><a href="LRSIM.html#cb934-1" aria-hidden="true" tabindex="-1"></a>loans100 <span class="sc">%&gt;%</span></span>
+<span id="cb934-2"><a href="LRSIM.html#cb934-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_boxplot</span>(interest_rate<span class="sc">~</span>homeownership) <span class="sc">%&gt;%</span></span>
+<span id="cb934-3"><a href="LRSIM.html#cb934-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb934-4"><a href="LRSIM.html#cb934-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Lending Club&quot;</span>,<span class="at">x=</span><span class="st">&quot;Homeownership&quot;</span>,<span class="at">y=</span><span class="st">&quot;Interest Rate&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:box291-fig"></span>
+<img src="29-Simulation-Based-Linear-Regression_files/figure-html/box291-fig-1.png" alt="Boxplot of loan interest rates from the Lending Club based on homeownership status." width="672" />
+<p class="caption">
 Figure 29.6: Boxplot of loan interest rates from the Lending Club based on homeownership status.
 </p>
 </div>
-<p>It appears that there is some evidence that home ownership impacts the interest rate. We can build a linear model to explore whether this difference in significant. We can use the <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> function in <code>R</code>, but in order to include a categorical predictor, we need to make sure that variable is stored as a “factor” type. If it is not, we’ll need to convert it.</p>
-<div class="sourceCode" id="cb935"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">loans100</span><span class="op">)</span></code></pre></div>
+<p>It appears that there is some evidence that home ownership impacts the interest rate. We can build a linear model to explore whether this difference in significant. We can use the <code>lm()</code> function in <code>R</code>, but in order to include a categorical predictor, we need to make sure that variable is stored as a “factor” type. If it is not, we’ll need to convert it.</p>
+<div class="sourceCode" id="cb935"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb935-1"><a href="LRSIM.html#cb935-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(loans100)</span></code></pre></div>
 <pre><code>## tibble [98 x 2] (S3: tbl_df/tbl/data.frame)
 ##  $ interest_rate: num [1:98] 19.03 9.44 6.07 7.96 10.9 ...
-##  $ homeownership: Factor w/ 3 levels "MORTGAGE","OWN",..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+##  $ homeownership: Factor w/ 3 levels &quot;MORTGAGE&quot;,&quot;OWN&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
 <p>Now we can build the model:</p>
-<div class="sourceCode" id="cb937"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">loan_mod</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">interest_rate</span> <span class="op">~</span> <span class="va">homeownership</span>,data<span class="op">=</span><span class="va">loans100</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">loan_mod</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb937"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb937-1"><a href="LRSIM.html#cb937-1" aria-hidden="true" tabindex="-1"></a>loan_mod<span class="ot">&lt;-</span><span class="fu">lm</span>(interest_rate <span class="sc">~</span> homeownership,<span class="at">data=</span>loans100)</span>
+<span id="cb937-2"><a href="LRSIM.html#cb937-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(loan_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = interest_rate ~ homeownership, data = loans100)
@@ -500,26 +433,24 @@ Figure 29.6: Boxplot of loan interest rates from the Lending Club based on homeo
 ## homeownershipOWN    2.6135     1.2652   2.066  0.04158 *  
 ## homeownershipRENT   2.3570     0.8808   2.676  0.00878 ** 
 ## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 4.037 on 95 degrees of freedom
 ## Multiple R-squared:  0.08517,    Adjusted R-squared:  0.06591 
 ## F-statistic: 4.422 on 2 and 95 DF,  p-value: 0.01458</code></pre>
 <p>Note that by default, <code>R</code> set the <code>MORTGAGE</code> level as the reference category. This is because it is first value when sorted alphabetically. You can control this by changing the order of the factor levels. The package <strong>forcats</strong> helps with this effort.</p>
 <p>How would we interpret this output? Since <code>MORTGAGE</code> is the reference category, the intercept is effectively the estimated, average, interest rate for home owners with a mortgage.</p>
-<div class="sourceCode" id="cb939"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">loans100</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">homeownership</span> <span class="op">==</span> <span class="st">"MORTGAGE"</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>average<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">interest_rate</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb939"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb939-1"><a href="LRSIM.html#cb939-1" aria-hidden="true" tabindex="-1"></a>loans100 <span class="sc">%&gt;%</span></span>
+<span id="cb939-2"><a href="LRSIM.html#cb939-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(homeownership <span class="sc">==</span> <span class="st">&quot;MORTGAGE&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb939-3"><a href="LRSIM.html#cb939-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">average=</span><span class="fu">mean</span>(interest_rate))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   average
 ##     &lt;dbl&gt;
 ## 1    10.5</code></pre>
 <p>The other terms represent the expected difference in average interest rates for the ownership types.</p>
-<div class="sourceCode" id="cb941"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">loans100</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">homeownership</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>average<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">interest_rate</span><span class="op">)</span>,std_dev<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">interest_rate</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb941"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb941-1"><a href="LRSIM.html#cb941-1" aria-hidden="true" tabindex="-1"></a>loans100 <span class="sc">%&gt;%</span></span>
+<span id="cb941-2"><a href="LRSIM.html#cb941-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(homeownership) <span class="sc">%&gt;%</span></span>
+<span id="cb941-3"><a href="LRSIM.html#cb941-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">average=</span><span class="fu">mean</span>(interest_rate),<span class="at">std_dev=</span><span class="fu">sd</span>(interest_rate))</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   homeownership average std_dev
 ##   &lt;fct&gt;           &lt;dbl&gt;   &lt;dbl&gt;
@@ -528,27 +459,23 @@ Figure 29.6: Boxplot of loan interest rates from the Lending Club based on homeo
 ## 3 RENT             12.9    4.94</code></pre>
 <p>Specifically, on average, loan interest rates for home owners who own their home is 2.61 percentage points higher than those with a mortgage. Those who rent is 2.36 percent higher on average. The highest interest rate is for those who own their own home. This seems odd but it is interesting.</p>
 <blockquote>
-<p><strong>Exercise</strong>:<br>
+<p><strong>Exercise</strong>:<br />
 Using the coefficient from the regression model, how do we find the difference in average interest rates between home owners and renters?</p>
 </blockquote>
 <p>The first coefficient
-<span class="math display">\[\beta_\text{homeownershipOWN} = \mu_\text{OWN} - \mu_\text{MORTGAGE}\]</span><br>
+<span class="math display">\[\beta_\text{homeownershipOWN} = \mu_\text{OWN} - \mu_\text{MORTGAGE}\]</span><br />
 and <span class="math display">\[\beta_\text{homeownershipRENT} = \mu_\text{RENT} - \mu_\text{MORTGAGE}.\]</span>
 Thus <span class="math display">\[\mu_\text{OWN} -\mu_\text{RENT} = \beta_\text{homeownershipOWN} - \beta_\text{homeownershipRENT},\]</span> the difference in coefficients.</p>
 <p>The model is not fitting a line to the data but just estimating average with the coefficients representing difference from the reference level.</p>
 <p>The <code>Std.Error</code>, <code>t value</code>, and <code>Pr(&gt;|t|)</code> values can be used to conduct inference about the respective estimates. Both p-values are significant. This is similar to the ANOVA analysis we conducted last block except that hypothesis test was simultaneously testing all coefficients and here we are testing them pairwise.</p>
 </div>
 <div id="bootstrap-2" class="section level3" number="29.5.2">
-<h3>
-<span class="header-section-number">29.5.2</span> Bootstrap<a class="anchor" aria-label="anchor" href="#bootstrap-2"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">29.5.2</span> Bootstrap</h3>
 <p>From the boxplots, the biggest difference in means is between home owners and those with a mortgage. However, in the regression output there is no p-value to test the difference between owners and renters. An easy solution would be to change the reference level but what if you had many levels? How would you know which ones to test? In the next section we will look at multiple comparisons but before then we can use the bootstrap to help us.</p>
 <p>Let’s bootstrap the regression.</p>
-<div class="sourceCode" id="cb943"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">532</span><span class="op">)</span>
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">interest_rate</span> <span class="op">~</span> <span class="va">homeownership</span>,data<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">loans100</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb944"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb943"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb943-1"><a href="LRSIM.html#cb943-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">532</span>)</span>
+<span id="cb943-2"><a href="LRSIM.html#cb943-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">lm</span>(interest_rate <span class="sc">~</span> homeownership,<span class="at">data=</span><span class="fu">resample</span>(loans100))</span></code></pre></div>
+<div class="sourceCode" id="cb944"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb944-1"><a href="LRSIM.html#cb944-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results)</span></code></pre></div>
 <pre><code>##   Intercept homeownershipOWN homeownershipRENT    sigma  r.squared        F
 ## 1   9.98300         2.088250          2.110000 3.832758 0.07223701 3.698421
 ## 2  11.04875         3.868250          1.449750 3.421090 0.11065485 5.910085
@@ -564,54 +491,46 @@ Thus <span class="math display">\[\mu_\text{OWN} -\mu_\text{RENT} = \beta_\text{
 ## 5     2    95    1      5
 ## 6     2    95    1      6</code></pre>
 <p>We of course can generate a confidence interval on either of the coefficients in the <code>results</code> object.</p>
-<div class="sourceCode" id="cb946"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="va">loan_mod</span>
-<span class="va">obs</span></code></pre></div>
+<div class="sourceCode" id="cb946"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb946-1"><a href="LRSIM.html#cb946-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">do</span>(<span class="dv">1</span>)<span class="sc">*</span>loan_mod</span>
+<span id="cb946-2"><a href="LRSIM.html#cb946-2" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
 <pre><code>##   Intercept homeownershipOWN homeownershipRENT    sigma  r.squared        F
 ## 1  10.49723         2.613535          2.356976 4.037396 0.08516582 4.421978
 ##   numdf dendf .row .index
 ## 1     2    95    1      1</code></pre>
 <p>Figure <a href="LRSIM.html#fig:hist297-fig">29.7</a> is a histogram of the estimated coefficient for those that own their home.</p>
-<div class="sourceCode" id="cb948"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">homeownershipOWN</span>,fill<span class="op">=</span><span class="st">"cyan"</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">obs</span><span class="op">$</span><span class="va">homeownershipOWN</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>y<span class="op">=</span><span class="st">""</span>,x<span class="op">=</span><span class="st">"Homeownership (Own)."</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb948"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb948-1"><a href="LRSIM.html#cb948-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb948-2"><a href="LRSIM.html#cb948-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>homeownershipOWN,<span class="at">fill=</span><span class="st">&quot;cyan&quot;</span>,<span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb948-3"><a href="LRSIM.html#cb948-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span> obs<span class="sc">$</span>homeownershipOWN,<span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb948-4"><a href="LRSIM.html#cb948-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb948-5"><a href="LRSIM.html#cb948-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">y=</span><span class="st">&quot;&quot;</span>,<span class="at">x=</span><span class="st">&quot;Homeownership (Own).&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.</code></pre>
-<div class="figure">
-<span style="display:block;" id="fig:hist297-fig"></span>
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/hist297-fig-1.png" alt="Distribution of estimated regression coefficent for homeownership." width="672"><p class="caption">
+<div class="figure"><span style="display:block;" id="fig:hist297-fig"></span>
+<img src="29-Simulation-Based-Linear-Regression_files/figure-html/hist297-fig-1.png" alt="Distribution of estimated regression coefficent for homeownership." width="672" />
+<p class="caption">
 Figure 29.7: Distribution of estimated regression coefficent for homeownership.
 </p>
 </div>
-<div class="sourceCode" id="cb950"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">homeownershipOWN</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb950"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb950-1"><a href="LRSIM.html#cb950-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cdata</span>(<span class="sc">~</span>homeownershipOWN,<span class="at">data=</span>results)</span></code></pre></div>
 <pre><code>##          lower    upper central.p
 ## 2.5% 0.7674164 4.489259      0.95</code></pre>
 <p>Which is similar to the results assuming normality.</p>
-<div class="sourceCode" id="cb952"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/confint.html">confint</a></span><span class="op">(</span><span class="va">loan_mod</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb952"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb952-1"><a href="LRSIM.html#cb952-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(loan_mod)</span></code></pre></div>
 <pre><code>##                       2.5 %    97.5 %
 ## (Intercept)       9.3280904 11.666378
 ## homeownershipOWN  0.1018118  5.125259
 ## homeownershipRENT 0.6083964  4.105557</code></pre>
 <p>However, we want a confidence interval for the difference between home owners and renters.</p>
-<div class="sourceCode" id="cb954"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>own_rent<span class="op">=</span><span class="va">homeownershipOWN</span> <span class="op">-</span> <span class="va">homeownershipRENT</span><span class="op">)</span> <span class="op"><a href="https://infer.tidymodels.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">own_rent</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb954"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb954-1"><a href="LRSIM.html#cb954-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb954-2"><a href="LRSIM.html#cb954-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">own_rent=</span>homeownershipOWN <span class="sc">-</span> homeownershipRENT) <span class="sc">%&gt;%</span></span>
+<span id="cb954-3"><a href="LRSIM.html#cb954-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdata</span>(<span class="sc">~</span>own_rent,<span class="at">data=</span>.)</span></code></pre></div>
 <pre><code>##          lower    upper central.p
 ## 2.5% -1.943183 2.536296      0.95</code></pre>
 <p>Done! From this interval we can infer that home owners that own their home and those that rent do not have significantly different interest rates.</p>
 </div>
 <div id="anova-table" class="section level3" number="29.5.3">
-<h3>
-<span class="header-section-number">29.5.3</span> ANOVA Table<a class="anchor" aria-label="anchor" href="#anova-table"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">29.5.3</span> ANOVA Table</h3>
 <p>As a reminder, we could also report the results of loans analysis using an <em>analysis of variance</em>, or ANOVA, table.</p>
-<div class="sourceCode" id="cb956"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">loan_mod</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb956"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb956-1"><a href="LRSIM.html#cb956-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(loan_mod)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: interest_rate
@@ -619,17 +538,14 @@ Figure 29.7: Distribution of estimated regression coefficent for homeownership.
 ## homeownership  2  144.16  72.081   4.422 0.01458 *
 ## Residuals     95 1548.55  16.301                  
 ## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>This table lays out how the variation between observations is broken down. This is a simultaneous test of equality of the three means. Using the <span class="math inline">\(F\)</span>-statistic, we would reject the null hypothesis of no differences in mean response across levels of the categorical variable. Notice it is the same p-value reported for the <span class="math inline">\(F\)</span> distribution in the regression summary.</p>
 </div>
 <div id="pairwise-comparisons" class="section level3" number="29.5.4">
-<h3>
-<span class="header-section-number">29.5.4</span> Pairwise Comparisons<a class="anchor" aria-label="anchor" href="#pairwise-comparisons"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">29.5.4</span> Pairwise Comparisons</h3>
 <p>The ANOVA table above (along with the summary of the linear model output before that) merely tells you whether any difference exists in the mean response across the levels of the categorical predictor. It does not tell you where that difference lies. In the case of using regression we can compare <code>MORTGAGE</code> to the other two levels but can’t conduct a hypothesis of <code>OWN</code> vs <code>RENT</code>. In order to make all pairwise comparisons, we need another tool. A common one is the Tukey method. Essentially, the Tukey method conducts three hypothesis tests (each under the null of no difference in mean) but corrects the <span class="math inline">\(p\)</span>-values based on the understanding that we are conducting three simultaneous hypothesis tests with the same set of data and we don’t want to inflate the Type 1 error.</p>
-<p>We can obtain these pairwise comparisons using the <code><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD()</a></code> function in <code>R</code>. The “HSD” stands for “Honest Significant Differences”. This function requires an <code>anova</code> object, which is obtained by using the <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> function:</p>
-<div class="sourceCode" id="cb958"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">interest_rate</span><span class="op">~</span><span class="va">homeownership</span>, data<span class="op">=</span><span class="va">loans100</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>We can obtain these pairwise comparisons using the <code>TukeyHSD()</code> function in <code>R</code>. The “HSD” stands for “Honest Significant Differences”. This function requires an <code>anova</code> object, which is obtained by using the <code>aov()</code> function:</p>
+<div class="sourceCode" id="cb958"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb958-1"><a href="LRSIM.html#cb958-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(interest_rate<span class="sc">~</span>homeownership, <span class="at">data=</span>loans100))</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -644,65 +560,57 @@ Figure 29.7: Distribution of estimated regression coefficent for homeownership.
 </div>
 </div>
 <div id="assumptions-2" class="section level2" number="29.6">
-<h2>
-<span class="header-section-number">29.6</span> Assumptions<a class="anchor" aria-label="anchor" href="#assumptions-2"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">29.6</span> Assumptions</h2>
 <p>Keep in mind that ANOVA is a special case of a simple linear model. Therefore, all of the assumptions remain the same except for the linearity. The order of the levels is irrelevant and thus a line does not need to go through the three levels. In order to evaluate these assumptions, we would need to obtain the appropriate diagnostic plots.</p>
-<div class="sourceCode" id="cb960"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">loan_mod</span>,<span class="fl">2</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:diag291-fig"></span>
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/diag291-fig-1.png" alt="Q-Q normality plot." width="672"><p class="caption">
+<div class="sourceCode" id="cb960"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb960-1"><a href="LRSIM.html#cb960-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(loan_mod,<span class="dv">2</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:diag291-fig"></span>
+<img src="29-Simulation-Based-Linear-Regression_files/figure-html/diag291-fig-1.png" alt="Q-Q normality plot." width="672" />
+<p class="caption">
 Figure 29.8: Q-Q normality plot.
 </p>
 </div>
 <p>Figure <a href="LRSIM.html#fig:diag291-fig">29.8</a> shows that normality is suspect but we have a large sample size and thus we did not get much of a difference in results from the bootstrap which does not assume normality.</p>
-<div class="sourceCode" id="cb961"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">loan_mod</span>,<span class="fl">3</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:diag292-fig"></span>
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/diag292-fig-1.png" alt="Scale-location residual diagnostic plot." width="672"><p class="caption">
+<div class="sourceCode" id="cb961"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb961-1"><a href="LRSIM.html#cb961-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(loan_mod,<span class="dv">3</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:diag292-fig"></span>
+<img src="29-Simulation-Based-Linear-Regression_files/figure-html/diag292-fig-1.png" alt="Scale-location residual diagnostic plot." width="672" />
+<p class="caption">
 Figure 29.9: Scale-location residual diagnostic plot.
 </p>
 </div>
 <p>The assumption of equal variance is also suspect, Figure <a href="LRSIM.html#fig:diag292-fig">29.9</a>. The variance for the homeowners might be less than that for the other two.</p>
-<div class="sourceCode" id="cb962"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">loan_mod</span>,<span class="fl">5</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:diag293-fig"></span>
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/diag293-fig-1.png" alt="Residual plot for outliers and leverage points." width="672"><p class="caption">
+<div class="sourceCode" id="cb962"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb962-1"><a href="LRSIM.html#cb962-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(loan_mod,<span class="dv">5</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:diag293-fig"></span>
+<img src="29-Simulation-Based-Linear-Regression_files/figure-html/diag293-fig-1.png" alt="Residual plot for outliers and leverage points." width="672" />
+<p class="caption">
 Figure 29.10: Residual plot for outliers and leverage points.
 </p>
 </div>
 <p>We have three points that might be outliers but they are not too extreme, Figure <a href="LRSIM.html#fig:diag293-fig">29.10</a>. In general, nothing in this plot is concerning to us.</p>
 </div>
 <div id="homework-problems-28" class="section level2" number="29.7">
-<h2>
-<span class="header-section-number">29.7</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-28"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">29.7</span> Homework Problems</h2>
 <p>We will use the <code>loans</code> data set again to create linear models. Remember this data set represents thousands of loans made through the Lending Club platform, which is a platform that allows individuals to lend to other individuals.</p>
 <ol style="list-style-type: decimal">
 <li>Loans</li>
 </ol>
 <p>In this exercise we will examine the relationship between interest rate and loan amount.</p>
 <ol style="list-style-type: lower-alpha">
-<li>Read in the data from <code>loans.csv</code> in the <code>data</code> folder.<br>
+<li>Read in the data from <code>loans.csv</code> in the <code>data</code> folder.<br />
 </li>
-<li>Create a subset of data of 200 observations with the following three variables <code>interest_rate</code>, <code>loan_amount</code>, and <code>term</code>. Change <code>term</code> into a factor and use a stratified sample to keep the proportion of loan terms roughly the same as the original data.<br>
+<li>Create a subset of data of 200 observations with the following three variables <code>interest_rate</code>, <code>loan_amount</code>, and <code>term</code>. Change <code>term</code> into a factor and use a stratified sample to keep the proportion of loan terms roughly the same as the original data.<br />
 </li>
-<li>Plot <code>interest_rate</code> versus <code>loan_amount</code>. We think <code>interest_rate</code> should be the response.<br>
+<li>Plot <code>interest_rate</code> versus <code>loan_amount</code>. We think <code>interest_rate</code> should be the response.<br />
 </li>
-<li>Fit a linear model to the data by regressing <code>interest_rate</code> on <code>loan_amount</code>. Is there a significant relationship between <code>interest_rate</code> and <code>loan_amount</code>?<br>
+<li>Fit a linear model to the data by regressing <code>interest_rate</code> on <code>loan_amount</code>. Is there a significant relationship between <code>interest_rate</code> and <code>loan_amount</code>?<br />
 </li>
 <li>Using the <span class="math inline">\(t\)</span> distribution:
 <ol style="list-style-type: lower-roman">
-<li>Find a 95% confidence interval for the slope.<br>
+<li>Find a 95% confidence interval for the slope.<br />
 </li>
-<li>Find and interpret a 90% confidence interval for a loan amount of $20000<br>
+<li>Find and interpret a 90% confidence interval for a loan amount of $20000<br />
 </li>
-</ol>
-</li>
-<li>Repeat part e using a bootstrap.<br>
+</ol></li>
+<li>Repeat part e using a bootstrap.<br />
 </li>
 <li>Check the assumptions of linear regression.</li>
 </ol>
@@ -711,61 +619,40 @@ Figure 29.10: Residual plot for outliers and leverage points.
 </ol>
 <p>Using the <code>loans</code> data set of 200 observations from the previous exercise, use the variable <code>term</code> to determine if there is a difference in interest rates for the two different loan lengths.</p>
 <ol style="list-style-type: lower-alpha">
-<li>Build a set of side-by-side boxplots that summarize interest rate by term. Describe the relationship you see. Note: You will have to convert the <code>term</code> variable to a factor prior to continuing.<br>
+<li>Build a set of side-by-side boxplots that summarize interest rate by term. Describe the relationship you see. Note: You will have to convert the <code>term</code> variable to a factor prior to continuing.<br />
 </li>
-<li>Build a linear model fitting interest rate against term. Does there appear to be a significant difference in mean interest rates by term?<br>
+<li>Build a linear model fitting interest rate against term. Does there appear to be a significant difference in mean interest rates by term?<br />
 </li>
-<li>Write out the estimated linear model. In words, interpret the coefficient estimate.<br>
+<li>Write out the estimated linear model. In words, interpret the coefficient estimate.<br />
 </li>
-<li>Construct a bootstrap confidence interval on the coefficient.<br>
+<li>Construct a bootstrap confidence interval on the coefficient.<br />
 </li>
 <li>Check model assumptions.</li>
 </ol>
+
 </div>
 </div>
-  <div class="chapter-nav">
-<div class="prev"><a href="LRDIAG.html"><span class="header-section-number">28</span> Regression Diagnostics</a></div>
-<div class="next"><a href="LRMULTI.html"><span class="header-section-number">30</span> Multiple Linear Regression</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#LRSIM"><span class="header-section-number">29</span> Simulation Based Linear Regression</a></li>
-<li><a class="nav-link" href="#objectives-27"><span class="header-section-number">29.1</span> Objectives</a></li>
-<li><a class="nav-link" href="#introduction-5"><span class="header-section-number">29.2</span> Introduction</a></li>
-<li>
-<a class="nav-link" href="#confidence-intervals-for-parameters"><span class="header-section-number">29.3</span> Confidence intervals for parameters</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#resampling"><span class="header-section-number">29.3.1</span> Resampling</a></li>
-<li><a class="nav-link" href="#resample-residuals"><span class="header-section-number">29.3.2</span> Resample residuals</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#confidence-intervals-for-prediction"><span class="header-section-number">29.4</span> Confidence intervals for prediction</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#prediction-interval"><span class="header-section-number">29.4.1</span> Prediction interval</a></li></ul>
-</li>
-<li>
-<a class="nav-link" href="#categorical-predictor"><span class="header-section-number">29.5</span> Categorical predictor</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#lending-club"><span class="header-section-number">29.5.1</span> Lending Club</a></li>
-<li><a class="nav-link" href="#bootstrap-2"><span class="header-section-number">29.5.2</span> Bootstrap</a></li>
-<li><a class="nav-link" href="#anova-table"><span class="header-section-number">29.5.3</span> ANOVA Table</a></li>
-<li><a class="nav-link" href="#pairwise-comparisons"><span class="header-section-number">29.5.4</span> Pairwise Comparisons</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#assumptions-2"><span class="header-section-number">29.6</span> Assumptions</a></li>
-<li><a class="nav-link" href="#homework-problems-28"><span class="header-section-number">29.7</span> Homework Problems</a></li>
-</ul>
+  </main>
+
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/29-Simulation-Based-Linear-Regression.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/29-Simulation-Based-Linear-Regression.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
-</div>
+      </div>
     </nav>
-</div>
+  </div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-14.</p>
@@ -776,7 +663,11 @@ Figure 29.10: Residual plot for outliers and leverage points.
   </div>
 
 </div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+</footer>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -788,7 +679,8 @@ Figure 29.10: Residual plot for outliers and leverage points.
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+</script>
+<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
 for (let popover of popovers) {
   const div = document.createElement('div');
   div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
@@ -806,4 +698,5 @@ for (let popover of popovers) {
 }
 </script>
 </body>
+
 </html>

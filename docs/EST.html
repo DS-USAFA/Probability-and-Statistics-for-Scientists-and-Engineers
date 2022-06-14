@@ -1,33 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 17 Estimation Methods | Computational Probability and Statistics</title>
-<meta name="author" content="Matthew Davis">
-<meta name="author" content="Brianna Hitt">
-<meta name="author" content="Ken Horton">
-<meta name="author" content="Bradley Warner">
-<meta name="description" content="17.1 Objectives Obtain a method of moments estimate of a parameter or set of parameters. Given a random sample from a distribution, obtain the likelihood function. Obtain a maximum likelihood...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
-<meta property="og:title" content="Chapter 17 Estimation Methods | Computational Probability and Statistics">
-<meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover.png">
-<meta property="og:description" content="17.1 Objectives Obtain a method of moments estimate of a parameter or set of parameters. Given a random sample from a distribution, obtain the likelihood function. Obtain a maximum likelihood...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 17 Estimation Methods | Computational Probability and Statistics">
-<meta name="twitter:description" content="17.1 Objectives Obtain a method of moments estimate of a parameter or set of parameters. Given a random sample from a distribution, obtain the likelihood function. Obtain a maximum likelihood...">
-<meta name="twitter:image" content="/figures/Cover.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Chapter 17 Estimation Methods | Computational Probability and Statistics</title>
+
+    <meta name="author" content="Matthew Davis" />
+    <meta name="author" content="Brianna Hitt" />
+    <meta name="author" content="Ken Horton" />
+    <meta name="author" content="Bradley Warner" />
+  
+   <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="Chapter 17 Estimation Methods | Computational Probability and Statistics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/figures/Cover.png" />
+  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 17 Estimation Methods | Computational Probability and Statistics" />
+  
+  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta name="twitter:image" content="/figures/Cover.png" />
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.3.1/transition.js"></script>
+    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
+    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  <style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
-<style type="text/css">
+    <style type="text/css">
     /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
     div.csl-bib-body { }
     div.csl-entry {
@@ -49,13 +69,16 @@
       margin-left: 2em;
     }
   </style>
-<link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style.css" />
+  
 </head>
+
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -67,112 +90,68 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
+      </form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Preface</a></li>
-<li class="book-part">Descriptive Statistical Modeling</li>
-<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
-<li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
-<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
-<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
-<li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
-<li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
-<li class="book-part">Probability Modeling</li>
-<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
-<li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
-<li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
-<li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
-<li><a class="" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
-<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
-<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
-<li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
-<li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
-<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
-<li><a class="active" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
-<li class="book-part">Statistical Modeling</li>
-<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
-<li><a class="" href="HYPOTEST.html"><span class="header-section-number">19</span> Hypothesis Testing</a></li>
-<li><a class="" href="PVALUES.html"><span class="header-section-number">20</span> Empirical p-values</a></li>
-<li><a class="" href="CLT.html"><span class="header-section-number">21</span> Central Limit Theorem</a></li>
-<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
-<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
-<li><a class="" href="ADDTESTS.html"><span class="header-section-number">24</span> Additional Hypothesis Tests</a></li>
-<li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">25</span> Case Study</a></li>
-<li><a class="" href="LRBASICS.html"><span class="header-section-number">26</span> Linear Regression Basics</a></li>
-<li><a class="" href="LRINF.html"><span class="header-section-number">27</span> Linear Regression Inference</a></li>
-<li><a class="" href="LRDIAG.html"><span class="header-section-number">28</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">29</span> Simulation Based Linear Regression</a></li>
-<li><a class="" href="LRMULTI.html"><span class="header-section-number">30</span> Multiple Linear Regression</a></li>
-<li><a class="" href="LOGREG.html"><span class="header-section-number">31</span> Logistic Regression</a></li>
-<li><a class="" href="references.html">References</a></li>
-</ul>
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
         </div>
       </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="EST" class="section level1" number="17">
-<h1>
-<span class="header-section-number">17</span> Estimation Methods<a class="anchor" aria-label="anchor" href="#EST"><i class="fas fa-link"></i></a>
-</h1>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="EST" class="section level1" number="17">
+<h1><span class="header-section-number">Chapter 17</span> Estimation Methods</h1>
 <div id="objectives-16" class="section level2" number="17.1">
-<h2>
-<span class="header-section-number">17.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-16"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">17.1</span> Objectives</h2>
 <ol style="list-style-type: decimal">
-<li>Obtain a method of moments estimate of a parameter or set of parameters.<br>
+<li>Obtain a method of moments estimate of a parameter or set of parameters.<br />
 </li>
-<li>Given a random sample from a distribution, obtain the likelihood function.<br>
+<li>Given a random sample from a distribution, obtain the likelihood function.<br />
 </li>
-<li>Obtain a maximum likelihood estimate of a parameter or set of parameters.<br>
+<li>Obtain a maximum likelihood estimate of a parameter or set of parameters.<br />
 </li>
 <li>Determine if an estimator is unbiased.</li>
 </ol>
 </div>
 <div id="transition" class="section level2" number="17.2">
-<h2>
-<span class="header-section-number">17.2</span> Transition<a class="anchor" aria-label="anchor" href="#transition"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">17.2</span> Transition</h2>
 <p>We started this book with descriptive models of data and then moved onto probability models. In these probability models, we have been characterizing experiments and random processes using both theory and simulation. These models are using a model about a random event to make decisions about data. These models are about the population and are used to make decisions about samples and data. For example, suppose we flip a fair coin 10 times, and record the number of heads. The population is the collection of all possible outcomes of this experiment. In this case, the population is infinite, as we could run this experiment repeatedly without limit. If we assume, model, the number of heads as a binomial distribution, we know the exact distribution of the outcomes. For example, we know that exactly 24.61% of the time, we will obtain 5 heads out of 10 flips of a fair coin. We can also use the model to characterize the variance, that is when it does not equal 5 and how much different from 5 it will be. However, these probability models are highly dependent on the assumptions and the values of the parameters.</p>
 <p>From this point on in the book, we will focus on <em>statistical</em> models. Statistical models describe one or more variables and their relationships. We use these models to make decisions about the population, to predict future outcomes, or both. Often we don’t know the true underlying process; all we have is a <em>sample</em> of observations and perhaps some context. Using <em>inferential</em> statistics, we can draw conclusions about the underlying process. For example, suppose we are given a coin and we don’t know whether it is fair. So, we flip it a number of times to obtain a sample of outcomes. We can use that sample to decide whether the coin could be fair.</p>
 <p>In some sense, we’ve already explored some of these concepts. In our simulation examples, we have drawn observations from a population of interest and used those observations to estimate characteristics of another population or segment of the experiment. For example, we explored random variable <span class="math inline">\(Z\)</span>, where <span class="math inline">\(Z=|X - Y|\)</span> and <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> were both uniform random variables. Instead of dealing with the distribution of <span class="math inline">\(Z\)</span> directly, we simulated many observations from <span class="math inline">\(Z\)</span> and used this simulation to describe the behavior of <span class="math inline">\(Z\)</span>.</p>
 <p>Statistical models and probability models are not separate. In statistical models we find relationships, the explained portion of variation, and use probability models for the remaining random variation. In Figure <a href="EST.html#fig:prob-stats">17.1</a>, we demonstrate this relationship between the two types of models. In the first part of our studies, we will use univariate data in statistical models to estimate the parameters of a probability model. From there we will develop more sophisticated models to include multivariate models.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:prob-stats"></span>
-<img src="figures/Prob_Stats.png" alt="A graphical representation of probability and statistics. In probability, we describe what we expect to happen if we know that underlying process; in statistics, we don't know the underlying process, and must infer based on representative samples." width="576"><p class="caption">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:prob-stats"></span>
+<img src="figures/Prob_Stats.png" alt="A graphical representation of probability and statistics. In probability, we describe what we expect to happen if we know that underlying process; in statistics, we don't know the underlying process, and must infer based on representative samples." width="576" />
+<p class="caption">
 Figure 17.1: A graphical representation of probability and statistics. In probability, we describe what we expect to happen if we know that underlying process; in statistics, we don’t know the underlying process, and must infer based on representative samples.
 </p>
 </div>
 </div>
 <div id="estimation" class="section level2" number="17.3">
-<h2>
-<span class="header-section-number">17.3</span> Estimation<a class="anchor" aria-label="anchor" href="#estimation"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">17.3</span> Estimation</h2>
 <p>Recall that in probability models, we have complete information about the population and we use that to describe the expected behavior of samples from that population. In statistics we are given a sample from a population about which we know little or nothing.</p>
 <p>In this lesson, we will discuss <em>estimation</em>. Given a sample, we would like to estimate population parameters. There are several ways to do that. We will discuss two methods: <em>method of moments</em> and <em>maximum likelihood</em>.</p>
 </div>
 <div id="method-of-moments" class="section level2" number="17.4">
-<h2>
-<span class="header-section-number">17.4</span> Method of Moments<a class="anchor" aria-label="anchor" href="#method-of-moments"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">17.4</span> Method of Moments</h2>
 <p>Recall earlier we discussed moments. We can refer to <span class="math inline">\(\mbox{E}(X) = \mu\)</span> as the first moment or mean. Further, we can refer to <span class="math inline">\(\mbox{E}(X^k)\)</span> as the <span class="math inline">\(k\)</span>th central moment and <span class="math inline">\(\mbox{E}[(X-\mu)^k]\)</span> as the <span class="math inline">\(k\)</span> moment around the mean. The second moment around the mean is also known as variance. It is important to point out that these are <strong>POPULATION</strong> moments and are typically some function of the parameters of a probability model.</p>
 <p>Suppose <span class="math inline">\(X_1,X_2,...,X_n\)</span> is a sequence of independent, identically distributed random variables with some distribution and parameters <span class="math inline">\(\boldsymbol{\theta}\)</span>. When provided with a random sample of data, we will not know the population moments. However, we can obtain <em>sample moments</em>. The <span class="math inline">\(k\)</span>th central sample moment is denoted by <span class="math inline">\(\hat{\mu}_k\)</span> and is given by
 <span class="math display">\[
 \hat{\mu}_k = \frac{1}{n}\sum_{i=1}^n x_i^k
 \]</span></p>
-<p>The <span class="math inline">\(k\)</span>th sample moment around the mean is denoted by <span class="math inline">\(\hat{\mu}'_k\)</span> and is given by
+<p>The <span class="math inline">\(k\)</span>th sample moment around the mean is denoted by <span class="math inline">\(\hat{\mu}&#39;_k\)</span> and is given by
 <span class="math display">\[
-\hat{\mu}'_k=\frac{1}{n} \sum_{i=1}^n (x_i-\bar{x})^k
+\hat{\mu}&#39;_k=\frac{1}{n} \sum_{i=1}^n (x_i-\bar{x})^k
 \]</span></p>
 <p>The value <span class="math inline">\(\hat{\mu}\)</span> is read “mu-hat”. The hat denotes that the value is an estimate.</p>
 <p>We can use the sample moments to estimate the population moments since the population moments are usually functions of a distribution’s parameters, <span class="math inline">\(\boldsymbol{\theta}\)</span>. Thus, we can solve for the parameters to obtain method of moments estimates of <span class="math inline">\(\boldsymbol{\theta}\)</span>.</p>
 <p>This is all technical, so let’s look at an example.</p>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 Suppose <span class="math inline">\(x_1,x_2,...,x_n\)</span> is an iid, independent and identically distributed, sample from a uniform distribution <span class="math inline">\(\textsf{Unif}(0,\theta)\)</span>, and we don’t know <span class="math inline">\(\theta\)</span>. That is, our data consists of positive random numbers but we don’t know the upper bound. Find the method of moments estimator for <span class="math inline">\(\theta\)</span>, the upper bound.</p>
 </blockquote>
 <p>We know that if <span class="math inline">\(X\sim \textsf{Unif}(a,b)\)</span>, then <span class="math inline">\(\mbox{E}(X)=\frac{a+b}{2}\)</span>. So, in this case, <span class="math inline">\(\mbox{E}(X)={\theta \over 2}\)</span>. This is the first population moment. We can estimate this with the first <em>sample</em> moment, which is just the sample mean:
@@ -183,14 +162,14 @@ Suppose <span class="math inline">\(x_1,x_2,...,x_n\)</span> is an iid, independ
 <span class="math display">\[
 \hat{\theta}_{MoM}=2\bar{x}
 \]</span></p>
-<p>Note that we could have used the second moments about the mean as well. This is less intuitive but still applicable. In this case we know that if <span class="math inline">\(X\sim \textsf{Unif}(a,b)\)</span>, then <span class="math inline">\(\mbox{Var}(X)=\frac{(b - a)^2}{12}\)</span>. So, in this case, <span class="math inline">\(\mbox{Var}(X)=\frac{\theta ^2}{ 12}\)</span>. We use the second sample moment about the mean <span class="math inline">\(\hat{\mu}'_2=\frac{1}{n} \sum_{i=1}^n (x_i-\bar{x})^2\)</span> which is not quite the sample variance. In fact, the sample variance is related to the second sample moment about the mean by <span class="math inline">\(\hat{\mu}'_2 = s^2 \frac{n}{n-1}\)</span>. Setting the population moment and sample moment equal and solving we get</p>
+<p>Note that we could have used the second moments about the mean as well. This is less intuitive but still applicable. In this case we know that if <span class="math inline">\(X\sim \textsf{Unif}(a,b)\)</span>, then <span class="math inline">\(\mbox{Var}(X)=\frac{(b - a)^2}{12}\)</span>. So, in this case, <span class="math inline">\(\mbox{Var}(X)=\frac{\theta ^2}{ 12}\)</span>. We use the second sample moment about the mean <span class="math inline">\(\hat{\mu}&#39;_2=\frac{1}{n} \sum_{i=1}^n (x_i-\bar{x})^2\)</span> which is not quite the sample variance. In fact, the sample variance is related to the second sample moment about the mean by <span class="math inline">\(\hat{\mu}&#39;_2 = s^2 \frac{n}{n-1}\)</span>. Setting the population moment and sample moment equal and solving we get</p>
 <p><span class="math display">\[
 \hat{\theta}_{MoM}=\sqrt{\frac{12n}{n-1}}s
 \]</span></p>
 <p>To decide which is better we need a criteria of comparison. This is beyond the scope of this book, but some common criteria are <em>unbiased</em> and <em>minimum variance</em>.</p>
 <p>The method of moments can be used to estimate more than one parameter as well. We simply would have to incorporate higher order moments.</p>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 Suppose we take an iid sample from the normal distribution with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. Find method of moments estimates of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>.</p>
 </blockquote>
 <p>First, we remember that we know two population moments for the normal distribution:
@@ -207,7 +186,7 @@ E(\hat{\theta})=\theta
 \]</span>
 Unbiased is not a required property for an estimated but many practitioners find it desirable. In words, unbiased means that on average the estimator will equal the true value. Sample variance using <span class="math inline">\(n-1\)</span> in the denominator is an unbiased estimate of the population variance.</p>
 <blockquote>
-<p><em>Exercise</em>:<br>
+<p><em>Exercise</em>:<br />
 You shot 25 free throws and make 21. Assuming a binomial model fits. Find an estimate of the probability of making a free throw.</p>
 </blockquote>
 <p>There are two ways to approach this problem depending on how we define the random variable. In the first case we will use a binomial random variable, <span class="math inline">\(X\)</span> the number of made free throws in 25 attempts. In this case, we only ran the experiment once and have the observed result of 21. Recall for the binomial <span class="math inline">\(E(X)=np\)</span> where <span class="math inline">\(n\)</span> is the number of attempts and <span class="math inline">\(p\)</span> is the probability of success. The sample mean is 21 since we only have one data point. Using the method of moments, we set the first population mean equal to the first sample mean <span class="math inline">\(np=\frac{\sum{x_i}}{m}\)</span>, notice <span class="math inline">\(n\)</span> is the number of trials 25 and <span class="math inline">\(m\)</span> is the number of data points 1, or <span class="math inline">\(25 \hat{p} = 21\)</span>. Thus <span class="math inline">\(\hat{p} = \frac{21}{25}\)</span>.</p>
@@ -220,15 +199,11 @@ E(\hat{p})=E\left( \sum{\frac{X_i}{n}} \right)
 \]</span></p>
 </div>
 <div id="maximum-likelihood" class="section level2" number="17.5">
-<h2>
-<span class="header-section-number">17.5</span> Maximum likelihood<a class="anchor" aria-label="anchor" href="#maximum-likelihood"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">17.5</span> Maximum likelihood</h2>
 <p>Recall that using method of moments involves finding values of the parameters that cause the population moments to be equal to the sample moments. Solving for the parameters yields method of moments estimates.</p>
 <p>Next we will discuss one more estimation method, <em>maximum likelihood estimation</em>. In this method, we are finding values of parameters that would make the observed data most “likely”. In order to do this, we first need to introduce the <em>likelihood function</em>.</p>
 <div id="likelihood-function" class="section level3" number="17.5.1">
-<h3>
-<span class="header-section-number">17.5.1</span> Likelihood Function<a class="anchor" aria-label="anchor" href="#likelihood-function"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">17.5.1</span> Likelihood Function</h3>
 <p>Suppose <span class="math inline">\(x_1,x_2,...,x_n\)</span> is an iid random sample from a distribution with mass/density function <span class="math inline">\(f_{X}(x;\boldsymbol{\theta})\)</span> where <span class="math inline">\(\boldsymbol{\theta}\)</span> are the parameters. Let’s take a second to explain this notation. We are using a bold symbol for <span class="math inline">\(\boldsymbol{\theta}\)</span> to indicate it is a vector, that it can be one or more values. However, in the pmf/pdf <span class="math inline">\(x\)</span> is not bold since it is a scalar variable. In our probability models we know <span class="math inline">\(\boldsymbol{\theta}\)</span> and then use to model to make decision about the random variable <span class="math inline">\(X\)</span>.</p>
 <p>The likelihood function is denoted as <span class="math inline">\(L(\boldsymbol{\theta};x_1,x_2,...,x_n) = L(\boldsymbol{\theta};\boldsymbol{x})\)</span>. Now we have multiple instances of the random variable, we use <span class="math inline">\(\boldsymbol{x}\)</span>. Since our random sample is iid, independent and identically distributed, we can write the likelihood function as a product of the pmfs/pdfs:
 <span class="math display">\[
@@ -237,7 +212,7 @@ L(\boldsymbol{\theta};\boldsymbol{x})=\prod_{i=1}^n f_X(x_i;\boldsymbol{\theta})
 <p>The likelihood function is really the pmf/pdf except instead of the variables being random and the parameter(s) fixed, the values of the variable are known and the parameter(s) are unknown. A note on notation, we are using the semicolon in the pdf and likelihood function to denote what is known or given. In the pmf/pdf the parameters are known and thus follow the semicolon. The opposite is the case in the likelihood function.</p>
 <p>Let’s do an example to help understand these ideas.</p>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 Suppose we are presented with a coin and are unsure of its fairness. We toss the coin 50 times and obtain 18 heads and 32 tails. Let <span class="math inline">\(\pi\)</span> be the probability that a coin flip results in heads, we could use <span class="math inline">\(p\)</span> but we are getting you used to the two different common ways to represent a binomial parameter. What is the likelihood function of <span class="math inline">\(\pi\)</span>?</p>
 </blockquote>
 <p>This is a binomial process, but each individual coin flip can be thought of as a Bernoulli experiment. That is, <span class="math inline">\(x_1,x_2,...,x_{50}\)</span> is an iid sample from <span class="math inline">\(\textsf{Binom}(1,\pi)\)</span> or, in other words, <span class="math inline">\(\textsf{Bernoulli}(\pi)\)</span>. Each <span class="math inline">\(x_i\)</span> is either 1 or 0. The pmf of <span class="math inline">\(X\)</span>, a Bernoulli random variable, is simply:
@@ -263,9 +238,7 @@ L(\pi;\boldsymbol{x})=\prod_{i=1}^{50} \pi^{x_i}(1-\pi)^{1-x_i} = \pi^{18}(1-\pi
 <p>which makes sense because we had 18 successes, heads, and 32 failures, tails. The likelihood function is a function of the unknown parameter <span class="math inline">\(\pi\)</span>.</p>
 </div>
 <div id="maximum-likelihood-estimation" class="section level3" number="17.5.2">
-<h3>
-<span class="header-section-number">17.5.2</span> Maximum Likelihood Estimation<a class="anchor" aria-label="anchor" href="#maximum-likelihood-estimation"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">17.5.2</span> Maximum Likelihood Estimation</h3>
 <p>Once we have a likelihood function <span class="math inline">\(L(\boldsymbol{\theta},\boldsymbol{x})\)</span>, we need to figure out which value of <span class="math inline">\(\boldsymbol{\theta}\)</span> makes the data most likely. In other words, we need to maximize <span class="math inline">\(L\)</span> with respect to <span class="math inline">\(\boldsymbol{\theta}\)</span>.</p>
 <p>Most of the time (but not always), this will involve simple optimization through calculus (i.e., take the derivative with respect to the parameter, set to 0 and solve for the parameter). When maximizing the likelihood function through calculus, it is often easier to maximize the log of the likelihood function, denoted as <span class="math inline">\(l\)</span> and often referred to as the “log-likelihood function”:
 <span class="math display">\[
@@ -273,7 +246,7 @@ l(\boldsymbol{\theta};\boldsymbol{x})= \log L(\boldsymbol{\theta};\boldsymbol{x}
 \]</span>
 Note that since logarithm is one-to-one, onto and increasing, maximizing the log-likelihood function is equivalent to maximizing the likelihood function, and the maximum will occur at the same values of the parameters. We are using <code>log</code> because now we can take the derivative of a sum instead of a product, thus making it much easier.</p>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 Continuing our example. Find the maximum likelihood estimator for <span class="math inline">\(\pi\)</span>.</p>
 </blockquote>
 <p>Recall that our likelihood function is
@@ -282,9 +255,9 @@ L(\pi;\boldsymbol{x})= \pi^{\sum x_i}(1-\pi)^{n-\sum x_i}
 \]</span></p>
 <p>Figure <a href="EST.html#fig:lik1-fig">17.2</a> is a plot of the likelihood function as a function of the unknown parameter <span class="math inline">\(\pi\)</span>.</p>
 <pre><code>## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.</code></pre>
-<div class="figure">
-<span style="display:block;" id="fig:lik1-fig"></span>
-<img src="17-Estimation-Methods_files/figure-html/lik1-fig-1.png" alt="Likelihood function for 18 successes in 50 trials" width="672"><p class="caption">
+<div class="figure"><span style="display:block;" id="fig:lik1-fig"></span>
+<img src="17-Estimation-Methods_files/figure-html/lik1-fig-1.png" alt="Likelihood function for 18 successes in 50 trials" width="672" />
+<p class="caption">
 Figure 17.2: Likelihood function for 18 successes in 50 trials
 </p>
 </div>
@@ -319,16 +292,13 @@ l(\pi;\boldsymbol{x})=\log L(\pi;\boldsymbol{x})= \log \left(\pi^{\sum x_i}(1-\p
 <p>This seems to make sense. Our best guess for the probability of heads is the number of observed heads divided by our number of trials. That was a great deal of algebra and calculus for what appears to be an obvious answer. However, in more difficult problems, it is not as obvious what to use for a MLE.</p>
 </div>
 <div id="numerical-methods" class="section level3" number="17.5.3">
-<h3>
-<span class="header-section-number">17.5.3</span> Numerical Methods<a class="anchor" aria-label="anchor" href="#numerical-methods"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">17.5.3</span> Numerical Methods</h3>
 <p>When obtaining MLEs, there are times when analytical methods (calculus) are not feasible or not possible. In the Pruim book <span class="citation">(<a href="references.html#ref-pruim2011foundations" role="doc-biblioref">R. J. Pruim 2011</a>)</span>, there is a good example regarding data from Old Faithful at Yellowstone National Park. We need to load the <strong>fastR2</strong> package for this example.</p>
-<div class="sourceCode" id="cb435"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rpruim/fastR2">fastR2</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="EST.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fastR2)</span></code></pre></div>
 <p>The <code>faithful</code> data set is preloaded into <code>R</code> and contains 272 observations of 2 variables: eruption time in minutes and waiting time until next eruption. If we plot eruption durations, we notice that the distribution appears bimodal, see Figure <a href="EST.html#fig:hist171-fig">17.3</a>.</p>
-<div class="figure">
-<span style="display:block;" id="fig:hist171-fig"></span>
-<img src="17-Estimation-Methods_files/figure-html/hist171-fig-1.png" alt="Histogram of eruption durations of Old Faithful." width="672"><p class="caption">
+<div class="figure"><span style="display:block;" id="fig:hist171-fig"></span>
+<img src="17-Estimation-Methods_files/figure-html/hist171-fig-1.png" alt="Histogram of eruption durations of Old Faithful." width="672" />
+<p class="caption">
 Figure 17.3: Histogram of eruption durations of Old Faithful.
 </p>
 </div>
@@ -338,59 +308,54 @@ Figure 17.3: Histogram of eruption durations of Old Faithful.
 \]</span></p>
 <p>where <span class="math inline">\(f\)</span> is the pdf of the normal distribution with parameters specified.</p>
 <p>We have five parameters to estimate: <span class="math inline">\(\alpha, \mu_1, \mu_2, \sigma_1, \sigma_2\)</span>. Obviously, estimation through differentiation is not feasible and thus we will use numerical methods. This code is less in the spirit of <code>tidyverse</code> but we want you to see the example. Try to work your way through the code below:</p>
-<div class="sourceCode" id="cb436"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Define function for pdf of eruptions as a mixture of normals</span>
-<span class="va">dmix</span><span class="op">&lt;-</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span>,<span class="va">alpha</span>,<span class="va">mu1</span>,<span class="va">mu2</span>,<span class="va">sigma1</span>,<span class="va">sigma2</span><span class="op">)</span><span class="op">{</span>
-  <span class="kw">if</span><span class="op">(</span><span class="va">alpha</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">mu2</span>,<span class="va">sigma2</span><span class="op">)</span>
-  <span class="kw">if</span><span class="op">(</span><span class="va">alpha</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">mu1</span>,<span class="va">sigma1</span><span class="op">)</span>
-  <span class="kw">if</span><span class="op">(</span><span class="va">alpha</span> <span class="op">&gt;=</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> <span class="va">alpha</span> <span class="op">&lt;=</span><span class="fl">1</span><span class="op">)</span><span class="op">{</span>
-    <span class="va">alpha</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">mu1</span>,<span class="va">sigma1</span><span class="op">)</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">alpha</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">mu2</span>,<span class="va">sigma2</span><span class="op">)</span>
-  <span class="op">}</span>
-<span class="op">}</span></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="EST.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define function for pdf of eruptions as a mixture of normals</span></span>
+<span id="cb436-2"><a href="EST.html#cb436-2" aria-hidden="true" tabindex="-1"></a>dmix<span class="ot">&lt;-</span><span class="cf">function</span>(x,alpha,mu1,mu2,sigma1,sigma2){</span>
+<span id="cb436-3"><a href="EST.html#cb436-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(alpha <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="fu">dnorm</span>(x,mu2,sigma2)</span>
+<span id="cb436-4"><a href="EST.html#cb436-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(alpha <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="fu">dnorm</span>(x,mu1,sigma1)</span>
+<span id="cb436-5"><a href="EST.html#cb436-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(alpha <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span> alpha <span class="sc">&lt;=</span><span class="dv">1</span>){</span>
+<span id="cb436-6"><a href="EST.html#cb436-6" aria-hidden="true" tabindex="-1"></a>    alpha<span class="sc">*</span><span class="fu">dnorm</span>(x,mu1,sigma1)<span class="sc">+</span>(<span class="dv">1</span><span class="sc">-</span>alpha)<span class="sc">*</span><span class="fu">dnorm</span>(x,mu2,sigma2)</span>
+<span id="cb436-7"><a href="EST.html#cb436-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb436-8"><a href="EST.html#cb436-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Next write a function for the log-likelihood function. <code>R</code> is a vector based programming language so we send <code>theta</code> into the function as a vector argument.</p>
-<div class="sourceCode" id="cb437"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Create the log-likelihood function</span>
-<span class="va">loglik</span><span class="op">&lt;-</span><span class="kw">function</span><span class="op">(</span><span class="va">theta</span>,<span class="va">x</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">alpha</span><span class="op">=</span><span class="va">theta</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
-  <span class="va">mu1</span><span class="op">=</span><span class="va">theta</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>
-  <span class="va">mu2</span><span class="op">=</span><span class="va">theta</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>
-  <span class="va">sigma1</span><span class="op">=</span><span class="va">theta</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>
-  <span class="va">sigma2</span><span class="op">=</span><span class="va">theta</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span>
-  <span class="va">density</span><span class="op">&lt;-</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
-    <span class="kw">if</span><span class="op">(</span><span class="va">alpha</span><span class="op">&lt;</span><span class="fl">0</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span> <span class="op">(</span><span class="cn">Inf</span><span class="op">)</span>
-    <span class="kw">if</span><span class="op">(</span><span class="va">alpha</span><span class="op">&gt;</span><span class="fl">1</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span> <span class="op">(</span><span class="cn">Inf</span><span class="op">)</span>
-    <span class="kw">if</span><span class="op">(</span><span class="va">sigma1</span><span class="op">&lt;</span><span class="fl">0</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span> <span class="op">(</span><span class="cn">Inf</span><span class="op">)</span>
-    <span class="kw">if</span><span class="op">(</span><span class="va">sigma2</span><span class="op">&lt;</span><span class="fl">0</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span> <span class="op">(</span><span class="cn">Inf</span><span class="op">)</span>
-    <span class="fu">dmix</span><span class="op">(</span><span class="va">x</span>,<span class="va">alpha</span>,<span class="va">mu1</span>,<span class="va">mu2</span>,<span class="va">sigma1</span>,<span class="va">sigma2</span><span class="op">)</span>
-  <span class="op">}</span>
-  <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">density</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="EST.html#cb437-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the log-likelihood function</span></span>
+<span id="cb437-2"><a href="EST.html#cb437-2" aria-hidden="true" tabindex="-1"></a>loglik<span class="ot">&lt;-</span><span class="cf">function</span>(theta,x){</span>
+<span id="cb437-3"><a href="EST.html#cb437-3" aria-hidden="true" tabindex="-1"></a>  alpha<span class="ot">=</span>theta[<span class="dv">1</span>]</span>
+<span id="cb437-4"><a href="EST.html#cb437-4" aria-hidden="true" tabindex="-1"></a>  mu1<span class="ot">=</span>theta[<span class="dv">2</span>]</span>
+<span id="cb437-5"><a href="EST.html#cb437-5" aria-hidden="true" tabindex="-1"></a>  mu2<span class="ot">=</span>theta[<span class="dv">3</span>]</span>
+<span id="cb437-6"><a href="EST.html#cb437-6" aria-hidden="true" tabindex="-1"></a>  sigma1<span class="ot">=</span>theta[<span class="dv">4</span>]</span>
+<span id="cb437-7"><a href="EST.html#cb437-7" aria-hidden="true" tabindex="-1"></a>  sigma2<span class="ot">=</span>theta[<span class="dv">5</span>]</span>
+<span id="cb437-8"><a href="EST.html#cb437-8" aria-hidden="true" tabindex="-1"></a>  density<span class="ot">&lt;-</span><span class="cf">function</span>(x){</span>
+<span id="cb437-9"><a href="EST.html#cb437-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(alpha<span class="sc">&lt;</span><span class="dv">0</span>) <span class="fu">return</span> (<span class="cn">Inf</span>)</span>
+<span id="cb437-10"><a href="EST.html#cb437-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(alpha<span class="sc">&gt;</span><span class="dv">1</span>) <span class="fu">return</span> (<span class="cn">Inf</span>)</span>
+<span id="cb437-11"><a href="EST.html#cb437-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(sigma1<span class="sc">&lt;</span><span class="dv">0</span>) <span class="fu">return</span> (<span class="cn">Inf</span>)</span>
+<span id="cb437-12"><a href="EST.html#cb437-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(sigma2<span class="sc">&lt;</span><span class="dv">0</span>) <span class="fu">return</span> (<span class="cn">Inf</span>)</span>
+<span id="cb437-13"><a href="EST.html#cb437-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dmix</span>(x,alpha,mu1,mu2,sigma1,sigma2)</span>
+<span id="cb437-14"><a href="EST.html#cb437-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb437-15"><a href="EST.html#cb437-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(<span class="fu">log</span>(<span class="fu">sapply</span>(x,density)))</span>
+<span id="cb437-16"><a href="EST.html#cb437-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Find the sample mean and standard deviation of the eruption data to use as starting points in the optimization routine.</p>
-<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">m</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">faithful</span><span class="op">$</span><span class="va">eruptions</span><span class="op">)</span>
-<span class="va">s</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">faithful</span><span class="op">$</span><span class="va">eruptions</span><span class="op">)</span></code></pre></div>
-<p>Use the function <code><a href="http://rpruim.github.io/fastR2/reference/nlmax.html">nlmax()</a></code> to maximize the non-linear log-likelihood function.</p>
-<div class="sourceCode" id="cb439"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mle</span><span class="op">&lt;-</span><span class="fu"><a href="http://rpruim.github.io/fastR2/reference/nlmax.html">nlmax</a></span><span class="op">(</span><span class="va">loglik</span>,p<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="va">m</span><span class="op">-</span><span class="fl">1</span>,<span class="va">m</span><span class="op">+</span><span class="fl">1</span>,<span class="va">s</span>,<span class="va">s</span><span class="op">)</span>,x<span class="op">=</span><span class="va">faithful</span><span class="op">$</span><span class="va">eruptions</span><span class="op">)</span><span class="op">$</span><span class="va">estimate</span>
-<span class="va">mle</span></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="EST.html#cb438-1" aria-hidden="true" tabindex="-1"></a>m<span class="ot">&lt;-</span><span class="fu">mean</span>(faithful<span class="sc">$</span>eruptions)</span>
+<span id="cb438-2"><a href="EST.html#cb438-2" aria-hidden="true" tabindex="-1"></a>s<span class="ot">&lt;-</span><span class="fu">sd</span>(faithful<span class="sc">$</span>eruptions)</span></code></pre></div>
+<p>Use the function <code>nlmax()</code> to maximize the non-linear log-likelihood function.</p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="EST.html#cb439-1" aria-hidden="true" tabindex="-1"></a>mle<span class="ot">&lt;-</span><span class="fu">nlmax</span>(loglik,<span class="at">p=</span><span class="fu">c</span>(<span class="fl">0.5</span>,m<span class="dv">-1</span>,m<span class="sc">+</span><span class="dv">1</span>,s,s),<span class="at">x=</span>faithful<span class="sc">$</span>eruptions)<span class="sc">$</span>estimate</span>
+<span id="cb439-2"><a href="EST.html#cb439-2" aria-hidden="true" tabindex="-1"></a>mle</span></code></pre></div>
 <pre><code>## [1] 0.3484040 2.0186065 4.2733410 0.2356208 0.4370633</code></pre>
 <p>So, according to our MLEs, about 34.84% of the eruptions belong to the first normal distribution (the one on the left). Furthermore the parameters of that first distribution are a mean of 2.019 and a standard deviation of 0.236. Likewise, 65.16% of the eruptions belong to the second normal with mean of 4.27 and standard deviation of 0.437.</p>
 <p>Plotting the density atop the histogram shows a fairly good fit:</p>
-<div class="sourceCode" id="cb441"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dmix2</span><span class="op">&lt;-</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">dmix</span><span class="op">(</span><span class="va">x</span>,<span class="va">mle</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,<span class="va">mle</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,<span class="va">mle</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>,<span class="va">mle</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>,<span class="va">mle</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#y_old&lt;-dmix2(seq(1,6,.01))</span>
-<span class="co">#x_old&lt;-seq(1,6,.01)</span>
-<span class="co">#dens_data&lt;-data.frame(x=x_old,y=y_old)</span>
-<span class="co">#faithful%&gt;%</span>
-<span class="co">#gf_histogram(~eruptions,fill="cyan",color = "black") %&gt;%</span>
-<span class="co">#  gf_curve(y~x,data=dens_data)%&gt;%</span>
-<span class="co">#  gf_theme(theme_bw()) %&gt;%</span>
-<span class="co">#  gf_labs(x="Duration in minutes",y="Count") </span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">faithful</span><span class="op">$</span><span class="va">eruptions</span>,breaks<span class="op">=</span><span class="fl">40</span>,freq<span class="op">=</span><span class="cn">F</span>,main<span class="op">=</span><span class="st">""</span>,xlab<span class="op">=</span><span class="st">"Duration in minutes."</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/curve.html">curve</a></span><span class="op">(</span><span class="va">dmix2</span>,from<span class="op">=</span><span class="fl">1</span>,to<span class="op">=</span><span class="fl">6</span>,add<span class="op">=</span><span class="cn">T</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:hist172-fig"></span>
-<img src="17-Estimation-Methods_files/figure-html/hist172-fig-1.png" alt="Histogram of eruption duration with estimated mixture of normals plotted on top." width="672"><p class="caption">
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="EST.html#cb441-1" aria-hidden="true" tabindex="-1"></a>dmix2<span class="ot">&lt;-</span><span class="cf">function</span>(x) <span class="fu">dmix</span>(x,mle[<span class="dv">1</span>],mle[<span class="dv">2</span>],mle[<span class="dv">3</span>],mle[<span class="dv">4</span>],mle[<span class="dv">5</span>])</span>
+<span id="cb441-2"><a href="EST.html#cb441-2" aria-hidden="true" tabindex="-1"></a><span class="co">#y_old&lt;-dmix2(seq(1,6,.01))</span></span>
+<span id="cb441-3"><a href="EST.html#cb441-3" aria-hidden="true" tabindex="-1"></a><span class="co">#x_old&lt;-seq(1,6,.01)</span></span>
+<span id="cb441-4"><a href="EST.html#cb441-4" aria-hidden="true" tabindex="-1"></a><span class="co">#dens_data&lt;-data.frame(x=x_old,y=y_old)</span></span>
+<span id="cb441-5"><a href="EST.html#cb441-5" aria-hidden="true" tabindex="-1"></a><span class="co">#faithful%&gt;%</span></span>
+<span id="cb441-6"><a href="EST.html#cb441-6" aria-hidden="true" tabindex="-1"></a><span class="co">#gf_histogram(~eruptions,fill=&quot;cyan&quot;,color = &quot;black&quot;) %&gt;%</span></span>
+<span id="cb441-7"><a href="EST.html#cb441-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  gf_curve(y~x,data=dens_data)%&gt;%</span></span>
+<span id="cb441-8"><a href="EST.html#cb441-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  gf_theme(theme_bw()) %&gt;%</span></span>
+<span id="cb441-9"><a href="EST.html#cb441-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  gf_labs(x=&quot;Duration in minutes&quot;,y=&quot;Count&quot;) </span></span>
+<span id="cb441-10"><a href="EST.html#cb441-10" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>eruptions,<span class="at">breaks=</span><span class="dv">40</span>,<span class="at">freq=</span>F,<span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Duration in minutes.&quot;</span>)</span>
+<span id="cb441-11"><a href="EST.html#cb441-11" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(dmix2,<span class="at">from=</span><span class="dv">1</span>,<span class="at">to=</span><span class="dv">6</span>,<span class="at">add=</span>T)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:hist172-fig"></span>
+<img src="17-Estimation-Methods_files/figure-html/hist172-fig-1.png" alt="Histogram of eruption duration with estimated mixture of normals plotted on top." width="672" />
+<p class="caption">
 Figure 17.4: Histogram of eruption duration with estimated mixture of normals plotted on top.
 </p>
 </div>
@@ -398,22 +363,19 @@ Figure 17.4: Histogram of eruption duration with estimated mixture of normals pl
 </div>
 </div>
 <div id="homework-problems-16" class="section level2" number="17.6">
-<h2>
-<span class="header-section-number">17.6</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-16"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">17.6</span> Homework Problems</h2>
 <ol style="list-style-type: decimal">
 <li>In the Notes, we found that if we take a sample from the uniform distribution <span class="math inline">\(\textsf{Unif}(0,\theta)\)</span>, the method of moments estimate of <span class="math inline">\(\theta\)</span> is <span class="math inline">\(\hat{\theta}_{MoM}=2\bar{x}\)</span>. Suppose our sample consists of the following values:
 <span class="math display">\[
 0.2 \hspace{0.4cm} 0.9 \hspace{0.4cm} 1.9 \hspace{0.4cm} 2.2 \hspace{0.4cm} 4.7 \hspace{0.4cm} 5.1
-\]</span>
-</li>
+\]</span></li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>What is <span class="math inline">\(\hat{\theta}_{MoM}\)</span> for this sample?<br>
+<li>What is <span class="math inline">\(\hat{\theta}_{MoM}\)</span> for this sample?<br />
 </li>
-<li>What is an wrong with this estimate?<br>
+<li>What is an wrong with this estimate?<br />
 </li>
-<li>Show that this estimator is unbiased.<br>
+<li>Show that this estimator is unbiased.<br />
 </li>
 <li>ADVANCED: Use simulation in <code>R</code> to find out how often the method of moment estimator is less the maximum observed value, (<span class="math inline">\(\hat{\theta}_{MoM} &lt; \max x\)</span>). Report an answer for various sizes of samples. You can just pick an arbitrary value for <span class="math inline">\(\theta\)</span> when you sample from the uniform. However, the minimum must be 0.</li>
 </ol>
@@ -423,45 +385,33 @@ Figure 17.4: Histogram of eruption duration with estimated mixture of normals pl
 <li><p>It is mathematically difficult to determine if the estimators found in questions 2 and 3 are unbiased. Since the sample mean is in the denominator; mathematically we may have to work with the joint pdf. So instead, use simulation to get an sense of whether the method of moments estimator for the exponential distribution is unbiased.</p></li>
 <li><p>Find a maximum likelihood estimator for <span class="math inline">\(\theta\)</span> when <span class="math inline">\(X\sim\textsf{Unif}(0,\theta)\)</span>. Compare this to the method of moments estimator we found. Hint: Do not take the derivative of the likelihood function.</p></li>
 </ol>
+
 </div>
 </div>
 
 
 
-  <div class="chapter-nav">
-<div class="prev"><a href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></div>
-<div class="next"><a href="CS3.html"><span class="header-section-number">18</span> Case Study</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#EST"><span class="header-section-number">17</span> Estimation Methods</a></li>
-<li><a class="nav-link" href="#objectives-16"><span class="header-section-number">17.1</span> Objectives</a></li>
-<li><a class="nav-link" href="#transition"><span class="header-section-number">17.2</span> Transition</a></li>
-<li><a class="nav-link" href="#estimation"><span class="header-section-number">17.3</span> Estimation</a></li>
-<li><a class="nav-link" href="#method-of-moments"><span class="header-section-number">17.4</span> Method of Moments</a></li>
-<li>
-<a class="nav-link" href="#maximum-likelihood"><span class="header-section-number">17.5</span> Maximum likelihood</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#likelihood-function"><span class="header-section-number">17.5.1</span> Likelihood Function</a></li>
-<li><a class="nav-link" href="#maximum-likelihood-estimation"><span class="header-section-number">17.5.2</span> Maximum Likelihood Estimation</a></li>
-<li><a class="nav-link" href="#numerical-methods"><span class="header-section-number">17.5.3</span> Numerical Methods</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#homework-problems-16"><span class="header-section-number">17.6</span> Homework Problems</a></li>
-</ul>
+  </main>
+
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/17-Estimation-Methods.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/17-Estimation-Methods.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
-</div>
+      </div>
     </nav>
-</div>
+  </div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-14.</p>
@@ -472,7 +422,11 @@ Figure 17.4: Histogram of eruption duration with estimated mixture of normals pl
   </div>
 
 </div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+</footer>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -484,7 +438,8 @@ Figure 17.4: Histogram of eruption duration with estimated mixture of normals pl
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+</script>
+<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
 for (let popover of popovers) {
   const div = document.createElement('div');
   div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
@@ -502,4 +457,5 @@ for (let popover of popovers) {
 }
 </script>
 </body>
+
 </html>

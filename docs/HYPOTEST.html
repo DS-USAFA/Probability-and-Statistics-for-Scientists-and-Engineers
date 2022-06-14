@@ -1,33 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 19 Hypothesis Testing | Computational Probability and Statistics</title>
-<meta name="author" content="Matthew Davis">
-<meta name="author" content="Brianna Hitt">
-<meta name="author" content="Ken Horton">
-<meta name="author" content="Bradley Warner">
-<meta name="description" content="19.1 Objectives Know and properly use the terminology of a hypothesis test. Conduct all four steps of a hypothesis test using randomization. Discuss and explain the ideas of decision errors,...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
-<meta property="og:title" content="Chapter 19 Hypothesis Testing | Computational Probability and Statistics">
-<meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover.png">
-<meta property="og:description" content="19.1 Objectives Know and properly use the terminology of a hypothesis test. Conduct all four steps of a hypothesis test using randomization. Discuss and explain the ideas of decision errors,...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 19 Hypothesis Testing | Computational Probability and Statistics">
-<meta name="twitter:description" content="19.1 Objectives Know and properly use the terminology of a hypothesis test. Conduct all four steps of a hypothesis test using randomization. Discuss and explain the ideas of decision errors,...">
-<meta name="twitter:image" content="/figures/Cover.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Chapter 19 Hypothesis Testing | Computational Probability and Statistics</title>
+
+    <meta name="author" content="Matthew Davis" />
+    <meta name="author" content="Brianna Hitt" />
+    <meta name="author" content="Ken Horton" />
+    <meta name="author" content="Bradley Warner" />
+  
+   <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="Chapter 19 Hypothesis Testing | Computational Probability and Statistics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/figures/Cover.png" />
+  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 19 Hypothesis Testing | Computational Probability and Statistics" />
+  
+  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta name="twitter:image" content="/figures/Cover.png" />
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.3.1/transition.js"></script>
+    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
+    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  <style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
-<style type="text/css">
+    <style type="text/css">
     /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
     div.csl-bib-body { }
     div.csl-entry {
@@ -49,13 +69,16 @@
       margin-left: 2em;
     }
   </style>
-<link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style.css" />
+  
 </head>
+
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -67,74 +90,34 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
+      </form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Preface</a></li>
-<li class="book-part">Descriptive Statistical Modeling</li>
-<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
-<li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
-<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
-<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
-<li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
-<li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
-<li class="book-part">Probability Modeling</li>
-<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
-<li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
-<li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
-<li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
-<li><a class="" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
-<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
-<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
-<li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
-<li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
-<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
-<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
-<li class="book-part">Statistical Modeling</li>
-<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
-<li><a class="active" href="HYPOTEST.html"><span class="header-section-number">19</span> Hypothesis Testing</a></li>
-<li><a class="" href="PVALUES.html"><span class="header-section-number">20</span> Empirical p-values</a></li>
-<li><a class="" href="CLT.html"><span class="header-section-number">21</span> Central Limit Theorem</a></li>
-<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
-<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
-<li><a class="" href="ADDTESTS.html"><span class="header-section-number">24</span> Additional Hypothesis Tests</a></li>
-<li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">25</span> Case Study</a></li>
-<li><a class="" href="LRBASICS.html"><span class="header-section-number">26</span> Linear Regression Basics</a></li>
-<li><a class="" href="LRINF.html"><span class="header-section-number">27</span> Linear Regression Inference</a></li>
-<li><a class="" href="LRDIAG.html"><span class="header-section-number">28</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">29</span> Simulation Based Linear Regression</a></li>
-<li><a class="" href="LRMULTI.html"><span class="header-section-number">30</span> Multiple Linear Regression</a></li>
-<li><a class="" href="LOGREG.html"><span class="header-section-number">31</span> Logistic Regression</a></li>
-<li><a class="" href="references.html">References</a></li>
-</ul>
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
         </div>
       </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="HYPOTEST" class="section level1" number="19">
-<h1>
-<span class="header-section-number">19</span> Hypothesis Testing<a class="anchor" aria-label="anchor" href="#HYPOTEST"><i class="fas fa-link"></i></a>
-</h1>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="HYPOTEST" class="section level1" number="19">
+<h1><span class="header-section-number">Chapter 19</span> Hypothesis Testing</h1>
 <div id="objectives-18" class="section level2" number="19.1">
-<h2>
-<span class="header-section-number">19.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-18"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">19.1</span> Objectives</h2>
 <ol style="list-style-type: decimal">
-<li>Know and properly use the terminology of a hypothesis test.<br>
+<li>Know and properly use the terminology of a hypothesis test.<br />
 </li>
-<li>Conduct all four steps of a hypothesis test using randomization.<br>
+<li>Conduct all four steps of a hypothesis test using randomization.<br />
 </li>
 <li>Discuss and explain the ideas of decision errors, one-sided versus two-sided, and choice of statistical significance.</li>
 </ol>
 </div>
 <div id="decision-making-under-uncertainty" class="section level2" number="19.2">
-<h2>
-<span class="header-section-number">19.2</span> Decision making under uncertainty<a class="anchor" aria-label="anchor" href="#decision-making-under-uncertainty"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">19.2</span> Decision making under uncertainty</h2>
 <p>At this point, it is useful to take a look at where we have been in this book and where we are going. We did this in the case study, but we want to discuss it again in a little more detail. We first looked at descriptive models to help us understand our data. This also required us to get familiar with software. We learned about graphical summaries, data collection methods, and summary metrics.</p>
 <p>Next we learned about probability models. These models allowed us to use assumptions and a small number of parameters to make statements about data and also to simulate data. We found that there is a close tie between probability models and statistical models. In our first efforts at statistical modeling, we started to use data to create estimates for parameters of a probability model. This work resulted in point estimates via method of moments and maximum likelihood.</p>
 <p>Now we are moving more in depth into statistical models. This is going to tie all the ideas together. We are going to use data from a sample and ideas of randomization to make conclusions about a population. This will require probability models, descriptive models, and some new ideas and terminology. We will generate point estimates for a metric designed to answer the research question and then find ways to determine the variability in the metric.</p>
@@ -144,18 +127,14 @@
 <p>The engines that drive the numeric results of a decision making model are either mathematical or computational. In reality, computational methods have mathematics behind them, and mathematical methods often require computer computations. The real distinction between them is the assumptions we are making about our population. Mathematical solutions typically have stricter assumptions thus leading to a tractable mathematical solution to the sampling distribution of the test statistic while computational models relax assumptions but may require extensive computational power. Like all problems, there is a trade off when one is better than the other. There is no one universal best method, some methods perform better in certain contexts. Do not think that computational methods such as the <strong>bootstrap</strong> are all you need to know.</p>
 </div>
 <div id="introduction-1" class="section level2" number="19.3">
-<h2>
-<span class="header-section-number">19.3</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction-1"><i class="fas fa-link"></i></a>
-</h2>
-<p>In this chapter we will introduce hypothesis testing. It is really an extension of our last chapter, the case study. We will put more emphasis on terms and core concepts. In this chapter we will use a computational solution but this will lead us into thinking of mathematical solutions.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;In our opinion, this is how things developed historically. However, since computational tools prior to machine computers, humans in most cases, were limited and expensive, there was a shift to mathematical solutions. The relatively recent increase and availability in machine computational power has lead to a shift back to computational methods. Thus some people think mathematical methods predate computational but that is not the case.&lt;/p&gt;"><sup>73</sup></a> The role of the analyst is always key regardless of the perceived power of the computer. The analyst must take the research question and translate it into a numeric metric for evaluation. The analyst must decide on the type of data and its collection to evaluate the question. The analyst must evaluate the variability in the metric and determine what that means in relation to the original research question. The analyst must propose an answer.</p>
+<h2><span class="header-section-number">19.3</span> Introduction</h2>
+<p>In this chapter we will introduce hypothesis testing. It is really an extension of our last chapter, the case study. We will put more emphasis on terms and core concepts. In this chapter we will use a computational solution but this will lead us into thinking of mathematical solutions.<a href="#fn73" class="footnote-ref" id="fnref73"><sup>73</sup></a> The role of the analyst is always key regardless of the perceived power of the computer. The analyst must take the research question and translate it into a numeric metric for evaluation. The analyst must decide on the type of data and its collection to evaluate the question. The analyst must evaluate the variability in the metric and determine what that means in relation to the original research question. The analyst must propose an answer.</p>
 </div>
 <div id="hypothesis-testing" class="section level2" number="19.4">
-<h2>
-<span class="header-section-number">19.4</span> Hypothesis testing<a class="anchor" aria-label="anchor" href="#hypothesis-testing"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">19.4</span> Hypothesis testing</h2>
 <p>We will continue to emphasize the ideas of hypothesis testing through a data-driven example but also via analogy to the US court system. So let’s begin our journey.</p>
 <blockquote>
-<p><strong>Example</strong>:<br>
+<p><strong>Example</strong>:<br />
 You are annoyed by TV commercials. You suspect that there were more commercials in the <em>basic</em> TV channels, typically the local area channels, than in the <em>premium</em> channels you pay extra for. To test this claim, hypothesis, you want to collect some data and decide. How would you collect his data?</p>
 </blockquote>
 <p>Here is one approach, we watch 20 random half hour shows of TV. Ten of those hours are basic TV and the other 10 are premium. In each case you record the total length of commercials in each show.</p>
@@ -165,10 +144,8 @@ Is this enough data? You decide to have your friends help you, so you actually o
 </blockquote>
 <p>We cannot determine if this is enough data without some type of subject matter knowledge. First we need to decide on what metric to use to determine if a difference exists, more to come on this, and second how big of a difference from a practical standpoint is of interest. Is a loss of 1 minute of TV show enough to say there is a difference? How about 5 minutes? These are not statistical questions, but depend on the context of the problem and often need subject matter expertise to answer. Often data is collected without thought to these considerations. There are several methods that attempt to answer these questions, they are loosely called sample size calculations. This book will not focus on sample size calculations and leave it to the reader to learn more from other sources. For the second question, the answer depends on the protocol and operating procedures used. If your friends are trained on how to measure the length of commercials, what counts as an ad, and their skills verified, then it is probably not a problem to use them to collect data. Consistency in measurement is the key.</p>
 <p>The file <code>ads.csv</code> contains the data. Let’s read the data into <code>R</code> and start to summarize. Remember to load the appropriate <code>R</code> packages.</p>
-<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ads</span><span class="op">&lt;-</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/ads.csv"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ads</span></code></pre></div>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="HYPOTEST.html#cb466-1" aria-hidden="true" tabindex="-1"></a>ads<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/ads.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="HYPOTEST.html#cb467-1" aria-hidden="true" tabindex="-1"></a>ads</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 2
 ##    basic premium
 ##    &lt;dbl&gt;   &lt;dbl&gt;
@@ -182,18 +159,16 @@ Is this enough data? You decide to have your friends help you, so you actually o
 ##  8 10.4     8.01
 ##  9 11.0     7.8 
 ## 10  8.52    9.58</code></pre>
-<div class="sourceCode" id="cb469"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">ads</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="HYPOTEST.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(ads)</span></code></pre></div>
 <pre><code>## Rows: 10
 ## Columns: 2
 ## $ basic   &lt;dbl&gt; 6.950, 10.013, 10.620, 10.150, 8.583, 7.620, 8.233, 10.350, 11~
 ## $ premium &lt;dbl&gt; 3.383, 7.800, 9.416, 4.660, 5.360, 7.630, 4.950, 8.013, 7.800,~</code></pre>
 <p>Notice that this data may not be <code>tidy</code>, what does each row represent and is it a single observations? We don’t know how the data was obtained, but if each row is a different friend who watches one basic and one premium channel, then it is possible this data is <code>tidy</code>. We want each observation to be a single show, wo let’s clean up, <code>tidy</code>, our data. Remember to ask yourself “What do I want <code>R</code> to do?” and “What does it need to do this?” We want one column that specifies the channel type and the other to specify length.</p>
-<p>We need <code>R</code> to put, <em>pivot</em>, the data into a longer form. We need the function <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>. For more information type <code><a href="https://tidyr.tidyverse.org/articles/pivot.html">vignette("pivot")</a></code> at the command prompt in <code>R</code>.</p>
-<div class="sourceCode" id="cb471"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ads</span> <span class="op">&lt;-</span> <span class="va">ads</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols<span class="op">=</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>,names_to<span class="op">=</span><span class="st">"channel"</span>,values_to <span class="op">=</span> <span class="st">"length"</span><span class="op">)</span>
-<span class="va">ads</span></code></pre></div>
+<p>We need <code>R</code> to put, <em>pivot</em>, the data into a longer form. We need the function <code>pivot_longer()</code>. For more information type <code>vignette("pivot")</code> at the command prompt in <code>R</code>.</p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="HYPOTEST.html#cb471-1" aria-hidden="true" tabindex="-1"></a>ads <span class="ot">&lt;-</span> ads <span class="sc">%&gt;%</span></span>
+<span id="cb471-2"><a href="HYPOTEST.html#cb471-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">everything</span>(),<span class="at">names_to=</span><span class="st">&quot;channel&quot;</span>,<span class="at">values_to =</span> <span class="st">&quot;length&quot;</span>)</span>
+<span id="cb471-3"><a href="HYPOTEST.html#cb471-3" aria-hidden="true" tabindex="-1"></a>ads</span></code></pre></div>
 <pre><code>## # A tibble: 20 x 2
 ##    channel length
 ##    &lt;chr&gt;    &lt;dbl&gt;
@@ -218,8 +193,7 @@ Is this enough data? You decide to have your friends help you, so you actually o
 ## 19 basic     8.52
 ## 20 premium   9.58</code></pre>
 <p>Looks good. Let’s summarize the data.</p>
-<div class="sourceCode" id="cb473"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">ads</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="HYPOTEST.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(ads)</span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
 ##      name     class levels  n missing
@@ -233,8 +207,7 @@ Is this enough data? You decide to have your friends help you, so you actually o
 ##      missing
 ## ...1       0</code></pre>
 <p>This summary is not what we want, since we want to break it down by <code>channel</code> type.</p>
-<div class="sourceCode" id="cb475"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">length</span><span class="op">~</span><span class="va">channel</span>,data<span class="op">=</span><span class="va">ads</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="HYPOTEST.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>(length<span class="sc">~</span>channel,<span class="at">data=</span>ads)</span></code></pre></div>
 <pre><code>##   channel   min      Q1 median       Q3    max   mean       sd  n missing
 ## 1   basic 6.950 8.30375  9.298 10.30000 11.016 9.2051 1.396126 10       0
 ## 2 premium 3.383 5.05250  7.715  7.95975  9.580 6.8592 2.119976 10       0</code></pre>
@@ -242,41 +215,37 @@ Is this enough data? You decide to have your friends help you, so you actually o
 <p><strong>Exercise</strong>:
 Visualize the data using a boxplot.</p>
 </blockquote>
-<div class="sourceCode" id="cb477"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ads</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_boxplot</span><span class="op">(</span><span class="va">channel</span><span class="op">~</span><span class="va">length</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Commercial Length"</span>,subtitle <span class="op">=</span> <span class="st">"Random 30 minute shows for 2 channel types"</span>,
-          x<span class="op">=</span><span class="st">"Length"</span>,y<span class="op">=</span><span class="st">"Channel Type"</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="va">theme_bw</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="19-Hypothesis-Testing_files/figure-html/unnamed-chunk-8-1.png" width="672"></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="HYPOTEST.html#cb477-1" aria-hidden="true" tabindex="-1"></a>ads <span class="sc">%&gt;%</span></span>
+<span id="cb477-2"><a href="HYPOTEST.html#cb477-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_boxplot</span>(channel<span class="sc">~</span>length) <span class="sc">%&gt;%</span></span>
+<span id="cb477-3"><a href="HYPOTEST.html#cb477-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Commercial Length&quot;</span>,<span class="at">subtitle =</span> <span class="st">&quot;Random 30 minute shows for 2 channel types&quot;</span>,</span>
+<span id="cb477-4"><a href="HYPOTEST.html#cb477-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Length&quot;</span>,<span class="at">y=</span><span class="st">&quot;Channel Type&quot;</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb477-5"><a href="HYPOTEST.html#cb477-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(theme_bw)</span></code></pre></div>
+<p><img src="19-Hypothesis-Testing_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>It appears that the <em>premium</em> channels are skewed to the left. A <code>density</code> plot may help us compare the distributions and see the skewness, Figure <a href="HYPOTEST.html#fig:dens191-fig">19.1</a>.</p>
-<div class="sourceCode" id="cb478"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ads</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_dens</span><span class="op">(</span><span class="op">~</span><span class="va">length</span>,color <span class="op">=</span> <span class="op">~</span><span class="va">channel</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Commercial Length"</span>,subtitle <span class="op">=</span> <span class="st">"Random 30 minute shows for 2 channel types"</span>,
-          x<span class="op">=</span><span class="st">"Length"</span>,y<span class="op">=</span><span class="st">"Density"</span>,color<span class="op">=</span><span class="st">"Channel Type"</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="va">theme_bw</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:dens191-fig"></span>
-<img src="19-Hypothesis-Testing_files/figure-html/dens191-fig-1.png" alt="Commercial length broken down by channel type." width="672"><p class="caption">
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="HYPOTEST.html#cb478-1" aria-hidden="true" tabindex="-1"></a>ads <span class="sc">%&gt;%</span></span>
+<span id="cb478-2"><a href="HYPOTEST.html#cb478-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_dens</span>(<span class="sc">~</span>length,<span class="at">color =</span> <span class="sc">~</span>channel)<span class="sc">%&gt;%</span></span>
+<span id="cb478-3"><a href="HYPOTEST.html#cb478-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">&quot;Commercial Length&quot;</span>,<span class="at">subtitle =</span> <span class="st">&quot;Random 30 minute shows for 2 channel types&quot;</span>,</span>
+<span id="cb478-4"><a href="HYPOTEST.html#cb478-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">x=</span><span class="st">&quot;Length&quot;</span>,<span class="at">y=</span><span class="st">&quot;Density&quot;</span>,<span class="at">color=</span><span class="st">&quot;Channel Type&quot;</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb478-5"><a href="HYPOTEST.html#cb478-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(theme_bw)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:dens191-fig"></span>
+<img src="19-Hypothesis-Testing_files/figure-html/dens191-fig-1.png" alt="Commercial length broken down by channel type." width="672" />
+<p class="caption">
 Figure 19.1: Commercial length broken down by channel type.
 </p>
 </div>
 <p>From this data, it looks like there is a difference between the two type of channels, but we must put the research question into a metric that will allow us to reach a decision. We will do this in a hypothesis test. As a reminder, the steps are</p>
 <ol style="list-style-type: decimal">
-<li>State the null and alternative hypotheses.<br>
+<li>State the null and alternative hypotheses.<br />
 </li>
-<li>Compute a test statistic.<br>
+<li>Compute a test statistic.<br />
 </li>
-<li>Determine the p-value.<br>
+<li>Determine the p-value.<br />
 </li>
 <li>Draw a conclusion.</li>
 </ol>
 <p>Before doing this, let’s visit an example of hypothesis testing that has become <em>common</em> knowledge for us, the US criminal trial system, we could also use the cadet honor system. This analogy allows to remember and apply the steps.</p>
 <div id="hypothesis-testing-in-the-us-court-system" class="section level3" number="19.4.1">
-<h3>
-<span class="header-section-number">19.4.1</span> Hypothesis testing in the US court system<a class="anchor" aria-label="anchor" href="#hypothesis-testing-in-the-us-court-system"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">19.4.1</span> Hypothesis testing in the US court system</h3>
 <p>A US court considers two possible claims about a defendant: she is either innocent or guilty. Imagine you are the prosecutor. If we set these claims up in a hypothesis framework, the null hypothesis is that the defendant is innocent and the alternative is guilty. Your job as the prosecutor is to use evidence to demonstrate to the jury that the alternative hypothesis is the reasonable conclusion.</p>
 <p>The jury considers whether the evidence under the null hypothesis, innocence, is so convincing (strong) that there is no reasonable doubt regarding the person’s guilt. That is, the skeptical perspective (null hypothesis) is that the person is innocent until evidence is presented that convinces the jury that the person is guilty (alternative hypothesis).</p>
 <p>Jurors examine the evidence under the assumption of innocence to see whether the evidence is so unlikely that it convincingly shows a defendant is guilty. Notice that if a jury finds a defendant <strong>not guilty</strong>, this does not necessarily mean the jury is confident in the person’s innocence. They are simply not convinced of the alternative that the person is guilty.</p>
@@ -285,24 +254,18 @@ Figure 19.1: Commercial length broken down by channel type.
 <p>Now back to our problem.</p>
 </div>
 <div id="step-1--state-the-null-and-alternative-hypotheses" class="section level3" number="19.4.2">
-<h3>
-<span class="header-section-number">19.4.2</span> Step 1- State the null and alternative hypotheses<a class="anchor" aria-label="anchor" href="#step-1--state-the-null-and-alternative-hypotheses"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">19.4.2</span> Step 1- State the null and alternative hypotheses</h3>
 <p>The first step is to translate the research question into hypotheses. As a reminder, our research question is <em>do premium channels have less ad time than basic channels?</em> In collecting the data, we already decided the total length of time of commercials in a 30 minute shows was the correct data for answering this question. We believe that premium channels have less commercial time. However, the null hypothesis, the straw man, has to be the default case that makes it possible to generate a sampling distribution.</p>
 <ol style="list-style-type: lower-roman">
-<li>
-<span class="math inline">\(H_0\)</span>: <strong>Null hypothesis</strong>. The distribution of length of commercials in premium and basic channels is the same.</li>
-<li>
-<span class="math inline">\(H_A\)</span>: <strong>Alternative hypothesis</strong>. The distribution of length of commercials in premium and basic channels is different.</li>
+<li><span class="math inline">\(H_0\)</span>: <strong>Null hypothesis</strong>. The distribution of length of commercials in premium and basic channels is the same.</li>
+<li><span class="math inline">\(H_A\)</span>: <strong>Alternative hypothesis</strong>. The distribution of length of commercials in premium and basic channels is different.</li>
 </ol>
 <p>These hypotheses are vague, what does it mean to be different and how do we measure and summarize this? Let’s move to the second step and then come back and modify our hypotheses. Notice that the null states the distributions are the same. When we generate our sampling distribution of the test statistic, we will sample under this null.</p>
 </div>
 <div id="step-2---compute-a-test-statistic." class="section level3" number="19.4.3">
-<h3>
-<span class="header-section-number">19.4.3</span> Step 2 - Compute a test statistic.<a class="anchor" aria-label="anchor" href="#step-2---compute-a-test-statistic."><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">19.4.3</span> Step 2 - Compute a test statistic.</h3>
 <blockquote>
-<p><strong>Exercise</strong>:<br>
+<p><strong>Exercise</strong>:<br />
 What type of metric could we use to test for a difference in commercials between the two channels?</p>
 </blockquote>
 <p>There are many ways for the distributions of lengths of commercials to differ. The easiest is to think of the summary statistics such as mean, median, standard deviation, or some combination of all of these. Historically, for mathematical reasons, it has been common to look at differences in measures of centrality, mean or median. The second consideration is what kind of difference? For example a ratio or an actual difference, subtraction. Again for historical reasons, the difference in means has been used as a measure. To keep things interesting, and to force those with some high school stats experience to think about this problem differently, we are going to use a different metric than has historically been used and taught. This also requires us to write some of our own code. Later we will ask you to complete the same analysis with a different test statistic either with your own code or using code from <code>mosaic</code>.</p>
@@ -310,84 +273,68 @@ What type of metric could we use to test for a difference in commercials between
 <p><span class="math inline">\(H_0\)</span>: <strong>Null hypothesis</strong>. The distribution of length of commercials in premium and basic channels is the same.</p>
 <p><span class="math inline">\(H_A\)</span>: <strong>Alternative hypothesis</strong>. The distribution of length of commercials in premium and basic channels are different because the median length of basic channels ads is bigger than premium.</p>
 <p>First let’s calculate the median length of commercials for your data.</p>
-<div class="sourceCode" id="cb479"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">median</a></span><span class="op">(</span><span class="va">length</span><span class="op">~</span><span class="va">channel</span>,data<span class="op">=</span><span class="va">ads</span><span class="op">)</span> </code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="HYPOTEST.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(length<span class="sc">~</span>channel,<span class="at">data=</span>ads) </span></code></pre></div>
 <pre><code>##   basic premium 
 ##   9.298   7.715</code></pre>
 <p>so the ratio is</p>
-<div class="sourceCode" id="cb481"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">median</a></span><span class="op">(</span><span class="va">length</span><span class="op">~</span><span class="va">channel</span>,data<span class="op">=</span><span class="va">ads</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">/</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">median</a></span><span class="op">(</span><span class="va">length</span><span class="op">~</span><span class="va">channel</span>,data<span class="op">=</span><span class="va">ads</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="HYPOTEST.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(length<span class="sc">~</span>channel,<span class="at">data=</span>ads)[<span class="dv">1</span>]<span class="sc">/</span><span class="fu">median</span>(length<span class="sc">~</span>channel,<span class="at">data=</span>ads)[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>##    basic 
 ## 1.205185</code></pre>
 <p>Let’s put this into a function.</p>
-<div class="sourceCode" id="cb483"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">metric</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">temp</span><span class="op">&lt;-</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">/</span><span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"test_stat"</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
-<div class="sourceCode" id="cb484"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">metric</span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">median</a></span><span class="op">(</span><span class="va">length</span><span class="op">~</span><span class="va">channel</span>,data<span class="op">=</span><span class="va">ads</span><span class="op">)</span> <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="HYPOTEST.html#cb483-1" aria-hidden="true" tabindex="-1"></a>metric <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb483-2"><a href="HYPOTEST.html#cb483-2" aria-hidden="true" tabindex="-1"></a>  temp<span class="ot">&lt;-</span>x[<span class="dv">1</span>]<span class="sc">/</span>x[<span class="dv">2</span>]</span>
+<span id="cb483-3"><a href="HYPOTEST.html#cb483-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(temp) <span class="ot">&lt;-</span> <span class="st">&quot;test_stat&quot;</span></span>
+<span id="cb483-4"><a href="HYPOTEST.html#cb483-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(temp)</span>
+<span id="cb483-5"><a href="HYPOTEST.html#cb483-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="HYPOTEST.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metric</span>(<span class="fu">median</span>(length<span class="sc">~</span>channel,<span class="at">data=</span>ads) )</span></code></pre></div>
 <pre><code>## test_stat 
 ##  1.205185</code></pre>
 <p>Now the observed value of the test statistic is saved in an object.</p>
-<div class="sourceCode" id="cb486"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">obs</span><span class="op">&lt;-</span><span class="fu">metric</span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">median</a></span><span class="op">(</span><span class="va">length</span><span class="op">~</span><span class="va">channel</span>,data<span class="op">=</span><span class="va">ads</span><span class="op">)</span> <span class="op">)</span>
-<span class="va">obs</span></code></pre></div>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="HYPOTEST.html#cb486-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">metric</span>(<span class="fu">median</span>(length<span class="sc">~</span>channel,<span class="at">data=</span>ads) )</span>
+<span id="cb486-2"><a href="HYPOTEST.html#cb486-2" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
 <pre><code>## test_stat 
 ##  1.205185</code></pre>
 <p>Here is what we have done; we needed a single number metric to use in evaluating the null and alternative hypotheses. The null is that they have the same distribution and the alternative is that they don’t. To measure the alternative we decided to use a ratio of the medians. If the number is close to 1 then the medians are not different. There may be other ways in which the distributions are different but we have decided on the ratio of medians.</p>
 </div>
 <div id="step-3---determine-the-p-value." class="section level3" number="19.4.4">
-<h3>
-<span class="header-section-number">19.4.4</span> Step 3 - Determine the p-value.<a class="anchor" aria-label="anchor" href="#step-3---determine-the-p-value."><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">19.4.4</span> Step 3 - Determine the p-value.</h3>
 <p>As a reminder, the <strong>p-value</strong> is the probability of our observed test statistic or more extreme given the null hypothesis. Since our null hypothesis is that the distributions are the same we can use a <strong>randomization</strong>, permutation, test. We will shuffle the channel labels since under the null they are irrelevant. Here is the code for one run.</p>
-<div class="sourceCode" id="cb488"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">371</span><span class="op">)</span>
-<span class="fu">metric</span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">median</a></span><span class="op">(</span><span class="va">length</span><span class="op">~</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">channel</span><span class="op">)</span>,data<span class="op">=</span><span class="va">ads</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="HYPOTEST.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">371</span>)</span>
+<span id="cb488-2"><a href="HYPOTEST.html#cb488-2" aria-hidden="true" tabindex="-1"></a><span class="fu">metric</span>(<span class="fu">median</span>(length<span class="sc">~</span><span class="fu">shuffle</span>(channel),<span class="at">data=</span>ads))</span></code></pre></div>
 <pre><code>## test_stat 
 ## 0.9957097</code></pre>
 <p>Let’s generate our empirical sampling distribution of the test statistic we developed.</p>
-<div class="sourceCode" id="cb490"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu">metric</span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">median</a></span><span class="op">(</span><span class="va">length</span><span class="op">~</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">channel</span><span class="op">)</span>,data<span class="op">=</span><span class="va">ads</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="HYPOTEST.html#cb490-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span><span class="fu">metric</span>(<span class="fu">median</span>(length<span class="sc">~</span><span class="fu">shuffle</span>(channel),<span class="at">data=</span>ads))</span></code></pre></div>
 <p>Next we create a plot of the distribution of the ratio of medians commercial length in basic and premium channels assuming they come from the same population, Figure <a href="HYPOTEST.html#fig:hist191-fig">19.2</a>.</p>
-<div class="sourceCode" id="cb491"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">test_stat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span><span class="va">obs</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Test statistic"</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:hist191-fig"></span>
-<img src="19-Hypothesis-Testing_files/figure-html/hist191-fig-1.png" alt="Historgram of the sampling distribution by an approxiamte permutation test" width="672"><p class="caption">
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="HYPOTEST.html#cb491-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb491-2"><a href="HYPOTEST.html#cb491-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>test_stat) <span class="sc">%&gt;%</span></span>
+<span id="cb491-3"><a href="HYPOTEST.html#cb491-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span>obs ) <span class="sc">%&gt;%</span></span>
+<span id="cb491-4"><a href="HYPOTEST.html#cb491-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb491-5"><a href="HYPOTEST.html#cb491-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Test statistic&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:hist191-fig"></span>
+<img src="19-Hypothesis-Testing_files/figure-html/hist191-fig-1.png" alt="Historgram of the sampling distribution by an approxiamte permutation test" width="672" />
+<p class="caption">
 Figure 19.2: Historgram of the sampling distribution by an approxiamte permutation test
 </p>
 </div>
 <p>Notice that this distribution is centered on 1 and appears to be roughly symmetrical. The vertical line is our observed value of the test statistic. It seems to be in the tail, larger than expected if the channels came from the same distribution. Let’s calculate the p-value.</p>
-<div class="sourceCode" id="cb492"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>p_value <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">test_stat</span><span class="op">&gt;=</span><span class="va">obs</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="HYPOTEST.html#cb492-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb492-2"><a href="HYPOTEST.html#cb492-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">p_value =</span> <span class="fu">mean</span>(test_stat<span class="sc">&gt;=</span>obs))</span></code></pre></div>
 <pre><code>##   p_value
 ## 1   0.026</code></pre>
-<p>Before proceeding, we have a technical question: Should we include the observed data in the calculation of the p-value? The answer is that most people would conclude that the original data is one of the possible permutations and thus include it. This practice will also insure that the p-value from a randomization test is never zero. In practice, this simply means adding 1 to both the numerator and denominator. The <strong>mosaic</strong> package has done this with the <code><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1()</a></code> function.</p>
-<div class="sourceCode" id="cb494"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">test_stat</span><span class="op">&gt;=</span><span class="va">obs</span><span class="op">)</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<p>Before proceeding, we have a technical question: Should we include the observed data in the calculation of the p-value? The answer is that most people would conclude that the original data is one of the possible permutations and thus include it. This practice will also insure that the p-value from a randomization test is never zero. In practice, this simply means adding 1 to both the numerator and denominator. The <strong>mosaic</strong> package has done this with the <code>prop1()</code> function.</p>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="HYPOTEST.html#cb494-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop1</span>(<span class="sc">~</span>(test_stat<span class="sc">&gt;=</span>obs),<span class="at">data=</span>results)</span></code></pre></div>
 <pre><code>##  prop_TRUE 
 ## 0.02697303</code></pre>
 <p>The test we performed is called a one-sided test since we only checked if the median length for the basic channels is larger than that of the premium. In this case of a one-sided test, more extreme meant a number much bigger than 1. A two-sided test is also common, in fact it is the more common, and is used if we did not apriori think one channel had longer commercials than the other. In this case we find the p-value by doubling the single-sided value. This is the case because more extreme could have happened in either tail.</p>
 </div>
 <div id="step-4---draw-a-conclusion" class="section level3" number="19.4.5">
-<h3>
-<span class="header-section-number">19.4.5</span> Step 4 - Draw a conclusion<a class="anchor" aria-label="anchor" href="#step-4---draw-a-conclusion"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">19.4.5</span> Step 4 - Draw a conclusion</h3>
 <p>In the last lesson we encountered a study from the 1970’s that explored whether there was strong evidence that women were less likely to be promoted than men. The research question – are females discriminated against in promotion decisions made by male managers? – was framed in the context of hypotheses:</p>
 <ol style="list-style-type: lower-roman">
-<li>
-<span class="math inline">\(H_0\)</span>: Gender has no effect on promotion decisions.<br>
+<li><span class="math inline">\(H_0\)</span>: Gender has no effect on promotion decisions.<br />
 </li>
-<li>
-<span class="math inline">\(H_A\)</span>: Women are discriminated against in promotion decisions.</li>
+<li><span class="math inline">\(H_A\)</span>: Women are discriminated against in promotion decisions.</li>
 </ol>
 <p>We used a difference in promotion proportions as our test statistic. The null hypothesis (<span class="math inline">\(H_0\)</span>) was a perspective of no difference. The data provided a point estimate of a -29.2% difference in recommended promotion rates between men and women. We determined that such a difference from chance alone would be rare: it would only happen about 2 in 100 times. When results like these are inconsistent with <span class="math inline">\(H_0\)</span>, we reject <span class="math inline">\(H_0\)</span> in favor of <span class="math inline">\(H_A\)</span>. Here, we concluded there was evidence of discrimination against women.</p>
 <p>The 2-in-100 chance is the p-value, which is a probability quantifying the strength of the evidence against the null hypothesis and in favor of the alternative.</p>
@@ -401,15 +348,13 @@ Figure 19.2: Historgram of the sampling distribution by an approxiamte permutati
 What’s so special about 0.05? We often use a threshold of 0.05 to determine whether a result is statistically significant. But why 0.05? Maybe we should use a bigger number, or maybe a smaller number. If you’re a little puzzled, that probably means you’re reading with a critical eye – good job! There are many <a href="http://www.openintro.org/why05%7D%7Bwww.openintro.org/why05">video clips</a> that explain the use of 0.05. Sometimes it’s also a good idea to deviate from the standard and it depends on the risk that the decision maker wants in terms of the two types of errors.</p>
 </blockquote>
 <blockquote>
-<p><strong>Exercise</strong>:<br>
+<p><strong>Exercise</strong>:<br />
 Using our p-value make a decision.</p>
 </blockquote>
 <p>Based on our data, if there were really no difference in the distribution of lengths of commercials in 30 minute shows between basic and premium channels then the probability of finding our observed ratio of medians is 0.027. Since this is less than our significance level of 0.05, we reject the null in favor of the alternative that the basic channel has longer commercials.</p>
 </div>
 <div id="decision-errors" class="section level3" number="19.4.6">
-<h3>
-<span class="header-section-number">19.4.6</span> Decision errors<a class="anchor" aria-label="anchor" href="#decision-errors"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">19.4.6</span> Decision errors</h3>
 <p>Hypothesis tests are not flawless. Just think of the court system: innocent people are sometimes wrongly convicted and the guilty sometimes walk free. Similarly, data can point to the wrong conclusion. However, what distinguishes statistical hypothesis tests from a court system is that our framework allows us to quantify and control how often the data lead us to the incorrect conclusion.</p>
 <p>There are two competing hypotheses: the null and the alternative. In a hypothesis test, we make a statement about which one might be true, but we might choose incorrectly. There are four possible scenarios in a hypothesis test, which are summarized below.</p>
 <p><span class="math display">\[
@@ -421,47 +366,43 @@ Using our p-value make a decision.</p>
 \]</span></p>
 <p>A <strong>Type 1</strong> Error, also called a <strong>false positive</strong>, is rejecting the null hypothesis when <span class="math inline">\(H_0\)</span> is actually true. Since we rejected the null hypothesis in the gender discrimination and the commercial length studies, it is possible that we made a Type 1 Error in one or both of those studies. A <strong>Type 2</strong> Error, also called a <strong>false negative</strong>, is failing to reject the null hypothesis when the alternative is actually true.</p>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 In a US court, the defendant is either innocent (<span class="math inline">\(H_0\)</span>) or guilty (<span class="math inline">\(H_A\)</span>). What does a Type 1 Error represent in this context? What does a Type 2 Error represent?</p>
 </blockquote>
 <p>If the court makes a Type 1 Error, this means the defendant is innocent (<span class="math inline">\(H_0\)</span> true) but wrongly convicted. A Type 2 Error means the court failed to reject <span class="math inline">\(H_0\)</span> (i.e. failed to convict the person) when she was in fact guilty (<span class="math inline">\(H_A\)</span> true).</p>
 <blockquote>
-<p><strong>Exercise</strong>:<br>
-Consider the commercial length study where we concluded basic channels had longer commercials than premium channels. What would a Type 1 Error represent in this context?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Making a Type 1 Error in this context would mean that there is no difference in commercial length between basic and premium channels, despite the strong evidence (the data suggesting otherwise) found in the observational study. Notice that this does &lt;strong&gt;not&lt;/strong&gt; necessarily mean something was wrong with the data or that we made a computational mistake. Sometimes data simply point us to the wrong conclusion, which is why scientific studies are often repeated to check initial findings. Replication is part of the scientific method.&lt;/p&gt;"><sup>74</sup></a></p>
+<p><strong>Exercise</strong>:<br />
+Consider the commercial length study where we concluded basic channels had longer commercials than premium channels. What would a Type 1 Error represent in this context?<a href="#fn74" class="footnote-ref" id="fnref74"><sup>74</sup></a></p>
 </blockquote>
 <blockquote>
-<p><strong>Exercise</strong>:<br>
+<p><strong>Exercise</strong>:<br />
 How could we reduce the Type 1 Error rate in US courts? What influence would this have on the Type 2 Error rate?</p>
 </blockquote>
 <p>To lower the Type 1 Error rate, we might raise our standard for conviction from “beyond a reasonable doubt” to “beyond a conceivable doubt” so fewer people would be wrongly convicted. However, this would also make it more difficult to convict the people who are actually guilty, so we would make more Type 2 Errors.</p>
 <blockquote>
-<p><strong>Exercise</strong>:<br>
+<p><strong>Exercise</strong>:<br />
 How could we reduce the Type 2 Error rate in US courts? What influence would this have on the Type 1 Error rate?</p>
 </blockquote>
 <p>To lower the Type 2 Error rate, we want to convict more guilty people. We could lower the standards for conviction from “beyond a reasonable doubt” to “beyond a little doubt”. Lowering the bar for guilt will also result in more wrongful convictions, raising the Type 1 Error rate. Think about the cadet honor system, its metric of evaluation, and the impact on the types of errors.</p>
 <p>These exercises provide an important lesson: if we reduce how often we make one type of error, we generally make more of the other type for given amount of data, information.</p>
 </div>
 <div id="choosing-a-significance-level" class="section level3" number="19.4.7">
-<h3>
-<span class="header-section-number">19.4.7</span> Choosing a significance level<a class="anchor" aria-label="anchor" href="#choosing-a-significance-level"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">19.4.7</span> Choosing a significance level</h3>
 <p>Choosing a significance level for a test is important in many contexts, and the traditional level is 0.05. However, it is sometimes helpful to adjust the significance level based on the application. We may select a level that is smaller or larger than 0.05 depending on the consequences of any conclusions reached from the test.</p>
 <p>If making a Type 1 Error is dangerous or especially costly, we should choose a small significance level (e.g. 0.01 or 0.001). Under this scenario, we want to be very cautious about rejecting the null hypothesis, so we demand very strong evidence favoring the alternative <span class="math inline">\(H_A\)</span> before we would reject <span class="math inline">\(H_0\)</span>.</p>
 <p>If a Type 2 Error is relatively more dangerous or much more costly than a Type 1 Error, then we should choose a higher significance level (e.g. 0.10). Here we want to be cautious about failing to reject <span class="math inline">\(H_0\)</span> when the null is actually false. The significance level selected for a test should reflect the real-world consequences associated with making a Type 1 or Type 2 Error.</p>
 </div>
 <div id="introducing-two-sided-hypotheses" class="section level3" number="19.4.8">
-<h3>
-<span class="header-section-number">19.4.8</span> Introducing two-sided hypotheses<a class="anchor" aria-label="anchor" href="#introducing-two-sided-hypotheses"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">19.4.8</span> Introducing two-sided hypotheses</h3>
 <p>So far we have explored whether women were discriminated against and whether commercials were longer depending on the type of channel. In these two case studies, we’ve actually ignored some possibilities:</p>
 <ol style="list-style-type: decimal">
-<li>What if <strong>men</strong> are actually discriminated against?<br>
+<li>What if <strong>men</strong> are actually discriminated against?<br />
 </li>
 <li>What if ads on premium channels are actually <strong>longer</strong>?</li>
 </ol>
 <p>These possibilities weren’t considered in our hypotheses or analyses. This may have seemed natural since the data pointed in the directions in which we framed the problems. However, there are two dangers if we ignore possibilities that disagree with our data or that conflict with our worldview:</p>
 <ol style="list-style-type: decimal">
-<li>Framing an alternative hypothesis simply to match the direction that the data point will generally inflate the Type 1 Error rate. After all the work we’ve done (and will continue to do) to rigorously control the error rates in hypothesis tests, careless construction of the alternative hypotheses can disrupt that hard work.<br>
+<li>Framing an alternative hypothesis simply to match the direction that the data point will generally inflate the Type 1 Error rate. After all the work we’ve done (and will continue to do) to rigorously control the error rates in hypothesis tests, careless construction of the alternative hypotheses can disrupt that hard work.<br />
 </li>
 <li>If we only use alternative hypotheses that agree with our worldview, then we’re going to be subjecting ourselves to <strong>confirmation bias</strong>, which means we are looking for data that supports our ideas. That’s not very scientific, and we can do better!</li>
 </ol>
@@ -469,9 +410,7 @@ How could we reduce the Type 2 Error rate in US courts? What influence would thi
 </div>
 </div>
 <div id="two-sided-hypothesis-test" class="section level2" number="19.5">
-<h2>
-<span class="header-section-number">19.5</span> Two-sided hypothesis test<a class="anchor" aria-label="anchor" href="#two-sided-hypothesis-test"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">19.5</span> Two-sided hypothesis test</h2>
 <p>It is important to distinguish between a <em>two-sided</em> hypothesis test and a <em>one-sided</em> test. In a two-sided test, we are concerned with whether or not the population parameter could take a particular value. For parameter <span class="math inline">\(\theta\)</span>, a set of two-sided hypotheses looks like:</p>
 <p><span class="math display">\[
 H_0: \theta=\theta_0 \hspace{0.75cm} H_1: \theta\neq \theta_0
@@ -486,28 +425,23 @@ H_0: \theta = \theta_0 \hspace{0.75cm} H_1:\theta&lt;\theta_0
 \]</span></p>
 <p>In some texts, one-sided null hypotheses include an inequality (<span class="math inline">\(\geq\)</span> or <span class="math inline">\(\leq\)</span>). We have demonstrated one-sided tests and in the next example we will use a two-sided test.</p>
 <div id="example-cpr" class="section level3" number="19.5.1">
-<h3>
-<span class="header-section-number">19.5.1</span> Example CPR<a class="anchor" aria-label="anchor" href="#example-cpr"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">19.5.1</span> Example CPR</h3>
 <p>Cardiopulmonary resuscitation (CPR) is a procedure used on individuals suffering a heart attack when other emergency resources are unavailable. This procedure is helpful in providing some blood circulation to keep a person alive, but CPR chest compressions can also cause internal injuries. Internal bleeding and other injuries that can result from CPR complicate additional treatment efforts. For instance, blood thinners may be used to help release a clot that is causing the heart attack once a patient arrives in the hospital. However, blood thinners negatively affect internal injuries.</p>
-<p>Here we consider an experiment with patients who underwent CPR for a heart attack and were subsequently admitted to a hospital.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;“Efficacy and safety of thrombolytic therapy after initially unsuccessful cardiopulmonary resuscitation: a prospective clinical trial.” The Lancet, 2001.&lt;/p&gt;"><sup>75</sup></a> Each patient was randomly assigned to either receive a blood thinner (treatment group) or not receive a blood thinner (control group). The outcome variable of interest was whether the patient survived for at least 24 hours.</p>
+<p>Here we consider an experiment with patients who underwent CPR for a heart attack and were subsequently admitted to a hospital.<a href="#fn75" class="footnote-ref" id="fnref75"><sup>75</sup></a> Each patient was randomly assigned to either receive a blood thinner (treatment group) or not receive a blood thinner (control group). The outcome variable of interest was whether the patient survived for at least 24 hours.</p>
 </div>
 <div id="step-1--state-the-null-and-alternative-hypotheses-1" class="section level3" number="19.5.2">
-<h3>
-<span class="header-section-number">19.5.2</span> Step 1- State the null and alternative hypotheses<a class="anchor" aria-label="anchor" href="#step-1--state-the-null-and-alternative-hypotheses-1"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">19.5.2</span> Step 1- State the null and alternative hypotheses</h3>
 <blockquote>
 <p><strong>Exercise</strong>:
 Form hypotheses for this study in plain and statistical language. Let <span class="math inline">\(p_c\)</span> represent the true survival rate of people who do not receive a blood thinner (corresponding to the control group) and <span class="math inline">\(p_t\)</span> represent the survival rate for people receiving a blood thinner (corresponding to the treatment group).</p>
 </blockquote>
 <p>We want to understand whether blood thinners are helpful or harmful. We’ll consider both of these possibilities using a two-sided hypothesis test.</p>
-<p><span class="math inline">\(H_0\)</span>: Blood thinners do not have an overall survival effect, experimental treatment is independent of survival rate. <span class="math inline">\(p_c - p_t = 0\)</span>.<br><span class="math inline">\(H_A\)</span>: Blood thinners have an impact on survival, either positive or negative, but not zero. <span class="math inline">\(p_c - p_t \neq 0\)</span>.</p>
+<p><span class="math inline">\(H_0\)</span>: Blood thinners do not have an overall survival effect, experimental treatment is independent of survival rate. <span class="math inline">\(p_c - p_t = 0\)</span>.<br />
+<span class="math inline">\(H_A\)</span>: Blood thinners have an impact on survival, either positive or negative, but not zero. <span class="math inline">\(p_c - p_t \neq 0\)</span>.</p>
 <p>Notice here that we accelerated the process by already defining our test statistic, our metric, in the hypothesis. It is the difference in survival rates for the control and treatment groups. This is a similar metric to what we used in the case study. We could use others but this will allow us to use functions from the <strong>mosaic</strong> package and will also help us to understand metrics for mathematically derived sampling distributions.</p>
 <p>There were 50 patients in the experiment who did not receive a blood thinner and 40 patients who did. The study results are in the file <code>blood_thinner.csv</code>.</p>
-<div class="sourceCode" id="cb496"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">thinner</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/blood_thinner.csv"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb497"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">thinner</span></code></pre></div>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="HYPOTEST.html#cb496-1" aria-hidden="true" tabindex="-1"></a>thinner <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/blood_thinner.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="HYPOTEST.html#cb497-1" aria-hidden="true" tabindex="-1"></a>thinner</span></code></pre></div>
 <pre><code>## # A tibble: 90 x 2
 ##    group     outcome 
 ##    &lt;chr&gt;     &lt;chr&gt;   
@@ -523,8 +457,7 @@ Form hypotheses for this study in plain and statistical language. Let <span clas
 ## 10 treatment survived
 ## # ... with 80 more rows</code></pre>
 <p>Let’s put it in a table.</p>
-<div class="sourceCode" id="cb499"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">group</span><span class="op">+</span><span class="va">outcome</span>,data<span class="op">=</span><span class="va">thinner</span>,margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="HYPOTEST.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(<span class="sc">~</span>group<span class="sc">+</span>outcome,<span class="at">data=</span>thinner,<span class="at">margins =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##            outcome
 ## group       died survived Total
 ##   control     39       11    50
@@ -532,89 +465,76 @@ Form hypotheses for this study in plain and statistical language. Let <span clas
 ##   Total       65       25    90</code></pre>
 </div>
 <div id="step-2---compute-a-test-statistic.-1" class="section level3" number="19.5.3">
-<h3>
-<span class="header-section-number">19.5.3</span> Step 2 - Compute a test statistic.<a class="anchor" aria-label="anchor" href="#step-2---compute-a-test-statistic.-1"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">19.5.3</span> Step 2 - Compute a test statistic.</h3>
 <p>The test statistic we have selected is the difference in survival rate in the control group versus the treatment group. The following <code>R</code> finds the observed proportions.</p>
-<div class="sourceCode" id="cb501"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">outcome</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">thinner</span>,margins <span class="op">=</span> <span class="cn">TRUE</span>,format<span class="op">=</span><span class="st">"proportion"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="HYPOTEST.html#cb501-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tally</span>(outcome<span class="sc">~</span>group,<span class="at">data=</span>thinner,<span class="at">margins =</span> <span class="cn">TRUE</span>,<span class="at">format=</span><span class="st">&quot;proportion&quot;</span>)</span></code></pre></div>
 <pre><code>##           group
 ## outcome    control treatment
 ##   died        0.78      0.65
 ##   survived    0.22      0.35
 ##   Total       1.00      1.00</code></pre>
 <p>Notice the formula we used to get the correct variable in the column for the summary proportions.</p>
-<p>The observed test statistic can now be found.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Observed control survival rate: &lt;span class="math inline"&gt;\(p_c = \frac{11}{50} = 0.22\)&lt;/span&gt;. Treatment survival rate: &lt;span class="math inline"&gt;\(p_t = \frac{14}{40} = 0.35\)&lt;/span&gt;. Observed difference: &lt;span class="math inline"&gt;\(\hat{p}_c - \hat{p}_t = 0.22 - 0.35 = - 0.13\)&lt;/span&gt;.&lt;/p&gt;'><sup>76</sup></a></p>
-<div class="sourceCode" id="cb503"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffprop</a></span><span class="op">(</span><span class="va">outcome</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">thinner</span><span class="op">)</span>
-<span class="va">obs</span></code></pre></div>
+<p>The observed test statistic can now be found.<a href="#fn76" class="footnote-ref" id="fnref76"><sup>76</sup></a></p>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="HYPOTEST.html#cb503-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">diffprop</span>(outcome<span class="sc">~</span>group,<span class="at">data=</span>thinner)</span>
+<span id="cb503-2"><a href="HYPOTEST.html#cb503-2" aria-hidden="true" tabindex="-1"></a>obs</span></code></pre></div>
 <pre><code>## diffprop 
 ##    -0.13</code></pre>
 <p>Based on the point estimate, for patients who have undergone CPR outside of the hospital, an additional 13% of these patients survive when they are treated with blood thinners. However, we wonder if this difference could be easily explainable by chance.</p>
 </div>
 <div id="step-3---determine-the-p-value.-1" class="section level3" number="19.5.4">
-<h3>
-<span class="header-section-number">19.5.4</span> Step 3 - Determine the p-value.<a class="anchor" aria-label="anchor" href="#step-3---determine-the-p-value.-1"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">19.5.4</span> Step 3 - Determine the p-value.</h3>
 <p>As we did in our past two studies, we will simulate what type of differences we might see from chance alone under the null hypothesis. By randomly assigning <em>simulated treatment</em> and <em>simulated control</em> stickers to the patients’ files, we get a new grouping. If we repeat this simulation 10,000 times, we can build a <strong>null distribution</strong> of the differences, this is our empirical sampling distribution.</p>
-<div class="sourceCode" id="cb505"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">655</span><span class="op">)</span>
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffprop</a></span><span class="op">(</span><span class="va">outcome</span><span class="op">~</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span>,data<span class="op">=</span><span class="va">thinner</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="HYPOTEST.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">655</span>)</span>
+<span id="cb505-2"><a href="HYPOTEST.html#cb505-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">diffprop</span>(outcome<span class="sc">~</span><span class="fu">shuffle</span>(group),<span class="at">data=</span>thinner)</span></code></pre></div>
 <p>Figure <a href="HYPOTEST.html#fig:dens912-fig">19.3</a> is a histogram of the estimated sampling distribution.</p>
-<div class="sourceCode" id="cb506"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">diffprop</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span><span class="va">obs</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Test statistic"</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:dens912-fig"></span>
-<img src="19-Hypothesis-Testing_files/figure-html/dens912-fig-1.png" alt="Histogram of the estiamted sampling distribution." width="672"><p class="caption">
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="HYPOTEST.html#cb506-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb506-2"><a href="HYPOTEST.html#cb506-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>diffprop) <span class="sc">%&gt;%</span></span>
+<span id="cb506-3"><a href="HYPOTEST.html#cb506-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_vline</span>(<span class="at">xintercept =</span>obs ) <span class="sc">%&gt;%</span></span>
+<span id="cb506-4"><a href="HYPOTEST.html#cb506-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb506-5"><a href="HYPOTEST.html#cb506-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Test statistic&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:dens912-fig"></span>
+<img src="19-Hypothesis-Testing_files/figure-html/dens912-fig-1.png" alt="Histogram of the estiamted sampling distribution." width="672" />
+<p class="caption">
 Figure 19.3: Histogram of the estiamted sampling distribution.
 </p>
 </div>
 <p>Notice how it is centered on zero, the assumption of no difference. Also notice that it is unimodal and symmetrical. We will use this when we develop mathematical sampling distributions.</p>
-<div class="sourceCode" id="cb507"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">diffprop</span><span class="op">&lt;=</span><span class="va">obs</span><span class="op">)</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="HYPOTEST.html#cb507-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop1</span>(<span class="sc">~</span>(diffprop<span class="sc">&lt;=</span>obs),<span class="at">data=</span>results)</span></code></pre></div>
 <pre><code>## prop_TRUE 
 ## 0.1283872</code></pre>
 <p>The left tail area is about 0.13. (Note: it is only a coincidence that we also have <span class="math inline">\(\hat{p}_c - \hat{p}_t= - 0.13\)</span>.) However, contrary to how we calculated the p-value in previous studies, the p-value of this test is not 0.13!</p>
 <p>The p-value is defined as the chance we observe a result at least as favorable to the alternative hypothesis as the result (i.e. the difference) we observe. In this case, any differences greater than or equal to 0.13 would also provide equally strong evidence favoring the alternative hypothesis as a difference of - 0.13. A difference of 0.13 would correspond to 13% higher survival rate in the treatment group than the control group.</p>
-<p>There is something different in this study than in the past studies: in this study, we are particularly interested in whether blood thinners increase <strong>or</strong> decrease the risk of death in patients who undergo CPR before arriving at the hospital.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Realistically, we probably are interested in either direction in the past studies as well, and so we should have used the approach we now discuss in this section. However, for simplicity and the sake of not introducing too many concepts at once, we skipped over these details in earlier sections.&lt;/p&gt;"><sup>77</sup></a></p>
+<p>There is something different in this study than in the past studies: in this study, we are particularly interested in whether blood thinners increase <strong>or</strong> decrease the risk of death in patients who undergo CPR before arriving at the hospital.<a href="#fn77" class="footnote-ref" id="fnref77"><sup>77</sup></a></p>
 <p>For a two-sided test, take the single tail (in this case, 0.13) and double it to get the p-value: 0.26.</p>
 </div>
 <div id="step-4---draw-a-conclusion-1" class="section level3" number="19.5.5">
-<h3>
-<span class="header-section-number">19.5.5</span> Step 4 - Draw a conclusion<a class="anchor" aria-label="anchor" href="#step-4---draw-a-conclusion-1"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">19.5.5</span> Step 4 - Draw a conclusion</h3>
 <p>Since this p-value is larger than 0.05, we do not reject the null hypothesis. That is, we do not find statistically significant evidence that the blood thinner has any influence on survival of patients who undergo CPR prior to arriving at the hospital. Once again, we can discuss the causal conclusion since this is an experiment.</p>
 <blockquote>
 <p><strong>Default to a two-sided test</strong>
 We want to be rigorous and keep an open mind when we analyze data and evidence. Use a one-sided hypothesis test only if you truly have interest in only one direction.</p>
 </blockquote>
 <blockquote>
-<p><strong>Computing a p-value for a two-sided test</strong><br>
+<p><strong>Computing a p-value for a two-sided test</strong><br />
 First compute the p-value for one tail of the distribution, then double that value to get the two-sided p-value. That’s it!</p>
 </blockquote>
 <p>It is never okay to change two-sided tests to one-sided tests after observing the data.</p>
 <blockquote>
-<p><strong>Hypothesis tests should be set up before seeing the data</strong><br>
+<p><strong>Hypothesis tests should be set up before seeing the data</strong><br />
 After observing data, it is tempting to turn a two-sided test into a one-sided test. Avoid this temptation. Hypotheses should be set up <strong>before</strong> observing the data.</p>
 </blockquote>
 </div>
 <div id="how-to-use-a-hypothesis-test" class="section level3" number="19.5.6">
-<h3>
-<span class="header-section-number">19.5.6</span> How to use a hypothesis test<a class="anchor" aria-label="anchor" href="#how-to-use-a-hypothesis-test"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">19.5.6</span> How to use a hypothesis test</h3>
 <p>This is a summary of the general framework for using hypothesis testing. It is the same steps with just slightly different wording.</p>
 <ol style="list-style-type: decimal">
 <li>Frame the research question in terms of hypotheses.</li>
 </ol>
 <p>Hypothesis tests are appropriate for research questions that can be summarized in two competing hypotheses. The null hypothesis (<span class="math inline">\(H_0\)</span>) usually represents a skeptical perspective or a perspective of no difference. The alternative hypothesis (<span class="math inline">\(H_A\)</span>) usually represents a new view or a difference.</p>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Collect data with an observational study or experiment.<br>
+<li><p>Collect data with an observational study or experiment.<br />
 If a research question can be formed into two hypotheses, we can collect data to run a hypothesis test. If the research question focuses on associations between variables but does not concern causation, we would run an observational study. If the research question seeks a causal connection between two or more variables, then an experiment should be used.</p></li>
-<li><p>Analyze the data.<br>
+<li><p>Analyze the data.<br />
 Choose an analysis technique appropriate for the data and identify the p-value. So far, we’ve only seen one analysis technique: randomization. We’ll encounter several new methods suitable for many other contexts.</p></li>
 <li><p>Form a conclusion.
 Using the p-value from the analysis, determine whether the data provide statistically significant evidence against the null hypothesis. Also, be sure to write the conclusion in plain language so casual readers can understand the results.</p></li>
@@ -622,18 +542,16 @@ Using the p-value from the analysis, determine whether the data provide statisti
 </div>
 </div>
 <div id="homework-problems-18" class="section level2" number="19.6">
-<h2>
-<span class="header-section-number">19.6</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-18"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">19.6</span> Homework Problems</h2>
 <ol style="list-style-type: decimal">
 <li>Repeat the analysis of the commercial length in the notes. This time use a different test statistic.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>State the null and alternative hypotheses.<br>
+<li>State the null and alternative hypotheses.<br />
 </li>
-<li>Compute a test statistic. Remember to use something different than what was used above.<br>
+<li>Compute a test statistic. Remember to use something different than what was used above.<br />
 </li>
-<li>Determine the p-value.<br>
+<li>Determine the p-value.<br />
 </li>
 <li>Draw a conclusion.</li>
 </ol>
@@ -659,57 +577,40 @@ Using the p-value from the analysis, determine whether the data provide statisti
 <li>The traditional belief is that yawning is contagious – one yawn can lead to another yawn, which might lead to another, and so on. In this exercise, there was the option of selecting a one-sided or two-sided test. Which would you recommend (or which did you choose)? Justify your answer in 1-3 sentences.</li>
 <li>How did you select your level of significance? Explain in 1-3 sentences.</li>
 </ol>
-</div>
-</div>
 
-  <div class="chapter-nav">
-<div class="prev"><a href="CS3.html"><span class="header-section-number">18</span> Case Study</a></div>
-<div class="next"><a href="PVALUES.html"><span class="header-section-number">20</span> Empirical p-values</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#HYPOTEST"><span class="header-section-number">19</span> Hypothesis Testing</a></li>
-<li><a class="nav-link" href="#objectives-18"><span class="header-section-number">19.1</span> Objectives</a></li>
-<li><a class="nav-link" href="#decision-making-under-uncertainty"><span class="header-section-number">19.2</span> Decision making under uncertainty</a></li>
-<li><a class="nav-link" href="#introduction-1"><span class="header-section-number">19.3</span> Introduction</a></li>
-<li>
-<a class="nav-link" href="#hypothesis-testing"><span class="header-section-number">19.4</span> Hypothesis testing</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#hypothesis-testing-in-the-us-court-system"><span class="header-section-number">19.4.1</span> Hypothesis testing in the US court system</a></li>
-<li><a class="nav-link" href="#step-1--state-the-null-and-alternative-hypotheses"><span class="header-section-number">19.4.2</span> Step 1- State the null and alternative hypotheses</a></li>
-<li><a class="nav-link" href="#step-2---compute-a-test-statistic."><span class="header-section-number">19.4.3</span> Step 2 - Compute a test statistic.</a></li>
-<li><a class="nav-link" href="#step-3---determine-the-p-value."><span class="header-section-number">19.4.4</span> Step 3 - Determine the p-value.</a></li>
-<li><a class="nav-link" href="#step-4---draw-a-conclusion"><span class="header-section-number">19.4.5</span> Step 4 - Draw a conclusion</a></li>
-<li><a class="nav-link" href="#decision-errors"><span class="header-section-number">19.4.6</span> Decision errors</a></li>
-<li><a class="nav-link" href="#choosing-a-significance-level"><span class="header-section-number">19.4.7</span> Choosing a significance level</a></li>
-<li><a class="nav-link" href="#introducing-two-sided-hypotheses"><span class="header-section-number">19.4.8</span> Introducing two-sided hypotheses</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#two-sided-hypothesis-test"><span class="header-section-number">19.5</span> Two-sided hypothesis test</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#example-cpr"><span class="header-section-number">19.5.1</span> Example CPR</a></li>
-<li><a class="nav-link" href="#step-1--state-the-null-and-alternative-hypotheses-1"><span class="header-section-number">19.5.2</span> Step 1- State the null and alternative hypotheses</a></li>
-<li><a class="nav-link" href="#step-2---compute-a-test-statistic.-1"><span class="header-section-number">19.5.3</span> Step 2 - Compute a test statistic.</a></li>
-<li><a class="nav-link" href="#step-3---determine-the-p-value.-1"><span class="header-section-number">19.5.4</span> Step 3 - Determine the p-value.</a></li>
-<li><a class="nav-link" href="#step-4---draw-a-conclusion-1"><span class="header-section-number">19.5.5</span> Step 4 - Draw a conclusion</a></li>
-<li><a class="nav-link" href="#how-to-use-a-hypothesis-test"><span class="header-section-number">19.5.6</span> How to use a hypothesis test</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#homework-problems-18"><span class="header-section-number">19.6</span> Homework Problems</a></li>
-</ul>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="73">
+<li id="fn73"><p>In our opinion, this is how things developed historically. However, since computational tools prior to machine computers, humans in most cases, were limited and expensive, there was a shift to mathematical solutions. The relatively recent increase and availability in machine computational power has lead to a shift back to computational methods. Thus some people think mathematical methods predate computational but that is not the case.<a href="HYPOTEST.html#fnref73" class="footnote-back">↩︎</a></p></li>
+<li id="fn74"><p>Making a Type 1 Error in this context would mean that there is no difference in commercial length between basic and premium channels, despite the strong evidence (the data suggesting otherwise) found in the observational study. Notice that this does <strong>not</strong> necessarily mean something was wrong with the data or that we made a computational mistake. Sometimes data simply point us to the wrong conclusion, which is why scientific studies are often repeated to check initial findings. Replication is part of the scientific method.<a href="HYPOTEST.html#fnref74" class="footnote-back">↩︎</a></p></li>
+<li id="fn75"><p>“Efficacy and safety of thrombolytic therapy after initially unsuccessful cardiopulmonary resuscitation: a prospective clinical trial.” The Lancet, 2001.<a href="HYPOTEST.html#fnref75" class="footnote-back">↩︎</a></p></li>
+<li id="fn76"><p>Observed control survival rate: <span class="math inline">\(p_c = \frac{11}{50} = 0.22\)</span>. Treatment survival rate: <span class="math inline">\(p_t = \frac{14}{40} = 0.35\)</span>. Observed difference: <span class="math inline">\(\hat{p}_c - \hat{p}_t = 0.22 - 0.35 = - 0.13\)</span>.<a href="HYPOTEST.html#fnref76" class="footnote-back">↩︎</a></p></li>
+<li id="fn77"><p>Realistically, we probably are interested in either direction in the past studies as well, and so we should have used the approach we now discuss in this section. However, for simplicity and the sake of not introducing too many concepts at once, we skipped over these details in earlier sections.<a href="HYPOTEST.html#fnref77" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+  </main>
+
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/19-Hypothesis-Testing.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/19-Hypothesis-Testing.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
-</div>
+      </div>
     </nav>
-</div>
+  </div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-14.</p>
@@ -720,7 +621,11 @@ Using the p-value from the analysis, determine whether the data provide statisti
   </div>
 
 </div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+</footer>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -732,7 +637,8 @@ Using the p-value from the analysis, determine whether the data provide statisti
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+</script>
+<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
 for (let popover of popovers) {
   const div = document.createElement('div');
   div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
@@ -750,4 +656,5 @@ for (let popover of popovers) {
 }
 </script>
 </body>
+
 </html>

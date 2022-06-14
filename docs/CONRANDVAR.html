@@ -1,33 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 11 Continuous Random Variables | Computational Probability and Statistics</title>
-<meta name="author" content="Matthew Davis">
-<meta name="author" content="Brianna Hitt">
-<meta name="author" content="Ken Horton">
-<meta name="author" content="Bradley Warner">
-<meta name="description" content="11.1 Objectives Define and properly use the new terms to include probability density function (pdf) and cumulative distribution function (cdf) for continuous random variables. Given a continuous...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
-<meta property="og:title" content="Chapter 11 Continuous Random Variables | Computational Probability and Statistics">
-<meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover.png">
-<meta property="og:description" content="11.1 Objectives Define and properly use the new terms to include probability density function (pdf) and cumulative distribution function (cdf) for continuous random variables. Given a continuous...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 11 Continuous Random Variables | Computational Probability and Statistics">
-<meta name="twitter:description" content="11.1 Objectives Define and properly use the new terms to include probability density function (pdf) and cumulative distribution function (cdf) for continuous random variables. Given a continuous...">
-<meta name="twitter:image" content="/figures/Cover.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Chapter 11 Continuous Random Variables | Computational Probability and Statistics</title>
+
+    <meta name="author" content="Matthew Davis" />
+    <meta name="author" content="Brianna Hitt" />
+    <meta name="author" content="Ken Horton" />
+    <meta name="author" content="Bradley Warner" />
+  
+   <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="Chapter 11 Continuous Random Variables | Computational Probability and Statistics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/figures/Cover.png" />
+  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 11 Continuous Random Variables | Computational Probability and Statistics" />
+  
+  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta name="twitter:image" content="/figures/Cover.png" />
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.3.1/transition.js"></script>
+    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
+    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  <style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
-<style type="text/css">
+    <style type="text/css">
     /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
     div.csl-bib-body { }
     div.csl-entry {
@@ -49,13 +69,16 @@
       margin-left: 2em;
     }
   </style>
-<link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style.css" />
+  
 </head>
+
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -67,88 +90,44 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
+      </form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Preface</a></li>
-<li class="book-part">Descriptive Statistical Modeling</li>
-<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
-<li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
-<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
-<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
-<li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
-<li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
-<li class="book-part">Probability Modeling</li>
-<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
-<li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
-<li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
-<li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
-<li><a class="active" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
-<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
-<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
-<li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
-<li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
-<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
-<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
-<li class="book-part">Statistical Modeling</li>
-<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
-<li><a class="" href="HYPOTEST.html"><span class="header-section-number">19</span> Hypothesis Testing</a></li>
-<li><a class="" href="PVALUES.html"><span class="header-section-number">20</span> Empirical p-values</a></li>
-<li><a class="" href="CLT.html"><span class="header-section-number">21</span> Central Limit Theorem</a></li>
-<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
-<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
-<li><a class="" href="ADDTESTS.html"><span class="header-section-number">24</span> Additional Hypothesis Tests</a></li>
-<li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">25</span> Case Study</a></li>
-<li><a class="" href="LRBASICS.html"><span class="header-section-number">26</span> Linear Regression Basics</a></li>
-<li><a class="" href="LRINF.html"><span class="header-section-number">27</span> Linear Regression Inference</a></li>
-<li><a class="" href="LRDIAG.html"><span class="header-section-number">28</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">29</span> Simulation Based Linear Regression</a></li>
-<li><a class="" href="LRMULTI.html"><span class="header-section-number">30</span> Multiple Linear Regression</a></li>
-<li><a class="" href="LOGREG.html"><span class="header-section-number">31</span> Logistic Regression</a></li>
-<li><a class="" href="references.html">References</a></li>
-</ul>
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
         </div>
       </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="CONRANDVAR" class="section level1" number="11">
-<h1>
-<span class="header-section-number">11</span> Continuous Random Variables<a class="anchor" aria-label="anchor" href="#CONRANDVAR"><i class="fas fa-link"></i></a>
-</h1>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="CONRANDVAR" class="section level1" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Continuous Random Variables</h1>
 <div id="objectives-10" class="section level2" number="11.1">
-<h2>
-<span class="header-section-number">11.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-10"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">11.1</span> Objectives</h2>
 <ol style="list-style-type: decimal">
-<li>Define and properly use the new terms to include probability density function (pdf) and cumulative distribution function (cdf) for continuous random variables.<br>
+<li>Define and properly use the new terms to include probability density function (pdf) and cumulative distribution function (cdf) for continuous random variables.<br />
 </li>
-<li>Given a continuous random variable, find probabilities using the pdf and/or the cdf.<br>
+<li>Given a continuous random variable, find probabilities using the pdf and/or the cdf.<br />
 </li>
 <li>Find the mean and variance of a continuous random variable.</li>
 </ol>
 </div>
 <div id="continuous-random-variables" class="section level2" number="11.2">
-<h2>
-<span class="header-section-number">11.2</span> Continuous random variables<a class="anchor" aria-label="anchor" href="#continuous-random-variables"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">11.2</span> Continuous random variables</h2>
 <p>In the last lesson, we introduced random variables, and explored discrete random variables. In this lesson, we will move into continuous random variables, their properties, their distribution functions, and how they differ from discrete random variables.</p>
 <p>Recall that a continuous random variable has a domain that is a continuous interval (or possibly a group of intervals). For example, let <span class="math inline">\(Y\)</span> be the random variable corresponding to the height of a randomly selected individual. While our measurement will necessitate “discretizing” height to some degree, technically, height is a continuous random variable since a person could measure 67.3 inches or 67.4 inches or anything in between.</p>
 <div id="continuous-distribution-functions" class="section level3" number="11.2.1">
-<h3>
-<span class="header-section-number">11.2.1</span> Continuous distribution functions<a class="anchor" aria-label="anchor" href="#continuous-distribution-functions"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">11.2.1</span> Continuous distribution functions</h3>
 <p>So how do we describe the randomness of continuous random variables? In the case of discrete random variables, the probability mass function (pmf) and the cumulative distribution function (cdf) are used to describe randomness. However, recall that the pmf is a function that returns the probability that the random variable takes the inputted value. Due to the nature of continuous random variables, the probability that a continuous random variable takes on any one individual value is technically 0. Thus, a pmf cannot apply to a continuous random variable.</p>
 <p>Rather, we describe the randomness of continuous random variables with the <em>probability density function</em> (pdf) and the <em>cumulative distribution function</em> (cdf). Note that the cdf has the same interpretation and application as in the discrete case.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div id="probability-density-function" class="section level3" number="11.2.2">
-<h3>
-<span class="header-section-number">11.2.2</span> Probability density function<a class="anchor" aria-label="anchor" href="#probability-density-function"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">11.2.2</span> Probability density function</h3>
 <p>Let <span class="math inline">\(X\)</span> be a continuous random variable. The probability density function (pdf) of <span class="math inline">\(X\)</span>, given by <span class="math inline">\(f_X(x)\)</span> is a function that describes the behavior of <span class="math inline">\(X\)</span>. It is important to note that in the continuous case, <span class="math inline">\(f_X(x)\neq \mbox{P}(X=x)\)</span>, as the probability of <span class="math inline">\(X\)</span> taking any one individual value is 0.</p>
 <p>The pdf is a <em>function</em>. The input of a pdf is any real number. The output is known as the density. The pdf has three main properties:</p>
 <ol style="list-style-type: decimal">
@@ -159,36 +138,30 @@
 <p>Properties 2) and 3) imply that the area underneath a pdf represents probability. The pdf is a non-negative function, it cannot have negative values.</p>
 </div>
 <div id="cumulative-distribution-function-1" class="section level3" number="11.2.3">
-<h3>
-<span class="header-section-number">11.2.3</span> Cumulative distribution function<a class="anchor" aria-label="anchor" href="#cumulative-distribution-function-1"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">11.2.3</span> Cumulative distribution function</h3>
 <p>The cumulative distribution function (cdf) of a continuous random variable has the same interpretation as it does for a discrete random variable. It is a <em>function</em>. The input of a cdf is any real number, and the output is the probability that the random variable takes a value less than or equal to the inputted value. It is denoted as <span class="math inline">\(F\)</span> and is given by:
 <span class="math display">\[
 F_X(x)=\mbox{P}(X\leq x)=\int_{-\infty}^x f_x(t) \mathop{}\!\mathrm{d}t
 \]</span></p>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 Let <span class="math inline">\(X\)</span> be a continuous random variable with <span class="math inline">\(f_X(x)=2x\)</span> where <span class="math inline">\(0 \leq x \leq 1\)</span>. Verify that <span class="math inline">\(f\)</span> is a valid pdf. Find the cdf of <span class="math inline">\(X\)</span>. Also, find the following probabilities: <span class="math inline">\(\mbox{P}(X&lt;0.5)\)</span>, <span class="math inline">\(\mbox{P}(X&gt;0.5)\)</span>, and <span class="math inline">\(\mbox{P}(0.1\leq X &lt; 0.75)\)</span>. Finally, find the median of <span class="math inline">\(X\)</span>.</p>
 </blockquote>
 <p>To verify that <span class="math inline">\(f\)</span> is a valid pdf, we simply note that <span class="math inline">\(f_X(x) \geq 0\)</span> on the range <span class="math inline">\(0 \leq x \leq 1\)</span>. Also, we note that <span class="math inline">\(\int_0^1 2x \mathop{}\!\mathrm{d}x = x^2\bigg|_0^1 = 1\)</span>.</p>
 <p>Using <code>R</code>, we find</p>
-<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="CONRANDVAR.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)<span class="dv">2</span><span class="sc">*</span>x,<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## 1 with absolute error &lt; 1.1e-14</code></pre>
 <p>Or we can use the <strong>mosaicCalc</strong> package to find the anti-derivative. If the package is not installed, you can use the <code>Packages</code> tab in <code>RStudio</code> or type <code>install.packages("mosaicCalc")</code> at the command prompt. Load the library.</p>
-<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ProjectMOSAIC/mosaicCalc">mosaicCalc</a></span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">Fx</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCalc/man/Calculus.html">antiD</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span><span class="op">~</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="CONRANDVAR.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaicCalc)</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="CONRANDVAR.html#cb251-1" aria-hidden="true" tabindex="-1"></a>(Fx<span class="ot">&lt;-</span><span class="fu">antiD</span>(<span class="dv">2</span><span class="sc">*</span>x<span class="sc">~</span>x))</span></code></pre></div>
 <pre><code>## function (x, C = 0) 
 ## 1 * x^2 + C</code></pre>
-<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">Fx</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">-</span><span class="fu">Fx</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="CONRANDVAR.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Fx</span>(<span class="dv">1</span>)<span class="sc">-</span><span class="fu">Fx</span>(<span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 Graphically, the pdf is displayed in Figure <a href="CONRANDVAR.html#fig:plot111-fig">11.1</a>:
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:plot111-fig"></span>
-<img src="11-Continuous-Random-Variables_files/figure-html/plot111-fig-1.png" alt="pdf of $X$" width="672"><p class="caption">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:plot111-fig"></span>
+<img src="11-Continuous-Random-Variables_files/figure-html/plot111-fig-1.png" alt="pdf of $X$" width="672" />
+<p class="caption">
 Figure 11.1: pdf of <span class="math inline">\(X\)</span>
 </p>
 </div>
@@ -203,64 +176,56 @@ This is <code>antiD</code> found from the calculations above.</p>
 F_X(x)=\left\{ \begin{array}{ll} 0, &amp; x&lt;0 \\ x^2, &amp; 0\leq x \leq 1 \\ 1, &amp; x&gt;1 \end{array}\right.
 \]</span></p>
 <p>The plot of the cdf of <span class="math inline">\(X\)</span> is shown in Figure <a href="CONRANDVAR.html#fig:plot112-fig">11.2</a>.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:plot112-fig"></span>
-<img src="11-Continuous-Random-Variables_files/figure-html/plot112-fig-1.png" alt="cdf of $X$" width="672"><p class="caption">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:plot112-fig"></span>
+<img src="11-Continuous-Random-Variables_files/figure-html/plot112-fig-1.png" alt="cdf of $X$" width="672" />
+<p class="caption">
 Figure 11.2: cdf of <span class="math inline">\(X\)</span>
 </p>
 </div>
 <p>Probabilities are found either by integrating the pdf or using the cdf:</p>
 <p><span class="math inline">\(\mbox{P}(X &lt; 0.5)=\mbox{P}(X\leq 0.5)=F_X(0.5)=0.5^2=0.25\)</span>. See Figure <a href="CONRANDVAR.html#fig:plot113-fig">11.3</a>.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:plot113-fig"></span>
-<img src="11-Continuous-Random-Variables_files/figure-html/plot113-fig-1.png" alt="Probability represented by shaded area" width="672"><p class="caption">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:plot113-fig"></span>
+<img src="11-Continuous-Random-Variables_files/figure-html/plot113-fig-1.png" alt="Probability represented by shaded area" width="672" />
+<p class="caption">
 Figure 11.3: Probability represented by shaded area
 </p>
 </div>
 <p><span class="math inline">\(\mbox{P}(X &gt; 0.5) = 1-\mbox{P}(X\leq 0.5)=1-0.25 = 0.75\)</span> See Figure <a href="CONRANDVAR.html#fig:plot114-fig">11.4</a>.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:plot114-fig"></span>
-<img src="11-Continuous-Random-Variables_files/figure-html/plot114-fig-1.png" alt="Probability represented by shaded area" width="672"><p class="caption">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:plot114-fig"></span>
+<img src="11-Continuous-Random-Variables_files/figure-html/plot114-fig-1.png" alt="Probability represented by shaded area" width="672" />
+<p class="caption">
 Figure 11.4: Probability represented by shaded area
 </p>
 </div>
 <p><span class="math inline">\(\mbox{P}(0.1\leq X &lt; 0.75) = \int_{0.1}^{0.75}2x\mathop{}\!\mathrm{d}x = 0.75^2 - 0.1^2 = 0.5525\)</span> See Figure <a href="CONRANDVAR.html#fig:plot115-fig">11.5</a>.</p>
-<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span>,<span class="fl">.1</span>,<span class="fl">.75</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="CONRANDVAR.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)<span class="dv">2</span><span class="sc">*</span>x,.<span class="dv">1</span>,.<span class="dv">75</span>)</span></code></pre></div>
 <pre><code>## 0.5525 with absolute error &lt; 6.1e-15</code></pre>
 <p>Alternatively, <span class="math inline">\(\mbox{P}(0.1\leq X &lt; 0.75) = \mbox{P}(X &lt; 0.75) -\mbox{P}(x \leq 0.1) = F(0.75)-F(0.1)=0.75^2-0.1^2 =0.5525\)</span></p>
-<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">Fx</span><span class="op">(</span><span class="fl">0.75</span><span class="op">)</span><span class="op">-</span><span class="fu">Fx</span><span class="op">(</span><span class="fl">0.1</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="CONRANDVAR.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Fx</span>(<span class="fl">0.75</span>)<span class="sc">-</span><span class="fu">Fx</span>(<span class="fl">0.1</span>)</span></code></pre></div>
 <pre><code>## [1] 0.5525</code></pre>
 <p>Notice for a continuous random variable, we are loose with the use of the <code>=</code> sign. This is because for a continuous random variable <span class="math inline">\(\mbox{P}(X=x)=0\)</span>. Do not get sloppy when working with discrete random variables.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:plot115-fig"></span>
-<img src="11-Continuous-Random-Variables_files/figure-html/plot115-fig-1.png" alt="Probability represented by shaded area" width="672"><p class="caption">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:plot115-fig"></span>
+<img src="11-Continuous-Random-Variables_files/figure-html/plot115-fig-1.png" alt="Probability represented by shaded area" width="672" />
+<p class="caption">
 Figure 11.5: Probability represented by shaded area
 </p>
 </div>
 <p>The median of <span class="math inline">\(X\)</span> is the value <span class="math inline">\(x\)</span> such that <span class="math inline">\(\mbox{P}(X\leq x)=0.5\)</span>, the area under a single point is 0. So we simply solve <span class="math inline">\(x^2=0.5\)</span> for <span class="math inline">\(x\)</span>. Thus, the median of <span class="math inline">\(X\)</span> is <span class="math inline">\(\sqrt{0.5}=0.707\)</span>.</p>
 <p>Or using <code>R</code></p>
-<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/uniroot.html">uniroot</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">(</span><span class="fu">Fx</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">-</span><span class="fl">.5</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">root</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="CONRANDVAR.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">uniroot</span>(<span class="cf">function</span>(x)(<span class="fu">Fx</span>(x)<span class="sc">-</span>.<span class="dv">5</span>),<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))<span class="sc">$</span>root</span></code></pre></div>
 <pre><code>## [1] 0.7071067</code></pre>
 </div>
 <div id="simulation-1" class="section level3" number="11.2.4">
-<h3>
-<span class="header-section-number">11.2.4</span> Simulation<a class="anchor" aria-label="anchor" href="#simulation-1"><i class="fas fa-link"></i></a>
-</h3>
-<p>As in the case of the discrete random variable, we can simulate a continuous random variable if we have an inverse for the cdf. The range of the cdf is <span class="math inline">\([0,1]\)</span>, so we generate a random number in this interval and then apply the inverse cdf to obtain a random variable. In a similar manner, for a continuous random variable, we use the following pseudo code:<br>
-1. Generate a random number in the interval <span class="math inline">\([0,1]\)</span>, <span class="math inline">\(U\)</span>.<br>
-2. Find the random variable <span class="math inline">\(X\)</span> from <span class="math inline">\(F_{X}^{-1}(U)\)</span>.<br>
+<h3><span class="header-section-number">11.2.4</span> Simulation</h3>
+<p>As in the case of the discrete random variable, we can simulate a continuous random variable if we have an inverse for the cdf. The range of the cdf is <span class="math inline">\([0,1]\)</span>, so we generate a random number in this interval and then apply the inverse cdf to obtain a random variable. In a similar manner, for a continuous random variable, we use the following pseudo code:<br />
+1. Generate a random number in the interval <span class="math inline">\([0,1]\)</span>, <span class="math inline">\(U\)</span>.<br />
+2. Find the random variable <span class="math inline">\(X\)</span> from <span class="math inline">\(F_{X}^{-1}(U)\)</span>.<br />
 In <code>R</code> for our example, this looks like the following.</p>
-<div class="sourceCode" id="cb261"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="CONRANDVAR.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">1</span>))</span></code></pre></div>
 <pre><code>## [1] 0.6137365</code></pre>
-<div class="sourceCode" id="cb263"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="CONRANDVAR.html#cb263-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">10000</span>)<span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">1</span>))</span></code></pre></div>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="CONRANDVAR.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>(results)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
 ##      name   class         min        Q1    median        Q3       max      mean
@@ -269,32 +234,27 @@ In <code>R</code> for our example, this looks like the following.</p>
 ## ...1 0.2358056 10000       0</code></pre>
 <div style="page-break-after: always;"></div>
 <p>Figure <a href="CONRANDVAR.html#fig:plot116-fig">11.6</a> is a density plot of the simulated density function.</p>
-<div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_density</span><span class="op">(</span><span class="op">~</span><span class="va">sqrt</span>,xlab<span class="op">=</span><span class="st">"X"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"X"</span>,y<span class="op">=</span><span class="st">""</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:plot116-fig"></span>
-<img src="11-Continuous-Random-Variables_files/figure-html/plot116-fig-1.png" alt="Density plot of the simulated random variable." width="672"><p class="caption">
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="CONRANDVAR.html#cb266-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span></span>
+<span id="cb266-2"><a href="CONRANDVAR.html#cb266-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_density</span>(<span class="sc">~</span>sqrt,<span class="at">xlab=</span><span class="st">&quot;X&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb266-3"><a href="CONRANDVAR.html#cb266-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_bw</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb266-4"><a href="CONRANDVAR.html#cb266-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;X&quot;</span>,<span class="at">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:plot116-fig"></span>
+<img src="11-Continuous-Random-Variables_files/figure-html/plot116-fig-1.png" alt="Density plot of the simulated random variable." width="672" />
+<p class="caption">
 Figure 11.6: Density plot of the simulated random variable.
 </p>
 </div>
 </div>
 </div>
 <div id="moments-1" class="section level2" number="11.3">
-<h2>
-<span class="header-section-number">11.3</span> Moments<a class="anchor" aria-label="anchor" href="#moments-1"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">11.3</span> Moments</h2>
 <p>As with discrete random variables, moments can be calculated to summarize characteristics such as center and spread. In the discrete case, expectation is found by multiplying each possible value by its associated probability and summing across the domain (<span class="math inline">\(\mbox{E}(X)=\sum_x x\cdot f_X(x)\)</span>). In the continuous case, the domain of <span class="math inline">\(X\)</span> consists of an infinite set of values. From your calculus days, recall that the sum across an infinite domain is represented by an integral.</p>
 <p>Let <span class="math inline">\(g(X)\)</span> be any function of <span class="math inline">\(X\)</span>. The expectation of <span class="math inline">\(g(X)\)</span> is found by:
 <span class="math display">\[
 \mbox{E}(g(X)) = \int_{S_X} g(x)f_X(x)\mathop{}\!\mathrm{d}x
 \]</span></p>
 <div id="mean-and-variance" class="section level3" number="11.3.1">
-<h3>
-<span class="header-section-number">11.3.1</span> Mean and variance<a class="anchor" aria-label="anchor" href="#mean-and-variance"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">11.3.1</span> Mean and variance</h3>
 <p>Let <span class="math inline">\(X\)</span> be a continuous random variable. The mean of <span class="math inline">\(X\)</span>, or <span class="math inline">\(\mu_X\)</span>, is simply <span class="math inline">\(\mbox{E}(X)\)</span>. Thus,
 <span class="math display">\[
 \mbox{E}(X)=\int_{S_X}x\cdot f_X(x)\mathop{}\!\mathrm{d}x
@@ -308,7 +268,7 @@ Figure 11.6: Density plot of the simulated random variable.
 \mbox{Var}(X)=\mbox{E}(X^2)-\mbox{E}(X)^2 = \int_{S_X} x^2\cdot f_X(x)\mathop{}\!\mathrm{d}x - \mu_X^2
 \]</span></p>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 Consider the random variable <span class="math inline">\(X\)</span> from above. Find the mean and variance of <span class="math inline">\(X\)</span>.
 <span class="math display">\[
 \mu_X= \mbox{E}(X)=\int_0^1 x\cdot 2x\mathop{}\!\mathrm{d}x = \frac{2x^3}{3}\bigg|_0^1 = \frac{2}{3}=0.667
@@ -316,101 +276,80 @@ Consider the random variable <span class="math inline">\(X\)</span> from above. 
 </blockquote>
 <p>Side note: Since the mean of <span class="math inline">\(X\)</span> is smaller than the median of <span class="math inline">\(X\)</span>, we say that <span class="math inline">\(X\)</span> is skewed to the left, or negatively skewed.</p>
 <p>Using <code>R</code>.</p>
-<div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="va">x</span><span class="op">*</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="CONRANDVAR.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)x<span class="sc">*</span><span class="dv">2</span><span class="sc">*</span>x,<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## 0.6666667 with absolute error &lt; 7.4e-15</code></pre>
-<p>Or using <code><a href="https://rdrr.io/pkg/mosaicCalc/man/Calculus.html">antiD()</a></code></p>
-<div class="sourceCode" id="cb269"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Ex</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCalc/man/Calculus.html">antiD</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">~</span><span class="va">x</span><span class="op">)</span>
-<span class="fu">Ex</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">-</span><span class="fu">Ex</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></code></pre></div>
+<p>Or using <code>antiD()</code></p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="CONRANDVAR.html#cb269-1" aria-hidden="true" tabindex="-1"></a>Ex<span class="ot">&lt;-</span><span class="fu">antiD</span>(<span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span><span class="sc">~</span>x)</span>
+<span id="cb269-2"><a href="CONRANDVAR.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Ex</span>(<span class="dv">1</span>)<span class="sc">-</span><span class="fu">Ex</span>(<span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## [1] 0.6666667</code></pre>
 <p>Using our simulation.</p>
-<div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="op">~</span><span class="va">sqrt</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="CONRANDVAR.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="sc">~</span>sqrt,<span class="at">data=</span>results)</span></code></pre></div>
 <pre><code>## [1] 0.6669452</code></pre>
 <p><span class="math display">\[
 \sigma^2_X = \mbox{Var}(X)= \mbox{E}(X^2)-\mbox{E}(X)^2 = \int_0^1 x^2\cdot 2x\mathop{}\!\mathrm{d}x - \left(\frac{2}{3}\right)^2 = \frac{2x^4}{4}\bigg|_0^1-\frac{4}{9}=\frac{1}{2}-\frac{4}{9}=\frac{1}{18}=0.056
 \]</span></p>
-<div class="sourceCode" id="cb273"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">$</span><span class="va">value</span><span class="op">-</span><span class="op">(</span><span class="fl">2</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="CONRANDVAR.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="cf">function</span>(x)x<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">2</span><span class="sc">*</span>x,<span class="dv">0</span>,<span class="dv">1</span>)<span class="sc">$</span>value<span class="sc">-</span>(<span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>)<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 0.05555556</code></pre>
 <p>or</p>
-<div class="sourceCode" id="cb275"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Vx</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCalc/man/Calculus.html">antiD</a></span><span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span><span class="op">~</span><span class="va">x</span><span class="op">)</span>
-<span class="fu">Vx</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">-</span><span class="fu">Vx</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">-</span><span class="op">(</span><span class="fl">2</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="CONRANDVAR.html#cb275-1" aria-hidden="true" tabindex="-1"></a>Vx<span class="ot">&lt;-</span><span class="fu">antiD</span>(x<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span><span class="dv">2</span><span class="sc">*</span>x<span class="sc">~</span>x)</span>
+<span id="cb275-2"><a href="CONRANDVAR.html#cb275-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Vx</span>(<span class="dv">1</span>)<span class="sc">-</span><span class="fu">Vx</span>(<span class="dv">0</span>)<span class="sc">-</span>(<span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>)<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 0.05555556</code></pre>
-<div class="sourceCode" id="cb277"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">var</a></span><span class="op">(</span><span class="op">~</span><span class="va">sqrt</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span><span class="op">*</span><span class="fl">9999</span><span class="op">/</span><span class="fl">10000</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="CONRANDVAR.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(<span class="sc">~</span>sqrt,<span class="at">data=</span>results)<span class="sc">*</span><span class="dv">9999</span><span class="sc">/</span><span class="dv">10000</span></span></code></pre></div>
 <pre><code>## [1] 0.05559873</code></pre>
 <p>And finally, the standard deviation of <span class="math inline">\(X\)</span> is <span class="math inline">\(\sigma_X = \sqrt{\sigma^2_X}=\sqrt{1/18}=0.236\)</span>.</p>
 </div>
 </div>
 <div id="homework-problems-10" class="section level2" number="11.4">
-<h2>
-<span class="header-section-number">11.4</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-10"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">11.4</span> Homework Problems</h2>
 <ol style="list-style-type: decimal">
 <li>Let <span class="math inline">\(X\)</span> be a continuous random variable on the domain <span class="math inline">\(-k \leq X \leq k\)</span>. Also, let <span class="math inline">\(f(x)=\frac{x^2}{18}\)</span>.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li>Assume that <span class="math inline">\(f(x)\)</span> is a valid pdf. Find the value of <span class="math inline">\(k\)</span>.<br>
+<li>Assume that <span class="math inline">\(f(x)\)</span> is a valid pdf. Find the value of <span class="math inline">\(k\)</span>.<br />
 </li>
-<li>Plot the pdf of <span class="math inline">\(X\)</span>.<br>
+<li>Plot the pdf of <span class="math inline">\(X\)</span>.<br />
 </li>
-<li>Find and plot the cdf of <span class="math inline">\(X\)</span>.<br>
+<li>Find and plot the cdf of <span class="math inline">\(X\)</span>.<br />
 </li>
-<li>Find <span class="math inline">\(\mbox{P}(X&lt;1)\)</span>.<br>
+<li>Find <span class="math inline">\(\mbox{P}(X&lt;1)\)</span>.<br />
 </li>
-<li>Find <span class="math inline">\(\mbox{P}(1.5&lt;X\leq 2.5)\)</span>.<br>
+<li>Find <span class="math inline">\(\mbox{P}(1.5&lt;X\leq 2.5)\)</span>.<br />
 </li>
-<li>Find the 80th percentile of <span class="math inline">\(X\)</span> (the value <span class="math inline">\(x\)</span> for which 80% of the distribution is to the left of that value).<br>
+<li>Find the 80th percentile of <span class="math inline">\(X\)</span> (the value <span class="math inline">\(x\)</span> for which 80% of the distribution is to the left of that value).<br />
 </li>
-<li>Find the value <span class="math inline">\(x\)</span> such that <span class="math inline">\(\mbox{P}(-x \leq X \leq x)=0.4\)</span>.<br>
+<li>Find the value <span class="math inline">\(x\)</span> such that <span class="math inline">\(\mbox{P}(-x \leq X \leq x)=0.4\)</span>.<br />
 </li>
-<li>Find the mean and variance of <span class="math inline">\(X\)</span>.<br>
+<li>Find the mean and variance of <span class="math inline">\(X\)</span>.<br />
 </li>
 <li>Simulate 10000 values from this distribution and plot the density.</li>
 </ol>
 <ol start="2" style="list-style-type: decimal">
 <li>Let <span class="math inline">\(X\)</span> be a continuous random variable. Prove that the cdf of <span class="math inline">\(X\)</span>, <span class="math inline">\(F_X(x)\)</span> is a non-decreasing function. (Hint: show that for any <span class="math inline">\(a &lt; b\)</span>, <span class="math inline">\(F_X(a) \leq F_X(b)\)</span>.)</li>
 </ol>
+
 </div>
 </div>
-  <div class="chapter-nav">
-<div class="prev"><a href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></div>
-<div class="next"><a href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#CONRANDVAR"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
-<li><a class="nav-link" href="#objectives-10"><span class="header-section-number">11.1</span> Objectives</a></li>
-<li>
-<a class="nav-link" href="#continuous-random-variables"><span class="header-section-number">11.2</span> Continuous random variables</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#continuous-distribution-functions"><span class="header-section-number">11.2.1</span> Continuous distribution functions</a></li>
-<li><a class="nav-link" href="#probability-density-function"><span class="header-section-number">11.2.2</span> Probability density function</a></li>
-<li><a class="nav-link" href="#cumulative-distribution-function-1"><span class="header-section-number">11.2.3</span> Cumulative distribution function</a></li>
-<li><a class="nav-link" href="#simulation-1"><span class="header-section-number">11.2.4</span> Simulation</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#moments-1"><span class="header-section-number">11.3</span> Moments</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#mean-and-variance"><span class="header-section-number">11.3.1</span> Mean and variance</a></li></ul>
-</li>
-<li><a class="nav-link" href="#homework-problems-10"><span class="header-section-number">11.4</span> Homework Problems</a></li>
-</ul>
+  </main>
+
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/11-Continuous-Random-Variables.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/11-Continuous-Random-Variables.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
-</div>
+      </div>
     </nav>
-</div>
+  </div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-14.</p>
@@ -421,7 +360,11 @@ Consider the random variable <span class="math inline">\(X\)</span> from above. 
   </div>
 
 </div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+</footer>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -433,7 +376,8 @@ Consider the random variable <span class="math inline">\(X\)</span> from above. 
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+</script>
+<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
 for (let popover of popovers) {
   const div = document.createElement('div');
   div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
@@ -451,4 +395,5 @@ for (let popover of popovers) {
 }
 </script>
 </body>
+
 </html>

@@ -1,33 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 15 Multivariate Expectation | Computational Probability and Statistics</title>
-<meta name="author" content="Matthew Davis">
-<meta name="author" content="Brianna Hitt">
-<meta name="author" content="Ken Horton">
-<meta name="author" content="Bradley Warner">
-<meta name="description" content="15.1 Objectives Given a joint pmf/pdf, obtain means and variances of random variables and functions of random variables. Define the terms covariance and correlation, and given a joint pmf/pdf,...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
-<meta property="og:title" content="Chapter 15 Multivariate Expectation | Computational Probability and Statistics">
-<meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover.png">
-<meta property="og:description" content="15.1 Objectives Given a joint pmf/pdf, obtain means and variances of random variables and functions of random variables. Define the terms covariance and correlation, and given a joint pmf/pdf,...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 15 Multivariate Expectation | Computational Probability and Statistics">
-<meta name="twitter:description" content="15.1 Objectives Given a joint pmf/pdf, obtain means and variances of random variables and functions of random variables. Define the terms covariance and correlation, and given a joint pmf/pdf,...">
-<meta name="twitter:image" content="/figures/Cover.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Chapter 15 Multivariate Expectation | Computational Probability and Statistics</title>
+
+    <meta name="author" content="Matthew Davis" />
+    <meta name="author" content="Brianna Hitt" />
+    <meta name="author" content="Ken Horton" />
+    <meta name="author" content="Bradley Warner" />
+  
+   <meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+   <meta name="generator" content="placeholder" />
+  <meta property="og:title" content="Chapter 15 Multivariate Expectation | Computational Probability and Statistics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/figures/Cover.png" />
+  <meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 15 Multivariate Expectation | Computational Probability and Statistics" />
+  
+  <meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book." />
+  <meta name="twitter:image" content="/figures/Cover.png" />
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+    <script src="libs/bs3compat-0.3.1/transition.js"></script>
+    <script src="libs/bs3compat-0.3.1/tabs.js"></script>
+    <script src="libs/bs3compat-0.3.1/bs3compat.js"></script>
+    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
+    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  <style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
-<style type="text/css">
+    <style type="text/css">
     /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
     div.csl-bib-body { }
     div.csl-entry {
@@ -49,13 +69,16 @@
       margin-left: 2em;
     }
   </style>
-<link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style.css" />
+  
 </head>
+
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
+    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -67,76 +90,36 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
+      </form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Preface</a></li>
-<li class="book-part">Descriptive Statistical Modeling</li>
-<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
-<li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
-<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
-<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
-<li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
-<li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
-<li class="book-part">Probability Modeling</li>
-<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
-<li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
-<li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
-<li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
-<li><a class="" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
-<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
-<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
-<li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
-<li><a class="active" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
-<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
-<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
-<li class="book-part">Statistical Modeling</li>
-<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
-<li><a class="" href="HYPOTEST.html"><span class="header-section-number">19</span> Hypothesis Testing</a></li>
-<li><a class="" href="PVALUES.html"><span class="header-section-number">20</span> Empirical p-values</a></li>
-<li><a class="" href="CLT.html"><span class="header-section-number">21</span> Central Limit Theorem</a></li>
-<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
-<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
-<li><a class="" href="ADDTESTS.html"><span class="header-section-number">24</span> Additional Hypothesis Tests</a></li>
-<li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">25</span> Case Study</a></li>
-<li><a class="" href="LRBASICS.html"><span class="header-section-number">26</span> Linear Regression Basics</a></li>
-<li><a class="" href="LRINF.html"><span class="header-section-number">27</span> Linear Regression Inference</a></li>
-<li><a class="" href="LRDIAG.html"><span class="header-section-number">28</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">29</span> Simulation Based Linear Regression</a></li>
-<li><a class="" href="LRMULTI.html"><span class="header-section-number">30</span> Multiple Linear Regression</a></li>
-<li><a class="" href="LOGREG.html"><span class="header-section-number">31</span> Logistic Regression</a></li>
-<li><a class="" href="references.html">References</a></li>
-</ul>
+      <nav aria-label="Table of contents">
+        <h2>Table of contents</h2>
+        <div id="book-toc"></div>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
         </div>
       </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="MULTIEXP" class="section level1" number="15">
-<h1>
-<span class="header-section-number">15</span> Multivariate Expectation<a class="anchor" aria-label="anchor" href="#MULTIEXP"><i class="fas fa-link"></i></a>
-</h1>
+    </div>
+  </header>
+
+  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
+<div id="MULTIEXP" class="section level1" number="15">
+<h1><span class="header-section-number">Chapter 15</span> Multivariate Expectation</h1>
 <div id="objectives-14" class="section level2" number="15.1">
-<h2>
-<span class="header-section-number">15.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-14"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">15.1</span> Objectives</h2>
 <ol style="list-style-type: decimal">
-<li>Given a joint pmf/pdf, obtain means and variances of random variables and functions of random variables.<br>
+<li>Given a joint pmf/pdf, obtain means and variances of random variables and functions of random variables.<br />
 </li>
-<li>Define the terms covariance and correlation, and given a joint pmf/pdf, obtain the covariance and correlation between two random variables.<br>
+<li>Define the terms covariance and correlation, and given a joint pmf/pdf, obtain the covariance and correlation between two random variables.<br />
 </li>
-<li>Given a joint pmf/pdf, determine whether random variables are independent of one another.<br>
+<li>Given a joint pmf/pdf, determine whether random variables are independent of one another.<br />
 </li>
 <li>Find conditional expectations.</li>
 </ol>
 </div>
 <div id="expectation---moments" class="section level2" number="15.2">
-<h2>
-<span class="header-section-number">15.2</span> Expectation - moments<a class="anchor" aria-label="anchor" href="#expectation---moments"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">15.2</span> Expectation - moments</h2>
 <p>Computing expected values of random variables in the joint context is similar to the univariate case. Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be discrete random variables with joint pmf <span class="math inline">\(f_{X,Y}(x,y)\)</span>. Let <span class="math inline">\(g(X,Y)\)</span> be some function of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. Then:
 <span class="math display">\[
 \mbox{E}[g(X,Y)]=\sum_x\sum_y g(x,y)f_{X,Y}(x,y)
@@ -147,9 +130,7 @@
 \mbox{E}[g(X,Y)]=\int_x\int_y g(x,y)f_{X,Y}(x,y)\mathop{}\!\mathrm{d}y \mathop{}\!\mathrm{d}x
 \]</span></p>
 <div id="expectation-of-discrete-random-variables" class="section level3" number="15.2.1">
-<h3>
-<span class="header-section-number">15.2.1</span> Expectation of discrete random variables<a class="anchor" aria-label="anchor" href="#expectation-of-discrete-random-variables"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">15.2.1</span> Expectation of discrete random variables</h3>
 <p>Given a joint pmf, one can find the mean of <span class="math inline">\(X\)</span> by using the joint function or by finding the marginal pmf first and then using that to find <span class="math inline">\(\mbox{E}(X)\)</span>. In the end, both ways are the same. For the discrete case:
 <span class="math display">\[
 \mbox{E}(X)=\sum_x\sum_y xf_{X,Y}(x,y) = \sum_x x \sum_y f_{X,Y}(x,y)
@@ -160,7 +141,7 @@
 \]</span></p>
 <div style="page-break-after: always;"></div>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be discrete random variables with joint pmf below.</p>
 </blockquote>
 <p><span class="math display">\[
@@ -192,26 +173,20 @@ f_X(x)=\left\{\begin{array}{ll} 0.10+0.08+0.11, &amp; x=0 \\
 </div>
 </div>
 <div id="exercises-to-apply-what-we-learned" class="section level2" number="15.3">
-<h2>
-<span class="header-section-number">15.3</span> Exercises to apply what we learned<a class="anchor" aria-label="anchor" href="#exercises-to-apply-what-we-learned"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">15.3</span> Exercises to apply what we learned</h2>
 <blockquote>
 <p><strong>Exercise</strong>:
 Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be defined above. Find <span class="math inline">\(\mbox{E}(Y)\)</span>, <span class="math inline">\(\mbox{E}(X+Y)\)</span>, <span class="math inline">\(\mbox{E}(XY)\)</span>, and <span class="math inline">\(\mbox{E}\left(\frac{1}{2X+Y+1}\right)\)</span>.</p>
 </blockquote>
 <div id="ey" class="section level3" number="15.3.1">
-<h3>
-<span class="header-section-number">15.3.1</span> E(Y)<a class="anchor" aria-label="anchor" href="#ey"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">15.3.1</span> E(Y)</h3>
 <p>As with <span class="math inline">\(\mbox{E}(X)\)</span>, <span class="math inline">\(\mbox{E}(Y)\)</span> can be found in two ways. We will use the marginal pmf of <span class="math inline">\(Y\)</span>, which we will not derive:</p>
 <p><span class="math display">\[
 \mbox{E}(Y)=\sum_{y=0}^2 y \cdot f_Y(y)=0*0.35+1*0.33+2*0.32 = 0.97
 \]</span></p>
 </div>
 <div id="exy" class="section level3" number="15.3.2">
-<h3>
-<span class="header-section-number">15.3.2</span> E(X+Y)<a class="anchor" aria-label="anchor" href="#exy"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">15.3.2</span> E(X+Y)</h3>
 <p>To find <span class="math inline">\(\mbox{E}(X+Y)\)</span> we will use the joint pmf. In the discrete case, it helps to first identify all of the possible values of <span class="math inline">\(X+Y\)</span> and then figure out what probabilities are associated with each value. This problem is really a transformation problem where we are finding the distribution of <span class="math inline">\(X+Y\)</span>. In this example, <span class="math inline">\(X+Y\)</span> can take on values 0, 1, 2, 3, and 4. The value 0 only happens when <span class="math inline">\(X=Y=0\)</span> and the probability of this outcome is 0.10. The value 1 occurs when <span class="math inline">\(X=0\)</span> and <span class="math inline">\(Y=1\)</span> or when <span class="math inline">\(X=1\)</span> and <span class="math inline">\(Y=0\)</span>. This occurs with probability 0.08 + 0.18. We continue in this manner:
 <span class="math display">\[
 \mbox{E}(X+Y)=\sum_{x=0}^2\sum_{y=0}^2 (x+y)f_{X,Y}(x,y) = 0*0.1+1*(0.18+0.08)+2*(0.11+0.07+0.20)
@@ -222,9 +197,7 @@ Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</
 <p>Note that <span class="math inline">\(\mbox{E}(X+Y)=\mbox{E}(X)+\mbox{E}(Y)\)</span>. (The proof of this is left to the reader.)</p>
 </div>
 <div id="exy-1" class="section level3" number="15.3.3">
-<h3>
-<span class="header-section-number">15.3.3</span> E(XY)<a class="anchor" aria-label="anchor" href="#exy-1"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">15.3.3</span> E(XY)</h3>
 <p><span class="math display">\[
 \mbox{E}(XY)=\sum_{x=0}^2\sum_{y=0}^2 xyf_{X,Y}(x,y) = 0*(0.1+0.08+0.11+0.18+0.07)+1*0.20
 \]</span>
@@ -234,9 +207,7 @@ Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</
 <p>Note that <span class="math inline">\(\mbox{E}(XY)\)</span> is not necessarily equal to <span class="math inline">\(\mbox{E}(X)\mbox{E}(Y)\)</span>.</p>
 </div>
 <div id="e12xy1" class="section level3" number="15.3.4">
-<h3>
-<span class="header-section-number">15.3.4</span> E(1/2X+Y+1)<a class="anchor" aria-label="anchor" href="#e12xy1"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">15.3.4</span> E(1/2X+Y+1)</h3>
 <p><span class="math display">\[
 \mbox{E}\left(\frac{1}{2X+Y+1}\right) = \sum_{x=0}^2\sum_{y=0}^2 \frac{1}{2x+y+1}f_{X,Y}(x,y) = 1*0.1+\frac{1}{2}*0.08+\frac{1}{3}*(0.11+0.18)
 \]</span>
@@ -245,12 +216,10 @@ Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</
 \]</span></p>
 </div>
 <div id="expectation-of-continuous-random-variables" class="section level3" number="15.3.5">
-<h3>
-<span class="header-section-number">15.3.5</span> Expectation of continuous random variables<a class="anchor" aria-label="anchor" href="#expectation-of-continuous-random-variables"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">15.3.5</span> Expectation of continuous random variables</h3>
 <p>Let’s consider an example with continuous random variables where summation is replaced with integration:</p>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be continuous random variables with joint pdf:
 <span class="math display">\[
 f_{X,Y}(x,y)=xy
@@ -260,30 +229,23 @@ for <span class="math inline">\(0\leq x \leq 2\)</span> and <span class="math in
 </div>
 </div>
 <div id="exercises-to-apply-what-we-learned-1" class="section level2" number="15.4">
-<h2>
-<span class="header-section-number">15.4</span> Exercises to apply what we learned<a class="anchor" aria-label="anchor" href="#exercises-to-apply-what-we-learned-1"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">15.4</span> Exercises to apply what we learned</h2>
 <blockquote>
 <p><strong>Exercise</strong>:
 Find <span class="math inline">\(\mbox{E}(X)\)</span>, <span class="math inline">\(\mbox{E}(X+Y)\)</span>, <span class="math inline">\(\mbox{E}(XY)\)</span>, and <span class="math inline">\(\mbox{Var}(XY)\)</span>.</p>
 </blockquote>
 <div id="ex" class="section level3" number="15.4.1">
-<h3>
-<span class="header-section-number">15.4.1</span> E(X)<a class="anchor" aria-label="anchor" href="#ex"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">15.4.1</span> E(X)</h3>
 <p>We found the marginal pdf of <span class="math inline">\(X\)</span> in a previous lesson, so we should use that now:
 <span class="math display">\[
 \mbox{E}(X)=\int_0^2 x\frac{x}{2}\mathop{}\!\mathrm{d}x = \frac{x^3}{6}\bigg|_0^2= \frac{4}{3}
 \]</span>
 Or using <code>R</code></p>
-<div class="sourceCode" id="cb379"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/fractions.html">fractions</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">/</span><span class="fl">2</span><span class="op">}</span>,<span class="fl">0</span>,<span class="fl">2</span><span class="op">)</span><span class="op">$</span><span class="va">value</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="MULTIEXP.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fractions</span>(<span class="fu">integrate</span>(<span class="cf">function</span>(x){x<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span>},<span class="dv">0</span>,<span class="dv">2</span>)<span class="sc">$</span>value)</span></code></pre></div>
 <pre><code>## [1] 4/3</code></pre>
 </div>
 <div id="exy-2" class="section level3" number="15.4.2">
-<h3>
-<span class="header-section-number">15.4.2</span> E(X+Y)<a class="anchor" aria-label="anchor" href="#exy-2"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">15.4.2</span> E(X+Y)</h3>
 <p>To find <span class="math inline">\(\mbox{E}(X+Y)\)</span>, we could use the joint pdf directly, or use the marginal pdf of <span class="math inline">\(Y\)</span> to find <span class="math inline">\(\mbox{E}(Y)\)</span> and then add the result to <span class="math inline">\(\mbox{E}(X)\)</span>. The reason this is valid is because when we integrate <span class="math inline">\(x\)</span> with the joint pdf, integrating with respect to <span class="math inline">\(y\)</span> first, we can treat <span class="math inline">\(x\)</span> as a constant and bring it out side the integral. Then we are integrating the joint pdf with respect <span class="math inline">\(y\)</span> which results in the marginal pdf of <span class="math inline">\(X\)</span>.</p>
 <p>We’ll use the joint pdf:
 <span class="math display">\[
@@ -293,25 +255,21 @@ Or using <code>R</code></p>
 = \int_0^2 \frac{x^2}{2}+\frac{x}{3} \mathop{}\!\mathrm{d}x= \frac{x^3}{6}+\frac{x^2}{6}\bigg|_0^2=\frac{8}{6}+\frac{4}{6}=2
 \]</span></p>
 <p>Or using <code>R</code>:</p>
-<div class="sourceCode" id="cb381"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://bnaras.github.io/cubature/reference/hcubature.html">adaptIntegrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">+</span><span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">}</span>,lowerLimit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>,upperLimit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">integral</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="MULTIEXP.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="fu">adaptIntegrate</span>(<span class="cf">function</span>(x){(x[<span class="dv">1</span>]<span class="sc">+</span>x[<span class="dv">2</span>])<span class="sc">*</span>x[<span class="dv">1</span>]<span class="sc">*</span>x[<span class="dv">2</span>]},<span class="at">lowerLimit =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="at">upperLimit =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))<span class="sc">$</span>integral</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>If we wanted to use simulation to find this expectation, we could simulate variables from the marginal of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> and then add them together to create a new variable.</p>
 <p>The cdf for <span class="math inline">\(X\)</span> is <span class="math inline">\(\frac{x^2}{4}\)</span> so we simulate a random variable from <span class="math inline">\(X\)</span> by sampling from a random uniform and then taking the inverse of the cdf. For <span class="math inline">\(Y\)</span> the cdf is <span class="math inline">\(y^2\)</span> and do a similar simulation.</p>
-<div class="sourceCode" id="cb383"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1820</span><span class="op">)</span>
-<span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">)</span>,y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="va">new_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>z<span class="op">=</span><span class="va">x</span><span class="op">+</span><span class="va">y</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>Ex<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,Ey<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>,Explusy <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="MULTIEXP.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1820</span>)</span>
+<span id="cb383-2"><a href="MULTIEXP.html#cb383-2" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)),<span class="at">y=</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)))</span>
+<span id="cb383-3"><a href="MULTIEXP.html#cb383-3" aria-hidden="true" tabindex="-1"></a>new_data <span class="sc">%&gt;%</span></span>
+<span id="cb383-4"><a href="MULTIEXP.html#cb383-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z=</span>x<span class="sc">+</span>y) <span class="sc">%&gt;%</span></span>
+<span id="cb383-5"><a href="MULTIEXP.html#cb383-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Ex=</span><span class="fu">mean</span>(x),<span class="at">Ey=</span><span class="fu">mean</span>(y),<span class="at">Explusy =</span> <span class="fu">mean</span>(z))</span></code></pre></div>
 <pre><code>##         Ex        Ey  Explusy
 ## 1 1.338196 0.6695514 2.007748</code></pre>
 <p>We can see that <span class="math inline">\(E(X + Y) = E(X) + E(Y)\)</span>.</p>
 </div>
 <div id="exy-3" class="section level3" number="15.4.3">
-<h3>
-<span class="header-section-number">15.4.3</span> E(XY)<a class="anchor" aria-label="anchor" href="#exy-3"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">15.4.3</span> E(XY)</h3>
 <p>Next, we have</p>
 <p><span class="math display">\[
 \mbox{E}(XY)=\int_0^2\int_0^1 xy*xy\mathop{}\!\mathrm{d}y \mathop{}\!\mathrm{d}x = \int_0^2 \frac{x^2y^3}{3}\bigg|_0^1 \mathop{}\!\mathrm{d}x = \int_0^2 \frac{x^2}{3}\mathop{}\!\mathrm{d}x
@@ -320,23 +278,19 @@ Or using <code>R</code></p>
 =\frac{x^3}{9}\bigg|_0^2 = \frac{8}{9}
 \]</span></p>
 <p>Using <code>R</code>:</p>
-<div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/fractions.html">fractions</a></span><span class="op">(</span><span class="fu"><a href="https://bnaras.github.io/cubature/reference/hcubature.html">adaptIntegrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">}</span>,lowerLimit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>,upperLimit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">integral</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="MULTIEXP.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fractions</span>(<span class="fu">adaptIntegrate</span>(<span class="cf">function</span>(x){(x[<span class="dv">1</span>]<span class="sc">*</span>x[<span class="dv">2</span>])<span class="sc">*</span>x[<span class="dv">1</span>]<span class="sc">*</span>x[<span class="dv">2</span>]},<span class="at">lowerLimit =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="at">upperLimit =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))<span class="sc">$</span>integral)</span></code></pre></div>
 <pre><code>## [1] 8/9</code></pre>
 <p>Or by simulating, we have:</p>
-<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">191</span><span class="op">)</span>
-<span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">)</span>,y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="va">new_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>z<span class="op">=</span><span class="va">x</span><span class="op">*</span><span class="va">y</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>Ex<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,Ey<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>,Extimesy <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="MULTIEXP.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">191</span>)</span>
+<span id="cb387-2"><a href="MULTIEXP.html#cb387-2" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)),<span class="at">y=</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)))</span>
+<span id="cb387-3"><a href="MULTIEXP.html#cb387-3" aria-hidden="true" tabindex="-1"></a>new_data <span class="sc">%&gt;%</span></span>
+<span id="cb387-4"><a href="MULTIEXP.html#cb387-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z=</span>x<span class="sc">*</span>y) <span class="sc">%&gt;%</span></span>
+<span id="cb387-5"><a href="MULTIEXP.html#cb387-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Ex=</span><span class="fu">mean</span>(x),<span class="at">Ey=</span><span class="fu">mean</span>(y),<span class="at">Extimesy =</span> <span class="fu">mean</span>(z))</span></code></pre></div>
 <pre><code>##        Ex        Ey  Extimesy
 ## 1 1.33096 0.6640436 0.8837552</code></pre>
 </div>
 <div id="vxy" class="section level3" number="15.4.4">
-<h3>
-<span class="header-section-number">15.4.4</span> V(XY)<a class="anchor" aria-label="anchor" href="#vxy"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">15.4.4</span> V(XY)</h3>
 <p>Recall that the variance of a random variable is the expected value of the squared difference from its mean. So,
 <span class="math display">\[
 \mbox{Var}(XY)=\mbox{E}\left[\left(XY-\mbox{E}(XY)\right)^2\right]=\mbox{E}\left[\left(XY-\frac{8}{9}\right)^2\right]
@@ -361,25 +315,21 @@ Or using <code>R</code></p>
 =\frac{16}{16}-\frac{128}{81}+\frac{64}{81}=\frac{17}{81}
 \]</span></p>
 <p>Using <code>R</code>:</p>
-<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/fractions.html">fractions</a></span><span class="op">(</span><span class="fu"><a href="https://bnaras.github.io/cubature/reference/hcubature.html">adaptIntegrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">-</span><span class="fl">8</span><span class="op">/</span><span class="fl">9</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">}</span>,lowerLimit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>,upperLimit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">integral</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="MULTIEXP.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fractions</span>(<span class="fu">adaptIntegrate</span>(<span class="cf">function</span>(x){(x[<span class="dv">1</span>]<span class="sc">*</span>x[<span class="dv">2</span>]<span class="sc">-</span><span class="dv">8</span><span class="sc">/</span><span class="dv">9</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>x[<span class="dv">1</span>]<span class="sc">*</span>x[<span class="dv">2</span>]},<span class="at">lowerLimit =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="at">upperLimit =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))<span class="sc">$</span>integral)</span></code></pre></div>
 <pre><code>## [1] 17/81</code></pre>
 <p>Next we will estimate the variance using a simulation:</p>
-<div class="sourceCode" id="cb391"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">816</span><span class="op">)</span>
-<span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">)</span>,y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="va">new_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>z<span class="op">=</span><span class="op">(</span><span class="va">x</span><span class="op">*</span><span class="va">y</span><span class="op">-</span><span class="fl">8</span><span class="op">/</span><span class="fl">9</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>Var <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="MULTIEXP.html#cb391-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">816</span>)</span>
+<span id="cb391-2"><a href="MULTIEXP.html#cb391-2" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)),<span class="at">y=</span><span class="fu">sqrt</span>(<span class="fu">runif</span>(<span class="dv">10000</span>)))</span>
+<span id="cb391-3"><a href="MULTIEXP.html#cb391-3" aria-hidden="true" tabindex="-1"></a>new_data <span class="sc">%&gt;%</span></span>
+<span id="cb391-4"><a href="MULTIEXP.html#cb391-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z=</span>(x<span class="sc">*</span>y<span class="dv">-8</span><span class="sc">/</span><span class="dv">9</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb391-5"><a href="MULTIEXP.html#cb391-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Var =</span> <span class="fu">mean</span>(z))</span></code></pre></div>
 <pre><code>##         Var
 ## 1 0.2098769</code></pre>
 <p>That was much easier. Notice that we are really just estimating these expectations with the simulations. The mathematical answers are the true population values while our simulations are sample estimates. In a few lessons we will discuss estimators in more detail.</p>
 </div>
 </div>
 <div id="covariancecorrelation" class="section level2" number="15.5">
-<h2>
-<span class="header-section-number">15.5</span> Covariance/Correlation<a class="anchor" aria-label="anchor" href="#covariancecorrelation"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">15.5</span> Covariance/Correlation</h2>
 <p>We have discussed expected values of random variables and functions of random variables in a joint context. It would be helpful to have some kind of consistent measure to describe <em>how</em> two random variables are related to one another. <em>Covariance</em> and <em>correlation</em> do just that. It is important to understand that these are measures of a linear relationship between variables.</p>
 <p>Consider two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. (We could certainly consider more than two, but for demonstration, let’s consider only two for now). The covariance between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is denoted as <span class="math inline">\(\mbox{Cov}(X,Y)\)</span> and is found by:
 <span class="math display">\[
@@ -402,7 +352,7 @@ Or using <code>R</code></p>
 <p>This expression is a little easier to use, since it’s typically straightforward to find each of these quantities.</p>
 <p>It is important to note that while variance is a positive quantity, covariance can be positive or negative. A positive covariance implies that as the value of one variable increases, the other tends to increase. This is a statement about a linear relationship. Likewise, a negative covariance implies that as the value of one variable increases, the other tends to decrease.</p>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 An example of positive covariance is human height and weight. As height increase, weight tends to increase. An example of negative covariance is gas mileage and car weight. As car weight increases, gas mileage decreases.</p>
 </blockquote>
 <p>Remember that if <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are constants, <span class="math inline">\(\mbox{E}(aX+b) =a\mbox{E}(X)+b\)</span> and <span class="math inline">\(\mbox{Var}(aX+b)=a^2\mbox{Var}(X)\)</span>. Similarly, if <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>, and <span class="math inline">\(d\)</span> are all constants,
@@ -415,35 +365,33 @@ An example of positive covariance is human height and weight. As height increase
 \]</span></p>
 <p>While covariance could take on any real number, correlation is bounded by -1 and 1. Two random variables with a correlation of 1 are said to be perfectly positively correlated, while a correlation of -1 implies perfect negative correlation. Two random variables with a correlation (and thus covariance) of 0 are said to be uncorrelated, that is they do not have a linear relationship but could have a non-linear relationship. This last point is important; random variables with no relationship will have a 0 covariance. However, a 0 covariance only implies that the random variables do not have a linear relationship.</p>
 <p>Let’s look at some plots, Figures <a href="MULTIEXP.html#fig:cor1-fig">15.1</a>, <a href="MULTIEXP.html#fig:cor2-fig">15.2</a>, <a href="MULTIEXP.html#fig:cor3-fig">15.3</a>, and <a href="MULTIEXP.html#fig:cor4-fig">15.4</a> of different correlations. Remember that the correlation we are calculating in this section is for the population, while the plots are showing sample points from a population.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:cor1-fig"></span>
-<img src="15-Multivariate-Expectation_files/figure-html/cor1-fig-1.png" alt="Correlation of 1" width="672"><p class="caption">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cor1-fig"></span>
+<img src="15-Multivariate-Expectation_files/figure-html/cor1-fig-1.png" alt="Correlation of 1" width="672" />
+<p class="caption">
 Figure 15.1: Correlation of 1
 </p>
 </div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:cor2-fig"></span>
-<img src="15-Multivariate-Expectation_files/figure-html/cor2-fig-1.png" alt="Correlation of .8" width="672"><p class="caption">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cor2-fig"></span>
+<img src="15-Multivariate-Expectation_files/figure-html/cor2-fig-1.png" alt="Correlation of .8" width="672" />
+<p class="caption">
 Figure 15.2: Correlation of .8
 </p>
 </div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:cor3-fig"></span>
-<img src="15-Multivariate-Expectation_files/figure-html/cor3-fig-1.png" alt="Correlation of .5" width="672"><p class="caption">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cor3-fig"></span>
+<img src="15-Multivariate-Expectation_files/figure-html/cor3-fig-1.png" alt="Correlation of .5" width="672" />
+<p class="caption">
 Figure 15.3: Correlation of .5
 </p>
 </div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:cor4-fig"></span>
-<img src="15-Multivariate-Expectation_files/figure-html/cor4-fig-1.png" alt="Correlation of 0" width="672"><p class="caption">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cor4-fig"></span>
+<img src="15-Multivariate-Expectation_files/figure-html/cor4-fig-1.png" alt="Correlation of 0" width="672" />
+<p class="caption">
 Figure 15.4: Correlation of 0
 </p>
 </div>
 <div style="page-break-after: always;"></div>
 <div id="variance-of-sums" class="section level3" number="15.5.1">
-<h3>
-<span class="header-section-number">15.5.1</span> Variance of sums<a class="anchor" aria-label="anchor" href="#variance-of-sums"><i class="fas fa-link"></i></a>
-</h3>
+<h3><span class="header-section-number">15.5.1</span> Variance of sums</h3>
 <p>Suppose <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are two random variables. Then,
 <span class="math display">\[
 \mbox{Var}(X+Y)=\mbox{E}\left[(X+Y-\mbox{E}(X+Y))^2\right]=\mbox{E}[(X+Y)^2]-\left[\mbox{E}(X+Y)\right]^2
@@ -460,7 +408,7 @@ Figure 15.4: Correlation of 0
 =\mbox{Var}(X)+\mbox{Var}(Y)+2\mbox{Cov}(X,Y)
 \]</span></p>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be defined as above. Find <span class="math inline">\(\mbox{Cov}(X,Y)\)</span>, <span class="math inline">\(\rho\)</span>, and <span class="math inline">\(\mbox{Var}(X+Y)\)</span>.</p>
 </blockquote>
 <p><span class="math display">\[
@@ -480,9 +428,7 @@ Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</
 </div>
 </div>
 <div id="independence-1" class="section level2" number="15.6">
-<h2>
-<span class="header-section-number">15.6</span> Independence<a class="anchor" aria-label="anchor" href="#independence-1"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">15.6</span> Independence</h2>
 <p>Two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are said to be <em>independent</em> if their joint pmf/pdf is the product of their marginal pmfs/pdfs:
 <span class="math display">\[
 f_{X,Y}(x,y)=f_X(x)f_Y(y)
@@ -518,23 +464,19 @@ Checking the first cell, we immediately see that <span class="math inline">\(f_{
 <p>Thus for our examples above even though the domains were rectangular, in <span class="math inline">\(f(x,y)=xy\)</span>, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> were independent while <span class="math inline">\(f(x,y)=x+y\)</span> they were not.</p>
 </div>
 <div id="conditional-expectation" class="section level2" number="15.7">
-<h2>
-<span class="header-section-number">15.7</span> Conditional expectation<a class="anchor" aria-label="anchor" href="#conditional-expectation"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">15.7</span> Conditional expectation</h2>
 <p>An important idea in graph theory, network analysis, Bayesian networks, and queuing theory is conditional expectation. We will only briefly introduce the ideas here so that you have a basic understanding. This does not imply it is not an important topic.</p>
 <p>Let’s start with a simple example to illustrate the ideas.</p>
 <blockquote>
-<p><em>Example</em>:<br>
+<p><em>Example</em>:<br />
 Sam will read either one chapter of his history book or one chapter of his philosophy book. If the number of misprints in a chapter of his history book is Poisson with mean 2 and if the number of misprints in a chapter of his philosophy book is Poisson with mean 5, then assuming Sam is equally likely to choose either book, what is the expected number of misprints that Sam will find?</p>
 </blockquote>
 <p>Note: in the next chapter we are working with transformations and could attack the problem using that method.</p>
 <p>First let’s use simulation to get an idea what value the answer should be and then use algebraic techniques and definitions we have learned in this book.</p>
 <p>Simulate 5000 reads from the history book and 5000 from philosophy and combine:</p>
-<div class="sourceCode" id="cb393"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2011</span><span class="op">)</span>
-<span class="va">my_data</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>misprints<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">rpois</a></span><span class="op">(</span><span class="fl">5000</span>,<span class="fl">2</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">rpois</a></span><span class="op">(</span><span class="fl">5000</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="MULTIEXP.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2011</span>)</span>
+<span id="cb393-2"><a href="MULTIEXP.html#cb393-2" aria-hidden="true" tabindex="-1"></a>my_data<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">misprints=</span><span class="fu">c</span>(<span class="fu">rpois</span>(<span class="dv">5000</span>,<span class="dv">2</span>),<span class="fu">rpois</span>(<span class="dv">5000</span>,<span class="dv">5</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="MULTIEXP.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_data)</span></code></pre></div>
 <pre><code>##   misprints
 ## 1         1
 ## 2         1
@@ -542,34 +484,30 @@ Sam will read either one chapter of his history book or one chapter of his philo
 ## 4         1
 ## 5         2
 ## 6         4</code></pre>
-<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">my_data</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="MULTIEXP.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(my_data)</span></code></pre></div>
 <pre><code>## [1] 10000     1</code></pre>
 <p>Figure <a href="MULTIEXP.html#fig:hist151-fig">15.5</a> is a histogram of the data.</p>
-<div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">misprints</span>,data<span class="op">=</span><span class="va">my_data</span>,breaks<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.5</span>, <span class="fl">15.5</span>, by<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Number of Misprints"</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:hist151-fig"></span>
-<img src="15-Multivariate-Expectation_files/figure-html/hist151-fig-1.png" alt="Misprints from combined history and philosphy books." width="672"><p class="caption">
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="MULTIEXP.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_histogram</span>(<span class="sc">~</span>misprints,<span class="at">data=</span>my_data,<span class="at">breaks=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">15.5</span>, <span class="at">by=</span><span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb398-2"><a href="MULTIEXP.html#cb398-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb398-3"><a href="MULTIEXP.html#cb398-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Number of Misprints&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:hist151-fig"></span>
+<img src="15-Multivariate-Expectation_files/figure-html/hist151-fig-1.png" alt="Misprints from combined history and philosphy books." width="672" />
+<p class="caption">
 Figure 15.5: Misprints from combined history and philosphy books.
 </p>
 </div>
 <p>Or as a bar chart in Figure <a href="MULTIEXP.html#fig:bar151-fig">15.6</a></p>
-<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span><span class="va">misprints</span>,data<span class="op">=</span><span class="va">my_data</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Number of Misprints"</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:bar151-fig"></span>
-<img src="15-Multivariate-Expectation_files/figure-html/bar151-fig-1.png" alt="Misprints from combined history and philosphy books as a bar chart." width="672"><p class="caption">
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="MULTIEXP.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gf_bar</span>(<span class="sc">~</span>misprints,<span class="at">data=</span>my_data)<span class="sc">%&gt;%</span></span>
+<span id="cb399-2"><a href="MULTIEXP.html#cb399-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_theme</span>(<span class="fu">theme_classic</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb399-3"><a href="MULTIEXP.html#cb399-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">x=</span><span class="st">&quot;Number of Misprints&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:bar151-fig"></span>
+<img src="15-Multivariate-Expectation_files/figure-html/bar151-fig-1.png" alt="Misprints from combined history and philosphy books as a bar chart." width="672" />
+<p class="caption">
 Figure 15.6: Misprints from combined history and philosphy books as a bar chart.
 </p>
 </div>
 <p>And now find the average.</p>
-<div class="sourceCode" id="cb400"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="op">~</span><span class="va">misprints</span>,data<span class="op">=</span><span class="va">my_data</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="MULTIEXP.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="sc">~</span>misprints,<span class="at">data=</span>my_data)</span></code></pre></div>
 <pre><code>## [1] 3.4968</code></pre>
 <p>Now for a mathematical solution. Let <span class="math inline">\(X\)</span> stand for the number of misprints and <span class="math inline">\(Y\)</span> for the book, to make <span class="math inline">\(Y\)</span> a random variable let’s call 0 history and 1 philosophy. Then <span class="math inline">\(E[X|Y]\)</span> is the expected number of misprints given the book. This is a conditional expectation. For example <span class="math inline">\(E[X|Y=0]\)</span> is the expected number of misprints in the history book.</p>
 <p>Now here is the tricky part, without specifying a value of <span class="math inline">\(Y\)</span>, called a realization, this expectation function is a random variable that depends on <span class="math inline">\(Y\)</span>. In other words, if we don’t know the book, the expected number of misprints depends on <span class="math inline">\(Y\)</span> and thus is a random variable. If we take the expected value of this random variable we get</p>
@@ -581,23 +519,20 @@ Figure 15.6: Misprints from combined history and philosphy books as a bar chart.
 These ideas are going to be similar for continuous random variables. There is so much more that you can do with conditional expectations, but these are beyond the scope of the book.</p>
 </div>
 <div id="homework-problems-14" class="section level2" number="15.8">
-<h2>
-<span class="header-section-number">15.8</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-14"><i class="fas fa-link"></i></a>
-</h2>
+<h2><span class="header-section-number">15.8</span> Homework Problems</h2>
 <ol style="list-style-type: decimal">
 <li>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be continuous random variables with joint pdf:
 <span class="math display">\[
 f_{X,Y}(x,y)=x + y
-\]</span>
-</li>
+\]</span></li>
 </ol>
 <p>where <span class="math inline">\(0 \leq x \leq 1\)</span> and <span class="math inline">\(0 \leq y \leq 1\)</span>.</p>
 <ol style="list-style-type: lower-alpha">
-<li>Find <span class="math inline">\(\mbox{E}(X)\)</span> and <span class="math inline">\(\mbox{E}(Y)\)</span>.<br>
+<li>Find <span class="math inline">\(\mbox{E}(X)\)</span> and <span class="math inline">\(\mbox{E}(Y)\)</span>.<br />
 </li>
-<li>Find <span class="math inline">\(\mbox{Var}(X)\)</span> and <span class="math inline">\(\mbox{Var}(Y)\)</span>.<br>
+<li>Find <span class="math inline">\(\mbox{Var}(X)\)</span> and <span class="math inline">\(\mbox{Var}(Y)\)</span>.<br />
 </li>
-<li>Find <span class="math inline">\(\mbox{Cov}(X,Y)\)</span> and <span class="math inline">\(\rho\)</span>. Are <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> independent?<br>
+<li>Find <span class="math inline">\(\mbox{Cov}(X,Y)\)</span> and <span class="math inline">\(\rho\)</span>. Are <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> independent?<br />
 </li>
 <li>Find <span class="math inline">\(\mbox{Var}(3X+2Y)\)</span>.</li>
 </ol>
@@ -624,55 +559,27 @@ f_{X,Y}(x,y)=1
 
 </div>
 </div>
-  <div class="chapter-nav">
-<div class="prev"><a href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></div>
-<div class="next"><a href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#MULTIEXP"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
-<li><a class="nav-link" href="#objectives-14"><span class="header-section-number">15.1</span> Objectives</a></li>
-<li>
-<a class="nav-link" href="#expectation---moments"><span class="header-section-number">15.2</span> Expectation - moments</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#expectation-of-discrete-random-variables"><span class="header-section-number">15.2.1</span> Expectation of discrete random variables</a></li></ul>
-</li>
-<li>
-<a class="nav-link" href="#exercises-to-apply-what-we-learned"><span class="header-section-number">15.3</span> Exercises to apply what we learned</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#ey"><span class="header-section-number">15.3.1</span> E(Y)</a></li>
-<li><a class="nav-link" href="#exy"><span class="header-section-number">15.3.2</span> E(X+Y)</a></li>
-<li><a class="nav-link" href="#exy-1"><span class="header-section-number">15.3.3</span> E(XY)</a></li>
-<li><a class="nav-link" href="#e12xy1"><span class="header-section-number">15.3.4</span> E(1/2X+Y+1)</a></li>
-<li><a class="nav-link" href="#expectation-of-continuous-random-variables"><span class="header-section-number">15.3.5</span> Expectation of continuous random variables</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#exercises-to-apply-what-we-learned-1"><span class="header-section-number">15.4</span> Exercises to apply what we learned</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#ex"><span class="header-section-number">15.4.1</span> E(X)</a></li>
-<li><a class="nav-link" href="#exy-2"><span class="header-section-number">15.4.2</span> E(X+Y)</a></li>
-<li><a class="nav-link" href="#exy-3"><span class="header-section-number">15.4.3</span> E(XY)</a></li>
-<li><a class="nav-link" href="#vxy"><span class="header-section-number">15.4.4</span> V(XY)</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#covariancecorrelation"><span class="header-section-number">15.5</span> Covariance/Correlation</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#variance-of-sums"><span class="header-section-number">15.5.1</span> Variance of sums</a></li></ul>
-</li>
-<li><a class="nav-link" href="#independence-1"><span class="header-section-number">15.6</span> Independence</a></li>
-<li><a class="nav-link" href="#conditional-expectation"><span class="header-section-number">15.7</span> Conditional expectation</a></li>
-<li><a class="nav-link" href="#homework-problems-14"><span class="header-section-number">15.8</span> Homework Problems</a></li>
-</ul>
+  </main>
+
+  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <div id="book-on-this-page"></div>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/15-Multivariate-Expectation.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/15-Multivariate-Expectation.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
-</div>
+      </div>
     </nav>
-</div>
+  </div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5">
+  <div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-14.</p>
@@ -683,7 +590,11 @@ f_{X,Y}(x,y)=1
   </div>
 
 </div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+</footer>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -695,7 +606,8 @@ f_{X,Y}(x,y)=1
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+</script>
+<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
 for (let popover of popovers) {
   const div = document.createElement('div');
   div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
@@ -713,4 +625,5 @@ for (let popover of popovers) {
 }
 </script>
 </body>
+
 </html>
