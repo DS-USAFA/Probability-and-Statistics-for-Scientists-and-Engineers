@@ -5,7 +5,7 @@
 
 ## Objectives
 
-1) Define and use properly in context all new terminology.   
+1) Define and use properly in context all new terminology: *hypothesis test*, *null hypothesis*, *alternative hypothesis*, *randomization*, *test statistic*, and *p-value*.     
 2) Conduct a hypothesis test using a permutation test to include all 4 steps.
 
 ## Introduction 
@@ -146,7 +146,7 @@ The `shuffle()` function randomly rearranges the gender column while keeping the
 > **Exercise**:
 What is the difference in promotion rates between the two simulated groups? How does this compare to the observed difference 29.2\% from the actual study?^[$18/24 - 17/24=0.042$ or about 4.2\% in favor of the men. This difference due to chance is much smaller than the difference observed in the actual groups.]
 
-Calculating by hand will not help in a simulation, so we must write a function or use an existing one. We will use `diffprop` from the **mosiac** package. The code to find the difference for the original data is:
+Calculating by hand will not help in a simulation, so we must write a function or use an existing one. We will use `diffprop` from the **mosaic** package. The code to find the difference for the original data is:
 
 ```{r}
 (obs<-diffprop(decision~gender,data=discrim))
@@ -249,7 +249,7 @@ The remainder of this block expands on the ideas of this case study.
 
 1. Side effects of Avandia  
 
-Rosiglitazone is the active ingredient in the controversial type~2 diabetes medicine Avandia and has been linked to an increased risk of serious cardiovascular problems such as stroke, heart failure, and death. A common alternative treatment is pioglitazone, the active ingredient in a diabetes medicine called Actos. In a nationwide retrospective observational study of 227,571 Medicare beneficiaries aged  65 years or older, it was found that 2,593 of the 67,593 patients using rosiglitazone and 5,386 of the 159,978 using pioglitazone had serious cardiovascular problems. These data are summarized in the contingency table below.
+    Rosiglitazone is the active ingredient in the controversial type~2 diabetes medicine Avandia and has been linked to an increased risk of serious cardiovascular problems such as stroke, heart failure, and death. A common alternative treatment is pioglitazone, the active ingredient in a diabetes medicine called Actos. In a nationwide retrospective observational study of 227,571 Medicare beneficiaries aged  65 years or older, it was found that 2,593 of the 67,593 patients using rosiglitazone and 5,386 of the 159,978 using pioglitazone had serious cardiovascular problems. These data are summarized in the contingency table below.  
 
 $$
 \begin{array}{cc|ccc} & & &\textit{Cardiovascular problems}\\ 
@@ -261,20 +261,20 @@ $$
 $$
 
 
-Determine if each of the following statements is true or false. If false, explain why. \textit{Be careful:} The reasoning may be wrong even if the statement's conclusion is correct. In such cases, the statement should be considered false.
 
+  Determine if each of the following statements is true or false. If false, explain why. \textit{Be careful:} The reasoning may be wrong even if the statement's conclusion is correct. In such cases, the statement should be considered false.  
 
-a. Since more patients on pioglitazone had cardiovascular problems (5,386 vs. 2,593), we can conclude that the rate of cardiovascular problems for those on a pioglitazone treatment is higher.  
-b. The data suggest that diabetic patients who are taking rosiglitazone are more likely to have cardiovascular problems since the rate of incidence was (2,593 / 67,593 = 0.038) 3.8\% for patients on this treatment, while it was only (5,386 / 159,978 = 0.034) 3.4\% for patients on pioglitazone.  
-c. The fact that the rate of incidence is higher for the rosiglitazone group proves that rosiglitazone causes serious cardiovascular problems.  
-d. Based on the information provided so far, we cannot tell if the difference between the rates of incidences is due to a relationship between the two variables or due to chance.
+   a. Since more patients on pioglitazone had cardiovascular problems (5,386 vs. 2,593), we can conclude that the rate of cardiovascular problems for those on a pioglitazone treatment is higher.  
+   b. The data suggest that diabetic patients who are taking rosiglitazone are more likely to have cardiovascular problems since the rate of incidence was (2,593 / 67,593 = 0.038) 3.8\% for patients on this treatment, while it was only (5,386 / 159,978 = 0.034) 3.4\% for patients on pioglitazone.  
+   c. The fact that the rate of incidence is higher for the rosiglitazone group proves that rosiglitazone causes serious cardiovascular problems.  
+   d. Based on the information provided so far, we cannot tell if the difference between the rates of incidences is due to a relationship between the two variables or due to chance.  
+
 
 2. Heart transplants  
 
+    The Stanford University Heart Transplant Study was conducted to determine whether an experimental heart transplant program increased lifespan. Each patient entering the program was designated an official heart transplant candidate, meaning that he was gravely ill and would most likely benefit from a new heart. Some patients got a transplant and some did not. The variable \texttt{group} indicates which group the patients were in; patients in the treatment group got a transplant and those in the control group did not. Another variable called \texttt{outcome} was used to indicate whether or not the patient was alive at the end of the study.
 
-The Stanford University Heart Transplant Study was conducted to determine whether an experimental heart transplant program increased lifespan. Each patient entering the program was designated an official heart transplant candidate, meaning that he was gravely ill and would most likely benefit from a new heart. Some patients got a transplant and some did not. The variable \texttt{group} indicates which group the patients were in; patients in the treatment group got a transplant and those in the control group did not. Another variable called \texttt{outcome} was used to indicate whether or not the patient was alive at the end of the study.
-
-In the study, of the 34 patients in the control group, 4 were alive at the end of the study. Of the 69 patients in the treatment group, 24 were alive. The contingency table below summarizes these results.
+    In the study, of the 34 patients in the control group, 4 were alive at the end of the study. Of the 69 patients in the treatment group, 24 were alive. The contingency table below summarizes these results.  
 
 $$
 \begin{array}{cc|ccc} & & &\textit{Group}\\ 
@@ -285,20 +285,20 @@ $$
 \end{array} 
 $$
 
-The data is in a file called `Stanford_heart_study.csv`. Read the data in and answer the following questions.
 
-a. What proportion of patients in the treatment group and what proportion of patients in the control group died?  
+  The data is in a file called `Stanford_heart_study.csv`. Read the data in and answer the following questions.
 
-One approach for investigating whether or not the treatment is effective is to use a randomization technique.  
-
-b. What are the claims being tested? Use the same null and alternative hypothesis notation used in the lesson notes.   
-c.  The paragraph below describes the set up for such approach, if we were to do it without using statistical software. Fill in the blanks with a number or phrase, whichever is appropriate.
-
-
-We write *alive* on _______ cards representing patients who were alive at the end of the study, and *dead* on _______ cards representing patients who were not. Then, we shuffle these cards and split them into two groups: one group of size _______ representing treatment, and another group of size _______ representing control. We calculate the difference between the proportion of \textit{dead} cards in the control and treatment groups (control - treatment), this is just so we have positive observed value, and record this value. We repeat this many times to build a distribution centered at _______. Lastly, we calculate the fraction of simulations where the simulated differences in proportions are _______ or _______. If this fraction of simulations, the empirical p-value, is low, we conclude that it is unlikely to have observed such an outcome by chance and that the null hypothesis should be rejected in favor of the alternative.
+  a. What proportion of patients in the treatment group and what proportion of patients in the control group died?   
+    One approach for investigating whether or not the treatment is effective is to use a randomization technique.  
+  b. What are the claims being tested? Use the same null and alternative hypothesis notation used in the lesson notes.   
+  c.  The paragraph below describes the set up for such approach, if we were to do it without using statistical software. Fill in the blanks with a number or phrase, whichever is appropriate.  
 
 
-Next we will perform the simulation and use results to decide the effectiveness of the transplant program.
+> We write *alive* on _______ cards representing patients who were alive at the end of the study, and *dead* on _______ cards representing patients who were not. Then, we shuffle these cards and split them into two groups: one group of size _______ representing treatment, and another group of size _______ representing control. We calculate the difference between the proportion of \textit{dead} cards in the control and treatment groups (control - treatment), this is just so we have positive observed value, and record this value. We repeat this many times to build a distribution centered at _______. Lastly, we calculate the fraction of simulations where the simulated differences in proportions are _______ or _______. If this fraction of simulations, the empirical p-value, is low, we conclude that it is unlikely to have observed such an outcome by chance and that the null hypothesis should be rejected in favor of the alternative.  
+
+
+
+  Next we will perform the simulation and use results to decide the effectiveness of the transplant program.
 
 ```{r results='hide',echo=FALSE,eval=FALSE}
 set.seed(7220)
@@ -312,8 +312,8 @@ select(-orig.id)
 
 
 
-d.  Find observed value of the test statistic, which we decided to use the difference in proportions.  
-f. Simulate 1000 values of the test statistic by using `shuffle()` on the variable `group`.  
-g. Plot distribution of results. Include a vertical line for the observed value. Clean up the plot as if you were presenting to a decision maker.  
-h. Find p-value. Think carefully about what more extreme would mean.  
-i. Decide if the treatment is effective.
+  d.  Find observed value of the test statistic, which we decided to use the difference in proportions.  
+  e. Simulate 1000 values of the test statistic by using `shuffle()` on the variable `group`.  
+  f. Plot distribution of results. Include a vertical line for the observed value. Clean up the plot as if you were presenting to a decision maker.  
+  g. Find p-value. Think carefully about what more extreme would mean.  
+  h. Decide if the treatment is effective.  

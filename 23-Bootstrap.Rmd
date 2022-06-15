@@ -538,26 +538,3 @@ e. Plot the bootstrap distribution and a line at the observed difference in samp
 f. Find a p-value.  
 g. How does the p-value compare with those in the reading.
 
-3. Paired data  
-
-Are textbooks actually cheaper online? Here we compare the price of textbooks at the University of California, Los Angeles' (UCLA's) bookstore and prices at Amazon.com. Seventy-three UCLA courses were randomly sampled in Spring 2010, representing less than 10\% of all UCLA courses. When a class had multiple books, only the most expensive text was considered.
-
-The data is in the file `textbooks.csv` under the data folder.
-
-Each textbook has two corresponding prices in the data set: one for the UCLA bookstore and one for Amazon. Therefore, each textbook price from the UCLA bookstore has a natural correspondence with a textbook price from Amazon. When two sets of observations have this special correspondence, they are said to be **paired**.
-
-To analyze paired data, it is often useful to look at the difference in outcomes of each pair of observations. In  `textbooks`, we look at the difference in prices, which is represented as the `diff` variable. It is important that we always subtract using a consistent order; here Amazon prices are always subtracted from UCLA prices. 
-
-a. Is this data tidy? Explain.  
-b. Make a scatterplot of the UCLA price versus the Amazon price. Add a 45 degree line to the plot.  
-c. Make a histogram of the differences in price.   
-
-The hypotheses are:  
-$H_0$: $\mu_{diff}=0$. There is no difference in the average textbook price.  
-$H_A$: $\mu_{diff} \neq 0$. There is a difference in average prices.
- 
-d. To use a $t$ distribution, the variable `diff` has to independent and normally distributed. Since the 73 books represent less than 10\% of the population, the assumption that the random sample is independent is reasonable. Check normality using `qqnorsim()` from the **openintro** package. It generates 8 qq plots of simulated normal data that you can use to judge the `diff` variable.  
-e. Run a $t$ test on the `diff` variable. Report the p-value and conclusion.  
-f. Create a bootstrap distribution and generate a 95\% confidence interval on the mean of the differences, the `diff` column.  
-g. If there is really no differences between book sources, the variable `more` is a binomial and under the null the probably of success is $\pi = 0.5$. Run a hypothesis test using the variable `more`.  
-h. Could you use a permutation test on this example? Explain.  

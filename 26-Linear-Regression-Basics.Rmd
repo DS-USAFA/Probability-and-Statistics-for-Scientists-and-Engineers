@@ -145,7 +145,7 @@ Notice that this implies that the line will always go through the point $\left(\
 And 
 
 $$
-\hat{\beta}_1 = {\sum x_i y_i - n\bar{x}\bar{y} \over \sum x_i^2 -n\bar{x}^2}
+\hat{\beta}_1 = {\sum x_i y_i - n\bar{x}\bar{y} \over{\sum x_i^2 -n\bar{x}^2}}
 $$
 
 A more intuitive formula for the slope and one that links **correlation** to linear regression is:
@@ -159,7 +159,7 @@ where $R$ is the correlation between the two variables, and $s_x$ and $s_y$ are 
 
 You may also be interested in estimating $\sigma$, the standard deviation of the error:
 $$
-\hat{\sigma}=\sqrt{{1\over n-2} \sum_{i=1}^n \hat{e}_i^2}
+\hat{\sigma}=\sqrt{{1\over{n-2}} \sum_{i=1}^n \hat{e}_i^2}
 $$
 
 where $\hat{e}_i$ is the observed $i$th **residual** ($\hat{e}_i=y_i-\hat{\beta}_0-\hat{\beta}_1x_i$). This estimate is based only on the assumption of constant variance.
