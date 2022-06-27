@@ -1,4 +1,4 @@
-book_filename: "Computational Probability and Statistics"
+book_filename: "Computational Probability and Statistics - MASTER EDITION"
 output_dir: "docs"
 new_session: yes
 before_chapter_script: "library_load.R"
@@ -27,18 +27,19 @@ rmd_files: [
    "16-Transformations.Rmd",                                       
    "17-Estimation-Methods.Rmd",                                    
    "18-Hypothesis-Testing-Case-Study.Rmd",                         
-   "19-Hypothesis-Testing.Rmd",                                    
-   "20-Empirical-p-values.Rmd",                                   
-   "21-Central-Limit-Theorem.Rmd",                                 
-   "22-Confidence-Intervals.Rmd",                                  
-   "23-Bootstrap.Rmd",                                             
-   "24-Additional-Hypothesis-Tests.Rmd",                           
-   "25-Linear-Regression-Case-Study.Rmd",                          
-   "26-Linear-Regression-Basics.Rmd",                              
-   "27-Regression-Inference.Rmd",                                  
-   "28-Regression-Diagnostics.Rmd",                                
-   "29-Simulation-Based-Linear-Regression.Rmd",                    
-   "30-Multiple-Regression.Rmd",                                   
-   "31-Logistic-Regression.Rmd",                                   
-   "32-Reference.Rmd"                                             
+   "19-Hypothesis-Testing-Simulation.Rmd",                                    
+   "20-Hypothesis-Testing-ProbDist.Rmd",                                   
+   "21-Central-Limit-Theorem.Rmd",
+   "22-Additional-Hypothesis-Tests.Rmd",
+   "23-Analysis-of-Variance.Rmd",
+   "24-Confidence-Intervals.Rmd",                                  
+   "25-Bootstrap.Rmd",                                             
+   "26-Linear-Regression-Case-Study.Rmd",                          
+   "27-Linear-Regression-Basics.Rmd",                              
+   "28-Regression-Inference.Rmd",                                  
+   "29-Regression-Diagnostics.Rmd",                                
+   "30-Simulation-Based-Linear-Regression.Rmd",                    
+   "31-Multiple-Regression.Rmd",                                   
+   "32-Logistic-Regression.Rmd",                                   
+   "33-Reference.Rmd"                                             
    ]

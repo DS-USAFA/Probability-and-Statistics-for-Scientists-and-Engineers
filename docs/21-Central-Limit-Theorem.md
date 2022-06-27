@@ -1,11 +1,13 @@
-# Central Limit Theorem {#CLT}
+# Hypothesis Testing with the Central Limit Theorem {#HYPTESTCLT}
 
 
 ## Objectives
 
 1) Explain the central limit theorem and when you can use it for inference.   
+
 2) Conduct hypothesis tests of a single mean and proportion using the CLT and `R`.   
-3) Explain how the chi-squared and $t$ distributions relate to the normal distribution, where we use them, and describe the impact on the shape of the distribution when the parameters are changed.   
+
+3) Explain how the $t$ distribution relates to the normal distribution, where we use it, and describe the impact on the shape of the distribution when the parameters are changed.   
 
 
 ## Central limit theorem
@@ -55,7 +57,7 @@ If you go back and review examples, exercises, and homework problems from the pr
 
 To get an understanding and some intuition of the central limit theorem, let's simulate some data and evaluate.
 
-### Simulating data for CLT
+### Simulating data for the CLT
 
 For this section, we are going to use an artificial example where we know the population distribution and parameters. We will repeat sampling from this many times and plot the distribution of the summary statistic of interest, the sample mean, to demonstrate the CLT. This is purely an educational thought experiment to give ourselves confidence about the validity of the CLT.
 
@@ -167,36 +169,13 @@ clt %>%
 
 ### Summary of example
 
-In this example, we knew the true proportion of voters who supported the proposition. Based on that knowledge, we simulated the behavior of the sample proportion. We did this by taking a sample of size $n$, recording the sample proportion, sample mean, and repeating that process thousands of times. In reality, we will not know the true underlying level of support; further, we will not take a sample repeatedly thousands of times from the parent population. Sampling can be expensive and time-consuming. Thus, we would take one random sample of size $n$, and acknowledge that the resulting sample proportion is but one observation from an underlying normal distribution. We would then determine what values of $\pi$ (the true unknown population proportion) could reasonably have resulted in the observed sample proportion. 
+In this example, we knew the true proportion of voters who supported the proposition. Based on that knowledge, we simulated the behavior of the sample proportion. We did this by taking a sample of size $n$, recording the sample proportion and sample mean, and repeating that process thousands of times. In reality, we will not know the true underlying level of support; further, we will not take a sample repeatedly thousands of times from the parent population. Sampling can be expensive and time-consuming. Thus, we would take one random sample of size $n$, and acknowledge that the resulting sample proportion is but one observation from an underlying normal distribution. We would then determine what values of $\pi$ (the true unknown population proportion) could reasonably have resulted in the observed sample proportion. 
 
 
 ## Other distribution for estimators
 
 Prior to using the CLT in hypothesis testing, we want to discuss other sampling distributions that are based on the CLT or normality assumptions. A large part of theoretical statistics has been about mathematically deriving the distribution of sample statistics. In these methods we obtain a sample statistic, determine the distribution of that statistic under certain conditions, and then use that information to make a statement about the population parameter. 
 
-### Chi-sqaured
-
-Recall that the central limit theorem tells us that for reasonably large sample sizes, $\bar{X}\overset{approx}{\sim}\textsf{Norm}(\mu,\sigma/\sqrt{n})$. However, this expression involves two unknowns: $\mu$ and $\sigma$. In the case of binary data, population variance is a function of population proportion ($\Var(X)=\pi(1-\pi)$), so there is really just one unknown. In the case of continuous data, the standard deviation would need to be estimated. 
-
-Let $S^2$ be defined as:
-$$
-S^2={\sum (X_i-\bar{X})^2\over n-1}
-$$
-
-Recall that this is an unbiased estimate for $\sigma^2$. The sampling distribution of $S^2$ can be found using the following lemma:
-
-Lemma: Let $X_1,X_2,...,X_n$ be an iid sequence of random variables from a normal population with mean $\mu$ and standard deviation $\sigma$. Then,
-$$
-{(n-1)S^2\over \sigma^2}\sim \textsf{Chisq}(n-1)
-$$
-
-The $\textsf{Chisq}(n-1)$ distribution is read as the "chi-squared" distribution ("chi" is pronounced "kye"). The chi-squared distribution has one parameter: degrees of freedom. The chi-squared distribution is used in other contexts such as goodness of fit problems like the golf ball example from last lesson, we will discuss this particular application in a later chapter.   
-
-The proof of this lemma is outside the scope of this book, but it is not terribly complicated. It follows from the fact that the sum of $n$ squared random variables, each with the standard normal distribution, follows the chi-squared distribution with $n$ degrees of freedom. 
-
-This lemma can be used to draw inferences about $\sigma^2$. For a particular value of $\sigma^2$, we know how $S^2$ should behave. So, for a particular value of $S^2$, we can figure out reasonable values of $\sigma^2$. 
-
-In practice, one rarely estimates $\sigma$ for the purpose of inferring on $\sigma$. Typically, we are interested in estimating $\mu$ and we need to account for the added uncertainty in estimating $\sigma$ as well. That is what we will discuss in the next section. 
 
 ### Student's t
 
@@ -212,7 +191,8 @@ $$
 
 Again, $\sigma$ is unknown. Thus, we have to estimate it. We can estimate it with $S$, but now we need to know the distribution of ${\bar{X}-\mu\over S/\sqrt{n}}$. This *does not* follow the normal distribution. 
 
-Lemma: Let $X_1,X_2,...,X_n$ be an iid sequence of random variables from a normal population with mean $\mu$ and standard deviation $\sigma$. Then,
+Lemma: Let $X_1,X_2,...,X_n$ be an iid sequence of random variables from a normal population with mean $\mu$ and standard deviation $\sigma$. Then,  
+
 $$
 {\bar{X}-\mu\over S/\sqrt{n}} \sim \textsf{t}(n-1)
 $$
@@ -239,13 +219,151 @@ gf_dist("norm",color="red") %>%
 
 ### Important Note
 
-You may have noticed an important condition in the two lemmas above. It was assumed that each $X_i$ in the sequence of random variables was *normally* distributed. While the central limit theorem has no such normality assumption, the distribution of the $t$-statistic is subject to the distribution of the underlying population. With a large enough sample size, this assumption is not necessary. There is no magic number, but some resources state that as long as $n$ is at least 30-40, the underlying distribution doesn't matter. For smaller sample sizes, the underlying distribution should be relatively symmetric and unimodal. 
+You may have noticed an important condition in the lemma above. It was assumed that each $X_i$ in the sequence of random variables was *normally* distributed. While the central limit theorem has no such normality assumption, the distribution of the $t$-statistic is subject to the distribution of the underlying population. With a large enough sample size, this assumption is not necessary. There is no magic number, but some resources state that as long as $n$ is at least 30-40, the underlying distribution doesn't matter. For smaller sample sizes, the underlying distribution should be relatively symmetric and unimodal. 
 
-One advantage of simulation-based inference methods is that these methods do not rely on any such distributional assumptions. However, the simulation-based methods may have a smaller power for the same sample size.
+One advantage of simulation-based inference methods is that these methods do not rely on any such distributional assumptions. However, the simulation-based methods may have smaller power for the same sample size.
 
-## Hypotheses tests using CLT
+
+## Hypothesis tests using the CLT
 
 We are now ready to repeat some of our previous problems using the mathematically derived sampling distribution via the CLT.
+
+
+### Body temperature
+
+We will repeat the body temperature analysis using the CLT. We will use $\alpha = 0.05$ 
+
+#### Step 1- State the null and alternative hypotheses  
+
+$H_0$: The average body temperature is 98.6; $\mu = 98.6$  
+$H_A$: The average body temperature is less than 98.6; $\mu < 98.6$  
+
+#### Step 2 - Compute a test statistic. 
+
+We don't know the population variance, so we will use the $t$ distribution. Remember that 
+
+$$
+{\bar{X}-\mu\over S/\sqrt{n}} \sim \textsf{t}(n-1)
+$$
+thus our test statistic is 
+
+$$
+\frac{\bar{x}-98.6}{s/\sqrt{n}}
+$$
+
+
+
+
+```r
+favstats(~temperature,data=temperature)
+```
+
+```
+##   min   Q1 median   Q3   max     mean        sd   n missing
+##  96.3 97.8   98.3 98.7 100.8 98.24923 0.7331832 130       0
+```
+
+
+```r
+temperature %>%
+  summarise(mean=mean(temperature),sd=sd(temperature),test_stat=(mean-98.6)/(sd/sqrt(130)))
+```
+
+```
+## # A tibble: 1 x 3
+##    mean    sd test_stat
+##   <dbl> <dbl>     <dbl>
+## 1  98.2 0.733     -5.45
+```
+
+We are over 5 standard deviation below the null hypothesis mean. We have some assumptions that we will discuss at the end of this problem. 
+
+#### Step 3 - Determine the p-value.
+
+We now want to find the p-value from $\Prob(t \leq -5.45)$ on 129 degrees of freedom, given the null hypothesis is true, which is that the probability of success is 0.50. We will use `R` to get the one-sided p-value.
+
+
+```r
+pt(-5.45,129)
+```
+
+```
+## [1] 1.232178e-07
+```
+
+We could also use the `R` function `t_test()`.
+
+
+```r
+t_test(~temperature,data=temperature,mu=98.6,alternative="less")
+```
+
+```
+## 
+## 	One Sample t-test
+## 
+## data:  temperature
+## t = -5.4548, df = 129, p-value = 1.205e-07
+## alternative hypothesis: true mean is less than 98.6
+## 95 percent confidence interval:
+##      -Inf 98.35577
+## sample estimates:
+## mean of x 
+##  98.24923
+```
+
+Notice this p-value is much smaller than the p-value from the method used in homework problem 3 in the last chapter. That is because this test statistic has more assumptions and uses the data as continuous and not discrete.
+
+#### Step 4 - Draw a conclusion
+
+Based our data, if the true mean body temperature is 98.6, then the probability of observing a mean of 98.25 or less is 0.00000012. This is too unlikely so we reject the hypothesis that the average body temperature is 98.6.
+
+
+## Summary and rules of thumb
+
+We have covered a great deal in this lesson. At its core, the central limit theorem is a statement about the distribution of a sum of independent identically distributed random variables. This sum is approximately normal. First we summarize rules of thumb for the use of the CLT and $t$ distribution.
+
+### Numerical data
+
+1. The central limit works regardless of the distribution. However, if the parent population is highly skewed, then more data is needed. The CLT works well once the sample sizes exceed 30 to 40. If the data is fairly symmetric, then less data is needed.
+
+2. When estimating the mean and standard error from a sample of numerical data, the $t$ distribution is a little more accurate than the normal model. But there is an assumption that the parent population is normally distributed. This distribution works well even for small samples as long as the data is close to symmetrical and unimodal.
+
+3. For medium samples, at least 15 data points, the $t$ distribution still works as long as the data is roughly symmetric and unimodal.
+
+4. For large data sets 30-40 or more, the $t$ or even the normal can be used but we suggest you always use the $t$. 
+
+
+Now, let's discuss the assumptions of the $t$ distribution and how to check them.
+
+1. Independence of observations. This is a difficult assumption to verify. If we collect a simple random sample from less than 10\% of the population, or if the data are from an experiment or random process, we feel better about this assumption. If the data comes from an experiment, we can plot the data versus time collected to see if there are any patterns that indicate a relationship. A design of experiment course discusses these ideas.  
+
+2. Observations come from a nearly normal distribution. This second condition is difficult to verify with small data sets. We often (i) take a look at a plot of the data for obvious departures from the normal model, usually in the form of prominent outliers, and (ii) consider whether any previous experiences alert us that the data may not be nearly normal. However, if the sample size is somewhat large, then we can relax this condition, e.g. moderate skew is acceptable when the sample size is 30 or more, and strong skew is acceptable when the size is about 60 or more.
+
+    A typical plot to use to evaluate the normality assumption is called the quantile-quantile plot. We form a scatterplot of the empirical quantiles from the data versus exact quantile values from the theoretical distribution. If the points fall along a line then the data match the distribution. An exact match is not realistic, so we look for major departures from the line. 
+
+Figure \@ref(fig:qq211-fig) is our normal-quantile plot for the body temperature data. The largest value may be an outlier, we may want to verify it was entered correctly. The fact that the points are above the line for the larger values and below the line for the smaller values indicates that our data may have longer tails than the normal distribution. There are really only 3 values in the larger quantiles so in fact the data may be slightly skewed to the left, this was also indicated by a comparison of the mean and median. However, since we have 130 data points these results should not impact our findings. 
+
+
+```r
+gf_qq(~temperature,data=temperature) %>%
+  gf_qqline(~temperature,data=temperature) %>%
+  gf_theme(theme_bw())
+```
+
+<div class="figure">
+<img src="21-Central-Limit-Theorem_files/figure-html/qq211-fig-1.png" alt="Q-Q plot for body temperature data." width="672" />
+<p class="caption">(\#fig:qq211-fig)Q-Q plot for body temperature data.</p>
+</div>
+
+Extreme data points, outliers, can be cause for concern. In later chapters, we will look for ways to detect outliers but we have seen them in our boxplots.  Outliers are problematic because normal distributions rarely have outliers so the presence of one may indicate a departure from normality. Second, outliers have a big impact on estimation methods for the mean and standard deviation whether it is a method of moments or maximum likelihood estimate.  
+
+We can also check the impacts of the assumptions by using other methods for the hypothesis test. If all methods give the same conclusion, we can be confident in the results. Another way to check robustness to assumptions is to simulate data from different distributions and evaluate the performance of the test under the simulated data.
+
+### Binary data  
+
+The distribution of a binomial random variable or simple scalar transformations of it, such as the proportions of success found by dividing by the sample size, are approximately normal by the CLT. Since binomial random variables are bounded by zero and the number of trails, we have to make sure our probability of success is not close to zero or one, that is the number of successes is not close to 0 or $n$. A general rule of thumb is that the number of success and failures be at least 10.
+
 
 ### Tappers and listeners
 
@@ -363,183 +481,85 @@ This is the same as
 ```
 
 
-### Body temperature
-
-We will repeat the body temperature analysis using the CLT. We will use $\alpha = 0.05$ 
-
-#### Step 1- State the null and alternative hypotheses  
-
-$H_0$: The average body temperature is 98.6; $\mu = 98.6$  
-$H_A$: The average body temperature is less than 98.6; $\mu < 98.6$  
-
-#### Step 2 - Compute a test statistic. 
-
-We don't know the population variance, so we will use the $t$ distribution. Remember that 
-
-$$
-{\bar{X}-\mu\over S/\sqrt{n}} \sim \textsf{t}(n-1)
-$$
-thus our test statistic is 
-
-$$
-\frac{\bar{x}-98.6}{s/\sqrt{n}}
-$$
-
-
-
-
-```r
-favstats(~temperature,data=temperature)
-```
-
-```
-##   min   Q1 median   Q3   max     mean        sd   n missing
-##  96.3 97.8   98.3 98.7 100.8 98.24923 0.7331832 130       0
-```
-
-
-```r
-temperature %>%
-  summarise(mean=mean(temperature),sd=sd(temperature),test_stat=(mean-98.6)/(sd/sqrt(130)))
-```
-
-```
-## # A tibble: 1 x 3
-##    mean    sd test_stat
-##   <dbl> <dbl>     <dbl>
-## 1  98.2 0.733     -5.45
-```
-
-We are over 5 standard deviation below the null hypothesis mean. We have some assumptions that we will discuss at the end of this problem. 
-
-#### Step 3 - Determine the p-value.
-
-We now want to find the p-value from $\Prob(t \leq -5.45)$ on 129 degrees of freedom, given the null hypothesis is true, which is that the probability of success is 0.50. We will use `R` to get the one-sided p-value.
-
-
-```r
-pt(-5.45,129)
-```
-
-```
-## [1] 1.232178e-07
-```
-
-We could also use the `R` function `t_test()`.
-
-
-```r
-t_test(~temperature,data=temperature,mu=98.6,alternative="less")
-```
-
-```
-## 
-## 	One Sample t-test
-## 
-## data:  temperature
-## t = -5.4548, df = 129, p-value = 1.205e-07
-## alternative hypothesis: true mean is less than 98.6
-## 95 percent confidence interval:
-##      -Inf 98.35577
-## sample estimates:
-## mean of x 
-##  98.24923
-```
-
-Notice this p-value is much smaller than the p-value from the method used in homework problem 3 in the last chapter. That is because this test statistic has more assumptions and uses the data as continuous and not discrete.
-
-#### Step 4 - Draw a conclusion
-
-Based our data, if the true mean body temperature is 98.6, then the probability of observing a mean of 98.25 or less is 0.00000012. This is too unlikely so we reject the hypothesis that the average body temperature is 98.6.
-
-
-## Summary and rules of thumb
-
-We have covered a great deal in this lesson. At its core, the central limit theorem is a statement about the distribution of a sum of independent identically distributed random variables. This sum is approximately normal. First we summarize rules of thumb for the use of the CLT and $t$ distribution.
-
-### Numerical data
-
-1. The central limit works regardless of the distribution. However, if the parent population is highly skewed, then more data is needed. The CLT works well once the sample sizes exceed 30 to 40. If the data is fairly symmetric, then less data is needed.
-
-2. When estimating the mean and standard error from a sample of numerical data, the $t$ distribution is a little more accurate than the normal model. But there is an assumption that the parent population is normally distributed. This distribution works well even for small samples as long as the data is close to symmetrical and unimodal.
-
-3. For medium samples, at least 15 data points, the $t$ distribution still works as long as the data is roughly symmetric and unimodal.
-
-4. For large data sets 30-40 or more, the $t$ or even the normal can be used but we suggest you always use the $t$. 
-
-
-Now, let's discuss the assumptions of the $t$ distribution and how to check them.
-
-1. Independence of observations. This is a difficult assumption to verify. If we collect a simple random sample from less than 10\% of the population, or if the data are from an experiment or random process, we feel better about this assumption. If the data comes from an experiment, we can plot the data versus time collected to see if there are any patterns that indicate a relationship. A design of experiment course discusses these ideas.  
-
-2. Observations come from a nearly normal distribution. This second condition is difficult to verify with small data sets. We often (i) take a look at a plot of the data for obvious departures from the normal model, usually in the form of prominent outliers, and (ii) consider whether any previous experiences alert us that the data may not be nearly normal. However, if the sample size is somewhat large, then we can relax this condition, e.g. moderate skew is acceptable when the sample size is 30 or more, and strong skew is acceptable when the size is about 60 or more.
-
-A typical plot to use to evaluate the normality assumption is called the quantile-quantile plot. We form a scatterplot of the empirical quantiles from the data versus exact quantile values from the theoretical distribution. If the points fall along a line then the data match the distribution. An exact match is not realistic, so we look for major departures from the line. 
-
-Figure \@ref(fig:qq211-fig) is our normal-quantile plot for the body temperature data. The largest value may be an outlier, we may want to verify it was entered correctly. The fact that the points are above the line for the larger values and below the line for the smaller values indicates that our data may have longer tails than the normal distribution. There are really only 3 values in the larger quantiles so in fact the data may be slightly skewed to the left, this was also indicated by a comparison of the mean and median. However, since we have 130 data points these results should not impact our findings. 
-
-
-```r
-gf_qq(~temperature,data=temperature) %>%
-  gf_qqline(~temperature,data=temperature) %>%
-  gf_theme(theme_bw())
-```
-
-<div class="figure">
-<img src="21-Central-Limit-Theorem_files/figure-html/qq211-fig-1.png" alt="Q-Q plot for body temperature data." width="672" />
-<p class="caption">(\#fig:qq211-fig)Q-Q plot for body temperature data.</p>
-</div>
-
-Extreme data points, outliers, can be cause for concern. In later chapters, we will look for ways to detect outliers but we have seen them in our boxplots.  Outliers are problematic because normal distributions rarely have outliers so the presence of one may indicate a departure from normality. Second, outliers have a big impact on estimation methods for the mean and standard deviation whether it is a method of moments or maximum likelihood estimate.  
-
-We can also check the impacts of the assumptions by using other methods for the hypothesis test. If all methods give the same conclusion, we can be confident in the results. Another way to check robustness to assumptions is to simulate data from different distributions and evaluate the performance of the test under the simulated data.
-
-### Binary data  
-
-The distribution of a binomial random variable or simple scalar transformations of it, such as the proportions of success found by dividing by the sample size, are approximately normal by the CLT. Since binomial random variables are bounded by zero and the number of trails, we have to make sure our probability of success is not close to zero or one, that is the number of successes is not close to 0 or $n$. A general rule of thumb is that the number of success and failures be at least 10.
-
 ## Homework Problems
 
-1. Suppose we roll a fair six-sided die and let $X$ be the resulting number. The distribution of $X$ is discrete uniform. (Each of the six discrete outcomes is equally likely.) 
+1. Suppose we roll a fair six-sided die and let $X$ be the resulting number. The distribution of $X$ is discrete uniform. (Each of the six discrete outcomes is equally likely.)  
 
 a. Suppose we roll the fair die 5 times and record the value of $\bar{X}$, the *mean* of the resulting rolls. Under the central limit theorem, what should be the distribution of $\bar{X}$?   
+
 b. Simulate this process in `R`. Plot the resulting empirical distribution of $\bar{X}$ and report the mean and standard deviation of $\bar{X}$. Was it what you expected?   
 
-(HINT: You can simulate a die roll using the `sample` function. Be careful and make sure you use it properly.)   
-c. Repeat parts a) and b) for $n=20$ and $n=50$. Describe what you notice. Make sure all three plots are plotted on the same $x$-axis scale. You can use facets if you combine your data into one `tibble`.
+    (HINT: You can simulate a die roll using the `sample` function. Be careful and make sure you use it properly.)  
+    
+c. Repeat parts a) and b) for $n=20$ and $n=50$. Describe what you notice. Make sure all three plots are plotted on the same $x$-axis scale. You can use facets if you combine your data into one `tibble`.  
 
 
 2. The nutrition label on a bag of potato chips says that a one ounce (28 gram) serving of potato chips has 130 calories and contains ten grams of fat, with three grams of saturated fat. A random sample of 35 bags yielded a sample mean of 134 calories with a standard deviation of 17 calories. Is there evidence that the nutrition label does not provide an accurate measure of calories in the bags of potato chips? The conditions necessary for applying the normal model have been checked and are satisfied.
 
-
-The question has been framed in terms of two possibilities: the nutrition label accurately lists the correct average calories per bag of chips or it does not, which may be framed as a hypothesis test.
+    The question has been framed in terms of two possibilities: the nutrition label accurately lists the correct average calories per bag of chips or it does not, which may be framed as a hypothesis test.
 
 a. Write the null and alternative hypothesis.  
+
 b. What level of significance are you going to use?   
+
 c. What is the distribution of the test statistic ${\bar{X}-\mu\over S/\sqrt{n}}$? Calculate the observed value.  
+
 d. Calculate a p-value.  
+
 e. Draw a conclusion.  
 
-3. Exploration of the chi-squared and $t$ distributions. 
 
-a. In `R`, plot the pdf of a random variable with the chi-squared distribution with 1 degree of freedom. On the same plot, include the pdfs with degrees of freedom of 5, 10 and 50. Describe how the behavior of the pdf changes with increasing degrees of freedom.   
-b. Repeat part (a) with the $t$ distribution. Add the pdf of a standard normal random variable as well. What do you notice? 
+3. Paired data  
 
+    Are textbooks actually cheaper online? Here we compare the price of textbooks at the University of California, Los Angeles' (UCLA's) bookstore and prices at Amazon.com. Seventy-three UCLA courses were randomly sampled in Spring 2010, representing less than 10\% of all UCLA courses. When a class had multiple books, only the most expensive text was considered.
+
+    The data is in the file `textbooks.csv` under the data folder.
+
+    Each textbook has two corresponding prices in the data set: one for the UCLA bookstore and one for Amazon. Therefore, each textbook price from the UCLA bookstore has a natural correspondence with a textbook price from Amazon. When two sets of observations have this special correspondence, they are said to be **paired**.
+
+    To analyze paired data, it is often useful to look at the difference in outcomes of each pair of observations. In  `textbooks`, we look at the difference in prices, which is represented as the `diff` variable. It is important that we always subtract using a consistent order; here Amazon prices are always subtracted from UCLA prices. 
+
+a. Is this data tidy? Explain.  
+
+b. Make a scatterplot of the UCLA price versus the Amazon price. Add a 45 degree line to the plot.  
+
+c. Make a histogram of the differences in price.   
+
+    The hypotheses are:  
+$H_0$: $\mu_{diff}=0$. There is no difference in the average textbook price.  
+$H_A$: $\mu_{diff} \neq 0$. There is a difference in average prices.  
+ 
+d. To use a $t$ distribution, the variable `diff` has to independent and normally distributed. Since the 73 books represent less than 10\% of the population, the assumption that the random sample is independent is reasonable. Check normality using `qqnorsim()` from the **openintro** package. It generates 8 qq plots of simulated normal data that you can use to judge the `diff` variable.  
+
+e. Run a $t$ test on the `diff` variable. Report the p-value and conclusion.  
+
+f. Create a bootstrap distribution and generate a 95\% confidence interval on the mean of the differences, the `diff` column.  
+
+g. If there is really no differences between book sources, the variable `more` is a binomial and under the null the probably of success is $\pi = 0.5$. Run a hypothesis test using the variable `more`.  
+
+h. Could you use a permutation test on this example? Explain.  
 
 
 4. In this lesson, we have used the expression *degrees of freedom* a lot. What does this expression mean? When we have sample of size $n$, why are there $n-1$ degrees of freedom for the $t$ distribution? Give a short concise answer (about one paragraph). You will likely have to do a little research on your own.  
 
-5. Deborah Toohey is running for Congress, and her campaign manager claims she has more than 50\% support from the district's electorate. Ms. Toohey's opponent claimed that Ms. Toohey has **less** than 50\%. Set up a hypothesis test to evaluate who is right.
+
+5. Deborah Toohey is running for Congress, and her campaign manager claims she has more than 50\% support from the district's electorate. Ms. Toohey's opponent claimed that Ms. Toohey has **less** than 50\%. Set up a hypothesis test to evaluate who is right.  
+
+    Note: A newspaper collects a simple random sample of 500 likely voters in the district and estimates Toohey's support to be 52\%. 
 
 a. Should we run a one-sided or two-sided hypothesis test?  
-b. Write the null and alternative hypothesis.  
-c. What level of significance are you going to use?   
-d. What are the assumptions of this test?  
-e. Calculate the test statistic.  
-e. Calculate a p-value.  
-f. Draw a conclusion.  
 
-Note: A newspaper collects a simple random sample of 500 likely voters in the district and estimates Toohey's support to be 52\%. 
+b. Write the null and alternative hypothesis.  
+
+c. What level of significance are you going to use?   
+
+d. What are the assumptions of this test?  
+
+e. Calculate the test statistic.  
+
+e. Calculate a p-value.  
+
+f. Draw a conclusion.  
 
 
 

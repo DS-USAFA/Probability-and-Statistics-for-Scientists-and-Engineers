@@ -616,3 +616,6 @@ confidence-intervals-for-a-parameter
 confidence-intervals-for-probability-of-success
 summary-4
 homework-problems-30
+HYPTESTCLT
+simulating-data-for-the-clt
+hypothesis-tests-using-the-clt
