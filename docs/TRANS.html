@@ -13,12 +13,12 @@
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Chapter 16 Transformations | Computational Probability and Statistics">
 <meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover.png">
+<meta property="og:image" content="/figures/Cover_Master.png">
 <meta property="og:description" content="16.1 Objectives Given a discrete random variable, determine the distribution of a transformation of that random variable. Given a continuous random variable, use the cdf method to determine the...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 16 Transformations | Computational Probability and Statistics">
 <meta name="twitter:description" content="16.1 Objectives Given a discrete random variable, determine the distribution of a transformation of that random variable. Given a continuous random variable, use the cdf method to determine the...">
-<meta name="twitter:image" content="/figures/Cover.png">
+<meta name="twitter:image" content="/figures/Cover_Master.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -282,10 +282,10 @@ f_Y(y)=f_X(\sqrt{y})\bigg|\frac{\mathop{}\!\mathrm{d}}{\mathop{}\!\mathrm{d}y} \
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class       min        Q1    median        Q3       max      mean
-## ...1 sqrt numeric 0.0148243 0.4996792 0.7097448 0.8678364 0.9999908 0.6663644
+##      name   class         min        Q1    median       Q3       max      mean
+## ...1 sqrt numeric 0.005438619 0.4956111 0.7112053 0.863436 0.9999909 0.6660389
 ##             sd     n missing
-## ...1 0.2375369 10000       0</code></pre>
+## ...1 0.2363242 10000       0</code></pre>
 <p>Figure <a href="TRANS.html#fig:dens161-fig">16.2</a> is a density plot of the simulated original random variable.</p>
 <div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -318,10 +318,10 @@ Figure 16.3: The density plot of the transformed random variable from the simula
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">y_results</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class       min        Q1     median        Q3           max
-## ...1    y numeric -4.211488 -0.693789 -0.3428498 -0.141752 -9.237408e-06
-##            mean        sd     n missing
-## ...1 -0.5025941 0.5064683 10000       0</code></pre>
+##      name   class      min         Q1     median         Q3          max
+## ...1    y numeric -5.21423 -0.7019638 -0.3407942 -0.1468355 -9.13531e-06
+##            mean       sd     n missing
+## ...1 -0.5006757 0.497067 10000       0</code></pre>
 </div>
 <div id="multivariate-transformations" class="section level3" number="16.2.6">
 <h3>

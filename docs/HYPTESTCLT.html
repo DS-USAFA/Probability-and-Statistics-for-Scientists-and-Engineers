@@ -9,16 +9,16 @@
 <meta name="author" content="Brianna Hitt">
 <meta name="author" content="Ken Horton">
 <meta name="author" content="Bradley Warner">
-<meta name="description" content="21.1 Objectives Explain the central limit theorem and when you can use it for inference. Conduct hypothesis tests of a single mean and proportion using the CLT and R. Explain how the \(t\)...">
+<meta name="description" content="21.1 Objectives Explain the central limit theorem and when you can use it for inference. Conduct hypothesis tests of a single mean and proportion using the CLT and R. Explain how the chi-squared...">
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Chapter 21 Hypothesis Testing with the Central Limit Theorem | Computational Probability and Statistics">
 <meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover.png">
-<meta property="og:description" content="21.1 Objectives Explain the central limit theorem and when you can use it for inference. Conduct hypothesis tests of a single mean and proportion using the CLT and R. Explain how the \(t\)...">
+<meta property="og:image" content="/figures/Cover_Master.png">
+<meta property="og:description" content="21.1 Objectives Explain the central limit theorem and when you can use it for inference. Conduct hypothesis tests of a single mean and proportion using the CLT and R. Explain how the chi-squared...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 21 Hypothesis Testing with the Central Limit Theorem | Computational Probability and Statistics">
-<meta name="twitter:description" content="21.1 Objectives Explain the central limit theorem and when you can use it for inference. Conduct hypothesis tests of a single mean and proportion using the CLT and R. Explain how the \(t\)...">
-<meta name="twitter:image" content="/figures/Cover.png">
+<meta name="twitter:description" content="21.1 Objectives Explain the central limit theorem and when you can use it for inference. Conduct hypothesis tests of a single mean and proportion using the CLT and R. Explain how the chi-squared...">
+<meta name="twitter:image" content="/figures/Cover_Master.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -125,9 +125,11 @@
 <span class="header-section-number">21.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-20"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li><p>Explain the central limit theorem and when you can use it for inference.</p></li>
-<li><p>Conduct hypothesis tests of a single mean and proportion using the CLT and <code>R</code>.</p></li>
-<li><p>Explain how the <span class="math inline">\(t\)</span> distribution relates to the normal distribution, where we use it, and describe the impact on the shape of the distribution when the parameters are changed.</p></li>
+<li>Explain the central limit theorem and when you can use it for inference.<br>
+</li>
+<li>Conduct hypothesis tests of a single mean and proportion using the CLT and <code>R</code>.<br>
+</li>
+<li>Explain how the chi-squared and <span class="math inline">\(t\)</span> distributions relate to the normal distribution, where we use them, and describe the impact on the shape of the distribution when the parameters are changed.</li>
 </ol>
 </div>
 <div id="central-limit-theorem" class="section level2" number="21.2">
@@ -271,8 +273,8 @@ Figure 21.6: Sampling distribution of the proportion for different trail sizes.
 {\bar{X}-\mu\over\sigma/\sqrt{n}}\overset{approx}{\sim}\textsf{Norm}(0,1)
 \]</span></p>
 <p>Again, <span class="math inline">\(\sigma\)</span> is unknown. Thus, we have to estimate it. We can estimate it with <span class="math inline">\(S\)</span>, but now we need to know the distribution of <span class="math inline">\({\bar{X}-\mu\over S/\sqrt{n}}\)</span>. This <em>does not</em> follow the normal distribution.</p>
-<p>Lemma: Let <span class="math inline">\(X_1,X_2,...,X_n\)</span> be an iid sequence of random variables from a normal population with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>. Then,</p>
-<p><span class="math display">\[
+<p>Lemma: Let <span class="math inline">\(X_1,X_2,...,X_n\)</span> be an iid sequence of random variables from a normal population with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>. Then,
+<span class="math display">\[
 {\bar{X}-\mu\over S/\sqrt{n}} \sim \textsf{t}(n-1)
 \]</span></p>
 <p>The <span class="math inline">\(\textsf{t}(n-1)\)</span> distribution is read as the “<span class="math inline">\(t\)</span>” distribution. The <span class="math inline">\(t\)</span> distribution has one parameter: degrees of freedom. The expression above <span class="math inline">\(\left({\bar{X}-\mu\over S/\sqrt{n}}\right)\)</span> is referred to as the <span class="math inline">\(t\)</span> statistic.</p>
@@ -290,17 +292,10 @@ Figure 21.7: The distibtion of t.
 </p>
 </div>
 </div>
-<div id="important-note" class="section level3" number="21.3.2">
-<h3>
-<span class="header-section-number">21.3.2</span> Important Note<a class="anchor" aria-label="anchor" href="#important-note"><i class="fas fa-link"></i></a>
-</h3>
-<p>You may have noticed an important condition in the lemma above. It was assumed that each <span class="math inline">\(X_i\)</span> in the sequence of random variables was <em>normally</em> distributed. While the central limit theorem has no such normality assumption, the distribution of the <span class="math inline">\(t\)</span>-statistic is subject to the distribution of the underlying population. With a large enough sample size, this assumption is not necessary. There is no magic number, but some resources state that as long as <span class="math inline">\(n\)</span> is at least 30-40, the underlying distribution doesn’t matter. For smaller sample sizes, the underlying distribution should be relatively symmetric and unimodal.</p>
-<p>One advantage of simulation-based inference methods is that these methods do not rely on any such distributional assumptions. However, the simulation-based methods may have smaller power for the same sample size.</p>
 </div>
-</div>
-<div id="hypothesis-tests-using-the-clt" class="section level2" number="21.4">
+<div id="hypotheses-tests-using-the-clt" class="section level2" number="21.4">
 <h2>
-<span class="header-section-number">21.4</span> Hypothesis tests using the CLT<a class="anchor" aria-label="anchor" href="#hypothesis-tests-using-the-clt"><i class="fas fa-link"></i></a>
+<span class="header-section-number">21.4</span> Hypotheses tests using the CLT<a class="anchor" aria-label="anchor" href="#hypotheses-tests-using-the-clt"><i class="fas fa-link"></i></a>
 </h2>
 <p>We are now ready to repeat some of our previous problems using the mathematically derived sampling distribution via the CLT.</p>
 <div id="body-temperature" class="section level3" number="21.4.1">
@@ -508,7 +503,7 @@ How do you conduct a one-sided test? What if the null value where 0.45?<a class=
 <li>Suppose we roll a fair six-sided die and let <span class="math inline">\(X\)</span> be the resulting number. The distribution of <span class="math inline">\(X\)</span> is discrete uniform. (Each of the six discrete outcomes is equally likely.)</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>Suppose we roll the fair die 5 times and record the value of <span class="math inline">\(\bar{X}\)</span>, the <em>mean</em> of the resulting rolls. Under the central limit theorem, what should be the distribution of <span class="math inline">\(\bar{X}\)</span>?</p></li>
+<li><p>Suppose we roll the fair die 5 times and record the value of <span class="math inline">\(\bar{X}\)</span>, the <em>mean</em> of the resulting rolls. Under the central limit theorem, what should be the distribution of <span class="math inline">\(\bar{X}\)</span>?<br></p></li>
 <li>
 <p>Simulate this process in <code>R</code>. Plot the resulting empirical distribution of <span class="math inline">\(\bar{X}\)</span> and report the mean and standard deviation of <span class="math inline">\(\bar{X}\)</span>. Was it what you expected?</p>
 <p>(HINT: You can simulate a die roll using the <code>sample</code> function. Be careful and make sure you use it properly.)</p>
@@ -516,55 +511,73 @@ How do you conduct a one-sided test? What if the null value where 0.45?<a class=
 <li><p>Repeat parts a) and b) for <span class="math inline">\(n=20\)</span> and <span class="math inline">\(n=50\)</span>. Describe what you notice. Make sure all three plots are plotted on the same <span class="math inline">\(x\)</span>-axis scale. You can use facets if you combine your data into one <code>tibble</code>.</p></li>
 </ol>
 <ol start="2" style="list-style-type: decimal">
-<li>
-<p>The nutrition label on a bag of potato chips says that a one ounce (28 gram) serving of potato chips has 130 calories and contains ten grams of fat, with three grams of saturated fat. A random sample of 35 bags yielded a sample mean of 134 calories with a standard deviation of 17 calories. Is there evidence that the nutrition label does not provide an accurate measure of calories in the bags of potato chips? The conditions necessary for applying the normal model have been checked and are satisfied.</p>
-<p>The question has been framed in terms of two possibilities: the nutrition label accurately lists the correct average calories per bag of chips or it does not, which may be framed as a hypothesis test.</p>
-</li>
+<li>The nutrition label on a bag of potato chips says that a one ounce (28 gram) serving of potato chips has 130 calories and contains ten grams of fat, with three grams of saturated fat. A random sample of 35 bags yielded a sample mean of 134 calories with a standard deviation of 17 calories. Is there evidence that the nutrition label does not provide an accurate measure of calories in the bags of potato chips? The conditions necessary for applying the normal model have been checked and are satisfied.</li>
 </ol>
+<p>The question has been framed in terms of two possibilities: the nutrition label accurately lists the correct average calories per bag of chips or it does not, which may be framed as a hypothesis test.</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>Write the null and alternative hypothesis.</p></li>
-<li><p>What level of significance are you going to use?</p></li>
-<li><p>What is the distribution of the test statistic <span class="math inline">\({\bar{X}-\mu\over S/\sqrt{n}}\)</span>? Calculate the observed value.</p></li>
-<li><p>Calculate a p-value.</p></li>
-<li><p>Draw a conclusion.</p></li>
+<li>Write the null and alternative hypothesis.<br>
+</li>
+<li>What level of significance are you going to use?<br>
+</li>
+<li>What is the distribution of the test statistic <span class="math inline">\({\bar{X}-\mu\over S/\sqrt{n}}\)</span>? Calculate the observed value.<br>
+</li>
+<li>Calculate a p-value.<br>
+</li>
+<li>Draw a conclusion.</li>
 </ol>
 <ol start="3" style="list-style-type: decimal">
-<li>
-<p>Paired data</p>
+<li>Exploration of the chi-squared and <span class="math inline">\(t\)</span> distributions.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>In <code>R</code>, plot the pdf of a random variable with the chi-squared distribution with 1 degree of freedom. On the same plot, include the pdfs with degrees of freedom of 5, 10 and 50. Describe how the behavior of the pdf changes with increasing degrees of freedom.<br>
+</li>
+<li>Repeat part (a) with the <span class="math inline">\(t\)</span> distribution. Add the pdf of a standard normal random variable as well. What do you notice?</li>
+</ol>
+<ol start="4" style="list-style-type: decimal">
+<li><p>In this lesson, we have used the expression <em>degrees of freedom</em> a lot. What does this expression mean? When we have sample of size <span class="math inline">\(n\)</span>, why are there <span class="math inline">\(n-1\)</span> degrees of freedom for the <span class="math inline">\(t\)</span> distribution? Give a short concise answer (about one paragraph). You will likely have to do a little research on your own.</p></li>
+<li><p>Deborah Toohey is running for Congress, and her campaign manager claims she has more than 50% support from the district’s electorate. Ms. Toohey’s opponent claimed that Ms. Toohey has <strong>less</strong> than 50%. Set up a hypothesis test to evaluate who is right.</p></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Should we run a one-sided or two-sided hypothesis test?<br>
+</li>
+<li>Write the null and alternative hypothesis.<br>
+</li>
+<li>What level of significance are you going to use?<br>
+</li>
+<li>What are the assumptions of this test?<br>
+</li>
+<li>Calculate the test statistic.<br>
+</li>
+<li>Calculate a p-value.<br>
+</li>
+<li>Draw a conclusion.</li>
+</ol>
+<p>Note: A newspaper collects a simple random sample of 500 likely voters in the district and estimates Toohey’s support to be 52%.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Paired data</li>
+</ol>
 <p>Are textbooks actually cheaper online? Here we compare the price of textbooks at the University of California, Los Angeles’ (UCLA’s) bookstore and prices at Amazon.com. Seventy-three UCLA courses were randomly sampled in Spring 2010, representing less than 10% of all UCLA courses. When a class had multiple books, only the most expensive text was considered.</p>
 <p>The data is in the file <code>textbooks.csv</code> under the data folder.</p>
 <p>Each textbook has two corresponding prices in the data set: one for the UCLA bookstore and one for Amazon. Therefore, each textbook price from the UCLA bookstore has a natural correspondence with a textbook price from Amazon. When two sets of observations have this special correspondence, they are said to be <strong>paired</strong>.</p>
 <p>To analyze paired data, it is often useful to look at the difference in outcomes of each pair of observations. In <code>textbooks</code>, we look at the difference in prices, which is represented as the <code>diff</code> variable. It is important that we always subtract using a consistent order; here Amazon prices are always subtracted from UCLA prices.</p>
-</li>
-</ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>Is this data tidy? Explain.</p></li>
-<li><p>Make a scatterplot of the UCLA price versus the Amazon price. Add a 45 degree line to the plot.</p></li>
-<li>
-<p>Make a histogram of the differences in price.</p>
+<li>Is this data tidy? Explain.<br>
+</li>
+<li>Make a scatterplot of the UCLA price versus the Amazon price. Add a 45 degree line to the plot.<br>
+</li>
+<li>Make a histogram of the differences in price.</li>
+</ol>
 <p>The hypotheses are:<br><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_{diff}=0\)</span>. There is no difference in the average textbook price.<br><span class="math inline">\(H_A\)</span>: <span class="math inline">\(\mu_{diff} \neq 0\)</span>. There is a difference in average prices.</p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>To use a <span class="math inline">\(t\)</span> distribution, the variable <code>diff</code> has to independent and normally distributed. Since the 73 books represent less than 10% of the population, the assumption that the random sample is independent is reasonable. Check normality using <code>qqnorsim()</code> from the <strong>openintro</strong> package. It generates 8 qq plots of simulated normal data that you can use to judge the <code>diff</code> variable.<br>
 </li>
-<li><p>To use a <span class="math inline">\(t\)</span> distribution, the variable <code>diff</code> has to independent and normally distributed. Since the 73 books represent less than 10% of the population, the assumption that the random sample is independent is reasonable. Check normality using <code>qqnorsim()</code> from the <strong>openintro</strong> package. It generates 8 qq plots of simulated normal data that you can use to judge the <code>diff</code> variable.</p></li>
-<li><p>Run a <span class="math inline">\(t\)</span> test on the <code>diff</code> variable. Report the p-value and conclusion.</p></li>
-<li><p>Create a bootstrap distribution and generate a 95% confidence interval on the mean of the differences, the <code>diff</code> column.</p></li>
-<li><p>If there is really no differences between book sources, the variable <code>more</code> is a binomial and under the null the probably of success is <span class="math inline">\(\pi = 0.5\)</span>. Run a hypothesis test using the variable <code>more</code>.</p></li>
-<li><p>Could you use a permutation test on this example? Explain.</p></li>
-</ol>
-<ol start="4" style="list-style-type: decimal">
-<li><p>In this lesson, we have used the expression <em>degrees of freedom</em> a lot. What does this expression mean? When we have sample of size <span class="math inline">\(n\)</span>, why are there <span class="math inline">\(n-1\)</span> degrees of freedom for the <span class="math inline">\(t\)</span> distribution? Give a short concise answer (about one paragraph). You will likely have to do a little research on your own.</p></li>
-<li>
-<p>Deborah Toohey is running for Congress, and her campaign manager claims she has more than 50% support from the district’s electorate. Ms. Toohey’s opponent claimed that Ms. Toohey has <strong>less</strong> than 50%. Set up a hypothesis test to evaluate who is right.</p>
-<p>Note: A newspaper collects a simple random sample of 500 likely voters in the district and estimates Toohey’s support to be 52%.</p>
+<li>Run a <span class="math inline">\(t\)</span> test on the <code>diff</code> variable. Report the p-value and conclusion.<br>
 </li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li><p>Should we run a one-sided or two-sided hypothesis test?</p></li>
-<li><p>Write the null and alternative hypothesis.</p></li>
-<li><p>What level of significance are you going to use?</p></li>
-<li><p>What are the assumptions of this test?</p></li>
-<li><p>Calculate the test statistic.</p></li>
-<li><p>Calculate a p-value.</p></li>
-<li><p>Draw a conclusion.</p></li>
+<li>Create a bootstrap distribution and generate a 95% confidence interval on the mean of the differences, the <code>diff</code> column.<br>
+</li>
+<li>If there is really no differences between book sources, the variable <code>more</code> is a binomial and under the null the probably of success is <span class="math inline">\(\pi = 0.5\)</span>. Run a hypothesis test using the variable <code>more</code>.<br>
+</li>
+<li>Could you use a permutation test on this example? Explain.</li>
 </ol>
 </div>
 </div>
@@ -586,13 +599,10 @@ How do you conduct a one-sided test? What if the null value where 0.45?<a class=
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#other-distribution-for-estimators"><span class="header-section-number">21.3</span> Other distribution for estimators</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#students-t"><span class="header-section-number">21.3.1</span> Student’s t</a></li>
-<li><a class="nav-link" href="#important-note"><span class="header-section-number">21.3.2</span> Important Note</a></li>
-</ul>
+<a class="nav-link" href="#other-distribution-for-estimators"><span class="header-section-number">21.3</span> Other distribution for estimators</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#students-t"><span class="header-section-number">21.3.1</span> Student’s t</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#hypothesis-tests-using-the-clt"><span class="header-section-number">21.4</span> Hypothesis tests using the CLT</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#body-temperature"><span class="header-section-number">21.4.1</span> Body temperature</a></li></ul>
+<a class="nav-link" href="#hypotheses-tests-using-the-clt"><span class="header-section-number">21.4</span> Hypotheses tests using the CLT</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#body-temperature"><span class="header-section-number">21.4.1</span> Body temperature</a></li></ul>
 </li>
 <li>
 <a class="nav-link" href="#summary-and-rules-of-thumb"><span class="header-section-number">21.5</span> Summary and rules of thumb</a><ul class="nav navbar-nav">

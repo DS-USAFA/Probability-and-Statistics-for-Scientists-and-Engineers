@@ -9,16 +9,16 @@
 <meta name="author" content="Brianna Hitt">
 <meta name="author" content="Ken Horton">
 <meta name="author" content="Bradley Warner">
-<meta name="description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book.">
+<meta name="description" content="This is a set of notes used for Math 377 (and Math 356) starting in the fall of 2020 (spring 2022) that has been compiled into a book.">
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Preface | Computational Probability and Statistics">
 <meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover.png">
-<meta property="og:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book.">
+<meta property="og:image" content="/figures/Cover_Master.png">
+<meta property="og:description" content="This is a set of notes used for Math 377 (and Math 356) starting in the fall of 2020 (spring 2022) that has been compiled into a book.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Preface | Computational Probability and Statistics">
-<meta name="twitter:description" content="This is a set of notes used for Math 377 starting in the fall of 2020 that has been compiled into a book.">
-<meta name="twitter:image" content="/figures/Cover.png">
+<meta name="twitter:description" content="This is a set of notes used for Math 377 (and Math 356) starting in the fall of 2020 (spring 2022) that has been compiled into a book.">
+<meta name="twitter:image" content="/figures/Cover_Master.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -119,41 +119,42 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><!--bookdown:title:end--><!--bookdown:title:start--><div id="preface" class="section level1 unnumbered">
 <h1>Preface<a class="anchor" aria-label="anchor" href="#preface"><i class="fas fa-link"></i></a>
 </h1>
-<div class="inline-figure"><img src="figures/Cover.png" width="705"></div>
-<p>This book is based on the notes we created for our students as part of a one semester course on probability and statistics. We developed these notes from three primary resources. The most important is the Openintro Introductory Statistics with Randomization and Simulation <span class="citation">(<a href="references.html#ref-ointrorand" role="doc-biblioref">Diez, Barr, and Çetinkaya-Rundel 2014</a>)</span> book. In parts, we have used their notes and homework problems. However, in most cases we have altered their work to fit our needs. The second most important book for our work is Introduction to Probability and Statistics Using R <span class="citation">(<a href="references.html#ref-ipsur" role="doc-biblioref">Kerns 2010</a>)</span>. Finally, we have used some examples, code, and ideas from the first addition of Prium’s book Foundations and Applications of Statistics: An Introduction Using R <span class="citation">(<a href="references.html#ref-pruim2011foundations" role="doc-biblioref">R. J. Pruim 2011</a>)</span>.</p>
+<div class="inline-figure"><img src="figures/Cover_Master.png" width="100%"></div>
+<p>This book is based on the notes we created for our students as part of a one semester course on probability and statistics. We developed these notes from three primary resources. The most important is the Openintro Introductory Statistics with Randomization and Simulation <span class="citation">(<a href="references.html#ref-ointrorand" role="doc-biblioref">Diez, Barr, and Çetinkaya-Rundel 2014</a>)</span> book. In parts, we have used their notes and homework problems. However, in most cases we have altered their work to fit our needs. The second most important book for our work is Introduction to Probability and Statistics Using R <span class="citation">(<a href="references.html#ref-ipsur" role="doc-biblioref">Kerns 2010</a>)</span>. Finally, we have used some examples, code, and ideas from the first edition of Prium’s book, Foundations and Applications of Statistics: An Introduction Using R <span class="citation">(<a href="references.html#ref-pruim2011foundations" role="doc-biblioref">R. J. Pruim 2011</a>)</span>.</p>
 <div id="who-is-this-book-for" class="section level2" number="0.1">
 <h2>
 <span class="header-section-number">0.1</span> Who is this book for?<a class="anchor" aria-label="anchor" href="#who-is-this-book-for"><i class="fas fa-link"></i></a>
 </h2>
-<p>We designed this book for study of statistics that maximizes computational ideas while minimizing algebraic symbol manipulation. Although we do discuss traditional small-sample, normal-based inference and some of the classical probability distributions, we rely heavily on ideas such as simulation, permutations, and bootstrap. This means that students with a background in differential and integral calculus will be successful with this book.</p>
-<p>The book makes extensive using of the <code>R</code> programming language. In particular we focus both on the <strong>tidyverse</strong> and <strong>mosaic</strong> packages. We include a significant amount of code in our notes and frequently demonstrate multiple ways of completing a task. We have used this book for juniors and sophomores.</p>
+<p>We designed this book for the study of statistics that maximizes computational ideas while minimizing algebraic symbol manipulation. Although we do discuss traditional small-sample, normal-based inference and some of the classical probability distributions, we rely heavily on ideas such as simulation, permutations, and the bootstrap. This means that students with a background in differential and integral calculus will be successful with this book.</p>
+<p>This book makes extensive using of the <code>R</code> programming language. In particular we focus both on the <strong>tidyverse</strong> and <strong>mosaic</strong> packages. We include a significant amount of code in our notes and frequently demonstrate multiple ways of completing a task. We have used this book for junior and sophomore college students.</p>
 </div>
 <div id="book-structure-and-how-to-use-it" class="section level2" number="0.2">
 <h2>
 <span class="header-section-number">0.2</span> Book structure and how to use it<a class="anchor" aria-label="anchor" href="#book-structure-and-how-to-use-it"><i class="fas fa-link"></i></a>
 </h2>
-<p>This book is divided into 4 parts. Each part starts with a case study that introduces many of the main ideas of each part. Each chapter is designed to be a standalone 50 minute lesson. Within each lesson, we give exercises that can be worked in class and we provide learning objectives.</p>
+<p>This book is divided into four parts. Each part begins with a case study that introduces many of the main ideas of each part. Each chapter is designed to be a standalone 50 minute lesson. Within each lesson, we give exercises that can be worked in class and we provide learning objectives.</p>
 <p>This book assumes students have access to <code>R</code>. Finally, we keep the number of homework problems to a reasonable level and assign all problems.</p>
 <p>The four parts of the book are:</p>
 <ol style="list-style-type: decimal">
 <li><p>Descriptive Statistical Modeling: This part introduces the student to data collection methods, summary statistics, visual summaries, and exploratory data analysis.</p></li>
-<li><p>Probability: We discuss the foundational ideas of probability, counting methods, and common distributions. We use both calculus and simulation to find moments and probabilities. We introduce basic ideas of multivariate probability. We include method of moments and maximum likelihood estimators.</p></li>
-<li><p>Statistical Inference: We discuss many of the basic inference ideas found in a traditional introductory statistics class but we add ideas of bootstrap and permutation methods.</p></li>
-<li><p>Statistical Prediction: The final part introduces prediction methods mainly in the form of linear regression. This part also includes inference for regression.</p></li>
+<li><p>Probability Modeling: We discuss the foundational ideas of probability, counting methods, and common distributions. We use both calculus and simulation to find moments and probabilities. We introduce basic ideas of multivariate probability. We include method of moments and maximum likelihood estimators.</p></li>
+<li><p>Inferential Statistical Modeling: We discuss many of the basic inference ideas found in a traditional introductory statistics class but we add ideas of bootstrap and permutation methods.</p></li>
+<li><p>Predictive Statistical Modeling: The final part introduces prediction methods, mainly in the form of linear regression. This part also includes inference for regression.</p></li>
 </ol>
 <p>The learning outcomes for this course are to use computational and mathematical statistical/probabilistic concepts for:</p>
 <ol style="list-style-type: lower-alpha">
-<li>Developing probabilistic models</li>
-<li>Developing statistical models for description, inference, and prediction<br>
+<li>Developing probabilistic models.<br>
 </li>
-<li>Advancing practical and theoretical analytic experience and skills</li>
+<li>Developing statistical models for description, inference, and prediction.<br>
+</li>
+<li>Advancing practical and theoretical analytic experience and skills.</li>
 </ol>
 </div>
 <div id="prerequisites" class="section level2" number="0.3">
 <h2>
 <span class="header-section-number">0.3</span> Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"><i class="fas fa-link"></i></a>
 </h2>
-<p>To take this course, students are expected to have completed calculus up through and including integral calculus. We do have multivariate ideas in the course but they are easily taught and don’t require calculus III. We don’t assume the students have any programming experience and thus, we include a great deal of code. We have historically supplemented the course with <a href="http://datacamp.com/">Data Camp</a> courses. We have also used <a href="http://rstudio.cloud">RStudio Cloud</a> to help students get started without the burden of loading and maintaining software.</p>
+<p>To take this course, students are expected to have completed calculus up through and including integral calculus. We do have multivariate ideas in the course, but they are easily taught and don’t require calculus III. We don’t assume the students have any programming experience and, thus, we include a great deal of code. We have historically supplemented the course with <a href="http://datacamp.com/">Data Camp</a> courses. We have also used <a href="http://rstudio.cloud">RStudio Cloud</a> to help students get started in <code>R</code> without the burden of loading and maintaining software.</p>
 </div>
 <div id="packages" class="section level2" number="0.4">
 <h2>
@@ -167,7 +168,7 @@
 </h2>
 <p>We have been lucky to have numerous open sources to help facilitate this work. Thank you to those who helped to correct mistakes to include Skyler Royse.</p>
 <p>This book was written using the <strong>bookdown</strong> package <span class="citation">(<a href="references.html#ref-R-bookdown" role="doc-biblioref">Xie 2022a</a>)</span>.</p>
-<div class="inline-figure"><img src="figures/by-nc-sa.png" width="44"></div>
+<div class="inline-figure"><img src="figures/by-nc-sa.png" width="10%"></div>
 <p>This book is licensed under the <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
 </div>
 <div id="file-creation-information" class="section level2" number="0.6">

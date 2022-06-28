@@ -13,12 +13,12 @@
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Chapter 24 Confidence Intervals | Computational Probability and Statistics">
 <meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover.png">
+<meta property="og:image" content="/figures/Cover_Master.png">
 <meta property="og:description" content="24.1 Objectives Using asymptotic methods based on the normal distribution, construct and interpret a confidence interval for an unknown parameter. Describe the relationships between confidence...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 24 Confidence Intervals | Computational Probability and Statistics">
 <meta name="twitter:description" content="24.1 Objectives Using asymptotic methods based on the normal distribution, construct and interpret a confidence interval for an unknown parameter. Describe the relationships between confidence...">
-<meta name="twitter:image" content="/figures/Cover.png">
+<meta name="twitter:image" content="/figures/Cover_Master.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -166,14 +166,14 @@ When the sampling distribution of a point estimate can reasonably be modeled as 
 <p><span class="math display">\[ \hat{\theta} \pm\ 1.96 \times SE_{\hat{\theta}}\]</span>
 Where <span class="math inline">\(\hat{\theta}\)</span> is our estimate of the parameter and <span class="math inline">\(SE_{\hat{\theta}}\)</span> is the standard error of that estimate.</p>
 <p>We can be <strong>95% confident</strong> this interval captures the true value. The 1.96 can be found using the <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> function. If we want .95 in the middle, that leaves 0.025 in each tail. Thus we use .975 in the <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> function.</p>
-<div class="sourceCode" id="cb695"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb689"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.975</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
 Compute the area between -1.96 and 1.96 for a normal distribution with mean 0 and standard deviation 1.</p>
 </blockquote>
-<div class="sourceCode" id="cb697"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb691"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">1.96</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.96</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.9500042</code></pre>
 <p>In mathematical terms, the derivation of this confidence is as follows:</p>
@@ -205,10 +205,10 @@ Figure 24.1: The pdf of a standard normal distribution showing idea of how to de
 \]</span></p>
 <p>Notice in this equation we are using the lower case <span class="math inline">\(\bar{x}\)</span>, the sample mean, and thus nothing is random in the interval. Thus we will not use probabilistic statements about confidence intervals when we calculate numerical values from data for the upper and/or lower limits.</p>
 <p>In most applications, the most common value of <span class="math inline">\(\alpha\)</span> is 0.05. In that case, to construct a 95% confidence interval, we would need to find <span class="math inline">\(z_{0.025}\)</span> which can be found quickly with <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code>:</p>
-<div class="sourceCode" id="cb699"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb693"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fl">0.05</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
-<div class="sourceCode" id="cb701"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb695"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.975</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
 <div id="unknown-variance" class="section level4" number="24.2.2.1">
@@ -234,7 +234,7 @@ Figure 24.1: The pdf of a standard normal distribution showing idea of how to de
 Find a 95% confidence interval for the body temperature data from last lesson.</p>
 </blockquote>
 <p>We need the mean, standard deviation, and sample size from this data. The following <code>R</code> code calculates the confidence interval, make sure you can follow the code.</p>
-<div class="sourceCode" id="cb703"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb697"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">temperature</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">mean</span>,<span class="va">sd</span>,<span class="va">n</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -249,7 +249,7 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 <span class="header-section-number">24.2.3.1</span> CONNECT THIS TO THE T-TEST<a class="anchor" aria-label="anchor" href="#connect-this-to-the-t-test"><i class="fas fa-link"></i></a>
 </h4>
 <p>We could also use <code>R</code> to find the confidence interval and conduct the hypothesis test. Read about the function <code><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test()</a></code> in the help menu to determine why we used the <code>mu</code> option.</p>
-<div class="sourceCode" id="cb705"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb699"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>,data<span class="op">=</span><span class="va">temperature</span>,mu<span class="op">=</span><span class="fl">98.6</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
@@ -263,7 +263,7 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 ## mean of x 
 ##  98.24923</code></pre>
 <p>Or if you just want the interval:</p>
-<div class="sourceCode" id="cb707"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb701"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/confint.html">confint</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>,data<span class="op">=</span><span class="va">temperature</span>,mu<span class="op">=</span><span class="fl">98.6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##   mean of x  lower    upper level
 ## 1  98.24923 98.122 98.37646  0.95</code></pre>
@@ -281,14 +281,14 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 <p>In “one-sided” intervals, we only bound the interval on one side. We construct one-sided intervals when we are concerned with whether a parameter exceeds or stays below some threshold. Building a one-sided interval is similar to building two-sided intervals, except rather than dividing <span class="math inline">\(\alpha\)</span> into two, you simply apportion all of <span class="math inline">\(\alpha\)</span> to the relevant side. The difficult part is to determine if we need an upper bound or lower bound.</p>
 <p>For the body temperature study, the alternative hypothesis was that the mean was less than 98.6. In our confidence interval, we want to find the largest value the mean could be and thus we want the upper bound. We are trying to reject the hypothesis by showing an alternative that is smaller than the null hypothesized value. Finding the lower limit does not help us since the confidence interval indicates an interval that starts at the lower value and is unbounded above. Let’s just make up some numbers; suppose the lower confidence bound is 97.5. All we know is the true average temperature is this value or greater. This is not helpful. However, if we find an upper confidence bound and the value is 98.1, we know the true average temperature is most likely no larger than this value. This is much more helpful.</p>
 <p>Repeating the analysis with this in mind.</p>
-<div class="sourceCode" id="cb709"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb703"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">temperature</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">mean</span>,<span class="va">sd</span>,<span class="va">n</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>upper_bound<span class="op">=</span><span class="va">mean</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">0.95</span>,<span class="fl">129</span><span class="op">)</span><span class="op">*</span><span class="va">sd</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##   upper_bound
 ## 1    98.35577</code></pre>
-<div class="sourceCode" id="cb711"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb705"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/confint.html">confint</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>,data<span class="op">=</span><span class="va">temperature</span>,alternative<span class="op">=</span><span class="st">"less"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##   mean of x lower    upper level
 ## 1  98.24923  -Inf 98.35577  0.95</code></pre>
@@ -305,23 +305,23 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 </h4>
 <p>In hypothesis testing we had several examples of two proportions. We tested these problems with a permutation test or using a hypergeometric. In our chapters and homework, we have not presented the hypothesis test for two proportions using the asymptotic normal distribution, the central limit theorem. So in this chapter we will present three methods of answering our research question, a permutation test, a hypothesis test using the normal distribution, and a confidence interval.</p>
 <p>Earlier this book, in fact in the first chapter, we encountered an experiment that examined whether implanting a stent in the brain of a patient at risk for a stroke helps reduce the risk of a stroke. The results from the first 30 days of this study, which included 451 patients, are summarized in the <code>R</code> code below. These results are surprising! The point estimate suggests that patients who received stents may have a <strong>higher</strong> risk of stroke: <span class="math inline">\(p_{trmt} - p_{control} = 0.090\)</span>.</p>
-<div class="sourceCode" id="cb713"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb707"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">stent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/stent_study.csv"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb714"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb708"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">group</span><span class="op">+</span><span class="va">outcome30</span>,data<span class="op">=</span><span class="va">stent</span>,margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>##          outcome30
 ## group     no_event stroke Total
 ##   control      214     13   227
 ##   trmt         191     33   224
 ##   Total        405     46   451</code></pre>
-<div class="sourceCode" id="cb716"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb710"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">outcome30</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">stent</span>,margins <span class="op">=</span> <span class="cn">TRUE</span>,format<span class="op">=</span><span class="st">"proportion"</span><span class="op">)</span></code></pre></div>
 <pre><code>##           group
 ## outcome30     control       trmt
 ##   no_event 0.94273128 0.85267857
 ##   stroke   0.05726872 0.14732143
 ##   Total    1.00000000 1.00000000</code></pre>
-<div class="sourceCode" id="cb718"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb712"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffprop</a></span><span class="op">(</span><span class="va">outcome30</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">stent</span><span class="op">)</span>
 <span class="va">obs</span></code></pre></div>
 <pre><code>##    diffprop 
@@ -348,14 +348,14 @@ Find a 95% confidence interval for the body temperature data from last lesson.</
 <p><span class="math display">\[SE \approx \sqrt{\frac{0.057(1-0.057)}{227} + \frac{0.15(1-0.15)}{224}} = 0.0284\]</span></p>
 <p>It is close to the pooled value because of the nearly equal sample sizes.</p>
 <p>The critical value is found from the normal quantile.</p>
-<div class="sourceCode" id="cb720"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb714"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.975</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
 <p>The 95% confidence interval is</p>
 <p><span class="math display">\[ - 0.09 \ \pm\ 1.96 \times  0.0284 \quad \to \quad (-0.146,- 0.034)\]</span>
 We are 95% confident that the difference in proportions of strokes in the control and treatment groups is between -0.146 and -0.034. Since this does not include zero, we are confident they are different. This supports the hypothesis tests. This confidence interval is not an accurate method for smaller samples sizes. This is because the actual coverage rate, the percentage of intervals that contain the true population parameter, will not be the nominal coverage rate. This means it is not true that 95% of similarly constructed 95% confidence intervals will contain the true parameter. This because the pooled estimate of the standard error is not accurate for small sample sizes. For the example above, the sample sizes are large and the performance of the method should be adequate.</p>
 <p>Of course, <code>R</code> has a built in function to calculate the hypothesis test and confidence interval for two proportions.</p>
-<div class="sourceCode" id="cb722"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb716"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/prop_test.html">prop_test</a></span><span class="op">(</span><span class="va">outcome30</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">stent</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  2-sample test for equality of proportions with continuity correction
@@ -369,7 +369,7 @@ We are 95% confident that the difference in proportions of strokes in the contro
 ##    prop 1    prop 2 
 ## 0.9427313 0.8526786</code></pre>
 <p>The p-value is a little different from the one we calculated and closer to the randomization test, which is an approximation of the exact permutation test, because a correction factor was applied. Read online about this correction to learn more. We run the code below with the correction factor off and get the same p-value as we calculated above. The confidence interval is a little different because the function used <em>no stroke</em> as its success event, but since zero is not in the interval, we get the same conclusion.</p>
-<div class="sourceCode" id="cb724"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb718"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/prop_test.html">prop_test</a></span><span class="op">(</span><span class="va">outcome30</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">stent</span>,correct<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  2-sample test for equality of proportions without continuity

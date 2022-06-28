@@ -13,12 +13,12 @@
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Chapter 28 Linear Regression Inference | Computational Probability and Statistics">
 <meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover.png">
+<meta property="og:image" content="/figures/Cover_Master.png">
 <meta property="og:description" content="28.1 Objectives Given a simple linear regression model, conduct inference on the coefficients \(\beta_0\) and \(\beta_1\). Given a simple linear regression model, calculate the predicted response...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 28 Linear Regression Inference | Computational Probability and Statistics">
 <meta name="twitter:description" content="28.1 Objectives Given a simple linear regression model, conduct inference on the coefficients \(\beta_0\) and \(\beta_1\). Given a simple linear regression model, calculate the predicted response...">
-<meta name="twitter:image" content="/figures/Cover.png">
+<meta name="twitter:image" content="/figures/Cover_Master.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -249,7 +249,7 @@ We only have <span class="math inline">\(n-2\)</span> degrees of freedom because
 </h3>
 <p>That was a great deal of mathematics and theory. Let’s put it to use on the example from Starbucks. In the file <code>data/starbucks.csv</code> we have nutritional facts for several Starbucks’ food items. We used this data in the homework for last chapter. We will use this data again to illustrate the ideas we have introduced in this section.</p>
 <p>Read in the data.</p>
-<div class="sourceCode" id="cb862"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb856"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starbucks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/starbucks.csv"</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>type<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">type</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <blockquote>
@@ -257,7 +257,7 @@ We only have <span class="math inline">\(n-2\)</span> degrees of freedom because
 Summarize and explore the data.</p>
 </blockquote>
 <p>Let’s look at a summary of the data.</p>
-<div class="sourceCode" id="cb863"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb857"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">starbucks</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 77
 ## Columns: 7
@@ -268,7 +268,7 @@ Summarize and explore the data.</p>
 ## $ fiber    &lt;dbl&gt; 5, 7, 0, 4, 0, 5, 2, 0, 0, 0, 2, 3, 2, 2, 3, 3, 2, 3, 0, 2, 0~
 ## $ protein  &lt;dbl&gt; 10, 6, 5, 7, 0, 6, 7, 6, 5, 7, 4, 6, 5, 5, 12, 7, 8, 6, 0, 10~
 ## $ type     &lt;fct&gt; bakery, bakery, bakery, bakery, bakery, bakery, bakery, baker~</code></pre>
-<div class="sourceCode" id="cb865"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb859"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">starbucks</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
@@ -292,7 +292,7 @@ Summarize and explore the data.</p>
 Create a scatterplot of calories and carbohydrate, carbs, content.</p>
 </blockquote>
 <p>Figure <a href="LRINF.html#fig:scat271-fig">28.2</a> is the scatterplot.</p>
-<div class="sourceCode" id="cb867"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb861"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starbucks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">gf_point</span><span class="op">(</span><span class="va">calories</span><span class="op">~</span><span class="va">carb</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Carbohydrates"</span>,y<span class="op">=</span><span class="st">"Calories"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -308,9 +308,9 @@ Figure 28.2: Scatterplot of calories and carbohydrate content in Starbucks’ pr
 Use <code>R</code> to fit a linear regression model by regressing <code>calories</code> on <code>carb</code>.</p>
 </blockquote>
 <p>The results of fitting a linear least squares model is stored in the <code>star_mod</code> object.</p>
-<div class="sourceCode" id="cb868"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb862"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">star_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">calories</span> <span class="op">~</span> <span class="va">carb</span>, data <span class="op">=</span> <span class="va">starbucks</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb869"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb863"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -341,21 +341,21 @@ Use <code>R</code> to fit a linear regression model by regressing <code>calories
 {\hat{\beta}_1-0 \over {\hat \sigma \over \sqrt{ \sum (x_i-\bar{x})^2}}}
 \]</span>
 The denominator is the standard error of the estimate. The estimate of the residual standard deviation is reported in the last line as 78.26. But it is just the square root of the sum of squared residuals divided by the degrees of freedom.</p>
-<div class="sourceCode" id="cb871"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb865"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sighat</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">star_mod</span><span class="op">$</span><span class="va">residuals</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span><span class="fl">75</span><span class="op">)</span>
 <span class="va">sighat</span></code></pre></div>
 <pre><code>## [1] 78.25956</code></pre>
 <p>The standard error of the slope estimate is, and confirmed in the table:</p>
-<div class="sourceCode" id="cb873"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb867"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">std_er</span><span class="op">&lt;-</span><span class="va">sighat</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">starbucks</span><span class="op">$</span><span class="va">carb</span><span class="op">-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">starbucks</span><span class="op">$</span><span class="va">carb</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 <span class="va">std_er</span></code></pre></div>
 <pre><code>## [1] 0.5423626</code></pre>
 <p>The test statistic is</p>
-<div class="sourceCode" id="cb875"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb869"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="fl">4.2971</span><span class="op">-</span><span class="fl">0</span><span class="op">)</span><span class="op">/</span><span class="va">std_er</span></code></pre></div>
 <pre><code>## [1] 7.922928</code></pre>
 <p>And the p-value</p>
-<div class="sourceCode" id="cb877"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb871"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="op">(</span><span class="fl">4.2971</span><span class="op">-</span><span class="fl">0</span><span class="op">)</span><span class="op">/</span><span class="va">std_er</span>,<span class="fl">73</span>,lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1.965319e-11</code></pre>
 <p>This is slightly different from the table value because of the precision of the computer and the small p-value.</p>
@@ -363,9 +363,9 @@ The denominator is the standard error of the estimate. The estimate of the resid
 <p>The computer software uses zero in the null hypothesis, if you wanted to test another value of the slope then you would have to do the calculations step by step like we did above.</p>
 <p>By the way, this was not a <code>tidy</code> way to do the calculation. The <strong>broom</strong> package makes it easier to use <code>tidy</code> ideas on the regression model. We used these ideas in the last chapter.</p>
 <p>As a reminder:</p>
-<div class="sourceCode" id="cb879"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb873"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb880"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb874"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span> </code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   term        estimate std.error statistic  p.value
@@ -373,7 +373,7 @@ The denominator is the standard error of the estimate. The estimate of the resid
 ## 1 (Intercept)   146.      25.9        5.63 2.93e- 7
 ## 2 carb            4.30     0.542      7.92 1.67e-11</code></pre>
 <p>And step by step:</p>
-<div class="sourceCode" id="cb882"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb876"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">term</span><span class="op">==</span><span class="st">"carb"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>test_stat<span class="op">=</span><span class="op">(</span><span class="va">estimate</span><span class="op">-</span><span class="fl">0</span><span class="op">)</span><span class="op">/</span><span class="va">std.error</span>,p_value<span class="op">=</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="va">test_stat</span>,df<span class="op">=</span><span class="fl">73</span>,lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -387,7 +387,7 @@ The denominator is the standard error of the estimate. The estimate of the resid
 <span class="header-section-number">28.3.1.2</span> Confidence interval<a class="anchor" aria-label="anchor" href="#confidence-interval-1"><i class="fas fa-link"></i></a>
 </h4>
 <p>We could calculate the confidence interval from the point estimate, standard error, and critical value but we will let <code>R</code> do it for us.</p>
-<div class="sourceCode" id="cb884"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb878"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/confint.html">confint</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span></code></pre></div>
 <pre><code>##                 2.5 %     97.5 %
 ## (Intercept) 94.387896 197.652967
@@ -415,7 +415,7 @@ Y_{new}\in \left(\hat Y_* \pm t_{\alpha/2,n-2}\hat \sigma \sqrt{1+{1\over n}+{(x
 <span class="header-section-number">28.4.1</span> Starbucks<a class="anchor" aria-label="anchor" href="#starbucks-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>Continuing with the <code>Starbucks</code> example. In plotting the data, we can have <code>R</code> plot the confidence and prediction bands, Figure <a href="LRINF.html#fig:ci271-fig">28.3</a>. We will observe the width of both of these intervals increase as we move away from the center of the data and also that prediction intervals are wider than the confidence interval.</p>
-<div class="sourceCode" id="cb886"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb880"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starbucks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">gf_point</span><span class="op">(</span><span class="va">calories</span><span class="op">~</span><span class="va">carb</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Carbohydrates"</span>,y<span class="op">=</span><span class="st">"Calories"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -430,14 +430,14 @@ Figure 28.3: Confidence and predictions bands for linear regression model of cal
 </div>
 <p>We have not done diagnostics yet and it may be that using a linear regression model for this data may not be appropriate. But for the sake of learning we will continue. To find these confidence intervals we need a value for <code>carb</code> so let’s use 60 and 70.</p>
 <p>We create a data frame with the new values of <code>carb</code> in it. Then we will use the <code>predict</code> function to find the confidence interval. Using the option <code>interval</code> set to <code>confidence</code> will return a confidence interval for the average calorie content for each value in the new data frame.</p>
-<div class="sourceCode" id="cb887"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb881"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new_carb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>carb<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">60</span>,<span class="fl">70</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">star_mod</span>, newdata <span class="op">=</span> <span class="va">new_carb</span>, interval <span class="op">=</span> <span class="st">'confidence'</span><span class="op">)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 403.8455 379.7027 427.9883
 ## 2 446.8163 414.3687 479.2640</code></pre>
 <p>Or using the <strong>broom</strong> package.</p>
-<div class="sourceCode" id="cb889"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb883"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">star_mod</span>,newdata<span class="op">=</span><span class="va">new_carb</span>,interval<span class="op">=</span><span class="st">"confidence"</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 4
 ##    carb .fitted .lower .upper
@@ -451,7 +451,7 @@ Give the 95% confidence interval of average calories for 70 grams of carbohydrat
 </blockquote>
 <p>We are 95% confident that the average calories in a Starbucks’ menu item with 70 grams carbs is between 414.4 and 479.3.</p>
 <p>For the prediction interval, we simply need to change the option in <code>interval</code>:</p>
-<div class="sourceCode" id="cb891"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb885"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new_carb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>carb<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">60</span>,<span class="fl">70</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">star_mod</span>, newdata <span class="op">=</span> <span class="va">new_carb</span>, interval <span class="op">=</span> <span class="st">'prediction'</span><span class="op">)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
@@ -463,7 +463,7 @@ Give the 95% confidence interval of average calories for 70 grams of carbohydrat
 Give the 90% prediction interval of average calories for 70 grams of carbohydrates.</p>
 </blockquote>
 <p>We changed the confidence level. Since we are less confident, the interval will be narrower than the 95% prediction interval we just calculated.</p>
-<div class="sourceCode" id="cb893"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb887"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">star_mod</span>, newdata <span class="op">=</span> <span class="va">new_carb</span>, level<span class="op">=</span><span class="fl">0.9</span>, interval <span class="op">=</span> <span class="st">'prediction'</span><span class="op">)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 403.8455 271.9565 535.7345
