@@ -4,8 +4,11 @@
 ## Objectives
 
 1) Using asymptotic methods based on the normal distribution, construct and interpret a confidence interval for an unknown parameter.   
+
 2) Describe the relationships between confidence intervals, confidence level, and sample size.  
+
 3) For proportions, be able to calculate the three different approaches for confidence intervals using `R`.  
+
 
 ## Confidence interval
 
@@ -151,6 +154,8 @@ The 95% confidence interval for $\mu$ is $(98.12,98.38)$. We are 95% *confident*
 
 There is a link between hypothesis testing and confidence intervals. Remember when we used this data in a hypothesis test, the null hypothesis was $H_0$: The average body temperature is 98.6 $\mu = 98.6$. This null hypothesized value is not in the interval, so we could reject the null hypothesis with this confidence interval. 
 
+#### CONNECT THIS TO THE T-TEST ####
+
 We could also use `R` to find the confidence interval and conduct the hypothesis test. Read about the function `t_test()` in the help menu to determine why we used the `mu` option.
 
 ```{r}
@@ -195,6 +200,8 @@ Notice the upper bound in the one-sided interval is smaller than the upper bound
 
 ## Confidence intervals for two proportions  
 
+#### CONVERT TO ONE PROPORTION #### 
+
 In hypothesis testing we had several examples of two proportions. We tested these problems with a permutation test or using a hypergeometric. In our chapters and homework, we have not presented the hypothesis test for two proportions using the asymptotic normal distribution, the central limit theorem. So in this chapter we will present three methods of answering our research question, a permutation test, a hypothesis test using the normal distribution, and a confidence interval.
 
 Earlier this book, in fact in the first chapter, we encountered an experiment that examined whether implanting a stent in the brain of a patient at risk for a stroke helps reduce the risk of a stroke. The results from the first 30 days of this study, which included 451 patients, are summarized in the `R` code below. These results are surprising! The point estimate suggests that patients who received stents may have a **higher** risk of stroke: $p_{trmt} - p_{control} = 0.090$.
@@ -216,112 +223,15 @@ obs<-diffprop(outcome30~group,data=stent)
 obs
 ```
 
-Notice that because `R` uses the variables by names in alphabetic order we have $p_{control} - p_{trmt} = - 0.090$. This is not a problem. We could fix this by changing the variables to factors.
-
-### Permutation test for two proportions  
-
-We start with the null hypothesis which is two-sided since we don't know if the treatment is harmful or beneficial.
-
-$H_0$: The treatment and outcome are independent. $p_{control} - p_{trmt} = 0$ or $p_{control} = p_{trmt}$.  
-$H_A$: The treatment and outcome are dependent $p_{control} \neq p_{trmt}$.
-
-We will use $\alpha = 0.05$.
-
-The test statistic is the difference in proportions of patients with stroke in the control and treatment groups.
-
-```{r}
-obs<-diffprop(outcome30~group,data=stent)
-obs
-```
-
-To calculate the p-value, we will shuffle the treatment and control labels because under the null hypothesis, there is no difference.
-
-```{r cache=TRUE}
-set.seed(2027)
-results <- do(10000)*diffprop(outcome30~shuffle(group),data=stent)
-```
-
-Figure \@ref(fig:dens222-fig) a visual summary of the distribution of the test statistics generated under the null hypothesis, the sampling distribution.
-
-```{r dens222-fig,warning=FALSE,fig.cap="Sampling distribution of the difference in proportions."}
-results %>%
-  gf_dhistogram(~diffprop,fill="cyan",color="black") %>%
-  gf_vline(xintercept =obs ) %>%
-  gf_theme(theme_classic()) %>%
-  gf_labs(title="Sampling distribution of randomization test",
-          x="Difference in proportions",y="")
-```
-
-We next calculate the p-value. We will calculate it as if it were a one-sided test and then double the result to account for the fact that we would reject with a similar value in the opposite tail.  Note that the `prop1()` includes the observed value in the calculation of the p-value.  
-
-```{r}
-2*prop1(~(diffprop<=obs),data=results)
-```
-
-Based on the data, if there were no difference between the treatment and control groups, the probability of the observed differences in proportion of strokes being - 0.09 or more extreme is 0.0026. This is too unlikely, so we reject that there is no difference between control and stroke groups.
-
-### Hypothesis test for two proportions using normal model
-
-We must check two conditions before applying the normal model to a generic test of $\hat{p}_1 - \hat{p}_2$. First, the sampling distribution for each sample proportion must be nearly normal, and secondly, the samples must be independent. Under these two conditions, the sampling distribution of $\hat{p}_1 - \hat{p}_2$ may be well approximated using the normal model.
-
-The hypotheses are the same as above.
-
-#### Conditions for the sampling distribution of $\hat{p}_1 - \hat{p}_2$ to be normal 
-
-The difference $\hat{p}_1 - \hat{p}_2$ tends to follow a normal model when
-
-a. each proportion separately follows a normal model, and  
-b. the two samples are independent of each other  
+Notice that because `R` uses the variables by names in alphabetic order we have $p_{control} - p_{trmt} = - 0.090$. This is not a problem. We could fix this by changing the variables to factors.  
 
 
-#### Standard error 
-
-For our research question the conditions must be verified. Because each group is a simple random sample from less than 10\% of the population, the observations are independent, both within the samples and between the samples. The success-failure condition also holds for each sample, at least 10 in each cell is the easiest way to think about it. Because all conditions are met, the normal model can be used for the point estimate of the difference in proportion of strokes
-
-$$p_{control} - p_{trmt} = 0.05726872 - 0.14732143 = - 0.090$$
-The standard error of the difference in sample proportions is
-$$ SE_{\hat{p}_1 - \hat{p}_2}
-	= \sqrt{SE_{\hat{p}_1}^2 + SE_{\hat{p}_2}^2}$$
-$$	= \sqrt{\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}}$$
-where $p_1$ and $p_2$ represent the population proportions, and $n_1$ and $n_2$ represent the sample sizes.
-
-The calculation of the standard error for our problem must be done carefully. Remember in hypothesis testing, we assume the null hypothesis is true; this means the proportions of strokes must be the same. 
-
-$$SE = \sqrt{\frac{p(1-p)}{n_{control}} + \frac{p(1-p)}{n_{trmt}}}$$
-We don't know the stroke incidence rate, $p$, but we can obtain a good estimate of it by **pooling** the results of both samples:
-$$\hat{p} = \frac{\text{# of successes}}{\text{# of cases}} = \frac{13 + 33}{451} = 0.102$$
-This is called the *pooled estimate* of the sample proportion, and we use it to compute the standard error when the null hypothesis is that $p_{control} = p_{trmt}$. 
-
-$$SE \approx \sqrt{\frac{\hat{p}(1-\hat{p})}{n_{control}} + \frac{\hat{p}(1-\hat{p})}{n_{trmt}}}$$
+#### STOP HERE - REMOVE PERMUTATION TEST FOR TWO PROPORTIONS AND SKIP TO CONFIDENCE INTERVAL FOR TWO PROPORTIONS USING NORMAL MODEL #### 
 
 
-$$SE \approx \sqrt{\frac{0.102(1-0.102)}{227} + \frac{0.102(1-0.102)}{224}} = 0.0285$$
+### Confidence interval for two proportions using normal model  
 
-The test statistic is 
-$$Z = \frac{\text{point estimate} - \text{null value}}{SE} = \frac{-.09 - 0}{0.0285} = - 3.16  $$  
-
-The p-value is 
-
-```{r}
-2*pnorm(-3.16)
-```
-
-Which is close to what we got with permutation test. This should not surprise us as the sampling distribution under the permutation test looked normal. 
-
-Figure \@ref(fig:dens223-fig) plots the empirical sampling distribution from the permutation test again with a normal density curve overlayed.
-
-```{r dens223-fig,message=FALSE,warning=FALSE,fig.cap="The sampling distribution of the randomization test with a normal distribution plotted in red."}
-results %>%
-  gf_dhistogram(~diffprop,fill="cyan",color="black") %>%
-  gf_vline(xintercept =obs ) %>%
-  gf_dist("norm",sd=0.0285,color="red") %>%
-  gf_theme(theme_classic()) %>%
-  gf_labs(title="Sampling distribution of randomization test",
-          subtitle="Reference normal distribution in red",
-          x="Difference in proportions")
-```
-
-### Confidence interval for two proportions using normal model
+#### CONVERT TO ONE PROPORTION #### 
 
 The conditions for applying the normal model have already been verified, so we can proceed to the construction of the confidence interval. Remember the form of the confidence interval is
 
@@ -490,7 +400,7 @@ b. Use `prop.test()` with `correct=FALSE` to conduct the hypothesis test and fin
 c. Use `prop.test()` with `correct=TRUE` to conduct the hypothesis test and find a confidence interval.
 d. Which test should you use?
 
-
+#### ADD TWO PROPORTIONS? #### 
 
 
 
