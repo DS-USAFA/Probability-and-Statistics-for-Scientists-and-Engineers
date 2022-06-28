@@ -8,6 +8,7 @@
 <meta name="author" content="Matthew Davis">
 <meta name="author" content="Brianna Hitt">
 <meta name="author" content="Ken Horton">
+<meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
 <meta name="description" content="23.1 Objectives Conduct and interpret a hypothesis test for equality of two or more means using both permutation and the \(F\) distribution. Know and check assumptions for the tests in the...">
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
@@ -351,7 +352,7 @@ Figure 22.4: The F distribution
 <span class="op">}</span></code></pre></div>
 <div class="sourceCode" id="cb676"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">f_stat</span><span class="op">(</span><span class="va">mlb_obp</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.3066529</code></pre>
+<pre><code>## [1] 1.617125</code></pre>
 <p>Next we run the randomization test using the <code><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do()</a></code> function. There is an easier way to do all of this work with the <strong>purrr</strong> package but we will continue with the work we have started.</p>
 <div class="sourceCode" id="cb678"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">5321</span><span class="op">)</span>
@@ -464,7 +465,7 @@ Figure 22.6: The sampling distribution of the difference in variance randomizati
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-28.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-06-28.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

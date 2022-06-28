@@ -8,6 +8,7 @@
 <meta name="author" content="Matthew Davis">
 <meta name="author" content="Brianna Hitt">
 <meta name="author" content="Ken Horton">
+<meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
 <meta name="description" content="16.1 Objectives Given a discrete random variable, determine the distribution of a transformation of that random variable. Given a continuous random variable, use the cdf method to determine the...">
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
@@ -282,10 +283,10 @@ f_Y(y)=f_X(\sqrt{y})\bigg|\frac{\mathop{}\!\mathrm{d}}{\mathop{}\!\mathrm{d}y} \
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class         min        Q1    median       Q3       max      mean
-## ...1 sqrt numeric 0.005438619 0.4956111 0.7112053 0.863436 0.9999909 0.6660389
+##      name   class         min        Q1    median        Q3       max      mean
+## ...1 sqrt numeric 0.002064565 0.5010301 0.7078761 0.8681521 0.9999865 0.6668528
 ##             sd     n missing
-## ...1 0.2363242 10000       0</code></pre>
+## ...1 0.2378369 10000       0</code></pre>
 <p>Figure <a href="TRANS.html#fig:dens161-fig">16.2</a> is a density plot of the simulated original random variable.</p>
 <div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -318,10 +319,10 @@ Figure 16.3: The density plot of the transformed random variable from the simula
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">y_results</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class      min         Q1     median         Q3          max
-## ...1    y numeric -5.21423 -0.7019638 -0.3407942 -0.1468355 -9.13531e-06
-##            mean       sd     n missing
-## ...1 -0.5006757 0.497067 10000       0</code></pre>
+##      name   class       min         Q1     median         Q3           max
+## ...1    y numeric -6.182835 -0.6910892 -0.3454862 -0.1413884 -1.346163e-05
+##            mean        sd     n missing
+## ...1 -0.5035508 0.5155538 10000       0</code></pre>
 </div>
 <div id="multivariate-transformations" class="section level3" number="16.2.6">
 <h3>
@@ -506,7 +507,7 @@ Figure 16.6: pdf of <span class="math inline">\(T\)</span>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-28.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-06-28.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

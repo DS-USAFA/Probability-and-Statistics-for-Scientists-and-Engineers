@@ -4,6 +4,7 @@ author:
 - Matthew Davis
 - Brianna Hitt
 - Ken Horton
+- Kris Pruitt
 - Bradley Warner
 date: "2022-06-28"
 header-includes:
