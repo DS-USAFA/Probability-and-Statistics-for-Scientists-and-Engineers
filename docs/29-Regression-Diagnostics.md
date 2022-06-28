@@ -131,7 +131,7 @@ starbucks %>%
 As a review, Figure \@ref(fig:cor-fig) below shows eight plots and their corresponding correlations. Only when the relationship is perfectly linear is the correlation either -1 or 1. If the relationship is strong and positive, the correlation will be near +1. If it is strong and negative, it will be near -1. If there is no apparent linear relationship between the variables, then the correlation will be near zero. 
 
 <div class="figure">
-<img src="28-Regression-Diagnostics_files/figure-html/cor-fig-1.png" alt="Scatterplots demonstrating different correlations." width="672" />
+<img src="29-Regression-Diagnostics_files/figure-html/cor-fig-1.png" alt="Scatterplots demonstrating different correlations." width="672" />
 <p class="caption">(\#fig:cor-fig)Scatterplots demonstrating different correlations.</p>
 </div>
 
@@ -206,7 +206,7 @@ plot(star_mod)
 ```
 
 <div class="figure">
-<img src="28-Regression-Diagnostics_files/figure-html/diag281-fig-1.png" alt="Regression diagnostic plots." width="50%" /><img src="28-Regression-Diagnostics_files/figure-html/diag281-fig-2.png" alt="Regression diagnostic plots." width="50%" /><img src="28-Regression-Diagnostics_files/figure-html/diag281-fig-3.png" alt="Regression diagnostic plots." width="50%" /><img src="28-Regression-Diagnostics_files/figure-html/diag281-fig-4.png" alt="Regression diagnostic plots." width="50%" />
+<img src="29-Regression-Diagnostics_files/figure-html/diag281-fig-1.png" alt="Regression diagnostic plots." width="50%" /><img src="29-Regression-Diagnostics_files/figure-html/diag281-fig-2.png" alt="Regression diagnostic plots." width="50%" /><img src="29-Regression-Diagnostics_files/figure-html/diag281-fig-3.png" alt="Regression diagnostic plots." width="50%" /><img src="29-Regression-Diagnostics_files/figure-html/diag281-fig-4.png" alt="Regression diagnostic plots." width="50%" />
 <p class="caption">(\#fig:diag281-fig)Regression diagnostic plots.</p>
 </div>
 
@@ -222,7 +222,7 @@ plot(star_mod,which = 1)
 ```
 
 <div class="figure">
-<img src="28-Regression-Diagnostics_files/figure-html/diag282-fig-1.png" alt="A diagnostic residual plot." width="672" />
+<img src="29-Regression-Diagnostics_files/figure-html/diag282-fig-1.png" alt="A diagnostic residual plot." width="672" />
 <p class="caption">(\#fig:diag282-fig)A diagnostic residual plot.</p>
 </div>
 
@@ -240,7 +240,7 @@ plot(star_mod,which = 2)
 ```
 
 <div class="figure">
-<img src="28-Regression-Diagnostics_files/figure-html/diag283-fig-1.png" alt="The quantile-quantile plot for checking normality." width="672" />
+<img src="29-Regression-Diagnostics_files/figure-html/diag283-fig-1.png" alt="The quantile-quantile plot for checking normality." width="672" />
 <p class="caption">(\#fig:diag283-fig)The quantile-quantile plot for checking normality.</p>
 </div>
 
@@ -264,7 +264,7 @@ plot(star_mod,which=3)
 ```
 
 <div class="figure">
-<img src="28-Regression-Diagnostics_files/figure-html/diag284-fig-1.png" alt="A scale-location diagnostic residual plot." width="672" />
+<img src="29-Regression-Diagnostics_files/figure-html/diag284-fig-1.png" alt="A scale-location diagnostic residual plot." width="672" />
 <p class="caption">(\#fig:diag284-fig)A scale-location diagnostic residual plot.</p>
 </div>
 
@@ -285,7 +285,7 @@ An outlier is a **influential point** if it drastically alters the regression ou
 There are six plots shown in Figure \@ref(fig:resid282-fig) along with the least squares line and residual plots. For each scatterplot and residual plot pair, identify any obvious outliers and note how they influence the least squares line. Recall that an outlier is any point that doesn't appear to belong with the vast majority of the other points.  
 
 <div class="figure">
-<img src="28-Regression-Diagnostics_files/figure-html/resid282-fig-1.png" alt="Examples of outliers and leverage points." width="672" />
+<img src="29-Regression-Diagnostics_files/figure-html/resid282-fig-1.png" alt="Examples of outliers and leverage points." width="672" />
 <p class="caption">(\#fig:resid282-fig)Examples of outliers and leverage points.</p>
 </div>
 
@@ -315,7 +315,7 @@ plot(star_mod,5)
 ```
 
 <div class="figure">
-<img src="28-Regression-Diagnostics_files/figure-html/diag286-fig-1.png" alt="Diagnostic plots for Starbucks regression model." width="672" />
+<img src="29-Regression-Diagnostics_files/figure-html/diag286-fig-1.png" alt="Diagnostic plots for Starbucks regression model." width="672" />
 <p class="caption">(\#fig:diag286-fig)Diagnostic plots for Starbucks regression model.</p>
 </div>
 

@@ -108,7 +108,7 @@ gf_lm(pf_score~pf_expression_control,data=hfi,color="black") %>%
 ```
 
 <div class="figure">
-<img src="25-Linear-Regression-Case-Study_files/figure-html/scat251-fig-1.png" alt="A scatterplot of personal freedom versus expression control using the ggformula package." width="672" />
+<img src="26-Linear-Regression-Case-Study_files/figure-html/scat251-fig-1.png" alt="A scatterplot of personal freedom versus expression control using the ggformula package." width="672" />
 <p class="caption">(\#fig:scat251-fig)A scatterplot of personal freedom versus expression control using the ggformula package.</p>
 </div>
 
@@ -123,7 +123,7 @@ ggplot(hfi,aes(x=pf_expression_control,y=pf_score))+
 ```
 
 <div class="figure">
-<img src="25-Linear-Regression-Case-Study_files/figure-html/scat252-fig-1.png" alt="A scatterplot of personal freedom versus expression control using the ggplot2 package." width="672" />
+<img src="26-Linear-Regression-Case-Study_files/figure-html/scat252-fig-1.png" alt="A scatterplot of personal freedom versus expression control using the ggplot2 package." width="672" />
 <p class="caption">(\#fig:scat252-fig)A scatterplot of personal freedom versus expression control using the ggplot2 package.</p>
 </div>
 
@@ -241,7 +241,7 @@ plot_ss(x = pf_expression_control, y = pf_score, data = hfi_sub)
 ```
 
 <div class="figure">
-<img src="25-Linear-Regression-Case-Study_files/figure-html/plotss-expression-score-1.png" alt="Plot of selected line and the associated residuals." width="672" />
+<img src="26-Linear-Regression-Case-Study_files/figure-html/plotss-expression-score-1.png" alt="Plot of selected line and the associated residuals." width="672" />
 <p class="caption">(\#fig:plotss-expression-score)Plot of selected line and the associated residuals.</p>
 </div>
 
@@ -383,7 +383,7 @@ ggplot(data = hfi_sub, aes(x = pf_expression_control, y = pf_score)) +
 ```
 
 <div class="figure">
-<img src="25-Linear-Regression-Case-Study_files/figure-html/reg-with-line-1.png" alt="Scatterplot of personal expression control and personal freedom score." width="672" />
+<img src="26-Linear-Regression-Case-Study_files/figure-html/reg-with-line-1.png" alt="Scatterplot of personal expression control and personal freedom score." width="672" />
 <p class="caption">(\#fig:reg-with-line)Scatterplot of personal expression control and personal freedom score.</p>
 </div>
 
@@ -480,7 +480,7 @@ ggplot(data = m1, aes(x = .fitted, y = .resid)) +
 ```
 
 <div class="figure">
-<img src="25-Linear-Regression-Case-Study_files/figure-html/residuals-1.png" alt="Scatterplot of residuals and fitted values used to assess the assumptions of linearity and constant variance." width="672" />
+<img src="26-Linear-Regression-Case-Study_files/figure-html/residuals-1.png" alt="Scatterplot of residuals and fitted values used to assess the assumptions of linearity and constant variance." width="672" />
 <p class="caption">(\#fig:residuals)Scatterplot of residuals and fitted values used to assess the assumptions of linearity and constant variance.</p>
 </div>
 
@@ -504,7 +504,7 @@ ggplot(data = m1, aes(x = .resid)) +
 ```
 
 <div class="figure">
-<img src="25-Linear-Regression-Case-Study_files/figure-html/hist-res-1.png" alt="Histogram of residuals from linear regression model." width="672" />
+<img src="26-Linear-Regression-Case-Study_files/figure-html/hist-res-1.png" alt="Histogram of residuals from linear regression model." width="672" />
 <p class="caption">(\#fig:hist-res)Histogram of residuals from linear regression model.</p>
 </div>
 
@@ -519,7 +519,7 @@ ggplot(data = m1, aes(sample = .resid)) +
 ```
 
 <div class="figure">
-<img src="25-Linear-Regression-Case-Study_files/figure-html/qq-res-1.png" alt="The quantile-quantile residual plot used to assess the normality assumption." width="672" />
+<img src="26-Linear-Regression-Case-Study_files/figure-html/qq-res-1.png" alt="The quantile-quantile residual plot used to assess the normality assumption." width="672" />
 <p class="caption">(\#fig:qq-res)The quantile-quantile residual plot used to assess the normality assumption.</p>
 </div>
 

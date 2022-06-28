@@ -146,7 +146,7 @@ ggplot(starbucks, aes(x=carb, y=calories)) +
 ```
 
 <div class="figure">
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/slope291-fig-1.png" alt="Plot of slopes from resampled regression." width="672" />
+<img src="30-Simulation-Based-Linear-Regression_files/figure-html/slope291-fig-1.png" alt="Plot of slopes from resampled regression." width="672" />
 <p class="caption">(\#fig:slope291-fig)Plot of slopes from resampled regression.</p>
 </div>
 
@@ -163,7 +163,7 @@ results %>%
 ```
 
 <div class="figure">
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/hist291-fig-1.png" alt="Histogram of slopes from resampled regression." width="672" />
+<img src="30-Simulation-Based-Linear-Regression_files/figure-html/hist291-fig-1.png" alt="Histogram of slopes from resampled regression." width="672" />
 <p class="caption">(\#fig:hist291-fig)Histogram of slopes from resampled regression.</p>
 </div>
 
@@ -217,7 +217,7 @@ results %>%
 ```
 
 <div class="figure">
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/hist292-fig-1.png" alt="(ref:ref291)" width="672" />
+<img src="30-Simulation-Based-Linear-Regression_files/figure-html/hist292-fig-1.png" alt="(ref:ref291)" width="672" />
 <p class="caption">(\#fig:hist292-fig)(ref:ref291)</p>
 </div>
 
@@ -309,7 +309,7 @@ results2 %>%
 ```
 
 <div class="figure">
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/infer291-fig-1.png" alt="Sampling distribution of the slope using resampling. (Black line is estimate slope from original data and blue lines are the confidence bounds.)" width="672" />
+<img src="30-Simulation-Based-Linear-Regression_files/figure-html/infer291-fig-1.png" alt="Sampling distribution of the slope using resampling. (Black line is estimate slope from original data and blue lines are the confidence bounds.)" width="672" />
 <p class="caption">(\#fig:infer291-fig)Sampling distribution of the slope using resampling. (Black line is estimate slope from original data and blue lines are the confidence bounds.)</p>
 </div>
 
@@ -345,7 +345,7 @@ results_resid %>%
 ```
 
 <div class="figure">
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/hist293-fig-1.png" alt="Histogram of estimated regression slope using resampling from residuals." width="672" />
+<img src="30-Simulation-Based-Linear-Regression_files/figure-html/hist293-fig-1.png" alt="Histogram of estimated regression slope using resampling from residuals." width="672" />
 <p class="caption">(\#fig:hist293-fig)Histogram of estimated regression slope using resampling from residuals.</p>
 </div>
 
@@ -548,7 +548,7 @@ loans100 %>%
 ```
 
 <div class="figure">
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/box291-fig-1.png" alt="Boxplot of loan interest rates from the Lending Club based on homeownership status." width="672" />
+<img src="30-Simulation-Based-Linear-Regression_files/figure-html/box291-fig-1.png" alt="Boxplot of loan interest rates from the Lending Club based on homeownership status." width="672" />
 <p class="caption">(\#fig:box291-fig)Boxplot of loan interest rates from the Lending Club based on homeownership status.</p>
 </div>
 
@@ -712,7 +712,7 @@ results %>%
 ```
 
 <div class="figure">
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/hist297-fig-1.png" alt="Distribution of estimated regression coefficent for homeownership." width="672" />
+<img src="30-Simulation-Based-Linear-Regression_files/figure-html/hist297-fig-1.png" alt="Distribution of estimated regression coefficent for homeownership." width="672" />
 <p class="caption">(\#fig:hist297-fig)Distribution of estimated regression coefficent for homeownership.</p>
 </div>
 
@@ -816,7 +816,7 @@ plot(loan_mod,2)
 ```
 
 <div class="figure">
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/diag291-fig-1.png" alt="Q-Q normality plot." width="672" />
+<img src="30-Simulation-Based-Linear-Regression_files/figure-html/diag291-fig-1.png" alt="Q-Q normality plot." width="672" />
 <p class="caption">(\#fig:diag291-fig)Q-Q normality plot.</p>
 </div>
 
@@ -828,7 +828,7 @@ plot(loan_mod,3)
 ```
 
 <div class="figure">
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/diag292-fig-1.png" alt="Scale-location residual diagnostic plot." width="672" />
+<img src="30-Simulation-Based-Linear-Regression_files/figure-html/diag292-fig-1.png" alt="Scale-location residual diagnostic plot." width="672" />
 <p class="caption">(\#fig:diag292-fig)Scale-location residual diagnostic plot.</p>
 </div>
 
@@ -840,7 +840,7 @@ plot(loan_mod,5)
 ```
 
 <div class="figure">
-<img src="29-Simulation-Based-Linear-Regression_files/figure-html/diag293-fig-1.png" alt="Residual plot for outliers and leverage points." width="672" />
+<img src="30-Simulation-Based-Linear-Regression_files/figure-html/diag293-fig-1.png" alt="Residual plot for outliers and leverage points." width="672" />
 <p class="caption">(\#fig:diag293-fig)Residual plot for outliers and leverage points.</p>
 </div>
 

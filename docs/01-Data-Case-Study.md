@@ -210,7 +210,7 @@ Of the 224 patients in the treatment group, 33 had a stroke by the end of the fi
 ```
 
 > **Exercise**:  
-What proportion of the control group had a stroke by the end of the first month? And why is this answer different from what `inspect()` reports?    
+What proportion of the control group had a stroke in the first 30 days of the study? And why is this proportion different from the proportion reported by `inspect()`?    
 
 
 Let's have `R` calculate proportions for us. Use `?` or `help()` to look at the help menu for `tally()`. Note that one of the option arguments of the `tally()` function is `format =`. Setting this equal to `proportion` will output the proportions instead of the counts. 

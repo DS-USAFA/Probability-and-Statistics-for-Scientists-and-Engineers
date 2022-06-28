@@ -203,7 +203,7 @@ $$
 The logistic function is shown in Figure \@ref(fig:logit-fig). 
 
 <div class="figure">
-<img src="31-Logistic-Regression_files/figure-html/logit-fig-1.png" alt="Logitstic function with some example points plotted." width="672" />
+<img src="32-Logistic-Regression_files/figure-html/logit-fig-1.png" alt="Logitstic function with some example points plotted." width="672" />
 <p class="caption">(\#fig:logit-fig)Logitstic function with some example points plotted.</p>
 </div>
 
@@ -932,7 +932,7 @@ do(1)*glm(cond=="new"~stock_photo+total_pr,
 
 ```
 ##   Intercept stock_photoyes  total_pr .row .index
-## 1 -11.05487       1.058763 0.2046713    1      1
+## 1 -12.11312       3.131459 0.1899357    1      1
 ```
 
 Again, it looks like what we expect. Now let's bootstrap the coefficients and summarize the results.
@@ -975,7 +975,7 @@ results %>%
           x="total price paramater estimate")
 ```
 
-<img src="31-Logistic-Regression_files/figure-html/unnamed-chunk-43-1.png" width="672" />
+<img src="32-Logistic-Regression_files/figure-html/unnamed-chunk-43-1.png" width="672" />
 
 The printout from the logistic regression model assumes normality for the sampling distribution of the `total_pr` coefficient, but it appears to be positively skewed, skewed to the right. The 95% confidence interval found using `cdata()`. 
 

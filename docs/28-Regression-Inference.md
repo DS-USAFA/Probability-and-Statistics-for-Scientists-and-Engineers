@@ -61,7 +61,7 @@ In a later chapter we will explore more regression diagnostics.
 
 
 <div class="figure">
-<img src="27-Regression-Inference_files/figure-html/assump271-fig-1.png" alt="Plots of linear regression and residual to illustrate the assumptions of the model." width="672" />
+<img src="28-Regression-Inference_files/figure-html/assump271-fig-1.png" alt="Plots of linear regression and residual to illustrate the assumptions of the model." width="672" />
 <p class="caption">(\#fig:assump271-fig)Plots of linear regression and residual to illustrate the assumptions of the model.</p>
 </div>
 
@@ -208,7 +208,7 @@ starbucks %>%
 ```
 
 <div class="figure">
-<img src="27-Regression-Inference_files/figure-html/scat271-fig-1.png" alt="Scatterplot of calories and carbohydrate content in Starbucks' products." width="672" />
+<img src="28-Regression-Inference_files/figure-html/scat271-fig-1.png" alt="Scatterplot of calories and carbohydrate content in Starbucks' products." width="672" />
 <p class="caption">(\#fig:scat271-fig)Scatterplot of calories and carbohydrate content in Starbucks' products.</p>
 </div>
 >**Exercise**:  
@@ -400,7 +400,7 @@ starbucks %>%
 ```
 
 <div class="figure">
-<img src="27-Regression-Inference_files/figure-html/ci271-fig-1.png" alt="Confidence and predictions bands for linear regression model of calories and carbs in Starbucks' products." width="672" />
+<img src="28-Regression-Inference_files/figure-html/ci271-fig-1.png" alt="Confidence and predictions bands for linear regression model of calories and carbs in Starbucks' products." width="672" />
 <p class="caption">(\#fig:ci271-fig)Confidence and predictions bands for linear regression model of calories and carbs in Starbucks' products.</p>
 </div>
 

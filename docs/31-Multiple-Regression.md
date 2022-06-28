@@ -114,7 +114,7 @@ mariokart %>%
 ```
 
 <div class="figure">
-<img src="30-Multiple-Regression_files/figure-html/box301-fig-1.png" alt="Total price of Mario Kart on Ebay for each condition." width="672" />
+<img src="31-Multiple-Regression_files/figure-html/box301-fig-1.png" alt="Total price of Mario Kart on Ebay for each condition." width="672" />
 <p class="caption">(\#fig:box301-fig)Total price of Mario Kart on Ebay for each condition.</p>
 </div>
 
@@ -170,7 +170,7 @@ mariokart %>%
 ```
 
 <div class="figure">
-<img src="30-Multiple-Regression_files/figure-html/scat301-fig-1.png" alt="Scatterplot of total price of Mario Kart on Ebay versus condition." width="672" />
+<img src="31-Multiple-Regression_files/figure-html/scat301-fig-1.png" alt="Scatterplot of total price of Mario Kart on Ebay versus condition." width="672" />
 <p class="caption">(\#fig:scat301-fig)Scatterplot of total price of Mario Kart on Ebay versus condition.</p>
 </div>
 
@@ -244,7 +244,7 @@ mariokart_new %>%
 ```
 
 <div class="figure">
-<img src="30-Multiple-Regression_files/figure-html/scat302-fig-1.png" alt="Boxplot of total price and condition with outliers removed." width="672" />
+<img src="31-Multiple-Regression_files/figure-html/scat302-fig-1.png" alt="Boxplot of total price and condition with outliers removed." width="672" />
 <p class="caption">(\#fig:scat302-fig)Boxplot of total price and condition with outliers removed.</p>
 </div>
 
@@ -300,7 +300,7 @@ plot(mario_mod2,2)
 ```
 
 <div class="figure">
-<img src="30-Multiple-Regression_files/figure-html/qq301-fig-1.png" alt="Check of normality using quantile-quantile plot." width="672" />
+<img src="31-Multiple-Regression_files/figure-html/qq301-fig-1.png" alt="Check of normality using quantile-quantile plot." width="672" />
 <p class="caption">(\#fig:qq301-fig)Check of normality using quantile-quantile plot.</p>
 </div>
 
@@ -312,7 +312,7 @@ plot(mario_mod2,3)
 ```
 
 <div class="figure">
-<img src="30-Multiple-Regression_files/figure-html/diag301-fig-1.png" alt="Residual plot to assess equal variance assumption." width="672" />
+<img src="31-Multiple-Regression_files/figure-html/diag301-fig-1.png" alt="Residual plot to assess equal variance assumption." width="672" />
 <p class="caption">(\#fig:diag301-fig)Residual plot to assess equal variance assumption.</p>
 </div>
 
@@ -324,7 +324,7 @@ plot(mario_mod2,5)
 ```
 
 <div class="figure">
-<img src="30-Multiple-Regression_files/figure-html/diag302-fig-1.png" alt="Residual plot for checking leverage points." width="672" />
+<img src="31-Multiple-Regression_files/figure-html/diag302-fig-1.png" alt="Residual plot for checking leverage points." width="672" />
 <p class="caption">(\#fig:diag302-fig)Residual plot for checking leverage points.</p>
 </div>
 
@@ -755,7 +755,7 @@ plot(mario_mod_multi3)
 ```
 
 <div class="figure">
-<img src="30-Multiple-Regression_files/figure-html/diag305-fig-1.png" alt="Diagnostic residual plots for multiple regression model." width="50%" /><img src="30-Multiple-Regression_files/figure-html/diag305-fig-2.png" alt="Diagnostic residual plots for multiple regression model." width="50%" /><img src="30-Multiple-Regression_files/figure-html/diag305-fig-3.png" alt="Diagnostic residual plots for multiple regression model." width="50%" /><img src="30-Multiple-Regression_files/figure-html/diag305-fig-4.png" alt="Diagnostic residual plots for multiple regression model." width="50%" />
+<img src="31-Multiple-Regression_files/figure-html/diag305-fig-1.png" alt="Diagnostic residual plots for multiple regression model." width="50%" /><img src="31-Multiple-Regression_files/figure-html/diag305-fig-2.png" alt="Diagnostic residual plots for multiple regression model." width="50%" /><img src="31-Multiple-Regression_files/figure-html/diag305-fig-3.png" alt="Diagnostic residual plots for multiple regression model." width="50%" /><img src="31-Multiple-Regression_files/figure-html/diag305-fig-4.png" alt="Diagnostic residual plots for multiple regression model." width="50%" />
 <p class="caption">(\#fig:diag305-fig)Diagnostic residual plots for multiple regression model.</p>
 </div>
 
@@ -846,7 +846,7 @@ augment(credit_mod1) %>%
 ```
 
 <div class="figure">
-<img src="30-Multiple-Regression_files/figure-html/scat305-fig-1.png" alt="Scatterplot of credit card balance for income and student status." width="672" />
+<img src="31-Multiple-Regression_files/figure-html/scat305-fig-1.png" alt="Scatterplot of credit card balance for income and student status." width="672" />
 <p class="caption">(\#fig:scat305-fig)Scatterplot of credit card balance for income and student status.</p>
 </div>
 
@@ -910,7 +910,7 @@ augment(credit_mod2) %>%
 ```
 
 <div class="figure">
-<img src="30-Multiple-Regression_files/figure-html/scat306-fig-1.png" alt="Scatterplot of credit card balance for income and student status with an interaction term." width="672" />
+<img src="31-Multiple-Regression_files/figure-html/scat306-fig-1.png" alt="Scatterplot of credit card balance for income and student status with an interaction term." width="672" />
 <p class="caption">(\#fig:scat306-fig)Scatterplot of credit card balance for income and student status with an interaction term.</p>
 </div>
 
@@ -959,7 +959,7 @@ augment(credit_mod3) %>%
 ```
 
 <div class="figure">
-<img src="30-Multiple-Regression_files/figure-html/scat307-fig-1.png" alt="Scatterplot of credit card balance for income with a quadratic fit." width="672" />
+<img src="31-Multiple-Regression_files/figure-html/scat307-fig-1.png" alt="Scatterplot of credit card balance for income with a quadratic fit." width="672" />
 <p class="caption">(\#fig:scat307-fig)Scatterplot of credit card balance for income with a quadratic fit.</p>
 </div>
 

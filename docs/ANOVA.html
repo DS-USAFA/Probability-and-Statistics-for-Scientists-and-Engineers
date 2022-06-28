@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 23 Analysis of Variance | Computational Probability and Statistics</title>
+<meta name="author" content="Matthew Davis">
+<meta name="author" content="Brianna Hitt">
+<meta name="author" content="Ken Horton">
+<meta name="author" content="Bradley Warner">
+<meta name="description" content="23.1 Objectives Conduct and interpret a hypothesis test for equality of two or more means using both permutation and the \(F\) distribution. Know and check assumptions for the tests in the...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="Chapter 23 Analysis of Variance | Computational Probability and Statistics">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/figures/Cover.png">
+<meta property="og:description" content="23.1 Objectives Conduct and interpret a hypothesis test for equality of two or more means using both permutation and the \(F\) distribution. Know and check assumptions for the tests in the...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 23 Analysis of Variance | Computational Probability and Statistics">
+<meta name="twitter:description" content="23.1 Objectives Conduct and interpret a hypothesis test for equality of two or more means using both permutation and the \(F\) distribution. Know and check assumptions for the tests in the...">
+<meta name="twitter:image" content="/figures/Cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Computational Probability and Statistics</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Preface</a></li>
+<li class="book-part">Descriptive Statistical Modeling</li>
+<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
+<li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
+<li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
+<li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
+<li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
+<li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
+<li class="book-part">Probability Modeling</li>
+<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
+<li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
+<li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
+<li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
+<li><a class="" href="CONRANDVAR.html"><span class="header-section-number">11</span> Continuous Random Variables</a></li>
+<li><a class="" href="DISCRETENAMED.html"><span class="header-section-number">12</span> Named Discrete Distributions</a></li>
+<li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
+<li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
+<li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
+<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
+<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
+<li class="book-part">Statistical Modeling</li>
+<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
+<li><a class="" href="HYPOTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></li>
+<li><a class="" href="HYPTESTDIST.html"><span class="header-section-number">20</span> Hypothesis Testing with Known Distributions</a></li>
+<li><a class="" href="HYPTESTCLT.html"><span class="header-section-number">21</span> Hypothesis Testing with the Central Limit Theorem</a></li>
+<li><a class="" href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></li>
+<li><a class="active" href="ANOVA.html"><span class="header-section-number">23</span> Analysis of Variance</a></li>
+<li><a class="" href="CI.html"><span class="header-section-number">24</span> Confidence Intervals</a></li>
+<li><a class="" href="BOOT.html"><span class="header-section-number">25</span> Bootstrap</a></li>
+<li class="book-part">Predictive Statistical Modeling</li>
+<li><a class="" href="CS4.html"><span class="header-section-number">26</span> Case Study</a></li>
+<li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
+<li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
+<li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRMULTI.html"><span class="header-section-number">31</span> Multiple Linear Regression</a></li>
+<li><a class="" href="LOGREG.html"><span class="header-section-number">32</span> Logistic Regression</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-MASTER">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ANOVA" class="section level1" number="23">
+<h1>
+<span class="header-section-number">23</span> Analysis of Variance<a class="anchor" aria-label="anchor" href="#ANOVA"><i class="fas fa-link"></i></a>
+</h1>
+<div id="objectives-22" class="section level2" number="23.1">
+<h2>
+<span class="header-section-number">23.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-22"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li><p>Conduct and interpret a hypothesis test for equality of two or more means using both permutation and the <span class="math inline">\(F\)</span> distribution.</p></li>
+<li><p>Know and check assumptions for the tests in the reading.</p></li>
+</ol>
+</div>
+<div id="introduction---keep-any-of-this" class="section level2" number="23.2">
+<h2>
+<span class="header-section-number">23.2</span> Introduction - KEEP ANY OF THIS???<a class="anchor" aria-label="anchor" href="#introduction---keep-any-of-this"><i class="fas fa-link"></i></a>
+</h2>
+<p>The purpose of this chapter is to put all we learned in this block into perspective and then to also add a couple of new tests to demonstrate other statistical tests.</p>
+<p>Remember that we have been using data to answer research questions. So far we can do this with hypothesis tests or confidence intervals. There is a close link between these two methods. The key ideas have been to generate a single number metric to use in answering our research question and then to obtain the sampling distribution of this metric.</p>
+<p>In obtaining the sampling distribution we used randomization as an approximation to permutation exact tests, probability models, mathematical models, and the bootstrap. Each of these had different assumptions and different areas where they could be applied. In some cases, several methods can be applied to the problem to get a sense of the robustness to the different assumptions. For example, if you run a randomization test and a test using the CLT and they both give you similar results, you can feel better about your decision.</p>
+<p>Finding a single number metric to answer our research question can be difficult. For example, in the homework for last chapter, we wanted to determine if the prices of books at a campus bookstore were different from Amazon’s prices. The metric we decided to use was the mean of the differences in prices. But is this the best way to answer the question? This metric has been used historically because of the need to use the <span class="math inline">\(t\)</span> distribution. However, there are other ways in which the prices of books can differ. Jack Welch was the CEO of GE for years and he made the claim that customers don’t care about average but they do care about variability. The average temperature setting of your GE refrigerator could be off and you would adapt. However if the temperature had great variability, then you would be upset. So maybe metrics that incorporate variability might be good. In our bootstrap notes, we looked at the ages of males and females in the HELP study. In using a randomization permutation test, we assumed there was no difference in the distribution of ages between males and females. However, in the alternative we measured the difference in the distributions using only means. The means of these two populations could be equal but the distributions differ in other ways, for example variability. We could conduct a separate test for variances but we have to be careful about multiple comparisons because in that case the Type 1 error is inflated.</p>
+<p>We also learned that the use of the information in the data impacts the power of the test. In the golf ball example, when we used range as our metric, we did not have the same power as looking at the differences from expected values under the null hypothesis. There is some mathematical theory that leads to better estimators, they are called likelihood ratio tests, but this is beyond the scope of the book. What you can do is create a simulation where you simulate data from the alternative hypothesis and then measure the power. This will give you a sense of the quality of your metric. We only briefly looked at measuring power an earlier chapter and will not go further into this idea in this chapter.</p>
+<p>We will finish this block by examining problems with two variables. In the first case they will both be categorical but at least one of the categorical variables has more than two levels. In the second case, we will examine two variables where one is numeric and the other categorical. The categorical variable has more than two levels.</p>
+</div>
+<div id="numerical-data---keep-any-of-this" class="section level2" number="23.3">
+<h2>
+<span class="header-section-number">23.3</span> Numerical data - KEEP ANY OF THIS???<a class="anchor" aria-label="anchor" href="#numerical-data---keep-any-of-this"><i class="fas fa-link"></i></a>
+</h2>
+<p>Sometimes we want to compare means across many groups. In this case we have two variables where one is continuous and the other categorical. We might initially think to do pairwise comparisons, two sample t-tests, as a solution; for example, if there were three groups, we might be tempted to compare the first mean with the second, then with the third, and then finally compare the second and third means for a total of three comparisons. However, this strategy can be treacherous. If we have many groups and do many comparisons, it is likely that we will eventually find a difference just by chance, even if there is no difference in the populations.</p>
+<p>In this section, we will learn a new method called <strong>analysis of variance</strong> (ANOVA) and a new test statistic called <span class="math inline">\(F\)</span>. ANOVA uses a single hypothesis test to check whether the means across many groups are equal. The hypotheses are:</p>
+<p><span class="math inline">\(H_0\)</span>: The mean outcome is the same across all groups. In statistical notation, <span class="math inline">\(\mu_1 = \mu_2 = \cdots = \mu_k\)</span> where <span class="math inline">\(\mu_i\)</span> represents the mean of the outcome for observations in category <span class="math inline">\(i\)</span>.<br><span class="math inline">\(H_A\)</span>: At least one mean is different.</p>
+<p>Generally we must check three conditions on the data before performing ANOVA with the <span class="math inline">\(F\)</span> distribution:</p>
+<ol style="list-style-type: lower-roman">
+<li>the observations are independent within and across groups,<br>
+</li>
+<li>the data within each group are nearly normal, and<br>
+</li>
+<li>the variability across the groups is about equal.</li>
+</ol>
+<p>When these three conditions are met, we may perform an ANOVA to determine whether the data provide strong evidence against the null hypothesis that all the <span class="math inline">\(\mu_i\)</span> are equal.</p>
+<div id="mlb-batting-performance-1" class="section level3" number="23.3.1">
+<h3>
+<span class="header-section-number">23.3.1</span> MLB batting performance<a class="anchor" aria-label="anchor" href="#mlb-batting-performance-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>We would like to discern whether there are real differences between the batting performance of baseball players according to their position: outfielder (<code>OF</code>), infielder (<code>IF</code>), designated hitter (<code>DH</code>), and catcher (<code>C</code>). We will use a data set <code>mlbbat10</code> from the <strong>openintro</strong> package but we saved it is in the file <code>mlb_obp.csv</code> which has been modified from the original data set to include only those with more than 200 at bats. The batting performance will be measured with the on-base percentage. The on-base percentage roughly represents the fraction of the time a player successfully gets on base or hits a home run.</p>
+<p>Read the data into <code>R</code>.</p>
+<div class="sourceCode" id="cb661"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mlb_obp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/mlb_obp.csv"</span><span class="op">)</span></code></pre></div>
+<p>Let’s review our data:</p>
+<div class="sourceCode" id="cb662"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">mlb_obp</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+## categorical variables:  
+##       name     class levels   n missing
+## 1 position character      4 327       0
+##                                    distribution
+## 1 IF (47.1%), OF (36.7%), C (11.9%) ...        
+## 
+## quantitative variables:  
+##      name   class   min    Q1 median     Q3   max     mean         sd   n
+## ...1  obp numeric 0.174 0.309  0.331 0.3545 0.437 0.332159 0.03570249 327
+##      missing
+## ...1       0</code></pre>
+<p>Next change the variable <code>position</code> to a factor to give us greater control.</p>
+<div class="sourceCode" id="cb664"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mlb_obp</span> <span class="op">&lt;-</span> <span class="va">mlb_obp</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>position<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">position</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb665"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="va">position</span>,data<span class="op">=</span><span class="va">mlb_obp</span><span class="op">)</span></code></pre></div>
+<pre><code>##   position   min      Q1 median      Q3   max      mean         sd   n missing
+## 1        C 0.219 0.30000 0.3180 0.35700 0.405 0.3226154 0.04513175  39       0
+## 2       DH 0.287 0.31625 0.3525 0.36950 0.412 0.3477857 0.03603669  14       0
+## 3       IF 0.174 0.30800 0.3270 0.35275 0.437 0.3315260 0.03709504 154       0
+## 4       OF 0.265 0.31475 0.3345 0.35300 0.411 0.3342500 0.02944394 120       0</code></pre>
+<p>The means for each group are pretty close to each other.</p>
+<blockquote>
+<p><strong>Exercise</strong>:
+The null hypothesis under consideration is the following: <span class="math inline">\(\mu_{OF} = \mu_{IF} = \mu_{DH} = \mu_{C}\)</span>.
+Write the null and corresponding alternative hypotheses in plain language.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(H_0\)&lt;/span&gt;: The average on-base percentage is equal across the four positions. &lt;span class="math inline"&gt;\(H_A\)&lt;/span&gt;: The average on-base percentage varies across some (or all) groups.&lt;/p&gt;'><sup>88</sup></a></p>
+</blockquote>
+<p>If we have all the data for the 2010 season, why do we need a hypothesis test? What is the population of interest?</p>
+<p>If we are only making decisions or claims about the 2010 season, we do not need hypothesis testing. We can just use summary statistics. However, if we want to generalize to other years or other leagues, then we would need a hypothesis test.</p>
+<blockquote>
+<p><strong>Exercise</strong>:<br>
+Construct side-by-side boxplots.</p>
+</blockquote>
+<p>Figure <a href="ADDTESTS.html#fig:box241-fig">22.4</a> is the side-by-side boxplots.</p>
+<div class="sourceCode" id="cb667"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mlb_obp</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_boxplot</span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="va">position</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Position Played"</span>,y<span class="op">=</span><span class="st">"On Base Percentage"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Comparison of OBP for different positions"</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:box241-fig"></span>
+<img src="23-Analysis-of-Variance_files/figure-html/box241-fig-1.png" alt="Boxplots of on base percentage by position played." width="672"><p class="caption">
+Figure 22.4: Boxplots of on base percentage by position played.
+</p>
+</div>
+<p>The largest difference between the sample means is between the designated hitter and the catcher positions. Consider again the original hypotheses:</p>
+<p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_{OF} = \mu_{IF} = \mu_{DH} = \mu_{C}\)</span><br><span class="math inline">\(H_A\)</span>: The average on-base percentage (<span class="math inline">\(\mu_i\)</span>) varies across some (or all) groups.</p>
+<div id="delete-these-two-sections---duplicated" class="section level4" number="23.3.1.1">
+<h4>
+<span class="header-section-number">23.3.1.1</span> DELETE THESE TWO SECTIONS - DUPLICATED<a class="anchor" aria-label="anchor" href="#delete-these-two-sections---duplicated"><i class="fas fa-link"></i></a>
+</h4>
+<p>Why might it be inappropriate to run the test by simply estimating whether the difference of <span class="math inline">\(\mu_{DH}\)</span> and <span class="math inline">\(\mu_{C}\)</span> is statistically significant at a 0.05 significance level? The primary issue here is that we are inspecting the data before picking the groups that will be compared. It is inappropriate to examine all data by eye (informal testing) and only afterwards decide which parts to formally test. This is called <strong>data snooping</strong> or <strong>data fishing</strong>. Naturally we would pick the groups with the large differences for the formal test, leading to an inflation in the Type 1 Error rate. To understand this better, let’s consider a slightly different problem.</p>
+<p>Suppose we are to measure the aptitude for students in 20 classes in a large elementary school at the beginning of the year. In this school, all students are randomly assigned to classrooms, so any differences we observe between the classes at the start of the year are completely due to chance. However, with so many groups, we will probably observe a few groups that look rather different from each other. If we select only these classes that look so different, we will probably make the wrong conclusion that the assignment wasn’t random. While we might only formally test differences for a few pairs of classes, we informally evaluated the other classes by eye before choosing the most extreme cases for a comparison.</p>
+<p>In the next section we will learn how to use the <span class="math inline">\(F\)</span> statistic and ANOVA to test whether observed differences in means could have happened just by chance even if there was no difference in the respective population means.</p>
+</div>
+</div>
+<div id="analysis-of-variance-anova-and-the-f-test-1" class="section level3" number="23.3.2">
+<h3>
+<span class="header-section-number">23.3.2</span> Analysis of variance (ANOVA) and the F test<a class="anchor" aria-label="anchor" href="#analysis-of-variance-anova-and-the-f-test-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>The method of analysis of variance in this context focuses on answering one question: is the variability in the sample means so large that it seems unlikely to be from chance alone? This question is different from earlier testing procedures since we will <em>simultaneously</em> consider many groups, and evaluate whether their sample means differ more than we would expect from natural variation. We call this variability the <strong>mean square between groups</strong> (<span class="math inline">\(MSG\)</span>), and it has an associated degrees of freedom, <span class="math inline">\(df_{G}=k-1\)</span> when there are <span class="math inline">\(k\)</span> groups. The <span class="math inline">\(MSG\)</span> can be thought of as a scaled variance formula for means. If the null hypothesis is true, any variation in the sample means is due to chance and shouldn’t be too large. We typically use software to find <span class="math inline">\(MSG\)</span>, however, the derivation follows. Let <span class="math inline">\(\bar{x}\)</span> represent the mean of outcomes across all groups. Then the mean square between groups is computed as</p>
+<p><span class="math display">\[
+MSG = \frac{1}{df_{G}}SSG = \frac{1}{k-1}\sum_{i=1}^{k} n_{i}\left(\bar{x}_{i} - \bar{x}\right)^2
+\]</span></p>
+<p>where <span class="math inline">\(SSG\)</span> is called the <strong>sum of squares between groups</strong> and <span class="math inline">\(n_{i}\)</span> is the sample size of group <span class="math inline">\(i\)</span>.</p>
+<p>The mean square between the groups is, on its own, quite useless in a hypothesis test. We need a benchmark value for how much variability should be expected among the sample means if the null hypothesis is true. To this end, we compute a pooled variance estimate, often abbreviated as the <strong>mean square error</strong> (<span class="math inline">\(MSE\)</span>), which has an associated degrees of freedom value <span class="math inline">\(df_E=n-k\)</span>. It is helpful to think of <span class="math inline">\(MSE\)</span> as a measure of the variability within the groups. To find <span class="math inline">\(MSE\)</span>, let <span class="math inline">\(\bar{x}\)</span> represent the mean of outcomes across all groups. Then the <strong>sum of squares total</strong> (<span class="math inline">\(SST\)</span>)} is computed as
+<span class="math inline">\(SST = \sum_{i=1}^{n} \left(x_{i} - \bar{x}\right)^2\)</span>,
+where the sum is over all observations in the data set. Then we compute the <strong>sum of squared errors</strong> (<span class="math inline">\(SSE\)</span>) in one of two equivalent ways:</p>
+<p><span class="math display">\[
+SSE = SST - SSG = (n_1-1)s_1^2 + (n_2-1)s_2^2 + \cdots + (n_k-1)s_k^2
+\]</span></p>
+<p>where <span class="math inline">\(s_i^2\)</span> is the sample variance (square of the standard deviation) of the residuals in group <span class="math inline">\(i\)</span>. Then the <span class="math inline">\(MSE\)</span> is the standardized form of <span class="math inline">\(SSE\)</span>: <span class="math inline">\(MSE = \frac{1}{df_{E}}SSE\)</span>.</p>
+<p>When the null hypothesis is true, any differences among the sample means are only due to chance, and the <span class="math inline">\(MSG\)</span> and <span class="math inline">\(MSE\)</span> should be about equal. As a test statistic for ANOVA, we examine the fraction of <span class="math inline">\(MSG\)</span> and <span class="math inline">\(MSE\)</span>:</p>
+<p><span class="math display">\[F = \frac{MSG}{MSE}\]</span></p>
+<p>The <span class="math inline">\(MSG\)</span> represents a measure of the between-group variability, and <span class="math inline">\(MSE\)</span> measures the variability within each of the groups. Using a permutation test, we could look at the difference in the mean squared errors as a test statistic instead of the ratio.</p>
+<p>We can use the <span class="math inline">\(F\)</span> statistic to evaluate the hypotheses in what is called an <strong>F test</strong>. A p-value can be computed from the <span class="math inline">\(F\)</span> statistic using an <span class="math inline">\(F\)</span> distribution, which has two associated parameters: <span class="math inline">\(df_{1}\)</span> and <span class="math inline">\(df_{2}\)</span>. For the <span class="math inline">\(F\)</span> statistic in ANOVA, <span class="math inline">\(df_{1} = df_{G}\)</span> and <span class="math inline">\(df_{2}= df_{E}\)</span>. The <span class="math inline">\(F\)</span> is really a ratio of chi-squared distributions.</p>
+<p>The larger the observed variability in the sample means (<span class="math inline">\(MSG\)</span>) relative to the within-group observations (<span class="math inline">\(MSE\)</span>), the larger <span class="math inline">\(F\)</span> will be and the stronger the evidence against the null hypothesis. Because larger values of <span class="math inline">\(F\)</span> represent stronger evidence against the null hypothesis, we use the upper tail of the distribution to compute a p-value.</p>
+<blockquote>
+<p><strong>The <span class="math inline">\(F\)</span> statistic and the <span class="math inline">\(F\)</span> test</strong><br>
+Analysis of variance (ANOVA) is used to test whether the mean outcome differs across 2 or more groups. ANOVA uses a test statistic <span class="math inline">\(F\)</span>, which represents a standardized ratio of variability in the sample means relative to the variability within the groups. If <span class="math inline">\(H_0\)</span> is true and the model assumptions are satisfied, the statistic <span class="math inline">\(F\)</span> follows an <span class="math inline">\(F\)</span> distribution with parameters <span class="math inline">\(df_{1}=k-1\)</span> and <span class="math inline">\(df_{2}=n-k\)</span>. The upper tail of the <span class="math inline">\(F\)</span> distribution is used to represent the p-value.</p>
+</blockquote>
+<div id="anova-1" class="section level4" number="23.3.2.1">
+<h4>
+<span class="header-section-number">23.3.2.1</span> ANOVA<a class="anchor" aria-label="anchor" href="#anova-1"><i class="fas fa-link"></i></a>
+</h4>
+<p>We will use <code>R</code> to perform the calculations for the ANOVA. But let’s check our assumptions first.</p>
+<p>There are three conditions we must check for an ANOVA analysis: all observations must be independent, the data in each group must be nearly normal, and the variance within each group must be approximately equal.</p>
+<blockquote>
+<p><strong>Independence</strong><br>
+If the data are a simple random sample from less than 10% of the population, this condition is reasonable. For processes and experiments, carefully consider whether the data may be independent (e.g. no pairing). In our MLB data, the data were not sampled. However, there are not obvious reasons why independence would not hold for most or all observations. This is a bit of hand waving but remember independence is difficult to assess.</p>
+</blockquote>
+<blockquote>
+<p><strong>Approximately normal</strong><br>
+As with one- and two-sample testing for means, the normality assumption is especially important when the sample size is quite small. The normal probability plots for each group of the MLB data are shown below; there is some deviation from normality for infielders, but this isn’t a substantial concern since there are over 150 observations in that group and the outliers are not extreme. Sometimes in ANOVA there are so many groups or so few observations per group that checking normality for each group isn’t reasonable. One solution is to combine the groups into one set of data. First calculate the <strong>residuals</strong> of the baseball data, which are calculated by taking the observed values and subtracting the corresponding group means. For example, an outfielder with OBP of 0.435 would have a residual of <span class="math inline">\(0.435 - \bar{x}_{OF} = 0.082\)</span>. Then to check the normality condition, create a normal probability plot using all the residuals simultaneously.</p>
+</blockquote>
+<p>Figure <a href="ADDTESTS.html#fig:qq241-fig">22.5</a> is the quantile-quantile plot to assess the normality assumption.</p>
+<div class="sourceCode" id="cb668"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mlb_obp</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_qq</span><span class="op">(</span><span class="op">~</span><span class="va">obp</span><span class="op">|</span><span class="va">position</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_qqline</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:qq241-fig"></span>
+<img src="23-Analysis-of-Variance_files/figure-html/qq241-fig-1.png" alt="Quantile-quantile plot for two-sample test of means." width="672"><p class="caption">
+Figure 22.5: Quantile-quantile plot for two-sample test of means.
+</p>
+</div>
+<blockquote>
+<p><strong>Constant variance</strong><br>
+The last assumption is that the variance in the groups is about equal from one group to the next. This assumption can be checked by examining a side-by-side box plot of the outcomes across the groups which we did previously. In this case, the variability is similar in the four groups but not identical. We also see in the output of <code>favstats</code> that the standard deviation varies a bit from one group to the next. Whether these differences are from natural variation is unclear, so we should report this uncertainty of meeting this assumption when the final results are reported. The permutation test does not have this assumption and can be used as a check on the results from the ANOVA.</p>
+</blockquote>
+<p>In summary, independence is always important to an ANOVA analysis. The normality condition is very important when the sample sizes for each group are relatively small. The constant variance condition is especially important when the sample sizes differ between groups.</p>
+<p>Let’s write the hypotheses again.</p>
+<p><span class="math inline">\(H_0\)</span>: The average on-base percentage is equal across the four positions.<br><span class="math inline">\(H_A\)</span>: The average on-base percentage varies across some (or all) groups.</p>
+<p>The test statistic is the ratio of the between means variance and the pooled within group variance.</p>
+<div class="sourceCode" id="cb669"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="va">position</span>,data<span class="op">=</span><span class="va">mlb_obp</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##              Df Sum Sq  Mean Sq F value Pr(&gt;F)
+## position      3 0.0076 0.002519   1.994  0.115
+## Residuals   323 0.4080 0.001263</code></pre>
+<p>The table contains all the information we need. It has the degrees of freedom, mean squared errors, test statistic, and p-value. The test statistic is 1.994, <span class="math inline">\(\frac{0.002519}{0.001263}=1.994\)</span>. The p-value is larger than 0.05, indicating the evidence is not strong enough to reject the null hypothesis at a significance level of 0.05. That is, the data do not provide strong evidence that the average on-base percentage varies by player’s primary field position.</p>
+<p>The calculation of the p-value is</p>
+<div class="sourceCode" id="cb671"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">pf</a></span><span class="op">(</span><span class="fl">1.994</span>,<span class="fl">3</span>,<span class="fl">323</span>,lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.1147443</code></pre>
+<p>Figure <a href="ADDTESTS.html#fig:dens242-fig">22.6</a> is a plot of the <span class="math inline">\(F\)</span> distribution.</p>
+<div class="sourceCode" id="cb673"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"f"</span>,df1<span class="op">=</span><span class="fl">3</span>,df2<span class="op">=</span><span class="fl">323</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">1.994</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"F distribution"</span>,x<span class="op">=</span><span class="st">"F value"</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:dens242-fig"></span>
+<img src="23-Analysis-of-Variance_files/figure-html/dens242-fig-1.png" alt="The F distribution" width="672"><p class="caption">
+Figure 22.6: The F distribution
+</p>
+</div>
+</div>
+<div id="permutation-test-2" class="section level4" number="23.3.2.2">
+<h4>
+<span class="header-section-number">23.3.2.2</span> Permutation test<a class="anchor" aria-label="anchor" href="#permutation-test-2"><i class="fas fa-link"></i></a>
+</h4>
+<p>We can repeat the same analysis using a permutation test. We will first run it using a ratio of variances and then for interest as a difference in variances.</p>
+<p>We need a way to extract the mean squared errors from the output. There is a package called <strong>broom</strong> and within it a function called <code><a href="https://generics.r-lib.org/reference/tidy.html">tidy()</a></code> that cleans up output from functions and makes them into data frames.</p>
+<div class="sourceCode" id="cb674"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb675"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="va">position</span>,data<span class="op">=</span><span class="va">mlb_obp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 6
+##   term         df   sumsq  meansq statistic p.value
+##   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 position      3 0.00756 0.00252      1.99   0.115
+## 2 Residuals   323 0.408   0.00126     NA     NA</code></pre>
+<p>Let’s summarize the values in the <code>meansq</code> column and develop our test statistic, we could just pull the statistic but we want to be able to generate a difference test statistic as well.</p>
+<div class="sourceCode" id="cb677"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="va">position</span>,data<span class="op">=</span><span class="va">mlb_obp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>stat<span class="op">=</span><span class="va">meansq</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">/</span><span class="va">meansq</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> </code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##    stat
+##   &lt;dbl&gt;
+## 1  1.99</code></pre>
+<p>Now we are ready. First get our test statistic using <code><a href="https://dplyr.tidyverse.org/reference/pull.html">pull()</a></code>.</p>
+<div class="sourceCode" id="cb679"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="va">position</span>,data<span class="op">=</span><span class="va">mlb_obp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>stat<span class="op">=</span><span class="va">meansq</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">/</span><span class="va">meansq</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">obs</span></code></pre></div>
+<pre><code>## [1] 1.994349</code></pre>
+<p>Let’s put our test statistic into a function to include shuffling the <code>position</code> variable.</p>
+<div class="sourceCode" id="cb681"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">f_stat</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">position</span><span class="op">)</span>,data<span class="op">=</span><span class="va">x</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>stat<span class="op">=</span><span class="va">meansq</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">/</span><span class="va">meansq</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<div class="sourceCode" id="cb682"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">f_stat</span><span class="op">(</span><span class="va">mlb_obp</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 1.403999</code></pre>
+<p>Next we run the randomization test using the <code><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do()</a></code> function. There is an easier way to do all of this work with the <strong>purrr</strong> package but we will continue with the work we have started.</p>
+<div class="sourceCode" id="cb684"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">5321</span><span class="op">)</span>
+<span class="va">results</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fu">f_stat</span><span class="op">(</span><span class="va">mlb_obp</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>That was slow in executing because we are using <strong>tidyverse</strong> functions that are slow.</p>
+<p>Figure <a href="ADDTESTS.html#fig:hist243-fig">22.7</a> is a plot of the sampling distribution from the randomization test.</p>
+<div class="sourceCode" id="cb685"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_dhistogram</span><span class="op">(</span><span class="op">~</span><span class="va">result</span>,fill<span class="op">=</span><span class="st">"cyan"</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_dist</span><span class="op">(</span><span class="st">"f"</span>,df1<span class="op">=</span><span class="fl">3</span>,df2<span class="op">=</span><span class="fl">323</span>,color<span class="op">=</span><span class="st">"darkblue"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">1.994</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Randomization test sampling distribution"</span>,
+          subtitle<span class="op">=</span><span class="st">"F distribution is overlayed in blue"</span>,
+          x<span class="op">=</span><span class="st">"Test statistic"</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:hist243-fig"></span>
+<img src="23-Analysis-of-Variance_files/figure-html/hist243-fig-1.png" alt="The sampling distribution of the randomization test statistic." width="672"><p class="caption">
+Figure 22.7: The sampling distribution of the randomization test statistic.
+</p>
+</div>
+<p>The p-value is</p>
+<div class="sourceCode" id="cb686"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">result</span><span class="op">&gt;=</span><span class="va">obs</span><span class="op">)</span>,<span class="va">results</span><span class="op">)</span></code></pre></div>
+<pre><code>## prop_TRUE 
+## 0.0959041</code></pre>
+<p>This is a similar p-value from the ANOVA output.</p>
+<p>Now let’s repeat the analysis but use the difference in variance as our test statistic.</p>
+<div class="sourceCode" id="cb688"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">f_stat2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">position</span><span class="op">)</span>,data<span class="op">=</span><span class="va">x</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>stat<span class="op">=</span><span class="va">meansq</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">-</span><span class="va">meansq</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">stat</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<div class="sourceCode" id="cb689"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">5321</span><span class="op">)</span>
+<span class="va">results</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fu">f_stat2</span><span class="op">(</span><span class="va">mlb_obp</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Figure <a href="ADDTESTS.html#fig:hist244-fig">22.8</a> is the plot of the sampling distribution of the difference in variance.</p>
+<div class="sourceCode" id="cb690"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_dhistogram</span><span class="op">(</span><span class="op">~</span><span class="va">result</span>,fill<span class="op">=</span><span class="st">"cyan"</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0.001255972</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Randomization test sampling distribution"</span>,
+          subtitle<span class="op">=</span><span class="st">"Test statistic is the difference in variances"</span>,
+          x<span class="op">=</span><span class="st">"Test statistic"</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:hist244-fig"></span>
+<img src="23-Analysis-of-Variance_files/figure-html/hist244-fig-1.png" alt="The sampling distribution of the difference in variance randomization test statistic." width="672"><p class="caption">
+Figure 22.8: The sampling distribution of the difference in variance randomization test statistic.
+</p>
+</div>
+<p>We need the observed value to find a p-value.</p>
+<div class="sourceCode" id="cb691"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="va">position</span>,data<span class="op">=</span><span class="va">mlb_obp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>stat<span class="op">=</span><span class="va">meansq</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">-</span><span class="va">meansq</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">stat</span><span class="op">)</span>
+<span class="va">obs</span></code></pre></div>
+<pre><code>## [1] 0.001255972</code></pre>
+<p>The p-value is</p>
+<div class="sourceCode" id="cb693"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">result</span><span class="op">&gt;=</span><span class="va">obs</span><span class="op">)</span>,<span class="va">results</span><span class="op">)</span></code></pre></div>
+<pre><code>## prop_TRUE 
+## 0.0959041</code></pre>
+<p>Again a similar p-value.</p>
+<p>If we reject in the ANOVA test, we know there is a difference in at least one mean but we don’t know which ones. How would you approach answering that question, which means are different?</p>
+</div>
+</div>
+</div>
+<div id="homework-problems-22" class="section level2" number="23.4">
+<h2>
+<span class="header-section-number">23.4</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-22"><i class="fas fa-link"></i></a>
+</h2>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></div>
+<div class="next"><a href="CI.html"><span class="header-section-number">24</span> Confidence Intervals</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ANOVA"><span class="header-section-number">23</span> Analysis of Variance</a></li>
+<li><a class="nav-link" href="#objectives-22"><span class="header-section-number">23.1</span> Objectives</a></li>
+<li><a class="nav-link" href="#introduction---keep-any-of-this"><span class="header-section-number">23.2</span> Introduction - KEEP ANY OF THIS???</a></li>
+<li>
+<a class="nav-link" href="#numerical-data---keep-any-of-this"><span class="header-section-number">23.3</span> Numerical data - KEEP ANY OF THIS???</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#mlb-batting-performance-1"><span class="header-section-number">23.3.1</span> MLB batting performance</a></li>
+<li><a class="nav-link" href="#analysis-of-variance-anova-and-the-f-test-1"><span class="header-section-number">23.3.2</span> Analysis of variance (ANOVA) and the F test</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#homework-problems-22"><span class="header-section-number">23.4</span> Homework Problems</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-MASTER/blob/master/23-Analysis-of-Variance.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-MASTER/edit/master/23-Analysis-of-Variance.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-28.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

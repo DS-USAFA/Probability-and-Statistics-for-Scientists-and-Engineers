@@ -1,4 +1,4 @@
-# Additional Hypothesis Tests {#ADDTESTS}
+# Analysis of Variance {#ANOVA}
 
 ## Objectives
 

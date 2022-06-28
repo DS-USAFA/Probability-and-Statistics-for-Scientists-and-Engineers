@@ -4,8 +4,11 @@
 ## Objectives
 
 1) Use the bootstrap to estimate the standard error, the standard deviation, of the sample statistic.  
+
 2) Using bootstrap methods, obtain and interpret a confidence interval for an unknown parameter, based on a random sample.   
-3) Describe the advantages, disadvantages, and assumptions behind using bootstrapping for confidence intervals. 
+
+3) Describe the advantages, disadvantages, and assumptions behind using bootstrapping for confidence intervals.  
+
 
 ## Confidence intervals
 
@@ -23,7 +26,9 @@ Recall the four general steps of building a confidence interval:
 
 We previously used the central limit theorem to determine the distribution of our estimate. This lesson, we will build *bootstrap distribution*s of sample estimates.
 
-## Bootstrapping
+## Bootstrapping  
+
+#### STRESS THAT WE ARE ESTIMATING THE STANDARD ERROR, NOT GETTING A P-VALUE #### 
 
 In many contexts, the sampling distribution of a sample statistic is either unknown or subject to assumptions. For example, suppose we wanted to obtain a 95% confidence interval on the *median* of a population. The central limit theorem does not apply to the median; we don't know its distribution. 
 
@@ -61,7 +66,7 @@ gf_boxplot(~heights) %>%
 ```
 
 <div class="figure">
-<img src="23-Bootstrap_files/figure-html/box231-fig-1.png" alt="Boxplot of heights of local college students." width="672" />
+<img src="25-Bootstrap_files/figure-html/box231-fig-1.png" alt="Boxplot of heights of local college students." width="672" />
 <p class="caption">(\#fig:box231-fig)Boxplot of heights of local college students.</p>
 </div>
 
@@ -73,7 +78,7 @@ gf_density(~heights,fill="lightgrey",color="black") %>%
 ```
 
 <div class="figure">
-<img src="23-Bootstrap_files/figure-html/dens231-fig-1.png" alt="Density plot of heights of local college students." width="672" />
+<img src="25-Bootstrap_files/figure-html/dens231-fig-1.png" alt="Density plot of heights of local college students." width="672" />
 <p class="caption">(\#fig:dens231-fig)Density plot of heights of local college students.</p>
 </div>
 
@@ -89,7 +94,7 @@ favstats(~heights)
 ##  54.9 64.7   67.6 74.675 81.7 68.938 6.345588 50       0
 ```
 
-### Using traditional mathematically methods    
+### Using traditional mathematical methods    
 
 The data comes from less that 10\% of the population so we feel good about the assumption of independence. However, the data is bimodal and clearly does not come from a normal distribution. The sample size is larger, so this may help us. We will use the t-distribution and compare with the answer from the CLT then compare with the bootstrap.
 
@@ -240,7 +245,7 @@ boot_results %>%
 ```
 
 <div class="figure">
-<img src="23-Bootstrap_files/figure-html/boot231-fig-1.png" alt="The sampling distribution approximated using a bootstrap distribution." width="672" />
+<img src="25-Bootstrap_files/figure-html/boot231-fig-1.png" alt="The sampling distribution approximated using a bootstrap distribution." width="672" />
 <p class="caption">(\#fig:boot231-fig)The sampling distribution approximated using a bootstrap distribution.</p>
 </div>
 
@@ -282,6 +287,10 @@ qdata(~mean,data=boot_results,p=c(0.025,0.975))
 ##    2.5%   97.5% 
 ## 67.2197 70.7964
 ```
+
+
+#### ADD TO NTIs (NOT BOOK?) - COULD STOP AFTER PERCENTILE BASED METHOD BUT THIS IS MORE ACCURATE, SEE HESTERBERG, ETC. FOR MORE DETAILS #### 
+
 #### t interval with bootstrap standard error  
 
 Since the bootstrap distribution looks like a $t$ distribution, we can use a $t$ interval with the bootstrap standard error. The standard deviation of the bootstrap distribution is the standard error of the sample mean. We will not have to divide by $\sqrt{n}$ since we are dealing with the distribution of the mean directly.
@@ -356,7 +365,7 @@ boot_results %>%
 ```
 
 <div class="figure">
-<img src="23-Bootstrap_files/figure-html/boot232-fig-1.png" alt="The sampling distribution approximated using a bootstrap distribution." width="672" />
+<img src="25-Bootstrap_files/figure-html/boot232-fig-1.png" alt="The sampling distribution approximated using a bootstrap distribution." width="672" />
 <p class="caption">(\#fig:boot232-fig)The sampling distribution approximated using a bootstrap distribution.</p>
 </div>
 
@@ -390,16 +399,17 @@ There is a little difference between these two methods but not as large as we ma
 
 The key idea behind the bootstrap is that we estimate the population with the sample, this is called the *plug in principle*, if something is unknown then substitute an estimate of it. We can then generate new samples from this population estimate. The bootstrap does not improve the accuracy of the original estimate, in fact the bootstrap distribution is centered on the original sample estimate. Instead we only get information about the variability of the sample estimate. Some people are suspicious that we are using the data over and over. But remember we are just getting estimates of variability. In traditional statistics, when we calculate the sample standard deviation, we are using sample mean. Thus we are using the data twice. Always think of the bootstrap as providing a way to find the variability in an estimate.
 
+#### RENAME - PUTTING IT ALL TOGETHER or CULMINATING EXAMPLE #### 
 
 ## Confidence interval for difference in means
 
 To bring all the ideas we have learned so far in this block we will work an example of testing for a difference of two means. In our opinion, the easiest method to understand is the permutation test and the most difficult is the one based on the mathematical derivation, because of the assumptions necessary to get a mathematical solution for the sampling distribution.  We will also introduce how to use the bootstrap to get a confidence interval.
 
-### Health evaluation and linkage of primary care
+### HELP example
 
-The HELP study was a clinical trial for adult inpatients recruited from a detoxification unit. Patients with no primary care physician were randomized to receive a multidisciplinary assessment and a brief motivational intervention or usual care, with the goal of linking them to primary medical care.
+Let’s return to the Health Evaluation and Linkage to Primary Care data set, `HELPrct` in the **mosaicData** package. Previously, we looked at whether there was a difference in `substance` of abuse between males and females.  
 
-We are interested if there is a difference between male and female ages.
+We are now interested in whether there is a difference between male and female ages.
 
 
 ```r
@@ -432,7 +442,7 @@ HELP_sub %>%
 ```
 
 <div class="figure">
-<img src="23-Bootstrap_files/figure-html/box232-fig-1.png" alt="The distribution of age in the HELP study by gender." width="672" />
+<img src="25-Bootstrap_files/figure-html/box232-fig-1.png" alt="The distribution of age in the HELP study by gender." width="672" />
 <p class="caption">(\#fig:box232-fig)The distribution of age in the HELP study by gender.</p>
 </div>
 
@@ -446,7 +456,7 @@ HELP_sub %>%
 ```
 
 <div class="figure">
-<img src="23-Bootstrap_files/figure-html/hist232-fig-1.png" alt="The distribution of age in the HELP study by gender." width="672" />
+<img src="25-Bootstrap_files/figure-html/hist232-fig-1.png" alt="The distribution of age in the HELP study by gender." width="672" />
 <p class="caption">(\#fig:hist232-fig)The distribution of age in the HELP study by gender.</p>
 </div>
 
@@ -474,7 +484,6 @@ favstats(age~sex,data=HELP_sub)
 ## 1 female  21 31     35 40.5  58 36.25234 7.584858 107       0
 ## 2   male  19 30     35 40.0  60 35.46821 7.750110 346       0
 ```
-
 
 
 ```r
@@ -518,7 +527,7 @@ results %>%
 ```
 
 <div class="figure">
-<img src="23-Bootstrap_files/figure-html/hist233-fig-1.png" alt="The approximate sampling distribution of the difference of means from a bootstrap process." width="672" />
+<img src="25-Bootstrap_files/figure-html/hist233-fig-1.png" alt="The approximate sampling distribution of the difference of means from a bootstrap process." width="672" />
 <p class="caption">(\#fig:hist233-fig)The approximate sampling distribution of the difference of means from a bootstrap process.</p>
 </div>
 
@@ -559,22 +568,34 @@ Using the CLT or the $t$ distribution becomes difficult because we have to find 
 ### Hypothesis tests 
 
 When applying the $t$ distribution for a hypothesis test, we proceed as follows:  
+
 1. Write appropriate hypotheses.  
+
 2. Verify conditions for using the $t$ distribution.   
- For a difference of means when the data are not paired: each sample mean must separately satisfy the one-sample conditions for the $t$ distribution, and the data in each group must also be independent. Just like in the one-sample case, slight skewness will not be a problem for larger sample sizes. We can have moderate skewness and be fine if our sample is 30 or more. We can have extreme skewness if our sample is 60 or more.  
+    
+    For a difference of means when the data are not paired: each sample mean must separately satisfy the one-sample conditions for the $t$ distribution, and the data in each group must also be independent. Just like in the one-sample case, slight skewness will not be a problem for larger sample sizes. We can have moderate skewness and be fine if our sample is 30 or more. We can have extreme skewness if our sample is 60 or more.  
+    
 3. Compute the point estimate of interest, the standard error, and the degrees of freedom.  
+
 4. Compute the T score and p-value.   
+
 5. Make a conclusion based on the p-value, and write a conclusion in context and in plain language so anyone can understand the result.  
 
 We added the extra step of checking the assumptions.
 
+
 ### Confidence intervals  
 
 Similarly, the following is how we generally computed a confidence interval using a $t$ distribution:  
+
 1. Verify conditions for using the $t$ distribution. (See above.)   
-2. Compute the point estimate of interest, the standard error, the degrees of freedom, and $t^{\star}_{df}$.   
+
+2. Compute the point estimate of interest, the standard error, the degrees of freedom, and $t^{\star}_{df}$.  
+
 3. Calculate the confidence interval using the general formula, point estimate $\pm\ t_{df}^{\star} SE$.   
+
 4. Put the conclusions in context and in plain language so even non-statisticians can understand the results.  
+
 
 If the assumptions above are met, each sample mean can itself be modeled using a $t$ distribution and if the samples are independent, then the sample difference of two means, $\bar{x}_1 - \bar{x}_2$, can be modeled using the $t$ distribution and the standard error
 $$SE_{\bar{x}_{1} - \bar{x}_{2}} = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$$
@@ -594,7 +615,7 @@ HELP_sub %>%
 ```
 
 <div class="figure">
-<img src="23-Bootstrap_files/figure-html/qq231-fig-1.png" alt="The quantile-quantile plots to check normality assumption." width="672" />
+<img src="25-Bootstrap_files/figure-html/qq231-fig-1.png" alt="The quantile-quantile plots to check normality assumption." width="672" />
 <p class="caption">(\#fig:qq231-fig)The quantile-quantile plots to check normality assumption.</p>
 </div>
 
@@ -759,7 +780,7 @@ results %>%
 ```
 
 <div class="figure">
-<img src="23-Bootstrap_files/figure-html/boot235-fig-1.png" alt="Sampling distribution of the difference in means." width="672" />
+<img src="25-Bootstrap_files/figure-html/boot235-fig-1.png" alt="Sampling distribution of the difference in means." width="672" />
 <p class="caption">(\#fig:boot235-fig)Sampling distribution of the difference in means.</p>
 </div>
 
@@ -780,16 +801,17 @@ Again, similar results.
 
 1. There are more types of bootstrap techniques, right?  
 
-Yes! There are many excellent bootstrap techniques. We have only chosen to present two bootstrap techniques that could be explained in a single lesson and that are also reasonably reliable. There are many adjustments that can be made to speed up and improve accuracy. Packages such as **resample** and **boot** are more appropriate for these situations.
+    Yes! There are many excellent bootstrap techniques. We have only chosen to present two bootstrap techniques that could be explained in a single lesson and that are also reasonably reliable. There are many adjustments that can be made to speed up and improve accuracy. Packages such as **resample** and **boot** are more appropriate for these situations.
 
 
 2. I've heard the percentile bootstrap is very robust.  
 
-It is a **commonly** held belief that the percentile bootstrap is a robust bootstrap method. That is false. The percentile method is one of the least reliable bootstrap methods. However, it is easy to use and understand and can give a first attempt at a solution before more accurate methods are used.
+    It is a **commonly** held belief that the percentile bootstrap is a robust bootstrap method. That is false. The percentile method is one of the least reliable bootstrap methods. However, it is easy to use and understand and can give a first attempt at a solution before more accurate methods are used.
+
 
 3. I should use 1000 replicates in my bootstrap and permutation tests.  
 
-The  randomization and bootstrap distributions involve a random component from the sampling process and thus p-values and confidence intervals computed from the same data will vary. The amount of this **Monte Carlo** variability depends on the number of replicates used to create the randomization or bootstrap distribution. It is important that we not use too few as this will introduce too much random noise into p-value and confidence interval calculations. But each replicate costs time, and the marginal gain for each additional replicate decreases as the number of replicates increases. There is little reason to use millions of replicates (unless the goal is to estimate
+    The  randomization and bootstrap distributions involve a random component from the sampling process and thus p-values and confidence intervals computed from the same data will vary. The amount of this **Monte Carlo** variability depends on the number of replicates used to create the randomization or bootstrap distribution. It is important that we not use too few as this will introduce too much random noise into p-value and confidence interval calculations. But each replicate costs time, and the marginal gain for each additional replicate decreases as the number of replicates increases. There is little reason to use millions of replicates (unless the goal is to estimate
 very small p-values). We generally use roughly 1000 for routine or preliminary work and increase this to 10,000
 when we want to reduce the effects of Monte Carlo variability.
 
@@ -800,47 +822,46 @@ when we want to reduce the effects of Monte Carlo variability.
 An aspiring poker player recorded her winnings and losses over 50 evenings of play, the data is in the `data` folder in the file `poker.csv`. The poker player would like to better understand the volatility in her long term play.
 
 a. Load the data and plot a histogram.  
+
 b. Find the summary statistics.  
+
 c.  *Mean absolute deviation* or *MAD* is a more intuitive measure of spread than variance. It directly measures the average distance from the mean. It is found by the formula:
+
 $$mad = \sum_{i=1}^{n}\frac{\left| x_{i} - \bar{x} \right|}{n}$$
-Write a function and find the *MAD* of the data.  
+    
+    Write a function and find the *MAD* of the data.  
+    
 d. Find the bootstrap distribution of the *MAD* using 1000 replicates.  
+
 e. Plot a histogram of the bootstrap distribution.  
+
 f. Report a 95% confidence interval on the MAD.  
+
 g. ADVANCED: Do you think sample MAD is an unbiased estimator of population MAD? Why or why not?   
+
 
 2. Bootstrap hypothesis testing  
 
 Bootstrap hypothesis testing is relatively undeveloped, and is generally not as accurate as permutation testing. Therefore in general avoid it. But for our problem in the reading above, it may work. We will sample in a way that is consistent with the null hypothesis, then calculate a p-value as a tail probability like we do in permutation tests. This example does not generalize well to other applications like relative risk, correlation, regression, or categorical data.
 
-a. Using the `HELPrct` data, the null hypothesis requires the means of each group to be equal. Pick one group to adjust, either `male` or `female`. First zero the mean of the selected group by subtracting the sample mean of this group from data points only in this group. Then add the sample mean of the other group to each data point in the selected group. Store in a new object called `HELP_null`. set, store the observed value of the difference of means for male and female.
+a. Using the `HELPrct` data, the null hypothesis requires the means of each group to be equal. Pick one group to adjust, either `male` or `female`. First zero the mean of the selected group by subtracting the sample mean of this group from data points only in this group. Then add the sample mean of the other group to each data point in the selected group. Store in a new object called `HELP_null`. set, store the observed value of the difference of means for male and female.  
+
 b. The null hypothesis requires the means of each group to be equal. Pick one group to adjust, either `male` or `female`. First zero the mean of the selected group by subtracting the sample mean of this group from data points only in this group. Then add the sample mean of the other group to each data point in the selected group. Store in a new object called `HELP_null`.  
+
 c. Run `favstats()` to check that the means are equal.  
+
 d. On this new adjusted data set, generate a bootstrap distribution of the difference in sample means.  
+
 e. Plot the bootstrap distribution and a line at the observed difference in sample means.  
+
 f. Find a p-value.  
-g. How does the p-value compare with those in the reading.
 
-3. Paired data  
+g. How does the p-value compare with those in the reading.  
 
-Are textbooks actually cheaper online? Here we compare the price of textbooks at the University of California, Los Angeles' (UCLA's) bookstore and prices at Amazon.com. Seventy-three UCLA courses were randomly sampled in Spring 2010, representing less than 10\% of all UCLA courses. When a class had multiple books, only the most expensive text was considered.
 
-The data is in the file `textbooks.csv` under the data folder.
 
-Each textbook has two corresponding prices in the data set: one for the UCLA bookstore and one for Amazon. Therefore, each textbook price from the UCLA bookstore has a natural correspondence with a textbook price from Amazon. When two sets of observations have this special correspondence, they are said to be **paired**.
+3. Bootstrap hypothesis testing  
 
-To analyze paired data, it is often useful to look at the difference in outcomes of each pair of observations. In  `textbooks`, we look at the difference in prices, which is represented as the `diff` variable. It is important that we always subtract using a consistent order; here Amazon prices are always subtracted from UCLA prices. 
+    Repeat the analysis of the MLB data from the reading but this time generate a bootstrap distribution of the $F$ statistic.  
 
-a. Is this data tidy? Explain.  
-b. Make a scatterplot of the UCLA price versus the Amazon price. Add a 45 degree line to the plot.  
-c. Make a histogram of the differences in price.   
 
-The hypotheses are:  
-$H_0$: $\mu_{diff}=0$. There is no difference in the average textbook price.  
-$H_A$: $\mu_{diff} \neq 0$. There is a difference in average prices.
- 
-d. To use a $t$ distribution, the variable `diff` has to independent and normally distributed. Since the 73 books represent less than 10\% of the population, the assumption that the random sample is independent is reasonable. Check normality using `qqnorsim()` from the **openintro** package. It generates 8 qq plots of simulated normal data that you can use to judge the `diff` variable.  
-e. Run a $t$ test on the `diff` variable. Report the p-value and conclusion.  
-f. Create a bootstrap distribution and generate a 95\% confidence interval on the mean of the differences, the `diff` column.  
-g. If there is really no differences between book sources, the variable `more` is a binomial and under the null the probably of success is $\pi = 0.5$. Run a hypothesis test using the variable `more`.  
-h. Could you use a permutation test on this example? Explain.  

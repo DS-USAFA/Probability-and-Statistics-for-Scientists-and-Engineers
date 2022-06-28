@@ -98,7 +98,7 @@ possum %>%
 ```
 
 <div class="figure">
-<img src="26-Linear-Regression-Basics_files/figure-html/scat261-fig-1.png" alt="A scatterplot of possum total length and head length." width="672" />
+<img src="27-Linear-Regression-Basics_files/figure-html/scat261-fig-1.png" alt="A scatterplot of possum total length and head length." width="672" />
 <p class="caption">(\#fig:scat261-fig)A scatterplot of possum total length and head length.</p>
 </div>
 
@@ -133,7 +133,7 @@ We could fit the linear relationship by eye like we did in the case study and ob
 We begin by thinking about what we mean by ``best''. Mathematically, we want a line that has small residuals. There are multiple methods, but the most common is the *method of least squares*. In this method, our goal is to find the values of $\beta_0$ and $\beta_1$ that minimize the squared vertical distance between the points and the resulting line, the **residuals**. See \@ref(fig:resid1-fig) for a visual representation involving only four observations from *made up* data. 
 
 <div class="figure">
-<img src="26-Linear-Regression-Basics_files/figure-html/resid1-fig-1.png" alt="An illustration of the least squares method." width="672" />
+<img src="27-Linear-Regression-Basics_files/figure-html/resid1-fig-1.png" alt="An illustration of the least squares method." width="672" />
 <p class="caption">(\#fig:resid1-fig)An illustration of the least squares method.</p>
 </div>
 
@@ -165,7 +165,7 @@ Notice that this implies that the line will always go through the point $\left(\
 And 
 
 $$
-\hat{\beta}_1 = {\sum x_i y_i - n\bar{x}\bar{y} \over \sum x_i^2 -n\bar{x}^2}
+\hat{\beta}_1 = {\sum x_i y_i - n\bar{x}\bar{y} \over{\sum x_i^2 -n\bar{x}^2}}
 $$
 
 A more intuitive formula for the slope and one that links **correlation** to linear regression is:
@@ -179,7 +179,7 @@ where $R$ is the correlation between the two variables, and $s_x$ and $s_y$ are 
 
 You may also be interested in estimating $\sigma$, the standard deviation of the error:
 $$
-\hat{\sigma}=\sqrt{{1\over n-2} \sum_{i=1}^n \hat{e}_i^2}
+\hat{\sigma}=\sqrt{{1\over{n-2}} \sum_{i=1}^n \hat{e}_i^2}
 $$
 
 where $\hat{e}_i$ is the observed $i$th **residual** ($\hat{e}_i=y_i-\hat{\beta}_0-\hat{\beta}_1x_i$). This estimate is based only on the assumption of constant variance.
@@ -268,7 +268,7 @@ possum %>%
 ```
 
 <div class="figure">
-<img src="26-Linear-Regression-Basics_files/figure-html/scat262-fig-1.png" alt="A scatterplot of possum total length and head length including a regression line." width="672" />
+<img src="27-Linear-Regression-Basics_files/figure-html/scat262-fig-1.png" alt="A scatterplot of possum total length and head length including a regression line." width="672" />
 <p class="caption">(\#fig:scat262-fig)A scatterplot of possum total length and head length including a regression line.</p>
 </div>
 
@@ -417,7 +417,7 @@ cars %>%
 ```
 
 <div class="figure">
-<img src="26-Linear-Regression-Basics_files/figure-html/scat263-fig-1.png" alt="A scatterplot of speed and stopping distance." width="672" />
+<img src="27-Linear-Regression-Basics_files/figure-html/scat263-fig-1.png" alt="A scatterplot of speed and stopping distance." width="672" />
 <p class="caption">(\#fig:scat263-fig)A scatterplot of speed and stopping distance.</p>
 </div>
 
@@ -440,14 +440,14 @@ Anytime we build a model, there are assumptions behind it that, if violated, cou
 **Fit**. When we build a simple linear regression, we assume that the relationship between the response and the predictor is as we specify in the fit formula. This in simple linear regression is often just a linear relationship. Suppose two variables are non-linearly related, see \@ref(fig:resid2-fig). While we could build a linear regression model between the two, the resulting model would not be very useful. If we built a model with the fit formulated as a quadratic, a similar plot of the residuals would look flat. We will discuss this more in a later chapter. 
 
 <div class="figure">
-<img src="26-Linear-Regression-Basics_files/figure-html/resid2-fig-1.png" alt="An example of non-linear relationship between two variables fitted with a linear regression line." width="672" />
+<img src="27-Linear-Regression-Basics_files/figure-html/resid2-fig-1.png" alt="An example of non-linear relationship between two variables fitted with a linear regression line." width="672" />
 <p class="caption">(\#fig:resid2-fig)An example of non-linear relationship between two variables fitted with a linear regression line.</p>
 </div>
 
 **Independent Observations**. Another assumption is that all observations in a data set are independent of one another. A common way this assumption is violated is by using time as the predictor variable. For example, suppose we were interested in how an individual's weight changes over time. While it may be tempting to plot this and fit a regression line through the data, the resulting model is inappropriate, as simple linear regression assumes that each observation is independent. Figure \@ref(fig:resid3-fig) shows correlated data fitted with a linear regression line.
 
 <div class="figure">
-<img src="26-Linear-Regression-Basics_files/figure-html/resid3-fig-1.png" alt="A scatterplot of correlated data fit using a linear regression model with the assumption of independence." width="672" />
+<img src="27-Linear-Regression-Basics_files/figure-html/resid3-fig-1.png" alt="A scatterplot of correlated data fit using a linear regression model with the assumption of independence." width="672" />
 <p class="caption">(\#fig:resid3-fig)A scatterplot of correlated data fit using a linear regression model with the assumption of independence.</p>
 </div>
 
@@ -464,7 +464,7 @@ One purpose of residual plots is to identify characteristics or patterns still a
 Figure \@ref(fig:resid4-fig) shows three scatterplots with linear models in the first row and residual plots in the second row. 
 
 <div class="figure">
-<img src="26-Linear-Regression-Basics_files/figure-html/resid4-fig-1.png" alt="Residual plots and associated scatterplots." width="672" />
+<img src="27-Linear-Regression-Basics_files/figure-html/resid4-fig-1.png" alt="Residual plots and associated scatterplots." width="672" />
 <p class="caption">(\#fig:resid4-fig)Residual plots and associated scatterplots.</p>
 </div>
 

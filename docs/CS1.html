@@ -93,25 +93,26 @@
 <li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
 <li class="book-part">Statistical Modeling</li>
 <li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
-<li><a class="" href="HYPOTEST.html"><span class="header-section-number">19</span> Hypothesis Testing</a></li>
-<li><a class="" href="PVALUES.html"><span class="header-section-number">20</span> Empirical p-values</a></li>
-<li><a class="" href="CLT.html"><span class="header-section-number">21</span> Central Limit Theorem</a></li>
-<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
-<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
-<li><a class="" href="ADDTESTS.html"><span class="header-section-number">24</span> Additional Hypothesis Tests</a></li>
+<li><a class="" href="HYPOTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></li>
+<li><a class="" href="HYPTESTDIST.html"><span class="header-section-number">20</span> Hypothesis Testing with Known Distributions</a></li>
+<li><a class="" href="HYPTESTCLT.html"><span class="header-section-number">21</span> Hypothesis Testing with the Central Limit Theorem</a></li>
+<li><a class="" href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></li>
+<li><a class="" href="ANOVA.html"><span class="header-section-number">23</span> Analysis of Variance</a></li>
+<li><a class="" href="CI.html"><span class="header-section-number">24</span> Confidence Intervals</a></li>
+<li><a class="" href="BOOT.html"><span class="header-section-number">25</span> Bootstrap</a></li>
 <li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">25</span> Case Study</a></li>
-<li><a class="" href="LRBASICS.html"><span class="header-section-number">26</span> Linear Regression Basics</a></li>
-<li><a class="" href="LRINF.html"><span class="header-section-number">27</span> Linear Regression Inference</a></li>
-<li><a class="" href="LRDIAG.html"><span class="header-section-number">28</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">29</span> Simulation Based Linear Regression</a></li>
-<li><a class="" href="LRMULTI.html"><span class="header-section-number">30</span> Multiple Linear Regression</a></li>
-<li><a class="" href="LOGREG.html"><span class="header-section-number">31</span> Logistic Regression</a></li>
+<li><a class="" href="CS4.html"><span class="header-section-number">26</span> Case Study</a></li>
+<li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
+<li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
+<li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRMULTI.html"><span class="header-section-number">31</span> Multiple Linear Regression</a></li>
+<li><a class="" href="LOGREG.html"><span class="header-section-number">32</span> Logistic Regression</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-MASTER">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -200,13 +201,13 @@ a package can be used, it must be installed on the computer (once per computer o
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ProjectMOSAIC/mosaic">mosaic</a></span><span class="op">)</span></code></pre></div>
 <p>Next read in the data into the working environment.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">stent_study</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/stent_study.csv"</span><span class="op">)</span></code></pre></div>
-<p>Let’s break this code down. We are reading from a .csv file and assigning the results into an object called <code>stent_study</code>. The assignment arrow <code>&lt;-</code> means we assign what is on the right to what is on the left. The <code>R</code> function we use in this case is <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv()</a></code>. When using <code>R</code> functions, you should ask yourself:</p>
+<code class="sourceCode R"><span class="va">stent_study</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/stent_study.csv"</span><span class="op">)</span></code></pre></div>
+<p>Let’s break this code down. We are reading from a .csv file and assigning the results into an object called <code>stent_study</code>. The assignment arrow <code>&lt;-</code> means we assign what is on the right to what is on the left. The <code>R</code> function we use in this case is <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>. When using <code>R</code> functions, you should ask yourself:</p>
 <ol style="list-style-type: decimal">
 <li><p>What do I want <code>R</code> to do?</p></li>
 <li><p>What information must I provide for <code>R</code> to do this?</p></li>
 </ol>
-<p>We want <code>R</code> to read in a .csv file. We can get help on this function by typing <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">?read_csv</a></code> or <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">help(read_csv)</a></code> at the prompt. The only required input to <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv()</a></code> is the file location. We have our data stored in a folder called “data” under the working directory. We can determine the working directory by typing <code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code> at the prompt.</p>
+<p>We want <code>R</code> to read in a .csv file. We can get help on this function by typing <code><a href="https://readr.tidyverse.org/reference/read_delim.html">?read_csv</a></code> or <code><a href="https://readr.tidyverse.org/reference/read_delim.html">help(read_csv)</a></code> at the prompt. The only required input to <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> is the file location. We have our data stored in a folder called “data” under the working directory. We can determine the working directory by typing <code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code> at the prompt.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Similarly, if we wish to change the working directory, we can do so by using the <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code> function:</p>
@@ -268,7 +269,7 @@ a package can be used, it must be installed on the computer (once per computer o
 <pre><code>## [1] 0.1473214</code></pre>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
-What proportion of the control group had a stroke by the end of the first month? And why is this answer different from what <code><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect()</a></code> reports?</p>
+What proportion of the control group had a stroke in the first 30 days of the study? And why is this proportion different from the proportion reported by <code><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect()</a></code>?</p>
 </blockquote>
 <p>Let’s have <code>R</code> calculate proportions for us. Use <code>?</code> or <code>help()</code> to look at the help menu for <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code>. Note that one of the option arguments of the <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code> function is <code>format =</code>. Setting this equal to <code>proportion</code> will output the proportions instead of the counts.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
@@ -436,8 +437,8 @@ iii. Create a barchart of the data.</li>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/blob/master/01-Data-Case-Study.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-for-Scientists-and-Engineers/edit/master/01-Data-Case-Study.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-MASTER/blob/master/01-Data-Case-Study.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-MASTER/edit/master/01-Data-Case-Study.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -449,7 +450,7 @@ iii. Create a barchart of the data.</li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-14.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Bradley Warner. It was last built on 2022-06-28.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
