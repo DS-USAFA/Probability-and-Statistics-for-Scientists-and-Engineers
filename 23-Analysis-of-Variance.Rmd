@@ -32,17 +32,16 @@ d   <- mlbbat10[mlbbat10$at_bat > 200,]
  gp  <- c()
  for(i in 1:length(pos)){
      these <- which(d$position %in% pos[[i]])
-     out   <- c(out, d[these,"obp"]) #d[these,"home_run"] / d[these,"at_bat"])
+     out   <- c(out, d[these, "obp"]) #d[these,"home_run"] / d[these,"at_bat"])
      gp    <- c(gp, rep(POS[i], length(these)))
  }
-mlb_data<-tibble(position=gp,obp=unlist(out))
-#write_csv(mlb_data,"data/mlb_obp.csv")
+mlb_data<-tibble(position = gp, obp = unlist(out))
+#write_csv(mlb_data, "data/mlb_obp.csv")
 ```
 
 Sometimes we want to compare means across many groups. In this case we have two variables where one is continuous and the other categorical. We might initially think to do pairwise comparisons, two sample t-tests, as a solution; for example, if there were three groups, we might be tempted to compare the first mean with the second, then with the third, and then finally compare the second and third means for a total of three comparisons. However, this strategy can be treacherous. If we have many groups and do many comparisons, it is likely that we will eventually find a difference just by chance, even if there is no difference in the populations.
 
-In this section, we will learn a new method called **analysis of variance** (ANOVA) and a new test statistic called $F$. ANOVA uses a single hypothesis test to check whether the means across many groups are equal. The hypotheses are:
-
+In this section, we will learn a new method called **analysis of variance** (ANOVA) and a new test statistic called $F$. ANOVA uses a single hypothesis test to check whether the means across many groups are equal. The hypotheses are:  
 
 $H_0$: The mean outcome is the same across all groups. In statistical notation, $\mu_1 = \mu_2 = \cdots = \mu_k$ where $\mu_i$ represents the mean of the outcome for observations in category $i$.  
 $H_A$: At least one mean is different.  
@@ -76,12 +75,13 @@ Next change the variable `position` to a factor to give us greater control.
 
 ```{r}
 mlb_obp <- mlb_obp %>%
-  mutate(position=as.factor(position))
+  mutate(position = as.factor(position))
 ```
 
 ```{r}
-favstats(obp~position,data=mlb_obp)
+favstats(obp ~ position, data = mlb_obp)
 ```
+
 The means for each group are pretty close to each other.
 
 > **Exercise**:
@@ -99,10 +99,10 @@ Figure \@ref(fig:box241-fig) is the side-by-side boxplots.
 
 ```{r box241-fig,fig.cap="Boxplots of on base percentage by position played."}
 mlb_obp %>%
-  gf_boxplot(obp~position) %>%
-  gf_labs(x="Position Played",y="On Base Percentage") %>%
+  gf_boxplot(obp ~ position) %>%
+  gf_labs(x = "Position Played", y = "On Base Percentage") %>%
   gf_theme(theme_bw()) %>%
-  gf_labs(title="Comparison of OBP for different positions")
+  gf_labs(title = "Comparison of OBP for different positions")
 ```
 
 The largest difference between the sample means is between the designated hitter and the catcher positions. Consider again the original hypotheses:  
@@ -169,7 +169,7 @@ Figure \@ref(fig:qq241-fig) is the quantile-quantile plot to assess the normalit
 
 ```{r qq241-fig,fig.cap="Quantile-quantile plot for two-sample test of means."}
 mlb_obp %>%
-  gf_qq(~obp|position) %>%
+  gf_qq(~obp | position) %>%
   gf_qqline() %>%
   gf_theme(theme_bw())
 ```  
@@ -188,23 +188,23 @@ The test statistic is the ratio of the between means variance and the pooled wit
 
 
 ```{r}
-summary(aov(obp~position,data=mlb_obp))
+summary(aov(obp ~ position, data = mlb_obp))
 ```
 The table contains all the information we need. It has the degrees of freedom, mean squared errors, test statistic, and p-value. The test statistic is 1.994, $\frac{0.002519}{0.001263}=1.994$. The p-value is larger than 0.05, indicating the evidence is not strong enough to reject the null hypothesis at a significance level of 0.05. That is, the data do not provide strong evidence that the average on-base percentage varies by player's primary field position.
 
 The calculation of the p-value is
 
 ```{r}
-pf(1.994,3,323,lower.tail = FALSE)
+pf(1.994, 3, 323, lower.tail = FALSE)
 ```
 
 Figure \@ref(fig:dens242-fig) is a plot of the $F$ distribution.
 
 ```{r dens242-fig,fig.cap="The F distribution",warning=FALSE,message=FALSE}
-gf_dist("f",df1=3,df2=323) %>%
-  gf_vline(xintercept = 1.994,color="red") %>%
+gf_dist("f", df1 = 3, df2 = 323) %>%
+  gf_vline(xintercept = 1.994, color = "red") %>%
   gf_theme(theme_classic()) %>%
-  gf_labs(title="F distribution",x="F value")
+  gf_labs(title = "F distribution", x = "F value")
 ```
 
 
@@ -219,24 +219,24 @@ library(broom)
 ```
 
 ```{r}
-aov(obp~position,data=mlb_obp) %>%
+aov(obp ~ position, data = mlb_obp) %>%
   tidy()
 ```
 
 Let's summarize the values in the `meansq` column and develop our test statistic, we could just pull the statistic but we want to be able to generate a difference test statistic as well.
 
 ```{r}
-aov(obp~position,data=mlb_obp) %>%
+aov(obp ~ position, data = mlb_obp) %>%
   tidy() %>%
-  summarize(stat=meansq[1]/meansq[2]) 
+  summarize(stat = meansq[1] / meansq[2]) 
 ```
 
 Now we are ready. First get our test statistic using `pull()`.
 
 ```{r}
-obs<-aov(obp~position,data=mlb_obp) %>%
+obs <- aov(obp ~ position, data = mlb_obp) %>%
   tidy() %>%
-  summarize(stat=meansq[1]/meansq[2]) %>%
+  summarize(stat = meansq[1] / meansq[2]) %>%
   pull()
 obs
 ```
@@ -245,14 +245,15 @@ Let's put our test statistic into a function to include shuffling the `position`
 
 ```{r}
 f_stat <- function(x){
-  aov(obp~shuffle(position),data=x) %>%
+  aov(obp ~ shuffle(position), data = x) %>%
   tidy() %>%
-  summarize(stat=meansq[1]/meansq[2]) %>%
+  summarize(stat = meansq[1] / meansq[2]) %>%
   pull()
 }
 ```
 
 ```{r}
+set.seed(5321)
 f_stat(mlb_obp)
 ```
 
@@ -261,7 +262,7 @@ Next we run the randomization test using the `do()` function. There is an easier
 
 ```{r cache=TRUE}
 set.seed(5321)
-results<-do(1000)*(f_stat(mlb_obp))
+results <- do(1000)*(f_stat(mlb_obp))
 ```
 
 That was slow in executing because we are using **tidyverse** functions that are slow. 
@@ -270,19 +271,19 @@ Figure \@ref(fig:hist243-fig) is a plot of the sampling distribution from the ra
 
 ```{r hist243-fig,warning=FALSE,message=FALSE,fig.cap="The sampling distribution of the randomization test statistic."}
 results %>%
-  gf_dhistogram(~result,fill="cyan",color="black") %>%
-  gf_dist("f",df1=3,df2=323,color="darkblue") %>%
-  gf_vline(xintercept = 1.994,color="red") %>%
+  gf_dhistogram(~result, fill = "cyan", color = "black") %>%
+  gf_dist("f", df1 = 3, df2 = 323, color = "darkblue") %>%
+  gf_vline(xintercept = 1.994, color = "red") %>%
   gf_theme(theme_classic()) %>%
-  gf_labs(title="Randomization test sampling distribution",
-          subtitle="F distribution is overlayed in blue",
-          x="Test statistic")
+  gf_labs(title = "Randomization test sampling distribution",
+          subtitle = "F distribution is overlayed in blue",
+          x = "Test statistic")
 ```
 
 The p-value is
 
 ```{r}
-prop1(~(result>=obs),results)
+prop1(~(result >= obs), results)
 ```  
 
 This is a similar p-value from the ANOVA output.
@@ -291,44 +292,43 @@ Now let's repeat the analysis but use the difference in variance as our test sta
 
 ```{r}
 f_stat2 <- function(x){
-  aov(obp~shuffle(position),data=x) %>%
+  aov(obp ~ shuffle(position), data = x) %>%
   tidy() %>%
-  summarize(stat=meansq[1]-meansq[2]) %>%
+  summarize(stat = meansq[1] - meansq[2]) %>%
   pull(stat)
 }
 ```
 
-
 ```{r cache=TRUE}
 set.seed(5321)
-results<-do(1000)*(f_stat2(mlb_obp))
+results <- do(1000)*(f_stat2(mlb_obp))
 ```
 
 Figure \@ref(fig:hist244-fig) is the plot of the sampling distribution of the difference in variance.
 
 ```{r hist244-fig,warning=FALSE,message=FALSE,fig.cap="The sampling distribution of the difference in variance randomization test statistic."}
 results %>%
-  gf_dhistogram(~result,fill="cyan",color="black") %>%
-  gf_vline(xintercept = 0.001255972,color="red") %>%
+  gf_dhistogram(~result, fill = "cyan", color = "black") %>%
+  gf_vline(xintercept = 0.001255972, color = "red") %>%
   gf_theme(theme_classic()) %>%
-  gf_labs(title="Randomization test sampling distribution",
-          subtitle="Test statistic is the difference in variances",
-          x="Test statistic")
+  gf_labs(title = "Randomization test sampling distribution",
+          subtitle = "Test statistic is the difference in variances",
+          x = "Test statistic")
 ```  
 
 We need the observed value to find a p-value.
 
 ```{r}
-obs<-aov(obp~position,data=mlb_obp) %>%
+obs <- aov(obp ~ position, data = mlb_obp) %>%
   tidy() %>%
-  summarize(stat=meansq[1]-meansq[2]) %>%
+  summarize(stat = meansq[1] - meansq[2]) %>%
   pull(stat)
 obs
 ```
 The p-value is
 
 ```{r}
-prop1(~(result>=obs),results)
+prop1(~(result >= obs), results)
 ```
 
 Again a similar p-value.
