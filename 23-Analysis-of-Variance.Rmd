@@ -190,6 +190,7 @@ The test statistic is the ratio of the between means variance and the pooled wit
 ```{r}
 summary(aov(obp ~ position, data = mlb_obp))
 ```
+
 The table contains all the information we need. It has the degrees of freedom, mean squared errors, test statistic, and p-value. The test statistic is 1.994, $\frac{0.002519}{0.001263}=1.994$. The p-value is larger than 0.05, indicating the evidence is not strong enough to reject the null hypothesis at a significance level of 0.05. That is, the data do not provide strong evidence that the average on-base percentage varies by player's primary field position.
 
 The calculation of the p-value is
@@ -337,6 +338,14 @@ If we reject in the ANOVA test, we know there is a difference in at least one me
 
 
 ## Homework Problems
+
+#### CAN WE KEEP THIS??? #### 
+
+#### MOVE TEST OF TWO VARIANCES HERE??? #### 
+
+2. Bootstrap hypothesis testing  
+
+Repeat the analysis of the MLB data from the reading but this time generate a bootstrap distribution of the $F$ statistic.  
 
 
 

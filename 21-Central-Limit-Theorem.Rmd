@@ -3,9 +3,11 @@
 
 ## Objectives
 
-1) Explain the central limit theorem and when you can use it for inference.   
+1) Explain the central limit theorem and when it can be used for inference.   
+
 2) Conduct hypothesis tests of a single mean and proportion using the CLT and `R`.   
-3) Explain how the chi-squared and $t$ distributions relate to the normal distribution, where we use them, and describe the impact on the shape of the distribution when the parameters are changed.   
+
+3) Explain how the $t$ distribution relates to the normal distribution and where we use it, and describe the impact on the shape of the distribution when the parameters are changed.   
 
 
 ## Central limit theorem
@@ -153,7 +155,7 @@ clt %>%
 In this example, we knew the true proportion of voters who supported the proposition. Based on that knowledge, we simulated the behavior of the sample proportion. We did this by taking a sample of size $n$, recording the sample proportion and sample mean, and repeating that process thousands of times. In reality, we will not know the true underlying level of support; further, we will not take a sample repeatedly thousands of times from the parent population. Sampling can be expensive and time-consuming. Thus, we would take one random sample of size $n$, and acknowledge that the resulting sample proportion is but one observation from an underlying normal distribution. We would then determine what values of $\pi$ (the true unknown population proportion) could reasonably have resulted in the observed sample proportion. 
 
 
-## Other distribution for estimators
+## Other distributions for estimators
 
 Prior to using the CLT in hypothesis testing, we want to discuss other sampling distributions that are based on the CLT or normality assumptions. A large part of theoretical statistics has been about mathematically deriving the distribution of sample statistics. In these methods we obtain a sample statistic, determine the distribution of that statistic under certain conditions, and then use that information to make a statement about the population parameter. 
 
@@ -190,8 +192,14 @@ gf_dist("norm",color="red") %>%
   gf_theme(theme_bw())
 ```
 
+### Important Note
 
-## Hypotheses tests using the CLT
+You may have noticed an important condition in the lemma above. It was assumed that each $X_i$ in the sequence of random variables was *normally* distributed. While the central limit theorem has no such normality assumption, the distribution of the $t$-statistic is subject to the distribution of the underlying population. With a large enough sample size, this assumption is not necessary. There is no magic number, but some resources state that as long as $n$ is at least 30-40, the underlying distribution doesn't matter. For smaller sample sizes, the underlying distribution should be relatively symmetric and unimodal. 
+
+One advantage of simulation-based inference methods is that these methods do not rely on any such distributional assumptions. However, the simulation-based methods may have smaller power for the same sample size.
+
+
+## Hypothesis tests using the CLT
 
 We are now ready to repeat some of our previous problems using the mathematically derived sampling distribution via the CLT.
 
@@ -275,7 +283,7 @@ Now, let's discuss the assumptions of the $t$ distribution and how to check them
 
 2. Observations come from a nearly normal distribution. This second condition is difficult to verify with small data sets. We often (i) take a look at a plot of the data for obvious departures from the normal model, usually in the form of prominent outliers, and (ii) consider whether any previous experiences alert us that the data may not be nearly normal. However, if the sample size is somewhat large, then we can relax this condition, e.g. moderate skew is acceptable when the sample size is 30 or more, and strong skew is acceptable when the size is about 60 or more.
 
-    A typical plot to use to evaluate the normality assumption is called the quantile-quantile plot. We form a scatterplot of the empirical quantiles from the data versus exact quantile values from the theoretical distribution. If the points fall along a line then the data match the distribution. An exact match is not realistic, so we look for major departures from the line. 
+    A typical plot used to evaluate the normality assumption is called the quantile-quantile plot. We form a scatterplot of the empirical quantiles from the data versus exact quantile values from the theoretical distribution. If the points fall along a line, then the data match the distribution. An exact match is not realistic, so we look for major departures from the line. 
 
 Figure \@ref(fig:qq211-fig) is our normal-quantile plot for the body temperature data. The largest value may be an outlier, we may want to verify it was entered correctly. The fact that the points are above the line for the larger values and below the line for the smaller values indicates that our data may have longer tails than the normal distribution. There are really only 3 values in the larger quantiles so in fact the data may be slightly skewed to the left, this was also indicated by a comparison of the mean and median. However, since we have 130 data points these results should not impact our findings. 
 
@@ -373,43 +381,24 @@ b. Simulate this process in `R`. Plot the resulting empirical distribution of $\
 
     (HINT: You can simulate a die roll using the `sample` function. Be careful and make sure you use it properly.)  
     
-c. Repeat parts a) and b) for $n=20$ and $n=50$. Describe what you notice. Make sure all three plots are plotted on the same $x$-axis scale. You can use facets if you combine your data into one `tibble`.
+c. Repeat parts a) and b) for $n = 20$ and $n = 50$. Describe what you notice. Make sure all three plots are plotted on the same $x$-axis scale. You can use facets if you combine your data into one `tibble`.
 
 
-2. The nutrition label on a bag of potato chips says that a one ounce (28 gram) serving of potato chips has 130 calories and contains ten grams of fat, with three grams of saturated fat. A random sample of 35 bags yielded a sample mean of 134 calories with a standard deviation of 17 calories. Is there evidence that the nutrition label does not provide an accurate measure of calories in the bags of potato chips? The conditions necessary for applying the normal model have been checked and are satisfied.
-
+2. The nutrition label on a bag of potato chips says that a one ounce (28 gram) serving of potato chips has 130 calories and contains ten grams of fat, with three grams of saturated fat. A random sample of 35 bags yielded a sample mean of 134 calories with a standard deviation of 17 calories. Is there evidence that the nutrition label does not provide an accurate measure of calories in the bags of potato chips? The conditions necessary for applying the normal model have been checked and are satisfied.  
 
 The question has been framed in terms of two possibilities: the nutrition label accurately lists the correct average calories per bag of chips or it does not, which may be framed as a hypothesis test.
 
 a. Write the null and alternative hypothesis.  
+
 b. What level of significance are you going to use?   
+
 c. What is the distribution of the test statistic ${\bar{X}-\mu\over S/\sqrt{n}}$? Calculate the observed value.  
 d. Calculate a p-value.  
+
 e. Draw a conclusion.  
 
-3. Exploration of the chi-squared and $t$ distributions. 
 
-a. In `R`, plot the pdf of a random variable with the chi-squared distribution with 1 degree of freedom. On the same plot, include the pdfs with degrees of freedom of 5, 10 and 50. Describe how the behavior of the pdf changes with increasing degrees of freedom.   
-b. Repeat part (a) with the $t$ distribution. Add the pdf of a standard normal random variable as well. What do you notice? 
-
-
-
-4. In this lesson, we have used the expression *degrees of freedom* a lot. What does this expression mean? When we have sample of size $n$, why are there $n-1$ degrees of freedom for the $t$ distribution? Give a short concise answer (about one paragraph). You will likely have to do a little research on your own.  
-
-5. Deborah Toohey is running for Congress, and her campaign manager claims she has more than 50\% support from the district's electorate. Ms. Toohey's opponent claimed that Ms. Toohey has **less** than 50\%. Set up a hypothesis test to evaluate who is right.
-
-a. Should we run a one-sided or two-sided hypothesis test?  
-b. Write the null and alternative hypothesis.  
-c. What level of significance are you going to use?   
-d. What are the assumptions of this test?  
-e. Calculate the test statistic.  
-e. Calculate a p-value.  
-f. Draw a conclusion.  
-
-Note: A newspaper collects a simple random sample of 500 likely voters in the district and estimates Toohey's support to be 52\%. 
-
-
-6. Paired data  
+3. Paired data  
 
 Are textbooks actually cheaper online? Here we compare the price of textbooks at the University of California, Los Angeles' (UCLA's) bookstore and prices at Amazon.com. Seventy-three UCLA courses were randomly sampled in Spring 2010, representing less than 10\% of all UCLA courses. When a class had multiple books, only the most expensive text was considered.
 
@@ -420,16 +409,44 @@ Each textbook has two corresponding prices in the data set: one for the UCLA boo
 To analyze paired data, it is often useful to look at the difference in outcomes of each pair of observations. In  `textbooks`, we look at the difference in prices, which is represented as the `diff` variable. It is important that we always subtract using a consistent order; here Amazon prices are always subtracted from UCLA prices. 
 
 a. Is this data tidy? Explain.  
+
 b. Make a scatterplot of the UCLA price versus the Amazon price. Add a 45 degree line to the plot.  
+
 c. Make a histogram of the differences in price.   
 
-The hypotheses are:  
+    The hypotheses are:  
 $H_0$: $\mu_{diff}=0$. There is no difference in the average textbook price.  
 $H_A$: $\mu_{diff} \neq 0$. There is a difference in average prices.
  
-d. To use a $t$ distribution, the variable `diff` has to independent and normally distributed. Since the 73 books represent less than 10\% of the population, the assumption that the random sample is independent is reasonable. Check normality using `qqnorsim()` from the **openintro** package. It generates 8 qq plots of simulated normal data that you can use to judge the `diff` variable.  
+d. To use a $t$ distribution, the variable `diff` has to be independent and normally distributed. Since the 73 books represent less than 10\% of the population, the assumption that the random sample is independent is reasonable. Check normality using `qqnorsim()` from the **openintro** package. It generates 8 qq plots of simulated normal data that you can use to judge the `diff` variable.  
+
 e. Run a $t$ test on the `diff` variable. Report the p-value and conclusion.  
+
 f. Create a bootstrap distribution and generate a 95\% confidence interval on the mean of the differences, the `diff` column.  
+
 g. If there is really no differences between book sources, the variable `more` is a binomial and under the null the probably of success is $\pi = 0.5$. Run a hypothesis test using the variable `more`.  
+
 h. Could you use a permutation test on this example? Explain.  
+
+
+4. In this lesson, we have used the expression *degrees of freedom* a lot. What does this expression mean? When we have sample of size $n$, why are there $n-1$ degrees of freedom for the $t$ distribution? Give a short concise answer (about one paragraph). You will likely have to do a little research on your own.  
+
+5. Deborah Toohey is running for Congress, and her campaign manager claims she has more than 50\% support from the district's electorate. Ms. Toohey's opponent claimed that Ms. Toohey has **less** than 50\%. Set up a hypothesis test to evaluate who is right.  
+
+    Note: A newspaper collects a simple random sample of 500 likely voters in the district and estimates Toohey's support to be 52\%.  
+
+a. Should we run a one-sided or two-sided hypothesis test?  
+
+b. Write the null and alternative hypothesis.  
+
+c. What level of significance are you going to use?   
+
+d. What are the assumptions of this test?  
+
+e. Calculate the test statistic.  
+
+e. Calculate a p-value.  
+
+f. Draw a conclusion.  
+
 
