@@ -270,7 +270,7 @@ Figure 21.6: Sampling distribution of the proportion for different sample sizes.
 <blockquote>
 <p>Lemma: Let <span class="math inline">\(X_1, X_2, ..., X_n\)</span> be an i.i.d. sequence of random variables from a normal population with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>. Then,
 <span class="math display">\[
-{\bar{X} - \mu\over S/\sqrt{n}} \sim \textsf{t}(n - 1)
+{\overline{X} - \mu\over S/\sqrt{n}} \sim \textsf{t}(n - 1)
 \]</span></p>
 </blockquote>
 <p>The <span class="math inline">\(\textsf{t}(n - 1)\)</span> distribution is read as the “<span class="math inline">\(t\)</span>” distribution. The <span class="math inline">\(t\)</span> distribution has one parameter: degrees of freedom. The left-hand side of the expression above <span class="math inline">\(\left({\bar{X}-\mu\over S/\sqrt{n}}\right)\)</span> is referred to as the <span class="math inline">\(t\)</span> statistic, and it tells us how many standard deviations our sample mean is from the population mean.</p>
@@ -305,7 +305,7 @@ Figure 21.7: The distibtion of t.
 <h3>
 <span class="header-section-number">21.4.1</span> Body temperature<a class="anchor" aria-label="anchor" href="#body-temperature"><i class="fas fa-link"></i></a>
 </h3>
-<p>We will repeat the body temperature analysis from Chapter @(HYPTESTDIST) homework, now using the CLT. We will use <span class="math inline">\(\alpha = 0.05\)</span>. Recall that a paper from the American Medical Association<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Mackowiak, P. A., Wasserman, S. S., and Levine, M. M. (1992), “A Critical Appraisal of 98.6 Degrees F, the Upper Limit of the Normal Body Temperature, and Other Legacies of Carl Reinhold August Wunderlich,” Journal of the American Medical Association, 268, 1578-1580.&lt;/p&gt;"><sup>86</sup></a> questioned the long-held belief that the average body temperature of a human is 98.6 degrees Fahrenheit. The authors of the paper believe that the average human body temperature is less than 98.6.</p>
+<p>We will repeat the body temperature analysis from Chapter <a href="HYPTESTDIST.html#HYPTESTDIST">20</a> homework, now using the CLT. We will use <span class="math inline">\(\alpha = 0.05\)</span>. Recall that a paper from the American Medical Association<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Mackowiak, P. A., Wasserman, S. S., and Levine, M. M. (1992), “A Critical Appraisal of 98.6 Degrees F, the Upper Limit of the Normal Body Temperature, and Other Legacies of Carl Reinhold August Wunderlich,” Journal of the American Medical Association, 268, 1578-1580.&lt;/p&gt;"><sup>86</sup></a> questioned the long-held belief that the average body temperature of a human is 98.6 degrees Fahrenheit. The authors of the paper believe that the average human body temperature is less than 98.6.</p>
 <div id="step-1--state-the-null-and-alternative-hypotheses-4" class="section level4" number="21.4.1.1">
 <h4>
 <span class="header-section-number">21.4.1.1</span> Step 1- State the null and alternative hypotheses<a class="anchor" aria-label="anchor" href="#step-1--state-the-null-and-alternative-hypotheses-4"><i class="fas fa-link"></i></a>
@@ -444,7 +444,7 @@ Figure 21.8: Q-Q plot for body temperature data.
 <div class="sourceCode" id="cb589"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">0.35</span>, mean <span class="op">=</span> <span class="fl">0.5</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">0.5</span><span class="op">*</span><span class="fl">0.5</span> <span class="op">/</span> <span class="fl">120</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.001015001</code></pre>
-<p>That is a small p-value and consistent with what we got using both the exact binomial test and the simulated empirical p-values in Chapter @(HYPTESTDIST).</p>
+<p>That is a small p-value and consistent with what we got using both the exact binomial test and the simulated empirical p-values in Chapter <a href="HYPTESTDIST.html#HYPTESTDIST">20</a>.</p>
 <blockquote>
 <p><strong>Important note</strong>:
 In the calculation of the standard deviation of the sampling distribution, we used the null hypothesized value of the probability of success.</p>
@@ -493,7 +493,7 @@ How do you conduct a one-sided test? What if the null value were 0.45?<a class="
 ## sample estimates:
 ## probability of success 
 ##                   0.35</code></pre>
-<p>This is the same as the code we used in Chapter @(HYPTESTDIST):</p>
+<p>This is the same as the code we used in Chapter <a href="HYPTESTDIST.html#HYPTESTDIST">20</a>:</p>
 <div class="sourceCode" id="cb597"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">42</span>, <span class="fl">120</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.001299333</code></pre>
@@ -617,7 +617,7 @@ How do you conduct a one-sided test? What if the null value were 0.45?<a class="
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-06-29.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-06-30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

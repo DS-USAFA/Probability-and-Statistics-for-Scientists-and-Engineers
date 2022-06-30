@@ -186,7 +186,7 @@ Again, $\sigma$ is unknown. Thus, we have to estimate it. We can estimate it wit
 
 >Lemma: Let $X_1, X_2, ..., X_n$ be an i.i.d. sequence of random variables from a normal population with mean $\mu$ and standard deviation $\sigma$. Then,
 $$
-{\bar{X} - \mu\over S/\sqrt{n}} \sim \textsf{t}(n - 1)
+{\overline{X} - \mu\over S/\sqrt{n}} \sim \textsf{t}(n - 1)
 $$
 
 The $\textsf{t}(n - 1)$ distribution is read as the "$t$" distribution. The $t$ distribution has one parameter: degrees of freedom. The left-hand side of the expression above $\left({\bar{X}-\mu\over S/\sqrt{n}}\right)$ is referred to as the $t$ statistic, and it tells us how many standard deviations our sample mean is from the population mean. 
@@ -223,7 +223,7 @@ We are now ready to reexamine some of our previous examples using the mathematic
 
 ### Body temperature
 
-We will repeat the body temperature analysis from Chapter @\ref(HYPTESTDIST) homework, now using the CLT. We will use $\alpha = 0.05$. Recall that a paper from the American Medical Association^[Mackowiak, P. A., Wasserman, S. S., and Levine, M. M. (1992), "A Critical Appraisal of 98.6 Degrees F, the Upper Limit of the Normal Body Temperature, and Other Legacies of Carl Reinhold August Wunderlich," Journal of the American Medical Association, 268, 1578-1580.] questioned the long-held belief that the average body temperature of a human is 98.6 degrees Fahrenheit. The authors of the paper believe that the average human body temperature is less than 98.6. 
+We will repeat the body temperature analysis from Chapter \@ref(HYPTESTDIST) homework, now using the CLT. We will use $\alpha = 0.05$. Recall that a paper from the American Medical Association^[Mackowiak, P. A., Wasserman, S. S., and Levine, M. M. (1992), "A Critical Appraisal of 98.6 Degrees F, the Upper Limit of the Normal Body Temperature, and Other Legacies of Carl Reinhold August Wunderlich," Journal of the American Medical Association, 268, 1578-1580.] questioned the long-held belief that the average body temperature of a human is 98.6 degrees Fahrenheit. The authors of the paper believe that the average human body temperature is less than 98.6. 
 
 #### Step 1- State the null and alternative hypotheses  
 
@@ -399,7 +399,7 @@ We now want to find the p-value from the one-sided probability $\Prob(\bar{X} \l
 ## [1] 0.001015001
 ```
 
-That is a small p-value and consistent with what we got using both the exact binomial test and the simulated empirical p-values in Chapter @\ref(HYPTESTDIST).
+That is a small p-value and consistent with what we got using both the exact binomial test and the simulated empirical p-values in Chapter \@ref(HYPTESTDIST).
 
 >**Important note**:
 In the calculation of the standard deviation of the sampling distribution, we used the null hypothesized value of the probability of success. 
@@ -467,7 +467,7 @@ binom.test(42,120)
 ##                   0.35
 ```
 
-This is the same as the code we used in Chapter @\ref(HYPTESTDIST): 
+This is the same as the code we used in Chapter \@ref(HYPTESTDIST): 
 
 
 ```r

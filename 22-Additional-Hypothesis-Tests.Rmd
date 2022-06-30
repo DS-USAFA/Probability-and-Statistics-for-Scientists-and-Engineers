@@ -28,7 +28,7 @@ We will finish this block by examining problems with two variables. In the first
 
 ## Other distribution for estimators
 
-In Chapter @\ref(HYPTESTCLT), we discussed the $t$ distribution, a different sampling distribution that is based on the CLT or normality assumption. In theoretical statistics, we often mathematically derive the sampling distribution by obtaining a sampling statistic, determining the distribution of that statistic under certain conditions, and using that information to make a statement about the population parameter. We now discuss another commonly used sampling distribution: the chi-squared distribution.  
+In Chapter \@ref(HYPTESTCLT), we discussed the $t$ distribution, a different sampling distribution that is based on the CLT or normality assumption. In theoretical statistics, we often mathematically derive the sampling distribution by obtaining a sampling statistic, determining the distribution of that statistic under certain conditions, and using that information to make a statement about the population parameter. We now discuss another commonly used sampling distribution: the chi-squared distribution.  
 
 
 ### Chi-squared
