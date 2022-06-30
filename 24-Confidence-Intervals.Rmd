@@ -63,7 +63,7 @@ pnorm(1.96)-pnorm(-1.96)
 
 In mathematical terms, the derivation of this confidence is as follows:
 
-Let $X_1,X_2,...,X_n$ be an iid sequence of random variables, each with mean $\mu$ and standard deviation $\sigma$. The central limit theorem tells us that
+Let $X_1,X_2,...,X_n$ be an i.i.d. sequence of random variables, each with mean $\mu$ and standard deviation $\sigma$. The central limit theorem tells us that
 $$
 \frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\overset{approx}{\sim}\textsf{Norm}(0,1)
 $$

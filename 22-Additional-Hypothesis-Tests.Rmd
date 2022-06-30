@@ -4,7 +4,7 @@
 
 1) Conduct and interpret a goodness of fit test using both Pearson's chi-squared and randomization to evaluate the independence between two categorical variables. 
 
-2) Explain how the chi-squared distribution relates to the normal distribution and where we use it, and describe the impact on the shape of the distribution when the parameters are changed.   
+2) Explain how the chi-squared distribution relates to the normal distribution, where it is used, and how changing parameters impacts the shape of the distribution.   
 
 3) Conduct and interpret a hypothesis test for equality of two means and equality of two variances using both permutation and the CLT.   
   
@@ -43,8 +43,7 @@ $$
 
 Recall that this is an unbiased estimate for $\sigma^2$. The sampling distribution of $S^2$ can be found using the following lemma.
 
-Lemma: Let $X_1,X_2,...,X_n$ be an iid sequence of random variables from a normal population with mean $\mu$ and standard deviation $\sigma$. Then,  
-
+>Lemma: Let $X_1,X_2,...,X_n$ be an iid sequence of random variables from a normal population with mean $\mu$ and standard deviation $\sigma$. Then,  
 $$
 {(n-1)S^2\over \sigma^2}\sim \textsf{Chisq}(n-1)
 $$

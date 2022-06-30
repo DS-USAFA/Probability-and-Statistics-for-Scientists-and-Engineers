@@ -62,7 +62,7 @@ We can use the sample moments to estimate the population moments since the popul
 This is all technical, so let's look at an example. 
 
 > *Example*:  
-Suppose $x_1,x_2,...,x_n$ is an iid, independent and identically distributed, sample from a uniform distribution $\textsf{Unif}(0,\theta)$, and we don't know $\theta$. That is, our data consists of positive random numbers but we don't know the upper bound. Find the method of moments estimator for $\theta$, the upper bound. 
+Suppose $x_1,x_2,...,x_n$ is an i.i.d., independent and identically distributed, sample from a uniform distribution $\textsf{Unif}(0,\theta)$, and we don't know $\theta$. That is, our data consists of positive random numbers but we don't know the upper bound. Find the method of moments estimator for $\theta$, the upper bound. 
 
 We know that if $X\sim \textsf{Unif}(a,b)$, then $\E(X)=\frac{a+b}{2}$. So, in this case, $\E(X)={\theta \over 2}$. This is the first population moment. We can estimate this with the first *sample* moment, which is just the sample mean:
 $$
@@ -85,7 +85,7 @@ To decide which is better we need a criteria of comparison. This is beyond the s
 The method of moments can be used to estimate more than one parameter as well. We simply would have to incorporate higher order moments. 
 
 > *Example*:  
-Suppose we take an iid sample from the normal distribution with parameters $\mu$ and $\sigma$. Find method of moments estimates of $\mu$ and $\sigma$. 
+Suppose we take an i.i.d. sample from the normal distribution with parameters $\mu$ and $\sigma$. Find method of moments estimates of $\mu$ and $\sigma$. 
 
 First, we remember that we know two population moments for the normal distribution:
 $$
@@ -125,9 +125,9 @@ Next we will discuss one more estimation method, *maximum likelihood estimation*
 
 ### Likelihood Function
 
-Suppose $x_1,x_2,...,x_n$ is an iid random sample from a distribution with mass/density function $f_{X}(x;\boldsymbol{\theta})$ where $\boldsymbol{\theta}$ are the parameters. Let's take a second to explain this notation. We are using a bold symbol for $\boldsymbol{\theta}$ to indicate it is a vector, that it can be one or more values. However, in the pmf/pdf $x$ is not bold since it is a scalar variable. In our probability models we know $\boldsymbol{\theta}$ and then use to model to make decision about the random variable $X$.
+Suppose $x_1,x_2,...,x_n$ is an i.i.d. random sample from a distribution with mass/density function $f_{X}(x;\boldsymbol{\theta})$ where $\boldsymbol{\theta}$ are the parameters. Let's take a second to explain this notation. We are using a bold symbol for $\boldsymbol{\theta}$ to indicate it is a vector, that it can be one or more values. However, in the pmf/pdf $x$ is not bold since it is a scalar variable. In our probability models we know $\boldsymbol{\theta}$ and then use to model to make decision about the random variable $X$.
 
-The likelihood function is denoted as $L(\boldsymbol{\theta};x_1,x_2,...,x_n) = L(\boldsymbol{\theta};\boldsymbol{x})$. Now we have multiple instances of the random variable, we use $\boldsymbol{x}$. Since our random sample is iid, independent and identically distributed, we can write the likelihood function as a product of the pmfs/pdfs:
+The likelihood function is denoted as $L(\boldsymbol{\theta};x_1,x_2,...,x_n) = L(\boldsymbol{\theta};\boldsymbol{x})$. Now we have multiple instances of the random variable, we use $\boldsymbol{x}$. Since our random sample is i.i.d., independent and identically distributed, we can write the likelihood function as a product of the pmfs/pdfs:
 $$
 L(\boldsymbol{\theta};\boldsymbol{x})=\prod_{i=1}^n f_X(x_i;\boldsymbol{\theta})
 $$
@@ -139,7 +139,7 @@ Let's do an example to help understand these ideas.
 > *Example*:  
 Suppose we are presented with a coin and are unsure of its fairness. We toss the coin 50 times and obtain 18 heads and 32 tails. Let $\pi$ be the probability that a coin flip results in heads, we could use $p$ but we are getting you used to the two different common ways to represent a binomial parameter. What is the likelihood function of $\pi$? 
 
-This is a binomial process, but each individual coin flip can be thought of as a Bernoulli experiment. That is, $x_1,x_2,...,x_{50}$ is an iid sample from $\textsf{Binom}(1,\pi)$ or, in other words, $\textsf{Bernoulli}(\pi)$. Each $x_i$ is either 1 or 0. The pmf of $X$, a Bernoulli random variable, is simply:
+This is a binomial process, but each individual coin flip can be thought of as a Bernoulli experiment. That is, $x_1,x_2,...,x_{50}$ is an i.i.d. sample from $\textsf{Binom}(1,\pi)$ or, in other words, $\textsf{Bernoulli}(\pi)$. Each $x_i$ is either 1 or 0. The pmf of $X$, a Bernoulli random variable, is simply:
 $$
 f_X(x;\pi)= \binom{1}{x} \pi^x(1-\pi)^{1-x} = \pi^x(1-\pi)^{1-x}
 $$
@@ -359,7 +359,7 @@ d) ADVANCED: Use simulation in `R` to find out how often the method of moment es
 
 2. Let $x_1,x_2,...,x_n$ be a simple random sample from an exponentially distributed population with parameter $\lambda$. Find $\hat{\lambda}_{MoM}$. 
 
-3. Let $x_1,x_2,...,x_n$ be an iid random sample from an exponentially distributed population with parameter $\lambda$. Find $\hat{\lambda}_{MLE}$.
+3. Let $x_1,x_2,...,x_n$ be an i.i.d. random sample from an exponentially distributed population with parameter $\lambda$. Find $\hat{\lambda}_{MLE}$.
 
 4. It is mathematically difficult to determine if the estimators found in questions 2 and 3 are unbiased. Since the sample mean is in the denominator; mathematically we may have to work with the joint pdf. So instead, use simulation to get an sense of whether the method of moments estimator for the exponential distribution is unbiased.
 
