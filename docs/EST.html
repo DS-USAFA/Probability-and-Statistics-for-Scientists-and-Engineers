@@ -175,7 +175,7 @@ Figure 17.1: A graphical representation of probability and statistics. In probab
 <p>This is all technical, so let’s look at an example.</p>
 <blockquote>
 <p><em>Example</em>:<br>
-Suppose <span class="math inline">\(x_1,x_2,...,x_n\)</span> is an iid, independent and identically distributed, sample from a uniform distribution <span class="math inline">\(\textsf{Unif}(0,\theta)\)</span>, and we don’t know <span class="math inline">\(\theta\)</span>. That is, our data consists of positive random numbers but we don’t know the upper bound. Find the method of moments estimator for <span class="math inline">\(\theta\)</span>, the upper bound.</p>
+Suppose <span class="math inline">\(x_1,x_2,...,x_n\)</span> is an i.i.d., independent and identically distributed, sample from a uniform distribution <span class="math inline">\(\textsf{Unif}(0,\theta)\)</span>, and we don’t know <span class="math inline">\(\theta\)</span>. That is, our data consists of positive random numbers but we don’t know the upper bound. Find the method of moments estimator for <span class="math inline">\(\theta\)</span>, the upper bound.</p>
 </blockquote>
 <p>We know that if <span class="math inline">\(X\sim \textsf{Unif}(a,b)\)</span>, then <span class="math inline">\(\mbox{E}(X)=\frac{a+b}{2}\)</span>. So, in this case, <span class="math inline">\(\mbox{E}(X)={\theta \over 2}\)</span>. This is the first population moment. We can estimate this with the first <em>sample</em> moment, which is just the sample mean:
 <span class="math display">\[
@@ -193,7 +193,7 @@ Suppose <span class="math inline">\(x_1,x_2,...,x_n\)</span> is an iid, independ
 <p>The method of moments can be used to estimate more than one parameter as well. We simply would have to incorporate higher order moments.</p>
 <blockquote>
 <p><em>Example</em>:<br>
-Suppose we take an iid sample from the normal distribution with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. Find method of moments estimates of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>.</p>
+Suppose we take an i.i.d. sample from the normal distribution with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. Find method of moments estimates of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>.</p>
 </blockquote>
 <p>First, we remember that we know two population moments for the normal distribution:
 <span class="math display">\[
@@ -231,8 +231,8 @@ E(\hat{p})=E\left( \sum{\frac{X_i}{n}} \right)
 <h3>
 <span class="header-section-number">17.5.1</span> Likelihood Function<a class="anchor" aria-label="anchor" href="#likelihood-function"><i class="fas fa-link"></i></a>
 </h3>
-<p>Suppose <span class="math inline">\(x_1,x_2,...,x_n\)</span> is an iid random sample from a distribution with mass/density function <span class="math inline">\(f_{X}(x;\boldsymbol{\theta})\)</span> where <span class="math inline">\(\boldsymbol{\theta}\)</span> are the parameters. Let’s take a second to explain this notation. We are using a bold symbol for <span class="math inline">\(\boldsymbol{\theta}\)</span> to indicate it is a vector, that it can be one or more values. However, in the pmf/pdf <span class="math inline">\(x\)</span> is not bold since it is a scalar variable. In our probability models we know <span class="math inline">\(\boldsymbol{\theta}\)</span> and then use to model to make decision about the random variable <span class="math inline">\(X\)</span>.</p>
-<p>The likelihood function is denoted as <span class="math inline">\(L(\boldsymbol{\theta};x_1,x_2,...,x_n) = L(\boldsymbol{\theta};\boldsymbol{x})\)</span>. Now we have multiple instances of the random variable, we use <span class="math inline">\(\boldsymbol{x}\)</span>. Since our random sample is iid, independent and identically distributed, we can write the likelihood function as a product of the pmfs/pdfs:
+<p>Suppose <span class="math inline">\(x_1,x_2,...,x_n\)</span> is an i.i.d. random sample from a distribution with mass/density function <span class="math inline">\(f_{X}(x;\boldsymbol{\theta})\)</span> where <span class="math inline">\(\boldsymbol{\theta}\)</span> are the parameters. Let’s take a second to explain this notation. We are using a bold symbol for <span class="math inline">\(\boldsymbol{\theta}\)</span> to indicate it is a vector, that it can be one or more values. However, in the pmf/pdf <span class="math inline">\(x\)</span> is not bold since it is a scalar variable. In our probability models we know <span class="math inline">\(\boldsymbol{\theta}\)</span> and then use to model to make decision about the random variable <span class="math inline">\(X\)</span>.</p>
+<p>The likelihood function is denoted as <span class="math inline">\(L(\boldsymbol{\theta};x_1,x_2,...,x_n) = L(\boldsymbol{\theta};\boldsymbol{x})\)</span>. Now we have multiple instances of the random variable, we use <span class="math inline">\(\boldsymbol{x}\)</span>. Since our random sample is i.i.d., independent and identically distributed, we can write the likelihood function as a product of the pmfs/pdfs:
 <span class="math display">\[
 L(\boldsymbol{\theta};\boldsymbol{x})=\prod_{i=1}^n f_X(x_i;\boldsymbol{\theta})
 \]</span></p>
@@ -242,7 +242,7 @@ L(\boldsymbol{\theta};\boldsymbol{x})=\prod_{i=1}^n f_X(x_i;\boldsymbol{\theta})
 <p><em>Example</em>:<br>
 Suppose we are presented with a coin and are unsure of its fairness. We toss the coin 50 times and obtain 18 heads and 32 tails. Let <span class="math inline">\(\pi\)</span> be the probability that a coin flip results in heads, we could use <span class="math inline">\(p\)</span> but we are getting you used to the two different common ways to represent a binomial parameter. What is the likelihood function of <span class="math inline">\(\pi\)</span>?</p>
 </blockquote>
-<p>This is a binomial process, but each individual coin flip can be thought of as a Bernoulli experiment. That is, <span class="math inline">\(x_1,x_2,...,x_{50}\)</span> is an iid sample from <span class="math inline">\(\textsf{Binom}(1,\pi)\)</span> or, in other words, <span class="math inline">\(\textsf{Bernoulli}(\pi)\)</span>. Each <span class="math inline">\(x_i\)</span> is either 1 or 0. The pmf of <span class="math inline">\(X\)</span>, a Bernoulli random variable, is simply:
+<p>This is a binomial process, but each individual coin flip can be thought of as a Bernoulli experiment. That is, <span class="math inline">\(x_1,x_2,...,x_{50}\)</span> is an i.i.d. sample from <span class="math inline">\(\textsf{Binom}(1,\pi)\)</span> or, in other words, <span class="math inline">\(\textsf{Bernoulli}(\pi)\)</span>. Each <span class="math inline">\(x_i\)</span> is either 1 or 0. The pmf of <span class="math inline">\(X\)</span>, a Bernoulli random variable, is simply:
 <span class="math display">\[
 f_X(x;\pi)= \binom{1}{x} \pi^x(1-\pi)^{1-x} = \pi^x(1-\pi)^{1-x}
 \]</span></p>
@@ -421,7 +421,7 @@ Figure 17.4: Histogram of eruption duration with estimated mixture of normals pl
 </ol>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Let <span class="math inline">\(x_1,x_2,...,x_n\)</span> be a simple random sample from an exponentially distributed population with parameter <span class="math inline">\(\lambda\)</span>. Find <span class="math inline">\(\hat{\lambda}_{MoM}\)</span>.</p></li>
-<li><p>Let <span class="math inline">\(x_1,x_2,...,x_n\)</span> be an iid random sample from an exponentially distributed population with parameter <span class="math inline">\(\lambda\)</span>. Find <span class="math inline">\(\hat{\lambda}_{MLE}\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(x_1,x_2,...,x_n\)</span> be an i.i.d. random sample from an exponentially distributed population with parameter <span class="math inline">\(\lambda\)</span>. Find <span class="math inline">\(\hat{\lambda}_{MLE}\)</span>.</p></li>
 <li><p>It is mathematically difficult to determine if the estimators found in questions 2 and 3 are unbiased. Since the sample mean is in the denominator; mathematically we may have to work with the joint pdf. So instead, use simulation to get an sense of whether the method of moments estimator for the exponential distribution is unbiased.</p></li>
 <li><p>Find a maximum likelihood estimator for <span class="math inline">\(\theta\)</span> when <span class="math inline">\(X\sim\textsf{Unif}(0,\theta)\)</span>. Compare this to the method of moments estimator we found. Hint: Do not take the derivative of the likelihood function.</p></li>
 </ol>
@@ -466,7 +466,7 @@ Figure 17.4: Histogram of eruption duration with estimated mixture of normals pl
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-06-28.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-06-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

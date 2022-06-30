@@ -10,15 +10,15 @@
 <meta name="author" content="Ken Horton">
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
-<meta name="description" content="22.1 Objectives Conduct and interpret a hypothesis test for equality of two or more means using both permutation and the \(F\) distribution. Conduct and interpret a goodness of fit test using both...">
+<meta name="description" content="22.1 Objectives Conduct and interpret a goodness of fit test using both Pearson’s chi-squared and randomization to evaluate the independence between two categorical variables. Explain how the...">
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Chapter 22 Additional Hypothesis Tests | Computational Probability and Statistics">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Master.png">
-<meta property="og:description" content="22.1 Objectives Conduct and interpret a hypothesis test for equality of two or more means using both permutation and the \(F\) distribution. Conduct and interpret a goodness of fit test using both...">
+<meta property="og:description" content="22.1 Objectives Conduct and interpret a goodness of fit test using both Pearson’s chi-squared and randomization to evaluate the independence between two categorical variables. Explain how the...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 22 Additional Hypothesis Tests | Computational Probability and Statistics">
-<meta name="twitter:description" content="22.1 Objectives Conduct and interpret a hypothesis test for equality of two or more means using both permutation and the \(F\) distribution. Conduct and interpret a goodness of fit test using both...">
+<meta name="twitter:description" content="22.1 Objectives Conduct and interpret a goodness of fit test using both Pearson’s chi-squared and randomization to evaluate the independence between two categorical variables. Explain how the...">
 <meta name="twitter:image" content="/figures/Cover_Master.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -126,13 +126,10 @@
 <span class="header-section-number">22.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-21"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li>Conduct and interpret a hypothesis test for equality of two or more means using both permutation and the <span class="math inline">\(F\)</span> distribution.<br>
-</li>
-<li>Conduct and interpret a goodness of fit test using both Pearson’s chi-squared and randomization to evaluate the independence between two categorical variables.<br>
-</li>
-<li>Conduct and interpret a hypothesis test for the equality of two variances.<br>
-</li>
-<li>Know and check assumptions for the tests in the reading.</li>
+<li><p>Conduct and interpret a goodness of fit test using both Pearson’s chi-squared and randomization to evaluate the independence between two categorical variables.</p></li>
+<li><p>Explain how the chi-squared distribution relates to the normal distribution, where it is used, and how changing parameters impacts the shape of the distribution.</p></li>
+<li><p>Conduct and interpret a hypothesis test for equality of two means and equality of two variances using both permutation and the CLT.</p></li>
+<li><p>Know and check assumptions for the tests in the reading.</p></li>
 </ol>
 </div>
 <div id="introduction-2" class="section level2" number="22.2">
@@ -146,35 +143,36 @@
 <p>We also learned that the use of the information in the data impacts the power of the test. In the golf ball example, when we used range as our metric, we did not have the same power as looking at the differences from expected values under the null hypothesis. There is some mathematical theory that leads to better estimators, they are called likelihood ratio tests, but this is beyond the scope of the book. What you can do is create a simulation where you simulate data from the alternative hypothesis and then measure the power. This will give you a sense of the quality of your metric. We only briefly looked at measuring power an earlier chapter and will not go further into this idea in this chapter.</p>
 <p>We will finish this block by examining problems with two variables. In the first case they will both be categorical but at least one of the categorical variables has more than two levels. In the second case, we will examine two variables where one is numeric and the other categorical. The categorical variable has more than two levels.</p>
 </div>
-<div id="other-distribution-for-estimators-1" class="section level2" number="22.3">
+<div id="other-distribution-for-estimators" class="section level2" number="22.3">
 <h2>
-<span class="header-section-number">22.3</span> Other distribution for estimators<a class="anchor" aria-label="anchor" href="#other-distribution-for-estimators-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.3</span> Other distribution for estimators<a class="anchor" aria-label="anchor" href="#other-distribution-for-estimators"><i class="fas fa-link"></i></a>
 </h2>
-<p>Prior to using the CLT in hypothesis testing, we want to discuss other sampling distributions that are based on the CLT or normality assumptions. A large part of theoretical statistics has been about mathematically deriving the distribution of sample statistics. In these methods we obtain a sample statistic, determine the distribution of that statistic under certain conditions, and then use that information to make a statement about the population parameter.</p>
+<p>In Chapter @(HYPTESTCLT), we discussed the <span class="math inline">\(t\)</span> distribution, a different sampling distribution that is based on the CLT or normality assumption. In theoretical statistics, we often mathematically derive the sampling distribution by obtaining a sampling statistic, determining the distribution of that statistic under certain conditions, and using that information to make a statement about the population parameter. We now discuss another commonly used sampling distribution: the chi-squared distribution.</p>
 <div id="chi-squared" class="section level3" number="22.3.1">
 <h3>
 <span class="header-section-number">22.3.1</span> Chi-squared<a class="anchor" aria-label="anchor" href="#chi-squared"><i class="fas fa-link"></i></a>
 </h3>
 <p>Recall that the central limit theorem tells us that for reasonably large sample sizes, <span class="math inline">\(\bar{X}\overset{approx}{\sim}\textsf{Norm}(\mu,\sigma/\sqrt{n})\)</span>. However, this expression involves two unknowns: <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. In the case of binary data, population variance is a function of population proportion (<span class="math inline">\(\mbox{Var}(X)=\pi(1-\pi)\)</span>), so there is really just one unknown. In the case of continuous data, the standard deviation would need to be estimated.</p>
-<p>Let <span class="math inline">\(S^2\)</span> be defined as:
-<span class="math display">\[
+<p>Let <span class="math inline">\(S^2\)</span> be defined as:</p>
+<p><span class="math display">\[
 S^2={\sum (X_i-\bar{X})^2\over n-1}
 \]</span></p>
 <p>Recall that this is an unbiased estimate for <span class="math inline">\(\sigma^2\)</span>. The sampling distribution of <span class="math inline">\(S^2\)</span> can be found using the following lemma.</p>
-<p>Lemma: Let <span class="math inline">\(X_1,X_2,...,X_n\)</span> be an iid sequence of random variables from a normal population with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>. Then,
-<span class="math display">\[
+<blockquote>
+<p>Lemma: Let <span class="math inline">\(X_1,X_2,...,X_n\)</span> be an iid sequence of random variables from a normal population with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>. Then,<br><span class="math display">\[
 {(n-1)S^2\over \sigma^2}\sim \textsf{Chisq}(n-1)
 \]</span></p>
-<p>The <span class="math inline">\(\textsf{Chisq}(n-1)\)</span> distribution is read as the “chi-squared” distribution (“chi” is pronounced “kye”). The chi-squared distribution has one parameter: degrees of freedom. The chi-squared distribution is used in other contexts such as goodness of fit problems like the golf ball example from last lesson, we will discuss this particular application in a later chapter.</p>
+</blockquote>
+<p>The <span class="math inline">\(\textsf{Chisq}(n-1)\)</span> distribution is read as the “chi-squared” distribution (“chi” is pronounced “kye”). This can also be written as <span class="math inline">\(\chi^2 (n-1)\)</span>. The chi-squared distribution has one parameter: degrees of freedom. The chi-squared distribution is used in other contexts such as goodness of fit problems like the golf ball example from last lesson, we will discuss this particular application in a later chapter.</p>
 <p>The proof of this lemma is outside the scope of this book, but it is not terribly complicated. It follows from the fact that the sum of <span class="math inline">\(n\)</span> squared random variables, each with the standard normal distribution, follows the chi-squared distribution with <span class="math inline">\(n\)</span> degrees of freedom.</p>
 <p>This lemma can be used to draw inferences about <span class="math inline">\(\sigma^2\)</span>. For a particular value of <span class="math inline">\(\sigma^2\)</span>, we know how <span class="math inline">\(S^2\)</span> should behave. So, for a particular value of <span class="math inline">\(S^2\)</span>, we can figure out reasonable values of <span class="math inline">\(\sigma^2\)</span>.</p>
 <p>In practice, one rarely estimates <span class="math inline">\(\sigma\)</span> for the purpose of inferring on <span class="math inline">\(\sigma\)</span>. Typically, we are interested in estimating <span class="math inline">\(\mu\)</span> and we need to account for the added uncertainty in estimating <span class="math inline">\(\sigma\)</span> as well. That is what we will discuss in the next section.</p>
 </div>
-<div id="important-note" class="section level3" number="22.3.2">
+<div id="important-note-1" class="section level3" number="22.3.2">
 <h3>
-<span class="header-section-number">22.3.2</span> Important Note<a class="anchor" aria-label="anchor" href="#important-note"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.3.2</span> Important Note<a class="anchor" aria-label="anchor" href="#important-note-1"><i class="fas fa-link"></i></a>
 </h3>
-<p>You may have noticed an important condition in the two lemmas above. It was assumed that each <span class="math inline">\(X_i\)</span> in the sequence of random variables was <em>normally</em> distributed. While the central limit theorem has no such normality assumption, the distribution of the <span class="math inline">\(t\)</span>-statistic is subject to the distribution of the underlying population. With a large enough sample size, this assumption is not necessary. There is no magic number, but some resources state that as long as <span class="math inline">\(n\)</span> is at least 30-40, the underlying distribution doesn’t matter. For smaller sample sizes, the underlying distribution should be relatively symmetric and unimodal.</p>
+<p>Just like for the <span class="math inline">\(t\)</span> distribution, the lemma above assumed that each <span class="math inline">\(X_i\)</span> in the sequence of random variables was <em>normally</em> distributed. While the central limit theorem has no such normality assumption, the distribution of the chi-square statistic is subject to the distribution of the underlying population. With large enough expected counts, this assumption is not necessary. Again, there is no magic number, but some resources state that no expected count should be less than one and no more than 20% of the expected counts should be less than five.</p>
 <p>One advantage of simulation-based inference methods is that these methods do not rely on any such distributional assumptions. However, the simulation-based methods may have smaller power for the same sample size.</p>
 </div>
 </div>
@@ -185,42 +183,85 @@ S^2={\sum (X_i-\bar{X})^2\over n-1}
 <p>It is worth spending some time on common approaches to categorical data that you may come across. We have already dealt with categorical data to some extent in this course. We have performed hypothesis tests and built confidence intervals for <span class="math inline">\(\pi\)</span>, the population proportion of “success” in binary cases (for example, support for a local measure in a vote). This problem had a single variable. Also, the golf ball example involved counts of four types of golf ball. This is considered categorical data because each observation is characterized by a qualitative value (number on the ball). The data are summarized by counting how many balls in a sample belong to each type. This again was a single variable.</p>
 <p>In another scenario, suppose we are presented with two qualitative variables and would like to know if they are independent. For example, we have discussed methods for determining whether a coin could be fair. What if we wanted to know whether flipping the coin during the day or night changes the fairness of the coin? In this case, we have two categorical variables with two levels each: result of coin flip (heads vs tails) and time of day (day vs night). We have solved this type of problem by looking at a difference in probabilities of success using randomization and mathematically derived solutions, CLT. We also used a hypergeometric distribution to obtain an exact p-value.</p>
 <p>We will next explore a scenario that involves categorical data with two variables but where at least one variable has more than two levels. However, note that we are only merely scratching the surface in our studies. You could take an entire course on statistical methods for categorical data. This book is giving you a solid foundation to learn more advanced methods.</p>
-<div id="help-example" class="section level3" number="22.4.1">
+<div id="health-evaluation-and-linkage-to-primary-care" class="section level3" number="22.4.1">
 <h3>
-<span class="header-section-number">22.4.1</span> HELP example<a class="anchor" aria-label="anchor" href="#help-example"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.4.1</span> Health evaluation and linkage to primary care<a class="anchor" aria-label="anchor" href="#health-evaluation-and-linkage-to-primary-care"><i class="fas fa-link"></i></a>
 </h3>
-<p>Let’s return to Health Evaluation and Linkage to Primary Care data set, <code>HELPrct</code> in the <strong>mosaicData</strong> package. Previously, we looked at the differences in ages between males and females, let’s now do the same thing for the variable <code>substance</code>, the primary substance of abuse.</p>
-<p>There are three substances: alcohol, cocaine, and heroin. We’d like to know if there is evidence that the proportions of use differ for men and for women. In our data set, we observe modest differences.</p>
+<p>The Health Evaluation and Linkage to Primary Care (HELP) study was a clinical trial for adult inpatients recruited from a detoxification unit. Patients with no primary care physician were randomized to receive a multidisciplinary assessment and a brief motivational intervention or usual care, with the goal of linking them to primary medical care.</p>
+<p>The <code>HELPrct</code> data set is available in the <strong>mosaicData</strong> package. We are interested in whether there are differences between males and females, particularly in the variable <code>substance</code>, the primary substance of abuse.</p>
+<div id="remove-or-edit-this---interested-in-diff-of-means-in-ch-25-bootstrap" class="section level4" number="22.4.1.1">
+<h4>
+<span class="header-section-number">22.4.1.1</span> REMOVE OR EDIT THIS - INTERESTED IN DIFF OF MEANS IN CH 25 BOOTSTRAP<a class="anchor" aria-label="anchor" href="#remove-or-edit-this---interested-in-diff-of-means-in-ch-25-bootstrap"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb599"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"HELPrct"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb600"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span> <span class="va">substance</span> <span class="op">~</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span>,
-format<span class="op">=</span><span class="st">"prop"</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">HELP_sub</span> <span class="op">&lt;-</span> <span class="va">HELPrct</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">age</span>,<span class="va">sex</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb601"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">age</span><span class="op">~</span><span class="va">sex</span>,data<span class="op">=</span><span class="va">HELP_sub</span><span class="op">)</span></code></pre></div>
+<pre><code>##      sex min Q1 median   Q3 max     mean       sd   n missing
+## 1 female  21 31     35 40.5  58 36.25234 7.584858 107       0
+## 2   male  19 30     35 40.0  60 35.46821 7.750110 346       0</code></pre>
+<div class="sourceCode" id="cb603"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">HELP_sub</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_boxplot</span><span class="op">(</span><span class="va">age</span><span class="op">~</span><span class="va">sex</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Gender"</span>,y<span class="op">=</span><span class="st">"Age (years)"</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:box232-fig"></span>
+<img src="22-Additional-Hypothesis-Tests_files/figure-html/box232-fig-1.png" alt="The distribution of age in the HELP study by gender." width="672"><p class="caption">
+Figure 22.1: The distribution of age in the HELP study by gender.
+</p>
+</div>
+<div class="sourceCode" id="cb604"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">HELP_sub</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_dhistogram</span><span class="op">(</span><span class="op">~</span><span class="va">age</span><span class="op">|</span><span class="va">sex</span>,fill<span class="op">=</span><span class="st">"cyan"</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Age"</span>,y<span class="op">=</span><span class="st">""</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:hist232-fig"></span>
+<img src="22-Additional-Hypothesis-Tests_files/figure-html/hist232-fig-1.png" alt="The distribution of age in the HELP study by gender." width="672"><p class="caption">
+Figure 22.2: The distribution of age in the HELP study by gender.
+</p>
+</div>
+<p>Figures <a href="ADDTESTS.html#fig:box232-fig">22.1</a> and <a href="ADDTESTS.html#fig:hist232-fig">22.2</a> indicate there might be a slight difference in the means, but is it statistically significant?</p>
+</div>
+<div id="age-and-sex-example-ends-here" class="section level4" number="22.4.1.2">
+<h4>
+<span class="header-section-number">22.4.1.2</span> Age and Sex example ends here<a class="anchor" aria-label="anchor" href="#age-and-sex-example-ends-here"><i class="fas fa-link"></i></a>
+</h4>
+<p>There are three substances: alcohol, cocaine, and heroin. We’d like to know if there is evidence that the proportions of use differ for males and females. In our data set, we observe modest differences.</p>
+<div class="sourceCode" id="cb605"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">substance</span> <span class="op">~</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span>, format <span class="op">=</span> <span class="st">"prop"</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>##          sex
 ## substance    female      male
 ##   alcohol 0.3364486 0.4075145
 ##   cocaine 0.3831776 0.3208092
 ##   heroin  0.2803738 0.2716763
 ##   Total   1.0000000 1.0000000</code></pre>
-<p>But we need a test statistic to test if there is a difference in substance of abuse between males and females.</p>
+<p>But we need a test statistic to determine if there is a difference in substance of abuse between males and females.</p>
+</div>
 </div>
 <div id="test-statistic" class="section level3" number="22.4.2">
 <h3>
 <span class="header-section-number">22.4.2</span> Test statistic<a class="anchor" aria-label="anchor" href="#test-statistic"><i class="fas fa-link"></i></a>
 </h3>
 <p>To help us develop and understand a test statistic, let’s simplify and use a simple theoretical example.</p>
-<p>Suppose we have a 2 x 2 contingency table like the one below.
-<span class="math display">\[
+<p>Suppose we have a 2 x 2 contingency table like the one below.</p>
+<p><span class="math display">\[
 \begin{array}{lcc}
 &amp; \mbox{Response 1} &amp; \mbox{Response 2} \\
 \mbox{Group 1} &amp; n_{11} &amp; n_{12} \\
 \mbox{Group 2} &amp; n_{21} &amp; n_{22}
 \end{array}
 \]</span></p>
-<p>If our null hypothesis is that the two variables are independent, a classical test statistic used is the Pearson chi-squared test statistic (<span class="math inline">\(X^2\)</span>). This is similar to the one we used in our golf ball example. Let <span class="math inline">\(e_{ij}\)</span> be the expected count in the <span class="math inline">\(i\)</span>th row and <span class="math inline">\(j\)</span>th column under the null hypothesis, then the test statistic is:
-<span class="math display">\[
+<p>If our null hypothesis is that the two variables are independent, a classical test statistic used is the Pearson chi-squared test statistic (<span class="math inline">\(X^2\)</span>). This is similar to the one we used in our golf ball example. Let <span class="math inline">\(e_{ij}\)</span> be the expected count in the <span class="math inline">\(i\)</span>th row and <span class="math inline">\(j\)</span>th column under the null hypothesis, then the test statistic is:</p>
+<p><span class="math display">\[
 X^2=\sum_{i=1}^2 \sum_{j=1}^2 {(n_{ij}-e_{ij})^2\over e_{ij}}
 \]</span></p>
-<p>But how do we find <span class="math inline">\(e_{ij}\)</span>? What do we expect the count to be under <span class="math inline">\(H_0\)</span>? To find this, we recognize that under <span class="math inline">\(H_0\)</span> (independence), a joint probability is equal to the product of the marginal probabilities. Let <span class="math inline">\(\pi_{ij}\)</span> be the probability of an outcome appearing in row <span class="math inline">\(i\)</span> and column <span class="math inline">\(j\)</span>. In the absence of any other information, our best guess at <span class="math inline">\(\pi_{ij}\)</span> is <span class="math inline">\(\hat{\pi}_{ij}={n_{ij}\over n}\)</span>, where <span class="math inline">\(n\)</span> is the total sample size. But under the null hypothesis we have the assumption of independence, thus <span class="math inline">\(\pi_{ij}=\pi_{i+}\pi_{+j}\)</span> where <span class="math inline">\(\pi_{i+}\)</span> represents the total probability of ending up in row <span class="math inline">\(i\)</span> and <span class="math inline">\(\pi_{+j}\)</span> represents the total probability of ending up in column <span class="math inline">\(j\)</span>. Note that <span class="math inline">\(\pi_{i+}\)</span> is estimated by <span class="math inline">\(\hat{\pi}_{i+}\)</span> and
-<span class="math display">\[
+<p>But how do we find <span class="math inline">\(e_{ij}\)</span>? What do we expect the count to be under <span class="math inline">\(H_0\)</span>? To find this, we recognize that under <span class="math inline">\(H_0\)</span> (independence), a joint probability is equal to the product of the marginal probabilities. Let <span class="math inline">\(\pi_{ij}\)</span> be the probability of an outcome appearing in row <span class="math inline">\(i\)</span> and column <span class="math inline">\(j\)</span>. In the absence of any other information, our best guess at <span class="math inline">\(\pi_{ij}\)</span> is <span class="math inline">\(\hat{\pi}_{ij}={n_{ij}\over n}\)</span>, where <span class="math inline">\(n\)</span> is the total sample size. But under the null hypothesis we have the assumption of independence, thus <span class="math inline">\(\pi_{ij}=\pi_{i+}\pi_{+j}\)</span> where <span class="math inline">\(\pi_{i+}\)</span> represents the total probability of ending up in row <span class="math inline">\(i\)</span> and <span class="math inline">\(\pi_{+j}\)</span> represents the total probability of ending up in column <span class="math inline">\(j\)</span>. Note that <span class="math inline">\(\pi_{i+}\)</span> is estimated by <span class="math inline">\(\hat{\pi}_{i+}\)</span> and</p>
+<p><span class="math display">\[
 \hat{\pi}_{i+}={n_{i+}\over n}
 \]</span>
 Thus for our simple 2 x 2 example, we have:</p>
@@ -231,17 +272,42 @@ Thus for our simple 2 x 2 example, we have:</p>
 <p><span class="math display">\[
 \hat{\pi}_{1+}={n_{1+}\over n}={n_{11}+n_{12}\over n}
 \]</span></p>
-<p>So, under <span class="math inline">\(H_0\)</span>, our best guess for <span class="math inline">\(\pi_{ij}\)</span> is:
-<span class="math display">\[
+<p>So, under <span class="math inline">\(H_0\)</span>, our best guess for <span class="math inline">\(\pi_{ij}\)</span> is:</p>
+<p><span class="math display">\[
 \hat{\pi}_{ij}=\hat{\pi}_{i+}\hat{\pi}_{+j}={n_{i+}\over n}{n_{+j}\over n} = {n_{i1}+n_{i2}\over n}{n_{1j}+n_{2j}\over n}
 \]</span></p>
 <p>Continuing, under <span class="math inline">\(H_0\)</span> the expected cell count is:</p>
 <p><span class="math display">\[
 e_{ij}=n\hat{\pi}_{ij}=n{n_{i+}\over n}{n_{+j}\over n}={n_{i+}n_{+j}\over n}
 \]</span></p>
-<p>This may look too abstract, so let’s break it down with an example, totally made up by the way.</p>
-<p>Suppose we flip a coin 40 times during the day and 40 times at night and obtain the results below.
+</div>
+<div id="extension-to-larger-tables" class="section level3" number="22.4.3">
+<h3>
+<span class="header-section-number">22.4.3</span> Extension to larger tables<a class="anchor" aria-label="anchor" href="#extension-to-larger-tables"><i class="fas fa-link"></i></a>
+</h3>
+<p>The advantage of using the Pearson chi-squared is that it can be extended to larger <strong>contingency tables</strong>, the name given to these tables of multiple categorical variables. Suppose we are comparing two categorical variables, one with <span class="math inline">\(r\)</span> levels and the other with <span class="math inline">\(c\)</span> levels. Then,
 <span class="math display">\[
+X^2=\sum_{i=1}^r \sum_{j=1}^c {(n_{ij}-e_{ij})^2\over e_{ij}}
+\]</span></p>
+<p>Under the null hypothesis of independence, the <span class="math inline">\(X^2\)</span> test statistic follows the chi-squared distribution with <span class="math inline">\((r-1)(c-1)\)</span> degrees of freedom.</p>
+<div id="assumptions-reiterated" class="section level4" number="22.4.3.1">
+<h4>
+<span class="header-section-number">22.4.3.1</span> Assumptions reiterated<a class="anchor" aria-label="anchor" href="#assumptions-reiterated"><i class="fas fa-link"></i></a>
+</h4>
+<p>Note that to use this test statistic, the expected cell counts must be reasonably large. In fact, no <span class="math inline">\(e_{ij}\)</span> should be less than 1 and no more than 20% of the <span class="math inline">\(e_{ij}\)</span>’s should be less than 5. If this occurs, you should combine cells or look for a different test.</p>
+<p>This may all look too abstract, so let’s break it down with an example.</p>
+</div>
+</div>
+<div id="test-statistic-for-the-help-example" class="section level3" number="22.4.4">
+<h3>
+<span class="header-section-number">22.4.4</span> Test statistic for the HELP example<a class="anchor" aria-label="anchor" href="#test-statistic-for-the-help-example"><i class="fas fa-link"></i></a>
+</h3>
+<div id="rewrite-the-following-with-the-help-data-and-omit-the-coin-flip-example" class="section level4" number="22.4.4.1">
+<h4>
+<span class="header-section-number">22.4.4.1</span> REWRITE THE FOLLOWING WITH THE HELP DATA AND OMIT THE COIN FLIP EXAMPLE<a class="anchor" aria-label="anchor" href="#rewrite-the-following-with-the-help-data-and-omit-the-coin-flip-example"><i class="fas fa-link"></i></a>
+</h4>
+<p>Suppose we flip a coin 40 times during the day and 40 times at night and obtain the results below.</p>
+<p><span class="math display">\[
 \begin{array}{lcc}
 &amp; \mbox{Heads} &amp; \mbox{Tails} \\
 \mbox{Day} &amp; 22 &amp; 18 \\
@@ -269,39 +335,41 @@ e_{11} = {40*39\over 80}= 19.5
 \mbox{Night} &amp; 19.5 &amp; 20.5
 \end{array}
 \]</span></p>
-<p>Now we can find <span class="math inline">\(X^2\)</span>:
-<span class="math display">\[
+<p>Now we can find <span class="math inline">\(X^2\)</span>:</p>
+<p><span class="math display">\[
 X^2= {(22-19.5)^2\over 19.5}+{(17-19.5)^2\over 19.5}+{(18-20.5)^2\over 20.5}+{(23-20.5)^2\over 20.5}
 \]</span></p>
 <p>As you can probably tell, <span class="math inline">\(X^2\)</span> is essentially comparing the observed counts with the expected counts under <span class="math inline">\(H_0\)</span>. The larger the difference between observed and expected, the larger the value of <span class="math inline">\(X^2\)</span>. It is normalized by dividing by the expected counts since more data in a cell leads to a larger contribution to the sum. Under <span class="math inline">\(H_0\)</span>, this statistic follows the chi-squared distribution with <span class="math inline">\((R-1)(C-1)\)</span>, in this case 1, degrees of freedom (<span class="math inline">\(R\)</span> is the number of rows and <span class="math inline">\(C\)</span> is the number of columns).</p>
-<div id="p-value" class="section level4" number="22.4.2.1">
-<h4>
-<span class="header-section-number">22.4.2.1</span> p-value<a class="anchor" aria-label="anchor" href="#p-value"><i class="fas fa-link"></i></a>
-</h4>
+</div>
+</div>
+<div id="calculate-the-p-value" class="section level3" number="22.4.5">
+<h3>
+<span class="header-section-number">22.4.5</span> Calculate the p-value<a class="anchor" aria-label="anchor" href="#calculate-the-p-value"><i class="fas fa-link"></i></a>
+</h3>
 <p>To find the Pearson chi-squared statistic (<span class="math inline">\(X^2\)</span>) and corresponding p-value from the chi-squared distribution in <code>R</code> use the following code:</p>
-<div class="sourceCode" id="cb602"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb607"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">e</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">19.5</span>,<span class="fl">19.5</span>,<span class="fl">20.5</span>,<span class="fl">20.5</span><span class="op">)</span>
 <span class="va">o</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">22</span>,<span class="fl">17</span>,<span class="fl">18</span>,<span class="fl">23</span><span class="op">)</span>
 <span class="va">x2</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="op">(</span><span class="va">o</span><span class="op">-</span><span class="va">e</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span><span class="va">e</span><span class="op">)</span>
 
 <span class="va">x2</span></code></pre></div>
 <pre><code>## [1] 1.250782</code></pre>
-<div class="sourceCode" id="cb604"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb609"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">pchisq</a></span><span class="op">(</span><span class="va">x2</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.2634032</code></pre>
 <p>Note that the chi-squared test statistic is a sum of squared differences. Thus its distribution, a chi-squared, is skewed right and bounded on the left at zero. A departure from the null hypothesis means a value further in the right tail of the distribution. This is why we use one minus the CDF in the calculation of the p-value.</p>
 <p>Again, the <span class="math inline">\(p\)</span>-value suggests there is not enough evidence to say these two variables are dependent.</p>
 <p>Of course there is a built in function in <code>R</code> that will make the calculations easier. It is <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code>.</p>
-<div class="sourceCode" id="cb606"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb611"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">coin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Day"</span>,<span class="fl">40</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Night"</span>,<span class="fl">40</span><span class="op">)</span><span class="op">)</span>,
                result <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Heads"</span>,<span class="st">"Tails"</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">22</span>,<span class="fl">18</span><span class="op">)</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Heads"</span>,<span class="st">"Tails"</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">17</span>,<span class="fl">23</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb607"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb612"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">time</span><span class="op">+</span><span class="va">result</span>,data<span class="op">=</span><span class="va">coin</span><span class="op">)</span></code></pre></div>
 <pre><code>##        result
 ## time    Heads Tails
 ##   Day      22    18
 ##   Night    17    23</code></pre>
-<div class="sourceCode" id="cb609"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb614"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">time</span><span class="op">+</span><span class="va">result</span>,data<span class="op">=</span><span class="va">coin</span><span class="op">)</span>,correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson's Chi-squared test
@@ -309,48 +377,31 @@ X^2= {(22-19.5)^2\over 19.5}+{(17-19.5)^2\over 19.5}+{(18-20.5)^2\over 20.5}+{(2
 ## data:  tally(~time + result, data = coin)
 ## X-squared = 1.2508, df = 1, p-value = 0.2634</code></pre>
 <p>If you just want the test statistic, which we will for permutation tests, then use:</p>
-<div class="sourceCode" id="cb611"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb616"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/chisq.html">chisq</a></span><span class="op">(</span><span class="op">~</span><span class="va">time</span><span class="op">+</span><span class="va">result</span>,data<span class="op">=</span><span class="va">coin</span><span class="op">)</span></code></pre></div>
 <pre><code>## X.squared 
 ##  1.250782</code></pre>
 </div>
-</div>
-<div id="extension-to-larger-tables" class="section level3" number="22.4.3">
+<div id="permutation-test" class="section level3" number="22.4.6">
 <h3>
-<span class="header-section-number">22.4.3</span> Extension to larger tables<a class="anchor" aria-label="anchor" href="#extension-to-larger-tables"><i class="fas fa-link"></i></a>
-</h3>
-<p>The advantage of using the Pearson chi-squared is that it can be extended to larger <strong>contingency tables</strong>, the name given to these tables of multiple categorical variables. Suppose we are comparing two categorical variables, one with <span class="math inline">\(r\)</span> levels and the other with <span class="math inline">\(c\)</span> levels. Then,
-<span class="math display">\[
-X^2=\sum_{i=1}^r \sum_{j=1}^c {(n_{ij}-e_{ij})^2\over e_{ij}}
-\]</span></p>
-<p>Under the null hypothesis of independence, the <span class="math inline">\(X^2\)</span> test statistic follows the chi-squared distribution with <span class="math inline">\((r-1)(c-1)\)</span> degrees of freedom.</p>
-<div id="assumptions" class="section level4" number="22.4.3.1">
-<h4>
-<span class="header-section-number">22.4.3.1</span> Assumptions<a class="anchor" aria-label="anchor" href="#assumptions"><i class="fas fa-link"></i></a>
-</h4>
-<p>Note that to use this test statistic, the expected cell counts must be reasonably large. In fact, no <span class="math inline">\(e_{ij}\)</span> should be less than 1 and no more than 20% of the <span class="math inline">\(e_{ij}\)</span>’s should be less than 5. If this occurs, you should combine cells or look for a different test.</p>
-</div>
-</div>
-<div id="permutation-test" class="section level3" number="22.4.4">
-<h3>
-<span class="header-section-number">22.4.4</span> Permutation test<a class="anchor" aria-label="anchor" href="#permutation-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.4.6</span> Permutation test<a class="anchor" aria-label="anchor" href="#permutation-test"><i class="fas fa-link"></i></a>
 </h3>
 <p>We will complete our analysis of the HELP data first using a randomization, approximate permutation, test.</p>
 <p>First let’s write the hypotheses:</p>
 <p><span class="math inline">\(H_0\)</span>: The variables sex and substance are independent.<br><span class="math inline">\(H_a\)</span>: The variables sex and substance are dependent.</p>
 <p>We will use the chi-squared test statistic as our test statistic. We could use a different test statistic such as using the absolute value function instead of the square function but then we would need to write a custom function.</p>
 <p>First, let’s get the observed value for the test statistic:</p>
-<div class="sourceCode" id="cb613"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb618"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/chisq.html">chisq</a></span><span class="op">(</span><span class="va">substance</span><span class="op">~</span><span class="va">sex</span>,data<span class="op">=</span><span class="va">HELPrct</span><span class="op">)</span>
 <span class="va">obs</span></code></pre></div>
 <pre><code>## X.squared 
 ##  2.026361</code></pre>
 <p>Next we will use a permutation randomization process to find the sampling distribution of our test statistics.</p>
-<div class="sourceCode" id="cb615"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb620"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2720</span><span class="op">)</span>
 <span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/chisq.html">chisq</a></span><span class="op">(</span><span class="va">substance</span><span class="op">~</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span>,data<span class="op">=</span><span class="va">HELPrct</span><span class="op">)</span></code></pre></div>
-<p>Figure <a href="ADDTESTS.html#fig:hist241-fig">22.1</a> is a visual summary of the results which helps us to gain some intuition about the p-value. We also plot the theoretical chi-squared distribution as a dark blue overlay.</p>
-<div class="sourceCode" id="cb616"><pre class="downlit sourceCode r">
+<p>Figure <a href="ADDTESTS.html#fig:hist241-fig">22.3</a> is a visual summary of the results which helps us to gain some intuition about the p-value. We also plot the theoretical chi-squared distribution as a dark blue overlay.</p>
+<div class="sourceCode" id="cb621"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">gf_dhistogram</span><span class="op">(</span><span class="op">~</span><span class="va">X.squared</span>,fill<span class="op">=</span><span class="st">"cyan"</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">obs</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -362,23 +413,23 @@ X^2=\sum_{i=1}^r \sum_{j=1}^c {(n_{ij}-e_{ij})^2\over e_{ij}}
 <div class="figure">
 <span style="display:block;" id="fig:hist241-fig"></span>
 <img src="22-Additional-Hypothesis-Tests_files/figure-html/hist241-fig-1.png" alt="Sampling distribution of chi-squared statistic from randomization test." width="672"><p class="caption">
-Figure 22.1: Sampling distribution of chi-squared statistic from randomization test.
+Figure 22.3: Sampling distribution of chi-squared statistic from randomization test.
 </p>
 </div>
 <p>We find the p-value using <code><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1()</a></code>.</p>
-<div class="sourceCode" id="cb617"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb622"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">(</span><span class="op">~</span><span class="va">X.squared</span><span class="op">&gt;=</span><span class="va">obs</span><span class="op">)</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
 <pre><code>## prop_TRUE 
 ## 0.3536464</code></pre>
 <p>We don’t double this value because the chi-squared is a one sided test due to the fact that we squared the differences.</p>
 <p>Based on this p-value, we fail to reject the hypothesis that the variables are independent.</p>
 </div>
-<div id="chi-squared-test" class="section level3" number="22.4.5">
+<div id="chi-squared-test-in-r" class="section level3" number="22.4.7">
 <h3>
-<span class="header-section-number">22.4.5</span> Chi-squared test<a class="anchor" aria-label="anchor" href="#chi-squared-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.4.7</span> Chi-squared test in <code>R</code><a class="anchor" aria-label="anchor" href="#chi-squared-test-in-r"><i class="fas fa-link"></i></a>
 </h3>
 <p>We will jump straight to using the function <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code>.</p>
-<div class="sourceCode" id="cb619"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb624"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">substance</span><span class="op">~</span><span class="va">sex</span>,data<span class="op">=</span><span class="va">HELPrct</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson's Chi-squared test
@@ -386,13 +437,17 @@ Figure 22.1: Sampling distribution of chi-squared statistic from randomization t
 ## data:  tally(substance ~ sex, data = HELPrct)
 ## X-squared = 2.0264, df = 2, p-value = 0.3631</code></pre>
 <p>We get a p-value very close to the one from the randomization permutation test. Remember in the randomization test we shuffled the variable <code>sex</code> over many replications and calculated a value for the test statistic for each replication. We did this shuffling because the null hypothesis assumed independence of the two variables. This process led to an empirical estimate of the sampling distribution, the gray histogram in the previous graph. In this section, under the null hypothesis and the appropriate assumptions, the sampling distribution is a chi-squared, the blue line in the previous graph. We used it to calculate the p-value directly.</p>
-<p>Notice that if the null hypothesis is true the test statistic has the minimum value of zero. We can’t use a bootstrap confidence interval on this problem because zero will never be in the interval. It can only be on the edge of an interval.</p>
+<p>Notice that if the null hypothesis is true, the test statistic has the minimum value of zero. We can’t use a bootstrap confidence interval on this problem because zero will never be in the interval. It can only be on the edge of an interval.</p>
 </div>
 </div>
 <div id="numerical-data-2" class="section level2" number="22.5">
 <h2>
 <span class="header-section-number">22.5</span> Numerical data<a class="anchor" aria-label="anchor" href="#numerical-data-2"><i class="fas fa-link"></i></a>
 </h2>
+<div id="convert-to-a-two-sample-t-test" class="section level4" number="22.5.0.1">
+<h4>
+<span class="header-section-number">22.5.0.1</span> CONVERT TO A TWO SAMPLE T-TEST<a class="anchor" aria-label="anchor" href="#convert-to-a-two-sample-t-test"><i class="fas fa-link"></i></a>
+</h4>
 <p>Sometimes we want to compare means across many groups. In this case we have two variables where one is continuous and the other categorical. We might initially think to do pairwise comparisons, two sample t-tests, as a solution; for example, if there were three groups, we might be tempted to compare the first mean with the second, then with the third, and then finally compare the second and third means for a total of three comparisons. However, this strategy can be treacherous. If we have many groups and do many comparisons, it is likely that we will eventually find a difference just by chance, even if there is no difference in the populations.</p>
 <p>In this section, we will learn a new method called <strong>analysis of variance</strong> (ANOVA) and a new test statistic called <span class="math inline">\(F\)</span>. ANOVA uses a single hypothesis test to check whether the means across many groups are equal. The hypotheses are:</p>
 <p><span class="math inline">\(H_0\)</span>: The mean outcome is the same across all groups. In statistical notation, <span class="math inline">\(\mu_1 = \mu_2 = \cdots = \mu_k\)</span> where <span class="math inline">\(\mu_i\)</span> represents the mean of the outcome for observations in category <span class="math inline">\(i\)</span>.<br><span class="math inline">\(H_A\)</span>: At least one mean is different.</p>
@@ -405,16 +460,17 @@ Figure 22.1: Sampling distribution of chi-squared statistic from randomization t
 <li>the variability across the groups is about equal.</li>
 </ol>
 <p>When these three conditions are met, we may perform an ANOVA to determine whether the data provide strong evidence against the null hypothesis that all the <span class="math inline">\(\mu_i\)</span> are equal.</p>
+</div>
 <div id="mlb-batting-performance" class="section level3" number="22.5.1">
 <h3>
 <span class="header-section-number">22.5.1</span> MLB batting performance<a class="anchor" aria-label="anchor" href="#mlb-batting-performance"><i class="fas fa-link"></i></a>
 </h3>
 <p>We would like to discern whether there are real differences between the batting performance of baseball players according to their position: outfielder (<code>OF</code>), infielder (<code>IF</code>), designated hitter (<code>DH</code>), and catcher (<code>C</code>). We will use a data set <code>mlbbat10</code> from the <strong>openintro</strong> package but we saved it is in the file <code>mlb_obp.csv</code> which has been modified from the original data set to include only those with more than 200 at bats. The batting performance will be measured with the on-base percentage. The on-base percentage roughly represents the fraction of the time a player successfully gets on base or hits a home run.</p>
 <p>Read the data into <code>R</code>.</p>
-<div class="sourceCode" id="cb621"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb626"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mlb_obp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/mlb_obp.csv"</span><span class="op">)</span></code></pre></div>
 <p>Let’s review our data:</p>
-<div class="sourceCode" id="cb622"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb627"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">mlb_obp</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
@@ -429,10 +485,10 @@ Figure 22.1: Sampling distribution of chi-squared statistic from randomization t
 ##      missing
 ## ...1       0</code></pre>
 <p>Next change the variable <code>position</code> to a factor to give us greater control.</p>
-<div class="sourceCode" id="cb624"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb629"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mlb_obp</span> <span class="op">&lt;-</span> <span class="va">mlb_obp</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>position<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">position</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb625"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb630"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="va">position</span>,data<span class="op">=</span><span class="va">mlb_obp</span><span class="op">)</span></code></pre></div>
 <pre><code>##   position   min      Q1 median      Q3   max      mean         sd   n missing
 ## 1        C 0.219 0.30000 0.3180 0.35700 0.405 0.3226154 0.04513175  39       0
@@ -443,7 +499,7 @@ Figure 22.1: Sampling distribution of chi-squared statistic from randomization t
 <blockquote>
 <p><strong>Exercise</strong>:
 The null hypothesis under consideration is the following: <span class="math inline">\(\mu_{OF} = \mu_{IF} = \mu_{DH} = \mu_{C}\)</span>.
-Write the null and corresponding alternative hypotheses in plain language.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(H_0\)&lt;/span&gt;: The average on-base percentage is equal across the four positions. &lt;span class="math inline"&gt;\(H_A\)&lt;/span&gt;: The average on-base percentage varies across some (or all) groups.&lt;/p&gt;'><sup>87</sup></a></p>
+Write the null and corresponding alternative hypotheses in plain language.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(H_0\)&lt;/span&gt;: The average on-base percentage is equal across the four positions. &lt;span class="math inline"&gt;\(H_A\)&lt;/span&gt;: The average on-base percentage varies across some (or all) groups.&lt;/p&gt;'><sup>88</sup></a></p>
 </blockquote>
 <p>If we have all the data for the 2010 season, why do we need a hypothesis test? What is the population of interest?</p>
 <p>If we are only making decisions or claims about the 2010 season, we do not need hypothesis testing. We can just use summary statistics. However, if we want to generalize to other years or other leagues, then we would need a hypothesis test.</p>
@@ -451,8 +507,8 @@ Write the null and corresponding alternative hypotheses in plain language.<a cla
 <p><strong>Exercise</strong>:<br>
 Construct side-by-side boxplots.</p>
 </blockquote>
-<p>Figure <a href="ADDTESTS.html#fig:box241-fig">22.2</a> is the side-by-side boxplots.</p>
-<div class="sourceCode" id="cb627"><pre class="downlit sourceCode r">
+<p>Figure <a href="ADDTESTS.html#fig:box241-fig">22.4</a> is the side-by-side boxplots.</p>
+<div class="sourceCode" id="cb632"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mlb_obp</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">gf_boxplot</span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="va">position</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Position Played"</span>,y<span class="op">=</span><span class="st">"On Base Percentage"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -461,208 +517,18 @@ Construct side-by-side boxplots.</p>
 <div class="figure">
 <span style="display:block;" id="fig:box241-fig"></span>
 <img src="22-Additional-Hypothesis-Tests_files/figure-html/box241-fig-1.png" alt="Boxplots of on base percentage by position played." width="672"><p class="caption">
-Figure 22.2: Boxplots of on base percentage by position played.
+Figure 22.4: Boxplots of on base percentage by position played.
 </p>
 </div>
 <p>The largest difference between the sample means is between the designated hitter and the catcher positions. Consider again the original hypotheses:</p>
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_{OF} = \mu_{IF} = \mu_{DH} = \mu_{C}\)</span><br><span class="math inline">\(H_A\)</span>: The average on-base percentage (<span class="math inline">\(\mu_i\)</span>) varies across some (or all) groups.</p>
+<div id="add-permutation-test" class="section level4" number="22.5.1.1">
+<h4>
+<span class="header-section-number">22.5.1.1</span> ADD PERMUTATION TEST<a class="anchor" aria-label="anchor" href="#add-permutation-test"><i class="fas fa-link"></i></a>
+</h4>
 <p>Why might it be inappropriate to run the test by simply estimating whether the difference of <span class="math inline">\(\mu_{DH}\)</span> and <span class="math inline">\(\mu_{C}\)</span> is statistically significant at a 0.05 significance level? The primary issue here is that we are inspecting the data before picking the groups that will be compared. It is inappropriate to examine all data by eye (informal testing) and only afterwards decide which parts to formally test. This is called <strong>data snooping</strong> or <strong>data fishing</strong>. Naturally we would pick the groups with the large differences for the formal test, leading to an inflation in the Type 1 Error rate. To understand this better, let’s consider a slightly different problem.</p>
 <p>Suppose we are to measure the aptitude for students in 20 classes in a large elementary school at the beginning of the year. In this school, all students are randomly assigned to classrooms, so any differences we observe between the classes at the start of the year are completely due to chance. However, with so many groups, we will probably observe a few groups that look rather different from each other. If we select only these classes that look so different, we will probably make the wrong conclusion that the assignment wasn’t random. While we might only formally test differences for a few pairs of classes, we informally evaluated the other classes by eye before choosing the most extreme cases for a comparison.</p>
-<p>In the next section we will learn how to use the <span class="math inline">\(F\)</span> statistic and ANOVA to test whether observed differences in means could have happened just by chance even if there was no difference in the respective population means.</p>
-</div>
-<div id="analysis-of-variance-anova-and-the-f-test" class="section level3" number="22.5.2">
-<h3>
-<span class="header-section-number">22.5.2</span> Analysis of variance (ANOVA) and the F test<a class="anchor" aria-label="anchor" href="#analysis-of-variance-anova-and-the-f-test"><i class="fas fa-link"></i></a>
-</h3>
-<p>The method of analysis of variance in this context focuses on answering one question: is the variability in the sample means so large that it seems unlikely to be from chance alone? This question is different from earlier testing procedures since we will <em>simultaneously</em> consider many groups, and evaluate whether their sample means differ more than we would expect from natural variation. We call this variability the <strong>mean square between groups</strong> (<span class="math inline">\(MSG\)</span>), and it has an associated degrees of freedom, <span class="math inline">\(df_{G}=k-1\)</span> when there are <span class="math inline">\(k\)</span> groups. The <span class="math inline">\(MSG\)</span> can be thought of as a scaled variance formula for means. If the null hypothesis is true, any variation in the sample means is due to chance and shouldn’t be too large. We typically use software to find <span class="math inline">\(MSG\)</span>, however, the derivation follows. Let <span class="math inline">\(\bar{x}\)</span> represent the mean of outcomes across all groups. Then the mean square between groups is computed as<br><span class="math display">\[
-MSG = \frac{1}{df_{G}}SSG = \frac{1}{k-1}\sum_{i=1}^{k} n_{i}\left(\bar{x}_{i} - \bar{x}\right)^2
-\]</span></p>
-<p>where <span class="math inline">\(SSG\)</span> is called the <strong>sum of squares between groups</strong> and <span class="math inline">\(n_{i}\)</span> is the sample size of group <span class="math inline">\(i\)</span>.</p>
-<p>The mean square between the groups is, on its own, quite useless in a hypothesis test. We need a benchmark value for how much variability should be expected among the sample means if the null hypothesis is true. To this end, we compute a pooled variance estimate, often abbreviated as the <strong>mean square error</strong> (<span class="math inline">\(MSE\)</span>), which has an associated degrees of freedom value <span class="math inline">\(df_E=n-k\)</span>. It is helpful to think of <span class="math inline">\(MSE\)</span> as a measure of the variability within the groups. To find <span class="math inline">\(MSE\)</span>, let <span class="math inline">\(\bar{x}\)</span> represent the mean of outcomes across all groups. Then the <strong>sum of squares total</strong> (<span class="math inline">\(SST\)</span>)} is computed as
-<span class="math inline">\(SST = \sum_{i=1}^{n} \left(x_{i} - \bar{x}\right)^2\)</span>,
-where the sum is over all observations in the data set. Then we compute the <strong>sum of squared errors</strong> (<span class="math inline">\(SSE\)</span>) in one of two equivalent ways:</p>
-<p><span class="math display">\[
-SSE = SST - SSG = (n_1-1)s_1^2 + (n_2-1)s_2^2 + \cdots + (n_k-1)s_k^2
-\]</span></p>
-<p>where <span class="math inline">\(s_i^2\)</span> is the sample variance (square of the standard deviation) of the residuals in group <span class="math inline">\(i\)</span>. Then the <span class="math inline">\(MSE\)</span> is the standardized form of <span class="math inline">\(SSE\)</span>: <span class="math inline">\(MSE = \frac{1}{df_{E}}SSE\)</span>.</p>
-<p>When the null hypothesis is true, any differences among the sample means are only due to chance, and the <span class="math inline">\(MSG\)</span> and <span class="math inline">\(MSE\)</span> should be about equal. As a test statistic for ANOVA, we examine the fraction of <span class="math inline">\(MSG\)</span> and <span class="math inline">\(MSE\)</span>:</p>
-<p><span class="math display">\[F = \frac{MSG}{MSE}\]</span></p>
-<p>The <span class="math inline">\(MSG\)</span> represents a measure of the between-group variability, and <span class="math inline">\(MSE\)</span> measures the variability within each of the groups. Using a permutation test, we could look at the difference in the mean squared errors as a test statistic instead of the ratio.</p>
-<p>We can use the <span class="math inline">\(F\)</span> statistic to evaluate the hypotheses in what is called an <strong>F test</strong>. A p-value can be computed from the <span class="math inline">\(F\)</span> statistic using an <span class="math inline">\(F\)</span> distribution, which has two associated parameters: <span class="math inline">\(df_{1}\)</span> and <span class="math inline">\(df_{2}\)</span>. For the <span class="math inline">\(F\)</span> statistic in ANOVA, <span class="math inline">\(df_{1} = df_{G}\)</span> and <span class="math inline">\(df_{2}= df_{E}\)</span>. The <span class="math inline">\(F\)</span> is really a ratio of chi-squared distributions.</p>
-<p>The larger the observed variability in the sample means (<span class="math inline">\(MSG\)</span>) relative to the within-group observations (<span class="math inline">\(MSE\)</span>), the larger <span class="math inline">\(F\)</span> will be and the stronger the evidence against the null hypothesis. Because larger values of <span class="math inline">\(F\)</span> represent stronger evidence against the null hypothesis, we use the upper tail of the distribution to compute a p-value.</p>
-<blockquote>
-<p><strong>The <span class="math inline">\(F\)</span> statistic and the <span class="math inline">\(F\)</span> test</strong><br>
-Analysis of variance (ANOVA) is used to test whether the mean outcome differs across 2 or more groups. ANOVA uses a test statistic <span class="math inline">\(F\)</span>, which represents a standardized ratio of variability in the sample means relative to the variability within the groups. If <span class="math inline">\(H_0\)</span> is true and the model assumptions are satisfied, the statistic <span class="math inline">\(F\)</span> follows an <span class="math inline">\(F\)</span> distribution with parameters <span class="math inline">\(df_{1}=k-1\)</span> and <span class="math inline">\(df_{2}=n-k\)</span>. The upper tail of the <span class="math inline">\(F\)</span> distribution is used to represent the p-value.</p>
-</blockquote>
-<div id="anova" class="section level4" number="22.5.2.1">
-<h4>
-<span class="header-section-number">22.5.2.1</span> ANOVA<a class="anchor" aria-label="anchor" href="#anova"><i class="fas fa-link"></i></a>
-</h4>
-<p>We will use <code>R</code> to perform the calculations for the ANOVA. But let’s check our assumptions first.</p>
-<p>There are three conditions we must check for an ANOVA analysis: all observations must be independent, the data in each group must be nearly normal, and the variance within each group must be approximately equal.</p>
-<blockquote>
-<p><strong>Independence</strong><br>
-If the data are a simple random sample from less than 10% of the population, this condition is reasonable. For processes and experiments, carefully consider whether the data may be independent (e.g. no pairing). In our MLB data, the data were not sampled. However, there are not obvious reasons why independence would not hold for most or all observations. This is a bit of hand waving but remember independence is difficult to assess.</p>
-</blockquote>
-<blockquote>
-<p><strong>Approximately normal</strong><br>
-As with one- and two-sample testing for means, the normality assumption is especially important when the sample size is quite small. The normal probability plots for each group of the MLB data are shown below; there is some deviation from normality for infielders, but this isn’t a substantial concern since there are over 150 observations in that group and the outliers are not extreme. Sometimes in ANOVA there are so many groups or so few observations per group that checking normality for each group isn’t reasonable. One solution is to combine the groups into one set of data. First calculate the <strong>residuals</strong> of the baseball data, which are calculated by taking the observed values and subtracting the corresponding group means. For example, an outfielder with OBP of 0.435 would have a residual of <span class="math inline">\(0.435 - \bar{x}_{OF} = 0.082\)</span>. Then to check the normality condition, create a normal probability plot using all the residuals simultaneously.</p>
-</blockquote>
-<p>Figure <a href="ADDTESTS.html#fig:qq241-fig">22.3</a> is the quantile-quantile plot to assess the normality assumption.</p>
-<div class="sourceCode" id="cb628"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mlb_obp</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_qq</span><span class="op">(</span><span class="op">~</span><span class="va">obp</span><span class="op">|</span><span class="va">position</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_qqline</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:qq241-fig"></span>
-<img src="22-Additional-Hypothesis-Tests_files/figure-html/qq241-fig-1.png" alt="Quantile-quantile plot for two-sample test of means." width="672"><p class="caption">
-Figure 22.3: Quantile-quantile plot for two-sample test of means.
-</p>
-</div>
-<blockquote>
-<p><strong>Constant variance</strong><br>
-The last assumption is that the variance in the groups is about equal from one group to the next. This assumption can be checked by examining a side-by-side box plot of the outcomes across the groups which we did previously. In this case, the variability is similar in the four groups but not identical. We also see in the output of <code>favstats</code> that the standard deviation varies a bit from one group to the next. Whether these differences are from natural variation is unclear, so we should report this uncertainty of meeting this assumption when the final results are reported. The permutation test does not have this assumption and can be used as a check on the results from the ANOVA.</p>
-</blockquote>
-<p>In summary, independence is always important to an ANOVA analysis. The normality condition is very important when the sample sizes for each group are relatively small. The constant variance condition is especially important when the sample sizes differ between groups.</p>
-<p>Let’s write the hypotheses again.</p>
-<p><span class="math inline">\(H_0\)</span>: The average on-base percentage is equal across the four positions.<br><span class="math inline">\(H_A\)</span>: The average on-base percentage varies across some (or all) groups.</p>
-<p>The test statistic is the ratio of the between means variance and the pooled within group variance.</p>
-<div class="sourceCode" id="cb629"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="va">position</span>,data<span class="op">=</span><span class="va">mlb_obp</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>##              Df Sum Sq  Mean Sq F value Pr(&gt;F)
-## position      3 0.0076 0.002519   1.994  0.115
-## Residuals   323 0.4080 0.001263</code></pre>
-<p>The table contains all the information we need. It has the degrees of freedom, mean squared errors, test statistic, and p-value. The test statistic is 1.994, <span class="math inline">\(\frac{0.002519}{0.001263}=1.994\)</span>. The p-value is larger than 0.05, indicating the evidence is not strong enough to reject the null hypothesis at a significance level of 0.05. That is, the data do not provide strong evidence that the average on-base percentage varies by player’s primary field position.</p>
-<p>The calculation of the p-value is</p>
-<div class="sourceCode" id="cb631"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">pf</a></span><span class="op">(</span><span class="fl">1.994</span>,<span class="fl">3</span>,<span class="fl">323</span>,lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.1147443</code></pre>
-<p>Figure <a href="ADDTESTS.html#fig:dens242-fig">22.4</a> is a plot of the <span class="math inline">\(F\)</span> distribution.</p>
-<div class="sourceCode" id="cb633"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"f"</span>,df1<span class="op">=</span><span class="fl">3</span>,df2<span class="op">=</span><span class="fl">323</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">1.994</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"F distribution"</span>,x<span class="op">=</span><span class="st">"F value"</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:dens242-fig"></span>
-<img src="22-Additional-Hypothesis-Tests_files/figure-html/dens242-fig-1.png" alt="The F distribution" width="672"><p class="caption">
-Figure 22.4: The F distribution
-</p>
-</div>
-</div>
-<div id="permutation-test-1" class="section level4" number="22.5.2.2">
-<h4>
-<span class="header-section-number">22.5.2.2</span> Permutation test<a class="anchor" aria-label="anchor" href="#permutation-test-1"><i class="fas fa-link"></i></a>
-</h4>
-<p>We can repeat the same analysis using a permutation test. We will first run it using a ratio of variances and then for interest as a difference in variances.</p>
-<p>We need a way to extract the mean squared errors from the output. There is a package called <strong>broom</strong> and within it a function called <code><a href="https://generics.r-lib.org/reference/tidy.html">tidy()</a></code> that cleans up output from functions and makes them into data frames.</p>
-<div class="sourceCode" id="cb634"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb635"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="va">position</span>,data<span class="op">=</span><span class="va">mlb_obp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 6
-##   term         df   sumsq  meansq statistic p.value
-##   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-## 1 position      3 0.00756 0.00252      1.99   0.115
-## 2 Residuals   323 0.408   0.00126     NA     NA</code></pre>
-<p>Let’s summarize the values in the <code>meansq</code> column and develop our test statistic, we could just pull the statistic but we want to be able to generate a difference test statistic as well.</p>
-<div class="sourceCode" id="cb637"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="va">position</span>,data<span class="op">=</span><span class="va">mlb_obp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>stat<span class="op">=</span><span class="va">meansq</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">/</span><span class="va">meansq</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> </code></pre></div>
-<pre><code>## # A tibble: 1 x 1
-##    stat
-##   &lt;dbl&gt;
-## 1  1.99</code></pre>
-<p>Now we are ready. First get our test statistic using <code><a href="https://dplyr.tidyverse.org/reference/pull.html">pull()</a></code>.</p>
-<div class="sourceCode" id="cb639"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="va">position</span>,data<span class="op">=</span><span class="va">mlb_obp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>stat<span class="op">=</span><span class="va">meansq</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">/</span><span class="va">meansq</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">obs</span></code></pre></div>
-<pre><code>## [1] 1.994349</code></pre>
-<p>Let’s put our test statistic into a function to include shuffling the <code>position</code> variable.</p>
-<div class="sourceCode" id="cb641"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">f_stat</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">position</span><span class="op">)</span>,data<span class="op">=</span><span class="va">x</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>stat<span class="op">=</span><span class="va">meansq</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">/</span><span class="va">meansq</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
-<div class="sourceCode" id="cb642"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">f_stat</span><span class="op">(</span><span class="va">mlb_obp</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.4160649</code></pre>
-<p>Next we run the randomization test using the <code><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do()</a></code> function. There is an easier way to do all of this work with the <strong>purrr</strong> package but we will continue with the work we have started.</p>
-<div class="sourceCode" id="cb644"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">5321</span><span class="op">)</span>
-<span class="va">results</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fu">f_stat</span><span class="op">(</span><span class="va">mlb_obp</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>That was slow in executing because we are using <strong>tidyverse</strong> functions that are slow.</p>
-<p>Figure <a href="ADDTESTS.html#fig:hist243-fig">22.5</a> is a plot of the sampling distribution from the randomization test.</p>
-<div class="sourceCode" id="cb645"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_dhistogram</span><span class="op">(</span><span class="op">~</span><span class="va">result</span>,fill<span class="op">=</span><span class="st">"cyan"</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_dist</span><span class="op">(</span><span class="st">"f"</span>,df1<span class="op">=</span><span class="fl">3</span>,df2<span class="op">=</span><span class="fl">323</span>,color<span class="op">=</span><span class="st">"darkblue"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">1.994</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Randomization test sampling distribution"</span>,
-          subtitle<span class="op">=</span><span class="st">"F distribution is overlayed in blue"</span>,
-          x<span class="op">=</span><span class="st">"Test statistic"</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:hist243-fig"></span>
-<img src="22-Additional-Hypothesis-Tests_files/figure-html/hist243-fig-1.png" alt="The sampling distribution of the randomization test statistic." width="672"><p class="caption">
-Figure 22.5: The sampling distribution of the randomization test statistic.
-</p>
-</div>
-<p>The p-value is</p>
-<div class="sourceCode" id="cb646"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">result</span><span class="op">&gt;=</span><span class="va">obs</span><span class="op">)</span>,<span class="va">results</span><span class="op">)</span></code></pre></div>
-<pre><code>## prop_TRUE 
-## 0.0959041</code></pre>
-<p>This is a similar p-value from the ANOVA output.</p>
-<p>Now let’s repeat the analysis but use the difference in variance as our test statistic.</p>
-<div class="sourceCode" id="cb648"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">f_stat2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">position</span><span class="op">)</span>,data<span class="op">=</span><span class="va">x</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>stat<span class="op">=</span><span class="va">meansq</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">-</span><span class="va">meansq</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">stat</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
-<div class="sourceCode" id="cb649"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">5321</span><span class="op">)</span>
-<span class="va">results</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fu">f_stat2</span><span class="op">(</span><span class="va">mlb_obp</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Figure <a href="ADDTESTS.html#fig:hist244-fig">22.6</a> is the plot of the sampling distribution of the difference in variance.</p>
-<div class="sourceCode" id="cb650"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_dhistogram</span><span class="op">(</span><span class="op">~</span><span class="va">result</span>,fill<span class="op">=</span><span class="st">"cyan"</span>,color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0.001255972</span>,color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Randomization test sampling distribution"</span>,
-          subtitle<span class="op">=</span><span class="st">"Test statistic is the difference in variances"</span>,
-          x<span class="op">=</span><span class="st">"Test statistic"</span><span class="op">)</span></code></pre></div>
-<div class="figure">
-<span style="display:block;" id="fig:hist244-fig"></span>
-<img src="22-Additional-Hypothesis-Tests_files/figure-html/hist244-fig-1.png" alt="The sampling distribution of the difference in variance randomization test statistic." width="672"><p class="caption">
-Figure 22.6: The sampling distribution of the difference in variance randomization test statistic.
-</p>
-</div>
-<p>We need the observed value to find a p-value.</p>
-<div class="sourceCode" id="cb651"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">obs</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span><span class="op">~</span><span class="va">position</span>,data<span class="op">=</span><span class="va">mlb_obp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>stat<span class="op">=</span><span class="va">meansq</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">-</span><span class="va">meansq</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">stat</span><span class="op">)</span>
-<span class="va">obs</span></code></pre></div>
-<pre><code>## [1] 0.001255972</code></pre>
-<p>The p-value is</p>
-<div class="sourceCode" id="cb653"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">result</span><span class="op">&gt;=</span><span class="va">obs</span><span class="op">)</span>,<span class="va">results</span><span class="op">)</span></code></pre></div>
-<pre><code>## prop_TRUE 
-## 0.0959041</code></pre>
-<p>Again a similar p-value.</p>
-<p>If we reject in the ANOVA test, we know there is a difference in at least one mean but we don’t know which ones. How would you approach answering that question, which means are different?</p>
+<p>In the next chapter, we will learn how to use the <span class="math inline">\(F\)</span> statistic and ANOVA to test whether observed differences in means could have happened just by chance even if there was no difference in the respective population means.</p>
 </div>
 </div>
 </div>
@@ -675,30 +541,42 @@ Figure 22.6: The sampling distribution of the difference in variance randomizati
 </ol>
 <p>Repeat the analysis of the golf ball problem from earlier in the book.</p>
 <ol style="list-style-type: lower-alpha">
-<li>Load the data and tally the data into a table. The data is in <code>golf_balls.csv</code>.<br>
-</li>
-<li>Using the function <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code>, conduct a hypothesis test of equally likely distribution of balls. You may have to read the help menu.<br>
-</li>
-<li>Repeat part b. but assume balls with the numbers 1 and 2 occur 30% of the time and balls with 3 and 4 occur 20%.</li>
+<li><p>Load the data and tally the data into a table. The data is in <code>golf_balls.csv</code>.</p></li>
+<li><p>Using the function <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code>, conduct a hypothesis test of equally likely distribution of balls. You may have to read the help menu for <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code>.</p></li>
+<li><p>Repeat part b, but assume balls with the numbers 1 and 2 occur 30% of the time and balls with 3 and 4 occur 20% of the time.</p></li>
 </ol>
 <ol start="2" style="list-style-type: decimal">
-<li>Bootstrap hypothesis testing</li>
-</ol>
-<p>Repeat the analysis of the MLB data from the reading but this time generate a bootstrap distribution of the <span class="math inline">\(F\)</span> statistic.</p>
-<ol start="3" style="list-style-type: decimal">
-<li>Test of variance</li>
-</ol>
+<li>
+<p>Test of variance</p>
 <p>We have not performed a test of variance so we will create our own.</p>
+</li>
+</ol>
 <ol style="list-style-type: lower-alpha">
 <li><p>Using the MLB from the reading, subset on <code>IF</code> and <code>OF</code>.</p></li>
-<li><p>Create a side-by-side boxplot.</p></li>
-</ol>
-<p>The hypotheses are:<br><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\sigma^2_{IF}=\sigma^2_{OF}\)</span>. There is no difference in the variance of on base percentage for infielders and outfielders.<br><span class="math inline">\(H_A\)</span>: <span class="math inline">\(\sigma^2_{IF}\neq \sigma^2_{OF}\)</span>. There is a difference in variances.</p>
-<ol start="3" style="list-style-type: lower-alpha">
-<li>Use the differences in sample standard deviations as your test statistic. Using a permutation test, find the p-value and discuss your decision.<br>
+<li>
+<p>Create a side-by-side boxplot.</p>
+<p>The hypotheses are:</p>
 </li>
+</ol>
+<p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\sigma^2_{IF}=\sigma^2_{OF}\)</span>. There is no difference in the variance of on base percentage for infielders and outfielders.<br><span class="math inline">\(H_A\)</span>: <span class="math inline">\(\sigma^2_{IF}\neq \sigma^2_{OF}\)</span>. There is a difference in variances.</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Use the differences in sample standard deviations as your test statistic. Using a permutation test, find the p-value and discuss your decision.</li>
+</ol>
+<div id="remove-this" class="section level4" number="22.6.0.1">
+<h4>
+<span class="header-section-number">22.6.0.1</span> REMOVE THIS???<a class="anchor" aria-label="anchor" href="#remove-this"><i class="fas fa-link"></i></a>
+</h4>
+<ol start="4" style="list-style-type: lower-alpha">
 <li>Create a bootstrap distribution of the differences in sample standard deviations, and report a 95% confidence interval. Compare with part d.</li>
 </ol>
+<ol start="3" style="list-style-type: decimal">
+<li>Exploration of the chi-squared and <span class="math inline">\(t\)</span> distributions.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>In <code>R</code>, plot the pdf of a random variable with the chi-squared distribution with 1 degree of freedom. On the same plot, include the pdfs with degrees of freedom of 5, 10 and 50. Describe how the behavior of the pdf changes with increasing degrees of freedom.</p></li>
+<li><p>Repeat part (a) with the <span class="math inline">\(t\)</span> distribution. Add the pdf of a standard normal random variable as well. What do you notice?</p></li>
+</ol>
+</div>
 </div>
 </div>
 
@@ -712,25 +590,24 @@ Figure 22.6: The sampling distribution of the difference in variance randomizati
 <li><a class="nav-link" href="#objectives-21"><span class="header-section-number">22.1</span> Objectives</a></li>
 <li><a class="nav-link" href="#introduction-2"><span class="header-section-number">22.2</span> Introduction</a></li>
 <li>
-<a class="nav-link" href="#other-distribution-for-estimators-1"><span class="header-section-number">22.3</span> Other distribution for estimators</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#other-distribution-for-estimators"><span class="header-section-number">22.3</span> Other distribution for estimators</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#chi-squared"><span class="header-section-number">22.3.1</span> Chi-squared</a></li>
-<li><a class="nav-link" href="#important-note"><span class="header-section-number">22.3.2</span> Important Note</a></li>
+<li><a class="nav-link" href="#important-note-1"><span class="header-section-number">22.3.2</span> Important Note</a></li>
 </ul>
 </li>
 <li>
 <a class="nav-link" href="#categorical-data-1"><span class="header-section-number">22.4</span> Categorical data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#help-example"><span class="header-section-number">22.4.1</span> HELP example</a></li>
+<li><a class="nav-link" href="#health-evaluation-and-linkage-to-primary-care"><span class="header-section-number">22.4.1</span> Health evaluation and linkage to primary care</a></li>
 <li><a class="nav-link" href="#test-statistic"><span class="header-section-number">22.4.2</span> Test statistic</a></li>
 <li><a class="nav-link" href="#extension-to-larger-tables"><span class="header-section-number">22.4.3</span> Extension to larger tables</a></li>
-<li><a class="nav-link" href="#permutation-test"><span class="header-section-number">22.4.4</span> Permutation test</a></li>
-<li><a class="nav-link" href="#chi-squared-test"><span class="header-section-number">22.4.5</span> Chi-squared test</a></li>
+<li><a class="nav-link" href="#test-statistic-for-the-help-example"><span class="header-section-number">22.4.4</span> Test statistic for the HELP example</a></li>
+<li><a class="nav-link" href="#calculate-the-p-value"><span class="header-section-number">22.4.5</span> Calculate the p-value</a></li>
+<li><a class="nav-link" href="#permutation-test"><span class="header-section-number">22.4.6</span> Permutation test</a></li>
+<li><a class="nav-link" href="#chi-squared-test-in-r"><span class="header-section-number">22.4.7</span> Chi-squared test in R</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#numerical-data-2"><span class="header-section-number">22.5</span> Numerical data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#mlb-batting-performance"><span class="header-section-number">22.5.1</span> MLB batting performance</a></li>
-<li><a class="nav-link" href="#analysis-of-variance-anova-and-the-f-test"><span class="header-section-number">22.5.2</span> Analysis of variance (ANOVA) and the F test</a></li>
-</ul>
+<a class="nav-link" href="#numerical-data-2"><span class="header-section-number">22.5</span> Numerical data</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#mlb-batting-performance"><span class="header-section-number">22.5.1</span> MLB batting performance</a></li></ul>
 </li>
 <li><a class="nav-link" href="#homework-problems-21"><span class="header-section-number">22.6</span> Homework Problems</a></li>
 </ul>
@@ -750,7 +627,7 @@ Figure 22.6: The sampling distribution of the difference in variance randomizati
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-06-28.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-06-29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

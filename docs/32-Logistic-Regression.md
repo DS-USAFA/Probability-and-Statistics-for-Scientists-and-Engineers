@@ -23,8 +23,8 @@ Read the data and summarize.
 
 
 ```r
-mariokart <-read_csv("data/mariokart.csv", col_types = list(col_character()))
-head(mariokart,n=10)
+mariokart <- read_csv("data/mariokart.csv", col_types = list(col_character()))
+head(mariokart, n = 10)
 ```
 
 ```
@@ -98,9 +98,9 @@ Remember that we removed a couple of outlier sales that included multiple items.
 ```r
 mariokart <- mariokart %>%
   filter(total_pr <= 100) %>% 
-  mutate(cond=factor(cond),
-         stock_photo=factor(stock_photo)) %>% 
-  select(cond,stock_photo,total_pr,duration,wheels)
+  mutate(cond = factor(cond),
+         stock_photo = factor(stock_photo)) %>% 
+  select(cond, stock_photo, total_pr, duration, wheels)
 ```
 
 Next let's summarize the data.
@@ -133,8 +133,8 @@ As a review and introduction to logistic regression, let's analyze the relations
 
 
 ```r
-tally(cond~stock_photo,data=mariokart
-      ,margins = TRUE,format = "proportion")
+tally(cond ~ stock_photo, data = mariokart, margins = TRUE, 
+      format = "proportion")
 ```
 
 ```
@@ -149,7 +149,7 @@ We could analyze this by comparing the proportion of new condition games for eac
 
 
 ```r
-fisher.test(tally(~cond+stock_photo,data=mariokart))
+fisher.test(tally(~cond + stock_photo, data = mariokart))
 ```
 
 ```
@@ -165,6 +165,7 @@ fisher.test(tally(~cond+stock_photo,data=mariokart))
 ## odds ratio 
 ##  0.1152058
 ```
+
 Clearly, these variables are not independent of each other. This model does not gives us much more information so let's move to logistic regression.  
 
 ### Modeling the probability of an event
@@ -197,7 +198,7 @@ $$
 Solving for $p_i$ we get the logistic function:
 
 $$
-p_i 	= \frac{1}{1+e^{-(\beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \cdots + \beta_k x_{k,i})}}
+p_i = \frac{1}{1+e^{-(\beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \cdots + \beta_k x_{k,i})}}
 $$
 
 The logistic function is shown in Figure \@ref(fig:logit-fig). 
@@ -221,8 +222,7 @@ First to understand the output of logistic regression, let's just run a model wi
 
 
 ```r
-mario_mod1 <- glm(cond=="new"~1,data=mariokart,
-                 family="binomial")
+mario_mod1 <- glm(cond == "new" ~ 1, data = mariokart, family = "binomial")
 ```
 
 Let's get regression output using the `summary()` function.  
@@ -275,7 +275,7 @@ Solving Equation \@ref(eq:logistic2) for $p_i$: $\frac{e^{-0.329}}{1 + e^{-0.329
 
 
 ```r
-tally(~cond,data=mariokart,format="proportion")
+tally(~cond, data = mariokart, format = "proportion")
 ```
 
 ```
@@ -291,8 +291,8 @@ Now that we are starting to understand the logistic regression model. Let's add 
 
 
 ```r
-mario_mod2 <- glm(cond=="new"~stock_photo,data=mariokart,
-                 family="binomial")
+mario_mod2 <- glm(cond == "new" ~ stock_photo, data = mariokart,
+                 family = "binomial")
 ```
 
 
@@ -348,8 +348,8 @@ Let's convert these coefficients to estimated probabilities using the `augment()
 
 ```r
 augment(mario_mod2,
-        newdata=tibble(stock_photo=c("yes","no")),
-        type.predict="response")
+        newdata = tibble(stock_photo = c("yes", "no")),
+        type.predict = "response")
 ```
 
 ```
@@ -364,7 +364,8 @@ These are the conditional probability of a new condition based on status of `sto
 
 
 ```r
-tally(cond~stock_photo,data=mariokart,margins = TRUE,format="proportion")
+tally(cond ~ stock_photo, data = mariokart, margins = TRUE, 
+      format = "proportion")
 ```
 
 ```
@@ -379,7 +380,7 @@ Or from the model coefficients.
 
 
 ```r
-exp(-2.079442)/(1+exp(-2.079442))
+exp(-2.079442) / (1 + exp(-2.079442))
 ```
 
 ```
@@ -387,7 +388,7 @@ exp(-2.079442)/(1+exp(-2.079442))
 ```
 
 ```r
-exp(-2.079442+2.174752)/(1+exp(-2.079442+2.174752))
+exp(-2.079442 + 2.174752) / (1 + exp(-2.079442 + 2.174752))
 ```
 
 ```
@@ -401,8 +402,8 @@ We repeat the code from above.
 
 
 ```r
-mario_mod3 <- glm(cond=="used"~stock_photo,data=mariokart,
-                 family="binomial")
+mario_mod3 <- glm(cond == "used" ~ stock_photo, data = mariokart,
+                 family = "binomial")
 ```
 
 
@@ -424,8 +425,8 @@ Again, let's convert these coefficients to estimated probabilities using the `au
 
 ```r
 augment(mario_mod3,
-        newdata=tibble(stock_photo=c("yes","no")),
-        type.predict="response")
+        newdata = tibble(stock_photo = c("yes", "no")),
+        type.predict = "response")
 ```
 
 ```
@@ -545,7 +546,7 @@ Similar to linear regression, we can use the `anova()` function to compare neste
 
 
 ```r
-anova(mario_mod1,mario_mod2,test="Chisq")
+anova(mario_mod1, mario_mod2, test = "Chisq")
 ```
 
 ```
@@ -568,10 +569,10 @@ A confusion matrix generates a 2 by 2 matrix of predicted outcomes versus actual
 
 
 ```r
-augment(mario_mod2,type.predict = "response") %>%
-  rename(actual=starts_with('cond')) %>%
-  transmute(result=as.integer(.fitted>0.5),
-            actual=as.integer(actual)) %>%
+augment(mario_mod2, type.predict = "response") %>%
+  rename(actual= starts_with('cond')) %>%
+  transmute(result = as.integer(.fitted > 0.5),
+            actual = as.integer(actual)) %>%
   table()
 ```
 
@@ -588,7 +589,7 @@ This looks like the same table we get comparing `cond` to `stock_photo`. This is
 
 
 ```r
-tally(~cond+stock_photo,data=mariokart)
+tally(~cond + stock_photo, data = mariokart)
 ```
 
 ```
@@ -606,9 +607,8 @@ Let's add `total_pr` to the model. This model is something that we could not hav
 
 
 ```r
-mario_mod4 <- glm(cond=="new"~stock_photo+total_pr,
-                  data=mariokart,
-                 family="binomial")
+mario_mod4 <- glm(cond == "new" ~ stock_photo + total_pr,
+                  data = mariokart, family = "binomial")
 ```
 
 Notice that we use the same formula syntax as we had done with linear regression. 
@@ -644,6 +644,7 @@ summary(mario_mod4)
 ## 
 ## Number of Fisher Scoring iterations: 5
 ```
+
 From the summary, both `stock_photo` and `total_pr` are statistically significant.  
 
 > **Exercise**:  
@@ -657,10 +658,10 @@ Besides using individual predictor p-values to assess the model, can also use a 
 
 
 ```r
-augment(mario_mod4,type.predict = "response") %>%
-  rename(actual=starts_with('cond')) %>%
-  transmute(result=as.integer(.fitted>0.5),
-            actual=as.integer(actual)) %>%
+augment(mario_mod4, type.predict = "response") %>%
+  rename(actual = starts_with('cond')) %>%
+  transmute(result = as.integer(.fitted > 0.5),
+            actual = as.integer(actual)) %>%
   table()
 ```
 
@@ -670,15 +671,15 @@ augment(mario_mod4,type.predict = "response") %>%
 ##      0 71 16
 ##      1 11 43
 ```
+
 For our new model, the accuracy improved to $71 + 43$ out of the 141 cases, or 80.9.7%. Without a measure of variability, we don't know if this is significant improvement or just the variability in the modeling procedure. On the surface, it appears to be an improvement.    
 
 As we experiment to improve the model, let's use a quadratic term in our model.
 
 
 ```r
-mario_mod5 <- glm(cond=="new"~stock_photo+poly(total_pr,2),
-                  data=mariokart,
-                 family="binomial")
+mario_mod5 <- glm(cond == "new" ~ stock_photo + poly(total_pr, 2),
+                  data = mariokart, family = "binomial")
 ```
 
 Using the individual p-values, it appears that a quadratic term is significant but it is marginal. 
@@ -720,7 +721,7 @@ We get a similar result if we use the `anova()` function.
 
 
 ```r
-anova(mario_mod4,mario_mod5,test="Chi")
+anova(mario_mod4, mario_mod5, test = "Chi")
 ```
 
 ```
@@ -739,10 +740,10 @@ Finally, the confusion matrix results in a slight improvement in accuracy to 82.
 
 
 ```r
-augment(mario_mod5,type.predict = "response") %>%
-  rename(actual=starts_with('cond')) %>%
-  transmute(result=as.integer(.fitted>0.5),
-            actual=as.integer(actual)) %>%
+augment(mario_mod5, type.predict = "response") %>%
+  rename(actual = starts_with('cond')) %>%
+  transmute(result = as.integer(.fitted > 0.5),
+            actual = as.integer(actual)) %>%
   table()
 ```
 
@@ -759,10 +760,10 @@ Almost any classifier will have some error. In the model above, we have decided 
 
 
 ```r
-augment(mario_mod5,type.predict = "response") %>%
-  rename(actual=starts_with('cond')) %>%
-  transmute(result=as.integer(.fitted>0.75),
-            actual=as.integer(actual)) %>%
+augment(mario_mod5, type.predict = "response") %>%
+  rename(actual = starts_with('cond')) %>%
+  transmute(result = as.integer(.fitted > 0.75),
+            actual = as.integer(actual)) %>%
   table()
 ```
 
@@ -782,7 +783,7 @@ It is not clear how to use the coefficients in the regression output since `R` i
 
 ```r
 augment(mario_mod5,
-        newdata = tibble(stock_photo="yes",total_pr=50),
+        newdata = tibble(stock_photo = "yes", total_pr = 50),
         type.predict = "response")
 ```
 
@@ -799,9 +800,8 @@ If we want to recreate the calculation, we need to use a **raw** polynomial.
 
 
 ```r
-mario_mod6 <- glm(cond=="new"~stock_photo+total_pr+I(total_pr^2),
-                  data=mariokart,
-                 family="binomial")
+mario_mod6 <- glm(cond == "new" ~ stock_photo + total_pr + I(total_pr^2),
+                  data = mariokart, family = "binomial")
 tidy(mario_mod6)
 ```
 
@@ -823,7 +823,7 @@ $$
 ```r
 tidy(mario_mod6) %>%
   select(estimate) %>% 
-  pull() %*% c(1,1,50,50^2)
+  pull() %*% c(1, 1, 50, 50^2)
 ```
 
 ```
@@ -839,7 +839,7 @@ $$
 
 
 ```r
-exp(.814)/(1+exp(.814))
+exp(.814) / (1 + exp(.814))
 ```
 
 ```
@@ -925,14 +925,14 @@ It looks like `do()` is performing as expected. Let's now perform one resample t
 
 
 ```r
-do(1)*glm(cond=="new"~stock_photo+total_pr,
-                  data=resample(mariokart),
-                 family="binomial")
+set.seed(23)
+do(1)*glm(cond == "new" ~ stock_photo + total_pr,
+          data = resample(mariokart), family = "binomial")
 ```
 
 ```
 ##   Intercept stock_photoyes  total_pr .row .index
-## 1 -12.11312       3.131459 0.1899357    1      1
+## 1 -14.06559       4.945683 0.1940279    1      1
 ```
 
 Again, it looks like what we expect. Now let's bootstrap the coefficients and summarize the results.
@@ -940,9 +940,8 @@ Again, it looks like what we expect. Now let's bootstrap the coefficients and su
 
 ```r
 set.seed(5011)
-results <- do(1000)*glm(cond=="new"~stock_photo+total_pr,
-                  data=resample(mariokart),
-                 family="binomial")
+results <- do(1000)*glm(cond == "new" ~ stock_photo + total_pr, 
+                        data = resample(mariokart), family = "binomial")
 ```
 
 ```
@@ -969,10 +968,10 @@ Now we will plot the bootstrap sampling distribution on the  parameter associate
 
 ```r
 results %>%
-  gf_histogram(~total_pr,fill="cyan",color = "black") %>%
+  gf_histogram(~total_pr, fill = "cyan", color = "black") %>%
   gf_theme(theme_bw()) %>%
-  gf_labs(title="Bootstrap sampling distribtuion",
-          x="total price paramater estimate")
+  gf_labs(title = "Bootstrap sampling distribtuion",
+          x = "total price paramater estimate")
 ```
 
 <img src="32-Logistic-Regression_files/figure-html/unnamed-chunk-43-1.png" width="672" />
@@ -981,7 +980,7 @@ The printout from the logistic regression model assumes normality for the sampli
 
 
 ```r
-cdata(~total_pr,data=results)
+cdata(~total_pr, data = results)
 ```
 
 ```
@@ -998,7 +997,7 @@ We can use the results from the bootstrap to get a confidence interval on probab
 
 ```r
 augment(mario_mod5,
-        newdata = tibble(stock_photo="yes",total_pr=50),
+        newdata = tibble(stock_photo = "yes", total_pr = 50),
         type.predict = "response")
 ```
 
@@ -1030,12 +1029,12 @@ head(results)
 
 ```r
 results_pred <- results %>% 
-  mutate(pred=1/(1+exp(-1*(Intercept+stock_photoyes+50*total_pr))))
+  mutate(pred = 1 / (1 + exp(-1*(Intercept + stock_photoyes + 50*total_pr))))
 ```
 
 
 ```r
-cdata(~pred,data=results_pred)
+cdata(~pred, data = results_pred)
 ```
 
 ```

@@ -34,7 +34,7 @@ In many contexts, the sampling distribution of a sample statistic is either unkn
 
 The theory required to quantify the uncertainty of the sample median is complex. In an ideal world, we would sample data from the population again and recompute the median with this new sample. Then we could do it again. And again. And so on until we get enough median estimates that we have a good sense of the precision of our original estimate. This is an ideal world where sampling data is free or extremely cheap. That is rarely the case, which poses a challenge to this "resample from the population" approach.
 
-However, we can sample from the sample. *Bootstrapping* allows us to simulate the sampling distribution by **resampling** from the sample. Suppose $x_1,x_2,...,x_n$ is an iid random sample from the population. First we define the empirical distribution function of $X$ by assigning an equal probability to each $x_i$. Then, we sample from this empirical probability mass function. In practice, this simply means sampling from your original sample *with replacement*. Thus we are treating our sample as a discrete uniform random variable. 
+However, we can sample from the sample. *Bootstrapping* allows us to simulate the sampling distribution by **resampling** from the sample. Suppose $x_1,x_2,...,x_n$ is an i.i.d. random sample from the population. First we define the empirical distribution function of $X$ by assigning an equal probability to each $x_i$. Then, we sample from this empirical probability mass function. In practice, this simply means sampling from your original sample *with replacement*. Thus we are treating our sample as a discrete uniform random variable. 
 
 The general procedure for bootstrapping is to sample with replacement from your original sample, calculate and record the sample statistic for that bootstrapped sample, then repeat the process many times. The collection of sample statistics comprises a *bootstrap distribution* of the sample statistic. Generally, this procedure works quite well, provided that the sample is representative of the population. Otherwise, any bias or misrepresentation is simply amplified throughout the bootstrap process. Further, for very small sample sizes, bootstrap distributions become "choppy" and hard to interpret. Thus in small sample cases, we must use permutation or mathematical methods to determine the sampling distribution.   
 
@@ -865,3 +865,28 @@ g. How does the p-value compare with those in the reading.
     Repeat the analysis of the MLB data from the reading but this time generate a bootstrap distribution of the $F$ statistic.  
 
 
+3. Paired data  
+
+Are textbooks actually cheaper online? Here we compare the price of textbooks at the University of California, Los Angeles (UCLA) bookstore and at Amazon.com. Seventy-three UCLA courses were randomly sampled in Spring 2010, representing less than 10\% of all UCLA courses. When a class had multiple books, only the most expensive text was considered.
+
+The data is in the file `textbooks.csv` under the data folder.
+
+Each textbook has two corresponding prices in the data set: one for the UCLA bookstore and one for Amazon. Therefore, each textbook price from the UCLA bookstore has a natural correspondence with a textbook price from Amazon. When two sets of observations have this special correspondence, they are said to be **paired**.
+
+To analyze paired data, it is often useful to look at the difference in outcomes of each pair of observations. In  `textbooks`, we look at the difference in prices, which is represented as the `diff` variable. It is important that we always subtract using a consistent order; here Amazon prices are always subtracted from UCLA prices. 
+
+a. Is this data tidy? Explain.  
+
+b. Make a scatterplot of the UCLA price versus the Amazon price. Add a 45 degree line to the plot.  
+
+c. Make a histogram of the differences in price.   
+
+    The hypotheses are:  
+$H_0$: $\mu_{diff}=0$. There is no difference in the average textbook price.  
+$H_A$: $\mu_{diff} \neq 0$. There is a difference in average prices.
+ 
+d. To use a $t$ distribution, the variable `diff` has to be independent and normally distributed. Since the 73 books represent less than 10\% of the population, the assumption that the random sample is independent is reasonable. Check normality using `qqnorsim()` from the **openintro** package. It generates 8 qq plots of simulated normal data that you can use to judge the `diff` variable.  
+
+e. Run a $t$ test on the `diff` variable. Report the p-value and conclusion.  
+
+f. Create a bootstrap distribution and generate a 95\% confidence interval on the mean of the differences, the `diff` column.  
