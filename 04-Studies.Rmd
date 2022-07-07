@@ -2,9 +2,11 @@
 
 ## Objectives
 
-1) Define and use properly in context all new terminology.  
-2) Given a study description, be able to identify and explain the study using correct terms.  
-3) Given a scenario, describe flaws in reasoning and propose study and sampling designs.
+1) Define and use properly in context all new terminology: *confounding variable*, *prospective study*, *retrospective study*, *simple random sampling*, *stratified sampling*, *strata*, *cluster sampling*, *multistage sampling*, *experiment*, *randomized experiment*, *control*, *replicate*, *blocking*, *blocks*, *treatment group*, *control group*, *blinded study*, *placebo*, *placebo effect*, and *double-blind*.  
+
+2) Given a study description, be able to describe the study using correct terminology.  
+
+3) Given a scenario, describe flaws in reasoning and propose study and sampling designs.  
 
 
 ## Observation studies, sampling strategies, and experiments

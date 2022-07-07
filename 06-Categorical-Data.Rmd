@@ -3,10 +3,13 @@
 
 ## Objectives
 
-1) Define and use properly in context all new terminology. 
-2) Generate in `R` tables for categorical variable(s).  
-3) Generate in `R` appropriate graphical summaries of categorical and numerical variables.  
-4) Be able to interpret and explain output both graphically and numerically.
+1) Define and use properly in context all new terminology: *factor*, *contingency table*, *marginal counts*, *joint counts*, *frequency table*, *relative frequency table*, *bar plot*, *conditioning*, *segmented bar plot*, *mosaic plot*, *pie chart*, *side-by-side box plot*, *density plot*.  
+
+2) In `R`, generate tables for categorical variable(s).   
+
+3) In `R`, generate appropriate graphical summaries of categorical and numerical variables.  
+
+4) Interpret and explain output both graphically and numerically.  
 
 
 ```{r echo=FALSE,results='hide',warning=FALSE,message=FALSE}

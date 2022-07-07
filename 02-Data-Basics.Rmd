@@ -2,10 +2,13 @@
 
 ## Objectives
 
-1) Define and use properly in context all new terminology to include, but not limited to, case, observational unit, variables, data frame, associated variables, independent, and discrete and continuous variables.   
+1) Define and use properly in context all new terminology to include: *case*, *observational unit*, *variables*, *data frame*, *associated variables*, *independent*, and *discrete* and *continuous variables*.   
+
 2) Identify and define the different types of variables.  
-3) Given a study description, explain the research question.  
-4) Create a scatterplot in `R` and determine the association of two numerical variables from the plot.
+
+3) Given a study description, describe the research question.  
+
+4) In `R`, create a scatterplot and determine the association of two numerical variables from the plot.  
 
 ## Data basics
 

@@ -3,10 +3,13 @@
 
 ## Objectives
 
-1) Define and use properly in context all new terminology.  
-2) Generate in `R` summary statistics for a numeric variable including breaking down by cases.  
-3) Generate in `R` appropriate graphical summaries of numerical variables.  
-4) Be able to interpret and explain output both graphically and numerically.  
+1) Define and use properly in context all new terminology: *scatterplot*, *dot plot*, *mean*, *distribution*, *point estimate*, *weighted mean*, *histogram*, *data density*, *right skewed*, *left skewed*, *symmetric*, *mode*, *unimodal*, *bimodal*, *multimodal*, *variance*, *standard deviation*, *box plot*, *median*, *interquartile range*, *first quartile*, *third quartile*, *whiskers*, *outlier*, *robust estimate*, *transformation*.  
+
+2) In `R`, generate summary statistics for a numerical variable, including breaking down summary statistics by groups.  
+
+3) In `R`, generate appropriate graphical summaries of numerical variables.  
+
+4) Interpret and explain output both graphically and numerically.  
 
 
 ```{r message=FALSE,eval=FALSE,echo=FALSE,warning=FALSE,message=FALSE}
