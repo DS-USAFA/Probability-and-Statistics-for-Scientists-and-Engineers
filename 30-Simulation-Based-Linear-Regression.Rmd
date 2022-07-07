@@ -381,11 +381,11 @@ Thus $$\mu_\text{OWN} -\mu_\text{RENT} = \beta_\text{homeownershipOWN} - \beta_\
 
 The model is not fitting a line to the data but just estimating average with the coefficients representing difference from the reference level.
 
-The `Std.Error`, `t value`, and `Pr(>|t|)` values can be used to conduct inference about the respective estimates. Both p-values are significant. This is similar to the ANOVA analysis we conducted last block except that hypothesis test was simultaneously testing all coefficients and here we are testing them pairwise. 
+The `Std.Error`, `t value`, and `Pr(>|t|)` values can be used to conduct inference about the respective estimates. Both $p$-values are significant. This is similar to the ANOVA analysis we conducted last block except that hypothesis test was simultaneously testing all coefficients and here we are testing them pairwise. 
 
 ### Bootstrap
 
-From the boxplots, the biggest difference in means is between home owners and those with a mortgage. However, in the regression output there is no p-value to test the difference between owners and renters. An easy solution would be to change the reference level but what if you had many levels? How would you know which ones to test? In the next section we will look at multiple comparisons but before then we can use the bootstrap to help us.
+From the boxplots, the biggest difference in means is between home owners and those with a mortgage. However, in the regression output there is no $p$-value to test the difference between owners and renters. An easy solution would be to change the reference level but what if you had many levels? How would you know which ones to test? In the next section we will look at multiple comparisons but before then we can use the bootstrap to help us.
 
 Let's bootstrap the regression.
 
@@ -445,7 +445,7 @@ As a reminder, we could also report the results of loans analysis using an *anal
 anova(loan_mod)
 ```
 
-This table lays out how the variation between observations is broken down. This is a simultaneous test of equality of the three means. Using the $F$-statistic, we would reject the null hypothesis of no differences in mean response across levels of the categorical variable. Notice it is the same p-value reported for the $F$ distribution in the regression summary.
+This table lays out how the variation between observations is broken down. This is a simultaneous test of equality of the three means. Using the $F$-statistic, we would reject the null hypothesis of no differences in mean response across levels of the categorical variable. Notice it is the same $p$-value reported for the $F$ distribution in the regression summary.
 
 ### Pairwise Comparisons
 

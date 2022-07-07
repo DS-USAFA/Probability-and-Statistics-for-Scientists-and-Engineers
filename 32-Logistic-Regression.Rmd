@@ -63,7 +63,7 @@ tally(cond ~ stock_photo, data = mariokart, margins = TRUE,
       format = "proportion")
 ```
 
-We could analyze this by comparing the proportion of new condition games for each stock photo value using both randomization, empirical p-values, and the central limit theorem. We will just use an exact permutation test, **Fisher Exact Test**, which just uses the hypergeometric distribution.  
+We could analyze this by comparing the proportion of new condition games for each stock photo value using both randomization, empirical $p$-values, and the central limit theorem. We will just use an exact permutation test, **Fisher Exact Test**, which just uses the hypergeometric distribution.  
 
 ```{r}
 fisher.test(tally(~cond + stock_photo, data = mariokart))
@@ -229,7 +229,7 @@ mario_mod2 <- glm(cond == "new" ~ stock_photo, data = mariokart,
 summary(mario_mod2)
 ```
 
-Examining the **p-value** associated with the coefficient for `stock_photo`, we can see that it is significant. Thus we reject the null hypothesis that the coefficient is zero. There is a relationship between `cond` and `stock_photo`, as we found with the Fisher's test.
+Examining the **$p$-value** associated with the coefficient for `stock_photo`, we can see that it is significant. Thus we reject the null hypothesis that the coefficient is zero. There is a relationship between `cond` and `stock_photo`, as we found with the Fisher's test.
 
 We can use the **broom** package to summarize the output and generate model fits.
 
@@ -357,9 +357,9 @@ Similar to linear regression, we can use the `anova()` function to compare neste
 anova(mario_mod1, mario_mod2, test = "Chisq")
 ```
 
-Adding, `stock_photo` is a statistically significant result. The p-value is different from the `summary()` function, because it assumes the coefficient follows a normal distribution. Different assumptions, but the same conclusion.   
+Adding, `stock_photo` is a statistically significant result. The $p$-value is different from the `summary()` function, because it assumes the coefficient follows a normal distribution. Different assumptions, but the same conclusion.   
 
-The use of p-value to pick a best model uses statistical assumptions to select the features. Another approach is to use a predictive measure. In machine learning contexts, we use many different predictive performance measures for model selection but many are based on a **confusion matrix**.  
+The use of $p$-value to pick a best model uses statistical assumptions to select the features. Another approach is to use a predictive measure. In machine learning contexts, we use many different predictive performance measures for model selection but many are based on a **confusion matrix**.  
 
 A confusion matrix generates a 2 by 2 matrix of predicted outcomes versus actual outcomes. For logistic regression, the output is a probability of success. To convert this to 0/1 outcome we pick a threshold. It is common to use 0.5 as the threshold. Probabilities above 0.5 are considered a success, in the context of our problem a new game. Let's generate the confusion matrix.
 
@@ -405,7 +405,7 @@ For one dollar increase in total price of the auction, the odds ratio increases 
 
 This is similar to an interpretation we had for multiple linear regression. We had to specify that the other predictors are held constant and then we increased the variable of interest by one unit.     
 
-Besides using individual predictor p-values to assess the model, can also use a confusion matrix.
+Besides using individual predictor $p$-values to assess the model, can also use a confusion matrix.
 
 ```{r}
 augment(mario_mod4, type.predict = "response") %>%
@@ -424,7 +424,7 @@ mario_mod5 <- glm(cond == "new" ~ stock_photo + poly(total_pr, 2),
                   data = mariokart, family = "binomial")
 ```  
 
-Using the individual p-values, it appears that a quadratic term is significant but it is marginal. 
+Using the individual $p$-values, it appears that a quadratic term is significant but it is marginal. 
 
 ```{r}
 summary(mario_mod5)
@@ -621,7 +621,7 @@ We use logistic regression to differentiate between possums in these two regions
 a. Explore the data by making histograms or boxplots of the quantitative variables, and bar charts of the discrete variables.   
 Are there any outliers that are likely to have a very large influence on the logistic regression model?  
 b. Build a logistic regression model with all the variables. Report a summary of the model.  
-c. Using the p-values decide if you want to remove a variable(s) and if so build that model.  
+c. Using the $p$-values decide if you want to remove a variable(s) and if so build that model.  
 d. For any variable you decide to remove, build a 95% confidence interval for the parameter.  
 e. Explain why the remaining parameter estimates change between the two models.  
 f. Write out the form of the model. Also identify which of the following variables are positively associated (when controlling for other variables) with a possum being from Victoria: `head_l`, `skull_w`, `total_l`, and `tail_l`.  

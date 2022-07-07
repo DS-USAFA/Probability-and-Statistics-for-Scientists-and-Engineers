@@ -5,7 +5,7 @@ output:
 ---
 # (PART) Probability Modeling {-} 
 
-# Case Study {#CS2}
+# Probability Case Study {#CS2}
 
 
 ## Objectives

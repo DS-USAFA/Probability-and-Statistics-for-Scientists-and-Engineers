@@ -1,8 +1,8 @@
-# Hypothesis Testing with Simulation {#HYPOTESTSIM}
+# Hypothesis Testing with Simulation {#HYPTESTSIM}
 
 ## Objectives
 
-1) Know and properly use the terminology of a hypothesis test: *null hypothesis*, *alternative hypothesis*, *test statistic*, *p-value*, *randomization test*, *one-sided test*, *two-sided test*, *statistically significant*, *significance level*, *type I error*, *type II error*, *false positive*, *false negative*, *null distribution*, and *sampling distribution*.  
+1) Know and properly use the terminology of a hypothesis test: *null hypothesis*, *alternative hypothesis*, *test statistic*, *$p$-value*, *randomization test*, *one-sided test*, *two-sided test*, *statistically significant*, *significance level*, *type I error*, *type II error*, *false positive*, *false negative*, *null distribution*, and *sampling distribution*.  
 
 2) Conduct all four steps of a hypothesis test using randomization.  
 
@@ -120,7 +120,7 @@ From this data, it looks like there is a difference between the two type of chan
 
 1. State the null and alternative hypotheses.  
 2. Compute a test statistic.  
-3. Determine the p-value.  
+3. Determine the $p$-value.  
 4. Draw a conclusion.  
 
 Before doing this, let's visit an example of hypothesis testing that has become *common* knowledge for us, the US criminal trial system. We could also use the cadet honor system. This analogy allows us to remember and apply the steps.
@@ -199,9 +199,9 @@ obs
 
 Here is what we have done; we needed a single number metric to use in evaluating the null and alternative hypotheses. The null hypothesis is that the commercial lengths for the two channel types have the same distribution and the alternative is that they don't. To measure the alternative hypothesis, we decided to use a ratio of the medians. If the ratio is close to 1, then the medians are not different. There may be other ways in which the distributions are different but we have decided on the ratio of medians for this example.  
 
-### Step 3 - Determine the p-value.
+### Step 3 - Determine the $p$-value.
 
-As a reminder, the **p-value** is the probability of our observed test statistic or something more extreme, given the null hypothesis is true. Since our null hypothesis is that the distributions are the same, we can use a **randomization** test. We will shuffle the channel labels since under the null hypothesis, they are irrelevant. Here is the code for one randomization.  
+As a reminder, the **$p$-value** is the probability of our observed test statistic or something more extreme, given the null hypothesis is true. Since our null hypothesis is that the distributions are the same, we can use a **randomization** test. We will shuffle the channel labels since under the null hypothesis, they are irrelevant. Here is the code for one randomization.  
 
 ```{r}
 set.seed(371)
@@ -225,23 +225,23 @@ results %>%
   gf_labs(x = "Test statistic")
 ```
 
-Notice that this distribution is centered on 1 and appears to be roughly symmetrical. The vertical line is our observed value of the test statistic. It seems to be in the tail, and is larger than expected if the channels came from the same distribution. Let's calculate the p-value.
+Notice that this distribution is centered on 1 and appears to be roughly symmetrical. The vertical line is our observed value of the test statistic. It seems to be in the tail, and is larger than expected if the channels came from the same distribution. Let's calculate the $p$-value.
 
 ```{r}
 results %>%
   summarise(p_value = mean(test_stat >= obs))
 ```
 
-Before proceeding, we have a technical question: Should we include the observed data in the calculation of the p-value?  
+Before proceeding, we have a technical question: Should we include the observed data in the calculation of the $p$-value?  
 
-The answer is that most people would conclude that the original data is one of the possible permutations and thus include it. This practice will also insure that the p-value from a randomization test is never zero. In practice, this simply means adding 1 to both the numerator and denominator. The **mosaic** package has done this for us with the `prop1()` function.
+The answer is that most people would conclude that the original data is one of the possible permutations and thus include it. This practice will also insure that the $p$-value from a randomization test is never zero. In practice, this simply means adding 1 to both the numerator and denominator. The **mosaic** package has done this for us with the `prop1()` function.
 
 ```{r}
 prop1(~(test_stat >= obs), data = results)
 ```
 
 
-The test we performed is called a one-sided test because we only checked if the median length for basic channels is larger than that for premium channels. In this case of a one-sided test, more extreme meant a ratio much bigger than 1. A two-sided test is also common, in fact it is more common, and is used if we did not apriori think one channel type had longer commercials than the other. In this case, we find the p-value by doubling the single-sided value. This is because *more extreme* could have happened in either tail of the sampling distribution. 
+The test we performed is called a one-sided test because we only checked if the median length for basic channels is larger than that for premium channels. In this case of a one-sided test, more extreme meant a ratio much bigger than 1. A two-sided test is also common, in fact it is more common, and is used if we did not apriori think one channel type had longer commercials than the other. In this case, we find the $p$-value by doubling the single-sided value. This is because *more extreme* could have happened in either tail of the sampling distribution. 
 
 ### Step 4 - Draw a conclusion  
 
@@ -252,11 +252,11 @@ Our research question -- do premium channels have less ad time than basic channe
 
 In our simulations, less than 2.7\% of the simulated test statistics were greater than or equal (more extreme relative to the null hypothesis) to the observed test statistic. That is, the observed ratio of 1.2 is a rare event if the distributions of commercial lengths for premium and basic channels truly are the same. By chance alone, we would only expect an observed ratio this large to occur less than 3 in 100 times. When results like these are inconsistent with $H_0$, we reject $H_0$ in favor of $H_A$. Here, we reject $H_0$ and conclude there is evidence that the median length of basic channel ads is bigger than that for premium channels.  
 
-The less than 3-in-100 chance is the p-value, which is a probability quantifying the strength of the evidence against the null hypothesis and in favor of the alternative. 
+The less than 3-in-100 chance is the $p$-value, which is a probability quantifying the strength of the evidence against the null hypothesis and in favor of the alternative. 
 
-When the p-value is small, i.e. less than a previously set threshold, we say the results are **statistically significant**^[Some experts in the field of statistics are uncomfortable with using a significance level to declare that something is **statistically significant**. The choice of a significance level (discussed more in a later section) can be somewhat arbitrary. If you conduct a hypothesis test with a p-value of 0.051 and chose a significance level of 0.05, are your results really **non-significant** compared to getting a p-value of 0.049? For this reason, some experts shy away from the term **statistically significant** and instead describe detectable or discernable effects/differences.]. This means the data provide such strong evidence against $H_0$ that we reject the null hypothesis in favor of the alternative hypothesis. The threshold, called the **significance level** and often represented by the Greek letter $\alpha$, is typically set to $\alpha = 0.05$, but can vary depending on the field or the application. Using a  significance level of $\alpha = 0.05$ in the TV channel study, we can say that the data provided statistically significant evidence against the null hypothesis.
+When the $p$-value is small, i.e. less than a previously set threshold, we say the results are **statistically significant**^[Some experts in the field of statistics are uncomfortable with using a significance level to declare that something is **statistically significant**. The choice of a significance level (discussed more in a later section) can be somewhat arbitrary. If you conduct a hypothesis test with a $p$-value of 0.051 and chose a significance level of 0.05, are your results really **non-significant** compared to getting a $p$-value of 0.049? For this reason, some experts shy away from the term **statistically significant** and instead describe detectable or discernable effects/differences.]. This means the data provide such strong evidence against $H_0$ that we reject the null hypothesis in favor of the alternative hypothesis. The threshold, called the **significance level** and often represented by the Greek letter $\alpha$, is typically set to $\alpha = 0.05$, but can vary depending on the field or the application. Using a  significance level of $\alpha = 0.05$ in the TV channel study, we can say that the data provided statistically significant evidence against the null hypothesis.
 
-> We say that the data provide statistically significant evidence against the null hypothesis if the p-value is less than some reference value, usually $\alpha=0.05$.
+> We say that the data provide statistically significant evidence against the null hypothesis if the $p$-value is less than some reference value, usually $\alpha=0.05$.
 
 If the null hypothesis is true, unknown to us, the significance level $\alpha$ defines the probability that we will make a Type 1 Error. We will define decision errors in the next section.
 
@@ -264,7 +264,7 @@ If the null hypothesis is true, unknown to us, the significance level $\alpha$ d
 What's so special about 0.05? We often use a threshold of 0.05 to determine whether a result is statistically significant. But why 0.05? Maybe we should use a bigger number, or maybe a smaller number. If you're a little puzzled, that probably means you're reading with a critical eye -- good job! There are many [video clips](http://www.openintro.org/why05}{www.openintro.org/why05) that explain the use of 0.05. Sometimes it's also a good idea to deviate from the standard. It really depends on the risk that the decision maker wants to accept in terms of the two types of decision errors.
 
 >**Exercise**:  
-Use our p-value and a significance level of 0.05 to make a decision.
+Use our $p$-value and a significance level of 0.05 to make a decision.
 
 Based on our data, if there were really no difference in the distribution of lengths of commercials in 30 minute shows between basic and premium channels then the probability of finding our observed ratio of medians is 0.027. Since this is less than our significance level of $\alpha = 0.05$, we reject the null in favor of the alternative that the basic channel has longer commercials.  
 
@@ -423,7 +423,7 @@ obs
 
 Based on the point estimate, for patients who have undergone CPR outside of the hospital, an additional 13\% of these patients survive when they are treated with blood thinners. We wonder if this difference is easily explainable by chance.
 
-### Step 3 - Determine the p-value.
+### Step 3 - Determine the $p$-value.
 
 As we did in the previous two studies, we will simulate what type of differences we might see from chance alone under the null hypothesis. By randomly assigning *treatment* and *control* stickers to the patients' files, we get a new grouping. If we repeat this simulation 10,000 times, we can build a **null distribution** of the differences. This is our empirical sampling distribution, the distribution of differences simulated under the null hypothesis.
 
@@ -449,23 +449,23 @@ prop1(~(diffprop <= obs), data = results)
 ```
 
 
-The left tail area is about 0.128. (Note: it is only a coincidence that our p-value is approximately 0.13 and we also have $\hat{p}_c - \hat{p}_t= -0.13$.) However, contrary to how we calculated the p-value in previous studies, the p-value of this test is not 0.128!
+The left tail area is about 0.128. (Note: it is only a coincidence that our $p$-value is approximately 0.13 and we also have $\hat{p}_c - \hat{p}_t= -0.13$.) However, contrary to how we calculated the $p$-value in previous studies, the $p$-value of this test is not 0.128!
 
-The p-value is defined as the probability we observe a result at least as favorable to the alternative hypothesis as the observed result (i.e. the observed difference). In this case, any differences greater than or equal to 0.13 would provide equally strong evidence favoring the alternative hypothesis as differences less than or equal to -0.13. A difference of 0.13 would correspond to 13\% higher survival rate in the treatment group than the control group. 
+The $p$-value is defined as the probability we observe a result at least as favorable to the alternative hypothesis as the observed result (i.e. the observed difference). In this case, any differences greater than or equal to 0.13 would provide equally strong evidence favoring the alternative hypothesis as differences less than or equal to -0.13. A difference of 0.13 would correspond to 13\% higher survival rate in the treatment group than the control group. 
 
 There is something different in this study than in the past studies: in this study, we are particularly interested in whether blood thinners increase **or** decrease the risk of death in patients who undergo CPR before arriving at the hospital.^[Realistically, we probably are interested in either direction in the past studies as well, and so we should have used the approach we now discuss in this section. However, for simplicity and the sake of not introducing too many concepts at once, we skipped over these details in earlier sections.] 
 
-For a two-sided test, we take the single tail (in this case, 0.128) and double it to get the p-value: 0.256. 
+For a two-sided test, we take the single tail (in this case, 0.128) and double it to get the $p$-value: 0.256. 
 
 ### Step 4 - Draw a conclusion 
 
-Since this p-value is larger than 0.05, we fail to reject the null hypothesis. That is, we do not find statistically significant evidence that the blood thinner has any influence on survival of patients who undergo CPR prior to arriving at the hospital. Once again, we can discuss the causal conclusion since this is an experiment.
+Since this $p$-value is larger than 0.05, we fail to reject the null hypothesis. That is, we do not find statistically significant evidence that the blood thinner has any influence on survival of patients who undergo CPR prior to arriving at the hospital. Once again, we can discuss the causal conclusion since this is an experiment.
 
 > **Default to a two-sided test** 
 We want to be rigorous and keep an open mind when we analyze data and evidence. In general, you should default to using a two-sided test when conducting hypothesis tests. Use a one-sided hypothesis test only if you truly have interest in only one direction.
 
-> **Computing a p-value for a two-sided test**  
-First compute the p-value for one tail of the distribution, then double that value to get the two-sided p-value. That's it!
+> **Computing a $p$-value for a two-sided test**  
+First compute the $p$-value for one tail of the distribution, then double that value to get the two-sided $p$-value. That's it!
 
 It is never okay to change two-sided tests to one-sided tests after observing the data. 
 
@@ -486,11 +486,11 @@ This is a summary of the general framework for using hypothesis testing. These a
 
 3. Analyze the data.  
 
-    Choose an analysis technique appropriate for the data and identify the p-value. So far, we've only seen one analysis technique: randomization. We'll encounter several new methods suitable for many other contexts. 
+    Choose an analysis technique appropriate for the data and identify the $p$-value. So far, we've only seen one analysis technique: randomization. We'll encounter several new methods suitable for many other contexts. 
 
 4. Form a conclusion.  
 
-    Using the p-value from the analysis, determine whether the data provide statistically significant evidence against the null hypothesis. Also, be sure to write the conclusion in plain language so casual readers can understand the results.
+    Using the $p$-value from the analysis, determine whether the data provide statistically significant evidence against the null hypothesis. Also, be sure to write the conclusion in plain language so casual readers can understand the results.
 
 
 
@@ -502,7 +502,7 @@ a. State the null and alternative hypotheses.
 
 b. Compute a test statistic. Remember to use something different than what was used in the text.  
 
-c. Determine the p-value.  
+c. Determine the $p$-value.  
 
 d. Draw a conclusion.    
 
@@ -526,7 +526,7 @@ a. What are the hypotheses?
 
 b. Calculate the observed difference between the yawning rates under the two scenarios. Yes, we are giving you the test statistic.  
 
-c. Estimate the p-value using randomization.  
+c. Estimate the $p$-value using randomization.  
 
 d. Plot the empirical sampling distribution.  
 

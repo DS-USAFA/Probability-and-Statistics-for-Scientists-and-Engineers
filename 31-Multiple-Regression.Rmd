@@ -167,7 +167,7 @@ No need to check linearity, we only have two different values for the explanator
 > *Example*: Interpretation  
 Interpret the coefficient for the game's condition in the model. Is this coefficient significantly different from 0?
 
-Note that `cond` is a two-level categorical variable and the reference level is `new`. So - 10.90 means that the model predicts an extra \$10.90 on average for those games that are new versus those that are used. Examining the regression output, we can see that the p-value for `cond` is very close to zero, indicating there is strong evidence that the coefficient is different from zero when using this simple one-variable model.
+Note that `cond` is a two-level categorical variable and the reference level is `new`. So - 10.90 means that the model predicts an extra \$10.90 on average for those games that are new versus those that are used. Examining the regression output, we can see that the $p$-value for `cond` is very close to zero, indicating there is strong evidence that the coefficient is different from zero when using this simple one-variable model.
 
 ### Including and assessing many variables in a model  
 
@@ -330,7 +330,7 @@ Because $k$ is never negative, the adjusted $R^2$ will be smaller -- often times
 > **Exercise**:  
 Suppose you added another predictor to the model, but the variance of the errors didn't go down. What would happen to the $R^2$? What would happen to the adjusted $R^2$?^[The unadjusted $R^2$ would stay the same and the adjusted $R^2$ would go down. Note that unadjusted $R^2$ never decreases by adding another predictor, it can only stay the same or increase. The adjusted $R^2$ increases only if the addition of a predictor reduces the variance of the error larger than add one to $k$ in denominator.]
 
-Again, in a machine learning course, you will spend more time on how to select models. Using internal metrics of performance such as p-values or adjusted $R$ squared are one way but using external measures of predictive performance such as **cross validation** or **hold out** sets will be introduced.
+Again, in a machine learning course, you will spend more time on how to select models. Using internal metrics of performance such as $p$-values or adjusted $R$ squared are one way but using external measures of predictive performance such as **cross validation** or **hold out** sets will be introduced.
 
 ### Reduced model
 
