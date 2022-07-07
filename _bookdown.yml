@@ -9,6 +9,7 @@ language:
 
 rmd_files: [
    "index.Rmd",
+   "00-Objectives.Rmd",
    "01-Data-Case-Study.Rmd",           
    "02-Data-Basics.Rmd",               
    "03-Overview-of-Data-Collection-Principles.Rmd",                
