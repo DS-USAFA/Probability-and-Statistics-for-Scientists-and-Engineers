@@ -5,7 +5,7 @@
 
 ## Objectives
 
-1) Define and use properly in context all new terminology: *point estimate*, *null hypothesis*, *alternative hypothesis*, *hypothesis test*, *randomization*, *permutation test*, *test statistic*, and *$p$-value*.  
+1) Define and use properly in context all new terminology to include: *point estimate*, *null hypothesis*, *alternative hypothesis*, *hypothesis test*, *randomization*, *permutation test*, *test statistic*, and *$p$-value*.  
 
 2) Conduct a hypothesis test using a permutation test to include all 4 steps.
 
@@ -79,7 +79,7 @@ $H_A$: **Alternative hypothesis.** The variables *gender* and *decision* are **n
 > Hypothesis testing  
 These hypotheses are part of what is called a **hypothesis test**. A hypothesis test is a statistical technique used to evaluate competing claims using data. Often times, the null hypothesis takes a stance of **no difference** or **no effect** and thus is `skeptical` of the research claim. If the null hypothesis and the data notably disagree, then we will reject the null hypothesis in favor of the alternative hypothesis.
 
-Don't worry if you aren't a master of hypothesis testing at the end of this lesson. We'll discuss these ideas and details many times throughout this block.
+Don't worry if you aren't a master of hypothesis testing at the end of this chapter. We'll discuss these ideas and details many times throughout this block.
 
 What would it mean if the null hypothesis, which says the variables *gender* and *decision* are unrelated, is true? It would mean each banker would decide whether to promote the candidate without regard to the gender indicated on the file. That is, the difference in the promotion percentages would be due to the way the files were randomly divided to the bankers, and the randomization just happened to give rise to a relatively large difference of 29.2\%.
 
@@ -141,7 +141,7 @@ head(discrim)
 tally(~gender + decision, discrim, margins = TRUE)
 ```
 
-Now that we have the data in form that we want, we are ready to conduct the *permutation test*, a simulation of what would have happened if the bankers' decisions had been independent of gender but we had distributed the files differently. To think about this *simulation*, imagine we actually had the personnel files. We thoroughly shuffle 48 personnel files, 24 labeled *male* and 24 labeled *female*, and deal these files into two stacks. We will deal 35 files into the first stack, which will represent the 35 supervisors who recommended promotion. The second stack will have 13 files, and it will represent the 13 supervisors who recommended against promotion. That is, we keep the same number of files in the *promoted* and *not_promoted* categories, and imagine simply shuffling the *male* and *female* labels around. Remember that the files are identical except for the listed gender. This simulation then assumes that gender is not important and, thus, we can randomly assign the files to any of the supervisors. Then, as we did with the original data, we tabulate the results and determine the fraction of *male* and *female* candidates who were promoted. Since we don't actually physically have the files, we will do this shuffle via computer code.
+Now that we have the data in the form that we want, we are ready to conduct the *permutation test*, a simulation of what would have happened if the bankers' decisions had been independent of gender but we had distributed the files differently. To think about this *simulation*, imagine we actually had the personnel files. We thoroughly shuffle 48 personnel files, 24 labeled *male* and 24 labeled *female*, and deal these files into two stacks. We will deal 35 files into the first stack, which will represent the 35 supervisors who recommended promotion. The second stack will have 13 files, and it will represent the 13 supervisors who recommended against promotion. That is, we keep the same number of files in the *promoted* and *not_promoted* categories, and imagine simply shuffling the *male* and *female* labels around. Remember that the files are identical except for the listed gender. This simulation then assumes that gender is not important and, thus, we can randomly assign the files to any of the supervisors. Then, as we did with the original data, we tabulate the results and determine the fraction of *male* and *female* candidates who were promoted. Since we don't actually physically have the files, we will do this shuffle via computer code.
 
 Since the randomization of files in this simulation is independent of the promotion decisions, any difference in the two fractions is entirely due to chance. The following code shows the results of such a simulation.
 
