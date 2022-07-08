@@ -10,15 +10,15 @@
 <meta name="author" content="Ken Horton">
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
-<meta name="description" content="5.1 Objectives Define and use properly in context all new terminology. Generate in R summary statistics for a numeric variable including breaking down by cases. Generate in R appropriate graphical...">
+<meta name="description" content="5.1 Objectives Define and use properly in context all new terminology: scatterplot, dot plot, mean, distribution, point estimate, weighted mean, histogram, data density, right skewed, left skewed,...">
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Chapter 5 Numerical Data | Computational Probability and Statistics">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Master.png">
-<meta property="og:description" content="5.1 Objectives Define and use properly in context all new terminology. Generate in R summary statistics for a numeric variable including breaking down by cases. Generate in R appropriate graphical...">
+<meta property="og:description" content="5.1 Objectives Define and use properly in context all new terminology: scatterplot, dot plot, mean, distribution, point estimate, weighted mean, histogram, data density, right skewed, left skewed,...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 5 Numerical Data | Computational Probability and Statistics">
-<meta name="twitter:description" content="5.1 Objectives Define and use properly in context all new terminology. Generate in R summary statistics for a numeric variable including breaking down by cases. Generate in R appropriate graphical...">
+<meta name="twitter:description" content="5.1 Objectives Define and use properly in context all new terminology: scatterplot, dot plot, mean, distribution, point estimate, weighted mean, histogram, data density, right skewed, left skewed,...">
 <meta name="twitter:image" content="/figures/Cover_Master.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -73,15 +73,16 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Preface</a></li>
+<li><a class="" href="objectives.html">Objectives</a></li>
 <li class="book-part">Descriptive Statistical Modeling</li>
-<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
+<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Data Case Study</a></li>
 <li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
 <li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
 <li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
 <li><a class="active" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
 <li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
 <li class="book-part">Probability Modeling</li>
-<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
+<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Probability Case Study</a></li>
 <li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
 <li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
 <li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
@@ -92,9 +93,9 @@
 <li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
 <li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
 <li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
-<li class="book-part">Statistical Modeling</li>
-<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
-<li><a class="" href="HYPOTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></li>
+<li class="book-part">Inferential Statistical Modeling</li>
+<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Hypothesis Testing Case Study</a></li>
+<li><a class="" href="HYPTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></li>
 <li><a class="" href="HYPTESTDIST.html"><span class="header-section-number">20</span> Hypothesis Testing with Known Distributions</a></li>
 <li><a class="" href="HYPTESTCLT.html"><span class="header-section-number">21</span> Hypothesis Testing with the Central Limit Theorem</a></li>
 <li><a class="" href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></li>
@@ -102,7 +103,7 @@
 <li><a class="" href="CI.html"><span class="header-section-number">24</span> Confidence Intervals</a></li>
 <li><a class="" href="BOOT.html"><span class="header-section-number">25</span> Bootstrap</a></li>
 <li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">26</span> Case Study</a></li>
+<li><a class="" href="CS4.html"><span class="header-section-number">26</span> Linear Regression Case Study</a></li>
 <li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
 <li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
 <li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
@@ -121,23 +122,20 @@
 <h1>
 <span class="header-section-number">5</span> Numerical Data<a class="anchor" aria-label="anchor" href="#NUMDATA"><i class="fas fa-link"></i></a>
 </h1>
-<div id="objectives-4" class="section level2" number="5.1">
+<div id="objectives-5" class="section level2" number="5.1">
 <h2>
-<span class="header-section-number">5.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-5"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li>Define and use properly in context all new terminology.<br>
-</li>
-<li>Generate in <code>R</code> summary statistics for a numeric variable including breaking down by cases.<br>
-</li>
-<li>Generate in <code>R</code> appropriate graphical summaries of numerical variables.<br>
-</li>
-<li>Be able to interpret and explain output both graphically and numerically.</li>
+<li><p>Define and use properly in context all new terminology: <em>scatterplot</em>, <em>dot plot</em>, <em>mean</em>, <em>distribution</em>, <em>point estimate</em>, <em>weighted mean</em>, <em>histogram</em>, <em>data density</em>, <em>right skewed</em>, <em>left skewed</em>, <em>symmetric</em>, <em>mode</em>, <em>unimodal</em>, <em>bimodal</em>, <em>multimodal</em>, <em>variance</em>, <em>standard deviation</em>, <em>box plot</em>, <em>median</em>, <em>interquartile range</em>, <em>first quartile</em>, <em>third quartile</em>, <em>whiskers</em>, <em>outlier</em>, <em>robust estimate</em>, <em>transformation</em>.</p></li>
+<li><p>In <code>R</code>, generate summary statistics for a numerical variable, including breaking down summary statistics by groups.</p></li>
+<li><p>In <code>R</code>, generate appropriate graphical summaries of numerical variables.</p></li>
+<li><p>Interpret and explain output both graphically and numerically.</p></li>
 </ol>
 </div>
-<div id="numerical-data" class="section level2" number="5.2">
+<div id="numerical-data-1" class="section level2" number="5.2">
 <h2>
-<span class="header-section-number">5.2</span> Numerical Data<a class="anchor" aria-label="anchor" href="#numerical-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.2</span> Numerical Data<a class="anchor" aria-label="anchor" href="#numerical-data-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>This lesson introduces techniques for exploring and summarizing numerical variables, and the <code>email50</code> and <code>mlb</code> data sets from the <strong>openintro</strong> package and a subset of <code>county_complete</code> from <code>usdata</code> provide rich opportunities for examples. Recall that outcomes of numerical variables are numbers on which it is reasonable to perform basic arithmetic operations. For example, the <code>pop2010</code> variable, which represents the populations of counties in 2010, is numerical since we can sensibly discuss the difference or ratio of the populations in two counties. On the other hand, area codes and zip codes are not numerical.</p>
 <div id="scatterplots-for-paired-data" class="section level3" number="5.2.1">
@@ -566,9 +564,9 @@ Figure 5.14: A scatterplot of <code>line_breaks</code> versus <code>num_char</co
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#NUMDATA"><span class="header-section-number">5</span> Numerical Data</a></li>
-<li><a class="nav-link" href="#objectives-4"><span class="header-section-number">5.1</span> Objectives</a></li>
+<li><a class="nav-link" href="#objectives-5"><span class="header-section-number">5.1</span> Objectives</a></li>
 <li>
-<a class="nav-link" href="#numerical-data"><span class="header-section-number">5.2</span> Numerical Data</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#numerical-data-1"><span class="header-section-number">5.2</span> Numerical Data</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#scatterplots-for-paired-data"><span class="header-section-number">5.2.1</span> Scatterplots for paired data</a></li>
 <li><a class="nav-link" href="#dot-plots-and-the-mean"><span class="header-section-number">5.2.2</span> Dot plots and the mean</a></li>
 <li><a class="nav-link" href="#histograms-and-shape"><span class="header-section-number">5.2.3</span> Histograms and shape</a></li>
@@ -596,7 +594,7 @@ Figure 5.14: A scatterplot of <code>line_breaks</code> versus <code>num_char</co
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-06-30.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

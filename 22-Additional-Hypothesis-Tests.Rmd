@@ -438,7 +438,7 @@ mlb_obp_subset %>%
   gf_labs(title = "Comparison of OBP for infielders and outfielders")
 ```
 
-We must verify the assumptions before proceeding with a two-sample $t$-test. We can assume that MLB players in 2010 are a representative sample of MLB players from other years. Also, the sample size for both groups is over 100, so we feel good about independence of observations within groups. There is no reason to believe that the data across groups, infielders versus outfielders, are not independent of each other. Figures \@ref(fig:dens226-fig) and \@ref(qq227-fig) show density curves and quantile-quantile plots for the on-base percentage by position played. There are no major outliers or other causes for concern. The data within each group appears nearly normal.
+We must verify the assumptions before proceeding with a two-sample $t$-test. We can assume that MLB players in 2010 are a representative sample of MLB players from other years. Also, the sample size for both groups is over 100, so we feel good about independence of observations within groups. There is no reason to believe that the data across groups, infielders versus outfielders, are not independent of each other. Figures \@ref(fig:dens226-fig) and \@ref(fig:qq227-fig) show density curves and quantile-quantile plots for the on-base percentage by position played. There are no major outliers or other causes for concern. The data within each group appears nearly normal.
 
 ```{r dens226-fig,fig.cap="Density curves of on-base percentage by position played."}
 mlb_obp_subset %>%

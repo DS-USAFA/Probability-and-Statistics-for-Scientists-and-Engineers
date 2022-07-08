@@ -3,14 +3,14 @@
 
 ## Objectives
 
-1) Know and properly use the terminology of a hypothesis test: *permutation test*, *exact test*, *null hypothesis*, *alternative hypothesis*, *test statistic*, *p-value*, and *power*.   
+1) Know and properly use the terminology of a hypothesis test: *permutation test*, *exact test*, *null hypothesis*, *alternative hypothesis*, *test statistic*, *$p$-value*, and *power*.   
 
 2) Conduct all four steps of a hypothesis test using probability models.  
 
 
 ## Hypothesis testing using probability models  
 
-As a lead into the Central Limit Theorem in \@ref(HYPTESTCLT) and mathematical sampling distributions, we will look at a class of hypothesis testing where the null hypothesis specifies a probability model. In some cases, we can get an exact answer, and in others, we will use simulation to get an empirical p-value. By the way, a **permutation test** is an **exact test**; by this we mean we are finding all possible permutations in the calculation of the p-value. However, since the complete enumeration of all permutations is often difficult, we approximate it with randomization, simulation. Thus, the p-value from a randomization test is an approximation of the exact (permutation) test.  
+As a lead into the Central Limit Theorem in \@ref(HYPTESTCLT) and mathematical sampling distributions, we will look at a class of hypothesis testing where the null hypothesis specifies a probability model. In some cases, we can get an exact answer, and in others, we will use simulation to get an empirical $p$-value. By the way, a **permutation test** is an **exact test**; by this we mean we are finding all possible permutations in the calculation of the $p$-value. However, since the complete enumeration of all permutations is often difficult, we approximate it with randomization, simulation. Thus, the $p$-value from a randomization test is an approximation of the exact (permutation) test.  
 
 Let's use three examples to illustrate the ideas of this chapter.
 
@@ -24,9 +24,8 @@ A Stanford University graduate student named Elizabeth Newton conducted an exper
 
 Newton's research question can be framed into two hypotheses:  
 
-    $H_0$: The tappers are correct, and, in general, 50\% of listeners are able to guess the tune. $p = 0.50$    
-
-    $H_A$: The tappers are incorrect, and either more than or less than 50\% of listeners are able to guess the tune. $p \neq 0.50$  
+$H_0$: The tappers are correct, and, in general, 50\% of listeners are able to guess the tune. $p = 0.50$    
+$H_A$: The tappers are incorrect, and either more than or less than 50\% of listeners are able to guess the tune. $p \neq 0.50$  
 
 
 >**Exercise**:
@@ -43,9 +42,9 @@ In Newton's study, only 42 (we changed the number to make this problem more inte
 
 Now before we use simulation, let's frame this as a probability model. The random variable $X$ is the number of correct guesses out of 120. If the observations are independent and the probability of success is constant (each listener has the same probability of guessing correctly), then we could use a binomial model. We can't assess the validity of these assumptions without knowing more about the experiment, the subjects, and the data collection. For educational purposes, we will assume they are valid. Thus, our test statistic is the number of successes in 120 trials. The observed value is 42.
 
-### Step 3 - Determine the p-value
+### Step 3 - Determine the $p$-value
 
-We now want to find the p-value as $2 \cdot \Prob(X \leq 42)$ where $X$ is a binomial random variable with $p = 0.5$ and $n = 120$. Again, the p-value is the probability of the observed data or something more extreme, given the null hypothesis is true. Here, the null hypothesis being true implies that the probability of success is 0.50. We will use `R` to get the one-sided p-value and then double it to get the two-sided p-value for the problem. We selected $\Prob(X \leq 42)$ because "more extreme" means the observed values and values further from what you would get if the null hypothesis were true, which is 60 for this problem.
+We now want to find the $p$-value as $2 \cdot \Prob(X \leq 42)$ where $X$ is a binomial random variable with $p = 0.5$ and $n = 120$. Again, the $p$-value is the probability of the observed data or something more extreme, given the null hypothesis is true. Here, the null hypothesis being true implies that the probability of success is 0.50. We will use `R` to get the one-sided $p$-value and then double it to get the two-sided $p$-value for the problem. We selected $\Prob(X \leq 42)$ because "more extreme" means the observed values and values further from what you would get if the null hypothesis were true, which is 60 for this problem.
 
 
 ```r
@@ -56,13 +55,13 @@ We now want to find the p-value as $2 \cdot \Prob(X \leq 42)$ where $X$ is a bin
 ## [1] 0.001299333
 ```
 
-That is a small p-value.
+That is a small $p$-value.
 
 ### Step 4 - Draw a conclusion 
 
 Based on our data, if the listeners were guessing correct 50\% of the time, there is less than a $0.0013$ probability that only 42 or less (or 78 or more) listeners would get correctly. This is the probability of what we observed or something more extreme, given the null hypothesis is true. This probability is much less than 0.05, so we reject the null hypothesis that the listeners are guessing correctly half of the time and conclude that the correct-guess rate rate is different from 50\%. 
 
-This decision region looks like the pmf in Figure \@ref(fig:dist201-fig). Any observed values inside the red boundary lines would be consistent with the null hypothesis. That is, any observed values inside the red boundary lines would result in a p-value larger than 0.05. Any values at the red line or more extreme would be in the rejection region, resulting in a p-value smaller than 0.05. We also plotted the observed value in black.
+This decision region looks like the pmf in Figure \@ref(fig:dist201-fig). Any observed values inside the red boundary lines would be consistent with the null hypothesis. That is, any observed values inside the red boundary lines would result in a $p$-value larger than 0.05. Any values at the red line or more extreme would be in the rejection region, resulting in a $p$-value smaller than 0.05. We also plotted the observed value in black.
 
 
 ```r
@@ -82,7 +81,7 @@ gf_dist("binom", size = 120, prob = 0.5, xlim = c(50, 115)) %>%
 
 ### Repeat using simulation  
 
-We will repeat the analysis using an empirical (observed from simulated data) p-value. Step 1, stating the null and alternative hypothesis, is the same.
+We will repeat the analysis using an empirical (observed from simulated data) $p$-value. Step 1, stating the null and alternative hypothesis, is the same.
 
 ### Step 2 - Compute a test statistic 
 
@@ -99,7 +98,7 @@ obs
 ```
 
 
-### Step 3 - Determine the p-value
+### Step 3 - Determine the $p$-value
 
 To simulate 120 games under the null hypothesis where $p = 0.50$, we could flip a coin 120 times. Each time the coin comes up heads, this could represent the listener guessing correctly, and tails would represent the listener guessing incorrectly. For example, we can simulate 5 tapper-listener pairs by flipping a coin 5 times:  
 
@@ -158,7 +157,7 @@ results %>%
 
 Notice in Figure \@ref(fig:dens202-fig) how the sampling distribution is centered at 0.5 and looks symmetrical.
 
-The p-value is found using the `prop1` function. In this problem, we really need the observed value to be included to prevent a p-value of zero.
+The $p$-value is found using the `prop1` function. In this problem, we really need the observed value to be included to prevent a $p$-value of zero.
 
 
 ```r
@@ -172,13 +171,13 @@ The p-value is found using the `prop1` function. In this problem, we really need
 
 ### Step 4 - Draw a conclusion 
 
-In these 10,000 simulations, we see very few results close to 0.35. Based on our data, if the listeners were guessing correct 50\% of the time, there is less than a $0.0012$ probability that only 35% or less or 65% or more listeners would get it right. This p-value is much less than 0.05, so we reject that the listeners are guessing correctly half of the time and conclude that the correct-guess rate is different from 50\%. 
+In these 10,000 simulations, we see very few results close to 0.35. Based on our data, if the listeners were guessing correct 50\% of the time, there is less than a $0.0012$ probability that only 35% or less or 65% or more listeners would get it right. This $p$-value is much less than 0.05, so we reject that the listeners are guessing correctly half of the time and conclude that the correct-guess rate is different from 50\%. 
 
 >**Exercise**:
-In the context of the experiment, what is the p-value for the hypothesis test?^[The p-value is the chance of seeing the observed data or something more in favor of the alternative hypothesis (something as or more extreme) given that guessing has a probability of success of 0.5. Since we didn't observe many simulations with even close to just 42 listeners correct, the p-value will be small, around 1-in-1000.]
+In the context of the experiment, what is the $p$-value for the hypothesis test?^[The $p$-value is the chance of seeing the observed data or something more in favor of the alternative hypothesis (something as or more extreme) given that guessing has a probability of success of 0.5. Since we didn't observe many simulations with even close to just 42 listeners correct, the $p$-value will be small, around 1-in-1000.]
 
 >**Exercise**:  
-Do the data provide statistically significant evidence against the null hypothesis? State an appropriate conclusion in the context of the research question.^[The p-value is less than 0.05, so we reject the null hypothesis. There is statistically significant evidence, and the data provide strong evidence that the chance a listener will guess the correct tune is different from 50\%.]
+Do the data provide statistically significant evidence against the null hypothesis? State an appropriate conclusion in the context of the research question.^[The $p$-value is less than 0.05, so we reject the null hypothesis. There is statistically significant evidence, and the data provide strong evidence that the chance a listener will guess the correct tune is different from 50\%.]
 
 ## Cardiopulmonary resuscitation (CPR)
 
@@ -235,9 +234,9 @@ tally(~group + outcome, data = thinner, margins = TRUE)
 
 ### Step 2 - Compute a test statistic. 
 
-In this example, we can think of the data as coming from a **hypergeometric** distribution. This is really a binomial from a finite population. We can calculate the p-value using this probability distribution. The random variable is the number of control patients that survived from a total population of 90 patients, where 50 are control patients and 40 are treatment patients, and where a total of 25 survived.
+In this example, we can think of the data as coming from a **hypergeometric** distribution. This is really a binomial from a finite population. We can calculate the $p$-value using this probability distribution. The random variable is the number of control patients that survived from a total population of 90 patients, where 50 are control patients and 40 are treatment patients, and where a total of 25 survived.
 
-### Step 3 - Determine the p-value.
+### Step 3 - Determine the $p$-value.
 
 In this case, we want to find $\Prob(X \leq 11)$ (the observed number of control patients that survived) and double it since it is a two-sided test.
 
@@ -284,7 +283,7 @@ Here we find $\Prob(X \geq 39)$ (the observed number of control patients that di
 ```
 
 
-`R` also has a built in function, `fisher.test()`, that we could use. This function calculates Fisher's exact test, where p-values are obtained using the hypergeometric distribution. 
+`R` also has a built in function, `fisher.test()`, that we could use. This function calculates Fisher's exact test, where $p$-values are obtained using the hypergeometric distribution. 
 
 
 ```r
@@ -305,7 +304,7 @@ fisher.test(tally(~group + outcome, data = thinner))
 ##   1.895136
 ```
 
-The p-value is slightly different since the **hypergeometric** distribution is not symmetric. For this reason, doubling the p-value from the single side result is not quite right. The algorithm in `fisher.test()` finds and adds all probabilities less than or equal to value of $\Prob(X = 11)$, see Figure \@ref(fig:dens203-fig). Using `fisher.test()` gives the correct p-value.
+The $p$-value is slightly different since the **hypergeometric** distribution is not symmetric. For this reason, doubling the $p$-value from the single side result is not quite right. The algorithm in `fisher.test()` finds and adds all probabilities less than or equal to value of $\Prob(X = 11)$, see Figure \@ref(fig:dens203-fig). Using `fisher.test()` gives the correct $p$-value.
 
 
 ```r
@@ -317,11 +316,11 @@ gf_dist("hyper", m = 50, n = 40, k = 25) %>%
 ```
 
 <div class="figure">
-<img src="20-Hypothesis-Testing-ProbDist_files/figure-html/dens203-fig-1.png" alt="Hypergeometric pmf showing the cutoff for p-value calculation." width="672" />
-<p class="caption">(\#fig:dens203-fig)Hypergeometric pmf showing the cutoff for p-value calculation.</p>
+<img src="20-Hypothesis-Testing-ProbDist_files/figure-html/dens203-fig-1.png" alt="Hypergeometric pmf showing the cutoff for $p$-value calculation." width="672" />
+<p class="caption">(\#fig:dens203-fig)Hypergeometric pmf showing the cutoff for $p$-value calculation.</p>
 </div>
 
-This is how `fisher.test()` is calculating the p-value:
+This is how `fisher.test()` is calculating the $p$-value:
 
 
 ```r
@@ -334,11 +333,11 @@ sum(temp[temp <= dhyper(11, 50, 40, 25)])
 ```
 
 
-The randomization test in the last chapter yielded a p-value of 0.257 so all tests are consistent.
+The randomization test in the last chapter yielded a $p$-value of 0.257 so all tests are consistent.
 
 ### Step 4 - Draw a conclusion 
 
-Since this p-value is larger than 0.05, we fail to reject the null hypothesis. That is, we do not find statistically significant evidence that the blood thinner has any influence on survival of patients who undergo CPR prior to arriving at the hospital. Once again, we can discuss the causal conclusion since this is an experiment.
+Since this $p$-value is larger than 0.05, we fail to reject the null hypothesis. That is, we do not find statistically significant evidence that the blood thinner has any influence on survival of patients who undergo CPR prior to arriving at the hospital. Once again, we can discuss the causal conclusion since this is an experiment.
 
 
 Notice that in these first two examples, we had a test of a single proportion and a test of two proportions. The single proportion test did not have an equivalent randomization test since there is not a second variable to shuffle. We were able to get answers since we found a probability model that we could use instead.  
@@ -422,7 +421,7 @@ obs
 ## [1] 34
 ```
 
-### Step 3 - Determine the p-value.
+### Step 3 - Determine the $p$-value.
 
 We don't know the distribution of our test statistic, so we will use simulation. We will simulate data from a multinomial distribution under the null hypothesis and calculate a new value of the test statistic. We will repeat this 10,000 times and this will give us an estimate of the sampling distribution.
 
@@ -509,7 +508,7 @@ results %>%
 <p class="caption">(\#fig:dens204-fig)Sampling distribution of the range.</p>
 </div>
 
-Notice how this distribution is skewed to the right. The p-value is 0.14. 
+Notice how this distribution is skewed to the right. The $p$-value is 0.14. 
 
 
 ```r
@@ -524,7 +523,7 @@ prop1(~(diff >= obs), data = results)
 
 ### Step 4 - Draw a conclusion 
 
-Since this p-value is larger than 0.05, we fail to reject the null hypothesis. That is, based on our data, we do not find statistically significant evidence against the claim that the number on the golf balls are equally likely. We can't say that the proportion of golf balls with each number differs from 0.25. 
+Since this $p$-value is larger than 0.05, we fail to reject the null hypothesis. That is, based on our data, we do not find statistically significant evidence against the claim that the number on the golf balls are equally likely. We can't say that the proportion of golf balls with each number differs from 0.25. 
 
 ## Repeat with a different test statistic
 
@@ -559,7 +558,7 @@ obs
 
 This will be our test statistic.  
 
-### Step 3 - Determine the p-value.
+### Step 3 - Determine the $p$-value.
 
 We will use similar code from above with our new metric. Now we sample 486 golf balls with the numbers 1 through 4 on them, and find our test statistic, the sum of the absolute deviations of each cell of the table from the expected count, 121.5. We repeat this process 10,000 times to get an estimate of the sampling distribution of our test statistic. 
 
@@ -599,18 +598,18 @@ prop1(~(sum >= obs), data = results)
 ## 0.01359864
 ```
 
-The p-value is 0.014. This value is much smaller than our previous result. The test statistic matters in our decision process as nothing about this problem has changed except the test statistic.
+The $p$-value is 0.014. This value is much smaller than our previous result. The test statistic matters in our decision process as nothing about this problem has changed except the test statistic.
 
 
 ### Step 4 - Draw a conclusion 
 
-Since this p-value is smaller than 0.05, we reject the null hypothesis. That is, based on our data, we find statistically significant evidence against the claim that the numbers on the golf balls are equally likely. We conclude that the numbers on the golf balls are not all equally likely, or that at least one is different. 
+Since this $p$-value is smaller than 0.05, we reject the null hypothesis. That is, based on our data, we find statistically significant evidence against the claim that the numbers on the golf balls are equally likely. We conclude that the numbers on the golf balls are not all equally likely, or that at least one is different. 
 
 ## Summary  
 
-In this chapter, we used probability models to help us make decisions from data. This chapter is different from the randomization section in that randomization had two variables (one of which we could shuffle) and a null hypothesis of no difference. In the case of a single proportion, we were able to use the binomial distribution to get an exact p-value under the null hypothesis. In the case of a $2 \times 2$ table, we were able to show that we could use the hypergeometric distribution to get an exact p-value under the assumptions of the model.
+In this chapter, we used probability models to help us make decisions from data. This chapter is different from the randomization section in that randomization had two variables (one of which we could shuffle) and a null hypothesis of no difference. In the case of a single proportion, we were able to use the binomial distribution to get an exact $p$-value under the null hypothesis. In the case of a $2 \times 2$ table, we were able to show that we could use the hypergeometric distribution to get an exact $p$-value under the assumptions of the model.
 
-We also found that the choice of test statistic has an impact on our decision. Even though we get valid p-values and the desired Type 1 error rate, if the information in the data is not used to its fullest, we will lose power. Note: **power** is the probability of correctly rejecting the null hypothesis when the alternative hypothesis is true.
+We also found that the choice of test statistic has an impact on our decision. Even though we get valid $p$-values and the desired Type 1 error rate, if the information in the data is not used to its fullest, we will lose power. Note: **power** is the probability of correctly rejecting the null hypothesis when the alternative hypothesis is true.
 
 In the next chapter, we will learn about mathematical solutions to finding the sampling distribution. The key difference in all these methods is the selection of the test statistic and the assumptions made to derive a sampling distribution.
 
@@ -638,7 +637,7 @@ a. What are the hypotheses?
 
 b. Choose a cell, and calculate the observed statistic.  
 
-c. Find the p-value using the hypergeometric distribution.  
+c. Find the $p$-value using the hypergeometric distribution.  
 
 d. Plot the the sampling distribution.  
 
@@ -655,7 +654,7 @@ a. State the null and alternative hypotheses.
 
 b. Compute a test statistic.  
 
-c. Determine the p-value.  
+c. Determine the $p$-value.  
 
 d. Draw a conclusion.  
 
@@ -674,7 +673,7 @@ d. Compute a test statistic. We are going to help you with this part. We cannot 
 
     Let's get clever. If the distribution of the sample is symmetric (this is an assumption but look at the boxplot and summary statistics to determine if you are comfortable with it), then under the null hypothesis, the observed values should be equally likely to either be greater or less than 98.6. Thus, our test statistic is the number of cases that have a positive difference between 98.6 and the observed value. This will be a binomial distribution with a probability of success (having a positive difference) of 0.5. You must also account for the possibility that there are observations of 98.6 in the data.
 
-e. Determine the p-value.  
+e. Determine the $p$-value.  
 
 f. Draw a conclusion.  
 

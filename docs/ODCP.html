@@ -10,15 +10,15 @@
 <meta name="author" content="Ken Horton">
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
-<meta name="description" content="3.1 Objectives Define and use properly in context all new terminology. From a description of a research project, at a minimum be able to describe the population of interest, the generalizability...">
+<meta name="description" content="3.1 Objectives Define and use properly in context all new terminology: population, sample, anecdotal evidence, bias, simple random sample, systematic sample, non-response bias, representative...">
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Chapter 3 Overview of Data Collection Principles | Computational Probability and Statistics">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Master.png">
-<meta property="og:description" content="3.1 Objectives Define and use properly in context all new terminology. From a description of a research project, at a minimum be able to describe the population of interest, the generalizability...">
+<meta property="og:description" content="3.1 Objectives Define and use properly in context all new terminology: population, sample, anecdotal evidence, bias, simple random sample, systematic sample, non-response bias, representative...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 3 Overview of Data Collection Principles | Computational Probability and Statistics">
-<meta name="twitter:description" content="3.1 Objectives Define and use properly in context all new terminology. From a description of a research project, at a minimum be able to describe the population of interest, the generalizability...">
+<meta name="twitter:description" content="3.1 Objectives Define and use properly in context all new terminology: population, sample, anecdotal evidence, bias, simple random sample, systematic sample, non-response bias, representative...">
 <meta name="twitter:image" content="/figures/Cover_Master.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -73,15 +73,16 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Preface</a></li>
+<li><a class="" href="objectives.html">Objectives</a></li>
 <li class="book-part">Descriptive Statistical Modeling</li>
-<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
+<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Data Case Study</a></li>
 <li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
 <li><a class="active" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
 <li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
 <li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
 <li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
 <li class="book-part">Probability Modeling</li>
-<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
+<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Probability Case Study</a></li>
 <li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
 <li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
 <li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
@@ -92,9 +93,9 @@
 <li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
 <li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
 <li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
-<li class="book-part">Statistical Modeling</li>
-<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
-<li><a class="" href="HYPOTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></li>
+<li class="book-part">Inferential Statistical Modeling</li>
+<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Hypothesis Testing Case Study</a></li>
+<li><a class="" href="HYPTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></li>
 <li><a class="" href="HYPTESTDIST.html"><span class="header-section-number">20</span> Hypothesis Testing with Known Distributions</a></li>
 <li><a class="" href="HYPTESTCLT.html"><span class="header-section-number">21</span> Hypothesis Testing with the Central Limit Theorem</a></li>
 <li><a class="" href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></li>
@@ -102,7 +103,7 @@
 <li><a class="" href="CI.html"><span class="header-section-number">24</span> Confidence Intervals</a></li>
 <li><a class="" href="BOOT.html"><span class="header-section-number">25</span> Bootstrap</a></li>
 <li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">26</span> Case Study</a></li>
+<li><a class="" href="CS4.html"><span class="header-section-number">26</span> Linear Regression Case Study</a></li>
 <li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
 <li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
 <li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
@@ -121,21 +122,19 @@
 <h1>
 <span class="header-section-number">3</span> Overview of Data Collection Principles<a class="anchor" aria-label="anchor" href="#ODCP"><i class="fas fa-link"></i></a>
 </h1>
-<div id="objectives-2" class="section level2" number="3.1">
+<div id="objectives-3" class="section level2" number="3.1">
 <h2>
-<span class="header-section-number">3.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-3"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li>Define and use properly in context all new terminology.<br>
-</li>
-<li>From a description of a research project, at a minimum be able to describe the population of interest, the generalizability of the study, the response and predictor variables, differentiate whether it is observational or experimental, and determine the type of sample.<br>
-</li>
-<li>Explain in the context of a problem how to conduct a sample for the different types of sampling procedures.</li>
+<li><p>Define and use properly in context all new terminology: <em>population</em>, <em>sample</em>, <em>anecdotal evidence</em>, <em>bias</em>, <em>simple random sample</em>, <em>systematic sample</em>, <em>non-response bias</em>, <em>representative sample</em>, <em>convenience sample</em>, <em>explanatory variable</em>, <em>response variable</em>, <em>observational study</em>, <em>cohort</em>, <em>experiment</em>, <em>randomized experiment</em>, <em>placebo</em>.</p></li>
+<li><p>From a description of a research project, be able to describe the population of interest, the generalizability of the study, the explanatory and response variables, whether it is observational or experimental, and determine the type of sample.</p></li>
+<li><p>In the context of a problem, explain how to conduct a sample for the different types of sampling procedures.</p></li>
 </ol>
 </div>
-<div id="overview-of-data-collection-principles" class="section level2" number="3.2">
+<div id="overview-of-data-collection-principles-1" class="section level2" number="3.2">
 <h2>
-<span class="header-section-number">3.2</span> Overview of data collection principles<a class="anchor" aria-label="anchor" href="#overview-of-data-collection-principles"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.2</span> Overview of data collection principles<a class="anchor" aria-label="anchor" href="#overview-of-data-collection-principles-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>The first step in conducting research is to identify topics or questions that are to be investigated. A clearly laid out research question is helpful in identifying what subjects or cases should be studied and what variables are important. It is also important to consider <em>how</em> data are collected so that they are reliable and help achieve the research goals.</p>
 <div id="populations-and-samples" class="section level3" number="3.2.1">
@@ -245,7 +244,7 @@ Association does not imply causation. Labeling variables as <em>explanatory</em>
 <p>Researchers perform an <strong>observational study</strong> when they collect data in a way that does not directly interfere with how the data arise. For instance, researchers may collect information via surveys, review medical or company records, or follow a <strong>cohort</strong> of many similar individuals to study why certain diseases might develop. In each of these situations, researchers merely observe what happens. In general, observational studies can provide evidence of a naturally occurring association between variables, but by themselves, they cannot show a causal connection.</p>
 <p>When researchers want to investigate the possibility of a causal connection, they conduct an <strong>experiment</strong>. Usually there will be both an explanatory and a response variable. For instance, we may suspect administering a drug will reduce mortality in heart attack patients over the following year. To check if there really is a causal connection between the explanatory variable and the response, researchers will collect a sample of individuals and split them into groups. The individuals in each group are <em>assigned</em> a treatment. When individuals are randomly assigned to a treatment group, the experiment is called a <strong>randomized experiment</strong>. For example, each heart attack patient in the drug trial could be randomly assigned, perhaps by flipping a coin, into one of two groups: the first group receives a <strong>placebo</strong> (fake treatment) and the second group receives the drug. The case study at the beginning of the semester is another example of an experiment, though that study did not employ a placebo. Math 359 is a course on the design and analysis of experimental data, DOE. In the Air Force these types of experiments are an important part of test and evaluation. Many Air Force analysts are expert practitioners of DOE. In this course we will minimize our discussion of DOE.</p>
 <blockquote>
-<p>Association <span class="math inline">\(\neq\)</span> Causation<br>
+<p><strong>Association <span class="math inline">\(\neq\)</span> Causation</strong><br>
 Again, association does not imply causation. In a data analysis, association does not imply causation, and causation can only be inferred from a randomized experiment. Although, a hot field is the analysis of causal relationships in observational data. This is important because consider cigarette smoking, how do we know it causes lung cancer? We only have observational data and clearly cannot do an experiment. We think analysts will be charged in the near future with using causal reasoning on observational data.</p>
 </blockquote>
 </div>
@@ -300,9 +299,9 @@ between 1989 and 1993”&lt;/a&gt;. In: Epidemiology 11.5 (2000), pp. 502–511
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#ODCP"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
-<li><a class="nav-link" href="#objectives-2"><span class="header-section-number">3.1</span> Objectives</a></li>
+<li><a class="nav-link" href="#objectives-3"><span class="header-section-number">3.1</span> Objectives</a></li>
 <li>
-<a class="nav-link" href="#overview-of-data-collection-principles"><span class="header-section-number">3.2</span> Overview of data collection principles</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#overview-of-data-collection-principles-1"><span class="header-section-number">3.2</span> Overview of data collection principles</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#populations-and-samples"><span class="header-section-number">3.2.1</span> Populations and samples</a></li>
 <li><a class="nav-link" href="#anecdotal-evidence"><span class="header-section-number">3.2.2</span> Anecdotal evidence</a></li>
 <li><a class="nav-link" href="#sampling-from-a-population"><span class="header-section-number">3.2.3</span> Sampling from a population</a></li>
@@ -328,7 +327,7 @@ between 1989 and 1993”&lt;/a&gt;. In: Epidemiology 11.5 (2000), pp. 502–511
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-06-30.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

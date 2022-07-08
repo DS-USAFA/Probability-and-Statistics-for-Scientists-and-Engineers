@@ -10,15 +10,15 @@
 <meta name="author" content="Ken Horton">
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
-<meta name="description" content="6.1 Objectives Define and use properly in context all new terminology. Generate in R tables for categorical variable(s). Generate in R appropriate graphical summaries of categorical and numerical...">
+<meta name="description" content="6.1 Objectives Define and use properly in context all new terminology: factor, contingency table, marginal counts, joint counts, frequency table, relative frequency table, bar plot, conditioning,...">
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Chapter 6 Categorical Data | Computational Probability and Statistics">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Master.png">
-<meta property="og:description" content="6.1 Objectives Define and use properly in context all new terminology. Generate in R tables for categorical variable(s). Generate in R appropriate graphical summaries of categorical and numerical...">
+<meta property="og:description" content="6.1 Objectives Define and use properly in context all new terminology: factor, contingency table, marginal counts, joint counts, frequency table, relative frequency table, bar plot, conditioning,...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 6 Categorical Data | Computational Probability and Statistics">
-<meta name="twitter:description" content="6.1 Objectives Define and use properly in context all new terminology. Generate in R tables for categorical variable(s). Generate in R appropriate graphical summaries of categorical and numerical...">
+<meta name="twitter:description" content="6.1 Objectives Define and use properly in context all new terminology: factor, contingency table, marginal counts, joint counts, frequency table, relative frequency table, bar plot, conditioning,...">
 <meta name="twitter:image" content="/figures/Cover_Master.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -73,15 +73,16 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Preface</a></li>
+<li><a class="" href="objectives.html">Objectives</a></li>
 <li class="book-part">Descriptive Statistical Modeling</li>
-<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
+<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Data Case Study</a></li>
 <li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
 <li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
 <li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
 <li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
 <li><a class="active" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
 <li class="book-part">Probability Modeling</li>
-<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
+<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Probability Case Study</a></li>
 <li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
 <li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
 <li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
@@ -92,9 +93,9 @@
 <li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
 <li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
 <li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
-<li class="book-part">Statistical Modeling</li>
-<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
-<li><a class="" href="HYPOTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></li>
+<li class="book-part">Inferential Statistical Modeling</li>
+<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Hypothesis Testing Case Study</a></li>
+<li><a class="" href="HYPTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></li>
 <li><a class="" href="HYPTESTDIST.html"><span class="header-section-number">20</span> Hypothesis Testing with Known Distributions</a></li>
 <li><a class="" href="HYPTESTCLT.html"><span class="header-section-number">21</span> Hypothesis Testing with the Central Limit Theorem</a></li>
 <li><a class="" href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></li>
@@ -102,7 +103,7 @@
 <li><a class="" href="CI.html"><span class="header-section-number">24</span> Confidence Intervals</a></li>
 <li><a class="" href="BOOT.html"><span class="header-section-number">25</span> Bootstrap</a></li>
 <li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">26</span> Case Study</a></li>
+<li><a class="" href="CS4.html"><span class="header-section-number">26</span> Linear Regression Case Study</a></li>
 <li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
 <li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
 <li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
@@ -121,22 +122,20 @@
 <h1>
 <span class="header-section-number">6</span> Categorical Data<a class="anchor" aria-label="anchor" href="#CATDATA"><i class="fas fa-link"></i></a>
 </h1>
-<div id="objectives-5" class="section level2" number="6.1">
+<div id="objectives-6" class="section level2" number="6.1">
 <h2>
-<span class="header-section-number">6.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-6"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li>Define and use properly in context all new terminology.</li>
-<li>Generate in <code>R</code> tables for categorical variable(s).<br>
-</li>
-<li>Generate in <code>R</code> appropriate graphical summaries of categorical and numerical variables.<br>
-</li>
-<li>Be able to interpret and explain output both graphically and numerically.</li>
+<li><p>Define and use properly in context all new terminology: <em>factor</em>, <em>contingency table</em>, <em>marginal counts</em>, <em>joint counts</em>, <em>frequency table</em>, <em>relative frequency table</em>, <em>bar plot</em>, <em>conditioning</em>, <em>segmented bar plot</em>, <em>mosaic plot</em>, <em>pie chart</em>, <em>side-by-side box plot</em>, <em>density plot</em>.</p></li>
+<li><p>In <code>R</code>, generate tables for categorical variable(s).</p></li>
+<li><p>In <code>R</code>, generate appropriate graphical summaries of categorical and numerical variables.</p></li>
+<li><p>Interpret and explain output both graphically and numerically.</p></li>
 </ol>
 </div>
-<div id="categorical-data" class="section level2" number="6.2">
+<div id="categorical-data-1" class="section level2" number="6.2">
 <h2>
-<span class="header-section-number">6.2</span> Categorical data<a class="anchor" aria-label="anchor" href="#categorical-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.2</span> Categorical data<a class="anchor" aria-label="anchor" href="#categorical-data-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>Like numerical data, categorical data can also be organized and analyzed. This section introduces tables and other basic tools for categorical data. Remember at the beginning of this block of material, our case study had categorical data so we have seen some of the ideas in this lesson.</p>
 <p>The <code>email50</code> data set represents a sample from a larger email data set called <code>email</code>. This larger data set contains information on 3,921 emails. In this section we will use the email data set to examine whether the presence of numbers, small or large, in an email provides any useful value in classifying email as spam or not spam.</p>
@@ -669,14 +668,14 @@ What components of each plot in Figures 8 and 9 do you find most useful?<a class
 
   <div class="chapter-nav">
 <div class="prev"><a href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></div>
-<div class="next"><a href="CS2.html"><span class="header-section-number">7</span> Case Study</a></div>
+<div class="next"><a href="CS2.html"><span class="header-section-number">7</span> Probability Case Study</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#CATDATA"><span class="header-section-number">6</span> Categorical Data</a></li>
-<li><a class="nav-link" href="#objectives-5"><span class="header-section-number">6.1</span> Objectives</a></li>
+<li><a class="nav-link" href="#objectives-6"><span class="header-section-number">6.1</span> Objectives</a></li>
 <li>
-<a class="nav-link" href="#categorical-data"><span class="header-section-number">6.2</span> Categorical data</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#categorical-data-1"><span class="header-section-number">6.2</span> Categorical data</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#contingency-tables-and-bar-plots"><span class="header-section-number">6.2.1</span> Contingency tables and bar plots</a></li>
 <li><a class="nav-link" href="#column-proportions"><span class="header-section-number">6.2.2</span> Column proportions</a></li>
 <li><a class="nav-link" href="#segmented-bar-and-mosaic-plots"><span class="header-section-number">6.2.3</span> Segmented bar and mosaic plots</a></li>
@@ -702,7 +701,7 @@ What components of each plot in Figures 8 and 9 do you find most useful?<a class
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-06-30.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

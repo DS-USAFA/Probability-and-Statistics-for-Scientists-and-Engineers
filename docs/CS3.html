@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 18 Case Study | Computational Probability and Statistics</title>
+<title>Chapter 18 Hypothesis Testing Case Study | Computational Probability and Statistics</title>
 <meta name="author" content="Matthew Davis">
 <meta name="author" content="Brianna Hitt">
 <meta name="author" content="Ken Horton">
@@ -12,12 +12,12 @@
 <meta name="author" content="Bradley Warner">
 <meta name="description" content="18.1 Objectives Define and use properly in context all new terminology: point estimate, null hypothesis, alternative hypothesis, hypothesis test, randomization, permutation test, test statistic,...">
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
-<meta property="og:title" content="Chapter 18 Case Study | Computational Probability and Statistics">
+<meta property="og:title" content="Chapter 18 Hypothesis Testing Case Study | Computational Probability and Statistics">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Master.png">
 <meta property="og:description" content="18.1 Objectives Define and use properly in context all new terminology: point estimate, null hypothesis, alternative hypothesis, hypothesis test, randomization, permutation test, test statistic,...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 18 Case Study | Computational Probability and Statistics">
+<meta name="twitter:title" content="Chapter 18 Hypothesis Testing Case Study | Computational Probability and Statistics">
 <meta name="twitter:description" content="18.1 Objectives Define and use properly in context all new terminology: point estimate, null hypothesis, alternative hypothesis, hypothesis test, randomization, permutation test, test statistic,...">
 <meta name="twitter:image" content="/figures/Cover_Master.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -73,15 +73,16 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Preface</a></li>
+<li><a class="" href="objectives.html">Objectives</a></li>
 <li class="book-part">Descriptive Statistical Modeling</li>
-<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
+<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Data Case Study</a></li>
 <li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
 <li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
 <li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
 <li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
 <li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
 <li class="book-part">Probability Modeling</li>
-<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
+<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Probability Case Study</a></li>
 <li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
 <li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
 <li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
@@ -92,9 +93,9 @@
 <li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
 <li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
 <li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
-<li class="book-part">Statistical Modeling</li>
-<li><a class="active" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
-<li><a class="" href="HYPOTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></li>
+<li class="book-part">Inferential Statistical Modeling</li>
+<li><a class="active" href="CS3.html"><span class="header-section-number">18</span> Hypothesis Testing Case Study</a></li>
+<li><a class="" href="HYPTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></li>
 <li><a class="" href="HYPTESTDIST.html"><span class="header-section-number">20</span> Hypothesis Testing with Known Distributions</a></li>
 <li><a class="" href="HYPTESTCLT.html"><span class="header-section-number">21</span> Hypothesis Testing with the Central Limit Theorem</a></li>
 <li><a class="" href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></li>
@@ -102,7 +103,7 @@
 <li><a class="" href="CI.html"><span class="header-section-number">24</span> Confidence Intervals</a></li>
 <li><a class="" href="BOOT.html"><span class="header-section-number">25</span> Bootstrap</a></li>
 <li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">26</span> Case Study</a></li>
+<li><a class="" href="CS4.html"><span class="header-section-number">26</span> Linear Regression Case Study</a></li>
 <li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
 <li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
 <li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
@@ -119,14 +120,14 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="CS3" class="section level1" number="18">
 <h1>
-<span class="header-section-number">18</span> Case Study<a class="anchor" aria-label="anchor" href="#CS3"><i class="fas fa-link"></i></a>
+<span class="header-section-number">18</span> Hypothesis Testing Case Study<a class="anchor" aria-label="anchor" href="#CS3"><i class="fas fa-link"></i></a>
 </h1>
-<div id="objectives-17" class="section level2" number="18.1">
+<div id="objectives-18" class="section level2" number="18.1">
 <h2>
-<span class="header-section-number">18.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-17"><i class="fas fa-link"></i></a>
+<span class="header-section-number">18.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-18"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li><p>Define and use properly in context all new terminology: <em>point estimate</em>, <em>null hypothesis</em>, <em>alternative hypothesis</em>, <em>hypothesis test</em>, <em>randomization</em>, <em>permutation test</em>, <em>test statistic</em>, and <em>p-value</em>.</p></li>
+<li><p>Define and use properly in context all new terminology: <em>point estimate</em>, <em>null hypothesis</em>, <em>alternative hypothesis</em>, <em>hypothesis test</em>, <em>randomization</em>, <em>permutation test</em>, <em>test statistic</em>, and <em><span class="math inline">\(p\)</span>-value</em>.</p></li>
 <li><p>Conduct a hypothesis test using a permutation test to include all 4 steps.</p></li>
 </ol>
 </div>
@@ -308,8 +309,8 @@ How often would you observe a difference as extreme as -29.2% (-0.292) according
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>p_value <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">diffprop</span> <span class="op">&lt;=</span> <span class="va">obs</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##   p_value
 ## 1  0.0257</code></pre>
-<p>In our simulations, only 2.6% of the simulated test statistics were less than or equal to the observed test statistic, as or more extreme relative to the null hypothesis. Such a low probability indicates that observing such a large difference in proportions from chance alone is rare. This probability is known as a <strong>p-value</strong>. The p-value is a conditional probability, the probability of the observed value or more extreme given that the null hypothesis is true.</p>
-<p>We could have also found the exact p-value using the hypergeometric distribution. We have 13 <em>not_promoted</em> positions, so we could have anywhere between 0 and 13 females not promoted. We observed 10 females not promoted. Thus, the exact p-value from the hypergeometric distribution is the probability of 10 or more females not promoted (as or more extreme than the observed) when we select 13 people from a pool of 24 males and 24 females, and the selection is done without replacement.</p>
+<p>In our simulations, only 2.6% of the simulated test statistics were less than or equal to the observed test statistic, as or more extreme relative to the null hypothesis. Such a low probability indicates that observing such a large difference in proportions from chance alone is rare. This probability is known as a <strong><span class="math inline">\(p\)</span>-value</strong>. The <span class="math inline">\(p\)</span>-value is a conditional probability, the probability of the observed value or more extreme given that the null hypothesis is true.</p>
+<p>We could have also found the exact <span class="math inline">\(p\)</span>-value using the hypergeometric distribution. We have 13 <em>not_promoted</em> positions, so we could have anywhere between 0 and 13 females not promoted. We observed 10 females not promoted. Thus, the exact <span class="math inline">\(p\)</span>-value from the hypergeometric distribution is the probability of 10 or more females not promoted (as or more extreme than the observed) when we select 13 people from a pool of 24 males and 24 females, and the selection is done without replacement.</p>
 <div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">phyper</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">24</span>, <span class="fl">24</span>, <span class="fl">13</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.02449571</code></pre>
@@ -325,7 +326,7 @@ How often would you observe a difference as extreme as -29.2% (-0.292) according
 </li>
 <li>Compute a test statistic.<br>
 </li>
-<li>Determine the p-value.<br>
+<li>Determine the <span class="math inline">\(p\)</span>-value.<br>
 </li>
 <li>Draw a conclusion.</li>
 </ol>
@@ -393,14 +394,14 @@ There were 48 files and 48 supervisors. A total of 35 files were recommended for
 <li><p>The paragraph below describes the set up for such approach, if we were to do it without using statistical software. Fill in the blanks with a number or phrase, whichever is appropriate.</p></li>
 </ol>
 <blockquote>
-<p>We write <em>alive</em> on _______ cards representing patients who were alive at the end of the study, and <em>dead</em> on _______ cards representing patients who were not. Then, we shuffle these cards and split them into two groups: one group of size _______ representing treatment, and another group of size _______ representing control. We calculate the difference between the proportion of cards in the control and treatment groups (control - treatment), this is just so we have positive observed value, and record this value. We repeat this many times to build a distribution centered at _______. Lastly, we calculate the fraction of simulations where the simulated differences in proportions are _______ or _______. If this fraction of simulations, the empirical p-value, is low, we conclude that it is unlikely to have observed such an outcome by chance and that the null hypothesis should be rejected in favor of the alternative.</p>
+<p>We write <em>alive</em> on _______ cards representing patients who were alive at the end of the study, and <em>dead</em> on _______ cards representing patients who were not. Then, we shuffle these cards and split them into two groups: one group of size _______ representing treatment, and another group of size _______ representing control. We calculate the difference between the proportion of cards in the control and treatment groups (control - treatment), this is just so we have positive observed value, and record this value. We repeat this many times to build a distribution centered at _______. Lastly, we calculate the fraction of simulations where the simulated differences in proportions are _______ or _______. If this fraction of simulations, the empirical <span class="math inline">\(p\)</span>-value, is low, we conclude that it is unlikely to have observed such an outcome by chance and that the null hypothesis should be rejected in favor of the alternative.</p>
 </blockquote>
 <p>Next we will perform the simulation and use results to decide the effectiveness of the transplant program.</p>
 <ol start="4" style="list-style-type: lower-alpha">
 <li><p>Find observed value of the test statistic, which we decided to use the difference in proportions.</p></li>
 <li><p>Simulate 1000 values of the test statistic by using <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle()</a></code> on the variable <code>group</code>.</p></li>
 <li><p>Plot distribution of results. Include a vertical line for the observed value. Clean up the plot as if you were presenting to a decision maker.</p></li>
-<li><p>Find p-value. Think carefully about what more extreme would mean.</p></li>
+<li><p>Find <span class="math inline">\(p\)</span>-value. Think carefully about what more extreme would mean.</p></li>
 <li><p>Decide if the treatment is effective.</p></li>
 </ol>
 </div>
@@ -408,12 +409,12 @@ There were 48 files and 48 supervisors. A total of 35 files were recommended for
 
   <div class="chapter-nav">
 <div class="prev"><a href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></div>
-<div class="next"><a href="HYPOTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></div>
+<div class="next"><a href="HYPTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#CS3"><span class="header-section-number">18</span> Case Study</a></li>
-<li><a class="nav-link" href="#objectives-17"><span class="header-section-number">18.1</span> Objectives</a></li>
+<li><a class="nav-link" href="#CS3"><span class="header-section-number">18</span> Hypothesis Testing Case Study</a></li>
+<li><a class="nav-link" href="#objectives-18"><span class="header-section-number">18.1</span> Objectives</a></li>
 <li><a class="nav-link" href="#introduction"><span class="header-section-number">18.2</span> Introduction</a></li>
 <li><a class="nav-link" href="#foundation-for-inference"><span class="header-section-number">18.3</span> Foundation for inference</a></li>
 <li>
@@ -441,7 +442,7 @@ There were 48 files and 48 supervisors. A total of 35 files were recommended for
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-06-30.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

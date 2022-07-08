@@ -73,15 +73,16 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Preface</a></li>
+<li><a class="" href="objectives.html">Objectives</a></li>
 <li class="book-part">Descriptive Statistical Modeling</li>
-<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
+<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Data Case Study</a></li>
 <li><a class="" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
 <li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
 <li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
 <li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
 <li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
 <li class="book-part">Probability Modeling</li>
-<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
+<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Probability Case Study</a></li>
 <li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
 <li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
 <li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
@@ -92,9 +93,9 @@
 <li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
 <li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
 <li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
-<li class="book-part">Statistical Modeling</li>
-<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
-<li><a class="" href="HYPOTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></li>
+<li class="book-part">Inferential Statistical Modeling</li>
+<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Hypothesis Testing Case Study</a></li>
+<li><a class="" href="HYPTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></li>
 <li><a class="" href="HYPTESTDIST.html"><span class="header-section-number">20</span> Hypothesis Testing with Known Distributions</a></li>
 <li><a class="" href="HYPTESTCLT.html"><span class="header-section-number">21</span> Hypothesis Testing with the Central Limit Theorem</a></li>
 <li><a class="" href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></li>
@@ -102,7 +103,7 @@
 <li><a class="" href="CI.html"><span class="header-section-number">24</span> Confidence Intervals</a></li>
 <li><a class="" href="BOOT.html"><span class="header-section-number">25</span> Bootstrap</a></li>
 <li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">26</span> Case Study</a></li>
+<li><a class="" href="CS4.html"><span class="header-section-number">26</span> Linear Regression Case Study</a></li>
 <li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
 <li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
 <li><a class="active" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
@@ -121,9 +122,9 @@
 <h1>
 <span class="header-section-number">29</span> Regression Diagnostics<a class="anchor" aria-label="anchor" href="#LRDIAG"><i class="fas fa-link"></i></a>
 </h1>
-<div id="objectives-28" class="section level2" number="29.1">
+<div id="objectives-29" class="section level2" number="29.1">
 <h2>
-<span class="header-section-number">29.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-28"><i class="fas fa-link"></i></a>
+<span class="header-section-number">29.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-29"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
 <li>Obtain and interpret <span class="math inline">\(R\)</span>-squared and the <span class="math inline">\(F\)</span>-statistic.<br>
@@ -133,9 +134,9 @@
 <li>Identify and explain outliers and leverage points.</li>
 </ol>
 </div>
-<div id="introduction-4" class="section level2" number="29.2">
+<div id="introduction-5" class="section level2" number="29.2">
 <h2>
-<span class="header-section-number">29.2</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">29.2</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction-5"><i class="fas fa-link"></i></a>
 </h2>
 <p>Over the last two chapters, we have detailed simple linear regression. First, we described the model and its underlying assumptions. Next, we obtained parameter estimates using the method of least squares. Finally, we obtained the distributions of parameter estimates and used that information to conduct inference on parameters and predictions. Implementation was relatively straightforward; once we obtained the expressions of interest, we used <code>R</code> to find parameters estimates, interval estimates, etc. In this chapter we will explore more tools to assess the quality of our simple linear regression model. Some of these tools will generalize when we move to multiple predictors.</p>
 </div>
@@ -145,12 +146,12 @@
 </h2>
 <p>There is more that we can do with the output from the <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> function than just estimating parameters and predicting responses. There are metrics that allow us to assess the fit of our model. To explore some of these ideas let’s use the Starbucks example again.</p>
 <p>First load the data:</p>
-<div class="sourceCode" id="cb867"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb908"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starbucks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/starbucks.csv"</span><span class="op">)</span></code></pre></div>
 <p>Next build and summarize the model:</p>
-<div class="sourceCode" id="cb868"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb909"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">star_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">calories</span><span class="op">~</span><span class="va">carb</span>,data<span class="op">=</span><span class="va">starbucks</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb869"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb910"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -177,13 +178,13 @@
 </h3>
 <p>The “residual standard error” is the estimate of <span class="math inline">\(\sigma\)</span>, the unexplained variance in our response. In our example, this turned out to be 78.26. If the assumptions of normality and constant variance are valid, we would expect the majority, 68%, of the observed values at a given input to be within <span class="math inline">\(\pm 78.26\)</span> of the mean value.</p>
 <p>If we want to extract just this value from the model object, first recognize that <code>summary(my.model)</code> is a list with several components:</p>
-<div class="sourceCode" id="cb871"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb912"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] "call"          "terms"         "residuals"     "coefficients" 
 ##  [5] "aliased"       "sigma"         "df"            "r.squared"    
 ##  [9] "adj.r.squared" "fstatistic"    "cov.unscaled"</code></pre>
 <p>As expected, the <code>sigma</code> component shows the estimated value of <span class="math inline">\(\sigma\)</span>.</p>
-<div class="sourceCode" id="cb873"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb914"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span><span class="op">$</span><span class="va">sigma</span></code></pre></div>
 <pre><code>## [1] 78.25956</code></pre>
 <p>Again, this value is smaller the closer the points are to the regression fit. It is a measure of unexplained variance in the response variable.</p>
@@ -196,18 +197,18 @@
 <p><span class="math display">\[
 \underbrace{\sum_{i=1}^n (y_i-\bar{y})^2}_{SS_{\text{Total}}} = \underbrace{\sum_{i=1}^n (\hat{y}_i-\bar y)^2}_{SS_{\text{Regression}}}+\underbrace{\sum_{i=1}^n(y_i-\hat{y}_i)^2}_{SS_{\text{Error}}}
 \]</span></p>
-<p>In other words, the overall variation in <span class="math inline">\(y\)</span> can be separated into two parts: variation due to the linear relationship between <span class="math inline">\(y\)</span> and the predictor variable(s), called <span class="math inline">\(SS_\text{Regression}\)</span>, and residual variation (due to random scatter or perhaps a poorly chosen model), called <span class="math inline">\(SS_\text{Error}\)</span>. Note: <span class="math inline">\(SS_\text{Error}\)</span> is used to estimate residual standard error in the previous section.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(\hat{\sigma}=\sqrt\frac{\sum_{i=1}^n(y_i-\hat{y}_i)^2}{\text{degrees of freedom}}\)&lt;/span&gt;&lt;/p&gt;'><sup>96</sup></a></p>
+<p>In other words, the overall variation in <span class="math inline">\(y\)</span> can be separated into two parts: variation due to the linear relationship between <span class="math inline">\(y\)</span> and the predictor variable(s), called <span class="math inline">\(SS_\text{Regression}\)</span>, and residual variation (due to random scatter or perhaps a poorly chosen model), called <span class="math inline">\(SS_\text{Error}\)</span>. Note: <span class="math inline">\(SS_\text{Error}\)</span> is used to estimate residual standard error in the previous section.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(\hat{\sigma}=\sqrt\frac{\sum_{i=1}^n(y_i-\hat{y}_i)^2}{\text{degrees of freedom}}\)&lt;/span&gt;&lt;/p&gt;'><sup>100</sup></a></p>
 <p><span class="math inline">\(R\)</span>-squared simply measures the ratio between <span class="math inline">\(SS_\text{Regression}\)</span> and <span class="math inline">\(SS_\text{Total}\)</span>. A common definition of <span class="math inline">\(R\)</span>-squared is the proportion of overall variation in the response that is explained by the linear model. <span class="math inline">\(R\)</span>-squared can be between 0 and 1. Values of <span class="math inline">\(R\)</span>-squared close to 1 indicate a tight fit (little scatter) around the estimated regression line. Value close to 0 indicate the opposite (large remaining scatter).</p>
 <p>We can obtain <span class="math inline">\(R\)</span>-squared “by hand” or by using the output of the <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> function:</p>
-<div class="sourceCode" id="cb875"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb916"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span></code></pre></div>
 <pre><code>## [1] 0.4556237</code></pre>
 <p>For simple linear regression, <span class="math inline">\(R\)</span>-squared is related to <strong>correlation</strong>. We can compute the correlation using a formula, just as we did with the sample mean and standard deviation. However, this formula is rather complex,<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Formally, we can compute the correlation for observations &lt;span class="math inline"&gt;\((x_1, y_1)\)&lt;/span&gt;, &lt;span class="math inline"&gt;\((x_2, y_2)\)&lt;/span&gt;, …, &lt;span class="math inline"&gt;\((x_n, y_n)\)&lt;/span&gt; using the formula
 &lt;span class="math display"&gt;\[
 R = \frac{1}{n-1}\sum_{i=1}^{n} \frac{x_i-\bar{x}}{s_x}\frac{y_i-\bar{y}}{s_y}
 \]&lt;/span&gt;
-where &lt;span class="math inline"&gt;\(\bar{x}\)&lt;/span&gt;, &lt;span class="math inline"&gt;\(\bar{y}\)&lt;/span&gt;, &lt;span class="math inline"&gt;\(s_x\)&lt;/span&gt;, and &lt;span class="math inline"&gt;\(s_y\)&lt;/span&gt; are the sample means and standard deviations for each variable.&lt;/p&gt;'><sup>97</sup></a> so we let <code>R</code> do the heavy lifting for us.</p>
-<div class="sourceCode" id="cb877"><pre class="downlit sourceCode r">
+where &lt;span class="math inline"&gt;\(\bar{x}\)&lt;/span&gt;, &lt;span class="math inline"&gt;\(\bar{y}\)&lt;/span&gt;, &lt;span class="math inline"&gt;\(s_x\)&lt;/span&gt;, and &lt;span class="math inline"&gt;\(s_y\)&lt;/span&gt; are the sample means and standard deviations for each variable.&lt;/p&gt;'><sup>101</sup></a> so we let <code>R</code> do the heavy lifting for us.</p>
+<div class="sourceCode" id="cb918"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starbucks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>correlation<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">cor</a></span><span class="op">(</span><span class="va">carb</span>,<span class="va">calories</span><span class="op">)</span>,correlation_squared<span class="op">=</span><span class="va">correlation</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 2
@@ -223,7 +224,7 @@ Figure 29.1: Scatterplots demonstrating different correlations.
 </div>
 <blockquote>
 <p><strong>Exercise</strong><br>
-If a linear model has a very strong negative relationship with a correlation of -0.97, how much of the variation in the response is explained by the explanatory variable?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;About &lt;span class="math inline"&gt;\(R^2 = (-0.97)^2 = 0.94\)&lt;/span&gt; or 94% of the variation is explained by the linear model.&lt;/p&gt;'><sup>98</sup></a></p>
+If a linear model has a very strong negative relationship with a correlation of -0.97, how much of the variation in the response is explained by the explanatory variable?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;About &lt;span class="math inline"&gt;\(R^2 = (-0.97)^2 = 0.94\)&lt;/span&gt; or 94% of the variation is explained by the linear model.&lt;/p&gt;'><sup>102</sup></a></p>
 </blockquote>
 <p>Note that one of the components of <code>summary(lm())</code> function is <code>adj.r.squared</code>. This is a value of <span class="math inline">\(R\)</span>-squared adjusted for number of predictors. This idea is covered more in depth in a machine learning course.</p>
 </div>
@@ -240,15 +241,15 @@ If a linear model has a very strong negative relationship with a correlation of 
 \]</span></p>
 <p>Under the null hypothesis, the <span class="math inline">\(F\)</span>-statistic follows the <span class="math inline">\(F\)</span> distribution with parameters <span class="math inline">\(p\)</span> and <span class="math inline">\(n-p-1\)</span>.</p>
 <p>In our example, the <span class="math inline">\(F\)</span>-statistic is redundant since there is only one predictor. In fact, the <span class="math inline">\(p\)</span>-value associated with the <span class="math inline">\(F\)</span>-statistic is equal to the <span class="math inline">\(p\)</span>-value associated with the estimate of <span class="math inline">\(\beta_1\)</span>. However, when we move to cases with more predictor variables, we may be interested in the <span class="math inline">\(F\)</span>-statistic.</p>
-<div class="sourceCode" id="cb879"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb920"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span><span class="op">$</span><span class="va">fstatistic</span></code></pre></div>
 <pre><code>##    value    numdf    dendf 
 ## 62.77234  1.00000 75.00000</code></pre>
 </div>
 </div>
-<div id="regression-diagnostics" class="section level2" number="29.4">
+<div id="regression-diagnostics-1" class="section level2" number="29.4">
 <h2>
-<span class="header-section-number">29.4</span> Regression diagnostics<a class="anchor" aria-label="anchor" href="#regression-diagnostics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">29.4</span> Regression diagnostics<a class="anchor" aria-label="anchor" href="#regression-diagnostics-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>Finally, we can use the <code>lm</code> object to check the assumptions of the model. We have discussed the assumptions before but in this chapter we will use <code>R</code> to generate visual checks. There are also numeric diagnostic measures.</p>
 <p>There are several potential problems with a regression model:</p>
@@ -290,7 +291,7 @@ If a linear model has a very strong negative relationship with a correlation of 
 <li>and a plot of Cook’s distances against leverage/(1-leverage).</li>
 </ul>
 <p>By default, the first three and the fifth are provided by applying <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> to an “lm” object. To obtain all four at once, simply use <code>plot(my.model)</code> at the command line, Figure <a href="LRDIAG.html#fig:diag281-fig">29.2</a>.</p>
-<div class="sourceCode" id="cb881"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb922"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:diag281-fig"></span>
@@ -305,7 +306,7 @@ Figure 29.2: Regression diagnostic plots.
 <span class="header-section-number">29.4.2</span> Residuals vs Fitted<a class="anchor" aria-label="anchor" href="#residuals-vs-fitted"><i class="fas fa-link"></i></a>
 </h3>
 <p>By providing a number in the <code>which</code> option, we can select the plot we want, Figure <a href="LRDIAG.html#fig:diag282-fig">29.3</a> is the first diagnostic plot.</p>
-<div class="sourceCode" id="cb882"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb923"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">star_mod</span>,which <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:diag282-fig"></span>
@@ -321,7 +322,7 @@ Figure 29.3: A diagnostic residual plot.
 <span class="header-section-number">29.4.3</span> Normal Q-Q Plot<a class="anchor" aria-label="anchor" href="#normal-q-q-plot"><i class="fas fa-link"></i></a>
 </h3>
 <p>As it’s name suggests, this plot evaluates the normality of the residuals. We have seen and used this plot several times in this book. Remember if the number of data points is small, this plot has a greatly reduced effectiveness.</p>
-<div class="sourceCode" id="cb883"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb924"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">star_mod</span>,which <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:diag283-fig"></span>
@@ -340,7 +341,7 @@ Figure 29.4: The quantile-quantile plot for checking normality.
 e^{'}_i=\frac{e_i}{s}
 \]</span></p>
 <p>This plot illustrates the spread of the residuals over the entire range of the predictor. We are using fitted values because this will generalize well if we have more than one predictor.</p>
-<div class="sourceCode" id="cb884"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb925"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">star_mod</span>,which<span class="op">=</span><span class="fl">3</span><span class="op">)</span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:diag284-fig"></span>
@@ -359,7 +360,7 @@ Figure 29.5: A scale-location diagnostic residual plot.
 <p>In regression, there are two types of outliers:<br>
 - An outlier in the response variable is one that is not predicted well by the model. This could either be a problem with the data or the model. The residuals for this outlier will be large in absolute value.<br>
 - An outlier in the explanatory variable. These are typically called <strong>leverage points</strong> because they can have a undue impact on the parameter estimates. With multiple predictors, we can have a leverage point when we have an unusual combination of the predictors.</p>
-<p>An outlier is a <strong>influential point</strong> if it drastically alters the regression output. For example by causing large changes in the estimated slope or hypothesis p-values, if it is omitted.</p>
+<p>An outlier is a <strong>influential point</strong> if it drastically alters the regression output. For example by causing large changes in the estimated slope or hypothesis <span class="math inline">\(p\)</span>-values, if it is omitted.</p>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
 There are six plots shown in Figure <a href="LRDIAG.html#fig:resid282-fig">29.6</a> along with the least squares line and residual plots. For each scatterplot and residual plot pair, identify any obvious outliers and note how they influence the least squares line. Recall that an outlier is any point that doesn’t appear to belong with the vast majority of the other points.</p>
@@ -395,7 +396,7 @@ Points that fall horizontally away from the center of the cloud tend to pull har
 <span class="header-section-number">29.5.1</span> Residuals vs Leverage Plot<a class="anchor" aria-label="anchor" href="#residuals-vs-leverage-plot"><i class="fas fa-link"></i></a>
 </h3>
 <p>The residuals vs leverage plot is a good way to identify influential observations. Sometimes, influential observations are representative of the population, but they could also indicate an error in recording data, or an otherwise unrepresentative outlier. It could be worth looking into these cases.</p>
-<div class="sourceCode" id="cb885"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb926"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">star_mod</span>,<span class="fl">5</span><span class="op">)</span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:diag286-fig"></span>
@@ -461,8 +462,8 @@ Figure 29.9: Homework problem 3.
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#LRDIAG"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
-<li><a class="nav-link" href="#objectives-28"><span class="header-section-number">29.1</span> Objectives</a></li>
-<li><a class="nav-link" href="#introduction-4"><span class="header-section-number">29.2</span> Introduction</a></li>
+<li><a class="nav-link" href="#objectives-29"><span class="header-section-number">29.1</span> Objectives</a></li>
+<li><a class="nav-link" href="#introduction-5"><span class="header-section-number">29.2</span> Introduction</a></li>
 <li>
 <a class="nav-link" href="#assessing-our-model---understanding-the-output-from-lm"><span class="header-section-number">29.3</span> Assessing our model - understanding the output from lm</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#residual-standard-error"><span class="header-section-number">29.3.1</span> Residual Standard Error</a></li>
@@ -471,7 +472,7 @@ Figure 29.9: Homework problem 3.
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#regression-diagnostics"><span class="header-section-number">29.4</span> Regression diagnostics</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#regression-diagnostics-1"><span class="header-section-number">29.4</span> Regression diagnostics</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#residual-plots-1"><span class="header-section-number">29.4.1</span> Residual plots</a></li>
 <li><a class="nav-link" href="#residuals-vs-fitted"><span class="header-section-number">29.4.2</span> Residuals vs Fitted</a></li>
 <li><a class="nav-link" href="#normal-q-q-plot"><span class="header-section-number">29.4.3</span> Normal Q-Q Plot</a></li>
@@ -502,7 +503,7 @@ Figure 29.9: Homework problem 3.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-06-30.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

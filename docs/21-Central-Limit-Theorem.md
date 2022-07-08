@@ -35,7 +35,7 @@ In Figure \@ref(fig:dens212-fig), we have overlayed a normal distribution on the
 <p class="caption">(\#fig:dens212-fig)Sampling distribution of the sample proportion.</p>
 </div>
 
-This similarity between the empirical and theoretical distributions is not a coincidence, but rather is guaranteed by mathematical theory. This chapter will be a little more notation- and algebra-intensive than the previous chapters. However, the goal is to develop a tool that will help us find sampling distributions for many types of test statistics and, thus, find p-values. This chapter involves classical statistics often taught in AP high school classes, as well as many introductory undergraduate statistics courses. Remember that before the advances of modern computing, these mathematical solutions were all that was available.
+This similarity between the empirical and theoretical distributions is not a coincidence, but rather is guaranteed by mathematical theory. This chapter will be a little more notation- and algebra-intensive than the previous chapters. However, the goal is to develop a tool that will help us find sampling distributions for many types of test statistics and, thus, find $p$-values. This chapter involves classical statistics often taught in AP high school classes, as well as many introductory undergraduate statistics courses. Remember that before the advances of modern computing, these mathematical solutions were all that was available.
 
 
 ### Theorem - central limit theorem 
@@ -273,9 +273,9 @@ temperature %>%
 
 Remember, the $t$ statistic tells us how many standard deviations the sample mean is from the population mean (the null hypothesis value). The sample mean of our data is over 5 standard deviations below the null hypothesis mean. We have some assumptions that we will discuss at the end of this problem. 
 
-#### Step 3 - Determine the p-value.
+#### Step 3 - Determine the $p$-value.
 
-We now want to find the p-value from $\Prob(t \leq -5.45)$ on 129 $(n - 1)$ degrees of freedom, given the null hypothesis is true. That is, given the true mean human body temperature is 98.6. We will use `R` to get the one-sided p-value. 
+We now want to find the $p$-value from $\Prob(t \leq -5.45)$ on 129 $(n - 1)$ degrees of freedom, given the null hypothesis is true. That is, given the true mean human body temperature is 98.6. We will use `R` to get the one-sided $p$-value. 
 
 
 ```r
@@ -307,7 +307,7 @@ t_test(~temperature, data = temperature, mu = 98.6, alternative = "less")
 ##  98.24923
 ```
 
-You should notice this p-value is much smaller than the p-value from the method used in homework problem 3 in the last chapter. That is because this test statistic involves more assumptions and uses the data as continuous and not discrete (a positive or negative difference between 98.6 and the observed value).
+You should notice this $p$-value is much smaller than the $p$-value from the method used in homework problem 3 in the last chapter. That is because this test statistic involves more assumptions and uses the data as continuous and not discrete (a positive or negative difference between 98.6 and the observed value).
 
 #### Step 4 - Draw a conclusion
 
@@ -359,7 +359,7 @@ We can also check the impacts of the assumptions by using other methods (like th
 
 ### Binary data  
 
-The distribution of a binomial random variable or simple scalar transformations of it, such as the proportions of success found by dividing by the sample size, are approximately normal by the CLT. Since binomial random variables are bounded by zero and the number of trials, we have to make sure our probability of success is not close to zero or one. That is, the number of successes is not close to 0 or $n$. A general rule of thumb is that the number of success and failures be at least 10.
+The distribution of a binomial random variable or simple scalar transformations of it, such as the proportions of success found by dividing by the sample size, are approximately normal by the CLT. Since binomial random variables are bounded by zero and the number of trials, we have to make sure our probability of success is not close to zero or one. That is, the number of successes is not close to 0 or $n$. A general rule of thumb is that the number of successes and failures be at least 10.
 
 
 ### Tappers and listeners  
@@ -386,9 +386,9 @@ As we learned, this approximation improves with sample size. As a rule of thumb,
 In our study, 42 out of 120 listeners ($\bar{x} = \hat{p} = 0.35$) were able to guess the tune. This is the observed value of the test statistic.
 
 
-#### Step 3 - Determine the p-value.
+#### Step 3 - Determine the $p$-value.
 
-We now want to find the p-value from the one-sided probability $\Prob(\bar{X} \leq 0.35)$, given the null hypothesis is true. That is, given that the true probability of success is 0.50. We will use `R` to get the one-sided value and then double it since the test is two-sided and the sampling distribution is symmetrical.
+We now want to find the $p$-value from the one-sided probability $\Prob(\bar{X} \leq 0.35)$, given the null hypothesis is true. That is, given that the true probability of success is 0.50. We will use `R` to get the one-sided value and then double it since the test is two-sided and the sampling distribution is symmetrical.
 
 
 ```r
@@ -399,7 +399,7 @@ We now want to find the p-value from the one-sided probability $\Prob(\bar{X} \l
 ## [1] 0.001015001
 ```
 
-That is a small p-value and consistent with what we got using both the exact binomial test and the simulated empirical p-values in Chapter \@ref(HYPTESTDIST).
+That is a small $p$-value and consistent with what we got using both the exact binomial test and the simulated empirical $p$-values in Chapter \@ref(HYPTESTDIST).
 
 >**Important note**:
 In the calculation of the standard deviation of the sampling distribution, we used the null hypothesized value of the probability of success. 
@@ -431,10 +431,10 @@ prop.test(x = 42, n = 120, p = 0.5)
 ## 0.35
 ```
 
-The p-value is small, reported as $0.0014$. We will study the confidence interval soon, so don't worry about that part of the output yet. The alternative hypothesis is also listed, and has options for one-sided and two-sided tests.  
+The $p$-value is small, reported as $0.0014$. We will study the confidence interval soon, so don't worry about that part of the output yet. The alternative hypothesis is also listed, and has options for one-sided and two-sided tests.  
 
 >**Exercise**:  
-How do you conduct a one-sided test? What if the null value were 0.45?^[We will only extract the p-value in this exercise.]
+How do you conduct a one-sided test? What if the null value were 0.45?^[We will only extract the $p$-value in this exercise.]
 
 
 ```r
@@ -502,40 +502,22 @@ b. What level of significance are you going to use?
 
 c. What is the distribution of the test statistic ${\bar{X} - \mu\over S/\sqrt{n}}$? Calculate the observed value.  
 
-d. Calculate a p-value.  
+d. Calculate a $p$-value.  
 
 e. Draw a conclusion.  
 
 
-3. Paired data  
+3. Find the $p$-value 
 
-Are textbooks actually cheaper online? Here we compare the price of textbooks at the University of California, Los Angeles (UCLA) bookstore and at Amazon.com. Seventy-three UCLA courses were randomly sampled in Spring 2010, representing less than 10\% of all UCLA courses. When a class had multiple books, only the most expensive text was considered.
+An independent random sample is selected from an approximately normal population with an unknown standard deviation. Find the $p$-value for the given set of hypotheses and $T$ test statistic. Also, determine if the null hypothesis would be rejected at $\alpha = 0.05$.
 
-The data is in the file `textbooks.csv` under the data folder.
+a. $H_{A}: \mu > \mu_{0}$, $n = 11$, $T = 1.91$  
 
-Each textbook has two corresponding prices in the data set: one for the UCLA bookstore and one for Amazon. Therefore, each textbook price from the UCLA bookstore has a natural correspondence with a textbook price from Amazon. When two sets of observations have this special correspondence, they are said to be **paired**.
+b. $H_{A}: \mu < \mu_{0}$, $n = 17$, $T = - 3.45$  
 
-To analyze paired data, it is often useful to look at the difference in outcomes of each pair of observations. In  `textbooks`, we look at the difference in prices, which is represented as the `diff` variable. It is important that we always subtract using a consistent order; here Amazon prices are always subtracted from UCLA prices. 
+c. $H_{A}: \mu \ne \mu_{0}$, $n = 7$, $T = 0.83$  
 
-a. Is this data tidy? Explain.  
-
-b. Make a scatterplot of the UCLA price versus the Amazon price. Add a 45 degree line to the plot.  
-
-c. Make a histogram of the differences in price.   
-
-    The hypotheses are:  
-$H_0$: $\mu_{diff}=0$. There is no difference in the average textbook price.  
-$H_A$: $\mu_{diff} \neq 0$. There is a difference in average prices.
- 
-d. To use a $t$ distribution, the variable `diff` has to be independent and normally distributed. Since the 73 books represent less than 10\% of the population, the assumption that the random sample is independent is reasonable. Check normality using `qqnorsim()` from the **openintro** package. It generates 8 qq plots of simulated normal data that you can use to judge the `diff` variable.  
-
-e. Run a $t$ test on the `diff` variable. Report the p-value and conclusion.  
-
-f. Create a bootstrap distribution and generate a 95\% confidence interval on the mean of the differences, the `diff` column.  
-
-g. If there is really no difference between book sources, the variable `more` is binomial and, under the null, the probability of success is $\pi = 0.5$. Run a hypothesis test using the variable `more`.  
-
-h. Could you use a permutation test on this example? Explain.  
+d. $H_{A}: \mu > \mu_{0}$, $n = 28$, $T = 2.13$  
 
 
 4. In this lesson, we have used the expression *degrees of freedom* a lot. What does this expression mean? When we have sample of size $n$, why are there $n-1$ degrees of freedom for the $t$ distribution? Give a short concise answer (about one paragraph). You will likely have to do a little research on your own.  
@@ -554,7 +536,7 @@ e. Calculate the test statistic.
 
     Note: A newspaper collects a simple random sample of 500 likely voters in the district and estimates Toohey's support to be 52\%.  
 
-e. Calculate a p-value.  
+e. Calculate a $p$-value.  
 
 f. Draw a conclusion.  
 

@@ -249,13 +249,13 @@ summary(star_mod)
 
 #### Hypothesis test  
 
-In the second row of the **Coefficients** portion of the table we have our point estimate, standard error, test statistic, and p-value for the slope.
+In the second row of the **Coefficients** portion of the table we have our point estimate, standard error, test statistic, and $p$-value for the slope.
 
 The hypotheses for this output is  
 $H_0$: $\beta_1 = 0$. The true linear model has slope zero. The carb content has no impact on the the calorie content.  
 $H_A$: $\beta_1 \neq 0$. The true linear model has a slope different than zero. The higher the carb content, the greater the average calorie content or vice-versa.
 
-Our estimate of the slope is 4.297 with a standard error of 0.5424. Just for demonstration purposes, we will use `R` to calculate the test statistic and p-value as a series of steps. The test statistic under the null hypothesis is:
+Our estimate of the slope is 4.297 with a standard error of 0.5424. Just for demonstration purposes, we will use `R` to calculate the test statistic and $p$-value as a series of steps. The test statistic under the null hypothesis is:
 
 $$
 {\hat{\beta}_1-0 \over {\hat \sigma \over \sqrt{ \sum (x_i-\bar{x})^2}}}
@@ -295,7 +295,7 @@ The test statistic is
 ## [1] 7.922928
 ```
 
-And the p-value
+And the $p$-value
 
 
 ```r
@@ -306,7 +306,7 @@ And the p-value
 ## [1] 1.965319e-11
 ```
 
-This is slightly different from the table value because of the precision of the computer and the small p-value.
+This is slightly different from the table value because of the precision of the computer and the small $p$-value.
 
 We reject $H_0$ in favor of $H_A$ because the data provide strong evidence that the true slope parameter is greater than zero. 
 
@@ -491,7 +491,7 @@ Many people believe that gender, weight, drinking habits, and many other factors
 a. Create a scatterplot for cans of beer and blood alcohol level.  
 b. Describe the relationship between the number of cans of beer and BAC.  
 c. Write the equation of the regression line. Interpret the slope and intercept in context.  
-d. Do the data provide strong evidence that drinking more cans of beer is associated with an increase in blood alcohol? State the null and alternative hypotheses, report the p-value, and state your conclusion.  
+d. Do the data provide strong evidence that drinking more cans of beer is associated with an increase in blood alcohol? State the null and alternative hypotheses, report the $p$-value, and state your conclusion.  
 e. Build a 95% confidence interval for the slope and interpret it in the context of your hypothesis test from part d.  
 f. Suppose we visit a bar, ask people how many drinks they have had, and also take their BAC. Do you think the relationship between number of drinks and BAC would be as strong as the relationship found in the Ohio State study?  
 g. Predict the average BAC after two beers and build a 90% confidence interval around that prediction.   

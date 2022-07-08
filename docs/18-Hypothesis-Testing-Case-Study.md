@@ -1,11 +1,11 @@
-# (PART) Statistical Modeling {-} 
+# (PART) Inferential Statistical Modeling {-} 
 
-# Case Study {#CS3}
+# Hypothesis Testing Case Study {#CS3}
 
 
 ## Objectives
 
-1) Define and use properly in context all new terminology: *point estimate*, *null hypothesis*, *alternative hypothesis*, *hypothesis test*, *randomization*, *permutation test*, *test statistic*, and *p-value*.  
+1) Define and use properly in context all new terminology: *point estimate*, *null hypothesis*, *alternative hypothesis*, *hypothesis test*, *randomization*, *permutation test*, *test statistic*, and *$p$-value*.  
 
 2) Conduct a hypothesis test using a permutation test to include all 4 steps.
 
@@ -279,9 +279,9 @@ results %>%
 ```
 
 
-In our simulations, only 2.6\% of the simulated test statistics were less than or equal to the observed test statistic, as or more extreme relative to the null hypothesis. Such a low probability indicates that observing such a large difference in proportions from chance alone is rare. This probability is known as a **p-value**. The p-value is a conditional probability, the probability of the observed value or more extreme given that the null hypothesis is true. 
+In our simulations, only 2.6\% of the simulated test statistics were less than or equal to the observed test statistic, as or more extreme relative to the null hypothesis. Such a low probability indicates that observing such a large difference in proportions from chance alone is rare. This probability is known as a **$p$-value**. The $p$-value is a conditional probability, the probability of the observed value or more extreme given that the null hypothesis is true. 
 
-We could have also found the exact p-value using the hypergeometric distribution. We have 13 *not_promoted* positions, so we could have anywhere between 0 and 13 females not promoted. We observed 10 females not promoted. Thus, the exact p-value from the hypergeometric distribution is the probability of 10 or more females not promoted (as or more extreme than the observed) when we select 13 people from a pool of 24 males and 24 females, and the selection is done without replacement. 
+We could have also found the exact $p$-value using the hypergeometric distribution. We have 13 *not_promoted* positions, so we could have anywhere between 0 and 13 females not promoted. We observed 10 females not promoted. Thus, the exact $p$-value from the hypergeometric distribution is the probability of 10 or more females not promoted (as or more extreme than the observed) when we select 13 people from a pool of 24 males and 24 females, and the selection is done without replacement. 
 
 
 ```r
@@ -309,7 +309,7 @@ Let's summarize what we did in this case study. We had a research question and s
 
 1. State the null and alternative hypotheses.  
 2. Compute a test statistic.  
-3. Determine the p-value.  
+3. Determine the $p$-value.  
 4. Draw a conclusion.  
 
 We decided to use a randomization test, a simulation, to answer the question. When creating a randomization distribution, we attempted to satisfy 3 guiding principles.  
@@ -378,7 +378,7 @@ $$
   c.  The paragraph below describes the set up for such approach, if we were to do it without using statistical software. Fill in the blanks with a number or phrase, whichever is appropriate.  
 
 
-> We write *alive* on _______ cards representing patients who were alive at the end of the study, and *dead* on _______ cards representing patients who were not. Then, we shuffle these cards and split them into two groups: one group of size _______ representing treatment, and another group of size _______ representing control. We calculate the difference between the proportion of \textit{dead} cards in the control and treatment groups (control - treatment), this is just so we have positive observed value, and record this value. We repeat this many times to build a distribution centered at _______. Lastly, we calculate the fraction of simulations where the simulated differences in proportions are _______ or _______. If this fraction of simulations, the empirical p-value, is low, we conclude that it is unlikely to have observed such an outcome by chance and that the null hypothesis should be rejected in favor of the alternative.  
+> We write *alive* on _______ cards representing patients who were alive at the end of the study, and *dead* on _______ cards representing patients who were not. Then, we shuffle these cards and split them into two groups: one group of size _______ representing treatment, and another group of size _______ representing control. We calculate the difference between the proportion of \textit{dead} cards in the control and treatment groups (control - treatment), this is just so we have positive observed value, and record this value. We repeat this many times to build a distribution centered at _______. Lastly, we calculate the fraction of simulations where the simulated differences in proportions are _______ or _______. If this fraction of simulations, the empirical $p$-value, is low, we conclude that it is unlikely to have observed such an outcome by chance and that the null hypothesis should be rejected in favor of the alternative.  
 
 
 
@@ -393,7 +393,7 @@ $$
   
   f. Plot distribution of results. Include a vertical line for the observed value. Clean up the plot as if you were presenting to a decision maker.  
   
-  g. Find p-value. Think carefully about what more extreme would mean.  
+  g. Find $p$-value. Think carefully about what more extreme would mean.  
   
   h. Decide if the treatment is effective.  
   

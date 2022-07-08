@@ -1,12 +1,13 @@
 # (PART) Descriptive Statistical Modeling {-} 
 
-# Case Study {#CS1}
+# Data Case Study {#CS1}
 
 
 ## Objectives
 
-1) Use R for basic analysis and visualization.  
-2) Compile a report using `knitr`.
+1) Use `R` for basic analysis and visualization.  
+
+2) Compile a report using `knitr`.  
 
 
 ## Introduction to descriptive statistical modeling

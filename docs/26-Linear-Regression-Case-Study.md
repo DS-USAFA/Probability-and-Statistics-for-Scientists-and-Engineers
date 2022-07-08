@@ -1,6 +1,6 @@
 # (PART) Predictive Statistical Modeling {-} 
 
-# Case Study {#CS4}
+# Linear Regression Case Study {#CS4}
 
 ## Objectives
 

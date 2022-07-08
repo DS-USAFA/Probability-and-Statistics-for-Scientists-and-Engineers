@@ -10,15 +10,15 @@
 <meta name="author" content="Ken Horton">
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
-<meta name="description" content="2.1 Objectives Define and use properly in context all new terminology to include, but not limited to, case, observational unit, variables, data frame, associated variables, independent, and...">
+<meta name="description" content="2.1 Objectives Define and use properly in context all new terminology to include: case, observational unit, variables, data frame, associated variables, independent, and discrete and continuous...">
 <meta name="generator" content="bookdown 0.25 with bs4_book()">
 <meta property="og:title" content="Chapter 2 Data Basics | Computational Probability and Statistics">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Master.png">
-<meta property="og:description" content="2.1 Objectives Define and use properly in context all new terminology to include, but not limited to, case, observational unit, variables, data frame, associated variables, independent, and...">
+<meta property="og:description" content="2.1 Objectives Define and use properly in context all new terminology to include: case, observational unit, variables, data frame, associated variables, independent, and discrete and continuous...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 2 Data Basics | Computational Probability and Statistics">
-<meta name="twitter:description" content="2.1 Objectives Define and use properly in context all new terminology to include, but not limited to, case, observational unit, variables, data frame, associated variables, independent, and...">
+<meta name="twitter:description" content="2.1 Objectives Define and use properly in context all new terminology to include: case, observational unit, variables, data frame, associated variables, independent, and discrete and continuous...">
 <meta name="twitter:image" content="/figures/Cover_Master.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -73,15 +73,16 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Preface</a></li>
+<li><a class="" href="objectives.html">Objectives</a></li>
 <li class="book-part">Descriptive Statistical Modeling</li>
-<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Case Study</a></li>
+<li><a class="" href="CS1.html"><span class="header-section-number">1</span> Data Case Study</a></li>
 <li><a class="active" href="DB.html"><span class="header-section-number">2</span> Data Basics</a></li>
 <li><a class="" href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></li>
 <li><a class="" href="STUDY.html"><span class="header-section-number">4</span> Studies</a></li>
 <li><a class="" href="NUMDATA.html"><span class="header-section-number">5</span> Numerical Data</a></li>
 <li><a class="" href="CATDATA.html"><span class="header-section-number">6</span> Categorical Data</a></li>
 <li class="book-part">Probability Modeling</li>
-<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Case Study</a></li>
+<li><a class="" href="CS2.html"><span class="header-section-number">7</span> Probability Case Study</a></li>
 <li><a class="" href="PROBRULES.html"><span class="header-section-number">8</span> Probability Rules</a></li>
 <li><a class="" href="CONDPROB.html"><span class="header-section-number">9</span> Conditional Probability</a></li>
 <li><a class="" href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></li>
@@ -92,9 +93,9 @@
 <li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
 <li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
 <li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
-<li class="book-part">Statistical Modeling</li>
-<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Case Study</a></li>
-<li><a class="" href="HYPOTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></li>
+<li class="book-part">Inferential Statistical Modeling</li>
+<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Hypothesis Testing Case Study</a></li>
+<li><a class="" href="HYPTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></li>
 <li><a class="" href="HYPTESTDIST.html"><span class="header-section-number">20</span> Hypothesis Testing with Known Distributions</a></li>
 <li><a class="" href="HYPTESTCLT.html"><span class="header-section-number">21</span> Hypothesis Testing with the Central Limit Theorem</a></li>
 <li><a class="" href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></li>
@@ -102,7 +103,7 @@
 <li><a class="" href="CI.html"><span class="header-section-number">24</span> Confidence Intervals</a></li>
 <li><a class="" href="BOOT.html"><span class="header-section-number">25</span> Bootstrap</a></li>
 <li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">26</span> Case Study</a></li>
+<li><a class="" href="CS4.html"><span class="header-section-number">26</span> Linear Regression Case Study</a></li>
 <li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
 <li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
 <li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
@@ -121,23 +122,20 @@
 <h1>
 <span class="header-section-number">2</span> Data Basics<a class="anchor" aria-label="anchor" href="#DB"><i class="fas fa-link"></i></a>
 </h1>
-<div id="objectives-1" class="section level2" number="2.1">
+<div id="objectives-2" class="section level2" number="2.1">
 <h2>
-<span class="header-section-number">2.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-2"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li>Define and use properly in context all new terminology to include, but not limited to, case, observational unit, variables, data frame, associated variables, independent, and discrete and continuous variables.<br>
-</li>
-<li>Identify and define the different types of variables.<br>
-</li>
-<li>Given a study description, explain the research question.<br>
-</li>
-<li>Create a scatterplot in <code>R</code> and determine the association of two numerical variables from the plot.</li>
+<li><p>Define and use properly in context all new terminology to include: <em>case</em>, <em>observational unit</em>, <em>variables</em>, <em>data frame</em>, <em>associated variables</em>, <em>independent</em>, and <em>discrete</em> and <em>continuous variables</em>.</p></li>
+<li><p>Identify and define the different types of variables.</p></li>
+<li><p>Given a study description, describe the research question.</p></li>
+<li><p>In <code>R</code>, create a scatterplot and determine the association of two numerical variables from the plot.</p></li>
 </ol>
 </div>
-<div id="data-basics" class="section level2" number="2.2">
+<div id="data-basics-1" class="section level2" number="2.2">
 <h2>
-<span class="header-section-number">2.2</span> Data basics<a class="anchor" aria-label="anchor" href="#data-basics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.2</span> Data basics<a class="anchor" aria-label="anchor" href="#data-basics-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>Effective presentation and description of data is a first step in most analyses. This lesson introduces one structure for organizing data, as well as some terminology that will be used throughout this course.</p>
 <div id="observations-variables-and-data-matrices" class="section level3" number="2.2.1">
@@ -468,15 +466,15 @@ between 1989 and 1993”&lt;/a&gt;. In: Epidemiology 11.5 (2000), pp. 502–511
 </div>
 
   <div class="chapter-nav">
-<div class="prev"><a href="CS1.html"><span class="header-section-number">1</span> Case Study</a></div>
+<div class="prev"><a href="CS1.html"><span class="header-section-number">1</span> Data Case Study</a></div>
 <div class="next"><a href="ODCP.html"><span class="header-section-number">3</span> Overview of Data Collection Principles</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#DB"><span class="header-section-number">2</span> Data Basics</a></li>
-<li><a class="nav-link" href="#objectives-1"><span class="header-section-number">2.1</span> Objectives</a></li>
+<li><a class="nav-link" href="#objectives-2"><span class="header-section-number">2.1</span> Objectives</a></li>
 <li>
-<a class="nav-link" href="#data-basics"><span class="header-section-number">2.2</span> Data basics</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#data-basics-1"><span class="header-section-number">2.2</span> Data basics</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#observations-variables-and-data-matrices"><span class="header-section-number">2.2.1</span> Observations, variables, and data matrices</a></li>
 <li><a class="nav-link" href="#types-of-variables"><span class="header-section-number">2.2.2</span> Types of variables</a></li>
 <li><a class="nav-link" href="#relationships-between-variables"><span class="header-section-number">2.2.3</span> Relationships between variables</a></li>
@@ -501,7 +499,7 @@ between 1989 and 1993”&lt;/a&gt;. In: Epidemiology 11.5 (2000), pp. 502–511
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-06-30.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

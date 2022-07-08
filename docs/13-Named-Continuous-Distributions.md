@@ -6,7 +6,7 @@
 1) Recognize when to use common continuous distributions (Uniform, Exponential, Gamma, Normal, Weibull, and Beta), identify parameters, and find moments.   
 2) Use `R` to calculate probabilities and quantiles involving random variables with common continuous distributions.  
 3) Understand the relationship between the Poisson process and the Poisson & Exponential distributions.   
-4) Know when to apply and then use the memoryless property. 
+4) Know when to apply and then use the memory-less property. 
 
 ## Continuous distributions 
 
@@ -161,9 +161,9 @@ qexp(0.95,1/3)
 
 Both from Figure \@ref(fig:exp-fig) and the mean and median, we know that the exponential distribution is skewed to the right.
 
-### Memoryless property
+### Memory-less property
 
-The Poisson process is known for its *memoryless* property. Essentially, this means that the time until the next arrival is independent of the time since last arrival. Thus, the probability of an arrival within the next 5 minutes is the same regardless of whether an arrival just occurred or an arrival has not occurred for a long time. 
+The Poisson process is known for its *memory-less* property. Essentially, this means that the time until the next arrival is independent of the time since last arrival. Thus, the probability of an arrival within the next 5 minutes is the same regardless of whether an arrival just occurred or an arrival has not occurred for a long time. 
 
 To show this let's consider random variable $Y$ ( time until the next arrival in minutes) where $Y\sim\textsf{Expon}(\lambda)$. We will show that, given it has been at least $t$ minutes since the last arrival, the probability we wait at least $y$ additional minutes is equal to the marginal probability that we wait $y$ additional minutes. 
 
@@ -191,7 +191,7 @@ In Figure \@ref(fig:sim-fig), the number of events in a box is $X\sim \textsf{Po
 
 ### Gamma distribution
 
-The gamma distribution is a generalization of the exponential distribution. In the exponential distribution, the parameter $\lambda$ is sometimes referred to as the *rate* parameter. The gamma distribution is sometimes used to model wait times (as with the exponential distribution), but in cases without the memoryless property. The gamma distribution has two parameters, *rate* and *shape*. In some texts, *scale* (the inverse of rate) is used as an alternative parameter to rate. 
+The gamma distribution is a generalization of the exponential distribution. In the exponential distribution, the parameter $\lambda$ is sometimes referred to as the *rate* parameter. The gamma distribution is sometimes used to model wait times (as with the exponential distribution), but in cases without the memory-less property. The gamma distribution has two parameters, *rate* and *shape*. In some texts, *scale* (the inverse of rate) is used as an alternative parameter to rate. 
 
 Suppose $X$ is a random variable with the gamma distribution with shape parameter $\alpha$ and rate parameter $\lambda$:
 $$
@@ -398,14 +398,14 @@ For problems 1-3 below, **_1)_** define a random variable that will help you ans
 a. Find the probability no vehicles arrive in 10 minutes.   
 b. Find the probability that at least 5 minutes will pass before the next arrival.  
 c. Find the probability that the next vehicle will arrive between 2 and 10 minutes from now.   
-d. Find the probability that at least 7 minutes will pass before the next arrival, given that 2 minutes have already passed. Compare this answer to part (b). This is an example of the memoryless property of the exponential distribution.  
+d. Find the probability that at least 7 minutes will pass before the next arrival, given that 2 minutes have already passed. Compare this answer to part (b). This is an example of the memory-less property of the exponential distribution.  
 e. Fill in the blank. There is a probability of 90% that the next vehicle will arrive within __ minutes. This value is known as the 90% percentile of the random variable.  
 f. Use the function `stripplot()` to visualize the arrival of 30 vehicles using a random sample from the appropriate exponential distribution.
 
 2. Suppose time until computer errors on the F-35 follows a Gamma distribution with mean 20 hours and variance 10.  
 
 a. Find the probability that 20 hours pass without a computer error.  
-b. Find the probability that 45 hours pass without a computer error, given that 25 hours have already passed. Does the memoryless property apply to the Gamma distribution?   
+b. Find the probability that 45 hours pass without a computer error, given that 25 hours have already passed. Does the memory-less property apply to the Gamma distribution?   
 c. Find $a$ and $b$: There is a 95% probability time until next computer error will be between $a$ and $b$. (note: technically, there are many answers to this question, but find $a$ and $b$ such that each tail has equal probability.) 
 
 
