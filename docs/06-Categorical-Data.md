@@ -3,7 +3,7 @@
 
 ## Objectives
 
-1) Define and use properly in context all new terminology: *factor*, *contingency table*, *marginal counts*, *joint counts*, *frequency table*, *relative frequency table*, *bar plot*, *conditioning*, *segmented bar plot*, *mosaic plot*, *pie chart*, *side-by-side box plot*, *density plot*.  
+1) Define and use properly in context all new terminology, to include: *factor*, *contingency table*, *marginal counts*, *joint counts*, *frequency table*, *relative frequency table*, *bar plot*, *conditioning*, *segmented bar plot*, *mosaic plot*, *pie chart*, *side-by-side box plot*, *density plot*.  
 
 2) In `R`, generate tables for categorical variable(s).   
 
@@ -557,14 +557,14 @@ county_tidy %>%
 ```
 ## 
 ## quantitative variables:  
-##            name   class   min       Q1 median    Q3     max     mean        sd
-## ...1    pop2000 numeric    67 11223.50  24621 61775 9519338 89649.99 292547.67
-## ...2    pop2010 numeric    82 11114.50  25872 66780 9818605 98262.04 312946.70
-## ...3 med_income numeric 19351 36956.25  42450 49144  115574 44274.12  11547.49
-##         n missing
-## ...1 3139       3
-## ...2 3142       0
-## ...3 3142       0
+##         name   class   min       Q1 median    Q3     max     mean        sd
+## 1    pop2000 numeric    67 11223.50  24621 61775 9519338 89649.99 292547.67
+## 2    pop2010 numeric    82 11114.50  25872 66780 9818605 98262.04 312946.70
+## 3 med_income numeric 19351 36956.25  42450 49144  115574 44274.12  11547.49
+##      n missing
+## 1 3139       3
+## 2 3142       0
+## 3 3142       0
 ```
 
 Notice that three counties are missing population values, reported as `NA`. Let's remove them and find which counties increased population by creating a new variable.
@@ -612,14 +612,14 @@ inspect(cc_reduced)
 ## 1 Gain (65%), Loss (35%)                       
 ## 
 ## quantitative variables:  
-##            name   class   min       Q1  median      Q3     max     mean
-## ...1    pop2000 numeric    67 11217.25 24608.0 61783.5 9519338 89669.37
-## ...2    pop2010 numeric    82 11127.00 25872.0 66972.0 9818605 98359.23
-## ...3 med_income numeric 19351 36950.00 42443.5 49120.0  115574 44253.24
-##             sd    n missing
-## ...1 292592.28 3138       0
-## ...2 313133.28 3138       0
-## ...3  11528.95 3138       0
+##         name   class   min       Q1  median      Q3     max     mean        sd
+## 1    pop2000 numeric    67 11217.25 24608.0 61783.5 9519338 89669.37 292592.28
+## 2    pop2010 numeric    82 11127.00 25872.0 66972.0 9818605 98359.23 313133.28
+## 3 med_income numeric 19351 36950.00 42443.5 49120.0  115574 44253.24  11528.95
+##      n missing
+## 1 3138       0
+## 2 3138       0
+## 3 3138       0
 ```
 
 The **side-by-side box plot** is a traditional tool for comparing across groups. An example is shown in Figure \@ref(fig:sbysbox61-fig) where there are two box plots, one for each group and drawn on the same scale.

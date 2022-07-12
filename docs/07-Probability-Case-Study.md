@@ -10,8 +10,9 @@ output:
 
 ## Objectives
 
-1) Use R to simulate a probabilistic model.  
-2) Use basic counting methods.
+1) Use `R` to simulate a probabilistic model.  
+
+2) Use basic counting methods.  
 
 
 ## Introduction to probability models
@@ -449,20 +450,20 @@ inspect(Births)
 ## 1 date  Date 1969-01-01 1988-12-31   1 days   1 days 7305       0
 ## 
 ## quantitative variables:  
-##              name   class  min   Q1 median    Q3   max        mean          sd
-## ...1       births integer 6675 8792   9622 10510 12851 9648.940178 1127.315229
-## ...2         year integer 1969 1974   1979  1984  1988 1978.501027    5.766735
-## ...3        month integer    1    4      7    10    12    6.522930    3.448939
-## ...4  day_of_year integer    1   93    184   275   366  183.753593  105.621885
-## ...5 day_of_month integer    1    8     16    23    31   15.729637    8.800694
-## ...6  day_of_week integer    1    2      4     6     7    4.000274    1.999795
-##         n missing
-## ...1 7305       0
-## ...2 7305       0
-## ...3 7305       0
-## ...4 7305       0
-## ...5 7305       0
-## ...6 7305       0
+##           name   class  min   Q1 median    Q3   max        mean          sd
+## 1       births integer 6675 8792   9622 10510 12851 9648.940178 1127.315229
+## 2         year integer 1969 1974   1979  1984  1988 1978.501027    5.766735
+## 3        month integer    1    4      7    10    12    6.522930    3.448939
+## 4  day_of_year integer    1   93    184   275   366  183.753593  105.621885
+## 5 day_of_month integer    1    8     16    23    31   15.729637    8.800694
+## 6  day_of_week integer    1    2      4     6     7    4.000274    1.999795
+##      n missing
+## 1 7305       0
+## 2 7305       0
+## 3 7305       0
+## 4 7305       0
+## 5 7305       0
+## 6 7305       0
 ```
 
 It could be argued that we could randomly pick one year and use it. Let's see what happens if we just used 1969. Figure \@ref(fig:scat71-fig) is a scatter plot of the number of births in 1969 for each day of the year.

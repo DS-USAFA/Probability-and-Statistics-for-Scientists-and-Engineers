@@ -4,7 +4,7 @@
 
 ## Objectives
 
-1) Define and use properly in context all new terminology: *population*, *sample*, *anecdotal evidence*, *bias*, *simple random sample*, *systematic sample*, *non-response bias*, *representative sample*, *convenience sample*, *explanatory variable*, *response variable*, *observational study*, *cohort*, *experiment*, *randomized experiment*, *placebo*.  
+1) Define and use properly in context all new terminology, to include: *population*, *sample*, *anecdotal evidence*, *bias*, *simple random sample*, *systematic sample*, *non-response bias*, *representative sample*, *convenience sample*, *explanatory variable*, *response variable*, *observational study*, *cohort*, *experiment*, *randomized experiment*, and *placebo*.  
 
 2) From a description of a research project, be able to describe the population of interest, the generalizability of the study, the explanatory and response variables, whether it is observational or experimental, and determine the type of sample.  
 

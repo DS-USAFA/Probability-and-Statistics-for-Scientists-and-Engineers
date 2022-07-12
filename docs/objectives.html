@@ -11,7 +11,7 @@
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
 <meta name="description" content="Descriptive Statistical Modeling  1 - Data Case Study Use R for basic analysis and visualization. Compile a report using knitr.  2 - Data Basics Define and use properly in context all new...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content="Objectives | Computational Probability and Statistics">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Master.png">
@@ -107,7 +107,7 @@
 <li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
 <li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
 <li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation-Based Linear Regression</a></li>
 <li><a class="" href="LRMULTI.html"><span class="header-section-number">31</span> Multiple Linear Regression</a></li>
 <li><a class="" href="LOGREG.html"><span class="header-section-number">32</span> Logistic Regression</a></li>
 <li><a class="" href="references.html">References</a></li>
@@ -136,7 +136,7 @@
 <h3>2 - Data Basics<a class="anchor" aria-label="anchor" href="#data-basics"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li><p>Define and use properly in context all new terminology to include: <em>case</em>, <em>observational unit</em>, <em>variables</em>, <em>data frame</em>, <em>associated variables</em>, <em>independent</em>, and <em>discrete</em> and <em>continuous variables</em>.</p></li>
+<li><p>Define and use properly in context all new terminology, to include: <em>case</em>, <em>observational unit</em>, <em>variables</em>, <em>data frame</em>, <em>associated variables</em>, <em>independent</em>, and <em>discrete</em> and <em>continuous variables</em>.</p></li>
 <li><p>Identify and define the different types of variables.</p></li>
 <li><p>Given a study description, describe the research question.</p></li>
 <li><p>In <code>R</code>, create a scatterplot and determine the association of two numerical variables from the plot.</p></li>
@@ -146,7 +146,7 @@
 <h3>3 - Overview of Data Collection Principles<a class="anchor" aria-label="anchor" href="#overview-of-data-collection-principles"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li><p>Define and use properly in context all new terminology: <em>population</em>, <em>sample</em>, <em>anecdotal evidence</em>, <em>bias</em>, <em>simple random sample</em>, <em>systematic sample</em>, <em>non-response bias</em>, <em>representative sample</em>, <em>convenience sample</em>, <em>explanatory variable</em>, <em>response variable</em>, <em>observational study</em>, <em>cohort</em>, <em>experiment</em>, <em>randomized experiment</em>, and <em>placebo</em>.</p></li>
+<li><p>Define and use properly in context all new terminology, to include: <em>population</em>, <em>sample</em>, <em>anecdotal evidence</em>, <em>bias</em>, <em>simple random sample</em>, <em>systematic sample</em>, <em>non-response bias</em>, <em>representative sample</em>, <em>convenience sample</em>, <em>explanatory variable</em>, <em>response variable</em>, <em>observational study</em>, <em>cohort</em>, <em>experiment</em>, <em>randomized experiment</em>, and <em>placebo</em>.</p></li>
 <li><p>From a description of a research project, be able to describe the population of interest, the generalizability of the study, the explanatory and response variables, whether it is observational or experimental, and determine the type of sample.</p></li>
 <li><p>In the context of a problem, explain how to conduct a sample for the different types of sampling procedures.</p></li>
 </ol>
@@ -155,7 +155,7 @@
 <h3>4 - Studies<a class="anchor" aria-label="anchor" href="#studies"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li><p>Define and use properly in context all new terminology: <em>confounding variable</em>, <em>prospective study</em>, <em>retrospective study</em>, <em>simple random sampling</em>, <em>stratified sampling</em>, <em>strata</em>, <em>cluster sampling</em>, <em>multistage sampling</em>, <em>experiment</em>, <em>randomized experiment</em>, <em>control</em>, <em>replicate</em>, <em>blocking</em>, <em>blocks</em>, <em>treatment group</em>, <em>control group</em>, <em>blinded study</em>, <em>placebo</em>, <em>placebo effect</em>, and <em>double-blind</em>.</p></li>
+<li><p>Define and use properly in context all new terminology, to include: <em>confounding variable</em>, <em>prospective study</em>, <em>retrospective study</em>, <em>simple random sampling</em>, <em>stratified sampling</em>, <em>strata</em>, <em>cluster sampling</em>, <em>multistage sampling</em>, <em>experiment</em>, <em>randomized experiment</em>, <em>control</em>, <em>replicate</em>, <em>blocking</em>, <em>blocks</em>, <em>treatment group</em>, <em>control group</em>, <em>blinded study</em>, <em>placebo</em>, <em>placebo effect</em>, and <em>double-blind</em>.</p></li>
 <li><p>Given a study description, be able to describe the study using correct terminology.</p></li>
 <li><p>Given a scenario, describe flaws in reasoning and propose study and sampling designs.</p></li>
 </ol>
@@ -164,7 +164,7 @@
 <h3>5 - Numerical Data<a class="anchor" aria-label="anchor" href="#numerical-data"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li><p>Define and use properly in context all new terminology: <em>scatterplot</em>, <em>dot plot</em>, <em>mean</em>, <em>distribution</em>, <em>point estimate</em>, <em>weighted mean</em>, <em>histogram</em>, <em>data density</em>, <em>right skewed</em>, <em>left skewed</em>, <em>symmetric</em>, <em>mode</em>, <em>unimodal</em>, <em>bimodal</em>, <em>multimodal</em>, <em>variance</em>, <em>standard deviation</em>, <em>box plot</em>, <em>median</em>, <em>interquartile range</em>, <em>first quartile</em>, <em>third quartile</em>, <em>whiskers</em>, <em>outlier</em>, <em>robust estimate</em>, <em>transformation</em>.</p></li>
+<li><p>Define and use properly in context all new terminology, to include: <em>scatterplot</em>, <em>dot plot</em>, <em>mean</em>, <em>distribution</em>, <em>point estimate</em>, <em>weighted mean</em>, <em>histogram</em>, <em>data density</em>, <em>right skewed</em>, <em>left skewed</em>, <em>symmetric</em>, <em>mode</em>, <em>unimodal</em>, <em>bimodal</em>, <em>multimodal</em>, <em>variance</em>, <em>standard deviation</em>, <em>box plot</em>, <em>median</em>, <em>interquartile range</em>, <em>first quartile</em>, <em>third quartile</em>, <em>whiskers</em>, <em>outlier</em>, <em>robust estimate</em>, <em>transformation</em>.</p></li>
 <li><p>In <code>R</code>, generate summary statistics for a numerical variable, including breaking down summary statistics by groups.</p></li>
 <li><p>In <code>R</code>, generate appropriate graphical summaries of numerical variables.</p></li>
 <li><p>Interpret and explain output both graphically and numerically.</p></li>
@@ -174,7 +174,7 @@
 <h3>6 - Categorical Data<a class="anchor" aria-label="anchor" href="#categorical-data"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li><p>Define and use properly in context all new terminology: <em>factor</em>, <em>contingency table</em>, <em>marginal counts</em>, <em>joint counts</em>, <em>frequency table</em>, <em>relative frequency table</em>, <em>bar plot</em>, <em>conditioning</em>, <em>segmented bar plot</em>, <em>mosaic plot</em>, <em>pie chart</em>, <em>side-by-side box plot</em>, <em>density plot</em>.</p></li>
+<li><p>Define and use properly in context all new terminology, to include: <em>factor</em>, <em>contingency table</em>, <em>marginal counts</em>, <em>joint counts</em>, <em>frequency table</em>, <em>relative frequency table</em>, <em>bar plot</em>, <em>conditioning</em>, <em>segmented bar plot</em>, <em>mosaic plot</em>, <em>pie chart</em>, <em>side-by-side box plot</em>, <em>density plot</em>.</p></li>
 <li><p>In <code>R</code>, generate tables for categorical variable(s).</p></li>
 <li><p>In <code>R</code>, generate appropriate graphical summaries of categorical and numerical variables.</p></li>
 <li><p>Interpret and explain output both graphically and numerically.</p></li>
@@ -196,7 +196,7 @@
 <h3>8 - Probability Rules<a class="anchor" aria-label="anchor" href="#probability-rules"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li><p>Define and use properly in context all new terminology related to probability including: <em>sample space</em>, <em>outcome</em>, <em>event</em>, <em>subset</em>, <em>intersection</em>, <em>union</em>, <em>complement</em>, <em>probability</em>, <em>mutually exclusive</em>, <em>exhaustive</em>, <em>independent</em>, <em>multiplication rule</em>, <em>permutation</em>, <em>combination</em>.</p></li>
+<li><p>Define and use properly in context all new terminology related to probability, including: <em>sample space</em>, <em>outcome</em>, <em>event</em>, <em>subset</em>, <em>intersection</em>, <em>union</em>, <em>complement</em>, <em>probability</em>, <em>mutually exclusive</em>, <em>exhaustive</em>, <em>independent</em>, <em>multiplication rule</em>, <em>permutation</em>, <em>combination</em>.</p></li>
 <li><p>Apply basic probability and counting rules to find probabilities.</p></li>
 <li><p>Describe the basic axioms of probability.</p></li>
 <li><p>Use <code>R</code> to calculate and simulate probabilities of events.</p></li>
@@ -216,7 +216,7 @@
 <h3>10 - Random Variables<a class="anchor" aria-label="anchor" href="#random-variables"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li><p>Define and use properly in context all new terminology: <em>random variable</em>, <em>discrete random variable</em>, <em>continuous random variable</em>, <em>mixed random variable</em>, <em>distribution function</em>, <em>probability mass function</em>, <em>cumulative distribution function</em>, <em>moment</em>, <em>expectation</em>, <em>mean</em>, <em>variance</em>.</p></li>
+<li><p>Define and use properly in context all new terminology, to include: <em>random variable</em>, <em>discrete random variable</em>, <em>continuous random variable</em>, <em>mixed random variable</em>, <em>distribution function</em>, <em>probability mass function</em>, <em>cumulative distribution function</em>, <em>moment</em>, <em>expectation</em>, <em>mean</em>, <em>variance</em>.</p></li>
 <li><p>Given a discrete random variable, obtain the pmf and cdf, and use them to obtain probabilities of events.</p></li>
 <li><p>Simulate random variables for a discrete distribution.</p></li>
 <li><p>Find the moments of a discrete random variable.</p></li>
@@ -227,7 +227,7 @@
 <h3>11 - Continuous Random Variables<a class="anchor" aria-label="anchor" href="#continuous-random-variables"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li><p>Define and properly use in context all new terminology: <em>probability density function (pdf)</em> and <em>cumulative distribution function (cdf)</em> for continuous random variables.</p></li>
+<li><p>Define and properly use in context all new terminology, to include: <em>probability density function (pdf)</em> and <em>cumulative distribution function (cdf)</em> for continuous random variables.</p></li>
 <li><p>Given a continuous random variable, find probabilities using the pdf and/or the cdf.</p></li>
 <li><p>Find the mean and variance of a continuous random variable.</p></li>
 </ol>
@@ -236,7 +236,7 @@
 <h3>12 - Named Discrete Distributions<a class="anchor" aria-label="anchor" href="#named-discrete-distributions"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li><p>Recognize and setup for use common discrete distributions (Uniform, Binomial, Poisson, Hypergeometric) to include parameters, assumptions, and moments.</p></li>
+<li><p>Recognize and set up for use common discrete distributions (Uniform, Binomial, Poisson, Hypergeometric) to include parameters, assumptions, and moments.</p></li>
 <li><p>Use <code>R</code> to calculate probabilities and quantiles involving random variables with common discrete distributions.</p></li>
 </ol>
 </div>
@@ -254,7 +254,7 @@
 <h3>14 - Multivariate Distributions<a class="anchor" aria-label="anchor" href="#multivariate-distributions"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li><p>Define (and distinguish between) the terms joint probability mass/density function, marginal pmf/pdf, and conditional pmf/pdf.</p></li>
+<li><p>Define (and distinguish between) the terms <em>joint probability mass/density function</em>, <em>marginal pmf/pdf</em>, and <em>conditional pmf/pdf</em>.</p></li>
 <li><p>Given a joint pmf/pdf, obtain the marginal and conditional pmfs/pdfs.</p></li>
 <li><p>Use joint, marginal and conditional pmfs/pdfs to obtain probabilities.</p></li>
 </ol>
@@ -296,15 +296,15 @@
 <h3>18 - Hypothesis Testing Case Study<a class="anchor" aria-label="anchor" href="#hypothesis-testing-case-study"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li><p>Define and use properly in context all new terminology: <em>point estimate</em>, <em>null hypothesis</em>, <em>alternative hypothesis</em>, <em>hypothesis test</em>, <em>randomization</em>, <em>permutation test</em>, <em>test statistic</em>, and <em><span class="math inline">\(p\)</span>-value</em>.</p></li>
-<li><p>Conduct a hypothesis test using a permutation test to include all 4 steps.</p></li>
+<li><p>Define and use properly in context all new terminology, to include: <em>point estimate</em>, <em>null hypothesis</em>, <em>alternative hypothesis</em>, <em>hypothesis test</em>, <em>randomization</em>, <em>permutation test</em>, <em>test statistic</em>, and <em><span class="math inline">\(p\)</span>-value</em>.</p></li>
+<li><p>Conduct a hypothesis test using a randomization test, to include all 4 steps.</p></li>
 </ol>
 </div>
 <div id="hypothesis-testing-with-simulation" class="section level3 unnumbered">
 <h3>19 - Hypothesis Testing with Simulation<a class="anchor" aria-label="anchor" href="#hypothesis-testing-with-simulation"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li><p>Know and properly use the terminology of a hypothesis test: <em>null hypothesis</em>, <em>alternative hypothesis</em>, <em>test statistic</em>, <em><span class="math inline">\(p\)</span>-value</em>, <em>randomization test</em>, <em>one-sided test</em>, <em>two-sided test</em>, <em>statistically significant</em>, <em>significance level</em>, <em>type I error</em>, <em>type II error</em>, <em>false positive</em>, <em>false negative</em>, <em>null distribution</em>, and <em>sampling distribution</em>.</p></li>
+<li><p>Know and properly use the terminology of a hypothesis test, to include: <em>null hypothesis</em>, <em>alternative hypothesis</em>, <em>test statistic</em>, <em><span class="math inline">\(p\)</span>-value</em>, <em>randomization test</em>, <em>one-sided test</em>, <em>two-sided test</em>, <em>statistically significant</em>, <em>significance level</em>, <em>type I error</em>, <em>type II error</em>, <em>false positive</em>, <em>false negative</em>, <em>null distribution</em>, and <em>sampling distribution</em>.</p></li>
 <li><p>Conduct all four steps of a hypothesis test using randomization.</p></li>
 <li><p>Discuss and explain the ideas of decision errors, one-sided versus two-sided tests, and the choice of a significance level.</p></li>
 </ol>
@@ -313,7 +313,7 @@
 <h3>20 - Hypothesis Testing with Known Distributions<a class="anchor" aria-label="anchor" href="#hypothesis-testing-with-known-distributions"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li><p>Know and properly use the terminology of a hypothesis test: <em>permutation test</em>, <em>exact test</em>, <em>null hypothesis</em>, <em>alternative hypothesis</em>, <em>test statistic</em>, <em><span class="math inline">\(p\)</span>-value</em>, and <em>power</em>.</p></li>
+<li><p>Know and properly use the terminology of a hypothesis test, to include: <em>permutation test</em>, <em>exact test</em>, <em>null hypothesis</em>, <em>alternative hypothesis</em>, <em>test statistic</em>, <em><span class="math inline">\(p\)</span>-value</em>, and <em>power</em>.</p></li>
 <li><p>Conduct all four steps of a hypothesis test using probability models.</p></li>
 </ol>
 </div>
@@ -359,7 +359,7 @@
 <h3>25 - Bootstrap<a class="anchor" aria-label="anchor" href="#bootstrap"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li><p>Use the bootstrap to estimate the standard error of the sample statistic.</p></li>
+<li><p>Use the bootstrap to estimate the standard error of a sample statistic.</p></li>
 <li><p>Using bootstrap methods, obtain and interpret a confidence interval for an unknown parameter, based on a random sample.</p></li>
 <li><p>Describe the advantages, disadvantages, and assumptions behind bootstrapping for confidence intervals.</p></li>
 </ol>
@@ -380,11 +380,11 @@
 <h3>27 - Linear Regression Basics<a class="anchor" aria-label="anchor" href="#linear-regression-basics"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li><p>Obtain parameter estimates of a simple linear regression model given a sample of data.</p></li>
+<li><p>Obtain parameter estimates of a simple linear regression model, given a sample of data.</p></li>
 <li><p>Interpret the coefficients of a simple linear regression.</p></li>
 <li><p>Create a scatterplot with a regression line.</p></li>
 <li><p>Explain and check the assumptions of linear regression.</p></li>
-<li><p>Use and be able to explain all new terminology: <em>response</em>, <em>predictor</em>, <em>linear regression</em>, <em>simple linear regression</em>, <em>coefficients</em>, <em>residual</em>, <em>extrapolation</em>.</p></li>
+<li><p>Use and be able to explain all new terminology, to include: <em>response</em>, <em>predictor</em>, <em>linear regression</em>, <em>simple linear regression</em>, <em>coefficients</em>, <em>residual</em>, <em>extrapolation</em>.</p></li>
 </ol>
 </div>
 <div id="linear-regression-inference" class="section level3 unnumbered">
@@ -396,8 +396,8 @@
 <li><p>Build and interpret confidence and prediction intervals for values of the response variable.</p></li>
 </ol>
 </div>
-<div id="regression-diagnostics" class="section level3 unnumbered">
-<h3>29 - Regression Diagnostics<a class="anchor" aria-label="anchor" href="#regression-diagnostics"><i class="fas fa-link"></i></a>
+<div id="linear-regression-diagnostics" class="section level3 unnumbered">
+<h3>29 - Linear Regression Diagnostics<a class="anchor" aria-label="anchor" href="#linear-regression-diagnostics"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
 <li><p>Obtain and interpret <span class="math inline">\(R\)</span>-squared and the <span class="math inline">\(F\)</span>-statistic.</p></li>
@@ -430,7 +430,7 @@
 <h3>32 - Logistic Regression<a class="anchor" aria-label="anchor" href="#logistic-regression"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li><p>Using <code>R</code>, conduct logistic regression and interpret the output and perform model selection.</p></li>
+<li><p>Using <code>R</code>, conduct logistic regression, interpret the output, and perform model selection.</p></li>
 <li><p>Write the logistic regression model and predict outputs for given inputs.</p></li>
 <li><p>Find confidence intervals for parameter estimates and predictions.</p></li>
 <li><p>Create and interpret a confusion matrix.</p></li>
@@ -490,7 +490,7 @@
 <li><a class="nav-link" href="#linear-regression-case-study">26 - Linear Regression Case Study</a></li>
 <li><a class="nav-link" href="#linear-regression-basics">27 - Linear Regression Basics</a></li>
 <li><a class="nav-link" href="#linear-regression-inference">28 - Linear Regression Inference</a></li>
-<li><a class="nav-link" href="#regression-diagnostics">29 - Regression Diagnostics</a></li>
+<li><a class="nav-link" href="#linear-regression-diagnostics">29 - Linear Regression Diagnostics</a></li>
 <li><a class="nav-link" href="#simulated-based-linear-regression">30 - Simulated-Based Linear Regression</a></li>
 <li><a class="nav-link" href="#multiple-regression">31 - Multiple Regression</a></li>
 <li><a class="nav-link" href="#logistic-regression">32 - Logistic Regression</a></li>
@@ -513,7 +513,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-07.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -3,9 +3,12 @@
 
 ## Objectives
 
-1) Define and properly use the new terms to include probability density function (pdf) and cumulative distribution function (cdf) for continuous random variables.  
+1) Define and properly use in context all new terminology, to include: *probability density function (pdf)* and *cumulative distribution function (cdf)* for continuous random variables.  
+
 2) Given a continuous random variable, find probabilities using the pdf and/or the cdf.  
-3) Find the mean and variance of a continuous random variable. 
+
+3) Find the mean and variance of a continuous random variable.  
+
 
 
 ## Continuous random variables
@@ -205,10 +208,10 @@ inspect(results)
 ```
 ## 
 ## quantitative variables:  
-##      name   class         min        Q1    median        Q3       max      mean
-## ...1 sqrt numeric 0.005321359 0.4977011 0.7084257 0.8656665 0.9999873 0.6669452
-##             sd     n missing
-## ...1 0.2358056 10000       0
+##   name   class         min        Q1    median        Q3       max      mean
+## 1 sqrt numeric 0.005321359 0.4977011 0.7084257 0.8656665 0.9999873 0.6669452
+##          sd     n missing
+## 1 0.2358056 10000       0
 ```
 
 \pagebreak 

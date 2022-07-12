@@ -3,9 +3,9 @@
 
 ## Objectives
 
-1) Know and properly use the terminology of a hypothesis test: *permutation test*, *exact test*, *null hypothesis*, *alternative hypothesis*, *test statistic*, *$p$-value*, and *power*.   
+1) Know and properly use the terminology of a hypothesis test, to include: *permutation test*, *exact test*, *null hypothesis*, *alternative hypothesis*, *test statistic*, *$p$-value*, and *power*.   
 
-2) Conduct all four steps of a hypothesis test using probability models.  
+2) Conduct all four steps of a hypothesis test using probability models.   
 
 
 ## Hypothesis testing using probability models  
@@ -380,8 +380,8 @@ inspect(golf_balls)
 ```
 ## 
 ## quantitative variables:  
-##        name   class min Q1 median Q3 max     mean       sd   n missing
-## ...1 number numeric   1  1      2  3   4 2.366255 1.107432 486       0
+##     name   class min Q1 median Q3 max     mean       sd   n missing
+## 1 number numeric   1  1      2  3   4 2.366255 1.107432 486       0
 ```
 
 

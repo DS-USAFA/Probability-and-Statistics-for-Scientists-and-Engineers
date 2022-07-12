@@ -11,7 +11,7 @@
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
 <meta name="description" content="7.1 Objectives Use R to simulate a probabilistic model. Use basic counting methods.  7.2 Introduction to probability models In this second block of material we will focus on probability models. We...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content="Chapter 7 Probability Case Study | Computational Probability and Statistics">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Master.png">
@@ -107,7 +107,7 @@
 <li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
 <li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
 <li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation-Based Linear Regression</a></li>
 <li><a class="" href="LRMULTI.html"><span class="header-section-number">31</span> Multiple Linear Regression</a></li>
 <li><a class="" href="LOGREG.html"><span class="header-section-number">32</span> Logistic Regression</a></li>
 <li><a class="" href="references.html">References</a></li>
@@ -127,9 +127,8 @@
 <span class="header-section-number">7.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-7"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li>Use R to simulate a probabilistic model.<br>
-</li>
-<li>Use basic counting methods.</li>
+<li><p>Use <code>R</code> to simulate a probabilistic model.</p></li>
+<li><p>Use basic counting methods.</p></li>
 </ol>
 </div>
 <div id="introduction-to-probability-models" class="section level2" number="7.2">
@@ -192,22 +191,22 @@ Discuss these questions and others that you think are relevant.<a class="footnot
 <p>Now that we have an idea about the structure of the problem, we next need to think about how we would simulate a single classroom. We have 18 students in the classroom and they all could have any of the 365 days of the year as a birthday. What we need to do is sample birthdays for each of the 18 students. But how do we code the days of the year?</p>
 <p>An easy solution is to just label the days from 1 to 365. The function <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> does this for us.</p>
 <div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">days</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">365</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">days</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">365</span><span class="op">)</span></span></code></pre></div>
 <p>Next we need to pick one of the days using the sample function. Note that we set the seed to get repeatable results, this is not required.</p>
 <div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2022</span><span class="op">)</span>
-<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2022</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,<span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 228</code></pre>
 <p>The first person was born on the 228th day of the year.</p>
 <p>Since <code>R</code> works on vectors, we don’t have to write a loop to select 18 days, we just have <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample()</a></code> do it for us.</p>
 <div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">class</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">class</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">class</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">class</span></span></code></pre></div>
 <pre><code>##  [1] 206 311 331 196 262 191 206 123 233 270 248   7 349 112   1 307 288 354</code></pre>
 <p>What do we want <code>R</code> to do? Sample from the numbers 1 to 365 with replacement, which means a number can be picked more than once.</p>
 <p>Notice in our sample we have at least one match, although it is difficult to look at this list and see the match. Let’s sort them to make it easier for us to see.</p>
 <div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">class</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">class</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##  [1]   1   7 112 123 191 196 206 206 233 248 262 270 288 307 311 331 349 354</code></pre>
 <p>The next step is to find a way in <code>R</code> for the code to detect that there is a match.</p>
 <blockquote>
@@ -216,22 +215,22 @@ What idea(s) can we use to determine if a match exists?</p>
 </blockquote>
 <p>We could sort the data and look at differences in sequential values and then check if the set of differences contains a zero. This seems to be computationally expensive. Instead we will use the function <code><a href="https://rdrr.io/r/base/unique.html">unique()</a></code> which gives a vector of unique values in an object. The function <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> gives the number of elements in the vector.</p>
 <div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">class</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">class</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 17</code></pre>
 <p>Since we only have 17 unique values in a vector of size 18, we have a match. Now let’s put this all together to generate another classroom of size 18.</p>
 <div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 16</code></pre>
-<p>The next problem that needs to be solved is how to repeat the classrooms and keep track of those that have a match. There are several functions we could use to include <code><a href="https://rdrr.io/r/base/lapply.html">replicate()</a></code> but we will use <code><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do()</a></code> from the <strong>mosaic</strong> package because it returns a data frame so we can use <code>tidyverse</code> verbs to wrangle the data.</p>
-<p>The <code><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do()</a></code> function allows us to repeat an operation many times. The following template</p>
+<p>The next problem that needs to be solved is how to repeat the classrooms and keep track of those that have a match. There are several functions we could use to include <code><a href="https://rdrr.io/r/base/lapply.html">replicate()</a></code> but we will use <code>do()</code> from the <strong>mosaic</strong> package because it returns a data frame so we can use <code>tidyverse</code> verbs to wrangle the data.</p>
+<p>The <code>do()</code> function allows us to repeat an operation many times. The following template</p>
 <pre><code>do(n) * {stuff to do}              # pseudo-code</code></pre>
 <p>where {stuff to do} is typically a single <code>R</code> command, but may be something more complicated.</p>
 <p>Load the libraries.</p>
 <div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ProjectMOSAIC/mosaic">mosaic</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ProjectMOSAIC/mosaic">mosaic</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">do</span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   length
 ## 1     18
 ## 2     17
@@ -241,17 +240,17 @@ What idea(s) can we use to determine if a match exists?</p>
 <p>Let’s repeat for a larger number of simulated classroom, remember you should be asking yourself:</p>
 <p><em>What do I want <code>R</code> to do?</em><br><em>What does <code>R</code> need to do this?</em></p>
 <div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>match<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">length</span><span class="op">==</span><span class="fl">18</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">match</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">(</span><span class="fu">do</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>match<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">length</span><span class="op">==</span><span class="fl">18</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu">mean</span><span class="op">(</span><span class="va">match</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   prob
 ## 1 0.36</code></pre>
 <p>This is within 2 decimal places of the mathematical solution we develop shortly.</p>
 <p>How many classrooms do we need to simulate to get an accurate estimate of the probability of a match? That is a statistical modeling question and it depends on how much variability we can accept. We will discuss these ideas later in the semester. For now, you can run the code multiple times and see how the estimate varies. If computational power is cheap, you can increase the number of simulations.</p>
 <div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>match<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">length</span><span class="op">==</span><span class="fl">18</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">match</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">(</span><span class="fu">do</span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>match<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">length</span><span class="op">==</span><span class="fl">18</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu">mean</span><span class="op">(</span><span class="va">match</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##     prob
 ## 1 0.3442</code></pre>
 </div>
@@ -261,17 +260,17 @@ What idea(s) can we use to determine if a match exists?</p>
 </h3>
 <p>By the way, the method we have used to create the data allows us to summarize the number of unique birthdays using a table or bar chart. Let’s do that now. Note that since the first argument in <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code> is not data then the <strong>pipe</strong> operator will not work without some extra effort. We must tell <code>R</code> that the data is the previous argument in the pipeline and thus use the symbol <strong>.</strong> to denote this.</p>
 <div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">length</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">(</span><span class="fu">do</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">length</span>,data<span class="op">=</span><span class="va">.</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## length
 ##  14  15  16  17  18 
 ##   1   7  52 253 687</code></pre>
 <p>Figure <a href="CS2.html#fig:bar71-fig">7.1</a> is a plot of the number of unique birthdays in our sample.</p>
 <div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span><span class="va">length</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Number of unique birthdays"</span>,y<span class="op">=</span><span class="st">"Count"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">(</span><span class="fu">do</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span><span class="va">length</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Number of unique birthdays"</span>,y<span class="op">=</span><span class="st">"Count"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:bar71-fig"></span>
 <img src="07-Probability-Case-Study_files/figure-html/bar71-fig-1.png" alt="Bar chart of the number of unique birthdays in the sample." width="672"><p class="caption">
@@ -301,17 +300,17 @@ What is the number of possibilities for 18 people so that no one has the same bi
 <p><span class="math display">\[1 - \frac{\frac{365!}{347!}}{365^{18}}\]</span></p>
 <p>In <code>R</code> there is a function called <code><a href="https://rdrr.io/r/base/Special.html">factorial()</a></code> but factorials get large fast and we will <strong>overflow</strong> the memory. Try <code>factorial(365)</code> in <code>R</code> to see what happens.</p>
 <div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">365</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">365</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] Inf</code></pre>
 <p>It is returning <em>infinity</em> because the number is too large for the buffer. As is often the case we will have when using a computational method, we must be clever about our approach. Instead of using factorials we can make use of <code>R</code>s ability to work on vectors. If we provide <code>R</code> with a vector of values, the <code><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">prod()</a></code> will perform a product of all the elements.</p>
 <div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">365</span><span class="op">*</span><span class="fl">364</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fl">365</span><span class="op">*</span><span class="fl">364</span></span></code></pre></div>
 <pre><code>## [1] 132860</code></pre>
 <div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">prod</a></span><span class="op">(</span><span class="fl">365</span><span class="op">:</span><span class="fl">364</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">prod</a></span><span class="op">(</span><span class="fl">365</span><span class="op">:</span><span class="fl">364</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 132860</code></pre>
 <div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">1</span><span class="op">-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">prod</a></span><span class="op">(</span><span class="fl">365</span><span class="op">:</span><span class="fl">348</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">365</span><span class="op">^</span><span class="fl">18</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fl">1</span><span class="op">-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">prod</a></span><span class="op">(</span><span class="fl">365</span><span class="op">:</span><span class="fl">348</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">365</span><span class="op">^</span><span class="fl">18</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.3469114</code></pre>
 </div>
 <div id="general-solution" class="section level3" number="7.4.5">
@@ -324,22 +323,22 @@ What is the number of possibilities for 18 people so that no one has the same bi
 <span id="cb142-3"><a href="CS2.html#cb142-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>For this problem we will call the function <code>birthday_prob()</code>. The only parameter we need is the number of people in the room, <code>n</code>. Let’s write this function.</p>
 <div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">birthday_prob</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">=</span><span class="fl">20</span><span class="op">)</span><span class="op">{</span>
-  <span class="fl">1</span><span class="op">-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">prod</a></span><span class="op">(</span><span class="fl">365</span><span class="op">:</span><span class="op">(</span><span class="fl">365</span><span class="op">-</span><span class="op">(</span><span class="va">n</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">365</span><span class="op">^</span><span class="va">n</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">birthday_prob</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">=</span><span class="fl">20</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fl">1</span><span class="op">-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">prod</a></span><span class="op">(</span><span class="fl">365</span><span class="op">:</span><span class="op">(</span><span class="fl">365</span><span class="op">-</span><span class="op">(</span><span class="va">n</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">365</span><span class="op">^</span><span class="va">n</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>Notice we assigned the function to the name <code>birthday_prob</code>, we told <code>R</code> to expect one argument to the function, which we are calling <code>n</code>, and then we provide <code>R</code> with the code to find the probability. We set a default value for <code>n</code> in case one is not provided to prevent an error when the function is run. We will learn more about writing functions over this and the next semester.</p>
 <p>Test the code with a know answer.</p>
 <div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">birthday_prob</span><span class="op">(</span><span class="fl">18</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">birthday_prob</span><span class="op">(</span><span class="fl">18</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.3469114</code></pre>
 <p>Now we can determine the probability for any size room. You may have heard that it only takes about 23 people in a room to have a 50% probability of at least 2 people matching birthdays.</p>
 <div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">birthday_prob</span><span class="op">(</span><span class="fl">23</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">birthday_prob</span><span class="op">(</span><span class="fl">23</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.5072972</code></pre>
 <p>Let’s create a plot of the probability versus number of people in the room. To do this, we need to apply the function to a vector of values. The function <code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code> will work or we can also use <code><a href="https://rdrr.io/r/base/Vectorize.html">Vectorize()</a></code> to alter our existing function. We choose the latter option.</p>
 <p>First notice what happens if we input a vector into our function.</p>
 <div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">birthday_prob</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">birthday_prob</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Warning in 365:(365 - (n - 1)): numerical expression has 20 elements: only the
 ## first used</code></pre>
 <pre><code>##  [1] 0.0000000 0.9972603 0.9999925 1.0000000 1.0000000 1.0000000 1.0000000
@@ -347,28 +346,28 @@ What is the number of possibilities for 18 people so that no one has the same bi
 ## [15] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000</code></pre>
 <p>It only uses the first value. There are several ways to solve this problem. We can use the <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> function in the <strong>purrr</strong> package. This idea of mapping a function to a vector is important in data science. It is used in scenarios where there is a lot of data. In this case the idea of map-reduce is used to make the analysis amenable to parallel computing.</p>
 <div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,<span class="va">birthday_prob</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,<span class="va">birthday_prob</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##  [1] 0.000000000 0.002739726 0.008204166 0.016355912 0.027135574 0.040462484
 ##  [7] 0.056235703 0.074335292 0.094623834 0.116948178 0.141141378 0.167024789
 ## [13] 0.194410275 0.223102512 0.252901320 0.283604005 0.315007665 0.346911418
 ## [19] 0.379118526 0.411438384</code></pre>
 <p>We could also just vectorize the function.</p>
 <div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">birthday_prob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Vectorize.html">Vectorize</a></span><span class="op">(</span><span class="va">birthday_prob</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">birthday_prob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Vectorize.html">Vectorize</a></span><span class="op">(</span><span class="va">birthday_prob</span><span class="op">)</span></span></code></pre></div>
 <p>Now notice what happens.</p>
 <div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">birthday_prob</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">birthday_prob</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##  [1] 0.000000000 0.002739726 0.008204166 0.016355912 0.027135574 0.040462484
 ##  [7] 0.056235703 0.074335292 0.094623834 0.116948178 0.141141378 0.167024789
 ## [13] 0.194410275 0.223102512 0.252901320 0.283604005 0.315007665 0.346911418
 ## [19] 0.379118526 0.411438384</code></pre>
 <p>We are good to go. Let’s create our line plot, Figure <a href="CS2.html#fig:line71-fig">7.2</a>.</p>
 <div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">gf_line</span><span class="op">(</span><span class="fu">birthday_prob</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">100</span><span class="op">)</span>,
-        xlab<span class="op">=</span><span class="st">"Number of People"</span>,
-        ylab<span class="op">=</span><span class="st">"Probability of Match"</span>,
-        title<span class="op">=</span><span class="st">"Probability of at least 2 people with matching birthdays"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">gf_line</span><span class="op">(</span><span class="fu">birthday_prob</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">100</span><span class="op">)</span>,</span>
+<span>        xlab<span class="op">=</span><span class="st">"Number of People"</span>,</span>
+<span>        ylab<span class="op">=</span><span class="st">"Probability of Match"</span>,</span>
+<span>        title<span class="op">=</span><span class="st">"Probability of at least 2 people with matching birthdays"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:line71-fig"></span>
 <img src="07-Probability-Case-Study_files/figure-html/line71-fig-1.png" alt="The probability of at least 2 people having mathcing birthdays" width="672"><p class="caption">
@@ -383,7 +382,7 @@ Figure 7.2: The probability of at least 2 people having mathcing birthdays
 </h3>
 <p>The final approach we will take is one based on data, a data science approach. In the <strong>mosaicData</strong> package is a data set called <code>Births</code> that contains the number of births in the US from 1969 to 1988. This data will allow us to estimate the number of births on any day of the year. This allows us to eliminate the reliance on the assumption that each day is equally likely. Let’s first <code><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect()</a></code> the data object.</p>
 <div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">Births</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">Births</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
 ##   name   class levels    n missing
@@ -396,27 +395,27 @@ Figure 7.2: The probability of at least 2 people having mathcing birthdays
 ## 1 date  Date 1969-01-01 1988-12-31   1 days   1 days 7305       0
 ## 
 ## quantitative variables:  
-##              name   class  min   Q1 median    Q3   max        mean          sd
-## ...1       births integer 6675 8792   9622 10510 12851 9648.940178 1127.315229
-## ...2         year integer 1969 1974   1979  1984  1988 1978.501027    5.766735
-## ...3        month integer    1    4      7    10    12    6.522930    3.448939
-## ...4  day_of_year integer    1   93    184   275   366  183.753593  105.621885
-## ...5 day_of_month integer    1    8     16    23    31   15.729637    8.800694
-## ...6  day_of_week integer    1    2      4     6     7    4.000274    1.999795
-##         n missing
-## ...1 7305       0
-## ...2 7305       0
-## ...3 7305       0
-## ...4 7305       0
-## ...5 7305       0
-## ...6 7305       0</code></pre>
+##           name   class  min   Q1 median    Q3   max        mean          sd
+## 1       births integer 6675 8792   9622 10510 12851 9648.940178 1127.315229
+## 2         year integer 1969 1974   1979  1984  1988 1978.501027    5.766735
+## 3        month integer    1    4      7    10    12    6.522930    3.448939
+## 4  day_of_year integer    1   93    184   275   366  183.753593  105.621885
+## 5 day_of_month integer    1    8     16    23    31   15.729637    8.800694
+## 6  day_of_week integer    1    2      4     6     7    4.000274    1.999795
+##      n missing
+## 1 7305       0
+## 2 7305       0
+## 3 7305       0
+## 4 7305       0
+## 5 7305       0
+## 6 7305       0</code></pre>
 <p>It could be argued that we could randomly pick one year and use it. Let’s see what happens if we just used 1969. Figure <a href="CS2.html#fig:scat71-fig">7.3</a> is a scatter plot of the number of births in 1969 for each day of the year.</p>
 <div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Births</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">1969</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_point</span><span class="op">(</span><span class="va">births</span><span class="op">~</span><span class="va">day_of_year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Day of the Year"</span>,y<span class="op">=</span><span class="st">"Number of Births"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">Births</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">1969</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_point</span><span class="op">(</span><span class="va">births</span><span class="op">~</span><span class="va">day_of_year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Day of the Year"</span>,y<span class="op">=</span><span class="st">"Number of Births"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:scat71-fig"></span>
 <img src="07-Probability-Case-Study_files/figure-html/scat71-fig-1.png" alt="The number of births for each day of the year in 1969" width="672"><p class="caption">
@@ -430,11 +429,11 @@ What patterns do you see in Figure <a href="CS2.html#fig:scat71-fig">7.3</a>? Wh
 <p>There are definitely bands appearing in the data which could be the day of the week; there are less birthdays on the weekend. There is also seasonality with more birthdays in the summer and fall. There is also probably an impact from holidays.</p>
 <p>Quickly, let’s look at the impact of day of the week by using color for day of the week. Figure <a href="CS2.html#fig:scat72-fig">7.4</a> makes it clear that the weekends have less number of births as compared to the work week.</p>
 <div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Births</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">1969</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_point</span><span class="op">(</span><span class="va">births</span><span class="op">~</span><span class="va">day_of_year</span>,color<span class="op">=</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">day_of_week</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Day of the Year"</span>,col<span class="op">=</span><span class="st">"Day of Week"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">Births</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">1969</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_point</span><span class="op">(</span><span class="va">births</span><span class="op">~</span><span class="va">day_of_year</span>,color<span class="op">=</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">day_of_week</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Day of the Year"</span>,col<span class="op">=</span><span class="st">"Day of Week"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:scat72-fig"></span>
 <img src="07-Probability-Case-Study_files/figure-html/scat72-fig-1.png" alt="The number of births for each day of the year in 1969 broken down by day of the week" width="672"><p class="caption">
@@ -443,9 +442,9 @@ Figure 7.4: The number of births for each day of the year in 1969 broken down by
 </div>
 <p>By only using one year, this data might give poor results since holidays will fall on certain days of the week and the weekends will also be impacted. Note that we also still have the problem of leap years.</p>
 <div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Births</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">Births</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 20 x 2
 ##     year     n
 ##    &lt;int&gt; &lt;int&gt;
@@ -471,10 +470,10 @@ Figure 7.4: The number of births for each day of the year in 1969 broken down by
 ## 20  1988   366</code></pre>
 <p>The years 1972, 1976, 1980, 1984, and 1988 are all leap years. At this point, to make the analysis easier, we will drop those years.</p>
 <div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Births</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1972</span>,<span class="fl">1976</span>,<span class="fl">1980</span>,<span class="fl">1984</span>,<span class="fl">1988</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">Births</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1972</span>,<span class="fl">1976</span>,<span class="fl">1980</span>,<span class="fl">1984</span>,<span class="fl">1988</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 15 x 2
 ##     year     n
 ##    &lt;int&gt; &lt;int&gt;
@@ -496,12 +495,12 @@ Figure 7.4: The number of births for each day of the year in 1969 broken down by
 <p>Notice in <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> we used the <code>%in%</code> argument. This is a <strong>logical</strong> argument checking if <code>year</code> is one of the values. The <code>!</code> at the front negates this in a sense requiring <code>year</code> not to be one of those values.`</p>
 <p>We are almost ready to simulate. We need to get the count of <code>births</code> on each day of the year for the non-leap years.</p>
 <div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">birth_data</span> <span class="op">&lt;-</span> <span class="va">Births</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1972</span>,<span class="fl">1976</span>,<span class="fl">1980</span>,<span class="fl">1984</span>,<span class="fl">1988</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">day_of_year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="va">births</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="va">birth_data</span> <span class="op">&lt;-</span> <span class="va">Births</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1972</span>,<span class="fl">1976</span>,<span class="fl">1980</span>,<span class="fl">1984</span>,<span class="fl">1988</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">day_of_year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="va">births</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
 <div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">birth_data</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">birth_data</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   day_of_year      n
 ##         &lt;int&gt;  &lt;int&gt;
@@ -513,11 +512,11 @@ Figure 7.4: The number of births for each day of the year in 1969 broken down by
 ## 6           6 140044</code></pre>
 <p>Let’s look at a plot of the number of births versus day of the year. We combined years in Figure <a href="CS2.html#fig:scat73-fig">7.5</a>.</p>
 <div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">birth_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_point</span><span class="op">(</span><span class="va">n</span><span class="op">~</span><span class="va">day_of_year</span>,
-          xlab<span class="op">=</span><span class="st">"Day of the year"</span>,
-          ylab<span class="op">=</span><span class="st">"Number of births"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">birth_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_point</span><span class="op">(</span><span class="va">n</span><span class="op">~</span><span class="va">day_of_year</span>,</span>
+<span>          xlab<span class="op">=</span><span class="st">"Day of the year"</span>,</span>
+<span>          ylab<span class="op">=</span><span class="st">"Number of births"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:scat73-fig"></span>
 <img src="07-Probability-Case-Study_files/figure-html/scat73-fig-1.png" alt="Number of births by day of the year for all years." width="672"><p class="caption">
@@ -527,16 +526,16 @@ Figure 7.5: Number of births by day of the year for all years.
 <p>This curve has the seasonal cycling we would expect. The smaller scale cycling is unexpected. Maybe because we are dropping the leap years, we are getting some days appearing in our time interval more frequently on weekends. We leave it to you to investigate this phenomenon.</p>
 <p>We use these counts as weights in a sampling process. Days with more births will have a higher probability of being selected. Days such as Christmas and Christmas Eve have a lower probability of being selected. Let’s save the weights in an object to use in the <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample()</a></code> function.</p>
 <div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">birth_data_weights</span> <span class="op">&lt;-</span> <span class="va">birth_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">birth_data_weights</span> <span class="op">&lt;-</span> <span class="va">birth_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>The <code><a href="https://dplyr.tidyverse.org/reference/pull.html">pull()</a></code> function pulls the vectors of values out of the data frame format into a vector format which the <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample()</a></code> needs.</p>
 <p>Now let’s simulate the problem. The probability of a match should change slightly, maybe go down slightly?, but not much since most of the days have about the same probability or number of occurrences.</p>
 <div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>
-<span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span>,prob<span class="op">=</span><span class="va">birth_data_weights</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>match<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">length</span><span class="op">==</span><span class="fl">18</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">match</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span></span>
+<span><span class="op">(</span><span class="fu">do</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">days</span>,size<span class="op">=</span><span class="fl">18</span>,replace <span class="op">=</span> <span class="cn">TRUE</span>,prob<span class="op">=</span><span class="va">birth_data_weights</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>match<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">length</span><span class="op">==</span><span class="fl">18</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu">mean</span><span class="op">(</span><span class="va">match</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##    prob
 ## 1 0.352</code></pre>
 <p>We could not solve this problem of varying frequency of birth days using mathematics, at least as far as we know.</p>
@@ -616,7 +615,7 @@ Figure 7.5: Number of births by day of the year for all years.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-07.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

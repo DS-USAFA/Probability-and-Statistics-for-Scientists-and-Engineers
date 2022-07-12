@@ -11,7 +11,7 @@
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
 <meta name="description" content="16.1 Objectives Given a discrete random variable, determine the distribution of a transformation of that random variable. Given a continuous random variable, use the cdf method to determine the...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content="Chapter 16 Transformations | Computational Probability and Statistics">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Master.png">
@@ -107,7 +107,7 @@
 <li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
 <li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
 <li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation-Based Linear Regression</a></li>
 <li><a class="" href="LRMULTI.html"><span class="header-section-number">31</span> Multiple Linear Regression</a></li>
 <li><a class="" href="LOGREG.html"><span class="header-section-number">32</span> Logistic Regression</a></li>
 <li><a class="" href="references.html">References</a></li>
@@ -218,20 +218,20 @@ f_Y(y)=\frac{1}{2\sqrt{y}}
 \]</span>
 We can also do this using <code>R</code> but we first have to create a function that can take vector input.</p>
 <div class="sourceCode" id="cb402"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">y_pdf</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fl">1</span><span class="op">/</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">y_pdf</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fl">1</span><span class="op">/</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">y_pdf</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Vectorize.html">Vectorize</a></span><span class="op">(</span><span class="va">y_pdf</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">y_pdf</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Vectorize.html">Vectorize</a></span><span class="op">(</span><span class="va">y_pdf</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="va">y_pdf</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="va">y_pdf</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 1 with absolute error &lt; 2.9e-15</code></pre>
 <p>Notice that since the domain of the original random variable was non-negative, the squared function had an inverse.</p>
 <p>The pdf of the random variable <span class="math inline">\(Y\)</span> is plotted in Figure <a href="TRANS.html#fig:pdf161-fig">16.1</a>.</p>
 
 <div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">gf_line</span><span class="op">(</span><span class="fu">y_pdf</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.01</span>,<span class="fl">1</span>,<span class="fl">.01</span><span class="op">)</span><span class="op">)</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.01</span>,<span class="fl">1</span>,<span class="fl">.01</span><span class="op">)</span>,xlab<span class="op">=</span><span class="st">"Y"</span>,ylab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu">f</span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">gf_line</span><span class="op">(</span><span class="fu">y_pdf</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.01</span>,<span class="fl">1</span>,<span class="fl">.01</span><span class="op">)</span><span class="op">)</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.01</span>,<span class="fl">1</span>,<span class="fl">.01</span><span class="op">)</span>,xlab<span class="op">=</span><span class="st">"Y"</span>,ylab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu">f</span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:pdf161-fig"></span>
 <img src="16-Transformations_files/figure-html/pdf161-fig-1.png" alt="The pdf of the transformed random variable \(Y\)." width="672"><p class="caption">
@@ -278,22 +278,22 @@ f_Y(y)=f_X(\sqrt{y})\bigg|\frac{\mathop{}\!\mathrm{d}}{\mathop{}\!\mathrm{d}y} \
 <p>Now let’s find an approximation to the distribution of <span class="math inline">\(Y = \ln{X}\)</span> using simulation.</p>
 <p>The cdf of <span class="math inline">\(X\)</span> is <span class="math inline">\(F_X(x)=x^2\)</span> where <span class="math inline">\(0 \leq x \leq 1\)</span>. We will draw a uniform random variable and then take the square root to simulate a random variable from <span class="math inline">\(f_X(x)\)</span>. We will replicate this 10,000 times. In <code>R</code> our code, which we have done before, is:</p>
 <div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Remember, we are using the square root because we want the inverse of the cdf and not, for this method, the inverse of the transformation function as when we were using the mathematical method. This can be a point of confusion.</p>
 <div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class        min        Q1    median        Q3       max      mean
-## ...1 sqrt numeric 0.02150407 0.4988079 0.7074997 0.8662905 0.9999412 0.6657395
-##             sd     n missing
-## ...1 0.2369412 10000       0</code></pre>
+##   name   class         min        Q1    median        Q3       max     mean
+## 1 sqrt numeric 0.006966084 0.4971748 0.7045854 0.8645518 0.9999404 0.665054
+##          sd     n missing
+## 1 0.2364133 10000       0</code></pre>
 <p>Figure <a href="TRANS.html#fig:dens161-fig">16.2</a> is a density plot of the simulated original random variable.</p>
 <div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_density</span><span class="op">(</span><span class="op">~</span><span class="va">sqrt</span>,xlab<span class="op">=</span><span class="st">"X"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>y<span class="op">=</span><span class="st">""</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_density</span><span class="op">(</span><span class="op">~</span><span class="va">sqrt</span>,xlab<span class="op">=</span><span class="st">"X"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>y<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:dens161-fig"></span>
 <img src="16-Transformations_files/figure-html/dens161-fig-1.png" alt="The density plot of the original using simulation." width="672"><p class="caption">
@@ -302,14 +302,14 @@ Figure 16.2: The density plot of the original using simulation.
 </div>
 <p>Now to find the distribution of <span class="math inline">\(Y\)</span> we just apply the transformation.</p>
 <div class="sourceCode" id="cb411"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">y_results</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">sqrt</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">y_results</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">sqrt</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Figure <a href="TRANS.html#fig:dens162-fig">16.3</a> is the density plot of the transformed random variable from the simulation. We can see that the support for <span class="math inline">\(Y\)</span> is <span class="math inline">\(-\infty &lt; y \leq 0\)</span> and the density is tight near zero but skewed to the left.</p>
 <div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">y_results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_density</span><span class="op">(</span><span class="op">~</span><span class="va">y</span>,xlab<span class="op">=</span><span class="st">"X"</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>y<span class="op">=</span><span class="st">""</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">y_results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_density</span><span class="op">(</span><span class="op">~</span><span class="va">y</span>,xlab<span class="op">=</span><span class="st">"X"</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>y<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:dens162-fig"></span>
 <img src="16-Transformations_files/figure-html/dens162-fig-1.png" alt="The density plot of the transformed random variable from the simulation." width="672"><p class="caption">
@@ -317,13 +317,13 @@ Figure 16.3: The density plot of the transformed random variable from the simula
 </p>
 </div>
 <div class="sourceCode" id="cb413"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">y_results</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">y_results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class       min         Q1    median        Q3           max
-## ...1    y numeric -3.839513 -0.6955342 -0.346018 -0.143535 -5.876665e-05
-##            mean        sd     n missing
-## ...1 -0.5030956 0.5041792 10000       0</code></pre>
+##   name   class       min         Q1     median         Q3           max
+## 1    y numeric -4.966702 -0.6988136 -0.3501458 -0.1455441 -5.958549e-05
+##         mean        sd     n missing
+## 1 -0.5038385 0.5050926 10000       0</code></pre>
 </div>
 <div id="multivariate-transformations" class="section level3" number="16.2.6">
 <h3>
@@ -343,10 +343,10 @@ X\sim \textsf{Unif}(5,6)\hspace{1.5cm} Y\sim \textsf{Unif}(5,6)
 </blockquote>
 <p>Complete the code on your own before looking at the code below.</p>
 <div class="sourceCode" id="cb415"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">354</span><span class="op">)</span>
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">100000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">354</span><span class="op">)</span></span>
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">100000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb416"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##          abs
 ## 1 0.03171229
 ## 2 0.77846706
@@ -356,10 +356,10 @@ X\sim \textsf{Unif}(5,6)\hspace{1.5cm} Y\sim \textsf{Unif}(5,6)
 ## 6 0.40622840</code></pre>
 <p>Figure <a href="TRANS.html#fig:dens163-fig">16.4</a> is a plot of the estimated density of the transformation.</p>
 <div class="sourceCode" id="cb418"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_density</span><span class="op">(</span><span class="op">~</span><span class="va">abs</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"|X-Y|"</span>,y<span class="op">=</span><span class="st">""</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_density</span><span class="op">(</span><span class="op">~</span><span class="va">abs</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"|X-Y|"</span>,y<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:dens163-fig"></span>
 <img src="16-Transformations_files/figure-html/dens163-fig-1.png" alt="The density of the absolute value of the difference in uniform random variables." width="672"><p class="caption">
@@ -368,10 +368,10 @@ Figure 16.4: The density of the absolute value of the difference in uniform rand
 </div>
 <p>Or as a histogram in Figure <a href="TRANS.html#fig:hist163-fig">16.5</a>.</p>
 <div class="sourceCode" id="cb419"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">abs</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"|X-Y|"</span>,y<span class="op">=</span><span class="st">""</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">abs</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"|X-Y|"</span>,y<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:hist163-fig"></span>
 <img src="16-Transformations_files/figure-html/hist163-fig-1.png" alt="Histogram of the absolute value of the difference in random variables." width="672"><p class="caption">
@@ -379,20 +379,20 @@ Figure 16.5: Histogram of the absolute value of the difference in random variabl
 </p>
 </div>
 <div class="sourceCode" id="cb420"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##      name   class          min       Q1    median        Q3       max     mean
-## ...1  abs numeric 1.265667e-06 0.133499 0.2916012 0.4990543 0.9979459 0.332799
-##             sd      n missing
-## ...1 0.2358863 100000       0</code></pre>
+##   name   class          min       Q1    median        Q3       max     mean
+## 1  abs numeric 1.265667e-06 0.133499 0.2916012 0.4990543 0.9979459 0.332799
+##          sd      n missing
+## 1 0.2358863 100000       0</code></pre>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
 Now suppose whomever arrives first will only wait 5 minutes and then leave. What is the probability you eat together?</p>
 </blockquote>
 <div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">abs</span><span class="op">&lt;=</span><span class="fl">5</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu">mean</span><span class="op">(</span><span class="va">abs</span><span class="op">&lt;=</span><span class="fl">5</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   mean(abs &lt;= 5/60)
 ## 1           0.15966</code></pre>
 <blockquote>
@@ -401,23 +401,23 @@ How long should the first person wait so that there is at least a 50% probabilit
 </blockquote>
 <p>Let’s write a function to find the cdf.</p>
 <div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">z_cdf</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="va">results</span><span class="op">$</span><span class="va">abs</span><span class="op">&lt;=</span><span class="va">x</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">z_cdf</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu">mean</span><span class="op">(</span><span class="va">results</span><span class="op">$</span><span class="va">abs</span><span class="op">&lt;=</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <div class="sourceCode" id="cb425"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">z_cdf</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Vectorize.html">Vectorize</a></span><span class="op">(</span><span class="va">z_cdf</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">z_cdf</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Vectorize.html">Vectorize</a></span><span class="op">(</span><span class="va">z_cdf</span><span class="op">)</span></span></code></pre></div>
 <p>Now test for 5 minutes to make sure our function is correct since we determined above that this value should be 0.15966.</p>
 <div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">z_cdf</span><span class="op">(</span><span class="fl">5</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">z_cdf</span><span class="op">(</span><span class="fl">5</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.15966</code></pre>
 <p>Let’s plot to see what the cdf looks like.</p>
 <div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">gf_line</span><span class="op">(</span><span class="fu">z_cdf</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">.01</span><span class="op">)</span><span class="op">)</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">.01</span><span class="op">)</span>,xlab<span class="op">=</span><span class="st">"Time Difference"</span>,ylab<span class="op">=</span><span class="st">"CDF"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">gf_line</span><span class="op">(</span><span class="fu">z_cdf</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">.01</span><span class="op">)</span><span class="op">)</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">.01</span><span class="op">)</span>,xlab<span class="op">=</span><span class="st">"Time Difference"</span>,ylab<span class="op">=</span><span class="st">"CDF"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="16-Transformations_files/figure-html/unnamed-chunk-16-1.png" width="672"></div>
 <p>It looks like somewhere around 15 minutes, a quarter of an hour. But we will find a better answer by finding the root. In the code that follows we want to find where the cdf equals 0.5. The function <code><a href="https://rdrr.io/r/stats/uniroot.html">uniroot()</a></code> solves the given equations for roots so we want to put in the cdf minus 0.5. In other words, <code><a href="https://rdrr.io/r/stats/uniroot.html">uniroot()</a></code> solves <span class="math inline">\(f(x)=0\)</span> for x.</p>
 <div class="sourceCode" id="cb429"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/uniroot.html">uniroot</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="fu">z_cdf</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">-</span><span class="fl">.5</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.25</span>,<span class="fl">35</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">root</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/uniroot.html">uniroot</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="fu">z_cdf</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">-</span><span class="fl">.5</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.25</span>,<span class="fl">35</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">root</span></span></code></pre></div>
 <pre><code>## [1] 0.2916077</code></pre>
 <p>So it is actually 0.292 hours, 17.5 minutes. So round up and wait 18 minutes.</p>
 </div>
@@ -454,7 +454,7 @@ Figure 16.6: pdf of <span class="math inline">\(T\)</span>
 </ol>
 <p>As a check, we know the median of the distribution is approximately 15.857. Here is code to show that 15.857 is approximately the median. We are integrating the pdf from 10 to 15.857 to confirm that this is 0.5.</p>
 <div class="sourceCode" id="cb431"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">-</span><span class="va">x</span><span class="op">/</span><span class="fl">200</span><span class="op">+</span><span class="fl">3</span><span class="op">/</span><span class="fl">20</span>,<span class="fl">10</span>,<span class="fl">15.857</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">-</span><span class="va">x</span><span class="op">/</span><span class="fl">200</span><span class="op">+</span><span class="fl">3</span><span class="op">/</span><span class="fl">20</span>,<span class="fl">10</span>,<span class="fl">15.857</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 0.4999389 with absolute error &lt; 5.6e-15</code></pre>
 <p>Use <code><a href="https://rdrr.io/r/stats/uniroot.html">uniroot()</a></code> and your cdf to confirm that 15.857 is the median.</p>
 <ol start="4" style="list-style-type: lower-alpha">
@@ -508,7 +508,7 @@ Figure 16.6: pdf of <span class="math inline">\(T\)</span>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-07.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

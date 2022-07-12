@@ -10,15 +10,15 @@
 <meta name="author" content="Ken Horton">
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
-<meta name="description" content="2.1 Objectives Define and use properly in context all new terminology to include: case, observational unit, variables, data frame, associated variables, independent, and discrete and continuous...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta name="description" content="2.1 Objectives Define and use properly in context all new terminology, to include: case, observational unit, variables, data frame, associated variables, independent, and discrete and continuous...">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content="Chapter 2 Data Basics | Computational Probability and Statistics">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Master.png">
-<meta property="og:description" content="2.1 Objectives Define and use properly in context all new terminology to include: case, observational unit, variables, data frame, associated variables, independent, and discrete and continuous...">
+<meta property="og:description" content="2.1 Objectives Define and use properly in context all new terminology, to include: case, observational unit, variables, data frame, associated variables, independent, and discrete and continuous...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 2 Data Basics | Computational Probability and Statistics">
-<meta name="twitter:description" content="2.1 Objectives Define and use properly in context all new terminology to include: case, observational unit, variables, data frame, associated variables, independent, and discrete and continuous...">
+<meta name="twitter:description" content="2.1 Objectives Define and use properly in context all new terminology, to include: case, observational unit, variables, data frame, associated variables, independent, and discrete and continuous...">
 <meta name="twitter:image" content="/figures/Cover_Master.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -107,7 +107,7 @@
 <li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
 <li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
 <li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation-Based Linear Regression</a></li>
 <li><a class="" href="LRMULTI.html"><span class="header-section-number">31</span> Multiple Linear Regression</a></li>
 <li><a class="" href="LOGREG.html"><span class="header-section-number">32</span> Logistic Regression</a></li>
 <li><a class="" href="references.html">References</a></li>
@@ -127,7 +127,7 @@
 <span class="header-section-number">2.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-2"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li><p>Define and use properly in context all new terminology to include: <em>case</em>, <em>observational unit</em>, <em>variables</em>, <em>data frame</em>, <em>associated variables</em>, <em>independent</em>, and <em>discrete</em> and <em>continuous variables</em>.</p></li>
+<li><p>Define and use properly in context all new terminology, to include: <em>case</em>, <em>observational unit</em>, <em>variables</em>, <em>data frame</em>, <em>associated variables</em>, <em>independent</em>, and <em>discrete</em> and <em>continuous variables</em>.</p></li>
 <li><p>Identify and define the different types of variables.</p></li>
 <li><p>Given a study description, describe the research question.</p></li>
 <li><p>In <code>R</code>, create a scatterplot and determine the association of two numerical variables from the plot.</p></li>
@@ -144,8 +144,8 @@
 </h3>
 <p>For reference we will be using a data set concerning 50 emails received in 2012. These observations will be referred to as the <code>email50</code> data set, and they are a random sample from a larger data set. This data is in the <strong>openintro</strong> package so let’s install and then load this package.</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"openintro"</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://openintrostat.github.io/openintro/">openintro</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"openintro"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://openintrostat.github.io/openintro/">openintro</a></span><span class="op">)</span></span></code></pre></div>
 <p>Table <a href="DB.html#tab:db1-tab">2.1</a> shows 4 rows of the <code>email50</code> data set and we have elected to only list 5 variables for ease of observation.</p>
 <p>Each row in the table represents a single email or <strong>case</strong>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;A case is also sometimes called a &lt;strong&gt;unit of observation&lt;/strong&gt; or an &lt;strong&gt;observational unit&lt;/strong&gt;.&lt;/p&gt;"><sup>6</sup></a> The columns represent characteristics, called <strong>variables</strong>, for each of the emails. For example, the first row represents email 1, which is not spam, contains 21,705 characters, 551 line breaks, is written in HTML format, and contains only small numbers.</p>
 <div class="inline-table"><table class="table table-sm">
@@ -245,7 +245,7 @@ small
 <p><em>What must we give <code>R</code> for it to do this?</em></p>
 <p>We want the first 10 rows so we use <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> and <code>R</code> needs the data object and the number of rows. The data object is called <code>email50</code> and is accessible once the <strong>openintro</strong> package is loaded.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">email50</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">email50</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 10 x 21
 ##    spam  to_multiple from     cc sent_email time                image attach
 ##    &lt;fct&gt; &lt;fct&gt;       &lt;fct&gt; &lt;int&gt; &lt;fct&gt;      &lt;dttm&gt;              &lt;dbl&gt;  &lt;dbl&gt;
@@ -314,18 +314,18 @@ We consider a publicly available data set that summarizes information about the 
 </blockquote>
 <p>Using <code>R</code> we will create our data object. First we load the library <code>usdata</code>.</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/OpenIntroStat/usdata">usdata</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/OpenIntroStat/usdata">usdata</a></span><span class="op">)</span></span></code></pre></div>
 <p>We only want a subset of the columns and we will use the <code>select</code> verb in <code>dplyr</code> to select and rename columns. We also create a new variable which is federal spending per capita using the <code>mutate</code> function.</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">county_subset</span> <span class="op">&lt;-</span> <span class="va">county_complete</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">state</span>, <span class="va">pop2000</span>, <span class="va">pop2010</span>, fed_spend <span class="op">=</span> <span class="va">fed_spending_2009</span>, 
-         poverty <span class="op">=</span> <span class="va">poverty_2010</span>, homeownership <span class="op">=</span> <span class="va">homeownership_2010</span>, 
-         multi_unit <span class="op">=</span> <span class="va">housing_multi_unit_2010</span>, income <span class="op">=</span> <span class="va">per_capita_income_2010</span>, 
-         med_income <span class="op">=</span> <span class="va">median_household_income_2010</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fed_spend <span class="op">=</span> <span class="va">fed_spend</span> <span class="op">/</span> <span class="va">pop2010</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">county_subset</span> <span class="op">&lt;-</span> <span class="va">county_complete</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">state</span>, <span class="va">pop2000</span>, <span class="va">pop2010</span>, fed_spend <span class="op">=</span> <span class="va">fed_spending_2009</span>, </span>
+<span>         poverty <span class="op">=</span> <span class="va">poverty_2010</span>, homeownership <span class="op">=</span> <span class="va">homeownership_2010</span>, </span>
+<span>         multi_unit <span class="op">=</span> <span class="va">housing_multi_unit_2010</span>, income <span class="op">=</span> <span class="va">per_capita_income_2010</span>, </span>
+<span>         med_income <span class="op">=</span> <span class="va">median_household_income_2010</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fed_spend <span class="op">=</span> <span class="va">fed_spend</span> <span class="op">/</span> <span class="va">pop2010</span><span class="op">)</span></span></code></pre></div>
 <p>Using <code>R</code>, we will display seven rows of the <code>county_subset</code> data frame.</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">county_subset</span>, n <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">county_subset</span>, n <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##             name   state pop2000 pop2010 fed_spend poverty homeownership
 ## 1 Autauga County Alabama   43671   54571  6.068095    10.6          77.5
 ## 2 Baldwin County Alabama  140415  182265  6.139862    12.2          76.7
@@ -420,24 +420,24 @@ Figure 2.3: A scatterplot of the homeownership rate versus the percent of units 
 <p>We want <code>R</code> to create a scatterplot and to do this it needs, at a minimum, the data object, what we want on the <span class="math inline">\(x\)</span>-axis, and what we want on the <span class="math inline">\(y\)</span>-axis. More information on <a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html"><strong>ggformula</strong></a> can be found by clicking on the link.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html" class="uri"&gt;https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html&lt;/a&gt;&lt;/p&gt;'><sup>14</sup></a></p>
 
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">county_subset</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_point</span><span class="op">(</span><span class="va">fed_spend</span> <span class="op">~</span> <span class="va">poverty</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">county_subset</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_point</span><span class="op">(</span><span class="va">fed_spend</span> <span class="op">~</span> <span class="va">poverty</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:pov2-fig"></span>
 <img src="02-Data-Basics_files/figure-html/pov2-fig-1.png" alt="Scatterplot with ggformula." width="672"><p class="caption">
 Figure 2.4: Scatterplot with <strong>ggformula</strong>.
 </p>
 </div>
-<p>Figure <a href="DB.html#fig:pov2-fig">2.4</a> is bad. There are poor axis labels, no title, dense clustering of points, and the <span class="math inline">\(y\)</span>-axis is being driven by a couple of extreme points. We will need to clear this up. Again, try to read the code and use <code>help()</code> or <code>?</code> to determine the purpose of each command in Figure <a href="DB.html#fig:pov3-fig">2.5</a>.</p>
+<p>Figure <a href="DB.html#fig:pov2-fig">2.4</a> is bad. There are poor axis labels, no title, dense clustering of points, and the <span class="math inline">\(y\)</span>-axis is being driven by a couple of extreme points. We will need to clear this up. Again, try to read the code and use <code><a href="https://rdrr.io/r/utils/help.html">help()</a></code> or <code>?</code> to determine the purpose of each command in Figure <a href="DB.html#fig:pov3-fig">2.5</a>.</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">county_subset</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">fed_spend</span> <span class="op">&lt;</span> <span class="fl">32</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_point</span><span class="op">(</span><span class="va">fed_spend</span> <span class="op">~</span> <span class="va">poverty</span>,
-           xlab <span class="op">=</span> <span class="st">"Poverty Rate (Percent)"</span>, 
-           ylab <span class="op">=</span> <span class="st">"Federal Spending Per Capita"</span>,
-           title <span class="op">=</span> <span class="st">"A scatterplot showing fed_spend against poverty"</span>, 
-           cex <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">county_subset</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">fed_spend</span> <span class="op">&lt;</span> <span class="fl">32</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_point</span><span class="op">(</span><span class="va">fed_spend</span> <span class="op">~</span> <span class="va">poverty</span>,</span>
+<span>           xlab <span class="op">=</span> <span class="st">"Poverty Rate (Percent)"</span>, </span>
+<span>           ylab <span class="op">=</span> <span class="st">"Federal Spending Per Capita"</span>,</span>
+<span>           title <span class="op">=</span> <span class="st">"A scatterplot showing fed_spend against poverty"</span>, </span>
+<span>           cex <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:pov3-fig"></span>
 <img src="02-Data-Basics_files/figure-html/pov3-fig-1.png" alt="Better example of a scatterplot." width="672"><p class="caption">
@@ -460,7 +460,7 @@ Create the scatterplot in Figure <a href="DB.html#fig:homeown-fig">2.3</a>.</p>
 <li><p>Researchers collected data to examine the relationship between pollutants and preterm births in Southern California. During the study, air pollution levels were measured by air quality monitoring stations. Specifically, levels of carbon monoxide were recorded in parts per million, nitrogen dioxide and ozone in parts per hundred million, and coarse particulate matter (PM<span class="math inline">\(_{10}\)</span>) in <span class="math inline">\(\mu g/m^3\)</span>. Length of gestation data were collected on 143,196 births between the years 1989 and 1993, and air pollution exposure during gestation was calculated for each birth. The analysis suggested that increased ambient PM<span class="math inline">\(_{10}\)</span> and, to a lesser degree, CO concentrations may be associated with the occurrence of preterm births.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;B. Ritz et al. &lt;a href="http://journals.lww.com/epidem/Abstract/2000/09000/Effect_of_Air_Pollution_on_Preterm_Birth_Among.4.aspx"&gt;“Effect of air pollution on preterm birth among children born in Southern California
 between 1989 and 1993”&lt;/a&gt;. In: Epidemiology 11.5 (2000), pp. 502–511.&lt;/p&gt;'><sup>15</sup></a></p></li>
 <li><p>The Buteyko method is a shallow breathing technique developed by Konstantin Buteyko, a Russian doctor, in 1952. Anecdotal evidence suggests that the Buteyko method can reduce asthma symptoms and improve quality of life. In a scientific study to determine the effectiveness of this method, researchers recruited 600 asthma patients aged 18-69 who relied on medication for asthma treatment. These patients were split into two research groups: one practiced the Buteyko method and the other did not. Patients were scored on quality of life, activity, asthma symptoms, and medication reduction on a scale from 0 to 10. On average, the participants in the Buteyko group experienced a significant reduction in asthma symptoms and an improvement in quality of life.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;J. McGowan. “Health Education: Does the Buteyko Institute Method make a difference?” In: Thorax 58 (2003).&lt;/p&gt;"><sup>16</sup></a></p></li>
-<li><p>In the package <strong>Stat2Data</strong> is a data set called <code>Election16</code>. Create a scatterplot for the percent of advanced degree versus per capita income in the state. Describe the relationship between these two variables. Note: you may have to load the library.</p></li>
+<li><p>In the <strong>openintro</strong> package is a data set called <code>ames</code>, containing information on individual residential properties sold in Ames, IA between 2006 and 2010. Create a scatterplot for the above ground living area square feet versus sale price in US dollars. Describe the relationship between these two variables. Note: you may have to load the library and data set.</p></li>
 </ol>
 </div>
 </div>
@@ -499,7 +499,7 @@ between 1989 and 1993”&lt;/a&gt;. In: Epidemiology 11.5 (2000), pp. 502–511
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-07.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -10,15 +10,15 @@
 <meta name="author" content="Ken Horton">
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
-<meta name="description" content="5.1 Objectives Define and use properly in context all new terminology: scatterplot, dot plot, mean, distribution, point estimate, weighted mean, histogram, data density, right skewed, left skewed,...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta name="description" content="5.1 Objectives Define and use properly in context all new terminology, to include: scatterplot, dot plot, mean, distribution, point estimate, weighted mean, histogram, data density, right skewed,...">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content="Chapter 5 Numerical Data | Computational Probability and Statistics">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Master.png">
-<meta property="og:description" content="5.1 Objectives Define and use properly in context all new terminology: scatterplot, dot plot, mean, distribution, point estimate, weighted mean, histogram, data density, right skewed, left skewed,...">
+<meta property="og:description" content="5.1 Objectives Define and use properly in context all new terminology, to include: scatterplot, dot plot, mean, distribution, point estimate, weighted mean, histogram, data density, right skewed,...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 5 Numerical Data | Computational Probability and Statistics">
-<meta name="twitter:description" content="5.1 Objectives Define and use properly in context all new terminology: scatterplot, dot plot, mean, distribution, point estimate, weighted mean, histogram, data density, right skewed, left skewed,...">
+<meta name="twitter:description" content="5.1 Objectives Define and use properly in context all new terminology, to include: scatterplot, dot plot, mean, distribution, point estimate, weighted mean, histogram, data density, right skewed,...">
 <meta name="twitter:image" content="/figures/Cover_Master.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -107,7 +107,7 @@
 <li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
 <li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
 <li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation-Based Linear Regression</a></li>
 <li><a class="" href="LRMULTI.html"><span class="header-section-number">31</span> Multiple Linear Regression</a></li>
 <li><a class="" href="LOGREG.html"><span class="header-section-number">32</span> Logistic Regression</a></li>
 <li><a class="" href="references.html">References</a></li>
@@ -127,7 +127,7 @@
 <span class="header-section-number">5.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-5"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li><p>Define and use properly in context all new terminology: <em>scatterplot</em>, <em>dot plot</em>, <em>mean</em>, <em>distribution</em>, <em>point estimate</em>, <em>weighted mean</em>, <em>histogram</em>, <em>data density</em>, <em>right skewed</em>, <em>left skewed</em>, <em>symmetric</em>, <em>mode</em>, <em>unimodal</em>, <em>bimodal</em>, <em>multimodal</em>, <em>variance</em>, <em>standard deviation</em>, <em>box plot</em>, <em>median</em>, <em>interquartile range</em>, <em>first quartile</em>, <em>third quartile</em>, <em>whiskers</em>, <em>outlier</em>, <em>robust estimate</em>, <em>transformation</em>.</p></li>
+<li><p>Define and use properly in context all new terminology, to include: <em>scatterplot</em>, <em>dot plot</em>, <em>mean</em>, <em>distribution</em>, <em>point estimate</em>, <em>weighted mean</em>, <em>histogram</em>, <em>data density</em>, <em>right skewed</em>, <em>left skewed</em>, <em>symmetric</em>, <em>mode</em>, <em>unimodal</em>, <em>bimodal</em>, <em>multimodal</em>, <em>variance</em>, <em>standard deviation</em>, <em>box plot</em>, <em>median</em>, <em>interquartile range</em>, <em>first quartile</em>, <em>third quartile</em>, <em>whiskers</em>, <em>outlier</em>, <em>robust estimate</em>, <em>transformation</em>.</p></li>
 <li><p>In <code>R</code>, generate summary statistics for a numerical variable, including breaking down summary statistics by groups.</p></li>
 <li><p>In <code>R</code>, generate appropriate graphical summaries of numerical variables.</p></li>
 <li><p>Interpret and explain output both graphically and numerically.</p></li>
@@ -264,7 +264,7 @@ Besides the mean, what can you see in the dot plot that you cannot see in the hi
 <pre><code>?gf_histogram</code></pre>
 <p>To start we just have to give the formulas and data to <code>R</code>.</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span>,color<span class="op">=</span><span class="st">"black"</span>,fill<span class="op">=</span><span class="st">"cyan"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span>,color<span class="op">=</span><span class="st">"black"</span>,fill<span class="op">=</span><span class="st">"cyan"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="05-Numerical-Data_files/figure-html/unnamed-chunk-4-1.png" width="672"></div>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
@@ -416,20 +416,20 @@ Using Figure <a href="NUMDATA.html#fig:box-fig">5.10</a>, estimate the following
 </blockquote>
 <p>Of course <code>R</code> can calculate these summary statistics for us. First we will do these calculations individually and then in one function call. Remember to ask what you want <code>R</code> to do and what it needs.</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">mean</span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 11.59822</code></pre>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 13.12526</code></pre>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">quantile</a></span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">quantile</a></span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##       0%      25%      50%      75%     100% 
 ##  0.05700  2.53550  6.88950 15.41075 64.40100</code></pre>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">iqr</a></span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">iqr</a></span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 12.87525</code></pre>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="op">~</span><span class="va">num_char</span>,data<span class="op">=</span><span class="va">email50</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##    min     Q1 median       Q3    max     mean       sd  n missing
 ##  0.057 2.5355 6.8895 15.41075 64.401 11.59822 13.12526 50       0</code></pre>
 </div>
@@ -450,14 +450,14 @@ Figure 5.11: Box plots of the original character count data and two modified dat
 ## 3  Original 0.057 2.5355 6.8895 15.41075  64.401 11.59822 13.12526 50       0</code></pre>
 <p>The code used to generate this table is</p>
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">email50</span><span class="op">$</span><span class="va">num_char</span>
-<span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p1</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span><span class="op">]</span>
-<span class="va">p3</span> <span class="op">&lt;-</span> <span class="va">p1</span>
-<span class="va">p3</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">150</span>
-
-<span class="va">robust</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>value<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">p1</span>,<span class="va">p2</span>,<span class="va">p3</span><span class="op">)</span>,group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Original"</span>,<span class="fl">50</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Dropped"</span>,<span class="fl">49</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Increased"</span>,<span class="fl">50</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-
-<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">value</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">robust</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">email50</span><span class="op">$</span><span class="va">num_char</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p1</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="va">p1</span></span>
+<span><span class="va">p3</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">150</span></span>
+<span></span>
+<span><span class="va">robust</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>value<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">p1</span>,<span class="va">p2</span>,<span class="va">p3</span><span class="op">)</span>,group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Original"</span>,<span class="fl">50</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Dropped"</span>,<span class="fl">49</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Increased"</span>,<span class="fl">50</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">value</span><span class="op">~</span><span class="va">group</span>,data<span class="op">=</span><span class="va">robust</span><span class="op">)</span></span></code></pre></div>
 <p>Notice by using the formula notation, we were able to calculate the summary statistics for each group.</p>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
@@ -594,7 +594,7 @@ Figure 5.14: A scatterplot of <code>line_breaks</code> versus <code>num_char</co
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-07.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

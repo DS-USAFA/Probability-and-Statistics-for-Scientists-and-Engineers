@@ -585,7 +585,7 @@ assessing-our-model---understanding-the-output-from-lm
 residual-standard-error
 r-squared
 f-statistic
-regression-diagnostics-1
+regression-diagnostics
 residual-plots-1
 residuals-vs-fitted
 normal-q-q-plot

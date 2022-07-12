@@ -3,11 +3,15 @@
 
 ## Objectives
 
-1) Define and use properly in context all new terminology.  
+1) Define and use properly in context all new terminology, to include: *random variable*, *discrete random variable*, *continuous random variable*, *mixed random variable*, *distribution function*, *probability mass function*, *cumulative distribution function*, *moment*, *expectation*, *mean*, *variance*.  
+
 2) Given a discrete random variable, obtain the pmf and cdf, and use them to obtain probabilities of events.  
-3) Simulate random variable for a discrete distribution.  
+
+3) Simulate random variables for a discrete distribution.  
+
 4) Find the moments of a discrete random variable.  
-5) Find the expected value of a linear transformation of a random variable. 
+
+5) Find the expected value of a linear transformation of a random variable.  
 
 ## Random variables
 
@@ -241,8 +245,8 @@ inspect(results)
 ```
 ## 
 ## quantitative variables:  
-##           name   class min Q1 median Q3 max   mean       sd     n missing
-## ...1 simple_rv numeric   0  1      2  2   3 1.5048 0.860727 10000       0
+##        name   class min Q1 median Q3 max   mean       sd     n missing
+## 1 simple_rv numeric   0  1      2  2   3 1.5048 0.860727 10000       0
 ```
 
 

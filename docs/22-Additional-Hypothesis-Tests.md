@@ -508,8 +508,8 @@ inspect(mlb_obp_subset)
 ## 1 IF (56.2%), OF (43.8%)                       
 ## 
 ## quantitative variables:  
-##      name   class   min   Q1 median    Q3   max     mean         sd   n missing
-## ...1  obp numeric 0.174 0.31  0.331 0.353 0.437 0.332719 0.03392522 274       0
+##   name   class   min   Q1 median    Q3   max     mean         sd   n missing
+## 1  obp numeric 0.174 0.31  0.331 0.353 0.437 0.332719 0.03392522 274       0
 ```
 
 Next, change the variable `position` to a factor to make it easier to work with.

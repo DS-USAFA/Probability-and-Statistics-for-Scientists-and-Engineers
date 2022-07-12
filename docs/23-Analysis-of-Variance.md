@@ -4,7 +4,7 @@
 
 1) Conduct and interpret a hypothesis test for equality of two or more means using both permutation and the $F$ distribution.   
 
-2) Know and check the assumptions for ANOVA.  
+2) Know and check the assumptions for ANOVA.    
 
 
 ## Introduction 
@@ -59,10 +59,8 @@ inspect(mlb_obp)
 ## 1 IF (47.1%), OF (36.7%), C (11.9%) ...        
 ## 
 ## quantitative variables:  
-##      name   class   min    Q1 median     Q3   max     mean         sd   n
-## ...1  obp numeric 0.174 0.309  0.331 0.3545 0.437 0.332159 0.03570249 327
-##      missing
-## ...1       0
+##   name   class   min    Q1 median     Q3   max     mean         sd   n missing
+## 1  obp numeric 0.174 0.309  0.331 0.3545 0.437 0.332159 0.03570249 327       0
 ```
 
 Next, change the variable `position` to a factor to give us greater control.

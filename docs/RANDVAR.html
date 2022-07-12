@@ -10,15 +10,15 @@
 <meta name="author" content="Ken Horton">
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
-<meta name="description" content="10.1 Objectives Define and use properly in context all new terminology. Given a discrete random variable, obtain the pmf and cdf, and use them to obtain probabilities of events. Simulate random...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta name="description" content="10.1 Objectives Define and use properly in context all new terminology, to include: random variable, discrete random variable, continuous random variable, mixed random variable, distribution...">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content="Chapter 10 Random Variables | Computational Probability and Statistics">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Master.png">
-<meta property="og:description" content="10.1 Objectives Define and use properly in context all new terminology. Given a discrete random variable, obtain the pmf and cdf, and use them to obtain probabilities of events. Simulate random...">
+<meta property="og:description" content="10.1 Objectives Define and use properly in context all new terminology, to include: random variable, discrete random variable, continuous random variable, mixed random variable, distribution...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 10 Random Variables | Computational Probability and Statistics">
-<meta name="twitter:description" content="10.1 Objectives Define and use properly in context all new terminology. Given a discrete random variable, obtain the pmf and cdf, and use them to obtain probabilities of events. Simulate random...">
+<meta name="twitter:description" content="10.1 Objectives Define and use properly in context all new terminology, to include: random variable, discrete random variable, continuous random variable, mixed random variable, distribution...">
 <meta name="twitter:image" content="/figures/Cover_Master.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -107,7 +107,7 @@
 <li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
 <li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
 <li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation-Based Linear Regression</a></li>
 <li><a class="" href="LRMULTI.html"><span class="header-section-number">31</span> Multiple Linear Regression</a></li>
 <li><a class="" href="LOGREG.html"><span class="header-section-number">32</span> Logistic Regression</a></li>
 <li><a class="" href="references.html">References</a></li>
@@ -127,15 +127,11 @@
 <span class="header-section-number">10.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-10"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li>Define and use properly in context all new terminology.<br>
-</li>
-<li>Given a discrete random variable, obtain the pmf and cdf, and use them to obtain probabilities of events.<br>
-</li>
-<li>Simulate random variable for a discrete distribution.<br>
-</li>
-<li>Find the moments of a discrete random variable.<br>
-</li>
-<li>Find the expected value of a linear transformation of a random variable.</li>
+<li><p>Define and use properly in context all new terminology, to include: <em>random variable</em>, <em>discrete random variable</em>, <em>continuous random variable</em>, <em>mixed random variable</em>, <em>distribution function</em>, <em>probability mass function</em>, <em>cumulative distribution function</em>, <em>moment</em>, <em>expectation</em>, <em>mean</em>, <em>variance</em>.</p></li>
+<li><p>Given a discrete random variable, obtain the pmf and cdf, and use them to obtain probabilities of events.</p></li>
+<li><p>Simulate random variables for a discrete distribution.</p></li>
+<li><p>Find the moments of a discrete random variable.</p></li>
+<li><p>Find the expected value of a linear transformation of a random variable.</p></li>
 </ol>
 </div>
 <div id="random-variables-1" class="section level2" number="10.2">
@@ -276,50 +272,50 @@ Simulate a random variable for the number of heads in flipping a coin three time
 </blockquote>
 <p>First we will create the pmf.</p>
 <div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pmf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">8</span>,<span class="fl">3</span><span class="op">/</span><span class="fl">8</span>,<span class="fl">3</span><span class="op">/</span><span class="fl">8</span>,<span class="fl">1</span><span class="op">/</span><span class="fl">8</span><span class="op">)</span>
-<span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>
-<span class="va">pmf</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">pmf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">8</span>,<span class="fl">3</span><span class="op">/</span><span class="fl">8</span>,<span class="fl">3</span><span class="op">/</span><span class="fl">8</span>,<span class="fl">1</span><span class="op">/</span><span class="fl">8</span><span class="op">)</span></span>
+<span><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">pmf</span></span></code></pre></div>
 <pre><code>## [1] 0.125 0.375 0.375 0.125</code></pre>
 <p>We get the cdf from the cumulative sum.</p>
 <div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">pmf</span><span class="op">)</span>
-<span class="va">cdf</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">cdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">pmf</span><span class="op">)</span></span>
+<span><span class="va">cdf</span></span></code></pre></div>
 <pre><code>## [1] 0.125 0.500 0.875 1.000</code></pre>
 <p>Next, we will generate a random number between 0 and 1.</p>
 <div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1153</span><span class="op">)</span>
-<span class="va">ran_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-<span class="va">ran_num</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1153</span><span class="op">)</span></span>
+<span><span class="va">ran_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">ran_num</span></span></code></pre></div>
 <pre><code>## [1] 0.7381891</code></pre>
 <p>Finally, we will find the value of the random variable. We will do each step separately first so you can understand the code.</p>
 <div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span></span></code></pre></div>
 <pre><code>## [1] FALSE FALSE  TRUE  TRUE</code></pre>
 <div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 3 4</code></pre>
 <div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">values</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">values</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>Let’s make this a function.</p>
 <div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">simple_rv</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">values</span>,<span class="va">cdf</span><span class="op">)</span><span class="op">{</span>
-<span class="va">ran_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">values</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">simple_rv</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">values</span>,<span class="va">cdf</span><span class="op">)</span><span class="op">{</span></span>
+<span><span class="va">ran_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">values</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>Now let’s generate 10000 values from this random variable.</p>
 <div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu">simple_rv</span><span class="op">(</span><span class="va">values</span>,<span class="va">cdf</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu">simple_rv</span><span class="op">(</span><span class="va">values</span>,<span class="va">cdf</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
-##           name   class min Q1 median Q3 max   mean       sd     n missing
-## ...1 simple_rv numeric   0  1      2  2   3 1.5048 0.860727 10000       0</code></pre>
+##        name   class min Q1 median Q3 max   mean       sd     n missing
+## 1 simple_rv numeric   0  1      2  2   3 1.5048 0.860727 10000       0</code></pre>
 <div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">simple_rv</span>,data<span class="op">=</span><span class="va">results</span>,format<span class="op">=</span><span class="st">"proportion"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">simple_rv</span>,data<span class="op">=</span><span class="va">results</span>,format<span class="op">=</span><span class="st">"proportion"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## simple_rv
 ##      0      1      2      3 
 ## 0.1207 0.3785 0.3761 0.1247</code></pre>
@@ -359,7 +355,7 @@ Find the expected value (or mean) of <span class="math inline">\(X\)</span>: the
 <p>We are using <span class="math inline">\(\mu\)</span> because it is a population parameter.</p>
 <p>From our simulation above, we can find the mean as an estimate of the expected value. This is really a statistic since our simulation is data from the population and thus will have variance from sample to sample.</p>
 <div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="op">~</span><span class="va">simple_rv</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">mean</span><span class="op">(</span><span class="op">~</span><span class="va">simple_rv</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1.5048</code></pre>
 </div>
 <div id="variance" class="section level3" number="10.3.3">
@@ -388,12 +384,12 @@ Find the variance of <span class="math inline">\(X\)</span>: the number of heads
 \]</span>
 In <code>R</code> this is:</p>
 <div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="fl">0</span><span class="op">-</span><span class="fl">1.5</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">1</span><span class="op">/</span><span class="fl">8</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fl">1.5</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">3</span><span class="op">/</span><span class="fl">8</span> <span class="op">+</span> <span class="op">(</span><span class="fl">2</span><span class="op">-</span><span class="fl">1.5</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">3</span><span class="op">/</span><span class="fl">8</span> <span class="op">+</span> <span class="op">(</span><span class="fl">3</span><span class="op">-</span><span class="fl">1.5</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">1</span><span class="op">/</span><span class="fl">8</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">(</span><span class="fl">0</span><span class="op">-</span><span class="fl">1.5</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">1</span><span class="op">/</span><span class="fl">8</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fl">1.5</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">3</span><span class="op">/</span><span class="fl">8</span> <span class="op">+</span> <span class="op">(</span><span class="fl">2</span><span class="op">-</span><span class="fl">1.5</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">3</span><span class="op">/</span><span class="fl">8</span> <span class="op">+</span> <span class="op">(</span><span class="fl">3</span><span class="op">-</span><span class="fl">1.5</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">1</span><span class="op">/</span><span class="fl">8</span></span></code></pre></div>
 <pre><code>## [1] 0.75</code></pre>
 <p>The variance of <span class="math inline">\(X\)</span> is 0.75.</p>
 <p>We can find the variance of the simulation but <code>R</code> uses the sample variance and this is the population variance. So we need to multiply by <span class="math inline">\(\frac{n-1}{n}\)</span></p>
 <div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">var</a></span><span class="op">(</span><span class="op">~</span><span class="va">simple_rv</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fl">10000</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">var</a></span><span class="op">(</span><span class="op">~</span><span class="va">simple_rv</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fl">10000</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span></span></code></pre></div>
 <pre><code>## [1] 0.740777</code></pre>
 </div>
 <div id="mean-and-variance-of-linear-transformations" class="section level3" number="10.3.4">
@@ -522,7 +518,7 @@ and
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-07.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

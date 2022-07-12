@@ -5,7 +5,9 @@
 ## Objectives
 
 1) Using `R`, generate a linear regression model and use it to produce a prediction model.  
+
 2) Using plots, check the assumptions of a linear regression model.  
+
 
 ## Introduction to linear regression  
 
@@ -76,22 +78,22 @@ inspect(hfi[,1:10])
 ## 3 Sub-Saharan Africa (25.9%) ...               
 ## 
 ## quantitative variables:  
-##                            name   class  min          Q1      median
-## ...1                       year numeric 2008 2010.000000 2012.000000
-## ...2          pf_rol_procedural numeric    0    4.133333    5.300000
-## ...3               pf_rol_civil numeric    0    4.549550    5.300000
-## ...4            pf_rol_criminal numeric    0    3.789724    4.575189
-## ...5                     pf_rol numeric    0    4.131746    4.910797
-## ...6             pf_ss_homicide numeric    0    6.386978    8.638278
-## ...7 pf_ss_disappearances_disap numeric    0   10.000000   10.000000
-##               Q3         max        mean       sd    n missing
-## ...1 2014.000000 2016.000000 2012.000000 2.582875 1458       0
-## ...2    7.389499    9.700000    5.589355 2.080957  880     578
-## ...3    6.410975    8.773533    5.474770 1.428494  880     578
-## ...4    6.400000    8.719848    5.044070 1.724886  880     578
-## ...5    6.513178    8.723094    5.309641 1.529310 1378      80
-## ...6    9.454402    9.926568    7.412980 2.832947 1378      80
-## ...7   10.000000   10.000000    8.341855 3.225902 1369      89
+##                         name   class  min          Q1      median          Q3
+## 1                       year numeric 2008 2010.000000 2012.000000 2014.000000
+## 2          pf_rol_procedural numeric    0    4.133333    5.300000    7.389499
+## 3               pf_rol_civil numeric    0    4.549550    5.300000    6.410975
+## 4            pf_rol_criminal numeric    0    3.789724    4.575189    6.400000
+## 5                     pf_rol numeric    0    4.131746    4.910797    6.513178
+## 6             pf_ss_homicide numeric    0    6.386978    8.638278    9.454402
+## 7 pf_ss_disappearances_disap numeric    0   10.000000   10.000000   10.000000
+##           max        mean       sd    n missing
+## 1 2016.000000 2012.000000 2.582875 1458       0
+## 2    9.700000    5.589355 2.080957  880     578
+## 3    8.773533    5.474770 1.428494  880     578
+## 4    8.719848    5.044070 1.724886  880     578
+## 5    8.723094    5.309641 1.529310 1378      80
+## 6    9.926568    7.412980 2.832947 1378      80
+## 7   10.000000    8.341855 3.225902 1369      89
 ```
 
 >**Exercise**  

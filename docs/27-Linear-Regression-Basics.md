@@ -2,11 +2,16 @@
 
 ## Objectives
 
-1) Obtain parameter estimates of a simple linear regression model given a sample of data.   
+1) Obtain parameter estimates of a simple linear regression model, given a sample of data.   
+
 2) Interpret the coefficients of a simple linear regression.  
+
 3) Create a scatterplot with a regression line.  
+
 4) Explain and check the assumptions of linear regression.   
-5) Use and be able to explain all new terms.  
+
+5) Use and be able to explain all new terminology, to include: *response*, *predictor*, *linear regression*, *simple linear regression*, *coefficients*, *residual*, *extrapolation*.  
+
 
 ## Linear regression models
 

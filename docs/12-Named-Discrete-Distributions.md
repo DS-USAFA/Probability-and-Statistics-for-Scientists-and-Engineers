@@ -3,7 +3,8 @@
 
 ## Objectives
 
-1) Recognize and setup for use common discrete distributions (Uniform, Binomial, Poisson, Hypergeometric) to include parameters, assumptions, and moments.   
+1) Recognize and set up for use common discrete distributions (Uniform, Binomial, Poisson, Hypergeometric) to include parameters, assumptions, and moments.   
+
 2) Use `R` to calculate probabilities and quantiles involving random variables with common discrete distributions. 
 
 

@@ -12,7 +12,7 @@
 
 ### 2 - Data Basics {-}    
 
-1) Define and use properly in context all new terminology to include: *case*, *observational unit*, *variables*, *data frame*, *associated variables*, *independent*, and *discrete* and *continuous variables*.   
+1) Define and use properly in context all new terminology, to include: *case*, *observational unit*, *variables*, *data frame*, *associated variables*, *independent*, and *discrete* and *continuous variables*.   
 
 2) Identify and define the different types of variables.  
 
@@ -23,7 +23,7 @@
 
 ### 3 - Overview of Data Collection Principles {-}    
 
-1) Define and use properly in context all new terminology: *population*, *sample*, *anecdotal evidence*, *bias*, *simple random sample*, *systematic sample*, *non-response bias*, *representative sample*, *convenience sample*, *explanatory variable*, *response variable*, *observational study*, *cohort*, *experiment*, *randomized experiment*, and *placebo*.  
+1) Define and use properly in context all new terminology, to include: *population*, *sample*, *anecdotal evidence*, *bias*, *simple random sample*, *systematic sample*, *non-response bias*, *representative sample*, *convenience sample*, *explanatory variable*, *response variable*, *observational study*, *cohort*, *experiment*, *randomized experiment*, and *placebo*.  
 
 2) From a description of a research project, be able to describe the population of interest, the generalizability of the study, the explanatory and response variables, whether it is observational or experimental, and determine the type of sample.  
 
@@ -32,7 +32,7 @@
 
 ### 4 - Studies {-}    
 
-1) Define and use properly in context all new terminology: *confounding variable*, *prospective study*, *retrospective study*, *simple random sampling*, *stratified sampling*, *strata*, *cluster sampling*, *multistage sampling*, *experiment*, *randomized experiment*, *control*, *replicate*, *blocking*, *blocks*, *treatment group*, *control group*, *blinded study*, *placebo*, *placebo effect*, and *double-blind*.  
+1) Define and use properly in context all new terminology, to include: *confounding variable*, *prospective study*, *retrospective study*, *simple random sampling*, *stratified sampling*, *strata*, *cluster sampling*, *multistage sampling*, *experiment*, *randomized experiment*, *control*, *replicate*, *blocking*, *blocks*, *treatment group*, *control group*, *blinded study*, *placebo*, *placebo effect*, and *double-blind*.  
 
 2) Given a study description, be able to describe the study using correct terminology.  
 
@@ -41,7 +41,7 @@
 
 ### 5 - Numerical Data {-}    
 
-1) Define and use properly in context all new terminology: *scatterplot*, *dot plot*, *mean*, *distribution*, *point estimate*, *weighted mean*, *histogram*, *data density*, *right skewed*, *left skewed*, *symmetric*, *mode*, *unimodal*, *bimodal*, *multimodal*, *variance*, *standard deviation*, *box plot*, *median*, *interquartile range*, *first quartile*, *third quartile*, *whiskers*, *outlier*, *robust estimate*, *transformation*.  
+1) Define and use properly in context all new terminology, to include: *scatterplot*, *dot plot*, *mean*, *distribution*, *point estimate*, *weighted mean*, *histogram*, *data density*, *right skewed*, *left skewed*, *symmetric*, *mode*, *unimodal*, *bimodal*, *multimodal*, *variance*, *standard deviation*, *box plot*, *median*, *interquartile range*, *first quartile*, *third quartile*, *whiskers*, *outlier*, *robust estimate*, *transformation*.  
 
 2) In `R`, generate summary statistics for a numerical variable, including breaking down summary statistics by groups.  
 
@@ -52,7 +52,7 @@
 
 ### 6 - Categorical Data {-}   
 
-1) Define and use properly in context all new terminology: *factor*, *contingency table*, *marginal counts*, *joint counts*, *frequency table*, *relative frequency table*, *bar plot*, *conditioning*, *segmented bar plot*, *mosaic plot*, *pie chart*, *side-by-side box plot*, *density plot*.  
+1) Define and use properly in context all new terminology, to include: *factor*, *contingency table*, *marginal counts*, *joint counts*, *frequency table*, *relative frequency table*, *bar plot*, *conditioning*, *segmented bar plot*, *mosaic plot*, *pie chart*, *side-by-side box plot*, *density plot*.  
 
 2) In `R`, generate tables for categorical variable(s).   
 
@@ -72,7 +72,7 @@
 
 ### 8 - Probability Rules {-}    
 
-1) Define and use properly in context all new terminology related to probability including: *sample space*, *outcome*, *event*, *subset*, *intersection*, *union*, *complement*, *probability*, *mutually exclusive*, *exhaustive*, *independent*,  *multiplication rule*, *permutation*, *combination*.  
+1) Define and use properly in context all new terminology related to probability, including: *sample space*, *outcome*, *event*, *subset*, *intersection*, *union*, *complement*, *probability*, *mutually exclusive*, *exhaustive*, *independent*,  *multiplication rule*, *permutation*, *combination*.  
 
 2) Apply basic probability and counting rules to find probabilities.  
 
@@ -94,7 +94,7 @@
 
 ### 10 - Random Variables {-}    
 
-1) Define and use properly in context all new terminology: *random variable*, *discrete random variable*, *continuous random variable*, *mixed random variable*, *distribution function*, *probability mass function*, *cumulative distribution function*, *moment*, *expectation*, *mean*, *variance*.  
+1) Define and use properly in context all new terminology, to include: *random variable*, *discrete random variable*, *continuous random variable*, *mixed random variable*, *distribution function*, *probability mass function*, *cumulative distribution function*, *moment*, *expectation*, *mean*, *variance*.  
 
 2) Given a discrete random variable, obtain the pmf and cdf, and use them to obtain probabilities of events.  
 
@@ -107,7 +107,7 @@
 
 ### 11 - Continuous Random Variables {-}    
 
-1) Define and properly use in context all new terminology: *probability density function (pdf)* and *cumulative distribution function (cdf)* for continuous random variables.  
+1) Define and properly use in context all new terminology, to include: *probability density function (pdf)* and *cumulative distribution function (cdf)* for continuous random variables.  
 
 2) Given a continuous random variable, find probabilities using the pdf and/or the cdf.  
 
@@ -116,7 +116,7 @@
 
 ### 12 - Named Discrete Distributions {-}    
 
-1) Recognize and setup for use common discrete distributions (Uniform, Binomial, Poisson, Hypergeometric) to include parameters, assumptions, and moments.   
+1) Recognize and set up for use common discrete distributions (Uniform, Binomial, Poisson, Hypergeometric) to include parameters, assumptions, and moments.   
 
 2) Use `R` to calculate probabilities and quantiles involving random variables with common discrete distributions.  
 
@@ -134,7 +134,7 @@
 
 ### 14 - Multivariate Distributions {-}    
 
-1) Define (and distinguish between) the terms joint probability mass/density function, marginal pmf/pdf, and conditional pmf/pdf.  
+1) Define (and distinguish between) the terms *joint probability mass/density function*, *marginal pmf/pdf*, and *conditional pmf/pdf*.  
 
 2) Given a joint pmf/pdf, obtain the marginal and conditional pmfs/pdfs.  
 
@@ -176,14 +176,14 @@
 
 ### 18 - Hypothesis Testing Case Study {-}    
 
-1) Define and use properly in context all new terminology: *point estimate*, *null hypothesis*, *alternative hypothesis*, *hypothesis test*, *randomization*, *permutation test*, *test statistic*, and *$p$-value*.  
+1) Define and use properly in context all new terminology, to include: *point estimate*, *null hypothesis*, *alternative hypothesis*, *hypothesis test*, *randomization*, *permutation test*, *test statistic*, and *$p$-value*.  
 
-2) Conduct a hypothesis test using a permutation test to include all 4 steps.
+2) Conduct a hypothesis test using a randomization test, to include all 4 steps.
 
 
 ### 19 - Hypothesis Testing with Simulation {-}    
 
-1) Know and properly use the terminology of a hypothesis test: *null hypothesis*, *alternative hypothesis*, *test statistic*, *$p$-value*, *randomization test*, *one-sided test*, *two-sided test*, *statistically significant*, *significance level*, *type I error*, *type II error*, *false positive*, *false negative*, *null distribution*, and *sampling distribution*.  
+1) Know and properly use the terminology of a hypothesis test, to include: *null hypothesis*, *alternative hypothesis*, *test statistic*, *$p$-value*, *randomization test*, *one-sided test*, *two-sided test*, *statistically significant*, *significance level*, *type I error*, *type II error*, *false positive*, *false negative*, *null distribution*, and *sampling distribution*.  
 
 2) Conduct all four steps of a hypothesis test using randomization.  
 
@@ -192,7 +192,7 @@
 
 ### 20 - Hypothesis Testing with Known Distributions {-}    
 
-1) Know and properly use the terminology of a hypothesis test: *permutation test*, *exact test*, *null hypothesis*, *alternative hypothesis*, *test statistic*, *$p$-value*, and *power*.   
+1) Know and properly use the terminology of a hypothesis test, to include: *permutation test*, *exact test*, *null hypothesis*, *alternative hypothesis*, *test statistic*, *$p$-value*, and *power*.   
 
 2) Conduct all four steps of a hypothesis test using probability models.  
 
@@ -239,7 +239,7 @@
 
 ### 25 - Bootstrap {-}    
 
-1) Use the bootstrap to estimate the standard error of the sample statistic.  
+1) Use the bootstrap to estimate the standard error of a sample statistic.  
 
 2) Using bootstrap methods, obtain and interpret a confidence interval for an unknown parameter, based on a random sample.   
 
@@ -257,7 +257,7 @@
 
 ### 27 - Linear Regression Basics {-}    
 
-1) Obtain parameter estimates of a simple linear regression model given a sample of data.   
+1) Obtain parameter estimates of a simple linear regression model, given a sample of data.   
 
 2) Interpret the coefficients of a simple linear regression.  
 
@@ -265,7 +265,7 @@
 
 4) Explain and check the assumptions of linear regression.   
 
-5) Use and be able to explain all new terminology: *response*, *predictor*, *linear regression*, *simple linear regression*, *coefficients*, *residual*, *extrapolation*.  
+5) Use and be able to explain all new terminology, to include: *response*, *predictor*, *linear regression*, *simple linear regression*, *coefficients*, *residual*, *extrapolation*.  
 
 
 ### 28 - Linear Regression Inference {-}    
@@ -277,7 +277,7 @@
 3) Build and interpret confidence and prediction intervals for values of the response variable.  
 
 
-### 29 - Regression Diagnostics {-}    
+### 29 - Linear Regression Diagnostics {-}    
 
 1) Obtain and interpret $R$-squared and the $F$-statistic.  
 
@@ -312,7 +312,7 @@
 
 ### 32 - Logistic Regression {-}    
 
-1) Using `R`, conduct logistic regression and interpret the output and perform model selection.  
+1) Using `R`, conduct logistic regression, interpret the output, and perform model selection.  
 
 2) Write the logistic regression model and predict outputs for given inputs.  
 

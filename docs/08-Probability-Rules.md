@@ -9,9 +9,12 @@
 
 ## Objectives
 
-1) Define and use properly in context all new terminology related to probability to include but not limited to: outcome, event, sample space, probability.  
+1) Define and use properly in context all new terminology related to probability, including: *sample space*, *outcome*, *event*, *subset*, *intersection*, *union*, *complement*, *probability*, *mutually exclusive*, *exhaustive*, *independent*,  *multiplication rule*, *permutation*, *combination*.  
+
 2) Apply basic probability and counting rules to find probabilities.  
+
 3) Describe the basic axioms of probability.  
+
 4) Use `R` to calculate and simulate probabilities of events.  
 
 ## Probability vs Statistics
@@ -281,10 +284,10 @@ inspect(Cards)
 ## 2 Club (25%), Diamond (25%) ...                
 ## 
 ## quantitative variables:  
-##       name   class        min         Q1     median         Q3        max
-## ...1 probs numeric 0.01923077 0.01923077 0.01923077 0.01923077 0.01923077
-##            mean sd  n missing
-## ...1 0.01923077  0 52       0
+##    name   class        min         Q1     median         Q3        max
+## 1 probs numeric 0.01923077 0.01923077 0.01923077 0.01923077 0.01923077
+##         mean sd  n missing
+## 1 0.01923077  0 52       0
 ```
 
 

@@ -11,7 +11,7 @@
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
 <meta name="description" content="22.1 Objectives Conduct and interpret a goodness of fit test using both Pearson’s chi-squared and randomization to evaluate the independence between two categorical variables. Explain how the...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content="Chapter 22 Additional Hypothesis Tests | Computational Probability and Statistics">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Master.png">
@@ -107,7 +107,7 @@
 <li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
 <li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
 <li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation-Based Linear Regression</a></li>
 <li><a class="" href="LRMULTI.html"><span class="header-section-number">31</span> Multiple Linear Regression</a></li>
 <li><a class="" href="LOGREG.html"><span class="header-section-number">32</span> Logistic Regression</a></li>
 <li><a class="" href="references.html">References</a></li>
@@ -199,12 +199,12 @@ Figure 22.1: Chi-square distribution for different degrees of freedom.
 <p>The Health Evaluation and Linkage to Primary Care (HELP) study was a clinical trial for adult inpatients recruited from a detoxification unit. Patients with no primary care physician were randomized to receive a multidisciplinary assessment and a brief motivational intervention or usual care, with the goal of linking them to primary medical care.</p>
 <p>The <code>HELPrct</code> data set is available in the <strong>mosaicData</strong> package. There are three substances: alcohol, cocaine, and heroin. We’d like to know if there is evidence that the proportions of use for <code>substance</code>, the primary substance of abuse, differ for males and females.</p>
 <div class="sourceCode" id="cb598"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"HELPrct"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"HELPrct"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb599"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">HELP_sub</span> <span class="op">&lt;-</span> <span class="va">HELPrct</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">substance</span>, <span class="va">sex</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">HELP_sub</span> <span class="op">&lt;-</span> <span class="va">HELPrct</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">substance</span>, <span class="va">sex</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb600"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">substance</span> <span class="op">~</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span>, format <span class="op">=</span> <span class="st">"prop"</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">substance</span> <span class="op">~</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span>, format <span class="op">=</span> <span class="st">"prop"</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##          sex
 ## substance    female      male
 ##   alcohol 0.3364486 0.4075145
@@ -212,9 +212,9 @@ Figure 22.1: Chi-square distribution for different degrees of freedom.
 ##   heroin  0.2803738 0.2716763
 ##   Total   1.0000000 1.0000000</code></pre>
 <div class="sourceCode" id="cb602"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">HELP_sub</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_props</span><span class="op">(</span><span class="op">~</span><span class="va">substance</span><span class="op">|</span><span class="va">sex</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">HELP_sub</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_props</span><span class="op">(</span><span class="op">~</span><span class="va">substance</span><span class="op">|</span><span class="va">sex</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:props222-fig"></span>
 <img src="22-Additional-Hypothesis-Tests_files/figure-html/props222-fig-1.png" alt="Proportions for primary substance of abuse in the HELP study, faceted by sex." width="672"><p class="caption">
@@ -222,12 +222,12 @@ Figure 22.2: Proportions for primary substance of abuse in the HELP study, facet
 </p>
 </div>
 <div class="sourceCode" id="cb603"><pre class="downlit sourceCode r">
-<code class="sourceCode R">  <span class="co"># gf_labs(x = "Sex", y = "Proportion")</span></code></pre></div>
+<code class="sourceCode R"><span>  <span class="co"># gf_labs(x = "Sex", y = "Proportion")</span></span></code></pre></div>
 <div class="sourceCode" id="cb604"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">HELP_sub</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_props</span><span class="op">(</span><span class="op">~</span><span class="va">sex</span>, fill<span class="op">=</span> <span class="op">~</span><span class="va">substance</span>, position <span class="op">=</span> <span class="st">"fill"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Sex"</span>, y <span class="op">=</span> <span class="st">"Proportion"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">HELP_sub</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_props</span><span class="op">(</span><span class="op">~</span><span class="va">sex</span>, fill<span class="op">=</span> <span class="op">~</span><span class="va">substance</span>, position <span class="op">=</span> <span class="st">"fill"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Sex"</span>, y <span class="op">=</span> <span class="st">"Proportion"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:props223-fig"></span>
 <img src="22-Additional-Hypothesis-Tests_files/figure-html/props223-fig-1.png" alt="The distribution of primary substance of abuse in the HELP study by sex." width="672"><p class="caption">
@@ -302,7 +302,7 @@ X^2 = \sum_{i=1}^r \sum_{j=1}^c {(n_{ij} - e_{ij})^2\over e_{ij}}
 </h3>
 <p>Let’s return to the Health Evaluation and Linkage to Primary Care data set. There are two levels of the <code>sex</code> variable, female and male. There are three levels of the <code>substance</code> variable: alcohol, cocaine, and heroin. A two-way contingency table is shown below.</p>
 <div class="sourceCode" id="cb605"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">substance</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">substance</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##          sex
 ## substance female male
 ##   alcohol     36  141
@@ -310,7 +310,7 @@ X^2 = \sum_{i=1}^r \sum_{j=1}^c {(n_{ij} - e_{ij})^2\over e_{ij}}
 ##   heroin      30   94</code></pre>
 <p>To find the Pearson chi-squared test statistic (<span class="math inline">\(X^2\)</span>), we need to figure out the expected count for each cell, <span class="math inline">\(e_{ij}\)</span>, under <span class="math inline">\(H_0\)</span>. Recall that under <span class="math inline">\(H_0\)</span>, the two variables are independent. It’s helpful to add the row and column totals prior to finding expected counts:</p>
 <div class="sourceCode" id="cb607"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">substance</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">substance</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##          sex
 ## substance female male Total
 ##   alcohol     36  141   177
@@ -339,26 +339,26 @@ X^2 = {(36 - 41.81)^2 \over 41.81} + {(141 - 135.19)^2 \over 135.19} + {(41 - 35
 </h3>
 <p>We can find the Pearson chi-squared test statistic (<span class="math inline">\(X^2\)</span>) and corresponding <span class="math inline">\(p\)</span>-value from the chi-squared distribution in <code>R</code> in a couple of different ways. If we had to enter the data in <code>R</code>, we could simply create vectors of the expected and observed counts.</p>
 <div class="sourceCode" id="cb610"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">o</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">36</span>, <span class="fl">141</span>, <span class="fl">41</span>, <span class="fl">111</span>, <span class="fl">30</span>, <span class="fl">94</span><span class="op">)</span>
-<span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">41.81</span>, <span class="fl">135.19</span>, <span class="fl">35.90</span>, <span class="fl">116.10</span>, <span class="fl">29.29</span>, <span class="fl">94.71</span><span class="op">)</span>
-<span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">o</span> <span class="op">-</span> <span class="va">e</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">/</span> <span class="va">e</span><span class="op">)</span>
-<span class="va">x2</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">o</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">36</span>, <span class="fl">141</span>, <span class="fl">41</span>, <span class="fl">111</span>, <span class="fl">30</span>, <span class="fl">94</span><span class="op">)</span></span>
+<span><span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">41.81</span>, <span class="fl">135.19</span>, <span class="fl">35.90</span>, <span class="fl">116.10</span>, <span class="fl">29.29</span>, <span class="fl">94.71</span><span class="op">)</span></span>
+<span><span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">o</span> <span class="op">-</span> <span class="va">e</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">/</span> <span class="va">e</span><span class="op">)</span></span>
+<span><span class="va">x2</span></span></code></pre></div>
 <pre><code>## [1] 2.02814</code></pre>
 <p>Note that the chi-squared test statistic is a sum of squared differences. Thus, its distribution, a chi-squared distribution, is skewed right and bounded on the left at zero. A departure from the null hypothesis means larger differences between observed and expected counts, and hence, a larger test statistic value. That is, a value further in the right tail of the distribution. Thus, we find the <span class="math inline">\(p\)</span>-value by calculating the probability in the upper tail of the chi-square distribution. We do this by subtracting the CDF from one.</p>
 <div class="sourceCode" id="cb612"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">pchisq</a></span><span class="op">(</span><span class="va">x2</span>, df <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">pchisq</a></span><span class="op">(</span><span class="va">x2</span>, df <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.3627397</code></pre>
 <p>The large <span class="math inline">\(p\)</span>-value suggests there is not enough evidence to say these two variables are dependent.</p>
 <p>Of course, there is also a built-in function in <code>R</code> that will make the calculations easier. It is <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code>.</p>
 <div class="sourceCode" id="cb614"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">substance</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">substance</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##          sex
 ## substance female male
 ##   alcohol     36  141
 ##   cocaine     41  111
 ##   heroin      30   94</code></pre>
 <div class="sourceCode" id="cb616"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">substance</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span>, correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">substance</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span>, correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  Pearson's Chi-squared test
 ## 
@@ -366,7 +366,7 @@ X^2 = {(36 - 41.81)^2 \over 41.81} + {(141 - 135.19)^2 \over 135.19} + {(41 - 35
 ## X-squared = 2.0264, df = 2, p-value = 0.3631</code></pre>
 <p>We can extract just the table of expected counts:</p>
 <div class="sourceCode" id="cb618"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">substance</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span>, correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span><span class="va">expected</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">substance</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span>, correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span><span class="va">expected</span></span></code></pre></div>
 <pre><code>##          sex
 ## substance   female      male
 ##   alcohol 41.80795 135.19205
@@ -374,12 +374,12 @@ X^2 = {(36 - 41.81)^2 \over 41.81} + {(141 - 135.19)^2 \over 135.19} + {(41 - 35
 ##   heroin  29.28918  94.71082</code></pre>
 <p>We can also extract just the test statistic, which we will for permutation tests:</p>
 <div class="sourceCode" id="cb620"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">substance</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span>, correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span><span class="va">statistic</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">substance</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span>, correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span><span class="va">statistic</span></span></code></pre></div>
 <pre><code>## X-squared 
 ##  2.026361</code></pre>
 <p>We can calculate just the test statistic by using the <code><a href="https://www.mosaic-web.org/mosaic/reference/chisq.html">chisq()</a></code> function as well:</p>
 <div class="sourceCode" id="cb622"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/chisq.html">chisq</a></span><span class="op">(</span><span class="op">~</span><span class="va">substance</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/chisq.html">chisq</a></span><span class="op">(</span><span class="op">~</span><span class="va">substance</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## X.squared 
 ##  2.026361</code></pre>
 </div>
@@ -392,25 +392,25 @@ X^2 = {(36 - 41.81)^2 \over 41.81} + {(141 - 135.19)^2 \over 135.19} + {(41 - 35
 <p>We will use the chi-squared test statistic as our test statistic for the randomization test. We could use a different test statistic, such as the absolute value function instead of the square function, but then we would need to write a custom function.</p>
 <p>Let’s calculate the observed value of the test statistic:</p>
 <div class="sourceCode" id="cb624"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/chisq.html">chisq</a></span><span class="op">(</span><span class="va">substance</span> <span class="op">~</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span>
-<span class="va">obs</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/chisq.html">chisq</a></span><span class="op">(</span><span class="va">substance</span> <span class="op">~</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span></span>
+<span><span class="va">obs</span></span></code></pre></div>
 <pre><code>## X.squared 
 ##  2.026361</code></pre>
 <p>Notice that we can also use <code>chisq(~substance + sex, data = HELPrct)</code> to get the same result.</p>
 <p>Next, we will use a randomization process to find the sampling distribution of our test statistic.</p>
 <div class="sourceCode" id="cb626"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2720</span><span class="op">)</span>
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/chisq.html">chisq</a></span><span class="op">(</span><span class="va">substance</span> <span class="op">~</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2720</span><span class="op">)</span></span>
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">do</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/chisq.html">chisq</a></span><span class="op">(</span><span class="va">substance</span> <span class="op">~</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">HELPrct</span><span class="op">)</span></span></code></pre></div>
 <p>Figure <a href="ADDTESTS.html#fig:hist224-fig">22.4</a> is a visual summary of the results, which helps us to gain some intuition about the <span class="math inline">\(p\)</span>-value. We also plot the theoretical chi-squared distribution as a dark blue overlay. The observed test statistic value is shown as a red line.</p>
 <div class="sourceCode" id="cb627"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_dhistogram</span><span class="op">(</span><span class="op">~</span><span class="va">X.squared</span>, fill <span class="op">=</span> <span class="st">"cyan"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">obs</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_dist</span><span class="op">(</span><span class="st">"chisq"</span>, df <span class="op">=</span> <span class="fl">2</span>, color <span class="op">=</span> <span class="st">"darkblue"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Sampling distribution of chi-squared test statistic"</span>,
-          subtitle <span class="op">=</span> <span class="st">"For the variables sex and substance in the HELPrct data set"</span>,
-          x <span class="op">=</span> <span class="st">"Test statistic"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_dhistogram</span><span class="op">(</span><span class="op">~</span><span class="va">X.squared</span>, fill <span class="op">=</span> <span class="st">"cyan"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">obs</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_dist</span><span class="op">(</span><span class="st">"chisq"</span>, df <span class="op">=</span> <span class="fl">2</span>, color <span class="op">=</span> <span class="st">"darkblue"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Sampling distribution of chi-squared test statistic"</span>,</span>
+<span>          subtitle <span class="op">=</span> <span class="st">"For the variables sex and substance in the HELPrct data set"</span>,</span>
+<span>          x <span class="op">=</span> <span class="st">"Test statistic"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:hist224-fig"></span>
 <img src="22-Additional-Hypothesis-Tests_files/figure-html/hist224-fig-1.png" alt="Sampling distribution of chi-squared test statistic from randomization test." width="672"><p class="caption">
@@ -419,7 +419,7 @@ Figure 22.4: Sampling distribution of chi-squared test statistic from randomizat
 </div>
 <p>We find the <span class="math inline">\(p\)</span>-value using <code><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1()</a></code>.</p>
 <div class="sourceCode" id="cb628"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">(</span><span class="op">~</span><span class="va">X.squared</span> <span class="op">&gt;=</span> <span class="va">obs</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">results</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">(</span><span class="op">~</span><span class="va">X.squared</span> <span class="op">&gt;=</span> <span class="va">obs</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## prop_TRUE 
 ## 0.3536464</code></pre>
 <p>We don’t double this value because the chi-squared test is a one-sided test, due to the fact that we squared the differences. A departure from the null hypothesis means larger differences between observed and expected counts, and hence, a larger test statistic value. Thus, we are only interested in the upper (right) tail of the distribution.</p>
@@ -455,11 +455,11 @@ T = {\text{point estimate - null value} \over\text{standard error}} = {(\bar{X}_
 <p>We would like to discern whether there are real differences between the batting performance of baseball players according to their position. We will use a data set <code>mlbbat10</code> from the <strong>openintro</strong> package. It is available in the file <code>mlb_obp.csv</code> which has been modified from the original data set to include only those players with more than 200 at bats. The batting performance will be measured by on-base percentage, <code>obp</code>. The on-base percentage roughly represents the fraction of times a player successfully gets on base or hits a home run. There are four positions in the data, but we are only interested in outfielders (<code>OF</code>) and infielders (<code>IF</code>) for now.</p>
 <p>Read the data into <code>R</code> and filter by position.</p>
 <div class="sourceCode" id="cb630"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mlb_obp_subset</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/mlb_obp.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">position</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"IF"</span>, <span class="st">"OF"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mlb_obp_subset</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/mlb_obp.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">position</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"IF"</span>, <span class="st">"OF"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Let’s review our data:</p>
 <div class="sourceCode" id="cb631"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">mlb_obp_subset</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">mlb_obp_subset</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
 ##       name     class levels   n missing
@@ -468,15 +468,15 @@ T = {\text{point estimate - null value} \over\text{standard error}} = {(\bar{X}_
 ## 1 IF (56.2%), OF (43.8%)                       
 ## 
 ## quantitative variables:  
-##      name   class   min   Q1 median    Q3   max     mean         sd   n missing
-## ...1  obp numeric 0.174 0.31  0.331 0.353 0.437 0.332719 0.03392522 274       0</code></pre>
+##   name   class   min   Q1 median    Q3   max     mean         sd   n missing
+## 1  obp numeric 0.174 0.31  0.331 0.353 0.437 0.332719 0.03392522 274       0</code></pre>
 <p>Next, change the variable <code>position</code> to a factor to make it easier to work with.</p>
 <div class="sourceCode" id="cb633"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mlb_obp_subset</span> <span class="op">&lt;-</span> <span class="va">mlb_obp_subset</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">position</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mlb_obp_subset</span> <span class="op">&lt;-</span> <span class="va">mlb_obp_subset</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">position</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Let’s look at summary statistics of the on-base percentage by position.</p>
 <div class="sourceCode" id="cb634"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   position   min      Q1 median      Q3   max     mean         sd   n missing
 ## 1       IF 0.174 0.30800 0.3270 0.35275 0.437 0.331526 0.03709504 154       0
 ## 2       OF 0.265 0.31475 0.3345 0.35300 0.411 0.334250 0.02944394 120       0</code></pre>
@@ -496,11 +496,11 @@ Construct side-by-side boxplots.</p>
 </blockquote>
 <p>Figure <a href="ADDTESTS.html#fig:box225-fig">22.5</a> shows the side-by-side boxplots for infielders and outfielders.</p>
 <div class="sourceCode" id="cb636"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mlb_obp_subset</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_boxplot</span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Position Played"</span>, y <span class="op">=</span> <span class="st">"On-Base Percentage"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Comparison of OBP for infielders and outfielders"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mlb_obp_subset</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_boxplot</span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Position Played"</span>, y <span class="op">=</span> <span class="st">"On-Base Percentage"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Comparison of OBP for infielders and outfielders"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:box225-fig"></span>
 <img src="22-Additional-Hypothesis-Tests_files/figure-html/box225-fig-1.png" alt="Boxplots of on-base percentage by position played." width="672"><p class="caption">
@@ -509,9 +509,9 @@ Figure 22.5: Boxplots of on-base percentage by position played.
 </div>
 <p>We must verify the assumptions before proceeding with a two-sample <span class="math inline">\(t\)</span>-test. We can assume that MLB players in 2010 are a representative sample of MLB players from other years. Also, the sample size for both groups is over 100, so we feel good about independence of observations within groups. There is no reason to believe that the data across groups, infielders versus outfielders, are not independent of each other. Figures <a href="ADDTESTS.html#fig:dens226-fig">22.6</a> and <a href="ADDTESTS.html#fig:qq227-fig">22.7</a> show density curves and quantile-quantile plots for the on-base percentage by position played. There are no major outliers or other causes for concern. The data within each group appears nearly normal.</p>
 <div class="sourceCode" id="cb637"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mlb_obp_subset</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_dens</span><span class="op">(</span><span class="op">~</span><span class="va">obp</span>, color <span class="op">=</span> <span class="op">~</span><span class="va">position</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mlb_obp_subset</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_dens</span><span class="op">(</span><span class="op">~</span><span class="va">obp</span>, color <span class="op">=</span> <span class="op">~</span><span class="va">position</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:dens226-fig"></span>
 <img src="22-Additional-Hypothesis-Tests_files/figure-html/dens226-fig-1.png" alt="Density curves of on-base percentage by position played." width="672"><p class="caption">
@@ -519,9 +519,9 @@ Figure 22.6: Density curves of on-base percentage by position played.
 </p>
 </div>
 <div class="sourceCode" id="cb638"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mlb_obp_subset</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_qq</span><span class="op">(</span><span class="op">~</span><span class="va">obp</span> <span class="op">|</span> <span class="va">position</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_qqline</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mlb_obp_subset</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_qq</span><span class="op">(</span><span class="op">~</span><span class="va">obp</span> <span class="op">|</span> <span class="va">position</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_qqline</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:qq227-fig"></span>
 <img src="22-Additional-Hypothesis-Tests_files/figure-html/qq227-fig-1.png" alt="Quantile-quantile plots of on-base percentage by position played." width="672"><p class="caption">
@@ -535,7 +535,7 @@ Figure 22.7: Quantile-quantile plots of on-base percentage by position played.
 </h4>
 <p>Our test statistic can be found using the summary statistics that we calculated earlier.</p>
 <div class="sourceCode" id="cb639"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   position   min      Q1 median      Q3   max     mean         sd   n missing
 ## 1       IF 0.174 0.30800 0.3270 0.35275 0.437 0.331526 0.03709504 154       0
 ## 2       OF 0.265 0.31475 0.3345 0.35300 0.411 0.334250 0.02944394 120       0</code></pre>
@@ -545,9 +545,9 @@ T = {(\bar{X}_{OF} - \bar{X}_{IF}) - 0 \over \sqrt{{S_{OF}^2\over n_{OF}} + {S_{
 \]</span></p>
 <p>We can also calculate this using <code>R</code>.</p>
 <div class="sourceCode" id="cb641"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span>
-<span class="va">obs</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffmean</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span> <span class="op">-</span> <span class="fl">0</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">s</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span><span class="op">/</span><span class="fl">120</span> <span class="op">+</span> <span class="va">s</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span><span class="op">/</span><span class="fl">154</span><span class="op">)</span>
-<span class="va">obs</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span></span>
+<span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffmean</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span> <span class="op">-</span> <span class="fl">0</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">s</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span><span class="op">/</span><span class="fl">120</span> <span class="op">+</span> <span class="va">s</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span><span class="op">/</span><span class="fl">154</span><span class="op">)</span></span>
+<span><span class="va">obs</span></span></code></pre></div>
 <pre><code>##  diffmean 
 ## 0.6776293</code></pre>
 <p>Since the conditions for the <span class="math inline">\(t\)</span> distribution are met, under the null hypothesis, our test statistic has a <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(\min(120 - 1, 154 - 1) = 119\)</span> degrees of freedom.</p>
@@ -558,7 +558,7 @@ T = {(\bar{X}_{OF} - \bar{X}_{IF}) - 0 \over \sqrt{{S_{OF}^2\over n_{OF}} + {S_{
 </h4>
 <p>We find the p-value for the two-sample <span class="math inline">\(t\)</span>-test by calculating the probability in the right tail of a <span class="math inline">\(t\)</span> distribution and doubling it.</p>
 <div class="sourceCode" id="cb643"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">2</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="va">obs</span>, df <span class="op">=</span> <span class="fl">119</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fl">2</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="va">obs</span>, df <span class="op">=</span> <span class="fl">119</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##  diffmean 
 ## 0.4993221</code></pre>
 </div>
@@ -576,7 +576,7 @@ T = {(\bar{X}_{OF} - \bar{X}_{IF}) - 0 \over \sqrt{{S_{OF}^2\over n_{OF}} + {S_{
 <p>As may be expected, we can also use the built-in <code>R</code> function <code><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test()</a></code> that was previously discussed in Chapter <a href="HYPTESTCLT.html#HYPTESTCLT">21</a>.</p>
 <p>Here, we specify a formula with the numerical variable on the left and the categorical variable on the right. Remember to use <code><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">help(t_test)</a></code> or <code><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">?t_test</a></code> to access the <code>R</code> documentation for the <code>t_test</code> function.</p>
 <div class="sourceCode" id="cb645"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -601,8 +601,8 @@ T = {(\bar{X}_{OF} - \bar{X}_{IF}) - 0 \over \sqrt{{S_{OF}^2\over n_{OF}} + {S_{
 </h4>
 <p>Let’s calculate the observed test statistic.</p>
 <div class="sourceCode" id="cb647"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffmean</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span>
-<span class="va">obs</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffmean</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span></span>
+<span><span class="va">obs</span></span></code></pre></div>
 <pre><code>##    diffmean 
 ## 0.002724026</code></pre>
 </div>
@@ -612,17 +612,17 @@ T = {(\bar{X}_{OF} - \bar{X}_{IF}) - 0 \over \sqrt{{S_{OF}^2\over n_{OF}} + {S_{
 </h4>
 <p>Now, we’ll conduct the randomization test. Under the null hypothesis, there is no difference in mean on-base percentage between infielders and outfielders. That is, the <code>position</code> label for each player can be shuffled around, and we should still end up with roughly equal mean on-base percentages. We’ll do this many times and plot the results.</p>
 <div class="sourceCode" id="cb649"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">807</span><span class="op">)</span>
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffmean</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">position</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">807</span><span class="op">)</span></span>
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">do</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffmean</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">position</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span></span></code></pre></div>
 <p>Figure <a href="ADDTESTS.html#fig:hist228-fig">22.8</a> is a plot of the sampling distribution of the difference of means from the randomization test. The observed test statistic is shown as a red line.</p>
 <div class="sourceCode" id="cb650"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_dhistogram</span><span class="op">(</span><span class="op">~</span><span class="va">diffmean</span>, fill <span class="op">=</span> <span class="st">"cyan"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">obs</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Randomization test sampling distribution"</span>, 
-          subtitle <span class="op">=</span> <span class="st">"Difference of means"</span>, 
-          x <span class="op">=</span> <span class="st">"Test statistic"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_dhistogram</span><span class="op">(</span><span class="op">~</span><span class="va">diffmean</span>, fill <span class="op">=</span> <span class="st">"cyan"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">obs</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Randomization test sampling distribution"</span>, </span>
+<span>          subtitle <span class="op">=</span> <span class="st">"Difference of means"</span>, </span>
+<span>          x <span class="op">=</span> <span class="st">"Test statistic"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.</code></pre>
 <div class="figure">
 <span style="display:block;" id="fig:hist228-fig"></span>
@@ -632,7 +632,7 @@ Figure 22.8: The sampling distribution of the randomization test using the diffe
 </div>
 <p>The two-sided <span class="math inline">\(p\)</span>-value is</p>
 <div class="sourceCode" id="cb652"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">diffmean</span> <span class="op">&gt;=</span> <span class="va">obs</span><span class="op">)</span>, <span class="va">results</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">diffmean</span> <span class="op">&gt;=</span> <span class="va">obs</span><span class="op">)</span>, <span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## prop_TRUE 
 ## 0.4895105</code></pre>
 <p>This is very similar to the <span class="math inline">\(p\)</span>-value we obtained using the two-sample <span class="math inline">\(t\)</span>-test.</p>
@@ -643,8 +643,8 @@ Figure 22.8: The sampling distribution of the randomization test using the diffe
 </h4>
 <p>Now, let’s repeat the analysis, but use the <span class="math inline">\(t\)</span> statistic as our test statistic. We’ll use the following code to extract the <span class="math inline">\(t\)</span> statistic from the <code><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test()</a></code> output and find our observed test statistic.</p>
 <div class="sourceCode" id="cb654"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span><span class="op">$</span><span class="va">statistic</span>
-<span class="va">obs</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span><span class="op">$</span><span class="va">statistic</span></span>
+<span><span class="va">obs</span></span></code></pre></div>
 <pre><code>##          t 
 ## -0.6776293</code></pre>
 </div>
@@ -654,18 +654,18 @@ Figure 22.8: The sampling distribution of the randomization test using the diffe
 </h4>
 <p>Now, we’ll conduct the randomization test.</p>
 <div class="sourceCode" id="cb656"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">526</span><span class="op">)</span>
-<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">position</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span><span class="op">$</span><span class="va">statistic</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">526</span><span class="op">)</span></span>
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">do</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">position</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mlb_obp_subset</span><span class="op">)</span><span class="op">$</span><span class="va">statistic</span></span></code></pre></div>
 <p>Figure <a href="ADDTESTS.html#fig:hist229-fig">22.9</a> is a plot of the sampling distribution of the <span class="math inline">\(t\)</span> statistic from the randomization test. The observed test statistic is shown as a red line. A <span class="math inline">\(t\)</span> distribution is overlaid as a dark blue line.</p>
 <div class="sourceCode" id="cb657"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_dhistogram</span><span class="op">(</span><span class="op">~</span><span class="va">t</span>, fill <span class="op">=</span> <span class="st">"cyan"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">obs</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_dist</span><span class="op">(</span><span class="st">"t"</span>, df <span class="op">=</span> <span class="fl">191</span>, color <span class="op">=</span> <span class="st">"darkblue"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Randomization test sampling distribution"</span>, 
-          subtitle <span class="op">=</span> <span class="st">"t-statistic"</span>, 
-          x <span class="op">=</span> <span class="st">"Test statistic"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_dhistogram</span><span class="op">(</span><span class="op">~</span><span class="va">t</span>, fill <span class="op">=</span> <span class="st">"cyan"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">obs</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_dist</span><span class="op">(</span><span class="st">"t"</span>, df <span class="op">=</span> <span class="fl">191</span>, color <span class="op">=</span> <span class="st">"darkblue"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Randomization test sampling distribution"</span>, </span>
+<span>          subtitle <span class="op">=</span> <span class="st">"t-statistic"</span>, </span>
+<span>          x <span class="op">=</span> <span class="st">"Test statistic"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.</code></pre>
 <div class="figure">
 <span style="display:block;" id="fig:hist229-fig"></span>
@@ -675,7 +675,7 @@ Figure 22.9: The sampling distribution of the randomization test using the t-sta
 </div>
 <p>The two-sided <span class="math inline">\(p\)</span>-value is</p>
 <div class="sourceCode" id="cb659"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">t</span> <span class="op">&lt;=</span> <span class="va">obs</span><span class="op">)</span>, <span class="va">results</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">t</span> <span class="op">&lt;=</span> <span class="va">obs</span><span class="op">)</span>, <span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## prop_TRUE 
 ## 0.5954046</code></pre>
 <p>You should notice that the <span class="math inline">\(p\)</span>-value for the two-sample <span class="math inline">\(t\)</span>-test is smaller than the <span class="math inline">\(p\)</span>-value obtained here. That is because the <span class="math inline">\(p\)</span>-value for the two-sample <span class="math inline">\(t\)</span>-test involves more assumptions. Still, our results here are consistent with those using the difference of means randomization test and the two-sample <span class="math inline">\(t\)</span>-test.</p>
@@ -784,7 +784,7 @@ Figure 22.9: The sampling distribution of the randomization test using the t-sta
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-07.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

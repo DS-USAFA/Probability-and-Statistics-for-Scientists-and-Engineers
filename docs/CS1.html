@@ -11,7 +11,7 @@
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
 <meta name="description" content="1.1 Objectives Use R for basic analysis and visualization. Compile a report using knitr.  1.2 Introduction to descriptive statistical modeling In this first block of material, we will focus on...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content="Chapter 1 Data Case Study | Computational Probability and Statistics">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Master.png">
@@ -107,7 +107,7 @@
 <li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
 <li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
 <li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation-Based Linear Regression</a></li>
 <li><a class="" href="LRMULTI.html"><span class="header-section-number">31</span> Multiple Linear Regression</a></li>
 <li><a class="" href="LOGREG.html"><span class="header-section-number">32</span> Logistic Regression</a></li>
 <li><a class="" href="references.html">References</a></li>
@@ -198,11 +198,11 @@ a package can be used, it must be installed on the computer (once per computer o
 <p>In RStudio, there is a <em>Packages</em> tab that makes it easy to add and maintain packages.</p>
 <p>To use a package in a session, we must load it. This makes it available to the current session only. When you start <code>R</code> again, you will have to load packages again. The command <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> with the package name supplied as the argument is all that is needed. For this session, we will load <strong>tidyverse</strong> and <strong>mosaic</strong>. Note: the box below is executing the <code>R</code> commands, this is known as reproducible research since you can see the code and then you can run or modify as you need.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ProjectMOSAIC/mosaic">mosaic</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ProjectMOSAIC/mosaic">mosaic</a></span><span class="op">)</span></span></code></pre></div>
 <p>Next read in the data into the working environment.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">stent_study</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/stent_study.csv"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">stent_study</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/stent_study.csv"</span><span class="op">)</span></span></code></pre></div>
 <p>Let’s break this code down. We are reading from a .csv file and assigning the results into an object called <code>stent_study</code>. The assignment arrow <code>&lt;-</code> means we assign what is on the right to what is on the left. The <code>R</code> function we use in this case is <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>. When using <code>R</code> functions, you should ask yourself:</p>
 <ol style="list-style-type: decimal">
 <li><p>What do I want <code>R</code> to do?</p></li>
@@ -210,13 +210,13 @@ a package can be used, it must be installed on the computer (once per computer o
 </ol>
 <p>We want <code>R</code> to read in a .csv file. We can get help on this function by typing <code><a href="https://readr.tidyverse.org/reference/read_delim.html">?read_csv</a></code> or <code><a href="https://readr.tidyverse.org/reference/read_delim.html">help(read_csv)</a></code> at the prompt. The only required input to <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> is the file location. We have our data stored in a folder called “data” under the working directory. We can determine the working directory by typing <code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code> at the prompt.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Similarly, if we wish to change the working directory, we can do so by using the <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code> function:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">'C:/Users/Brad.Warner/Documents/Classes/Prob Stat/Another Folder'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">'C:/Users/Brad.Warner/Documents/Classes/Prob Stat/Another Folder'</span><span class="op">)</span></span></code></pre></div>
 <p>In <code>R</code> if you use the <code><a href="https://tibble.tidyverse.org/reference/view.html">view()</a></code>, you will see the data in what looks like a standard spreadsheet.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/view.html">view</a></span><span class="op">(</span><span class="va">stent_study</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/view.html">view</a></span><span class="op">(</span><span class="va">stent_study</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="explore-data" class="section level3" number="1.4.4">
 <h3>
@@ -224,7 +224,7 @@ a package can be used, it must be installed on the computer (once per computer o
 </h3>
 <p>Before we attempt to answer the research question, let’s look at the data. We want <code>R</code> to print out the first 10 rows of the data. The appropriate function is <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> and it needs the data object. By default, <code>R</code> will output the first 6 rows. By using the <code>n =</code> argument, we can specify how many rows we want to view.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">stent_study</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">stent_study</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 10 x 3
 ##    group   outcome30 outcome365
 ##    &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;     
@@ -240,7 +240,7 @@ a package can be used, it must be installed on the computer (once per computer o
 ## 10 control no_event  no_event</code></pre>
 <p>We also want to “inspect” the data. The function is <code><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect()</a></code> and <code>R</code> needs the data object <code>stent_study</code>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">stent_study</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">stent_study</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
 ##         name     class levels   n missing
@@ -257,7 +257,7 @@ a package can be used, it must be installed on the computer (once per computer o
 <p>We read <code>y ~ x</code> as “y tilde x” and interpret it in the equivalent forms: “y broken down by x”; “y modeled by x”; “y explained by x”; “y depends on x”; or “y accounted for by x.” For graphics, it’s reasonable to read the formula as “y vs. x”, which is exactly the convention used for coordinate axes.</p>
 <p>For this exercise, we want to apply <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code> to the variables <code>group</code> and <code>outcome30</code>. In this case it does not matter which we call <code>y</code> and <code>x</code>; however, it is more natural to think of <code>outcome30</code> as a dependent variable.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">outcome30</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">stent_study</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">outcome30</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">stent_study</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##           group
 ## outcome30  control trmt
 ##   no_event     214  191
@@ -266,15 +266,15 @@ a package can be used, it must be installed on the computer (once per computer o
 <p>The <code>margins</code> option totals the columns.</p>
 <p>Of the 224 patients in the treatment group, 33 had a stroke by the end of the first month. Using these two numbers, we can use <code>R</code> to compute the proportion of patients in the treatment group who had a stroke by the end of their first month.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">33</span> <span class="op">/</span> <span class="op">(</span><span class="fl">33</span> <span class="op">+</span> <span class="fl">191</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fl">33</span> <span class="op">/</span> <span class="op">(</span><span class="fl">33</span> <span class="op">+</span> <span class="fl">191</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.1473214</code></pre>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
 What proportion of the control group had a stroke in the first 30 days of the study? And why is this proportion different from the proportion reported by <code><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect()</a></code>?</p>
 </blockquote>
-<p>Let’s have <code>R</code> calculate proportions for us. Use <code>?</code> or <code>help()</code> to look at the help menu for <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code>. Note that one of the option arguments of the <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code> function is <code>format =</code>. Setting this equal to <code>proportion</code> will output the proportions instead of the counts.</p>
+<p>Let’s have <code>R</code> calculate proportions for us. Use <code>?</code> or <code><a href="https://rdrr.io/r/utils/help.html">help()</a></code> to look at the help menu for <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code>. Note that one of the option arguments of the <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code> function is <code>format =</code>. Setting this equal to <code>proportion</code> will output the proportions instead of the counts.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">outcome30</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">stent_study</span>, format <span class="op">=</span> <span class="st">'proportion'</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">outcome30</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">stent_study</span>, format <span class="op">=</span> <span class="st">'proportion'</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##           group
 ## outcome30     control       trmt
 ##   no_event 0.94273128 0.85267857
@@ -296,7 +296,7 @@ What proportion of the control group had a stroke in the first 30 days of the st
 <p>Here is our first attempt. In Figure <a href="CS1.html#fig:first-fig">1.1</a>, we leave the <code>y</code> portion of our formula blank. Doing this implies that we simply want to view the number/count of <code>outcome30</code> by type. We will see the two levels of <code>outcome30</code> on the x-axis and counts on the y-axis.</p>
 
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span> <span class="va">outcome30</span>, data <span class="op">=</span> <span class="va">stent_study</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span> <span class="va">outcome30</span>, data <span class="op">=</span> <span class="va">stent_study</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:first-fig"></span>
 <img src="01-Data-Case-Study_files/figure-html/first-fig-1.png" alt="Using ggformula to create a bar chart." width="672"><p class="caption">
@@ -312,7 +312,7 @@ Explain Figure <a href="CS1.html#fig:first-fig">1.1</a>.</p>
 <p>We read <code>y ~ x|z</code> as “y tilde x by z” and interpret it in the equivalent forms: “y modeled by x for each z”; “y explained by x within each z”; or “y accounted for by x within z.” For graphics, it’s reasonable to read the formula as “y vs. x for each z”. Figure <a href="CS1.html#fig:split-fig">1.2</a> shows the results.</p>
 
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span> <span class="va">outcome30</span> <span class="op">|</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">stent_study</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span> <span class="va">outcome30</span> <span class="op">|</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">stent_study</span><span class="op">)</span> </span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:split-fig"></span>
 <img src="01-Data-Case-Study_files/figure-html/split-fig-1.png" alt="Bar charts conditioned on the group variable." width="672"><p class="caption">
@@ -325,13 +325,13 @@ Figure 1.2: Bar charts conditioned on the <code>group</code> variable.
 </h4>
 <p>As a prelude for things to come, the above graphic needs work. The labels don’t help and there is no title. We could add color. Does it make more sense to use proportions? Here is the code and results for a better graph, see Figure <a href="CS1.html#fig:cs1-fig">1.3</a>. Don’t worry if this seems a bit advanced, but feel free to examine each new component of this code.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">stent_study</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-<span class="fu">gf_props</span><span class="op">(</span><span class="op">~</span> <span class="va">group</span>, fill <span class="op">=</span> <span class="op">~</span> <span class="va">outcome30</span>, position <span class="op">=</span> <span class="st">'fill'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Impact of Stents of Stroke"</span>,
-          subtitle <span class="op">=</span> <span class="st">'Experiment with 451 Patients'</span>,
-          x <span class="op">=</span> <span class="st">"Experimental Group"</span>,
-          y <span class="op">=</span> <span class="st">"Number of Events"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">stent_study</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span><span class="fu">gf_props</span><span class="op">(</span><span class="op">~</span> <span class="va">group</span>, fill <span class="op">=</span> <span class="op">~</span> <span class="va">outcome30</span>, position <span class="op">=</span> <span class="st">'fill'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Impact of Stents of Stroke"</span>,</span>
+<span>          subtitle <span class="op">=</span> <span class="st">'Experiment with 451 Patients'</span>,</span>
+<span>          x <span class="op">=</span> <span class="st">"Experimental Group"</span>,</span>
+<span>          y <span class="op">=</span> <span class="st">"Number of Events"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:cs1-fig"></span>
 <img src="01-Data-Case-Study_files/figure-html/cs1-fig-1.png" alt="Better graph." width="672"><p class="caption">
@@ -451,7 +451,7 @@ iii. Create a barchart of the data.</li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-07.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

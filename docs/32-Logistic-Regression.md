@@ -2,10 +2,14 @@
 
 ## Objectives
 
-1) Using `R`, conduct logistic regression and interpret the output and perform model selection.  
+1) Using `R`, conduct logistic regression, interpret the output, and perform model selection.  
+
 2) Write the logistic regression model and predict outputs for given inputs.  
+
 3) Find confidence intervals for parameter estimates and predictions.  
+
 4) Create and interpret a confusion matrix.  
+
 
 ## Logistic regression introduction
 
@@ -66,22 +70,22 @@ inspect(mariokart)
 ## 5  (%) ...                                     
 ## 
 ## quantitative variables:  
-##             name   class   min      Q1 median      Q3       max         mean
-## ...1    duration numeric  1.00   1.000    3.0    7.00     10.00     3.769231
-## ...2      n_bids numeric  1.00  10.000   14.0   17.00     29.00    13.538462
-## ...3    start_pr numeric  0.01   0.990    1.0   10.00     69.95     8.777203
-## ...4     ship_pr numeric  0.00   0.000    3.0    4.00     25.51     3.143706
-## ...5    total_pr numeric 28.98  41.175   46.5   53.99    326.51    49.880490
-## ...6 seller_rate numeric  0.00 109.000  820.0 4858.00 270144.00 15898.419580
-## ...7      wheels numeric  0.00   0.000    1.0    2.00      4.00     1.146853
-##                sd   n missing
-## ...1 2.585693e+00 143       0
-## ...2 5.878786e+00 143       0
-## ...3 1.506745e+01 143       0
-## ...4 3.213179e+00 143       0
-## ...5 2.568856e+01 143       0
-## ...6 5.184032e+04 143       0
-## ...7 8.471829e-01 143       0
+##          name   class   min      Q1 median      Q3       max         mean
+## 1    duration numeric  1.00   1.000    3.0    7.00     10.00     3.769231
+## 2      n_bids numeric  1.00  10.000   14.0   17.00     29.00    13.538462
+## 3    start_pr numeric  0.01   0.990    1.0   10.00     69.95     8.777203
+## 4     ship_pr numeric  0.00   0.000    3.0    4.00     25.51     3.143706
+## 5    total_pr numeric 28.98  41.175   46.5   53.99    326.51    49.880490
+## 6 seller_rate numeric  0.00 109.000  820.0 4858.00 270144.00 15898.419580
+## 7      wheels numeric  0.00   0.000    1.0    2.00      4.00     1.146853
+##             sd   n missing
+## 1 2.585693e+00 143       0
+## 2 5.878786e+00 143       0
+## 3 1.506745e+01 143       0
+## 4 3.213179e+00 143       0
+## 5 2.568856e+01 143       0
+## 6 5.184032e+04 143       0
+## 7 8.471829e-01 143       0
 ```
 
 We are again only interested in `total_pr`, `cond`, `stock_photo`, `duration`, and `wheels`. These variables are described in the following list:
@@ -121,10 +125,10 @@ inspect(mariokart)
 ## 2 yes (74.5%), no (25.5%)                      
 ## 
 ## quantitative variables:  
-##          name   class   min Q1 median    Q3 max      mean        sd   n missing
-## ...1 total_pr numeric 28.98 41  46.03 53.99  75 47.431915 9.1136514 141       0
-## ...2 duration numeric  1.00  1   3.00  7.00  10  3.751773 2.5888663 141       0
-## ...3   wheels numeric  0.00  0   1.00  2.00   4  1.148936 0.8446146 141       0
+##       name   class   min Q1 median    Q3 max      mean        sd   n missing
+## 1 total_pr numeric 28.98 41  46.03 53.99  75 47.431915 9.1136514 141       0
+## 2 duration numeric  1.00  1   3.00  7.00  10  3.751773 2.5888663 141       0
+## 3   wheels numeric  0.00  0   1.00  2.00   4  1.148936 0.8446146 141       0
 ```
 
 ### Analyzing contingency table  

@@ -10,15 +10,15 @@
 <meta name="author" content="Ken Horton">
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
-<meta name="description" content="12.1 Objectives Recognize and setup for use common discrete distributions (Uniform, Binomial, Poisson, Hypergeometric) to include parameters, assumptions, and moments. Use R to calculate...">
-<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta name="description" content="12.1 Objectives Recognize and set up for use common discrete distributions (Uniform, Binomial, Poisson, Hypergeometric) to include parameters, assumptions, and moments. Use R to calculate...">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content="Chapter 12 Named Discrete Distributions | Computational Probability and Statistics">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Master.png">
-<meta property="og:description" content="12.1 Objectives Recognize and setup for use common discrete distributions (Uniform, Binomial, Poisson, Hypergeometric) to include parameters, assumptions, and moments. Use R to calculate...">
+<meta property="og:description" content="12.1 Objectives Recognize and set up for use common discrete distributions (Uniform, Binomial, Poisson, Hypergeometric) to include parameters, assumptions, and moments. Use R to calculate...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 12 Named Discrete Distributions | Computational Probability and Statistics">
-<meta name="twitter:description" content="12.1 Objectives Recognize and setup for use common discrete distributions (Uniform, Binomial, Poisson, Hypergeometric) to include parameters, assumptions, and moments. Use R to calculate...">
+<meta name="twitter:description" content="12.1 Objectives Recognize and set up for use common discrete distributions (Uniform, Binomial, Poisson, Hypergeometric) to include parameters, assumptions, and moments. Use R to calculate...">
 <meta name="twitter:image" content="/figures/Cover_Master.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -107,7 +107,7 @@
 <li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
 <li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
 <li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation Based Linear Regression</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation-Based Linear Regression</a></li>
 <li><a class="" href="LRMULTI.html"><span class="header-section-number">31</span> Multiple Linear Regression</a></li>
 <li><a class="" href="LOGREG.html"><span class="header-section-number">32</span> Logistic Regression</a></li>
 <li><a class="" href="references.html">References</a></li>
@@ -127,9 +127,8 @@
 <span class="header-section-number">12.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-12"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
-<li>Recognize and setup for use common discrete distributions (Uniform, Binomial, Poisson, Hypergeometric) to include parameters, assumptions, and moments.<br>
-</li>
-<li>Use <code>R</code> to calculate probabilities and quantiles involving random variables with common discrete distributions.</li>
+<li><p>Recognize and set up for use common discrete distributions (Uniform, Binomial, Poisson, Hypergeometric) to include parameters, assumptions, and moments.</p></li>
+<li><p>Use <code>R</code> to calculate probabilities and quantiles involving random variables with common discrete distributions.</p></li>
 </ol>
 </div>
 <div id="named-distributions" class="section level2" number="12.2">
@@ -183,22 +182,22 @@ f_X(x)=\left\{\begin{array}{ll}\frac{1}{6}, &amp; x \in \{1,2,3,4,5,6\} \\
 To simulate rolling a die 4 times, we use <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample()</a></code>.</p>
 </blockquote>
 <div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">61</span><span class="op">)</span>
-<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">4</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">61</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">4</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 4 2 2 1</code></pre>
 <p>Let’s roll it 10,000 times and find</p>
 <div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span><span class="op">&lt;-</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">1</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">results</span><span class="op">&lt;-</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">1</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">sample</span>,data<span class="op">=</span><span class="va">results</span>,format<span class="op">=</span><span class="st">"percent"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">sample</span>,data<span class="op">=</span><span class="va">results</span>,format<span class="op">=</span><span class="st">"percent"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## sample
 ##     1     2     3     4     5     6 
 ## 16.40 16.46 16.83 17.15 16.92 16.24</code></pre>
 <div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">mean</a></span><span class="op">(</span><span class="op">~</span><span class="va">sample</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">mean</span><span class="op">(</span><span class="op">~</span><span class="va">sample</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 3.5045</code></pre>
 <div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">var</a></span><span class="op">(</span><span class="op">~</span><span class="va">sample</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fl">10000</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">var</a></span><span class="op">(</span><span class="op">~</span><span class="va">sample</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fl">10000</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span></span></code></pre></div>
 <pre><code>## [1] 2.87598</code></pre>
 <p>Again as a reminder, we multiply by <span class="math inline">\(\frac{(10000-1)}{10000}\)</span> because the function <code><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">var()</a></code> is calculating a sample variance using <span class="math inline">\(n-1\)</span> in the denominator but we need the population variance.</p>
 </div>
@@ -229,15 +228,15 @@ f_X(x)=\mbox{P}(X=x)={20 \choose x}0.5^x (1-0.5)^{20-x}
 \mbox{P}(X=8)=f_X(8)={20\choose 8}0.5^8 (1-0.5)^{12}
 \]</span></p>
 <div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">8</span><span class="op">)</span><span class="op">*</span><span class="fl">0.5</span><span class="op">^</span><span class="fl">8</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fl">0.5</span><span class="op">)</span><span class="op">^</span><span class="fl">12</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">8</span><span class="op">)</span><span class="op">*</span><span class="fl">0.5</span><span class="op">^</span><span class="fl">8</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fl">0.5</span><span class="op">)</span><span class="op">^</span><span class="fl">12</span></span></code></pre></div>
 <pre><code>## [1] 0.1201344</code></pre>
 <p>To find <span class="math inline">\(\mbox{P}(X\leq 8)\)</span>, we would need to find the cumulative probability:
 <span class="math display">\[
 \mbox{P}(X\leq 8)=\sum_{x=0}^8 {20\choose 8}0.5^x (1-0.5)^{20-x}
 \]</span></p>
 <div class="sourceCode" id="cb290"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span><span class="op">&lt;-</span><span class="fl">0</span><span class="op">:</span><span class="fl">8</span>
-<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">20</span>,<span class="va">x</span><span class="op">)</span><span class="op">*</span><span class="fl">0.5</span><span class="op">^</span><span class="va">x</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fl">.5</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="fl">20</span><span class="op">-</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">&lt;-</span><span class="fl">0</span><span class="op">:</span><span class="fl">8</span></span>
+<span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">20</span>,<span class="va">x</span><span class="op">)</span><span class="op">*</span><span class="fl">0.5</span><span class="op">^</span><span class="va">x</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fl">.5</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="fl">20</span><span class="op">-</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.2517223</code></pre>
 </div>
 <div id="software-functions" class="section level3" number="12.2.4">
@@ -262,9 +261,9 @@ Use the built-in functions for the binomial distribution to plot the pmf of <spa
 </blockquote>
 <p>Figure <a href="DISCRETENAMED.html#fig:binom-fig">12.1</a></p>
 <div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"binom"</span>,size<span class="op">=</span><span class="fl">20</span>,prob<span class="op">=</span><span class="fl">.5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"X"</span>,y<span class="op">=</span><span class="st">"P(X=x)"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"binom"</span>,size<span class="op">=</span><span class="fl">20</span>,prob<span class="op">=</span><span class="fl">.5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"X"</span>,y<span class="op">=</span><span class="st">"P(X=x)"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:binom-fig"></span>
 <img src="12-Named-Discrete-Distributions_files/figure-html/binom-fig-1.png" alt="The pmf of a binomial random variable" width="672"><p class="caption">
@@ -272,16 +271,16 @@ Figure 12.1: The pmf of a binomial random variable
 </p>
 </div>
 <div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">###P(X=8)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">8</span>,<span class="fl">20</span>,<span class="fl">0.5</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">###P(X=8)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">8</span>,<span class="fl">20</span>,<span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.1201344</code></pre>
 <div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">###P(X&lt;=8)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">8</span>,<span class="fl">20</span>,<span class="fl">0.5</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">###P(X&lt;=8)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">8</span>,<span class="fl">20</span>,<span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.2517223</code></pre>
 <div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## or </span>
-<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">8</span>,<span class="fl">20</span>,<span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## or </span></span>
+<span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">8</span>,<span class="fl">20</span>,<span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.2517223</code></pre>
 </div>
 <div id="poisson-distribution" class="section level3" number="12.2.5">
@@ -310,47 +309,47 @@ Suppose fleet vehicles arrive to a maintenance garage at an average rate of 0.4 
 \]</span></p>
 <p>Alternatively, we can use the built-in <code>R</code> functions for the Poisson distribution:</p>
 <div class="sourceCode" id="cb299"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">##P(X=0)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">2.8</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">##P(X=0)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">2.8</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.06081006</code></pre>
 <div class="sourceCode" id="cb301"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">##P(X&lt;=6)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">ppois</a></span><span class="op">(</span><span class="fl">6</span>,<span class="fl">2.8</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">##P(X&lt;=6)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">ppois</a></span><span class="op">(</span><span class="fl">6</span>,<span class="fl">2.8</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.9755894</code></pre>
 <div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## or</span>
-<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">2.8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## or</span></span>
+<span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">2.8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.9755894</code></pre>
 <div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">##P(X&gt;=2)=1-P(X&lt;2)=1-P(X&lt;=1)</span>
-<span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">ppois</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2.8</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">##P(X&gt;=2)=1-P(X&lt;2)=1-P(X&lt;=1)</span></span>
+<span><span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">ppois</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2.8</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.7689218</code></pre>
 <div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## or</span>
-<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">1000</span>,<span class="fl">2.8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## or</span></span>
+<span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">1000</span>,<span class="fl">2.8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.7689218</code></pre>
 <p>Note that when considering <span class="math inline">\(\mbox{P}(X\geq 2)\)</span>, we recognize that this is equivalent to <span class="math inline">\(1-\mbox{P}(X\leq 1)\)</span>. We can use <code><a href="https://rdrr.io/r/stats/Poisson.html">ppois()</a></code> to find this probability.</p>
 <p>When considering <span class="math inline">\(\mbox{P}(2\leq X \leq 8)\)</span>, we need to make sure we formulate this correctly. Below are two possible methods:</p>
 <div class="sourceCode" id="cb309"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">##P(2 &lt;= X &lt;= 8) = P(X &lt;= 8)-P(X &lt;= 1)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">ppois</a></span><span class="op">(</span><span class="fl">8</span>,<span class="fl">2.8</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">ppois</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2.8</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">##P(2 &lt;= X &lt;= 8) = P(X &lt;= 8)-P(X &lt;= 1)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">ppois</a></span><span class="op">(</span><span class="fl">8</span>,<span class="fl">2.8</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">ppois</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2.8</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.766489</code></pre>
 <div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## or</span>
-<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">8</span>,<span class="fl">2.8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## or</span></span>
+<span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">dpois</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">8</span>,<span class="fl">2.8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.766489</code></pre>
 <p>To find the median and the 95th percentiles, we use <code>qpois</code>:</p>
 <div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">qpois</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fl">2.8</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">qpois</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fl">2.8</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <div class="sourceCode" id="cb315"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">qpois</a></span><span class="op">(</span><span class="fl">0.95</span>,<span class="fl">2.8</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">qpois</a></span><span class="op">(</span><span class="fl">0.95</span>,<span class="fl">2.8</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <p>Figure <a href="DISCRETENAMED.html#fig:pois-fig">12.2</a> is a plot of the pmf of a Poisson random variable.</p>
 <div class="sourceCode" id="cb317"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"pois"</span>,lambda<span class="op">=</span><span class="fl">2.8</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"X"</span>,y<span class="op">=</span><span class="st">"P(X=x)"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"pois"</span>,lambda<span class="op">=</span><span class="fl">2.8</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"X"</span>,y<span class="op">=</span><span class="st">"P(X=x)"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:pois-fig"></span>
 <img src="12-Named-Discrete-Distributions_files/figure-html/pois-fig-1.png" alt="The pmf of a Poisson random variable." width="672"><p class="caption">
@@ -360,9 +359,9 @@ Figure 12.2: The pmf of a Poisson random variable.
 <p>Figure <a href="DISCRETENAMED.html#fig:pois2-fig">12.3</a> is the cdf of the same Poisson random variable in Figure <a href="DISCRETENAMED.html#fig:pois-fig">12.2</a>.</p>
 
 <div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"pois"</span>,lambda<span class="op">=</span><span class="fl">2.8</span>,kind<span class="op">=</span><span class="st">"cdf"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"X"</span>,y<span class="op">=</span><span class="st">"P(X&lt;=x)"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"pois"</span>,lambda<span class="op">=</span><span class="fl">2.8</span>,kind<span class="op">=</span><span class="st">"cdf"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"X"</span>,y<span class="op">=</span><span class="st">"P(X&lt;=x)"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:pois2-fig"></span>
 <img src="12-Named-Discrete-Distributions_files/figure-html/pois2-fig-1.png" alt="The cdf of the Poisson random variable in Figure 12.2" width="672"><p class="caption">
@@ -387,9 +386,9 @@ Suppose a bag contains 12 red chips and 8 black chips. I reach in blindly and ra
 <p>First we should identify a random variable that will help us with this problem. Let <span class="math inline">\(X\)</span> be the number of black chips selected when randomly selecting 6 from the bag. Then <span class="math inline">\(X\sim \textsf{HyperGeom}(8,12,6)\)</span>. We can use <code>R</code> to find these probabilities.</p>
 <p>First, the plot of the pmf of the hypergeometric is in Figure <a href="DISCRETENAMED.html#fig:hyper-fig">12.4</a>.</p>
 <div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"hyper"</span>,m<span class="op">=</span><span class="fl">8</span>,n<span class="op">=</span><span class="fl">12</span>,k<span class="op">=</span><span class="fl">6</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"X"</span>,y<span class="op">=</span><span class="st">"P(X=x)"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"hyper"</span>,m<span class="op">=</span><span class="fl">8</span>,n<span class="op">=</span><span class="fl">12</span>,k<span class="op">=</span><span class="fl">6</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"X"</span>,y<span class="op">=</span><span class="st">"P(X=x)"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:hyper-fig"></span>
 <img src="12-Named-Discrete-Distributions_files/figure-html/hyper-fig-1.png" alt="The pmf of a hypergeometric random variable." width="672"><p class="caption">
@@ -397,16 +396,16 @@ Figure 12.4: The pmf of a hypergeometric random variable.
 </p>
 </div>
 <div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">##P(X=0)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">dhyper</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">8</span>,<span class="fl">12</span>,<span class="fl">6</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">##P(X=0)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">dhyper</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">8</span>,<span class="fl">12</span>,<span class="fl">6</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.02383901</code></pre>
 <div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">##P(X=6)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">dhyper</a></span><span class="op">(</span><span class="fl">6</span>,<span class="fl">8</span>,<span class="fl">12</span>,<span class="fl">6</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">##P(X=6)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">dhyper</a></span><span class="op">(</span><span class="fl">6</span>,<span class="fl">8</span>,<span class="fl">12</span>,<span class="fl">6</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.0007223942</code></pre>
 <div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">##P(2 &lt;= X &lt;=5)</span>
-<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">dhyper</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">8</span>,<span class="fl">12</span>,<span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">##P(2 &lt;= X &lt;=5)</span></span>
+<span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">dhyper</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">8</span>,<span class="fl">12</span>,<span class="fl">6</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.8119711</code></pre>
 </div>
 </div>
@@ -427,17 +426,17 @@ Figure 12.4: The pmf of a hypergeometric random variable.
 <p><span class="math inline">\(\mbox{E}(X)=15*0.01=0.15\)</span> and <span class="math inline">\(\mbox{Var}(X)=15*0.01*0.99=0.1485\)</span>.</p>
 <p><span class="math inline">\(\mbox{P}(\mbox{No mainteance failures})=\mbox{P}(X=0)={15\choose 0}0.01^0(1-0.01)^{15}=0.99^{15}\)</span></p>
 <div class="sourceCode" id="cb326"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">0.99</span><span class="op">^</span><span class="fl">15</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fl">0.99</span><span class="op">^</span><span class="fl">15</span></span></code></pre></div>
 <pre><code>## [1] 0.8600584</code></pre>
 <div class="sourceCode" id="cb328"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## or </span>
-<span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">15</span>,<span class="fl">0.01</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## or </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">15</span>,<span class="fl">0.01</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.8600584</code></pre>
 <p>This probability makes sense, since the expected value is fairly low. Because, on average, only 0.15 failures would occur every 15 trials, 0 failures would be a very common result. Graphically, the pmf looks like Figure <a href="DISCRETENAMED.html#fig:hw1a">12.5</a>.</p>
 <div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"binom"</span>,size<span class="op">=</span><span class="fl">15</span>,prob<span class="op">=</span><span class="fl">0.01</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"X"</span>,y<span class="op">=</span><span class="st">"P(X=x)"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"binom"</span>,size<span class="op">=</span><span class="fl">15</span>,prob<span class="op">=</span><span class="fl">0.01</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"X"</span>,y<span class="op">=</span><span class="st">"P(X=x)"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:hw1a"></span>
 <img src="12-Named-Discrete-Distributions_files/figure-html/hw1a-1.png" alt="The pmf for binomail in Homework Problem 1a." width="672"><p class="caption">
@@ -449,24 +448,24 @@ Figure 12.5: The pmf for binomail in Homework Problem 1a.
 </ol>
 <p>We can use the same <span class="math inline">\(X\)</span> as above. Now, we are looking for <span class="math inline">\(\mbox{P}(X\geq 2)\)</span>. This is equivalent to finding <span class="math inline">\(1-\mbox{P}(X\leq 1)\)</span>:</p>
 <div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Directly</span>
-<span class="fl">1</span><span class="op">-</span><span class="op">(</span><span class="fl">0.99</span><span class="op">^</span><span class="fl">15</span> <span class="op">+</span> <span class="fl">15</span><span class="op">*</span><span class="fl">0.01</span><span class="op">*</span><span class="fl">0.99</span><span class="op">^</span><span class="fl">14</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## Directly</span></span>
+<span><span class="fl">1</span><span class="op">-</span><span class="op">(</span><span class="fl">0.99</span><span class="op">^</span><span class="fl">15</span> <span class="op">+</span> <span class="fl">15</span><span class="op">*</span><span class="fl">0.01</span><span class="op">*</span><span class="fl">0.99</span><span class="op">^</span><span class="fl">14</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.009629773</code></pre>
 <div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## or, using R</span>
-<span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">15</span>,<span class="fl">15</span>,<span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## or, using R</span></span>
+<span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">15</span>,<span class="fl">15</span>,<span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.009629773</code></pre>
 <div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## or</span>
-<span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">1</span>,<span class="fl">15</span>,<span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## or</span></span>
+<span><span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">1</span>,<span class="fl">15</span>,<span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.009629773</code></pre>
 <div class="sourceCode" id="cb337"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## or</span>
-<span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">15</span>,<span class="fl">0.01</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## or</span></span>
+<span><span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">15</span>,<span class="fl">0.01</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.009629773</code></pre>
 <div class="sourceCode" id="cb339"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## or </span>
-<span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">15</span>,<span class="fl">0.01</span>,lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## or </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">15</span>,<span class="fl">0.01</span>,lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.009629773</code></pre>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>Find the probability of at least 30 successful (no mx failures) sorties before the first failure.<br>
@@ -529,7 +528,7 @@ Figure 12.5: The pmf for binomail in Homework Problem 1a.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-07.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

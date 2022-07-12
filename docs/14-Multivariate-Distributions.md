@@ -3,8 +3,10 @@
 
 ## Objectives
 
-1) Define (and distinguish between) the terms joint probability mass/density function, marginal pmf/pdf, and conditional pmf/pdf.  
+1) Define (and distinguish between) the terms *joint probability mass/density function*, *marginal pmf/pdf*, and *conditional pmf/pdf*.  
+
 2) Given a joint pmf/pdf, obtain the marginal and conditional pmfs/pdfs.  
+
 3) Use joint, marginal and conditional pmfs/pdfs to obtain probabilities. 
 
 ## Multivariate distributions  

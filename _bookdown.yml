@@ -37,10 +37,10 @@ rmd_files: [
    "25-Bootstrap.Rmd",                                             
    "26-Linear-Regression-Case-Study.Rmd",                          
    "27-Linear-Regression-Basics.Rmd",                              
-   "28-Regression-Inference.Rmd",                                  
-   "29-Regression-Diagnostics.Rmd",                                
+   "28-Linear-Regression-Inference.Rmd",                                  
+   "29-Linear-Regression-Diagnostics.Rmd",                                
    "30-Simulation-Based-Linear-Regression.Rmd",                    
-   "31-Multiple-Regression.Rmd",                                   
+   "31-Multiple-Linear-Regression.Rmd",                                   
    "32-Logistic-Regression.Rmd",                                   
    "33-Reference.Rmd"                                             
    ]

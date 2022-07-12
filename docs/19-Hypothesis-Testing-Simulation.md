@@ -2,11 +2,11 @@
 
 ## Objectives
 
-1) Know and properly use the terminology of a hypothesis test: *null hypothesis*, *alternative hypothesis*, *test statistic*, *$p$-value*, *randomization test*, *one-sided test*, *two-sided test*, *statistically significant*, *significance level*, *type I error*, *type II error*, *false positive*, *false negative*, *null distribution*, and *sampling distribution*.  
+1) Know and properly use the terminology of a hypothesis test, to include: *null hypothesis*, *alternative hypothesis*, *test statistic*, *$p$-value*, *randomization test*, *one-sided test*, *two-sided test*, *statistically significant*, *significance level*, *type I error*, *type II error*, *false positive*, *false negative*, *null distribution*, and *sampling distribution*.  
 
 2) Conduct all four steps of a hypothesis test using randomization.  
 
-3) Discuss and explain the ideas of decision errors, one-sided versus two-sided tests, and the choice of a significance level.  
+3) Discuss and explain the ideas of decision errors, one-sided versus two-sided tests, and the choice of a significance level.   
 
 
 ## Decision making under uncertainty  
@@ -145,10 +145,8 @@ inspect(ads)
 ## 1 basic (50%), premium (50%)                   
 ## 
 ## quantitative variables:  
-##        name   class   min     Q1 median      Q3    max    mean       sd  n
-## ...1 length numeric 3.383 7.4525  8.123 9.68825 11.016 8.03215 2.121412 20
-##      missing
-## ...1       0
+##     name   class   min     Q1 median      Q3    max    mean       sd  n missing
+## 1 length numeric 3.383 7.4525  8.123 9.68825 11.016 8.03215 2.121412 20       0
 ```
 
 This summary is not what we want, since we want to break it down by `channel` type.
