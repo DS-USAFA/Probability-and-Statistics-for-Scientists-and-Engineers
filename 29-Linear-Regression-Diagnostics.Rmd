@@ -3,8 +3,11 @@
 ## Objectives
 
 1) Obtain and interpret $R$-squared and the $F$-statistic.  
+
 2) Use `R` to evaluate the assumptions of a linear model.  
-3) Identify and explain outliers and leverage points.  
+
+3) Identify and explain *outliers* and *leverage points*.  
+
 
 ## Introduction
 

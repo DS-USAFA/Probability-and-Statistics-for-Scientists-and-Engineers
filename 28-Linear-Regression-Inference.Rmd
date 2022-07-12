@@ -3,8 +3,11 @@
 ## Objectives
 
 1) Given a simple linear regression model, conduct inference on the coefficients $\beta_0$ and $\beta_1$.  
+
 2) Given a simple linear regression model, calculate the predicted response for a given value of the predictor.  
+
 3) Build and interpret confidence and prediction intervals for values of the response variable.  
+
 
 ## Introduction  
 

@@ -2,11 +2,16 @@
 
 ## Objectives
 
-1) Create and interpret a model with multiple predictors and check assumptions.  
+1) Create and interpret a model with multiple predictors and check assumptions.   
+
 2) Generate and interpret confidence intervals for estimates.  
+
 3) Explain adjusted $R^2$ and multi-collinearity.  
-4) Interpret regression coefficients for a linear model with multiple predictors.    
-5) Build and interpret models with higher order terms.
+
+4) Interpret regression coefficients for a linear model with multiple predictors.   
+
+5) Build and interpret models with higher order terms.  
+
 
 ## Introduction to multiple regression  
 
