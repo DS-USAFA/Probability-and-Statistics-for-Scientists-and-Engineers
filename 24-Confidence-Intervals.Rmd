@@ -9,7 +9,7 @@
 
 3) Describe the relationships between confidence intervals and hypothesis testing.  
 
-4) Calculate confidence intervals for proportions using three different approaches in `R`: explicit calculation, `binom.test()`, and `prop_test()`.  
+4) Calculate confidence intervals for proportions using three different approaches in `R`: explicit calculation, `binom.test()`, and `prop_test()`.   
 
 
 ## Confidence intervals

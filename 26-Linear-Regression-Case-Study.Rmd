@@ -5,7 +5,9 @@
 ## Objectives
 
 1) Using `R`, generate a linear regression model and use it to produce a prediction model.  
+
 2) Using plots, check the assumptions of a linear regression model.  
+
 
 ## Introduction to linear regression  
 

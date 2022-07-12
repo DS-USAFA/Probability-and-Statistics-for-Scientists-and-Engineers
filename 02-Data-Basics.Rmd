@@ -2,7 +2,7 @@
 
 ## Objectives
 
-1) Define and use properly in context all new terminology to include: *case*, *observational unit*, *variables*, *data frame*, *associated variables*, *independent*, and *discrete* and *continuous variables*.   
+1) Define and use properly in context all new terminology, to include: *case*, *observational unit*, *variables*, *data frame*, *associated variables*, *independent*, and *discrete* and *continuous variables*.   
 
 2) Identify and define the different types of variables.  
 

@@ -12,9 +12,12 @@ library(mosaicCalc)
 ## Objectives
 
 1) Given a joint pmf/pdf, obtain means and variances of random variables and functions of random variables.  
-2) Define the terms covariance and correlation, and given a joint pmf/pdf, obtain the covariance and correlation between two random variables.  
-3) Given a joint pmf/pdf, determine whether random variables are independent of one another.   
-4) Find conditional expectations.
+
+2) Define the terms *covariance* and *correlation*, and given a joint pmf/pdf, obtain the covariance and correlation between two random variables.  
+
+3) Given a joint pmf/pdf, determine whether random variables are *independent* of one another.   
+
+4) Find conditional expectations.  
 
 
 ## Expectation - moments

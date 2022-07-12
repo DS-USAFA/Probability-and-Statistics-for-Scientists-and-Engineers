@@ -3,11 +3,11 @@
 
 ## Objectives
 
-1) Use the bootstrap to estimate the standard error of the sample statistic.  
+1) Use the bootstrap to estimate the standard error of a sample statistic.  
 
 2) Using bootstrap methods, obtain and interpret a confidence interval for an unknown parameter, based on a random sample.   
 
-3) Describe the advantages, disadvantages, and assumptions behind bootstrapping for confidence intervals.  
+3) Describe the advantages, disadvantages, and assumptions behind bootstrapping for confidence intervals. 
 
 
 ## Confidence intervals

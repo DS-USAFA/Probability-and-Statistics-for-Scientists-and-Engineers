@@ -5,9 +5,9 @@
 
 ## Objectives
 
-1) Define and use properly in context all new terminology to include: *point estimate*, *null hypothesis*, *alternative hypothesis*, *hypothesis test*, *randomization*, *permutation test*, *test statistic*, and *$p$-value*.  
+1) Define and use properly in context all new terminology, to include: *point estimate*, *null hypothesis*, *alternative hypothesis*, *hypothesis test*, *randomization*, *permutation test*, *test statistic*, and *$p$-value*.  
 
-2) Conduct a hypothesis test using a permutation test to include all 4 steps.
+2) Conduct a hypothesis test using a randomization test, to include all 4 steps.
 
 ## Introduction 
 

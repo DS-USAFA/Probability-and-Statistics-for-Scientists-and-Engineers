@@ -3,7 +3,7 @@
 
 ## Objectives
 
-1) Define and use properly in context all new terminology: *factor*, *contingency table*, *marginal counts*, *joint counts*, *frequency table*, *relative frequency table*, *bar plot*, *conditioning*, *segmented bar plot*, *mosaic plot*, *pie chart*, *side-by-side box plot*, *density plot*.  
+1) Define and use properly in context all new terminology, to include: *factor*, *contingency table*, *marginal counts*, *joint counts*, *frequency table*, *relative frequency table*, *bar plot*, *conditioning*, *segmented bar plot*, *mosaic plot*, *pie chart*, *side-by-side box plot*, *density plot*.  
 
 2) In `R`, generate tables for categorical variable(s).   
 

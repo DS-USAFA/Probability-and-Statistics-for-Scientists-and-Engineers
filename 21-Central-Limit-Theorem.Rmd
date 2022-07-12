@@ -7,7 +7,7 @@
 
 2) Conduct hypothesis tests of a single mean and proportion using the CLT and `R`.   
 
-3) Explain how the $t$ distribution relates to the normal distribution, where it is used, and how changing parameters impacts the shape of the distribution.   
+3) Explain how the $t$ distribution relates to the normal distribution, where it is used, and how changing parameters impacts the shape of the distribution.     
 
 
 ## Central limit theorem
