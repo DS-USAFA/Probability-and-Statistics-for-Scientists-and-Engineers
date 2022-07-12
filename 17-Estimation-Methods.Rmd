@@ -101,7 +101,7 @@ Again, we notice that the estimate for $\sigma$ is different from sample standar
 $$
 E(\hat{\theta})=\theta
 $$
-Unbiased is not a required property for an estimated but many practitioners find it desirable. In words, unbiased means that on average the estimator will equal the true value. Sample variance using $n-1$ in the denominator is an unbiased estimate of the population variance.
+Unbiased is not a required property for an estimator, but many practitioners find it desirable. In words, unbiased means that on average the estimator will equal the true value. Sample variance using $n-1$ in the denominator is an unbiased estimate of the population variance.
 
 > *Exercise*:  
 You shot 25 free throws and make 21. Assuming a binomial model fits. Find an estimate of the probability of making a free throw.
