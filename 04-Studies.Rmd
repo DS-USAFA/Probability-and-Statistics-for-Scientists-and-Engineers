@@ -27,22 +27,22 @@ Study with a similar scenario to that described here:
 http://onlinelibrary.wiley.com/doi/10.1002/ijc.22745/full] tells us that using sunscreen actually reduces skin cancer risk, so maybe there is another variable that can explain this hypothetical association between sunscreen usage and skin cancer. One important piece of information that is absent is sun exposure. If someone is out in the sun all day, she is more likely to use sunscreen *and* more likely to get skin cancer. Exposure to the sun is unaccounted for in the simple investigation.
 
 ```{r confound-fig,echo=FALSE,fig.cap="Sun exposure is a confounding variable because it is related to both response and explanatory variables.",fig.dim=c(5,3)}
-plot(c(-0.05,1.2),c(0.39,1),type='n',axes=FALSE,xlab ="",ylab="")
+plot(c(-0.05, 1.2), c(0.39, 1), type = 'n', axes = FALSE, xlab = "", ylab = "")
 
-text(0.59, 0.89, 'sun exposure',cex=.8)
-rect(0.4,0.8,0.78,1)
+text(0.59, 0.89, 'sun exposure', cex = 0.8)
+rect(0.4, 0.8, 0.78, 1)
 
-text(0.3, 0.49, 'use sunscreen',cex=.8)
-rect(0.1,0.4, 0.48, 0.6)
-arrows(0.49, 0.78, 0.38, 0.62, length=0.08, lwd=1.5)
+text(0.3, 0.49, 'use sunscreen', cex = 0.8)
+rect(0.1, 0.4, 0.48, 0.6)
+arrows(0.49, 0.78, 0.38, 0.62, length = 0.08, lwd = 1.5)
 
-text(0.87, 0.5, 'skin cancer',cex=.8)
-rect(0.71,0.4, 1.01, 0.6)
-arrows(0.67, 0.78, 0.8, 0.62, length=0.08, lwd=1.5)
+text(0.87, 0.5, 'skin cancer', cex = 0.8)
+rect(0.71, 0.4, 1.01, 0.6)
+arrows(0.67, 0.78, 0.8, 0.62, length = 0.08, lwd = 1.5)
 
-arrows(0.5, 0.5, 0.69, 0.5, length=0.08, col=COL[6,2])
-#text(0.6, 0.495, 'X', cex=2, col=COL[4])
-text(0.595, 0.565, "?", cex=1.5, col=COL[4])
+arrows(0.5, 0.5, 0.69, 0.5, length = 0.08, col = COL[6, 2])
+#text(0.6, 0.495, 'X', cex = 2, col = COL[4])
+text(0.595, 0.565, "?", cex = 1.5, col = COL[4])
 
 ```
 
@@ -55,7 +55,9 @@ What conclusion to you reach from the plot in Figure \@ref(fig:confound2-fig)?^[
 
 ```{r confound2-fig,echo=FALSE,warning=FALSE,fig.cap="Average SAT score versus expenditure per pupil; reminder: each observation represents an individual state."}
 SAT %>%
-  gf_point(sat~expend,xlab="Expenditure per pupil",ylab="Average SAT score",title="SAT Scores versus Expenditures") %>%
+  gf_point(sat ~ expend, xlab = "Expenditure per pupil", 
+           ylab = "Average SAT score", 
+           title = "SAT Scores versus Expenditures") %>%
   gf_theme(theme_classic())
 
 ```
@@ -71,11 +73,13 @@ fewer than 40% of students take the SAT. Figure \@ref(fig:conditional-fig) is a 
 SAT %>% 
   mutate(fracGroup = derivedFactor(
 Hi = (frac > 40),
-Low = (frac <=40) )) %>%
-  gf_point(sat~expend,color=~fracGroup,xlab="Expenditure per pupil",ylab="Average SAT score",title="SAT Scores versus Expenditures") %>%
+Low = (frac <= 40) )) %>%
+  gf_point(sat ~ expend, color = ~fracGroup, 
+           xlab = "Expenditure per pupil", ylab = "Average SAT score", 
+           title = "SAT Scores versus Expenditures") %>%
   gf_lm() %>%
   gf_theme(theme_classic()) %>%
-  gf_labs(color="Fraction")
+  gf_labs(color = "Fraction")
 ```
 
 Once we account for the fraction of students taking the SAT, the relationship between expenditures and SAT scores changes.
@@ -93,36 +97,45 @@ library(usdata)
 
 ```{r warning=FALSE,echo=FALSE,warning=FALSE,message=FALSE}
 county_M377 <- county_complete %>% 
-  select(name, state, pop2000, pop2010, fed_spend=fed_spending_2009, poverty=poverty_2010, 
-         homeownership = homeownership_2010, multi_unit = housing_multi_unit_2010, 
-         income = per_capita_income_2010, med_income = median_household_income_2010) %>%
-  mutate(fed_spend=fed_spend/pop2010)
+  select(name, state, pop2000, pop2010, fed_spend = fed_spending_2009, 
+         poverty = poverty_2010, homeownership = homeownership_2010, 
+         multi_unit = housing_multi_unit_2010, income = per_capita_income_2010, 
+         med_income = median_household_income_2010) %>%
+  mutate(fed_spend = fed_spend / pop2010)
 ```
 
 
 
 ```{r homeown2-fig,echo=FALSE,fig.cap="A scatterplot of the homeownership rate versus the percent of units that are in multi-unit structures for all 3,143 counties."}
 pch <- 1
-cex <- sqrt(county_M377$pop2010/1e6)
-colPop <- fadeColor(ifelse(cex > 0.35, COL[4], COL[1]), substr(gray(0.6+cex*0.1),2,3))
-colSm  <- colPop
-cexF   <- 2
+cex <- sqrt(county_M377$pop2010 / 1e6)
+colPop <- fadeColor(ifelse(cex > 0.35, COL[4], COL[1]), 
+                    substr(gray(0.6 + cex*0.1), 2, 3))
+colSm <- colPop
+cexF <- 2
 cex <- 0.7
 pch <- 20
 gp1 <- cex < 0.32
-colSm  <- COL[1,3]
-colPop <- COL[1,3]
+colSm  <- COL[1, 3]
+colPop <- COL[1, 3]
 cexF   <- 1
-plot(county_M377$multi_unit[gp1], county_M377$homeownership[gp1], pch=pch, col=colSm, xlab="", ylab="Percent of Homeownership", axes=FALSE, cex=ifelse(cex < 0.32, 0.32, cex)[gp1], xlim=range(county_M377$multi_unit), ylim=range(county_M377$homeownership))
+plot(county_M377$multi_unit[gp1], county_M377$homeownership[gp1], 
+     pch = pch, col = colSm, xlab = "", ylab = "Percent of Homeownership", 
+     axes = FALSE, cex = ifelse(cex < 0.32, 0.32, cex)[gp1], 
+     xlim = range(county_M377$multi_unit), 
+     ylim = range(county_M377$homeownership))
 at = seq(0, 100, 20)
 axis(1, at, paste0(at, "%"))
 axis(2, at, paste0(at, "%"))
 box()
-points(county_M377$multi_unit[!gp1], county_M377$homeownership[!gp1], pch=pch, col=colPop, xlab="", ylab="Percent of Homeownership", cex=ifelse(cex < 0.32, 0.32, cex)[!gp1])
-points(county_M377$multi_unit[!gp1], county_M377$homeownership[!gp1], pch=20, cex = 0.2, col=COL[5,3])
-#points(cc$housing_multi_unit, cc$home_ownership, pch=".", cex=1)
-#rug(county$poverty[county$fed_spend > 40], side=3)
-mtext("Percent of Units in Multi-Unit Structures", 1, 1.9, cex= 1)
+points(county_M377$multi_unit[!gp1], county_M377$homeownership[!gp1], 
+       pch = pch, col = colPop, xlab = "", ylab = "Percent of Homeownership", 
+       cex = ifelse(cex < 0.32, 0.32, cex)[!gp1])
+points(county_M377$multi_unit[!gp1], county_M377$homeownership[!gp1], 
+       pch = 20, cex = 0.2, col = COL[5, 3])
+#points(cc$housing_multi_unit, cc$home_ownership, pch = ".", cex = 1)
+#rug(county$poverty[county$fed_spend > 40], side = 3)
+mtext("Percent of Units in Multi-Unit Structures", 1, 1.9, cex = 1)
 ```
 
 
@@ -138,8 +151,8 @@ Almost all statistical methods are based on the notion of implied randomness. If
 
 data(COL)
 set.seed(3)
-N   <- 108
-n   <- 18
+N <- 108
+n <- 18
 colSamp <- COL[4]
 PCH <- rep(c(1, 3, 20)[3], 3)
 
@@ -147,16 +160,17 @@ col <- rep(COL[1], N)
 pch <- PCH[match(col, COL)]
 
 #=====> SRS <=====#
-plot(0, xlim=c(0,2), ylim=0:1, type='n', axes=FALSE,xlab="",ylab="")
+plot(0, xlim = c(0, 2), ylim = 0:1, type = 'n', 
+     axes = FALSE, xlab = "", ylab = "")
 box()
 x   <- runif(N, 0, 2)
 y   <- runif(N)
 inc <- n
-points(x, y, col=col, pch=pch)
+points(x, y, col = col, pch = pch)
 
 these <- sample(N, n)
-points(x[these], y[these], pch=20, cex=0.8, col=colSamp)
-points(x[these], y[these], cex=1.4, col=colSamp)
+points(x[these], y[these], pch = 20, cex = 0.8, col = colSamp)
+points(x[these], y[these], cex = 1.4, col = colSamp)
 
 ```
 
@@ -167,28 +181,25 @@ points(x[these], y[these], cex=1.4, col=colSamp)
 
 #=====> Stratified <=====#
 PCH <- rep(c(1, 3, 20)[3], 3)
-plot(0, xlim=c(0,2), ylim=0:1, type='n', axes=FALSE,xlab="",ylab="")
+plot(0, xlim = c(0, 2), ylim = 0:1, type = 'n', 
+     axes = FALSE, xlab = "", ylab = "")
 box()
 X    <- c(0.18, 0.3, 0.68, 1.18, 1.4, 1.74)
 Y    <- c(0.2, 0.78, 0.44, 0.7, 0.25, 0.65)
 locs <- c(1, 4, 5, 3, 6, 2)
 gps  <- list()
 N    <- 1.1*c(15, 12, 35, 22, 13, 28)
-R    <- sqrt(N/500)
-p    <- matrix(c(12, 2, NA,
-				 1,  2, NA,
-				 4,  30, NA,
-				 19, 1, NA,
-				 11, 0, NA,
-				 3, 24, NA), 3)
+R    <- sqrt(N / 500)
+p    <- matrix(c(12, 2, NA, 1, 2, NA, 4, 30, NA, 
+                 19, 1, NA, 11, 0, NA, 3, 24, NA), 3)
 p     <- round(p*1.1)
 p[3,] <- N - p[1,] - p[2,]
 above <- c(1, 1, 1, 1, -1, 1)
 for(i in 1:6){
-	hold <- seq(0, 2*pi, len=99)
-	x    <- X[i] + (R[i]+0.01)*cos(hold)
-	y    <- Y[i] + (R[i]+0.01)*sin(hold)
-	polygon(x, y, border=COL[5,4])
+	hold <- seq(0, 2*pi, len = 99)
+	x    <- X[i] + (R[i] + 0.01)*cos(hold)
+	y    <- Y[i] + (R[i] + 0.01)*sin(hold)
+	polygon(x, y, border = COL[5, 4])
 	x    <- rep(NA, N[i])
 	y    <- rep(NA, N[i])
 	for(j in 1:N[i]){
@@ -198,22 +209,22 @@ for(i in 1:6){
 			yy <- runif(1, -R[i], R[i])
 			if(sqrt(xx^2 + yy^2) < R[i]){
 				inside <- TRUE
-				x[j]   <- xx
-				y[j]   <- yy
+				x[j] <- xx
+				y[j] <- yy
 			}
 		}
 	}
 	type <- sample(1, N[i], TRUE)
 	pch  <- PCH[type]
 	col  <- COL[type]
-	x    <- X[i]+x
-	y    <- Y[i]+y
-	points(x, y, pch=pch, col=col)
+	x    <- X[i] + x
+	y    <- Y[i] + y
+	points(x, y, pch = pch, col = col)
 	these  <- sample(N[i], 3)
-	points(x[these], y[these], pch=20, cex=0.8, col=colSamp)
-	points(x[these], y[these], cex=1.4, col=colSamp)
+	points(x[these], y[these], pch = 20, cex = 0.8, col = colSamp)
+	points(x[these], y[these], cex = 1.4, col = colSamp)
 }
-text(X, Y+above*(R+0.01), paste("Stratum", 1:6), pos=2+above, cex=1.1)
+text(X, Y + above*(R + 0.01), paste("Stratum", 1:6), pos = 2 + above, cex = 1.1)
 
 
 ```
@@ -222,32 +233,26 @@ text(X, Y+above*(R+0.01), paste("Stratum", 1:6), pos=2+above, cex=1.1)
 
 #=====> Cluster <=====#
 PCH <- rep(c(1, 3, 20)[3], 3)
-plot(0, xlim=c(0,2), ylim=0:1, type='n', axes=FALSE,xlab="",ylab="")
+plot(0, xlim = c(0, 2), ylim = 0:1, type = 'n', 
+     axes = FALSE, xlab = "", ylab = "")
 box()
 X    <- c(0.17, 0.19, 0.52, 0.85, 1, 1.22, 1.49, 1.79, 1.85)
 Y    <- c(0.3, 0.75, 0.5, 0.26, 0.73, 0.38, 0.67, 0.3, 0.8)
 locs <- c(1, 4, 5, 3, 6, 2)
 gps  <- list()
 N    <- c(18, 12, 11, 13, 16, 14, 15, 16, 12)
-R    <- sqrt(N/500)
-p    <- matrix(c(6,  8, NA,
-				 4,  4, NA,
-				 4,  4, NA,
-				 5,  4, NA,
-				 8,  5, NA,
-				 4,  5, NA,
-				 5,  9, NA,
-				 6,  5, NA,
-				 4,  5, NA), 3)
+R    <- sqrt(N / 500)
+p    <- matrix(c(6, 8, NA, 4, 4, NA, 4, 4, NA, 5, 4, NA, 8, 5, NA,
+                 4, 5, NA, 5, 9, NA, 6, 5, NA, 4, 5, NA), 3)
 p[3,] <- N - p[1,] - p[2,]
 above <- c(-1, 1, 1, 1, 1, -1, 1, 1, 1)
 for(i in 1:length(X)){
-	hold <- seq(0, 2*pi, len=99)
-	x    <- X[i] + (R[i]+0.02)*cos(hold)
-	y    <- Y[i] + (R[i]+0.02)*sin(hold)
-	polygon(x, y, border=COL[5,4])
+	hold <- seq(0, 2*pi, len = 99)
+	x    <- X[i] + (R[i] + 0.02)*cos(hold)
+	y    <- Y[i] + (R[i] + 0.02)*sin(hold)
+	polygon(x, y, border = COL[5, 4])
 	if(i %in% c(3, 4, 8)){
-		polygon(x, y, border=COL[4], lty=2, lwd=1.5)
+		polygon(x, y, border = COL[4], lty = 2, lwd = 1.5)
 	}
 	x    <- rep(NA, N[i])
 	y    <- rep(NA, N[i])
@@ -258,25 +263,26 @@ for(i in 1:length(X)){
 			yy <- runif(1, -R[i], R[i])
 			if(sqrt(xx^2 + yy^2) < R[i]){
 				inside <- TRUE
-				x[j]   <- xx
-				y[j]   <- yy
+				x[j] <- xx
+				y[j] <- yy
 			}
 		}
 	}
 	type <- sample(1, N[i], TRUE)
 	pch  <- PCH[type]
 	col  <- COL[type]
-	x    <- X[i]+x
-	y    <- Y[i]+y
-	points(x, y, pch=pch, col=col)
-	these  <- 1:N[i]
+	x    <- X[i] + x
+	y    <- Y[i] + y
+	points(x, y, pch = pch, col = col)
+	these <- 1:N[i]
 	if(i %in% c(3, 4, 8)){
-	points(x[these], y[these], pch=20, cex=0.8, col=colSamp)
-	points(x[these], y[these], cex=1.4, col=colSamp)
-		#points(x[these], y[these], pch=19, col=colSamp)
+	points(x[these], y[these], pch = 20, cex = 0.8, col = colSamp)
+	points(x[these], y[these], cex = 1.4, col = colSamp)
+		#points(x[these], y[these], pch = 19, col = colSamp)
 	}
 }
-text(X, Y+above*(R+0.01), paste("Cluster", 1:length(X)), pos=2+above, cex=1.1)
+text(X, Y + above*(R+0.01), paste("Cluster", 1:length(X)), 
+     pos = 2 + above, cex = 1.1)
 
 
 ```
@@ -325,62 +331,63 @@ slimBox3 <- 0.03
 #COL      <- c("#225588", "#2266AA", "#882255", "#AA2266", "#000000", "#AAAAAA")
 data(COL)
 
-plot(c(0, 2.9), type="n", axes=FALSE, xlab="", ylab="", xlim=c(-0.1, 1.1))
+plot(c(0, 2.9), type = "n", axes = FALSE, 
+     xlab = "", ylab = "", xlim = c(-0.1, 1.1))
 rect(0, 2.2, 1, 2.9)
-text(0.5, 2.885, "Numbered patients", pos=3, cex=0.9)
+text(0.5, 2.885, "Numbered patients", pos = 3, cex = 0.9)
 rect(0, 1.2, 0.45, 1.9)
 rect(0.55, 1.2, 1, 1.9)
-arrows(0.56, 2.17, 0.75, 2.02, length=0.1, lwd=1.37)
-arrows(0.44, 2.17, 0.25, 2.02, length=0.1, lwd=1.37)
-text(0.5, 2.07, "create\nblocks", cex=0.8)
-text(0.2, 1.89, "Low-risk patients", pos=3, cex=0.7)
-text(0.2+0.55, 1.89, "High-risk patients", pos=3, cex=0.7)
-rect(0, 0.48, 1, 0.9, border=COL[5])
-rect(0, 0.00, 1, 0.42, border=COL[5])
-#rect(0.55+slimBox3, 0.48, 1, 0.9)
-#rect(0.55+slimBox3, 0.00, 1, 0.42)
-arrows(0.09, 1.16, y1=1, length=0.1, lwd=1.37)
-text(0.1, 1.08, "randomly\nsplit in half", cex=0.7, pos=4)
-arrows(0.12+0.55, 1.16, y1=1, length=0.1, lwd=1.37)
-text(0.13+0.55, 1.08, "randomly\nsplit in half", cex=0.7, pos=4)
+arrows(0.56, 2.17, 0.75, 2.02, length = 0.1, lwd = 1.37)
+arrows(0.44, 2.17, 0.25, 2.02, length = 0.1, lwd = 1.37)
+text(0.5, 2.07, "create\nblocks", cex = 0.8)
+text(0.2, 1.89, "Low-risk patients", pos = 3, cex = 0.7)
+text(0.2 + 0.55, 1.89, "High-risk patients", pos = 3, cex = 0.7)
+rect(0, 0.48, 1, 0.9, border = COL[5])
+rect(0, 0.00, 1, 0.42, border = COL[5])
+#rect(0.55 + slimBox3, 0.48, 1, 0.9)
+#rect(0.55 + slimBox3, 0.00, 1, 0.42)
+arrows(0.09, 1.16, y1 = 1, length = 0.1, lwd = 1.37)
+text(0.1, 1.08, "randomly\nsplit in half", cex = 0.7, pos = 4)
+arrows(0.12 + 0.55, 1.16, y1 = 1, length = 0.1, lwd = 1.37)
+text(0.13 + 0.55, 1.08, "randomly\nsplit in half", cex = 0.7, pos = 4)
 
 #=====> Inner Box <=====#
-rect(0.02, 0.50, 0.41, 0.88, border=COL[5,3])
-rect(0.02, 0.02, 0.41, 0.40, border=COL[5,3])
-rect(0.57+slimBox3, 0.50, 0.98, 0.88, border=COL[5,3])
-rect(0.57+slimBox3, 0.02, 0.98, 0.40, border=COL[5,3])
+rect(0.02, 0.50, 0.41, 0.88, border = COL[5, 3])
+rect(0.02, 0.02, 0.41, 0.40, border = COL[5, 3])
+rect(0.57 + slimBox3, 0.50, 0.98, 0.88, border = COL[5, 3])
+rect(0.57 + slimBox3, 0.02, 0.98, 0.40, border = COL[5, 3])
 
 #=====> Labels <=====#
-rect(-0.05, 0.39+0.47, 0.14, 0.45+0.47, col="#FFFFFF", border=COL[5])
-text(0.02, 0.424+0.47, "Control", cex=0.6, col=COL[5])
+rect(-0.05, 0.39 + 0.47, 0.14, 0.45 + 0.47, col = "#FFFFFF", border = COL[5])
+text(0.02, 0.424 + 0.47, "Control", cex = 0.6, col = COL[5])
 
-rect(-0.05, 0.39, 0.14, 0.45, col="#FFFFFF", border=COL[5])
-text(0.04, 0.424, "Treatment", cex=0.6, col=COL[5])
+rect(-0.05, 0.39, 0.14, 0.45, col = "#FFFFFF", border = COL[5])
+text(0.04, 0.424, "Treatment", cex = 0.6, col = COL[5])
 
 n   <- 6*9
 pch <- c(1, 20)[sample(2, n, TRUE, c(0.8, 1.2))]
 cex <- rnorm(n, 1, 0.001)
 k   <- 0
-for(x in seq(0.1, 0.9, len=9)){
-	for(y in rev(seq(0.3, 0.8, len=6))){
-		k <- k+1
-		points(x, y+2, pch=pch[k], cex=cex[k], col=COL[1+3*(pch[k]==1)])
-		text(x, y+1.98, k, cex=0.45, pos=3, col=COL[1+3*(pch[k]==1)])
+for(x in seq(0.1, 0.9, len = 9)){
+	for(y in rev(seq(0.3, 0.8, len = 6))){
+		k <- k + 1
+		points(x, y + 2, pch = pch[k], cex = cex[k], col = COL[1 + 3*(pch[k] == 1)])
+		text(x, y + 1.98, k, cex = 0.45, pos = 3, col = COL[1 + 3*(pch[k] == 1)])
 	}
 }
 
 trmt  <- rep(NA, n)
 
 these <- which(pch == 1)
-trmt[sample(these, length(these)/2)] <- "ctrl"
+trmt[sample(these, length(these) / 2)] <- "ctrl"
 trmt[is.na(trmt) & pch == 1] <- "trmt"
 k <- 0
 x <- 0.078
 y <- 1.83
 for(i in these){
-	k <- k+1
-	points(x, y, pch=pch[i], cex=cex[i], col=COL[4])
-	text(x, y-0.02, i, cex=0.45, pos=3, col=COL[4])
+	k <- k + 1
+	points(x, y, pch = pch[i], cex = cex[i], col = COL[4])
+	text(x, y - 0.02, i, cex = 0.45, pos = 3, col = COL[4])
 	if(y < 1.3){
 		x <- x + 0.095
 		y <- 1.83
@@ -389,15 +396,15 @@ for(i in these){
 	}
 }
 these <- which(pch != 1)
-trmt[sample(these, length(these)/2)] <- "ctrl"
+trmt[sample(these, length(these) / 2)] <- "ctrl"
 trmt[is.na(trmt) & pch != 1] <- "trmt"
 k <- 0
 x <- 0.615
 y <- 1.82
 for(i in these){
-	k <- k+1
-	points(x, y, pch=pch[i], cex=cex[i], col=COL[1])
-	text(x, y-0.02, i, cex=0.45, pos=3, col=COL[1])
+	k <- k + 1
+	points(x, y, pch = pch[i], cex = cex[i], col = COL[1])
+	text(x, y - 0.02, i, cex = 0.45, pos = 3, col = COL[1])
 	if(y < 1.3){
 		x <- x + 0.08
 		y <- 1.83
@@ -409,18 +416,18 @@ for(i in these){
 #=====> Low Risk <=====#
 k <- rep(0,4)
 x <- c(0.10, 0.10, 0.665, 0.665)
-y <- c(0.35, 0.83, 0.35, 0.83)-0.03
+y <- c(0.35, 0.83, 0.35, 0.83) - 0.03
 for(i in 1:n){
 	j <- 1
 	if(trmt[i] == "trmt"){
-		j <- j+1
+		j <- j + 1
 	}
 	if(pch[i] != 1){
-		j <- j+2
+		j <- j + 2
 	}
-	k[j] <- k[j]+1
-	points(x[j], y[j], pch=pch[i], cex=cex[i], col=COL[1+3*(pch[i] == 1)])
-	text(x[j], y[j]-0.02, i, cex=0.45, pos=3, col=COL[1+3*(pch[i] == 1)])
+	k[j] <- k[j] + 1
+	points(x[j], y[j], pch = pch[i], cex = cex[i], col = COL[1 + 3*(pch[i] == 1)])
+	text(x[j], y[j] - 0.02, i, cex = 0.45, pos = 3, col = COL[1 + 3*(pch[i] == 1)])
 	if(y[j] < 0.12 + 0.51*(j %in% c(2,4)) - 0.03){
 		x[j] <- x[j] + 0.11 - 0.025*(j > 2)
 		y[j] <- 0.35 + 0.48*(j %in% c(2,4)) - 0.03
@@ -451,41 +458,60 @@ The patients are not the only ones who should be blinded: doctors and researcher
 >**Exercise**:  
 Look back to the stent study in the first lesson where researchers were testing whether stents were effective at reducing strokes in at-risk patients. Is this an experiment? Was the study blinded? Was it double-blinded?^[The researchers assigned the patients into their treatment groups, so this study was an experiment. However, the patients could distinguish what treatment they received, so this study was not blind. The study could not be double-blind since it was not blind.]
 
+
 ## Homework Problems
 
-1. **Propose a sampling strategy**.  A large college class has 160 students. All 160 students attend the lectures together, but the students are divided into 4 groups, each of 40 students, for lab sections administered by different teaching assistants. The professor wants to conduct a survey about how satisfied the students are with the course, and he believes that the lab section a student is in might affect the student's overall satisfaction with the course.
+1. **Propose a sampling strategy**.  A large college class has 160 students. All 160 students attend the lectures together, but the students are divided into 4 groups, each with 40 students, for lab sections administered by different teaching assistants. The professor wants to conduct a survey about how satisfied the students are with the course, and he believes that the lab section a student is in might affect the student's overall satisfaction with the course.
 
 a. What type of study is this?  
-b. Suggest a sampling strategy for carrying out this study. 
 
-2. **Flawed reasoning**.  Identify the flaw in reasoning in the following scenarios. Explain what the individuals in the study should have done differently if they wanted to make such strong conclusions.
+b. Suggest a sampling strategy for carrying out this study.  
+
+
+2. **Flawed reasoning**.  Identify the flaw in reasoning in the following scenarios. Explain what the individuals in the study should have done differently if they want to be able to make such strong conclusions.
 
 a. Students at an elementary school are given a questionnaire that they are required to return after their parents have completed it. One of the questions asked is, *Do you find that your work schedule makes it difficult for you to spend time with your kids after school?* Of the parents who replied, 85% said *no*. Based on these results, the school officials conclude that a great majority of the parents have no difficulty spending time with their kids after school.  
-b. A survey is conducted on a simple random sample of 1,000 women who recently gave birth, asking them about whether or not they smoked during pregnancy. A follow-up survey asking if the children have respiratory problems is conducted 3 years later, however, only 567 of these women are reached at the same address. The researcher reports that these 567 women are representative of all mothers.
+
+b. A survey is conducted on a simple random sample of 1,000 women who recently gave birth, asking them about whether or not they smoked during pregnancy. A follow-up survey asking if the children have respiratory problems is conducted 3 years later, however, only 567 of these women are reached at the same address. The researcher reports that these 567 women are representative of all mothers.  
+
 
 3. **Sampling strategies**.  A statistics student who is curious about the relationship between the amount of time students spend on social networking sites and their performance at school decides to conduct a survey. Four research strategies for collecting data are described below. In each, name the sampling method proposed and any bias you might expect.
 
 a. He randomly samples 40 students from the study's population, gives them the survey, asks them to fill it out and bring it back the next day.  
+
 b. He gives out the survey only to his friends, and makes sure each one of them fills out the survey.   
+
 c. He posts a link to an online survey on his Facebook wall and asks his friends to fill out the survey.  
-d. He stands outside the QRC and asks every third person that walks out the door to fill out the survey.
+
+d. He stands outside the QRC and asks every third person that walks out the door to fill out the survey.  
 
 
-\pagebreak
 
-4. **Vitamin supplements**. In order to assess the effectiveness of taking large doses of vitamin C in reducing the duration of the common cold, researchers recruited 400 healthy volunteers from staff and students at a university. A quarter of the patients were assigned a placebo, and the rest were evenly divided between 1g Vitamin C,  3g Vitamin C, or 3g Vitamin C plus additives to be taken at onset of a cold for the following two days. All tablets had identical appearance and packaging. The nurses who handed the prescribed pills to the patients knew which patient received which treatment, but the researchers assessing the patients when they were sick did not. No significant differences were observed in any measure of cold duration or severity between the four medication groups, and the placebo group had the shortest duration of symptoms.
+4. **Vitamin supplements**. In order to assess the effectiveness of taking large doses of vitamin C in reducing the duration of the common cold, researchers recruited 400 healthy volunteers from staff and students at a university. A quarter of the patients were assigned a placebo, and the rest were evenly divided between 1g Vitamin C,  3g Vitamin C, or 3g Vitamin C plus additives to be taken at the onset of a cold for the following two days. All tablets had identical appearance and packaging. The nurses who handed the prescribed pills to the patients knew which patient received which treatment, but the researchers assessing the patients when they were sick did not. No significant differences were observed in any measure of cold duration or severity between the four medication groups, and the placebo group had the shortest duration of symptoms.
 
-a. Was this an experiment or an observational study? Why?  
+a. Is this an experiment or an observational study? Why?  
+
 b. What are the explanatory and response variables in this study?  
+
 c. Were the patients blinded to their treatment?  
+
 d. Was this study double-blind?  
+
 e. Participants are ultimately able to choose whether or not to use the pills prescribed to them. We might expect that not all of them will adhere and take their pills. Does this introduce a confounding variable to the study? Explain your reasoning.  
+
 
 5. **Exercise and mental health**.  A researcher is interested in the effects of exercise on mental health and she proposes the following study: Use stratified random sampling to ensure representative proportions of 18-30, 31-40 and 41-55 year olds from the population. Next, randomly assign half the subjects from each age group to exercise twice a week, and instruct the rest not to exercise. Conduct a mental health exam at the beginning and at the end of the study, and compare the results.
 
 a. What type of study is this?  
+
 b. What are the treatment and control groups in this study?  
+
 c. Does this study make use of blocking? If so, what is the blocking variable?  
+
 d. Does this study make use of blinding?  
+
 e. Comment on whether or not the results of the study can be used to establish a causal relationship between exercise and mental health, and indicate whether or not the conclusions can be generalized to the population at large.  
-f. Suppose you are given the task of determining if this proposed study should get funding. Would you have any reservations about the study proposal?
+
+f. Suppose you are given the task of determining if this proposed study should get funding. Would you have any reservations about the study proposal?  
+
+

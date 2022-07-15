@@ -1,7 +1,5 @@
 # Overview of Data Collection Principles {#ODCP}
 
-
-
 ## Objectives
 
 1) Define and use properly in context all new terminology, to include: *population*, *sample*, *anecdotal evidence*, *bias*, *simple random sample*, *systematic sample*, *non-response bias*, *representative sample*, *convenience sample*, *explanatory variable*, *response variable*, *observational study*, *cohort*, *experiment*, *randomized experiment*, and *placebo*.  
@@ -59,39 +57,39 @@ We might try to estimate the time to graduation for Duke undergraduates in the l
 ```{r randsamp-fig,echo=FALSE,fig.cap="In this graphic, five graduates are randomly selected from the population to be included in the sample."}
 set.seed(52)
 
-plot(c(0,2), c(0,1.1), type='n', axes=F,xlab="",ylab="")
+plot(c(0, 2), c(0, 1.1), type = 'n', axes = F, xlab = "", ylab = "")
 temp <- seq(0, 2*pi, 2*pi/100)
-x <- 0.5+0.5*cos(temp)
-y <- 0.5+0.5*sin(temp)
-lines(x,y)
+x <- 0.5 + 0.5*cos(temp)
+y <- 0.5 + 0.5*sin(temp)
+lines(x, y)
 
-s <- matrix(runif(700), ncol=2)
+s <- matrix(runif(700), ncol = 2)
 S <- matrix(NA, 350, 2)
 j <- 0
 for(i in 1:dim(s)[1]){
-	if(sum((s[i,] - .5)^2) < .23){
-		j <- j+1
+	if(sum((s[i,] - 0.5)^2) < 0.23){
+		j <- j + 1
 		S[j,] <- s[i,]
 	}
 }
-points(S, col=COL[4,3], pch=20)
-text(0.5, 1, 'all graduates', pos=3)
+points(S, col = COL[4, 3], pch = 20)
+text(0.5, 1, 'all graduates', pos = 3)
 
 set.seed(50)
 N <- sample(j, 25)
-lines((x-0.5)/2+1.5, (y-.5)/2+.5, pch=20)
+lines((x - 0.5) / 2 + 1.5, (y - 0.5) / 2 + 0.5, pch = 20)
 
-SS <- (S[N,]-0.5)/2 + 0.5
-points(SS[c(2,5,11,10,12),1]+1, SS[c(2,5,11,10,12),2], col=COL[1,2], pch=20, cex=1.5)
-text(1.5, 0.75, 'sample', pos=3)
+SS <- (S[N,] - 0.5) / 2 + 0.5
+points(SS[c(2, 5, 11, 10, 12), 1] + 1, SS[c(2, 5, 11, 10, 12), 2], 
+       col = COL[1, 2], pch = 20, cex = 1.5)
+text(1.5, 0.75, 'sample', pos = 3)
 
-for(i in c(2,5,11,10,12)){
-	arrows(S[N[i],1], S[N[i],2], SS[i,1]+1-0.03, SS[i,2], length=0.08, col=COL[5], lwd=1.5)
+for(i in c(2, 5, 11, 10, 12)){
+	arrows(S[N[i], 1], S[N[i], 2], SS[i, 1] + 1 - 0.03, SS[i, 2], 
+	       length = 0.08, col = COL[5], lwd = 1.5)
 }
 
 ```
-
-
 
 
 Why pick a sample randomly? Why not just pick a sample by hand? Consider the following scenario.
@@ -103,43 +101,46 @@ Suppose we ask a student who happens to be majoring in nutrition to select sever
 ```{r biased-fig,echo=FALSE,fig.cap="Instead of sampling from all graduates equally, a nutrition major might inadvertently pick graduates with health-related majors disproportionately often."}
 set.seed(52)
 
-plot(c(0,2), c(0,1.1), type='n', axes=F,xlab="",ylab="")
+plot(c(0, 2), c(0, 1.1), type = 'n', axes = F, xlab = "", ylab = "")
 temp <- seq(0, 2*pi, 2*pi/100)
-x <- 0.5+0.5*cos(temp)
-y <- 0.5+0.5*sin(temp)
+x <- 0.5 + 0.5*cos(temp)
+y <- 0.5 + 0.5*sin(temp)
 lines(x,y)
 
-s <- matrix(runif(700), ncol=2)
+s <- matrix(runif(700), ncol = 2)
 S <- matrix(NA, 350, 2)
 j <- 0
 sub <- rep(FALSE, 1000)
 for(i in 1:dim(s)[1]){
-	if(sum((s[i,] - .5)^2) < .23){
-		j <- j+1
+	if(sum((s[i,] - 0.5)^2) < 0.23){
+		j <- j + 1
 		S[j,] <- s[i,]
 	}
-	if(sum((s[i,]-c(0.05, 0.18)-.5)^2) < .07){
+	if(sum((s[i,] - c(0.05, 0.18) - 0.5)^2) < 0.07){
 		sub[j] <- TRUE
 	}
 }
-points(S, col=COL[4,4-2*sub], pch=20)
-text(0.5, 1, 'all graduates', pos=3)
-lines((x-0.5)*2*sqrt(0.07)+0.55,(y-.5)*2*sqrt(0.07)+0.68)
+points(S, col = COL[4, 4 - 2*sub], pch = 20)
+text(0.5, 1, 'all graduates', pos = 3)
+lines((x - 0.5)*2*sqrt(0.07) + 0.55, (y - 0.5)*2*sqrt(0.07) + 0.68)
 
 set.seed(7)
 N <- sample((1:j)[sub], 25)
-lines((x-0.5)/2+1.5, (y-.5)/2+.5, pch=20)
+lines((x - 0.5) / 2 + 1.5, (y - 0.5) / 2 + 0.5, pch = 20)
 
-SS <- (S[N,]-0.5)/2 + 0.5
-points(SS[c(2, 5, 7, 15),1]+1, SS[c(2, 5, 7, 15),2], col=COL[1,2], pch=20, cex=1.5)
-text(1.5, 0.75, 'sample', pos=3)
+SS <- (S[N,] - 0.5) / 2 + 0.5
+points(SS[c(2, 5, 7, 15), 1] + 1, SS[c(2, 5, 7, 15), 2], 
+       col = COL[1,2], pch = 20, cex = 1.5)
+text(1.5, 0.75, 'sample', pos = 3)
 
 for(i in c(2, 5, 7, 15)){
-	arrows(S[N[i],1], S[N[i],2], SS[i,1]+1-0.03, SS[i,2], length=0.08, col=COL[5], lwd=1.5)
+	arrows(S[N[i], 1], S[N[i], 2], SS[i, 1] + 1 - 0.03, SS[i, 2], 
+	       length = 0.08, col = COL[5], lwd = 1.5)
 }
-rect(0.143, 0.2, 0.952, 0.301, border="#00000000", col="#FFFFFF88")
-rect(0.236, 0.301, 0.858, 0.403, border="#00000000", col="#FFFFFF88")
-text(0.55, 0.5+0.18-sqrt(0.07), 'graduates from\nhealth-related fields', pos=1)
+rect(0.143, 0.2, 0.952, 0.301, border = "#00000000", col = "#FFFFFF88")
+rect(0.236, 0.301, 0.858, 0.403, border = "#00000000", col = "#FFFFFF88")
+text(0.55, 0.5 + 0.18 - sqrt(0.07), 
+     'graduates from\nhealth-related fields', pos = 1)
 
 ```
 
@@ -154,43 +155,46 @@ The act of taking a simple random sample helps minimize bias. However, bias can 
 
 set.seed(52)
 
-plot(c(0,2), c(0,1.1), type='n', axes=F,xlab="",ylab="")
+plot(c(0, 2), c(0, 1.1), type = 'n', axes = F, xlab = "", ylab = "")
 temp <- seq(0, 2*pi, 2*pi/100)
-x <- 0.5+0.5*cos(temp)
-y <- 0.5+0.5*sin(temp)
-lines(x,y)
+x <- 0.5 + 0.5*cos(temp)
+y <- 0.5 + 0.5*sin(temp)
+lines(x, y)
 
-s <- matrix(runif(700), ncol=2)
+s <- matrix(runif(700), ncol = 2)
 S <- matrix(NA, 350, 2)
 j <- 0
 sub <- rep(FALSE, 1000)
 for(i in 1:dim(s)[1]){
-	if(sum((s[i,] - .5)^2) < .23){
-		j <- j+1
-		S[j,] <- s[i,]
+	if(sum((s[i, ] - 0.5)^2) < 0.23){
+		j <- j + 1
+		S[j, ] <- s[i, ]
 	}
-	if(sum((s[i,]-c(-0.15, 0.05)-.5)^2) < .115){
+	if(sum((s[i, ] - c(-0.15, 0.05) - 0.5)^2) < 0.115){
 		sub[j] <- TRUE
 	}
 }
-points(S, col=COL[4,4-2*sub], pch=20)
-text(0.5, 1, 'population of interest', pos=3)
-lines((x-0.5)*2*sqrt(0.115)+0.35,(y-.5)*2*sqrt(0.115)+0.55)
+points(S, col = COL[4, 4 - 2*sub], pch = 20)
+text(0.5, 1, 'population of interest', pos = 3)
+lines((x - 0.5)*2*sqrt(0.115) + 0.35, (y - 0.5)*2*sqrt(0.115) + 0.55)
 
 set.seed(7)
 N <- sample((1:j)[sub], 25)
-lines((x-0.5)/2+1.5, (y-.5)/2+.5, pch=20)
+lines((x - 0.5) / 2 + 1.5, (y - 0.5) / 2 + 0.5, pch = 20)
 
-SS <- (S[N,]-0.5)/2 + 0.5
-points(SS[c(2, 5, 7, 15),1]+1, SS[c(2, 5, 7, 15),2], col=COL[1,2], pch=20, cex=1.5)
-text(1.5, 0.75, 'sample', pos=3)
+SS <- (S[N, ] - 0.5) / 2 + 0.5
+points(SS[c(2, 5, 7, 15), 1] + 1, SS[c(2, 5, 7, 15), 2], 
+       col = COL[1, 2], pch = 20, cex = 1.5)
+text(1.5, 0.75, 'sample', pos = 3)
 
 for(i in c(2, 5, 7, 15)){
-	arrows(S[N[i],1], S[N[i],2], SS[i,1]+1-0.03, SS[i,2], length=0.08, col=COL[5], lwd=1.5)
+	arrows(S[N[i], 1], S[N[i], 2], SS[i, 1] + 1 - 0.03, SS[i, 2], 
+	       length = 0.08, col = COL[5], lwd = 1.5)
 }
-rect(0.145, 0.195, 0.775, 0.11, border="#00000000", col="#FFFFFF88")
-rect(0.31, 0.018, 0.605, 0.11, border="#00000000", col="#FFFFFF88")
-text(0.46, 0.5+0.06-sqrt(0.115), 'population actually\nsampled', pos=1, cex=0.8)
+rect(0.145, 0.195, 0.775, 0.11, border = "#00000000", col = "#FFFFFF88")
+rect(0.31, 0.018, 0.605, 0.11, border = "#00000000", col = "#FFFFFF88")
+text(0.46, 0.5 + 0.06-sqrt(0.115), 
+     'population actually\nsampled', pos = 1, cex = 0.8)
 
 
 ```
@@ -236,39 +240,51 @@ Again, association does not imply causation. In a data analysis, association doe
 
 1. **Generalizability and causality**. Identify the population of interest and the sample in the studies described below. These are the same studies from the previous lesson. Also comment on whether or not the results of the study can be generalized to the population and if the findings of the study can be used to establish causal relationships.
 
-a. Researchers collected data to examine the relationship between pollutants and preterm births in Southern California. During the study air pollution levels were measured by air quality monitoring stations. Specifically, levels of carbon monoxide were recorded in parts per million, nitrogen dioxide and ozone in parts per hundred million, and coarse particulate matter (PM$_{10}$) in $\mu g/m^3$. Length of gestation data were collected on 143,196 births between the years 1989 and 1993, and air pollution exposure during gestation was calculated for each birth. The analysis suggested that increased ambient PM$_{10}$ and, to a lesser degree, CO concentrations may be associated with the occurrence of preterm births.^[B. Ritz et al. [“Effect of air pollution on preterm birth among children born in Southern California
+a. Researchers collected data to examine the relationship between pollutants and preterm births in Southern California. During the study, air pollution levels were measured by air quality monitoring stations. Specifically, levels of carbon monoxide were recorded in parts per million, nitrogen dioxide and ozone in parts per hundred million, and coarse particulate matter (PM$_{10}$) in $\mu g/m^3$. Length of gestation data were collected on 143,196 births between the years 1989 and 1993, and air pollution exposure during gestation was calculated for each birth. The analysis suggests that increased ambient PM$_{10}$ and, to a lesser degree, CO concentrations may be associated with the occurrence of preterm births.^[B. Ritz et al. [“Effect of air pollution on preterm birth among children born in Southern California
 between 1989 and 1993”](http://journals.lww.com/epidem/Abstract/2000/09000/Effect_of_Air_Pollution_on_Preterm_Birth_Among.4.aspx).  In:  Epidemiology 11.5 (2000), pp. 502–511.]  
-b. The Buteyko method is a shallow breathing technique developed by Konstantin Buteyko, a Russian doctor, in 1952. Anecdotal evidence suggests that the Buteyko method can reduce asthma symptoms and improve quality of life. In a scientific study to determine the effectiveness of this method, researchers recruited 600 asthma patients aged 18-69 who relied on medication for asthma treatment. These patients were split into two research groups: one practiced the Buteyko method and the other did not. Patients were scored on quality of life, activity, asthma symptoms, and medication reduction on a scale from 0 to 10. On average, the participants in the Buteyko group experienced a significant reduction in asthma symptoms and an improvement in quality of life.^[J. McGowan. "Health Education: Does the Buteyko Institute Method make a difference?" In: Thorax 58 (2003).]
 
-\pagebreak
+b. The Buteyko method is a shallow breathing technique developed by Konstantin Buteyko, a Russian doctor, in 1952. Anecdotal evidence suggests that the Buteyko method can reduce asthma symptoms and improve quality of life. In a scientific study to determine the effectiveness of this method, researchers recruited 600 asthma patients aged 18-69 who relied on medication for asthma treatment. These patients were split into two research groups: patients who practiced the Buteyko method and those who did not. Patients were scored on quality of life, activity, asthma symptoms, and medication reduction on a scale from 0 to 10. On average, the participants in the Buteyko group experienced a significant reduction in asthma symptoms and an improvement in quality of life.^[J. McGowan. "Health Education: Does the Buteyko Institute Method make a difference?" In: Thorax 58 (2003).]
 
-2. **GPA and study time**. A survey was conducted on 55 undergraduates from Duke University who took an introductory statistics course in Spring 2012. Among many other questions, this survey asked them about their GPA and the number of hours they spent studying per week. The scatterplot below displays the relationship between these two variables.
+
+
+2. **GPA and study time**. A survey was conducted on 193 undergraduates who took an introductory statistics course at a private US university in 2012. This survey asked them about their GPA and the number of hours they spent studying per week. The scatterplot below displays the relationship between these two variables.  
+
 
 ```{r echo=FALSE}
-gpa %>%
-  gf_point(gpa ~ studyweek,xlab = "Study hours/week",ylab="GPA",cex=1) %>%
+gpa_study_hours %>%
+  gf_point(gpa ~ study_hours, xlab = "Study hours/week", ylab = "GPA", 
+           cex = 1) %>%
   gf_theme(theme_classic())
 ```
 
 
-a. What is the explanatory variable and what is the response variable?
-b. Describe the relationship between the two variables. Make sure to discuss unusual observations, if any.
-c. Is this an experiment or an observational study?
+a. What is the explanatory variable and what is the response variable?  
+
+b. Describe the relationship between the two variables. Make sure to discuss unusual observations, if any.  
+
+c. Is this an experiment or an observational study?  
+
 d. Can we conclude that studying longer hours leads to higher GPAs?  
 
-\pagebreak
+
 
 3. **Income and education** The scatterplot below shows the relationship between per capita income (in thousands of dollars) and percent of population with a bachelor's degree in 3,143 counties in the US in 2010.
 
 ```{r echo=FALSE}
-plot(county_complete$per_capita_income_2017/1000 ~ county_complete$bachelors_2017, xlab="Percent with Bachelor's degree", ylab="Per capita income (in thousands)", pch=20, col=fadeColor("#3E9BC0",66), cex.lab = 1, axes = FALSE)
-axis(1, at = seq(10,70,20))
+plot(county_complete$per_capita_income_2017 / 1000 ~ county_complete$bachelors_2017, 
+     xlab = "Percent with Bachelor's degree", 
+     ylab = "Per capita income (in thousands)", pch = 20, 
+     col = fadeColor("#3E9BC0", 66), cex.lab = 1, axes = FALSE)
+axis(1, at = seq(10, 70, 20))
 axis(2)
 ```
 
-a. What are the explanatory and response variables?  
+a. What are the explanatory and response variables?   
+
 b. Describe the relationship between the two variables. Make sure to discuss unusual observations, if any.  
+
 c. Can we conclude that having a bachelor's degree increases one's income?  
+
 
 
 

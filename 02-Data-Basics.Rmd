@@ -22,6 +22,7 @@ For reference we will be using a data set concerning 50 emails received in 2012.
 install.packages("openintro")
 library(openintro)
 ```
+
 ```{r, echo=FALSE}
 library(openintro)
 ```
@@ -31,7 +32,9 @@ Table \@ref(tab:db1-tab) shows 4 rows of the `email50` data set and we have elec
 Each row in the table represents a single email or **case**.^[A case is also sometimes called a **unit of observation** or an **observational unit**.] The columns represent characteristics, called **variables**, for each of the emails. For example, the first row represents email 1, which is not spam, contains 21,705 characters, 551 line breaks, is written in HTML format, and contains only small numbers.
 
 ```{r db1-tab,echo=FALSE}
-email50[c(1,2,3,50),c("spam", "num_char", "line_breaks", "format", "number")] %>% kable(caption = 'First 5 rows of email data frame')
+email50[c(1, 2, 3, 50), 
+        c("spam", "num_char", "line_breaks", "format", "number")] %>% 
+  kable(caption = 'First 5 rows of email data frame')
 ```
 
 Let's look at the first 10 rows of data from `email50` using `R`. Remember to ask the two questions:  
@@ -65,11 +68,11 @@ If we think of an outcome as a unit of observation, then it is not tidy since th
 
 ```{r echo=FALSE,message=FALSE}
 stent_study %>%
-  mutate(patient_id=1:451) %>%
-  rename(month=outcome30,year=outcome365) %>%
-  pivot_longer(c('month','year'),names_to = 'time',values_to = 'result') %>%
-  select(patient_id,group,time,result) %>%
-  head(n=10)
+  mutate(patient_id = 1:451) %>%
+  rename(month = outcome30, year = outcome365) %>%
+  pivot_longer(c('month', 'year'), names_to = 'time', values_to = 'result') %>%
+  select(patient_id, group, time, result) %>%
+  head(n = 10)
 ```
 
 
@@ -129,7 +132,7 @@ The `pop2010` variable is also numerical; it is sensible to add, subtract, or ta
 The variable **state** can take up to 51 values, after accounting for Washington, DC, and are summarized as: *Alabama*, *Alaska*, ..., and *Wyoming*. Because the responses themselves are categories, `state` is called a **categorical** variable,^[Sometimes also called a **nominal** variable.] and the possible values are called the variable's **levels**.
 
 ```{r tax-fig, echo=FALSE, fig.cap="Taxonomy of Variables."}
-plot(c(-0.15,1.3), 0:1, type = 'n', axes = FALSE, xlab = '', ylab = '')
+plot(c(-0.15, 1.3), 0:1, type = 'n', axes = FALSE, xlab = '', ylab = '')
 
 text(0.6, 0.9, 'all variables')
 rect(0.4, 0.8, 0.8, 1)
@@ -189,7 +192,7 @@ plot(county_subset$poverty, county_subset$fed_spend, pch = 20, cex = 0.7,
      col = COL[1, 3], ylim = c(0, 31.25), xlab = "", 
      ylab = "Federal Spending Per Capita", axes = FALSE)
 axis(1)
-axis(2, at=seq(0, 30, 10))
+axis(2, at = seq(0, 30, 10))
 box()
 points(county_subset$poverty, county_subset$fed_spend, pch = 20, cex = 0.18)
 #rug(county_subset$poverty[county_subset$fed_spend > 40], side = 3)
@@ -217,8 +220,8 @@ pch <- 1
 cex <- sqrt(county_subset$pop2010 / 1e6)
 colPop <- fadeColor(ifelse(cex > 0.35, COL[4], COL[1]), 
                     substr(gray(0.6 + cex*0.1), 2, 3))
-colSm  <- colPop
-cexF   <- 2
+colSm <- colPop
+cexF <- 2
 cex <- 0.7
 pch <- 20
 gp1 <- cex < 0.32
@@ -293,11 +296,11 @@ Create the scatterplot in Figure \@ref(fig:homeown-fig).
 
 Identify (i) the cases, (ii) the variables and their types, and (iii) the main research question in the studies described below.
 
-1. Researchers collected data to examine the relationship between pollutants and preterm births in Southern California. During the study, air pollution levels were measured by air quality monitoring stations. Specifically, levels of carbon monoxide were recorded in parts per million, nitrogen dioxide and ozone in parts per hundred million, and coarse particulate matter (PM$_{10}$) in $\mu g/m^3$. Length of gestation data were collected on 143,196 births between the years 1989 and 1993, and air pollution exposure during gestation was calculated for each birth. The analysis suggested that increased ambient PM$_{10}$ and, to a lesser degree, CO concentrations may be associated with the occurrence of preterm births.^[B. Ritz et al. [“Effect of air pollution on preterm birth among children born in Southern California
+1. Researchers collected data to examine the relationship between pollutants and preterm births in Southern California. During the study, air pollution levels were measured by air quality monitoring stations. Specifically, levels of carbon monoxide were recorded in parts per million, nitrogen dioxide and ozone in parts per hundred million, and coarse particulate matter (PM$_{10}$) in $\mu g/m^3$. Length of gestation data were collected on 143,196 births between the years 1989 and 1993, and air pollution exposure during gestation was calculated for each birth. The analysis suggests that increased ambient PM$_{10}$ and, to a lesser degree, CO concentrations may be associated with the occurrence of preterm births.^[B. Ritz et al. [“Effect of air pollution on preterm birth among children born in Southern California
 between 1989 and 1993”](http://journals.lww.com/epidem/Abstract/2000/09000/Effect_of_Air_Pollution_on_Preterm_Birth_Among.4.aspx).  In:  Epidemiology 11.5 (2000), pp. 502–511.]
 
 
-2. The Buteyko method is a shallow breathing technique developed by Konstantin Buteyko, a Russian doctor, in 1952. Anecdotal evidence suggests that the Buteyko method can reduce asthma symptoms and improve quality of life. In a scientific study to determine the effectiveness of this method, researchers recruited 600 asthma patients aged 18-69 who relied on medication for asthma treatment. These patients were split into two research groups: one practiced the Buteyko method and the other did not. Patients were scored on quality of life, activity, asthma symptoms, and medication reduction on a scale from 0 to 10. On average, the participants in the Buteyko group experienced a significant reduction in asthma symptoms and an improvement in quality of life.^[J. McGowan. "Health Education: Does the Buteyko Institute Method make a difference?" In: Thorax 58 (2003).]
+2. The Buteyko method is a shallow breathing technique developed by Konstantin Buteyko, a Russian doctor, in 1952. Anecdotal evidence suggests that the Buteyko method can reduce asthma symptoms and improve quality of life. In a scientific study to determine the effectiveness of this method, researchers recruited 600 asthma patients aged 18-69 who relied on medication for asthma treatment. These patients were split into two research groups: patients who practiced the Buteyko method and those who did not. Patients were scored on quality of life, activity, asthma symptoms, and medication reduction on a scale from 0 to 10. On average, the participants in the Buteyko group experienced a significant reduction in asthma symptoms and an improvement in quality of life.^[J. McGowan. "Health Education: Does the Buteyko Institute Method make a difference?" In: Thorax 58 (2003).]
 
 3. In the **openintro** package is a data set called `ames`, containing information on individual residential properties sold in Ames, IA between 2006 and 2010. Create a scatterplot for the above ground living area square feet versus sale price in US dollars. Describe the relationship between these two variables. Note: you may have to load the library and data set.
 
