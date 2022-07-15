@@ -13,7 +13,7 @@
 
 At this point, it is useful to take a look at where we have been in this book and where we are going. We did this in the case study, but we want to discuss it again in a little more detail. We first looked at descriptive models to help us understand our data. This also required us to get familiar with software. We learned about graphical summaries, data collection methods, and summary metrics.
 
-Next we learned about probability models. These models allowed us to use assumptions and a small number of parameters to make statements about data (a sample) and also to simulate data. We found that there is a close tie between probability models and statistical models. In our first efforts at statistical modeling, we started to use data to create estimates for parameters of a probability model. This work resulted in point estimates via the method of moments and maximum likelihood. 
+Next we learned about probability models. These models allowed us to use assumptions and a small number of parameters to make statements about data (a sample) and also to simulate data. We found that there is a close tie between probability models and statistical models. In our first efforts at statistical modeling, we started to use data to create estimates for parameters of a probability model.
 
 Now we are moving more in depth into statistical models. This is going to tie all the ideas together. We are going to use data from a sample and ideas of randomization to make conclusions about a population. This will require probability models, descriptive models, and some new ideas and terminology. We will generate point estimates for a metric designed to answer the research question and then find ways to determine the variability of the metric. In Figure \@ref(fig:prob-stats2), we demonstrate this relationship between probability and statistical models. 
 
@@ -24,7 +24,7 @@ include_graphics("figures/Prob_Stats.png")
 
 **Computational/Mathematical and hypothesis testing/confidence intervals context**
 
-We are going to be using data from a sample of the population to make decisions about the population. There are many approaches and techniques for this. In this course, we will be introducing and exploring different approaches; we are establishing foundations. As you can imagine, these ideas are varied, subtle, and at times difficult. We will just be exposing you to the foundational ideas. We want to make sure you understand that to become an accomplished practitioner, you must master the fundamentals and continue to learn the advanced ideas after the course.  
+We are going to be using data from a sample of the population to make decisions about the population. There are many approaches and techniques for this. In this book, we will be introducing and exploring different approaches; we are establishing foundations. As you can imagine, these ideas are varied, subtle, and at times difficult. We will just be exposing you to the foundational ideas. We want to make sure you understand that to become an accomplished practitioner, you must master the fundamentals and continue to learn the advanced ideas.  
 
 Historically, there have been two approaches to statistical decision making, hypothesis testing and confidence intervals. At their mathematical foundation, they are equivalent, but, sometimes in practice, they offer different perspectives on the problem. We will learn about both of these approaches.
 
@@ -234,7 +234,7 @@ results %>%
 
 Before proceeding, we have a technical question: Should we include the observed data in the calculation of the $p$-value?  
 
-The answer is that most people would conclude that the original data is one of the possible permutations and thus include it. This practice will also insure that the $p$-value from a randomization test is never zero. In practice, this simply means adding 1 to both the numerator and denominator. The **mosaic** package has done this for us with the `prop1()` function.
+The answer is that most people would conclude that the original data is one of the possible permutations and thus include it. This practice will also ensure that the $p$-value from a randomization test is never zero. In practice, this simply means adding 1 to both the numerator and denominator. The **mosaic** package has done this for us with the `prop1()` function.
 
 ```{r}
 prop1(~(test_stat >= obs), data = results)

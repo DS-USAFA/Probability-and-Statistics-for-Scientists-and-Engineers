@@ -18,7 +18,7 @@ Let's use three examples to illustrate the ideas of this chapter.
 
 Here's a game you can try with your friends or family. Pick a simple, well-known song. Tap that tune on your desk, and see if the other person can guess the song. In this simple game, you are the tapper, and the other person is the listener.
 
-A Stanford University graduate student named Elizabeth Newton conducted an experiment using the tapper-listener game.^[This case study is described in http://www.openintro.org/redirect.php?go=made-to-stick&redirect=simulation_textbook_pdf_preliminary Made to Stick by Chip and Dan Heath.]  In her study, she recruited 120 tappers and 120 listeners into the study. About 50\% of the tappers expected that the listener would be able to guess the song. Newton wondered, is 50\% a reasonable expectation?
+A Stanford University graduate student named Elizabeth Newton conducted an experiment using the tapper-listener game.^[This case study is described in *Made to Stick: Why Some Ideas Survive and Others Die* by Chip and Dan Heath.] In her study, she recruited 120 tappers and 120 listeners into the study. About 50\% of the tappers expected that the listener would be able to guess the song. Newton wondered, is 50\% a reasonable expectation?
 
 ### Step 1- State the null and alternative hypotheses  
 
@@ -74,7 +74,7 @@ We will repeat the analysis using an empirical (observed from simulated data) $p
 
 ### Step 2 - Compute a test statistic 
 
-We will use the proportion of listeners that get the song correct instead of the number. This is a minor change since we are simply dividing by 120. 
+We will use the proportion of listeners that get the song correct instead of the number of listeners that get it correct. This is a minor change since we are simply dividing by 120. 
 
 ```{r}
 obs <- 42 / 120
@@ -278,7 +278,7 @@ tally(~number, data = golf_balls)
 
 ### Step 2 - Compute a test statistic. 
 
-If all numbers were equally likely, we would expect to see 121.5 golf balls of each number. This is a point estimate and thus, not an actual value that could be realized. Of course, in a sample we will have variation and thus, departure from this state. We need a test statistic that will help us determine if the observed values are reasonable under the null hypothesis. Remember that the test statistic is a single number metric used to evaluate the hypothesis.
+If all numbers were equally likely, we would expect to see 121.5 golf balls of each number. This is a point estimate and thus not an actual value that could be realized. Of course, in a sample we will have variation and thus departure from this state. We need a test statistic that will help us determine if the observed values are reasonable under the null hypothesis. Remember that the test statistic is a single number metric used to evaluate the hypothesis.
 
 >**Exercise**:  
 What would you propose for the test statistic?  

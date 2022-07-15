@@ -69,7 +69,7 @@ gf_density(~heights, fill = "lightgrey", color = "black") %>%
   gf_labs(x = "Heights (in)", y = "")
 ```
 
-The distribution of heights looks bimodal. There are likely both men and women in this sample and thus, we have two different population distributions of heights.
+The distribution of heights looks bimodal. There are likely both men and women in this sample, and thus we have two different population distributions of heights.
 
 ```{r}
 favstats(~heights)
@@ -543,7 +543,7 @@ Again, we find similar results with the percentile confidence interval.
 
 3. I should use 1,000 replicates in my bootstrap and permutation tests, right?  
 
-    The randomization and bootstrap distributions involve a random component from the sampling process and thus, $p$-values and confidence intervals computed from the same data will vary. The amount of this **Monte Carlo** variability depends on the number of replicates used to create the randomization or bootstrap distribution. It is important that we not use too few, as this will introduce too much random noise into $p$-value and confidence interval calculations. But each replicate costs time, and the marginal gain for each additional replicate decreases as the number of replicates increases. There is little reason to use millions of replicates (unless the goal is to estimate very small $p$-values). We generally use roughly 1,000 replicates for routine or preliminary work, and increase this to 10,000 replicates when we want to reduce the effects of Monte Carlo variability.  
+    The randomization and bootstrap distributions involve a random component from the sampling process, and thus $p$-values and confidence intervals computed from the same data will vary. The amount of this **Monte Carlo** variability depends on the number of replicates used to create the randomization or bootstrap distribution. It is important that we not use too few, as this will introduce too much random noise into $p$-value and confidence interval calculations. But each replicate costs time, and the marginal gain for each additional replicate decreases as the number of replicates increases. There is little reason to use millions of replicates (unless the goal is to estimate very small $p$-values). We generally use roughly 1,000 replicates for routine or preliminary work, and increase this to 10,000 replicates when we want to reduce the effects of Monte Carlo variability.  
 
 
 ## Homework Problems

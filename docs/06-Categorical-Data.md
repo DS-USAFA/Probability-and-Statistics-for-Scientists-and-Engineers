@@ -17,13 +17,14 @@
 
 ## Categorical data
 
-Like numerical data, categorical data can also be organized and analyzed. This section introduces tables and other basic tools for categorical data. Remember at the beginning of this block of material, our case study had categorical data so we have seen some of the ideas in this lesson. 
+Like numerical data, categorical data can also be organized and analyzed. This section introduces tables and other basic tools for use with categorical data. Remember at the beginning of this block of material, our case study had categorical data so we have already seen some of the ideas in this chapter.  
 
-The `email50` data set represents a sample from a larger email data set called `email`. This larger data set contains information on 3,921 emails. In this section we will use the email data set to examine whether the presence of numbers, small or large, in an email provides any useful value in classifying email as spam or not spam.
+The `email50` data set represents a sample from a larger email data set called `email`. This larger data set contains information on 3,921 emails. In this section, we will use the `email` data set to examine whether the presence of numbers, small or large, in an email provides any useful information in classifying email as spam or not spam.  
+
 
 ### Contingency tables and bar plots
 
-In the `email` data set we have two variables: `spam` and `number` that we want to summarize. Let's use `inspect()` to get information and insight about the two variables. We can also type `?email` to learn more about the data. First load the `openintro` library.
+In the `email` data set, we have two variables, `spam` and `number`, that we want to summarize. Let's use `inspect()` to get information and insight about the two variables. We can also type `?email` or `help(email)` to learn more about the data. First, load the `openintro` library.
 
 
 ```r
@@ -35,7 +36,7 @@ library(openintro)
 
 ```r
 email %>%
-  select(spam,number) %>%
+  select(spam, number) %>%
   inspect()
 ```
 
@@ -43,16 +44,18 @@ email %>%
 ## 
 ## categorical variables:  
 ##     name  class levels    n missing
-## 1   spam factor      2 3921       0
-## 2 number factor      3 3921       0
+## 1 number factor      3 3921       0
 ##                                    distribution
-## 1 0 (90.6%), 1 (9.4%)                          
-## 2 small (72.1%), none (14%) ...
+## 1 small (72.1%), none (14%) ...                
+## 
+## quantitative variables:  
+##   name   class min Q1 median Q3 max       mean        sd    n missing
+## 1 spam numeric   0  0      0  0   1 0.09359857 0.2913066 3921       0
 ```
 
-Notice the use of the `pipe` operator and how it adds to the ease of reading the code. The `select()` function allows us to narrow the variables down to the two of interest. Then `inspect()` gives us information about those variables. We read from top line; we start with the data set `email`, input it into `select()` and select variables from it, and then use `inspect()` to summarize the variables.
+Notice the use of the `pipe` operator and how it adds to the ease of reading the code. The `select()` function allows us to narrow down the columns/variables to the two of interest. Then `inspect()` gives us information about those variables. We read from top line; we start with the data set `email`, input it into `select()` and select variables from it, and then use `inspect()` to summarize the variables.
 
-As is indicated `number` is a categorical variable that describes whether an email contains no numbers, only small numbers (values under 1 million), or at least one big number (a value of 1 million or more). The variable `spam` is a numeric variable where `1` indicates the email is spam. To treat it as categorical we will want to change it to a **factor** but first we will build a table that summarizes data for the two variables, see Table \@ref(tab:contin1-tab). This table is called a **contingency table**. Each value in the table represents the number of times a particular combination of variable outcomes occurred. We will show you the code to generate the contingency table.
+As indicated above, `number` is a categorical variable (a *factor*) that describes whether an email contains no numbers, only small numbers (values under 1 million), or at least one big number (a value of 1 million or more). The variable `spam` is a numeric variable, where `1` indicates the email is spam and `0` indicates the email is not spam. To treat `spam` as categorical, we will want to change it to a *factor*, but first we will build a table that summarizes data for the two variables (Table \@ref(tab:contin1-tab)). This table is called a **contingency table**. Each value in the table represents the number of times a particular combination of variable outcomes occurred. 
 
 <table>
 <caption>(\#tab:contin1-tab)A contingency table for the `email` data.</caption>
@@ -95,10 +98,11 @@ As is indicated `number` is a categorical variable that describes whether an ema
 </tbody>
 </table>
 
+Below is the `R` code to generate the contingency table. 
 
 
 ```r
-tally(~spam+number,data=email,margins = TRUE)
+tally(~spam + number, data = email, margins = TRUE)
 ```
 
 ```
@@ -109,22 +113,23 @@ tally(~spam+number,data=email,margins = TRUE)
 ##   Total  549  2827  545  3921
 ```
 
-The value 149 corresponds to the number of emails in the data set that are spam *and* had no number listed in the email. Row and column totals are also included. The **row totals**  provide the total counts across each row (e.g. $149 + 168 + 50 = 367$), and **column totals** are total counts down each column. The row and column totals are known as **marginal** counts and the values in the table, such as 149, as **joint** counts.
+The value 149 corresponds to the number of emails in the data set that are spam *and* had no numbers listed in the email. Row and column totals are also included. The **row totals**  provide the total counts across each row (e.g. $149 + 168 + 50 = 367$), and **column totals** are total counts down each column. The row and column totals are known as **marginal** counts (hence, `margins = TRUE`) and the values in the table, such as 149, as **joint** counts.  
 
-Let's turn `spam` into a factor and update the `email` data object. We will use `mutate()` to do this.
+Let's turn `spam` into a factor and update the `email` data object. We will use `mutate()` to do this.  
 
 
 ```r
 email <- email %>%
-  mutate(spam = factor(email$spam,levels=c(1,0),labels=c("spam","not spam")))
+  mutate(spam = factor(email$spam, levels = c(1, 0), 
+                       labels = c("spam", "not spam")))
 ```
 
-Now checking the data again.
+Now, let's check the data again.
 
 
 ```r
 email %>%
-  select(spam,number) %>%
+  select(spam, number) %>%
   inspect()
 ```
 
@@ -139,11 +144,11 @@ email %>%
 ## 2 small (72.1%), none (14%) ...
 ```
 
-Let's generate the table again.
+Let's generate the contingency table again.
 
 
 ```r
-tally(~spam+number,data=email,margins = TRUE)
+tally(~spam + number, data = email, margins = TRUE)
 ```
 
 ```
@@ -154,13 +159,11 @@ tally(~spam+number,data=email,margins = TRUE)
 ##   Total     549  2827  545  3921
 ```
 
-
-
 A table for a single variable is called a **frequency table**. The table below is a frequency table for the `number` variable. 
 
 
 ```r
-tally(~number,data=email)
+tally(~number, data = email)
 ```
 
 ```
@@ -169,12 +172,11 @@ tally(~number,data=email)
 ##   549  2827   545
 ```
 
-
 If we replaced the counts with percentages or proportions, the table would be called a **relative frequency table**.
 
 
 ```r
-tally(~number,data=email,format='proportion')
+tally(~number, data = email, format = 'proportion')
 ```
 
 ```
@@ -185,7 +187,7 @@ tally(~number,data=email,format='proportion')
 
 
 ```r
-round(tally(~number,data=email,format='percent'),2)
+round(tally(~number, data = email, format = 'percent'), 2)
 ```
 
 ```
@@ -196,37 +198,33 @@ round(tally(~number,data=email,format='percent'),2)
 
 A bar plot is a common way to display a single categorical variable. Figure \@ref(fig:bar61-fig) shows a **bar plot** for the `number` variable. 
 
-(ref:quote61) Bar chart of the `number` variable.
-
 
 ```r
 email %>%
   gf_bar(~number) %>%
   gf_theme(theme_bw()) %>%
-  gf_labs(x="Size of Number",y="Count")
+  gf_labs(x = "Size of Number", y = "Count")
 ```
 
 <div class="figure">
-<img src="06-Categorical-Data_files/figure-html/bar61-fig-1.png" alt="(ref:quote61)" width="672" />
-<p class="caption">(\#fig:bar61-fig)(ref:quote61)</p>
+<img src="06-Categorical-Data_files/figure-html/bar61-fig-1.png" alt="Bar chart of the `number` variable." width="672" />
+<p class="caption">(\#fig:bar61-fig)Bar chart of the `number` variable.</p>
 </div>
 
 
-Next the counts are converted into proportions (e.g. $549/3921=0.140$ for `none`) in Figure \@ref(fig:bar62-fig).
-
-(ref:quote62) Bar chart of the `number` variable as a proportion.
+Next, the counts are converted into proportions (e.g., $549 / 3921 = 0.140$ for `none`) in Figure \@ref(fig:bar62-fig).
 
 
 ```r
 email %>%
   gf_props(~number) %>%
   gf_theme(theme_bw()) %>%
-  gf_labs(x="Size of Number",y="Proportion")
+  gf_labs(x = "Size of Number", y = "Proportion")
 ```
 
 <div class="figure">
-<img src="06-Categorical-Data_files/figure-html/bar62-fig-1.png" alt="(ref:quote62)" width="672" />
-<p class="caption">(\#fig:bar62-fig)(ref:quote62)</p>
+<img src="06-Categorical-Data_files/figure-html/bar62-fig-1.png" alt="Bar chart of the `number` variable as a proportion." width="672" />
+<p class="caption">(\#fig:bar62-fig)Bar chart of the `number` variable as a proportion.</p>
 </div>
 
 Again, let's clean up the plot into a style that we could use in a report.
@@ -234,24 +232,23 @@ Again, let's clean up the plot into a style that we could use in a report.
 
 ```r
 email %>%
-  gf_props(~number,title="The proportions of emails with a number in it",
-           subtitle="From 2012",xlab="Type of number in the email",
-           ylab="Proportion of emails") %>%
+  gf_props(~number, 
+           title = "The proportions of emails with a number in it",
+           subtitle = "From 2012", xlab = "Type of number in the email",
+           ylab = "Proportion of emails") %>%
   gf_theme(theme_bw())
 ```
 
-<img src="06-Categorical-Data_files/figure-html/unnamed-chunk-11-1.png" width="672" />
-
-
+<img src="06-Categorical-Data_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 
 ### Column proportions
 
-The table below shows the column proportions. The **column proportions** are computed as the counts divided by their column totals. The value 149 at the intersection of *spam* and *none* is replaced by $149/549=0.271$, i.e. 149 divided by its column total, 549. So what does 0.271 represent? It corresponds to the proportion of emails in the sample with no numbers that are spam. We are **conditioning**, restricting, on emails with no number. This rate of spam is much higher than emails with only small numbers (5.9\%) or big numbers (9.2\%). Because these spam rates vary between the three levels of `number` (*none*, *small*, *big*), this provides evidence that the `spam` and `number` variables are associated.
+The table below shows the column proportions. The **column proportions** are computed as the counts divided by their column totals. The value 149 at the intersection of *spam* and *none* is replaced by $149 / 549 = 0.271$, i.e., 149 divided by its column total, 549. So what does 0.271 represent? It corresponds to the proportion of emails in the sample with no numbers that are spam. That is, the proportion of emails that are spam, out of all the emails with no numbers. We are **conditioning**, restricting, on emails with no number. This rate of spam is much higher than emails with only small numbers (5.9\%) or big numbers (9.2\%). Because these spam rates vary between the three levels of `number` (*none*, *small*, *big*), this provides evidence that the `spam` and `number` variables are associated.
 
 
 ```r
-tally(spam~number,data=email,margins = TRUE,format='proportion')
+tally(spam ~ number, data = email, margins = TRUE, format = 'proportion')
 ```
 
 ```
@@ -262,15 +259,14 @@ tally(spam~number,data=email,margins = TRUE,format='proportion')
 ##   Total    1.00000000 1.00000000 1.00000000
 ```
 
-
-The `tally()` function will always condition on the variable on the right hand side of the tilde, ~, when calculating proportions and thus only generate column proportions. The more general `table()` function of `R` will allow either column or row proportions.
+The `tally()` function will always condition on the variable on the right-hand side of the tilde, ~, when calculating proportions. Thus, `tally()` only generates column or overall proportions. It cannot generate row proportions. The more general `table()` function of `R` will allow either column or row proportions.  
 
 > **Exercise**:   
 Create a table of column proportions where the variable `spam` is the column variable.
 
 
 ```r
-tally(number~spam,data=email,margins = TRUE,format='proportion')
+tally(number ~ spam, data = email, margins = TRUE, format = 'proportion')
 ```
 
 ```
@@ -283,25 +279,42 @@ tally(number~spam,data=email,margins = TRUE,format='proportion')
 ```
 
 > **Exercise**:   
-In the table you just created, what does 0.748 represent?^[0.748 represents the proportions of emails with no spam that had a small number in it.] 
+In the table you just created, what does 0.748 represent?^[This is the proportion of `not spam` emails that had a small number in it.] 
 
+> **Exercise**: 
+Create a table of proportions, where `spam` is the column variable and the values shown represent the proportion of the entire sample in each category. 
+
+
+```r
+tally(~ number + spam, data = email, margins = TRUE, format = "proportion")
+```
+
+```
+##        spam
+## number        spam   not spam      Total
+##   none  0.03800051 0.10201479 0.14001530
+##   small 0.04284621 0.67814333 0.72098954
+##   big   0.01275185 0.12624331 0.13899515
+##   Total 0.09359857 0.90640143 1.00000000
+```
 
 >*Example*:  
-Data scientists use statistics to filter spam from incoming email messages. By noting specific characteristics of an email, a data scientist may be able to classify some emails as spam or not spam with high accuracy. One of those characteristics is whether the email contains no numbers, small numbers, or big numbers. Another characteristic is whether or not an email has any HTML content. A contingency table for the `spam` and `format` variables is needed.  
-1 Make `format` into a categorical factor variable.The levels should be "text" and "HTML".^[From the help menu on the data HTML is coded as a 1]  
-2 Create a contingency table from the `email` data set with `format` in the columns and `spam` in the rows.  
+Data scientists use statistics to filter spam from incoming email messages. By noting specific characteristics of an email, a data scientist may be able to classify some emails as spam or not spam with high accuracy. One of those characteristics is whether the email contains no numbers, small numbers, or big numbers. Another characteristic is whether or not an email has any HTML content (given by the `format` variable). A contingency table for the `spam` and `format` variables is needed.  
+1. Make `format` into a categorical factor variable. The levels should be "text" and "HTML".^[From the help menu on the data, HTML is coded as a 1.]  
+2. Create a contingency table from the `email` data set with `format` in the columns and `spam` in the rows.  
+
+
+```r
+email <- email %>% 
+  mutate(format = factor(email$format, levels = c(1, 0), 
+                         labels = c("HTML", "text")))
+```
 
 In deciding which variable to use as a column, the data scientist would be interested in how the proportion of spam changes within each email format. This corresponds to column proportions based on `format`: the proportion of spam in plain text emails and the proportion of spam in HTML emails.
 
 
 ```r
-email <- email %>%
-  mutate(format = factor(email$format,levels=c(1,0),labels=c("HTML","text")))
-```
-
-
-```r
-tally(spam~format,data=email,margins = TRUE,format="proportion")
+tally(spam ~ format, data = email, margins = TRUE, format = "proportion")
 ```
 
 ```
@@ -312,17 +325,16 @@ tally(spam~format,data=email,margins = TRUE,format="proportion")
 ##   Total    1.00000000 1.00000000
 ```
 
+In generating the column proportions, we can see that a higher fraction of plain text emails are spam ($209 / 1195 = 17.5\%$) compared to HTML emails ($158 / 2726 = 5.8\%$). This information on its own is insufficient to classify an email as spam or not spam, as over 80\% of plain text emails are not spam. Yet, when we carefully combine this information with many other characteristics, such as `number` and other variables, we stand a reasonable chance of being able to classify an email as spam or not spam. 
 
-In generating the column proportions, we can see that a higher fraction of plain text emails are spam ($209/1195 = 17.5\%$) than compared to HTML emails ($158/2726 = 5.8\%$). This information on its own is insufficient to classify an email as spam or not spam, as over 80\% of plain text emails are not spam. Yet, when we carefully combine this information with many other characteristics, such as `number` and other variables, we stand a reasonable chance of being able to classify some email as spam or not spam. 
-
-In constructing a table, we need to think about which variable we want in the column and which in the row. The formula format in some way makes us think about the response and predictor variables. However in some cases, it is not clear which variable should be in the column and row and the analyst must decide the point to be made with the table. Before settling on one form for a table, it is important to consider the audience and the message they are to receive from the table.
+In constructing a table, we need to think about which variable we want in the column and which in the row. The formula notation in some ways makes us think about the response and predictor variables, with the response variable (left-hand side) displayed in the rows and the predictor variable (right-hand side) displayed in the columns. However, in some cases, it is not clear which variable should be in the column and row and the analyst must decide what is being communicated with the table. Before settling on one form for a table, it is important to consider the audience and the message they are to receive from the table.
 
 > **Exercise**:  
-Create two tables with `number` and `spam` where each are in the column, so two tables where you change which variable is in the column. Which would be more useful to someone hoping to identify spam emails using the `number` variable?^[The column proportions with `number` in the columns will probably be most useful, which makes it easier to see that emails with small numbers are spam about 5.9\% of the time (relatively rare). We would also see that about 27.1\% of emails with no numbers are spam, and 9.2\% of emails with big numbers are spam.]
+Create two tables with `number` and `spam`: one where `number` is in the columns, and one where `spam` is in the columns. Which table would be more useful to someone hoping to identify spam emails based on the type of numbers in the email?^[The table with `number` in the columns will probably be most useful. This table makes it easier to see that emails with small numbers are spam about 5.9\% of the time (relatively rare). In contrast, we see that about 27.1\% of emails with no numbers are spam, and 9.2\% of emails with big numbers are spam.]
 
 
 ```r
-tally(spam~number,email,format='proportion',margin=TRUE)
+tally(spam ~ number, data = email, format = 'proportion', margin = TRUE)
 ```
 
 ```
@@ -335,7 +347,7 @@ tally(spam~number,email,format='proportion',margin=TRUE)
 
 
 ```r
-tally(number~spam,email,format='proportion',margin=TRUE)
+tally(number ~ spam, data = email, format = 'proportion', margin = TRUE)
 ```
 
 ```
