@@ -46,7 +46,7 @@ $$
 \bar{X} \overset{approx}{\sim}\textsf{Norm}\left(\mu,{\sigma\over\sqrt{n}}\right)
 $$
 
-There is a lot going on in this theorem. First, notice we are drawing independent samples from the same parent population. The central limit theorem (CLT) does not specify the form of this parent distribution, only that it has a finite variance ($\sigma < \infty$). Second, the CLT tells us that if we form a new random variable that involves the sum of the individual random variables (in this case, the sample mean $\bar{X}$), the distribution of that new random variable is approximately normal. In the case of the sample mean, the expected value (the first parameter of the normal distribution) is the same mean as for the parent population. The standard deviation (the second parameter of the normal distribution) is the standard deviation of the parent population divided by the sample size $n$. Let's summarize these ideas.
+There is a lot going on in this theorem. First, notice we are drawing independent samples from the same parent population. The central limit theorem (CLT) does not specify the form of this parent distribution, only that it has a finite variance ($\sigma < \infty$). Second, the CLT tells us that if we form a new random variable that involves the sum of the individual random variables (in this case, the sample mean $\bar{X}$), the distribution of that new random variable is approximately normal. In the case of the sample mean, the expected value (the first parameter of the normal distribution) is the same mean as for the parent population. The standard deviation (the second parameter of the normal distribution) is the standard deviation of the parent population divided by the square root of the sample size $n$. Let's summarize these ideas.
 
 1. The process of creating a new random variable from the sum of independent, identically distributed random variables is approximately normal.  
 
@@ -54,7 +54,7 @@ There is a lot going on in this theorem. First, notice we are drawing independen
 
 3. The mean and variance of the sampling distribution are a function of the mean and variance of the parent population, the sample size $n$, and the form of the new random variable.  
 
-If you go back and review examples, exercises, and homework problems from the previous lessons on hypothesis testing, you will see that we found symmetric, normal-"looking" sampling distributions when we created test statistics that involved the process of summing. One example of a skewed sampling distribution was the golf ball example, where our test statistic was the difference between the maximum and minimum value (and did not involve a summation). It is hard to overstate the historical importance of this theorem to the field of inferential statistics and science in general.
+If you go back and review examples, exercises, and homework problems from the previous lessons on hypothesis testing, you will see that we found symmetric, normal-"looking" sampling distributions when we created test statistics that involved the process of summing. One example of a skewed sampling distribution was the golf ball example, where our test statistic was the difference between the maximum and minimum value (and did not involve a summation of all the observations). It is hard to overstate the historical importance of this theorem to the field of inferential statistics and science in general.
 
 To get an understanding and some intuition of the central limit theorem, let's simulate some data and evaluate.
 
@@ -80,7 +80,7 @@ gf_dist("binom", size = 1, prob = 0.65, plot_size = 1) %>%
 
 This is clearly not normally distributed. It is, in fact, discrete. The mean of $X$ is 0.65 and the standard deviation is $\sqrt{0.65(1 - 0.65)} = 0.477$. 
 
-In our first simulation, we let the sample size be ten, $n = 10$. This is typically too small for the CLT to apply, but we will still use it as a starting point. In the code below, we will obtain a sample of size 10 from this binomial distribution and record the observed mean $\bar{x}$, which is our method of moments estimate of the probability of success. We will repeat this process 10,000 times to get an empirical distribution of $\bar{X}$. (Note that $\bar{X}$ is a mean of 1s and 0s, and can be thought of as the proportion of voters in the sample that support the measure. Often, the population proportion is denoted as $\pi$ and the sample proportion is denoted as $\hat{\pi}$.)  
+In our first simulation, we let the sample size be $n = 10$. This is typically too small for the CLT to apply, but we will still use it as a starting point. In the code below, we will obtain a sample of size 10 from this binomial distribution and record the observed mean $\bar{x}$, which is a method of moments estimate of the probability of success. We will repeat this process 10,000 times to get an empirical distribution of $\bar{X}$. (Note that $\bar{X}$ is a mean of 1s and 0s, and can be thought of as the proportion of voters in the sample that support the measure. Often, the population proportion is denoted as $\pi$ and the sample proportion is denoted as $\hat{\pi}$.)  
 
 
 ```r
@@ -163,7 +163,7 @@ When increasing the sample size to 25, the standard deviation of our sample prop
 In this example, we knew the true proportion of voters who supported the proposition. Based on that knowledge, we simulated the behavior of the sample proportion. We did this by taking a sample of size $n$, recording the sample proportion (sample mean of 1s and 0s), and repeating that process thousands of times. In reality, we will not know the true underlying level of support; further, we will not take a sample repeatedly, thousands of times, from the parent population. Sampling can be expensive and time-consuming. Thus, we would take one random sample of size $n$, and acknowledge that the resulting sample proportion is but one observation from an underlying normal distribution. We would then determine what values of $\pi$ (the true unknown population proportion) could reasonably have resulted in the observed sample proportion. 
 
 
-## Other distributions for estimators
+## The $t$-distribution  
 
 Prior to using the CLT in hypothesis testing, we want to discuss other sampling distributions that are based on the CLT or normality assumptions. A large part of theoretical statistics has been about mathematically deriving the distribution of sample statistics. In these methods, we obtain a sample statistic, determine the distribution of that statistic under certain conditions, and then use that information to make a statement about the population parameter. We now discuss a commonly used sampling distribution: the $t$ distribution.  
 
@@ -316,7 +316,7 @@ Based on our data, if the true mean human body temperature is 98.6, then the pro
 
 ## Summary and rules of thumb
 
-We have covered a great deal in this lesson. At its core, the central limit theorem is a statement about the distribution of a sum of independent, identically distributed random variables. This sum is approximately normal. 
+We have covered a great deal in this chapter. At its core, the central limit theorem is a statement about the distribution of a sum of independent, identically distributed random variables. This sum is approximately normal. 
 
 ### Numerical data  
 

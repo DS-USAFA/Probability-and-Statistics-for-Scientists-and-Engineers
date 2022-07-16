@@ -216,7 +216,7 @@ Notice what we have done here; we developed a single value metric to measure the
 
 ### Checking for independence 
 
-We computed one possible difference under the null hypothesis in the exercise above, which represents one difference due to chance. Repeating the simulation, we get another difference due to chance: -0.042. And another: 0.208. And so on until we repeat the simulation enough times that we have a good idea of what represents the **distribution of differences from chance alone**. That is, the difference if there really is no relationship between gender and the promotion decision. We are using a simulation when there is actually a finite number of permutations of the `gender` label. From our lesson on counting, we have 48 labels of which 24 are `male` and 24 are `female`. Thus the total number of ways to arrange the labels differently is:
+We computed one possible difference under the null hypothesis in the exercise above, which represents one difference due to chance. Repeating the simulation, we get another difference due to chance: -0.042. And another: 0.208. And so on until we repeat the simulation enough times that we have a good idea of what represents the **distribution of differences from chance alone**. That is, the difference if there really is no relationship between gender and the promotion decision. We are using a simulation when there is actually a finite number of permutations of the `gender` label. From Chapter \@ref(PROBRULES) on counting, we have 48 labels of which 24 are `male` and 24 are `female`. Thus the total number of ways to arrange the labels differently is:
 
 $$
 \frac{48!}{24!\cdot24!} \approx 3.2 \cdot 10^{13}

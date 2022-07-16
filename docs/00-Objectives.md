@@ -297,7 +297,7 @@
 4) Interpret regression coefficients for a linear model with a categorical explanatory variable.   
 
 
-### 31 - Multiple Regression {-}    
+### 31 - Multiple Linear Regression {-}    
 
 1) Create and interpret a model with multiple predictors and check assumptions.   
 

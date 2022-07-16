@@ -14,12 +14,12 @@
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content="Chapter 13 Named Continuous Distributions | Computational Probability and Statistics">
 <meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover_Master.png">
+<meta property="og:image" content="/figures/Cover_Majors.png">
 <meta property="og:description" content="13.1 Objectives Recognize when to use common continuous distributions (Uniform, Exponential, Gamma, Normal, Weibull, and Beta), identify parameters, and find moments. Use R to calculate...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 13 Named Continuous Distributions | Computational Probability and Statistics">
 <meta name="twitter:description" content="13.1 Objectives Recognize when to use common continuous distributions (Uniform, Exponential, Gamma, Normal, Weibull, and Beta), identify parameters, and find moments. Use R to calculate...">
-<meta name="twitter:image" content="/figures/Cover_Master.png">
+<meta name="twitter:image" content="/figures/Cover_Majors.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -151,7 +151,7 @@ f_X(x)=\left\{\begin{array}{ll} \frac{1}{b-a}, &amp; a\leq x \leq b \\ 0, &amp; 
 \]</span></p>
 <p>The mean of <span class="math inline">\(X\)</span> is <span class="math inline">\(\mbox{E}(X)=\frac{a+b}{2}\)</span> and the variance is <span class="math inline">\(\mbox{Var}(X)=\frac{(b-a)^2}{12}\)</span>. The derivation of the mean is left to the exercises.</p>
 <p>The most common uniform distribution is <span class="math inline">\(U(0,1)\)</span> which we have already used several times in this book. Again, notice in Figure <a href="CONTNNAMED.html#fig:uni-fig">13.1</a> that the plot of the <strong>pdf</strong> is a constant or uniform value.</p>
-<div class="sourceCode" id="cb341"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb343"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"unif"</span>,title<span class="op">=</span><span class="st">"Pdf of Uniform random variable"</span>,ylab<span class="op">=</span><span class="st">"f(x)"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
@@ -161,7 +161,7 @@ Figure 13.1: The pdf of Uniform random variable.
 </p>
 </div>
 <p>To check that it is a proper pdf, all values must be non-negative and the total probability must be 1. In <code>R</code> the function for probability density will start with the letter <strong>d</strong> and have some short descriptor for the distribution. For the uniform we use <code><a href="https://rdrr.io/r/stats/Uniform.html">dunif()</a></code>.</p>
-<div class="sourceCode" id="cb342"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb344"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">dunif</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 1 with absolute error &lt; 1.1e-14</code></pre>
 </div>
@@ -191,20 +191,20 @@ Suppose at a local retail store, customers arrive to a checkout counter accordin
 <p><span class="math display">\[\lim_{a \to +\infty} -e^{-\frac{1}{3}y}\bigg|_5^a=\lim_{a \to +\infty} -e^{-\frac{a}{3}}-(-e^{-\frac{5}{3}})= 0 + 0.189 = 0.189
 \]</span></p>
 <p>Alternatively, we could use <code>R</code>:</p>
-<div class="sourceCode" id="cb344"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb346"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">##Prob(Y&gt;5)=1-Prob(Y&lt;=5)</span></span>
 <span><span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">pexp</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.1888756</code></pre>
 <p>Or using <code><a href="https://rdrr.io/r/stats/integrate.html">integrate()</a></code></p>
-<div class="sourceCode" id="cb346"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb348"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">*</span><span class="va">x</span><span class="op">)</span>,<span class="fl">5</span>,<span class="cn">Inf</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 0.1888756 with absolute error &lt; 8.5e-05</code></pre>
 <p>For the remaining probabilities, we will use <code>R</code>:</p>
-<div class="sourceCode" id="cb348"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb350"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">##Prob(Y&lt;=3)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">pexp</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.6321206</code></pre>
-<div class="sourceCode" id="cb350"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb352"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">##Prob(1&lt;=Y&lt;5)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">pexp</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">pexp</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.5276557</code></pre>
@@ -213,11 +213,11 @@ Suppose at a local retail store, customers arrive to a checkout counter accordin
 \int_0^y \frac{1}{3}e^{-\frac{1}{3}y}\mathop{}\!\mathrm{d}y = 0.5
 \]</span></p>
 <p>Alternatively, we can use <code>qexp</code> in <code>R</code>:</p>
-<div class="sourceCode" id="cb352"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb354"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">##median</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">qexp</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 2.079442</code></pre>
-<div class="sourceCode" id="cb354"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb356"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">##95th percentile</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">qexp</a></span><span class="op">(</span><span class="fl">0.95</span>,<span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 8.987197</code></pre>
@@ -287,19 +287,19 @@ Figure 13.4: pdf of Gamma for various values of alpha and lambda
 Let <span class="math inline">\(X \sim \textsf{Gamma}(\alpha=5,\lambda=1)\)</span>. Find the mean and variance of <span class="math inline">\(X\)</span>. Also, compute <span class="math inline">\(\mbox{P}(X\leq 2)\)</span> and <span class="math inline">\(\mbox{P}(1\leq X &lt; 8)\)</span>. Find the median and 95th percentile of <span class="math inline">\(X\)</span>.</p>
 </blockquote>
 <p>The mean and variance of <span class="math inline">\(X\)</span> are <span class="math inline">\(\mbox{E}(X)=5\)</span> and <span class="math inline">\(\mbox{Var}(X)=5\)</span>. To find probabilities and quantiles, integration will be difficult, so it’s best to use the built-in <code>R</code> functions:</p>
-<div class="sourceCode" id="cb356"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb358"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Prob(X&lt;=2)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">pgamma</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span>,<span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.05265302</code></pre>
-<div class="sourceCode" id="cb358"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb360"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">##Prob(1 &lt;= X &lt; 8)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">pgamma</a></span><span class="op">(</span><span class="fl">8</span>,<span class="fl">5</span>,<span class="fl">1</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">pgamma</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.8967078</code></pre>
-<div class="sourceCode" id="cb360"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb362"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## median</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">qgamma</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fl">5</span>,<span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 4.670909</code></pre>
-<div class="sourceCode" id="cb362"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb364"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## 95th percentile</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">qgamma</a></span><span class="op">(</span><span class="fl">0.95</span>,<span class="fl">5</span>,<span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 9.153519</code></pre>
@@ -354,23 +354,23 @@ Z=\frac{X-\mu}{\sigma} \sim \textsf{Norm}(0,1)
 Let <span class="math inline">\(X \sim \textsf{Norm}(\mu=200,\sigma=15)\)</span>. Compute <span class="math inline">\(\mbox{P}(X\leq 160)\)</span>, <span class="math inline">\(\mbox{P}(180\leq X &lt; 230)\)</span>, and <span class="math inline">\(\mbox{P}(X&gt;\mu+\sigma)\)</span>. Find the median and 95th percentile of <span class="math inline">\(X\)</span>.</p>
 </blockquote>
 <p>As with the gamma distribution, to find probabilities and quantiles, integration will be difficult, so it’s best to use the built-in <code>R</code> functions:</p>
-<div class="sourceCode" id="cb364"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb366"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Prob(X&lt;=160)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">160</span>,<span class="fl">200</span>,<span class="fl">15</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.003830381</code></pre>
-<div class="sourceCode" id="cb366"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb368"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">##Prob(180 &lt;= X &lt; 230)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">230</span>,<span class="fl">200</span>,<span class="fl">15</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">180</span>,<span class="fl">200</span>,<span class="fl">15</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.8860386</code></pre>
-<div class="sourceCode" id="cb368"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb370"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">##Prob(X&gt;mu+sig)</span></span>
 <span><span class="fl">1</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">215</span>,<span class="fl">200</span>,<span class="fl">15</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.1586553</code></pre>
-<div class="sourceCode" id="cb370"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb372"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## median</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fl">200</span>,<span class="fl">15</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 200</code></pre>
-<div class="sourceCode" id="cb372"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## 95th percentile</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.95</span>,<span class="fl">200</span>,<span class="fl">15</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 224.6728</code></pre>
@@ -494,7 +494,7 @@ The <code>dgamma</code> function exists in <code>R</code> too. In plain language
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-12.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-15.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

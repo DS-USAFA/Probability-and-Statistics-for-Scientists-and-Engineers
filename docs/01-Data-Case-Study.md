@@ -115,7 +115,7 @@ Similarly, if we wish to change the working directory, we can do so by using the
 
 
 ```r
-setwd('C:/Users/Brad.Warner/Documents/Classes/Prob Stat/Another Folder')
+setwd('C:/Users/Brianna.Hitt/Documents/ProbStat/Another Folder')
 ```
 
 In `R` if you use the `view()`, you will see the data in what looks like a standard spreadsheet.
@@ -249,7 +249,7 @@ Here is our first attempt. In Figure \@ref(fig:first-fig), we leave the `y` port
 
 
 ```r
-gf_bar(~ outcome30, data = stent_study)
+gf_bar(~outcome30, data = stent_study)
 ```
 
 <div class="figure">
@@ -272,7 +272,7 @@ We read `y ~ x|z` as “y tilde x by z” and interpret it in the equivalent for
 
 
 ```r
-gf_bar(~ outcome30 | group, data = stent_study) 
+gf_bar(~outcome30|group, data = stent_study) 
 ```
 
 <div class="figure">
@@ -288,7 +288,7 @@ As a prelude for things to come, the above graphic needs work. The labels don't 
 
 ```r
 stent_study %>%
-gf_props(~ group, fill = ~ outcome30, position = 'fill') %>%
+gf_props(~group, fill = ~outcome30, position = 'fill') %>%
   gf_labs(title = "Impact of Stents of Stroke",
           subtitle = 'Experiment with 451 Patients',
           x = "Experimental Group",
@@ -316,11 +316,12 @@ This is a preview of step 4, analyze the data, and step 5, form a conclusion, of
 
 ## Homework Problems 
 
-Create an Rmd file `01 Data Case Study Application.Rmd` in R (it may be provided), and start by inserting your name in the header. Code blocks below can be inserted and then you can complete the code and answer the questions. When you are done, `knit` it into a pdf file.
+Create an Rmd file `01 Data Case Study Application.Rmd` in R (it may be provided), and start by inserting your name in the header. The code blocks below can be copied and pasted, and then you can complete the code and answer the questions. When you are done, `knit` the Rmd into an html or pdf file by clicking the `Knit` button in RStudio and selecting either "Knit to HTML" or "Knit to PDF".  
 
-To create an `R` code chunk, use CTRL-ALT-I or on the `insert` tab of the window, use the drop down to select `R`. Anything between the dashes is interpreted as `R` code.
+To create an `R` code chunk, type CTRL+ALT+I or click the "Insert a new code chunk" button (a green C with a + icon) and use the drop down menu to select `R`. Anything between the dashes is interpreted as `R` code.  
 
-For more on RMarkdown, see the following video: https://www.youtube.com/watch?v=DNS7i2m4sB0. This video assumes you are using `R` on your computer, but we are using RStudio Cloud. Thus we can `knit` to a pdf since it is setup for us. You can also take the first chapter of the Data Camp course, *Reporting with R Markdown*, to learn more.
+For more on RMarkdown, see the following video: https://www.youtube.com/watch?v=DNS7i2m4sB0. This video only demonstrates how to `knit` to an html, but we can also `knit` to a pdf since it is set up for us. You can also take the first chapter of the Data Camp course, *Reporting with R Markdown*, to learn more.
+
 
 1. **Stent study continued**. Complete a similar analysis for the stent data, but this time use the one year outcome. In particular,
 
@@ -331,7 +332,7 @@ stent_study <- read_csv(___)
 ```
   
 
-  b. Complete similar steps as in the class notes. The start of code is provided below.  
+  b. Complete the steps below. The start of code is provided below.  
     i. Use `inspect` on the data.  
     ii. Create a table of `outcome365` and `group`. Comment on the results.  
     iii. Create a barchart of the data.  
@@ -353,14 +354,14 @@ Barchart:
 
 ```
 stent_study %>%
-  gf_props(~ ___, fill = ~ ___, position = 'fill') %>%
+  gf_props(~___, fill = ~___, position = 'fill') %>%
   gf_labs(title = ___,
           subtitle = ___,
           x = ___,
           y = ___)
 ```
 
-2. **Migraine and acupuncture**.  A migraine is a particularly painful type of headache, which patients sometimes wish to treat with acupuncture. To determine whether acupuncture relieves migraine pain, researchers conducted a randomized controlled study where 89 females diagnosed with migraine headaches were randomly assigned to one of two groups: treatment or control. 43 patients in the treatment group received acupuncture that is specifically designed to treat migraines. 46 patients in the control group received placebo acupuncture (needle insertion at nonacupoint locations). 24 hours after patients received acupuncture, they were asked if they were pain free.^[G. Allais et al. [“Ear acupuncture in the treatment of migraine attacks:  a randomized trial on the efficacy of appropriate versus inappropriate acupoints”.](http://www.ncbi.nlm.nih.gov/pubmed/21533739) In: Neurological Sci. 32.1 (2011), pp. 173–175.]
+2. **Migraine and acupuncture**.  A migraine is a particularly painful type of headache, which patients sometimes wish to treat with acupuncture. To determine whether acupuncture relieves migraine pain, researchers conducted a randomized controlled study where 89 females diagnosed with migraine headaches were randomly assigned to one of two groups: treatment or control. The 43 patients in the treatment group received acupuncture that is specifically designed to treat migraines. The 46 patients in the control group received placebo acupuncture (needle insertion at nonacupoint locations). Then 24 hours after patients received acupuncture, they were asked if they were pain free.^[G. Allais et al. [“Ear acupuncture in the treatment of migraine attacks:  a randomized trial on the efficacy of appropriate versus inappropriate acupoints”.](http://www.ncbi.nlm.nih.gov/pubmed/21533739) In: Neurological Sci. 32.1 (2011), pp. 173–175.]
 
 
 The data is in the file `migraine_study.csv` in the `data` folder.

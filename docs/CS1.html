@@ -14,12 +14,12 @@
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
 <meta property="og:title" content="Chapter 1 Data Case Study | Computational Probability and Statistics">
 <meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover_Master.png">
+<meta property="og:image" content="/figures/Cover_Majors.png">
 <meta property="og:description" content="1.1 Objectives Use R for basic analysis and visualization. Compile a report using knitr.  1.2 Introduction to descriptive statistical modeling In this first block of material, we will focus on...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 1 Data Case Study | Computational Probability and Statistics">
 <meta name="twitter:description" content="1.1 Objectives Use R for basic analysis and visualization. Compile a report using knitr.  1.2 Introduction to descriptive statistical modeling In this first block of material, we will focus on...">
-<meta name="twitter:image" content="/figures/Cover_Master.png">
+<meta name="twitter:image" content="/figures/Cover_Majors.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -213,7 +213,7 @@ a package can be used, it must be installed on the computer (once per computer o
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Similarly, if we wish to change the working directory, we can do so by using the <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code> function:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">'C:/Users/Brad.Warner/Documents/Classes/Prob Stat/Another Folder'</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">'C:/Users/Brianna.Hitt/Documents/ProbStat/Another Folder'</span><span class="op">)</span></span></code></pre></div>
 <p>In <code>R</code> if you use the <code><a href="https://tibble.tidyverse.org/reference/view.html">view()</a></code>, you will see the data in what looks like a standard spreadsheet.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/view.html">view</a></span><span class="op">(</span><span class="va">stent_study</span><span class="op">)</span></span></code></pre></div>
@@ -296,7 +296,7 @@ What proportion of the control group had a stroke in the first 30 days of the st
 <p>Here is our first attempt. In Figure <a href="CS1.html#fig:first-fig">1.1</a>, we leave the <code>y</code> portion of our formula blank. Doing this implies that we simply want to view the number/count of <code>outcome30</code> by type. We will see the two levels of <code>outcome30</code> on the x-axis and counts on the y-axis.</p>
 
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span> <span class="va">outcome30</span>, data <span class="op">=</span> <span class="va">stent_study</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span><span class="va">outcome30</span>, data <span class="op">=</span> <span class="va">stent_study</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:first-fig"></span>
 <img src="01-Data-Case-Study_files/figure-html/first-fig-1.png" alt="Using ggformula to create a bar chart." width="672"><p class="caption">
@@ -312,7 +312,7 @@ Explain Figure <a href="CS1.html#fig:first-fig">1.1</a>.</p>
 <p>We read <code>y ~ x|z</code> as “y tilde x by z” and interpret it in the equivalent forms: “y modeled by x for each z”; “y explained by x within each z”; or “y accounted for by x within z.” For graphics, it’s reasonable to read the formula as “y vs. x for each z”. Figure <a href="CS1.html#fig:split-fig">1.2</a> shows the results.</p>
 
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span> <span class="va">outcome30</span> <span class="op">|</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">stent_study</span><span class="op">)</span> </span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span><span class="va">outcome30</span><span class="op">|</span><span class="va">group</span>, data <span class="op">=</span> <span class="va">stent_study</span><span class="op">)</span> </span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:split-fig"></span>
 <img src="01-Data-Case-Study_files/figure-html/split-fig-1.png" alt="Bar charts conditioned on the group variable." width="672"><p class="caption">
@@ -326,7 +326,7 @@ Figure 1.2: Bar charts conditioned on the <code>group</code> variable.
 <p>As a prelude for things to come, the above graphic needs work. The labels don’t help and there is no title. We could add color. Does it make more sense to use proportions? Here is the code and results for a better graph, see Figure <a href="CS1.html#fig:cs1-fig">1.3</a>. Don’t worry if this seems a bit advanced, but feel free to examine each new component of this code.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">stent_study</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span><span class="fu">gf_props</span><span class="op">(</span><span class="op">~</span> <span class="va">group</span>, fill <span class="op">=</span> <span class="op">~</span> <span class="va">outcome30</span>, position <span class="op">=</span> <span class="st">'fill'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span><span class="fu">gf_props</span><span class="op">(</span><span class="op">~</span><span class="va">group</span>, fill <span class="op">=</span> <span class="op">~</span><span class="va">outcome30</span>, position <span class="op">=</span> <span class="st">'fill'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Impact of Stents of Stroke"</span>,</span>
 <span>          subtitle <span class="op">=</span> <span class="st">'Experiment with 451 Patients'</span>,</span>
 <span>          x <span class="op">=</span> <span class="st">"Experimental Group"</span>,</span>
@@ -355,9 +355,9 @@ Figure 1.3: Better graph.
 <h2>
 <span class="header-section-number">1.5</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems"><i class="fas fa-link"></i></a>
 </h2>
-<p>Create an Rmd file <code>01 Data Case Study Application.Rmd</code> in R (it may be provided), and start by inserting your name in the header. Code blocks below can be inserted and then you can complete the code and answer the questions. When you are done, <code>knit</code> it into a pdf file.</p>
-<p>To create an <code>R</code> code chunk, use CTRL-ALT-I or on the <code>insert</code> tab of the window, use the drop down to select <code>R</code>. Anything between the dashes is interpreted as <code>R</code> code.</p>
-<p>For more on RMarkdown, see the following video: <a href="https://www.youtube.com/watch?v=DNS7i2m4sB0" class="uri">https://www.youtube.com/watch?v=DNS7i2m4sB0</a>. This video assumes you are using <code>R</code> on your computer, but we are using RStudio Cloud. Thus we can <code>knit</code> to a pdf since it is setup for us. You can also take the first chapter of the Data Camp course, <em>Reporting with R Markdown</em>, to learn more.</p>
+<p>Create an Rmd file <code>01 Data Case Study Application.Rmd</code> in R (it may be provided), and start by inserting your name in the header. The code blocks below can be copied and pasted, and then you can complete the code and answer the questions. When you are done, <code>knit</code> the Rmd into an html or pdf file by clicking the <code>Knit</code> button in RStudio and selecting either “Knit to HTML” or “Knit to PDF”.</p>
+<p>To create an <code>R</code> code chunk, type CTRL+ALT+I or click the “Insert a new code chunk” button (a green C with a + icon) and use the drop down menu to select <code>R</code>. Anything between the dashes is interpreted as <code>R</code> code.</p>
+<p>For more on RMarkdown, see the following video: <a href="https://www.youtube.com/watch?v=DNS7i2m4sB0" class="uri">https://www.youtube.com/watch?v=DNS7i2m4sB0</a>. This video only demonstrates how to <code>knit</code> to an html, but we can also <code>knit</code> to a pdf since it is set up for us. You can also take the first chapter of the Data Camp course, <em>Reporting with R Markdown</em>, to learn more.</p>
 <ol style="list-style-type: decimal">
 <li>
 <strong>Stent study continued</strong>. Complete a similar analysis for the stent data, but this time use the one year outcome. In particular,</li>
@@ -367,7 +367,7 @@ Figure 1.3: Better graph.
 </ol>
 <pre><code>stent_study &lt;- read_csv(___)</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
-<li>Complete similar steps as in the class notes. The start of code is provided below.<br>
+<li>Complete the steps below. The start of code is provided below.<br>
 i. Use <code>inspect</code> on the data.<br>
 ii. Create a table of <code>outcome365</code> and <code>group</code>. Comment on the results.<br>
 iii. Create a barchart of the data.</li>
@@ -378,14 +378,14 @@ iii. Create a barchart of the data.</li>
 <pre><code>tally(outcome365 ~ ___, data = stent_study, format = ___, margins = TRUE)</code></pre>
 <p>Barchart:</p>
 <pre><code>stent_study %&gt;%
-  gf_props(~ ___, fill = ~ ___, position = 'fill') %&gt;%
+  gf_props(~___, fill = ~___, position = 'fill') %&gt;%
   gf_labs(title = ___,
           subtitle = ___,
           x = ___,
           y = ___)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>
-<strong>Migraine and acupuncture</strong>. A migraine is a particularly painful type of headache, which patients sometimes wish to treat with acupuncture. To determine whether acupuncture relieves migraine pain, researchers conducted a randomized controlled study where 89 females diagnosed with migraine headaches were randomly assigned to one of two groups: treatment or control. 43 patients in the treatment group received acupuncture that is specifically designed to treat migraines. 46 patients in the control group received placebo acupuncture (needle insertion at nonacupoint locations). 24 hours after patients received acupuncture, they were asked if they were pain free.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;G. Allais et al. &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/21533739"&gt;“Ear acupuncture in the treatment of migraine attacks: a randomized trial on the efficacy of appropriate versus inappropriate acupoints”.&lt;/a&gt; In: Neurological Sci. 32.1 (2011), pp. 173–175.&lt;/p&gt;'><sup>5</sup></a>
+<strong>Migraine and acupuncture</strong>. A migraine is a particularly painful type of headache, which patients sometimes wish to treat with acupuncture. To determine whether acupuncture relieves migraine pain, researchers conducted a randomized controlled study where 89 females diagnosed with migraine headaches were randomly assigned to one of two groups: treatment or control. The 43 patients in the treatment group received acupuncture that is specifically designed to treat migraines. The 46 patients in the control group received placebo acupuncture (needle insertion at nonacupoint locations). Then 24 hours after patients received acupuncture, they were asked if they were pain free.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;G. Allais et al. &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/21533739"&gt;“Ear acupuncture in the treatment of migraine attacks: a randomized trial on the efficacy of appropriate versus inappropriate acupoints”.&lt;/a&gt; In: Neurological Sci. 32.1 (2011), pp. 173–175.&lt;/p&gt;'><sup>5</sup></a>
 </li>
 </ol>
 <p>The data is in the file <code>migraine_study.csv</code> in the <code>data</code> folder.</p>
@@ -451,7 +451,7 @@ iii. Create a barchart of the data.</li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-12.</p>
+    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-15.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

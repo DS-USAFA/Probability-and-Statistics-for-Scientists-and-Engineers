@@ -211,7 +211,9 @@ email %>%
 
 The column proportions of the table have been translated into a standardized segmented bar plot in Figure \@ref(fig:barseg62-fig), which is a helpful visualization of the fraction of spam emails within each level of `number`.
 
-```{r barseg62-fig,fig.cap="Standardized version of Figure \@ref(fig:barseg61-fig)."}
+(ref:quote62) "Standardized version of Figure \@ref(fig:barseg61-fig).
+
+```{r barseg62-fig,fig.cap="(ref:quote62)"}
 email %>%
   gf_props(~number, fill = ~spam, position = 'fill') %>%
   gf_theme(theme_bw()) %>%
@@ -364,7 +366,7 @@ cc_reduced %>%
 
 Another useful plotting method uses **density plots** to compare numerical data across groups. A histogram bins data but is highly dependent on the number and boundary of the bins. A density plot also estimates the distribution of a numerical variable but does this by estimating the density of data points in a small window around each data point. The overall curve is the sum of this small density estimate. A density plot can be thought of as a smooth version of the histogram. Several options go into a density estimate, such as the width of the window and type of smoothing function. These ideas are beyond the scope here and we will just use the default options. Figure \@ref(fig:dens61-fig) is a plot of the two density curves.
 
-```{r dens61-fig,fig.cap="Density plots of median household income for counties with population gain versus population loss"}
+```{r dens61-fig,fig.cap="Density plots of median household income for counties with population gain versus population loss."}
 cc_reduced %>%
   gf_dens(~med_income, color = ~pop_gain, lwd = 1) %>%
   gf_theme(theme_bw()) %>%

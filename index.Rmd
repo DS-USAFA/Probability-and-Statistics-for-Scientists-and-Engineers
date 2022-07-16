@@ -15,7 +15,7 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-cover-image: "figures/Cover_Master.png"
+cover-image: "figures/Cover_Majors.png"
 description: "This is a set of notes used for Math 377 (and Math 356) starting in the fall of 2020 (spring 2022) that has been compiled into a book."
 ---
 
@@ -25,7 +25,7 @@ description: "This is a set of notes used for Math 377 (and Math 356) starting i
 
 
 ```{r echo=FALSE, out.width="100%"}
-knitr::include_graphics("./figures/Cover_Master.png")
+knitr::include_graphics("./figures/Cover_Majors.png")
 ```
   
 

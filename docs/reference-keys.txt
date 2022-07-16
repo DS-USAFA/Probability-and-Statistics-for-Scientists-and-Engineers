@@ -448,7 +448,7 @@ null-distribution
 theorem---central-limit-theorem
 simulating-data-for-the-clt
 summary-of-example
-other-distributions-for-estimators
+the-t-distribution
 students-t
 important-note
 hypothesis-tests-using-the-clt
@@ -469,7 +469,7 @@ homework-problems-20
 ADDTESTS
 objectives-22
 introduction-2
-other-distributions-for-estimators-1
+other-distributions-for-estimators
 chi-squared
 important-note-1
 categorical-data-2
@@ -612,7 +612,7 @@ homework-problems-29
 LRMULTI
 objectives-31
 introduction-to-multiple-regression
-multiple-regression-1
+multiple-regression
 a-single-variable-model-for-the-mario-kart-data
 including-and-assessing-many-variables-in-a-model
 inference-1
