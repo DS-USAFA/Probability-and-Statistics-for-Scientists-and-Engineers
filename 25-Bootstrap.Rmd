@@ -575,9 +575,9 @@ g. ADVANCED: Do you think that sample *MAD* is an unbiased estimator of populati
 
     Bootstrap hypothesis testing is relatively undeveloped, and is generally not as accurate as permutation testing. Therefore, in general we avoid it. But for our problem in the reading above, it may work. We will sample in a way that is consistent with the null hypothesis, then calculate a $p$-value as a tail probability like we do in permutation tests. This example does not generalize well to other applications like relative risk, correlation, regression, or categorical data.
 
-a. Using the `HELPrct` data, the null hypothesis requires the means of each group to be equal. Pick one group to adjust, either `male` or `female`. First, zero the mean of the selected group by subtracting the sample mean of this group from data points only in this group. Then, add the sample mean of the other group to each data point in the selected group. Store in a new object called `HELP_null`. 
+a. Using the `HELPrct` data, store the observed value of the difference of means for male and female. 
 
-b. Store the observed value of the difference of means for male and female.  
+b. The null hypothesis requires the means of each group to be equal. Pick one group to adjust, either `male` or `female`. First, zero the mean of the selected group by subtracting the sample mean of this group from data points only in this group. Then, add the sample mean of the other group to each data point in the selected group. Store in a new object called `HELP_null`. 
 
 c. Run `favstats()` to check that the means are equal.  
 

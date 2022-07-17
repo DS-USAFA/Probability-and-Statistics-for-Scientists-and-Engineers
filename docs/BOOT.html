@@ -704,8 +704,8 @@ Figure 25.8: Bootstrap distribution of the difference in means.
 </li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>Using the <code>HELPrct</code> data, the null hypothesis requires the means of each group to be equal. Pick one group to adjust, either <code>male</code> or <code>female</code>. First, zero the mean of the selected group by subtracting the sample mean of this group from data points only in this group. Then, add the sample mean of the other group to each data point in the selected group. Store in a new object called <code>HELP_null</code>.</p></li>
-<li><p>Store the observed value of the difference of means for male and female.</p></li>
+<li><p>Using the <code>HELPrct</code> data, store the observed value of the difference of means for male and female.</p></li>
+<li><p>The null hypothesis requires the means of each group to be equal. Pick one group to adjust, either <code>male</code> or <code>female</code>. First, zero the mean of the selected group by subtracting the sample mean of this group from data points only in this group. Then, add the sample mean of the other group to each data point in the selected group. Store in a new object called <code>HELP_null</code>.</p></li>
 <li><p>Run <code><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats()</a></code> to check that the means are equal.</p></li>
 <li><p>On this new adjusted data set, generate a bootstrap distribution of the difference in sample means.</p></li>
 <li><p>Plot the bootstrap distribution and a line at the observed difference in sample means.</p></li>
