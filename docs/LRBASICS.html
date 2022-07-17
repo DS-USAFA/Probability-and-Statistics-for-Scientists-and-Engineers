@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 27 Linear Regression Basics | Computational Probability and Statistics</title>
+<title>Chapter 27 Linear Regression Basics | Computational Probability and Statistics - MASTER</title>
 <meta name="author" content="Matthew Davis">
 <meta name="author" content="Brianna Hitt">
 <meta name="author" content="Ken Horton">
@@ -12,12 +12,12 @@
 <meta name="author" content="Bradley Warner">
 <meta name="description" content="27.1 Objectives Obtain parameter estimates of a simple linear regression model, given a sample of data. Interpret the coefficients of a simple linear regression. Create a scatterplot with a...">
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
-<meta property="og:title" content="Chapter 27 Linear Regression Basics | Computational Probability and Statistics">
+<meta property="og:title" content="Chapter 27 Linear Regression Basics | Computational Probability and Statistics - MASTER">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Majors.png">
 <meta property="og:description" content="27.1 Objectives Obtain parameter estimates of a simple linear regression model, given a sample of data. Interpret the coefficients of a simple linear regression. Create a scatterplot with a...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 27 Linear Regression Basics | Computational Probability and Statistics">
+<meta name="twitter:title" content="Chapter 27 Linear Regression Basics | Computational Probability and Statistics - MASTER">
 <meta name="twitter:description" content="27.1 Objectives Obtain parameter estimates of a simple linear regression model, given a sample of data. Interpret the coefficients of a simple linear regression. Create a scatterplot with a...">
 <meta name="twitter:image" content="/figures/Cover_Majors.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -60,7 +60,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Computational Probability and Statistics</a>
+        <a href="index.html" title="">Computational Probability and Statistics - MASTER</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -160,9 +160,9 @@ Y=\beta_0+\beta_1 X^2
 <p><strong>Exercise</strong>:<br>
 Read in the data from <code>data/possum.csv</code> and look at the first few rows of data.</p>
 </blockquote>
-<div class="sourceCode" id="cb853"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb852"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">possum</span><span class="op">&lt;-</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/possum.csv"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb854"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb853"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">possum</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Rows: 104
 ## Columns: 8
@@ -174,7 +174,7 @@ Read in the data from <code>data/possum.csv</code> and look at the first few row
 ## $ skull_w &lt;dbl&gt; 60.4, 57.6, 60.0, 57.1, 56.3, 54.8, 58.2, 57.6, 56.3, 58.0, 57~
 ## $ total_l &lt;dbl&gt; 89.0, 91.5, 95.5, 92.0, 85.5, 90.5, 89.5, 91.0, 91.5, 89.5, 89~
 ## $ tail_l  &lt;dbl&gt; 36.0, 36.5, 39.0, 38.0, 36.0, 35.5, 36.0, 37.0, 37.0, 37.5, 39~</code></pre>
-<div class="sourceCode" id="cb856"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb855"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">possum</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 x 8
 ##    site pop   sex     age head_l skull_w total_l tail_l
@@ -190,7 +190,7 @@ Read in the data from <code>data/possum.csv</code> and look at the first few row
 <p><strong>Exercise</strong>:<br>
 Create a scatterplot of head length and total length.</p>
 </blockquote>
-<div class="sourceCode" id="cb858"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb857"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">possum</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_point</span><span class="op">(</span><span class="va">head_l</span><span class="op">~</span><span class="va">total_l</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Total Length (cm)"</span>,y<span class="op">=</span><span class="st">"Head Length (mm)"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -268,10 +268,10 @@ Figure 27.2: An illustration of the least squares method.
 </h3>
 <p>We will let <code>R</code> do the heavy work of minimizing the sum of squares. The function is <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> as we learned in the case study. This function needs a formula and data for input. The formula notation should be easy for us since we have worked with formulas so much in the <strong>mosaic</strong> package.</p>
 <p>First create the model:</p>
-<div class="sourceCode" id="cb859"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb858"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">poss_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">head_l</span><span class="op">~</span><span class="va">total_l</span>,data<span class="op">=</span><span class="va">possum</span><span class="op">)</span></span></code></pre></div>
 <p>The output of the model object is minimal with just the estimated slope and intercept.</p>
-<div class="sourceCode" id="cb860"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb859"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">poss_mod</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -281,7 +281,7 @@ Figure 27.2: An illustration of the least squares method.
 ## (Intercept)      total_l  
 ##     42.7098       0.5729</code></pre>
 <p>We can get more information using the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> function:</p>
-<div class="sourceCode" id="cb862"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb861"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">poss_mod</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -302,13 +302,13 @@ Figure 27.2: An illustration of the least squares method.
 ## Multiple R-squared:  0.4776, Adjusted R-squared:  0.4725 
 ## F-statistic: 93.26 on 1 and 102 DF,  p-value: 4.681e-16</code></pre>
 <p>The model object, <code>poss_mod</code>, contains much more information. Using the function <code><a href="https://rdrr.io/r/base/names.html">names()</a></code> function on the model objects, gives you a list of other quantities available, such as residuals.</p>
-<div class="sourceCode" id="cb864"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb863"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">poss_mod</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##  [1] "coefficients"  "residuals"     "effects"       "rank"         
 ##  [5] "fitted.values" "assign"        "qr"            "df.residual"  
 ##  [9] "xlevels"       "call"          "terms"         "model"</code></pre>
 <p>Figure <a href="LRBASICS.html#fig:scat262-fig">27.3</a> is a plot the data points and least squares line together.</p>
-<div class="sourceCode" id="cb866"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb865"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">possum</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_point</span><span class="op">(</span> <span class="va">head_l</span> <span class="op">~</span> <span class="va">total_l</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_lm</span><span class="op">(</span>color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -341,7 +341,7 @@ E(Y|X=x)=E(\beta_0+\beta_1x+e) = E(\beta_0+\beta_1x)+E(e)=\beta_0+\beta_1x
 <p><strong>Exercise</strong>
 Find the slope from the correlation and standard deviations.</p>
 </blockquote>
-<div class="sourceCode" id="cb867"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb866"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">possum</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>correlation<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">cor</a></span><span class="op">(</span><span class="va">head_l</span>,<span class="va">total_l</span><span class="op">)</span>,sd_head<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">head_l</span><span class="op">)</span>,</span>
 <span>            sd_total<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">total_l</span><span class="op">)</span>,slope<span class="op">=</span><span class="va">correlation</span><span class="op">*</span><span class="va">sd_head</span><span class="op">/</span><span class="va">sd_total</span><span class="op">)</span></span></code></pre></div>
@@ -366,7 +366,7 @@ April 6th, 2010<a class="footnote-ref" tabindex="0" data-toggle="popover" data-c
 <span class="header-section-number">27.2.5</span> Reading computer output<a class="anchor" aria-label="anchor" href="#reading-computer-output"><i class="fas fa-link"></i></a>
 </h3>
 <p>We stored the results of our linear regression model for the possum data in the object <code>poss_mod</code> but it provided only the bare minimum of information. We can get more information using the function <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>.</p>
-<div class="sourceCode" id="cb869"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb868"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">poss_mod</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -389,9 +389,9 @@ April 6th, 2010<a class="footnote-ref" tabindex="0" data-toggle="popover" data-c
 <p>The first line repeats the model formula. The second line is a descriptive summary of the residuals, plots of the residuals are more useful than this summary. We then have a table of the model fit. The first column of numbers provides estimates for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, respectively. For the next columns, we’ll describe the meaning of the columns using the second row, which corresponds to information about the slope estimate. Again, the first column provides the point estimate for <span class="math inline">\(\beta_1\)</span>. The second column is a standard error for this point estimate. The third column is a <span class="math inline">\(t\)</span> test statistic for the null hypothesis that <span class="math inline">\(\beta_1 = 0\)</span>: <span class="math inline">\(T=9.657\)</span>. The last column is the <span class="math inline">\(p\)</span>-value for the <span class="math inline">\(t\)</span> test statistic for the null hypothesis <span class="math inline">\(\beta_1=0\)</span> and a two-sided alternative hypothesis. We will get into more of these details in the next chapters.</p>
 <p>The row with the residual standard error is an estimate of the unexplained variance. The next rows give a summary of the model fit and we will discuss in the next chapters.</p>
 <p>In the <code>tidyverse</code> we may want to have the table above in a <code>tibble</code>. The <strong>broom</strong> package, which we have seen before, helps with this effort.</p>
-<div class="sourceCode" id="cb871"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb870"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb872"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb871"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">poss_mod</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   term        estimate std.error statistic  p.value
@@ -405,7 +405,7 @@ The <code>cars</code> dataset (built-in to <code>R</code>) contains 50 observati
 <ol style="list-style-type: lower-alpha">
 <li>Build a simple linear regression model fitting distance against speed.</li>
 </ol>
-<div class="sourceCode" id="cb874"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb873"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cars_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">dist</span><span class="op">~</span><span class="va">speed</span>,data<span class="op">=</span><span class="va">cars</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">cars_mod</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
@@ -427,7 +427,7 @@ The <code>cars</code> dataset (built-in to <code>R</code>) contains 50 observati
 ## Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
 ## F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
 <p>Figure <a href="LRBASICS.html#fig:scat263-fig">27.4</a> is a scatterplot of the <code>cars</code> data set.</p>
-<div class="sourceCode" id="cb876"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb875"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_point</span><span class="op">(</span><span class="va">dist</span><span class="op">~</span><span class="va">speed</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_lm</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -570,7 +570,7 @@ Figure 27.7: Residual plots and associated scatterplots.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-15.</p>
+    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

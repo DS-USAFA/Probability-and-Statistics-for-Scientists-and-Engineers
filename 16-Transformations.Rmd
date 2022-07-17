@@ -186,6 +186,7 @@ The cdf of $X$ is $F_X(x)=x^2$ where $0 \leq x \leq 1$. We will draw a uniform r
 
 
 ```{r}
+set.seed(1107)
 results <- do(10000)*sqrt(runif(1))
 ```
 

@@ -1,12 +1,12 @@
 --- 
-title: "Computational Probability and Statistics"
+title: "Computational Probability and Statistics - MASTER"
 author: 
 - Matthew Davis
 - Brianna Hitt
 - Ken Horton
 - Kris Pruitt
 - Bradley Warner
-date: "2022-07-15"
+date: "2022-07-16"
 header-includes:
    - \usepackage{multirow}
    - \usepackage{multicol}
@@ -82,7 +82,7 @@ This book is licensed under the [Creative Commons Attribution-NonCommercial-Shar
 
 ## File Creation Information 
 
-  * File creation date: 2022-07-15
+  * File creation date: 2022-07-16
   * R version 4.1.3 (2022-03-10)
 
 

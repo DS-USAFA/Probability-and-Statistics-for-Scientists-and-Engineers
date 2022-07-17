@@ -325,9 +325,7 @@ The remainder of this block expands on the ideas of this case study.
 
 ## Homework Problems
 
-1. Side effects of Avandia  
-
-    Rosiglitazone is the active ingredient in the controversial type~2 diabetes medicine Avandia and has been linked to an increased risk of serious cardiovascular problems such as stroke, heart failure, and death. A common alternative treatment is pioglitazone, the active ingredient in a diabetes medicine called Actos. In a nationwide retrospective observational study of 227,571 Medicare beneficiaries aged  65 years or older, it was found that 2,593 of the 67,593 patients using rosiglitazone and 5,386 of the 159,978 using pioglitazone had serious cardiovascular problems. These data are summarized in the contingency table below.  
+1. **Side effects of Avandia**. Rosiglitazone is the active ingredient in the controversial type~2 diabetes medicine Avandia and has been linked to an increased risk of serious cardiovascular problems such as stroke, heart failure, and death. A common alternative treatment is pioglitazone, the active ingredient in a diabetes medicine called Actos. In a nationwide retrospective observational study of 227,571 Medicare beneficiaries aged  65 years or older, it was found that 2,593 of the 67,593 patients using rosiglitazone and 5,386 of the 159,978 using pioglitazone had serious cardiovascular problems. These data are summarized in the contingency table below.  
 
 $$
 \begin{array}{cc|ccc} & & &\textit{Cardiovascular problems}\\ 
@@ -351,9 +349,7 @@ $$
    d. Based on the information provided so far, we cannot tell if the difference between the rates of incidences is due to a relationship between the two variables or due to chance.  
 
 
-2. Heart transplants  
-
-    The Stanford University Heart Transplant Study was conducted to determine whether an experimental heart transplant program increased lifespan. Each patient entering the program was designated an official heart transplant candidate, meaning that he was gravely ill and would most likely benefit from a new heart. Some patients got a transplant and some did not. The variable \texttt{group} indicates which group the patients were in; patients in the treatment group got a transplant and those in the control group did not. Another variable called \texttt{outcome} was used to indicate whether or not the patient was alive at the end of the study.
+2. **Heart transplants**. The Stanford University Heart Transplant Study was conducted to determine whether an experimental heart transplant program increased lifespan. Each patient entering the program was designated an official heart transplant candidate, meaning that he was gravely ill and would most likely benefit from a new heart. Some patients got a transplant and some did not. The variable \texttt{group} indicates which group the patients were in; patients in the treatment group got a transplant and those in the control group did not. Another variable called \texttt{outcome} was used to indicate whether or not the patient was alive at the end of the study.
 
     In the study, of the 34 patients in the control group, 4 were alive at the end of the study. Of the 69 patients in the treatment group, 24 were alive. The contingency table below summarizes these results.  
 
@@ -366,12 +362,9 @@ $$
 \end{array} 
 $$
 
-
   The data is in a file called `Stanford_heart_study.csv`. Read the data in and answer the following questions.
 
-  a. What proportion of patients in the treatment group and what proportion of patients in the control group died?   
-  
-    One approach for investigating whether or not the treatment is effective is to use a randomization technique.  
+  a. What proportion of patients in the treatment group and what proportion of patients in the control group died? Note: One approach for investigating whether or not the treatment is effective is to use a randomization technique.  
     
   b. What are the claims being tested? Use the same null and alternative hypothesis notation used in the lesson notes.   
   

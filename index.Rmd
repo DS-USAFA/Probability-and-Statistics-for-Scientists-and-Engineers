@@ -1,5 +1,5 @@
 --- 
-title: "Computational Probability and Statistics"
+title: "Computational Probability and Statistics - MASTER"
 author: 
 - Matthew Davis
 - Brianna Hitt

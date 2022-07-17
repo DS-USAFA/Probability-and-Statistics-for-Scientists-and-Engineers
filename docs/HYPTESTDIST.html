@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 20 Hypothesis Testing with Known Distributions | Computational Probability and Statistics</title>
+<title>Chapter 20 Hypothesis Testing with Known Distributions | Computational Probability and Statistics - MASTER</title>
 <meta name="author" content="Matthew Davis">
 <meta name="author" content="Brianna Hitt">
 <meta name="author" content="Ken Horton">
@@ -12,12 +12,12 @@
 <meta name="author" content="Bradley Warner">
 <meta name="description" content="20.1 Objectives Know and properly use the terminology of a hypothesis test, to include: permutation test, exact test, null hypothesis, alternative hypothesis, test statistic, \(p\)-value, and...">
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
-<meta property="og:title" content="Chapter 20 Hypothesis Testing with Known Distributions | Computational Probability and Statistics">
+<meta property="og:title" content="Chapter 20 Hypothesis Testing with Known Distributions | Computational Probability and Statistics - MASTER">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Majors.png">
 <meta property="og:description" content="20.1 Objectives Know and properly use the terminology of a hypothesis test, to include: permutation test, exact test, null hypothesis, alternative hypothesis, test statistic, \(p\)-value, and...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 20 Hypothesis Testing with Known Distributions | Computational Probability and Statistics">
+<meta name="twitter:title" content="Chapter 20 Hypothesis Testing with Known Distributions | Computational Probability and Statistics - MASTER">
 <meta name="twitter:description" content="20.1 Objectives Know and properly use the terminology of a hypothesis test, to include: permutation test, exact test, null hypothesis, alternative hypothesis, test statistic, \(p\)-value, and...">
 <meta name="twitter:image" content="/figures/Cover_Majors.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -60,7 +60,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Computational Probability and Statistics</a>
+        <a href="index.html" title="">Computational Probability and Statistics - MASTER</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -169,7 +169,7 @@ Is this a one-sided or two-sided hypothesis test? How many variables are in this
 <span class="header-section-number">20.3.3</span> Step 3 - Determine the <span class="math inline">\(p\)</span>-value<a class="anchor" aria-label="anchor" href="#step-3---determine-the-p-value"><i class="fas fa-link"></i></a>
 </h3>
 <p>We now want to find the <span class="math inline">\(p\)</span>-value as <span class="math inline">\(2 \cdot \mbox{P}(X \leq 42)\)</span> where <span class="math inline">\(X\)</span> is a binomial random variable with <span class="math inline">\(p = 0.5\)</span> and <span class="math inline">\(n = 120\)</span>. Again, the <span class="math inline">\(p\)</span>-value is the probability of the observed data or something more extreme, given the null hypothesis is true. Here, the null hypothesis being true implies that the probability of success is 0.50. We will use <code>R</code> to get the one-sided <span class="math inline">\(p\)</span>-value and then double it to get the two-sided <span class="math inline">\(p\)</span>-value for the problem. We selected <span class="math inline">\(\mbox{P}(X \leq 42)\)</span> because “more extreme” means the observed values and values further from what you would get if the null hypothesis were true, which is 60 for this problem.</p>
-<div class="sourceCode" id="cb512"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb511"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">42</span>, <span class="fl">120</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.001299333</code></pre>
 <p>That is a small <span class="math inline">\(p\)</span>-value.</p>
@@ -180,7 +180,7 @@ Is this a one-sided or two-sided hypothesis test? How many variables are in this
 </h3>
 <p>Based on our data, if the listeners were guessing correct 50% of the time, there is less than a <span class="math inline">\(0.0013\)</span> probability that only 42 or less (or 78 or more) listeners would get correctly. This is the probability of what we observed or something more extreme, given the null hypothesis is true. This probability is much less than 0.05, so we reject the null hypothesis that the listeners are guessing correctly half of the time and conclude that the correct-guess rate rate is different from 50%.</p>
 <p>This decision region looks like the pmf in Figure <a href="HYPTESTDIST.html#fig:dist201-fig">20.1</a>. Any observed values inside the red boundary lines would be consistent with the null hypothesis. That is, any observed values inside the red boundary lines would result in a <span class="math inline">\(p\)</span>-value larger than 0.05. Any values at the red line or more extreme would be in the rejection region, resulting in a <span class="math inline">\(p\)</span>-value smaller than 0.05. We also plotted the observed value in black.</p>
-<div class="sourceCode" id="cb514"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb513"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"binom"</span>, size <span class="op">=</span> <span class="fl">120</span>, prob <span class="op">=</span> <span class="fl">0.5</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">115</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">48</span>, <span class="fl">72</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -205,7 +205,7 @@ Figure 20.1: Binomial pmf
 <span class="header-section-number">20.3.6</span> Step 2 - Compute a test statistic<a class="anchor" aria-label="anchor" href="#step-2---compute-a-test-statistic-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>We will use the proportion of listeners that get the song correct instead of the number of listeners that get it correct. This is a minor change since we are simply dividing by 120.</p>
-<div class="sourceCode" id="cb515"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb514"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fl">42</span> <span class="op">/</span> <span class="fl">120</span></span>
 <span><span class="va">obs</span></span></code></pre></div>
 <pre><code>## [1] 0.35</code></pre>
@@ -222,14 +222,14 @@ Correct &amp; Correct &amp; Wrong &amp; Correct &amp; Wrong \\
 \end{array}
 \]</span></p>
 <p>After flipping the coin 120 times, we got 56 heads for a proportion of <span class="math inline">\(\hat{p}_{sim} = 0.467\)</span>. As we did with the randomization technique, seeing what would happen with one simulation isn’t enough. In order to evaluate whether our originally observed proportion of 0.35 is unusual or not, we should generate more simulations. Here, we’ve repeated this simulation 10,000 times:</p>
-<div class="sourceCode" id="cb517"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb516"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">604</span><span class="op">)</span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fl">120</span>, <span class="fl">0.5</span><span class="op">)</span> <span class="op">/</span> <span class="fl">120</span></span></code></pre></div>
 <p>Note, we could simulate it a number of ways. Here is a way using <code>do()</code> that will look like what we’ve done for other randomization tests.</p>
-<div class="sourceCode" id="cb518"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb517"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">604</span><span class="op">)</span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">do</span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu">mean</span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">120</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb519"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb518"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##        mean
 ## 1 0.4250000
@@ -238,7 +238,7 @@ Correct &amp; Correct &amp; Wrong &amp; Correct &amp; Wrong \\
 ## 4 0.5000000
 ## 5 0.5250000
 ## 6 0.5083333</code></pre>
-<div class="sourceCode" id="cb521"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb520"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">mean</span>, fill <span class="op">=</span> <span class="st">"cyan"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">obs</span>, <span class="fl">1</span> <span class="op">-</span> <span class="va">obs</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -252,7 +252,7 @@ Figure 20.2: The estimated sampling distribution.
 </div>
 <p>Notice in Figure <a href="HYPTESTDIST.html#fig:dens202-fig">20.2</a> how the sampling distribution is centered at 0.5 and looks symmetrical.</p>
 <p>The <span class="math inline">\(p\)</span>-value is found using the <code>prop1</code> function. In this problem, we really need the observed value to be included to prevent a <span class="math inline">\(p\)</span>-value of zero.</p>
-<div class="sourceCode" id="cb522"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb521"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">mean</span> <span class="op">&lt;=</span> <span class="va">obs</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##  prop_TRUE 
 ## 0.00119988</code></pre>
@@ -285,9 +285,9 @@ Do the data provide statistically significant evidence against the null hypothes
 </h3>
 <p>We want to understand whether blood thinners are helpful or harmful. We’ll consider both of these possibilities using a two-sided hypothesis test.</p>
 <p><span class="math inline">\(H_0\)</span>: Blood thinners do not have an overall survival effect; survival rate is independent of experimental treatment group. <span class="math inline">\(p_c - p_t = 0\)</span>.<br><span class="math inline">\(H_A\)</span>: Blood thinners have an impact on survival, either positive or negative, but not zero. <span class="math inline">\(p_c - p_t \neq 0\)</span>.</p>
-<div class="sourceCode" id="cb524"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb523"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">thinner</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/blood_thinner.csv"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb525"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb524"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">thinner</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   group     outcome 
@@ -299,7 +299,7 @@ Do the data provide statistically significant evidence against the null hypothes
 ## 5 control   died    
 ## 6 treatment survived</code></pre>
 <p>Let’s put the data in a table.</p>
-<div class="sourceCode" id="cb527"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb526"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">group</span> <span class="op">+</span> <span class="va">outcome</span>, data <span class="op">=</span> <span class="va">thinner</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##            outcome
 ## group       died survived Total
@@ -318,23 +318,23 @@ Do the data provide statistically significant evidence against the null hypothes
 <span class="header-section-number">20.4.3</span> Step 3 - Determine the <span class="math inline">\(p\)</span>-value.<a class="anchor" aria-label="anchor" href="#step-3---determine-the-p-value.-2"><i class="fas fa-link"></i></a>
 </h3>
 <p>In this case, we want to find <span class="math inline">\(\mbox{P}(X \leq 11)\)</span> (the observed number of control patients that survived) and double it since it is a two-sided test.</p>
-<div class="sourceCode" id="cb529"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb528"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">phyper</a></span><span class="op">(</span><span class="fl">11</span>, <span class="fl">50</span>, <span class="fl">40</span>, <span class="fl">25</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.2581356</code></pre>
 <p>Note: We could have picked the lower right cell as the reference cell. But now I want the <span class="math inline">\(\mbox{P}(X \geq 14)\)</span> (the observed number of treatment patients that survived) with the appropriate change in parameter values. Notice we get the same answer.</p>
-<div class="sourceCode" id="cb531"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb530"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">2</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">phyper</a></span><span class="op">(</span><span class="fl">13</span>, <span class="fl">40</span>, <span class="fl">50</span>, <span class="fl">25</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.2581356</code></pre>
 <p>We could do the same thing for the other two cells. Here we find <span class="math inline">\(\mbox{P}(X \leq 26)\)</span> (the observed number of treatment patients that did not survive).</p>
-<div class="sourceCode" id="cb533"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb532"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">phyper</a></span><span class="op">(</span><span class="fl">26</span>, <span class="fl">40</span>, <span class="fl">50</span>, <span class="fl">65</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.2581356</code></pre>
 <p>Here we find <span class="math inline">\(\mbox{P}(X \geq 39)\)</span> (the observed number of control patients that did not survive).</p>
-<div class="sourceCode" id="cb535"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb534"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">2</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">phyper</a></span><span class="op">(</span><span class="fl">38</span>, <span class="fl">50</span>, <span class="fl">40</span>, <span class="fl">65</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.2581356</code></pre>
 <p><code>R</code> also has a built in function, <code><a href="https://rdrr.io/r/stats/fisher.test.html">fisher.test()</a></code>, that we could use. This function calculates Fisher’s exact test, where <span class="math inline">\(p\)</span>-values are obtained using the hypergeometric distribution.</p>
-<div class="sourceCode" id="cb537"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb536"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/fisher.test.html">fisher.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">group</span> <span class="op">+</span> <span class="va">outcome</span>, data <span class="op">=</span> <span class="va">thinner</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  Fisher's Exact Test for Count Data
@@ -348,7 +348,7 @@ Do the data provide statistically significant evidence against the null hypothes
 ## odds ratio 
 ##   1.895136</code></pre>
 <p>The <span class="math inline">\(p\)</span>-value is slightly different since the <strong>hypergeometric</strong> distribution is not symmetric. For this reason, doubling the <span class="math inline">\(p\)</span>-value from the single side result is not quite right. The algorithm in <code><a href="https://rdrr.io/r/stats/fisher.test.html">fisher.test()</a></code> finds and adds all probabilities less than or equal to value of <span class="math inline">\(\mbox{P}(X = 11)\)</span>, see Figure <a href="HYPTESTDIST.html#fig:dens203-fig">20.3</a>. Using <code><a href="https://rdrr.io/r/stats/fisher.test.html">fisher.test()</a></code> gives the correct <span class="math inline">\(p\)</span>-value.</p>
-<div class="sourceCode" id="cb539"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb538"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"hyper"</span>, m <span class="op">=</span> <span class="fl">50</span>, n <span class="op">=</span> <span class="fl">40</span>, k <span class="op">=</span> <span class="fl">25</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_hline</span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">dhyper</a></span><span class="op">(</span><span class="fl">11</span>, <span class="fl">50</span>, <span class="fl">40</span>, <span class="fl">25</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Hypergeometric pmf"</span>, subtitle <span class="op">=</span> <span class="st">"Red line is P(X = 11)"</span>, </span>
@@ -361,7 +361,7 @@ Figure 20.3: Hypergeometric pmf showing the cutoff for <span class="math inline"
 </p>
 </div>
 <p>This is how <code><a href="https://rdrr.io/r/stats/fisher.test.html">fisher.test()</a></code> is calculating the <span class="math inline">\(p\)</span>-value:</p>
-<div class="sourceCode" id="cb540"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb539"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">dhyper</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">25</span>, <span class="fl">50</span>, <span class="fl">40</span>, <span class="fl">25</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="va">temp</span><span class="op">[</span><span class="va">temp</span> <span class="op">&lt;=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">dhyper</a></span><span class="op">(</span><span class="fl">11</span>, <span class="fl">50</span>, <span class="fl">40</span>, <span class="fl">25</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.2365928</code></pre>
@@ -391,15 +391,15 @@ Figure 20.3: Hypergeometric pmf showing the cutoff for <span class="math inline"
 <p>Notice that we switched to using <span class="math inline">\(\pi\)</span> instead of <span class="math inline">\(p\)</span> for the population parameter. There is no reason other than to make you aware that both are used.</p>
 <p>This problem is an extension of the binomial. Instead of two outcomes, there are four outcomes. This is called a multinomial distribution. You can read more about it if you like, but our methods will not make it necessary to learn the probability mass function.</p>
 <p>Out of the 500 golf balls collected, 486 of them had a number between 1 and 4. We will deal with only these 486 golf balls. Let’s get the data from `golf_balls.csv”.</p>
-<div class="sourceCode" id="cb542"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb541"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">golf_balls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/golf_balls.csv"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb543"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb542"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">golf_balls</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
 ##     name   class min Q1 median Q3 max     mean       sd   n missing
 ## 1 number numeric   1  1      2  3   4 2.366255 1.107432 486       0</code></pre>
-<div class="sourceCode" id="cb545"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb544"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">number</span>, data <span class="op">=</span> <span class="va">golf_balls</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## number
 ##   1   2   3   4 
@@ -418,7 +418,7 @@ What would you propose for the test statistic?</p>
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(R=0\)</span><br><span class="math inline">\(H_A\)</span>: <span class="math inline">\(R&gt;0\)</span></p>
 <p>Notice that <span class="math inline">\(R\)</span> will always be non-negative, thus this test is one-sided.</p>
 <p>The observed range is 34, <span class="math inline">\(138 - 104\)</span>.</p>
-<div class="sourceCode" id="cb547"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb546"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">number</span>, data <span class="op">=</span> <span class="va">golf_balls</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">obs</span></span></code></pre></div>
 <pre><code>## [1] 34</code></pre>
@@ -429,35 +429,35 @@ What would you propose for the test statistic?</p>
 </h3>
 <p>We don’t know the distribution of our test statistic, so we will use simulation. We will simulate data from a multinomial distribution under the null hypothesis and calculate a new value of the test statistic. We will repeat this 10,000 times and this will give us an estimate of the sampling distribution.</p>
 <p>We will use the <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample()</a></code> function again to simulate the distribution of numbers under the null hypothesis. To help us understand the process and build the code, we are only initially using a sample size of 12 to keep the printout reasonable and easy to read.</p>
-<div class="sourceCode" id="cb549"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb548"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">3311</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, size <span class="op">=</span> <span class="fl">12</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>Notice this is not using <code>tidyverse</code> coding ideas. We don’t think we need tibbles or data frames so we went with straight nested <code>R</code> code. You can break this code down by starting with the code in the center.</p>
-<div class="sourceCode" id="cb551"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb550"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">3311</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, size <span class="op">=</span> <span class="fl">12</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##  [1] 3 1 2 3 2 3 1 3 3 4 1 1</code></pre>
-<div class="sourceCode" id="cb553"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb552"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">3311</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, size <span class="op">=</span> <span class="fl">12</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## 1 2 3 4 
 ## 4 2 5 1</code></pre>
-<div class="sourceCode" id="cb555"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb554"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">3311</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, size <span class="op">=</span> <span class="fl">12</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1 5</code></pre>
-<div class="sourceCode" id="cb557"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb556"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">3311</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, size <span class="op">=</span> <span class="fl">12</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>We are now ready to ramp up to the full problem. Let’s simulate the data under the null hypothesis. We are sampling 486 golf balls (instead of 12) with the numbers 1 through 4 on them. Each number is equally likely. We then find the range, our test statistic. Finally we repeat this 10,000 to get an estimate of the sampling distribution of our test statistic.</p>
-<div class="sourceCode" id="cb559"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb558"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">3311</span><span class="op">)</span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">do</span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, size <span class="op">=</span> <span class="fl">486</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Figure <a href="HYPTESTDIST.html#fig:dens204-fig">20.4</a> is a plot of the sampling distribution of the range.</p>
-<div class="sourceCode" id="cb560"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb559"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">diff</span>, fill <span class="op">=</span> <span class="st">"cyan"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">obs</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -472,7 +472,7 @@ Figure 20.4: Sampling distribution of the range.
 </p>
 </div>
 <p>Notice how this distribution is skewed to the right. The <span class="math inline">\(p\)</span>-value is 0.14.</p>
-<div class="sourceCode" id="cb561"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb560"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">diff</span> <span class="op">&gt;=</span> <span class="va">obs</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## prop_TRUE 
 ## 0.1393861</code></pre>
@@ -494,13 +494,13 @@ Figure 20.4: Sampling distribution of the range.
 <span class="header-section-number">20.6.1</span> Step 2 - Compute a test statistic.<a class="anchor" aria-label="anchor" href="#step-2---compute-a-test-statistic.-4"><i class="fas fa-link"></i></a>
 </h3>
 <p>If each number were equally likely, we would have 121.5 balls in each bin. We can find a test statistic by looking at the deviation in each cell from 121.5.</p>
-<div class="sourceCode" id="cb563"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb562"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">number</span>, data <span class="op">=</span> <span class="va">golf_balls</span><span class="op">)</span> <span class="op">-</span> <span class="fl">121.5</span></span></code></pre></div>
 <pre><code>## number
 ##     1     2     3     4 
 ##  15.5  16.5 -14.5 -17.5</code></pre>
 <p>Now we need to collapse these into a single number. Just adding will always result in a value of 0, why? So let’s take the absolute value and then add the cells together.</p>
-<div class="sourceCode" id="cb565"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb564"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">number</span>, data <span class="op">=</span> <span class="va">golf_balls</span><span class="op">)</span> <span class="op">-</span> <span class="fl">121.5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">obs</span></span></code></pre></div>
 <pre><code>## [1] 64</code></pre>
@@ -511,11 +511,11 @@ Figure 20.4: Sampling distribution of the range.
 <span class="header-section-number">20.6.2</span> Step 3 - Determine the <span class="math inline">\(p\)</span>-value.<a class="anchor" aria-label="anchor" href="#step-3---determine-the-p-value.-4"><i class="fas fa-link"></i></a>
 </h3>
 <p>We will use similar code from above with our new metric. Now we sample 486 golf balls with the numbers 1 through 4 on them, and find our test statistic, the sum of the absolute deviations of each cell of the table from the expected count, 121.5. We repeat this process 10,000 times to get an estimate of the sampling distribution of our test statistic.</p>
-<div class="sourceCode" id="cb567"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb566"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">9697</span><span class="op">)</span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">do</span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, size <span class="op">=</span> <span class="fl">486</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="fl">121.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Figure <a href="HYPTESTDIST.html#fig:dens205-fig">20.5</a> is a plot of the sampling distribution of the absolute value of deviations.</p>
-<div class="sourceCode" id="cb568"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb567"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">sum</span>, fill <span class="op">=</span> <span class="st">"cyan"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">obs</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -530,7 +530,7 @@ Figure 20.5: Sampling distribution of the absolute deviations.
 </p>
 </div>
 <p>Notice how this distribution is skewed to the right and our test statistic seems to be more extreme.</p>
-<div class="sourceCode" id="cb569"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb568"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">sum</span> <span class="op">&gt;=</span> <span class="va">obs</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##  prop_TRUE 
 ## 0.01359864</code></pre>
@@ -672,7 +672,7 @@ Figure 20.5: Sampling distribution of the absolute deviations.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-15.</p>
+    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-16.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
