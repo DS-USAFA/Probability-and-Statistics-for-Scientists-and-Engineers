@@ -197,6 +197,7 @@ The cdf of $X$ is $F_X(x)=x^2$ where $0 \leq x \leq 1$. We will draw a uniform r
 
 
 ```r
+set.seed(1107)
 results <- do(10000)*sqrt(runif(1))
 ```
 
@@ -211,10 +212,10 @@ inspect(results)
 ```
 ## 
 ## quantitative variables:  
-##   name   class        min        Q1    median        Q3      max      mean
-## 1 sqrt numeric 0.00867969 0.4994148 0.7087789 0.8669466 0.999984 0.6679792
+##   name   class        min        Q1    median        Q3       max      mean
+## 1 sqrt numeric 0.01126465 0.5027012 0.7069864 0.8670356 0.9999379 0.6672924
 ##          sd     n missing
-## 1 0.2357817 10000       0
+## 1 0.2341494 10000       0
 ```
 
 Figure \@ref(fig:dens161-fig) is a density plot of the simulated original random variable.
@@ -264,10 +265,10 @@ inspect(y_results)
 ```
 ## 
 ## quantitative variables:  
-##   name   class      min         Q1     median         Q3           max
-## 1    y numeric -4.74677 -0.6943182 -0.3442117 -0.1427779 -1.604206e-05
+##   name   class       min         Q1     median         Q3           max
+## 1    y numeric -4.486086 -0.6877593 -0.3467439 -0.1426753 -6.207173e-05
 ##         mean        sd     n missing
-## 1 -0.4975508 0.4989269 10000       0
+## 1 -0.4969103 0.4933701 10000       0
 ```
 
 
