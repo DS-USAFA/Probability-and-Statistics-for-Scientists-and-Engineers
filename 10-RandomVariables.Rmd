@@ -48,7 +48,7 @@ Essentially, a random variable often helps us reduce a complex random experiment
 
 ### Discrete vs Continuous
 
-A *discrete* random variable has a sample space that consists of a countable set of values. $X$ in our example above is a discrete random variable. Note that "countable" does not necessarily mean "finite". For example, a random variable with a Poisson distribution (a topic for a later lesson) has a sample space of $\{0,1,2,...\}$. This sample space is unbounded, but it is considered *countably* infinite, and thus the random variable would be considered discrete. 
+A *discrete* random variable has a sample space that consists of a countable set of values. $X$ in our example above is a discrete random variable. Note that "countable" does not necessarily mean "finite". For example, a random variable with a Poisson distribution (a topic for a later chapter) has a sample space of $\{0,1,2,...\}$. This sample space is unbounded, but it is considered *countably* infinite, and thus the random variable would be considered discrete. 
 
 A *continuous* random variable has a sample space that is a continuous interval. For example, let $Y$ be the random variable corresponding to the height of a randomly selected individual. $Y$ is a continuous random variable because a person could measure 68.1 inches, 68.2 inches, or perhaps any value in between. Note that when we measure height, our precision is limited by our measuring device, so we are technically "discretizing" height. However, even in these cases, we typically consider height to be a continuous random variable. 
 
@@ -68,7 +68,7 @@ $$
 f_X(x)=\Prob(X=x)
 $$
 
-Note that the pmf is a *function*. Functions have input and output. The input of a pmf is any real number. The output of a pmf is the probability that the random variable takes the inputted value. The pmf must follow the axioms of probability described in the Probability Rules lesson. Primarily,
+Note that the pmf is a *function*. Functions have input and output. The input of a pmf is any real number. The output of a pmf is the probability that the random variable takes the inputted value. The pmf must follow the axioms of probability described in the Probability Rules chapter. Primarily,
 
 1) For all $x \in \mathbb{R}$, $0 \leq f_X(x) \leq 1$.
 

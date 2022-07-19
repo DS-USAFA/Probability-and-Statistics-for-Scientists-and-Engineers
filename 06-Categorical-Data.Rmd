@@ -274,7 +274,7 @@ tally(number ~ spam, data = email, margins = TRUE, format = "proportion")
 However, because it is more insightful for this application to consider the fraction of spam in each category of the `number` variable, we prefer Figure \@ref(fig:mosaic62-fig).
 
 
-### The only pie chart you will see in this course, hopefully
+### The only pie chart you will see in this book, hopefully
 
 While pie charts are well known, they are typically not as useful as other charts in a data analysis. A **pie chart** is shown in Figure \@ref(fig:pie61-fig). It is generally more difficult to compare group sizes in a pie chart than in a bar plot, especially when categories have nearly identical counts or proportions. Just as human vision is bad at distinguishing areas, human vision is also bad at distinguishing angles. In the case of the *none* and *big* categories, the difference is so slight you may be unable to distinguish any difference in group sizes.
 

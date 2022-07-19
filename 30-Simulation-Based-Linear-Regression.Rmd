@@ -248,7 +248,7 @@ This is similar to the interval we found last chapter. We are 95% confident that
 
 The prediction interval is more difficult to perform with a bootstrap. We would have to account for the variability of the slope but also the residual variability since this is an individual observation. We can't just add the residual to the predicted value. Remember the variance of a sum of independent variables is the sum of the variances. But here we have standard deviations and we can't just add them. 
 
-Let's look at what would happen if we try. First as a reminder, the prediction interval at 60 grams of `carb` using the assumption of normally distributed errors from last lesson is:
+Let's look at what would happen if we try. First as a reminder, the prediction interval at 60 grams of `carb` using the assumption of normally distributed errors from last chapter is:
 
 ```{r}
 predict(star_mod,newdata = data.frame(carb=60),interval="prediction")

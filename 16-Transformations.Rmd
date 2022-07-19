@@ -174,7 +174,7 @@ $$
 
 ### Simulation  
 
-We can also get an estimate of the distribution by simulating the random variable. If we have the cdf and can find its inverse, then just like we did in an earlier lesson, we sample from a uniform distribution and apply the inverse to get the distribution.
+We can also get an estimate of the distribution by simulating the random variable. If we have the cdf and can find its inverse, then just like we did in an earlier chapter, we sample from a uniform distribution and apply the inverse to get the distribution.
 
 In an earlier chapter we had the example:
 

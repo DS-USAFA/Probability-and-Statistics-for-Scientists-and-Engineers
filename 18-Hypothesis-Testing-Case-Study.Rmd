@@ -299,7 +299,7 @@ $$
 
   a. What proportion of patients in the treatment group and what proportion of patients in the control group died? Note: One approach for investigating whether or not the treatment is effective is to use a randomization technique.  
     
-  b. What are the claims being tested? Use the same null and alternative hypothesis notation used in the lesson notes.   
+  b. What are the claims being tested? Use the same null and alternative hypothesis notation used in the chapter notes.   
   
   c.  The paragraph below describes the set up for such approach, if we were to do it without using statistical software. Fill in the blanks with a number or phrase, whichever is appropriate.  
 

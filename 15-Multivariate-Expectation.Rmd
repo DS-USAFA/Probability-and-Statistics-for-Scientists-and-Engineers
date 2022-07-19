@@ -149,7 +149,7 @@ Find $\E(X)$, $\E(X+Y)$, $\E(XY)$, and $\Var(XY)$.
 
 ### E(X)
 
-We found the marginal pdf of $X$ in a previous lesson, so we should use that now: 
+We found the marginal pdf of $X$ in a previous chapter, so we should use that now: 
 $$
 \E(X)=\int_0^2 x\frac{x}{2}\diff x = \frac{x^3}{6}\bigg|_0^2= \frac{4}{3} 
 $$
@@ -269,7 +269,7 @@ new_data %>%
   summarize(Var = mean(z))
 ```
 
-That was much easier. Notice that we are really just estimating these expectations with the simulations. The mathematical answers are the true population values while our simulations are sample estimates. In a few lessons we will discuss estimators in more detail.
+That was much easier. Notice that we are really just estimating these expectations with the simulations. The mathematical answers are the true population values while our simulations are sample estimates. In a few chapters we will discuss estimators in more detail.
 
 ## Covariance/Correlation
 
