@@ -162,8 +162,6 @@ email50 %>%
    gf_histogram(~num_char, binwidth = 5, boundary = 0, 
                 xlab = "The Number of Characters (in thousands)",
                 color = "black", fill = "cyan") %>%
-   gf_histogram(~num_char, binwidth = 5, boundary = 0,
-                xlab = "The Number of Characters (in thousands)") %>%
    gf_theme(theme_classic())
 ```
 
@@ -187,7 +185,7 @@ Besides the mean, what can you see in the dot plot that you cannot see in the hi
 
 #### Making our own histogram  
 
-Let's take some time to make a simple histogram. We will use the **ggformula** package, which is a wrapper for the **ggplot2** package. 
+Let's take some time to make a simple histogram. We will use the **ggformula** package, which is a wrapper for the **ggplot2** package.
 
 Here are two questions:  
 *What do we want `R` to do?* and   
@@ -206,7 +204,10 @@ gf_histogram(~num_char, data = email50, color = "black", fill = "cyan")
 ```
 
 > **Exercise**:   
-Look at the help menu for `gf_histogram` and change the x-axis label, change the bin width to 5, and have the left bin start at 0.^[Here is the code for the exercise: 
+Look at the help menu for `gf_histogram` and change the x-axis label, change the bin width to 5, and have the left bin start at 0.
+
+Here is the code for the exercise: 
+
 ```
 email50 %>%
    gf_histogram(~num_char, binwidth = 5,boundary = 0,
@@ -214,7 +215,6 @@ email50 %>%
    color = "black", fill = "cyan") %>%
    gf_theme(theme_classic())
 ```
-]
 
 
 In addition to looking at whether a distribution is skewed or symmetric, histograms can be used to identify modes. A **mode** is represented by a prominent peak in the distribution.^[Another definition of mode, which is not typically used in statistics, is the value with the most occurrences. It is common to have *no* observations with the same value in a data set, which makes this other definition useless for many real data sets.] There is only one prominent peak in the histogram of `num_char`.
@@ -469,7 +469,10 @@ favstats(~num_char, data = email50)
 
 How are the *sample statistics* of the `num_char` data set affected by the observation with value 64,401? What would we see if this email wasn't present in the data set? What would happen to these *summary statistics* if the observation at 64,401 had been even larger, say 150,000? These scenarios are plotted alongside the original data in Figure \@ref(fig:box2-fig), and sample statistics are computed in `R`.
 
-```{r box2-fig,echo=FALSE,fig.cap="Box plots of the original character count data and two modified data sets, one where the outlier at 64,401 is dropped and one where its value is increased."}
+First, we create a new data frame containing the three scenarios: 1) the original data, 2) the data with the extreme observation dropped, and 3) the data with the extreme observation increased.  
+
+```{r}
+# code to create the `robust` data frame
 p1 <- email50$num_char
 p2 <- p1[-which.max(p1)]
 p3 <- p1
@@ -478,23 +481,20 @@ p3[which.max(p1)] <- 150
 robust <- data.frame(value = c(p1, p2, p3),
                      group = c(rep("Original", 50),
                              rep("Dropped", 49), rep("Increased", 50)))
+head(robust)
+```
 
+Now, we create a side-by-side boxplots for each scenario.  
+
+```{r box2-fig,fig.cap="Box plots of the original character count data and two modified data sets, one where the outlier at 64,401 is dropped and one where its value is increased."}
 gf_boxplot(value ~ group, data = robust, xlab = "Data Group",
            ylab = "Number of Characters (in thousands)") %>%
    gf_theme(theme_classic())
 ```
 
+We can also use `favstats()` to calculate summary statistics of `value` by `group`, using the `robust` data frame created above. 
 
 ```{r}
-p1 <- email50$num_char
-p2 <- p1[-which.max(p1)]
-p3 <- p1
-p3[which.max(p1)] <- 150
-
-robust <- data.frame(value = c(p1, p2, p3), 
-                     group = c(rep("Original", 50), 
-                               rep("Dropped", 49), rep("Increased", 50)))
-
 favstats(value ~ group, data = robust)
 ```
 
