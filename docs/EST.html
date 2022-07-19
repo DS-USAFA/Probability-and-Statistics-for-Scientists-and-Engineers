@@ -156,7 +156,7 @@ Figure 17.1: A graphical representation of probability and statistics. In probab
 <span class="header-section-number">17.3</span> Estimation<a class="anchor" aria-label="anchor" href="#estimation"><i class="fas fa-link"></i></a>
 </h2>
 <p>Recall that in probability models, we have complete information about the population and we use that to describe the expected behavior of samples from that population. In statistics we are given a sample from a population about which we know little or nothing.</p>
-<p>In this lesson, we will discuss <em>estimation</em>. Given a sample, we would like to estimate population parameters. There are several ways to do that. We will discuss two methods: <em>method of moments</em> and <em>maximum likelihood</em>.</p>
+<p>In this chapter, we will discuss <em>estimation</em>. Given a sample, we would like to estimate population parameters. There are several ways to do that. We will discuss two methods: <em>method of moments</em> and <em>maximum likelihood</em>.</p>
 </div>
 <div id="method-of-moments" class="section level2" number="17.4">
 <h2>
@@ -326,7 +326,7 @@ l(\pi;\boldsymbol{x})=\log L(\pi;\boldsymbol{x})= \log \left(\pi^{\sum x_i}(1-\p
 <span class="header-section-number">17.5.3</span> Numerical Methods<a class="anchor" aria-label="anchor" href="#numerical-methods"><i class="fas fa-link"></i></a>
 </h3>
 <p>When obtaining MLEs, there are times when analytical methods (calculus) are not feasible or not possible. In the Pruim book <span class="citation">(<a href="references.html#ref-pruim2011foundations" role="doc-biblioref">R. J. Pruim 2011</a>)</span>, there is a good example regarding data from Old Faithful at Yellowstone National Park. We need to load the <strong>fastR2</strong> package for this example.</p>
-<div class="sourceCode" id="cb437"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rpruim/fastR2">fastR2</a></span><span class="op">)</span></span></code></pre></div>
 <p>The <code>faithful</code> data set is preloaded into <code>R</code> and contains 272 observations of 2 variables: eruption time in minutes and waiting time until next eruption. If we plot eruption durations, we notice that the distribution appears bimodal, see Figure <a href="EST.html#fig:hist171-fig">17.3</a>.</p>
 <div class="figure">
@@ -341,7 +341,7 @@ Figure 17.3: Histogram of eruption durations of Old Faithful.
 \]</span></p>
 <p>where <span class="math inline">\(f\)</span> is the pdf of the normal distribution with parameters specified.</p>
 <p>We have five parameters to estimate: <span class="math inline">\(\alpha, \mu_1, \mu_2, \sigma_1, \sigma_2\)</span>. Obviously, estimation through differentiation is not feasible and thus we will use numerical methods. This code is less in the spirit of <code>tidyverse</code> but we want you to see the example. Try to work your way through the code below:</p>
-<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb441"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Define function for pdf of eruptions as a mixture of normals</span></span>
 <span><span class="va">dmix</span><span class="op">&lt;-</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span>,<span class="va">alpha</span>,<span class="va">mu1</span>,<span class="va">mu2</span>,<span class="va">sigma1</span>,<span class="va">sigma2</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="kw">if</span><span class="op">(</span><span class="va">alpha</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">mu2</span>,<span class="va">sigma2</span><span class="op">)</span></span>
@@ -351,7 +351,7 @@ Figure 17.3: Histogram of eruption durations of Old Faithful.
 <span>  <span class="op">}</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Next write a function for the log-likelihood function. <code>R</code> is a vector based programming language so we send <code>theta</code> into the function as a vector argument.</p>
-<div class="sourceCode" id="cb439"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Create the log-likelihood function</span></span>
 <span><span class="va">loglik</span><span class="op">&lt;-</span><span class="kw">function</span><span class="op">(</span><span class="va">theta</span>,<span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">alpha</span><span class="op">=</span><span class="va">theta</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
@@ -369,17 +369,17 @@ Figure 17.3: Histogram of eruption durations of Old Faithful.
 <span>  <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">density</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Find the sample mean and standard deviation of the eruption data to use as starting points in the optimization routine.</p>
-<div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb443"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m</span><span class="op">&lt;-</span><span class="fu">mean</span><span class="op">(</span><span class="va">faithful</span><span class="op">$</span><span class="va">eruptions</span><span class="op">)</span></span>
 <span><span class="va">s</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">faithful</span><span class="op">$</span><span class="va">eruptions</span><span class="op">)</span></span></code></pre></div>
 <p>Use the function <code><a href="http://rpruim.github.io/fastR2/reference/nlmax.html">nlmax()</a></code> to maximize the non-linear log-likelihood function.</p>
-<div class="sourceCode" id="cb441"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mle</span><span class="op">&lt;-</span><span class="fu"><a href="http://rpruim.github.io/fastR2/reference/nlmax.html">nlmax</a></span><span class="op">(</span><span class="va">loglik</span>,p<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="va">m</span><span class="op">-</span><span class="fl">1</span>,<span class="va">m</span><span class="op">+</span><span class="fl">1</span>,<span class="va">s</span>,<span class="va">s</span><span class="op">)</span>,x<span class="op">=</span><span class="va">faithful</span><span class="op">$</span><span class="va">eruptions</span><span class="op">)</span><span class="op">$</span><span class="va">estimate</span></span>
 <span><span class="va">mle</span></span></code></pre></div>
 <pre><code>## [1] 0.3484040 2.0186065 4.2733410 0.2356208 0.4370633</code></pre>
 <p>So, according to our MLEs, about 34.84% of the eruptions belong to the first normal distribution (the one on the left). Furthermore the parameters of that first distribution are a mean of 2.019 and a standard deviation of 0.236. Likewise, 65.16% of the eruptions belong to the second normal with mean of 4.27 and standard deviation of 0.437.</p>
 <p>Plotting the density atop the histogram shows a fairly good fit:</p>
-<div class="sourceCode" id="cb443"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dmix2</span><span class="op">&lt;-</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">dmix</span><span class="op">(</span><span class="va">x</span>,<span class="va">mle</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,<span class="va">mle</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,<span class="va">mle</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>,<span class="va">mle</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>,<span class="va">mle</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#y_old&lt;-dmix2(seq(1,6,.01))</span></span>
 <span><span class="co">#x_old&lt;-seq(1,6,.01)</span></span>
@@ -467,7 +467,7 @@ Figure 17.4: Histogram of eruption duration with estimated mixture of normals pl
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-17.</p>
+    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -54,7 +54,7 @@ There is a lot going on in this theorem. First, notice we are drawing independen
 
 3. The mean and variance of the sampling distribution are a function of the mean and variance of the parent population, the sample size $n$, and the form of the new random variable.  
 
-If you go back and review examples, exercises, and homework problems from the previous lessons on hypothesis testing, you will see that we found symmetric, normal-"looking" sampling distributions when we created test statistics that involved the process of summing. One example of a skewed sampling distribution was the golf ball example, where our test statistic was the difference between the maximum and minimum value (and did not involve a summation of all the observations). It is hard to overstate the historical importance of this theorem to the field of inferential statistics and science in general.
+If you go back and review examples, exercises, and homework problems from the previous chapters on hypothesis testing, you will see that we found symmetric, normal-"looking" sampling distributions when we created test statistics that involved the process of summing. One example of a skewed sampling distribution was the golf ball example, where our test statistic was the difference between the maximum and minimum value (and did not involve a summation of all the observations). It is hard to overstate the historical importance of this theorem to the field of inferential statistics and science in general.
 
 To get an understanding and some intuition of the central limit theorem, let's simulate some data and evaluate.
 
@@ -100,7 +100,7 @@ favstats(~mean, data = results)
 ##  0.1 0.5    0.7 0.8   1 0.64932 0.1505716 10000       0
 ```
 
-Remember from our lessons on probability, these results for the mean and standard deviation do not depend on the CLT. They are results from the properties of expectation on independent samples. The distribution of the sample mean (i.e., the shape of the sampling distribution) is approximately normal as a result of the CLT, Figure \@ref(fig:dens214-fig).
+Remember from our chapters on probability, these results for the mean and standard deviation do not depend on the CLT. They are results from the properties of expectation on independent samples. The distribution of the sample mean (i.e., the shape of the sampling distribution) is approximately normal as a result of the CLT, Figure \@ref(fig:dens214-fig).
 
 <div class="figure">
 <img src="21-Central-Limit-Theorem_files/figure-html/dens214-fig-1.png" alt="Sampling distribution of the sample proportion with sample size of 10." width="672" />
@@ -333,7 +333,7 @@ First, we summarize rules of thumb for the use of the CLT and $t$ distribution.
 
 Now, let's discuss the assumptions of the $t$ distribution and how to check them.
 
-1. Independence of observations. This is a difficult assumption to verify. If we collect a simple random sample from less than 10\% of the population, or if the data are from an experiment or random process, we feel better about this assumption. If the data comes from an experiment, we can plot the data versus time collected to see if there are any patterns that indicate a relationship. A design of experiment course discusses these ideas in more detail.  
+1. Independence of observations. This is a difficult assumption to verify. If we collect a simple random sample from less than 10\% of the population, or if the data are from an experiment or random process, we feel better about this assumption. If the data comes from an experiment, we can plot the data versus time collected to see if there are any patterns that indicate a relationship. A design of experiments course discusses these ideas in more detail.  
 
 2. Observations come from a nearly normal distribution. This second condition is difficult to verify with small data sets. We often (i) take a look at a plot of the data for obvious departures from the normal distribution, usually in the form of prominent outliers, and (ii) consider whether any previous experiences alert us that the data may not be nearly normal. However, if the sample size is somewhat large, then we can relax this condition. For example, moderate skew is acceptable when the sample size is 30 or more, and strong skew is acceptable when the sample size is about 60 or more.
 
@@ -520,7 +520,7 @@ c. $H_{A}: \mu \ne \mu_{0}$, $n = 7$, $T = 0.83$
 d. $H_{A}: \mu > \mu_{0}$, $n = 28$, $T = 2.13$  
 
 
-4. In this lesson, we have used the expression *degrees of freedom* a lot. What does this expression mean? When we have sample of size $n$, why are there $n-1$ degrees of freedom for the $t$ distribution? Give a short concise answer (about one paragraph). You will likely have to do a little research on your own.  
+4. In this chapter, we have used the expression *degrees of freedom* a lot. What does this expression mean? When we have sample of size $n$, why are there $n-1$ degrees of freedom for the $t$ distribution? Give a short concise answer (about one paragraph). You will likely have to do a little research on your own.  
 
 5. Deborah Toohey is running for Congress, and her campaign manager claims she has more than 50\% support from the district's electorate. Ms. Toohey's opponent claimed that Ms. Toohey has **less** than 50\%. Set up a hypothesis test to evaluate who is right.  
 

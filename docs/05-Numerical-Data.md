@@ -18,7 +18,7 @@
 
 ## Numerical Data
 
-This lesson introduces techniques for exploring and summarizing numerical variables. The `email50` and `mlb` data sets from the **openintro** package and a subset of `county_complete` from **usdata** provide rich opportunities for examples. Recall that outcomes of numerical variables are numbers on which it is reasonable to perform basic arithmetic operations. For example, the `pop2010` variable, which represents the population of counties in 2010, is numerical since we can sensibly discuss the difference or ratio of the populations in two counties. On the other hand, area codes and zip codes are not numerical.
+This chapter introduces techniques for exploring and summarizing numerical variables. The `email50` and `mlb` data sets from the **openintro** package and a subset of `county_complete` from the **usdata** package provide rich opportunities for examples. Recall that outcomes of numerical variables are numbers on which it is reasonable to perform basic arithmetic operations. For example, the `pop2010` variable, which represents the population of counties in 2010, is numerical since we can sensibly discuss the difference or ratio of the populations in two counties. On the other hand, area codes and zip codes are not numerical.
 
 
 ### Scatterplots for paired data 
@@ -147,7 +147,7 @@ Besides the mean, what can you see in the dot plot that you cannot see in the hi
 
 #### Making our own histogram  
 
-Let's take some time to make a simple histogram. We will use the **ggformula** package, which is a wrapper for the **ggplot2** package. 
+Let's take some time to make a simple histogram. We will use the **ggformula** package, which is a wrapper for the **ggplot2** package.
 
 Here are two questions:  
 *What do we want `R` to do?* and   
@@ -169,7 +169,10 @@ gf_histogram(~num_char, data = email50, color = "black", fill = "cyan")
 <img src="05-Numerical-Data_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 > **Exercise**:   
-Look at the help menu for `gf_histogram` and change the x-axis label, change the bin width to 5, and have the left bin start at 0.^[Here is the code for the exercise: 
+Look at the help menu for `gf_histogram` and change the x-axis label, change the bin width to 5, and have the left bin start at 0.
+
+Here is the code for the exercise: 
+
 ```
 email50 %>%
    gf_histogram(~num_char, binwidth = 5,boundary = 0,
@@ -177,7 +180,6 @@ email50 %>%
    color = "black", fill = "cyan") %>%
    gf_theme(theme_classic())
 ```
-]
 
 
 In addition to looking at whether a distribution is skewed or symmetric, histograms can be used to identify modes. A **mode** is represented by a prominent peak in the distribution.^[Another definition of mode, which is not typically used in statistics, is the value with the most occurrences. It is common to have *no* observations with the same value in a data set, which makes this other definition useless for many real data sets.] There is only one prominent peak in the histogram of `num_char`.
@@ -278,7 +280,7 @@ Earlier, the concept of shape of a distribution was introduced. A good descripti
 > *Example*:   
 Describe the distribution of the `num_char` variable using the histogram in Figure \@ref(fig:hist5-fig). The description should incorporate the center, variability, and shape of the distribution, and it should also be placed in context: the number of characters in emails. Also note any especially unusual cases/observations.^[The distribution of email character counts is unimodal and very strongly skewed to the high end (right skewed). Many of the counts fall near the mean at 11,600, and most fall within one standard deviation (13,130) of the mean. There is one exceptionally long email with about 65,000 characters.]
 
-In practice, the variance and standard deviation are sometimes used as a means to an end, where the *end* is being able to accurately estimate the uncertainty associated with a sample statistic. For example, later in the course we will use the variance and standard deviation to assess how close the sample mean is to the population mean.
+In practice, the variance and standard deviation are sometimes used as a means to an end, where the *end* is being able to accurately estimate the uncertainty associated with a sample statistic. For example, later in the book we will use the variance and standard deviation to assess how close the sample mean is to the population mean.
 
 
 ### Box plots, quartiles, and the median
@@ -384,23 +386,50 @@ favstats(~num_char, data = email50)
 
 How are the *sample statistics* of the `num_char` data set affected by the observation with value 64,401? What would we see if this email wasn't present in the data set? What would happen to these *summary statistics* if the observation at 64,401 had been even larger, say 150,000? These scenarios are plotted alongside the original data in Figure \@ref(fig:box2-fig), and sample statistics are computed in `R`.
 
-<div class="figure">
-<img src="05-Numerical-Data_files/figure-html/box2-fig-1.png" alt="Box plots of the original character count data and two modified data sets, one where the outlier at 64,401 is dropped and one where its value is increased." width="672" />
-<p class="caption">(\#fig:box2-fig)Box plots of the original character count data and two modified data sets, one where the outlier at 64,401 is dropped and one where its value is increased.</p>
-</div>
-
+First, we create a new data frame containing the three scenarios: 1) the original data, 2) the data with the extreme observation dropped, and 3) the data with the extreme observation increased.  
 
 
 ```r
+# code to create the `robust` data frame
 p1 <- email50$num_char
 p2 <- p1[-which.max(p1)]
 p3 <- p1
 p3[which.max(p1)] <- 150
 
-robust <- data.frame(value = c(p1, p2, p3), 
-                     group = c(rep("Original", 50), 
-                               rep("Dropped", 49), rep("Increased", 50)))
+robust <- data.frame(value = c(p1, p2, p3),
+                     group = c(rep("Original", 50),
+                             rep("Dropped", 49), rep("Increased", 50)))
+head(robust)
+```
 
+```
+##    value    group
+## 1 21.705 Original
+## 2  7.011 Original
+## 3  0.631 Original
+## 4  2.454 Original
+## 5 41.623 Original
+## 6  0.057 Original
+```
+
+Now, we create a side-by-side boxplots for each scenario.  
+
+
+```r
+gf_boxplot(value ~ group, data = robust, xlab = "Data Group",
+           ylab = "Number of Characters (in thousands)") %>%
+   gf_theme(theme_classic())
+```
+
+<div class="figure">
+<img src="05-Numerical-Data_files/figure-html/box2-fig-1.png" alt="Box plots of the original character count data and two modified data sets, one where the outlier at 64,401 is dropped and one where its value is increased." width="672" />
+<p class="caption">(\#fig:box2-fig)Box plots of the original character count data and two modified data sets, one where the outlier at 64,401 is dropped and one where its value is increased.</p>
+</div>
+
+We can also use `favstats()` to calculate summary statistics of `value` by `group`, using the `robust` data frame created above. 
+
+
+```r
 favstats(value ~ group, data = robust)
 ```
 

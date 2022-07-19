@@ -24,7 +24,7 @@ Recall the four general steps of building a confidence interval:
 
 4) Use this distribution to obtain a range of feasible values (confidence interval) for the parameter.  
 
-We previously used the central limit theorem to determine the distribution of our estimate. In this lesson, we will build *bootstrap distribution*s for our sample estimates.
+We previously used the central limit theorem to determine the distribution of our estimate. In this chapter, we will build *bootstrap distribution*s for our sample estimates.
 
 
 ## Bootstrapping  
@@ -816,7 +816,7 @@ Again, we find similar results with the percentile confidence interval.
 
 1. Are there more types of bootstrap techniques?  
 
-    Yes! There are many excellent bootstrap techniques. We have only chosen to present two bootstrap techniques that could be explained in a single lesson and that are also reasonably reliable. There are many adjustments that can be made to speed up and improve accuracy. Packages such as **resample** and **boot** are more appropriate for these situations.  
+    Yes! There are many excellent bootstrap techniques. We have only chosen to present two bootstrap techniques that could be explained in a single chapter and that are also reasonably reliable. There are many adjustments that can be made to speed up and improve accuracy. Packages such as **resample** and **boot** are more appropriate for these situations.  
 
 
 2. I've heard the percentile bootstrap is very robust.  

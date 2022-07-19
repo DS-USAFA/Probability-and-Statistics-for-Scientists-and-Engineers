@@ -137,7 +137,7 @@
 <h2>
 <span class="header-section-number">32.2</span> Logistic regression introduction<a class="anchor" aria-label="anchor" href="#logistic-regression-introduction"><i class="fas fa-link"></i></a>
 </h2>
-<p>In this lesson we introduce <strong>logistic regression</strong> as a tool for building models when there is a categorical response variable with two levels. Logistic regression is a type of <strong>generalized linear model</strong> (GLM) for response variables where the assumptions of normally distributed errors is not appropriate. We are prepping you for advanced statistical models and machine learning, where we will explore predictive models of many different types of response variables including ones that don’t assume an underlying functional relationship between inputs and outputs. So cool!</p>
+<p>In this chapter we introduce <strong>logistic regression</strong> as a tool for building models when there is a categorical response variable with two levels. Logistic regression is a type of <strong>generalized linear model</strong> (GLM) for response variables where the assumptions of normally distributed errors is not appropriate. We are prepping you for advanced statistical models and machine learning, where we will explore predictive models of many different types of response variables including ones that don’t assume an underlying functional relationship between inputs and outputs. So cool!</p>
 <p>GLMs can be thought of as a two-stage modeling approach. We first model the response variable using a probability distribution, such as the binomial or Poisson distribution. Second, we model the parameter of the distribution using a collection of predictors and a special form of multiple regression.</p>
 <p>To explore and explain these ideas, we will again use the Ebay auctions of a video game called <strong>Mario Kart</strong> for the Nintendo Wii. Remember, the data set is in the file <code>mariokart.csv</code> and includes results from 141 auctions.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Diez DM, Barr CD, and etinkaya-Rundel M. 2012. &lt;code&gt;openintro&lt;/code&gt;: OpenIntro data sets and supplemental functions. &lt;a href="http://cran.r-project.org/web/packages/openintro" class="uri"&gt;http://cran.r-project.org/web/packages/openintro&lt;/a&gt;&lt;/p&gt;'><sup>112</sup></a></p>
 <p>In this chapter, we want the outcome variable of interest to be game condition, <code>cond</code>. In Chapter <a href="LRMULTI.html#LRMULTI">31</a> we used the total price of an auction as the response. We are moving from a quantitative response to a binary qualitative variable. If we were only interested in determining if an association exists between the variables <code>cond</code> and <code>total_pr</code>, we could use linear regression with <code>total_pr</code> as the response. However, in this problem we want to predict game condition. We will start by reviewing some of the previous models and then introduce logistic regression. We will finish with a multiple logistic regression model, more than one predictor.</p>
@@ -146,7 +146,7 @@
 <span class="header-section-number">32.2.1</span> Mario Kart data<a class="anchor" aria-label="anchor" href="#mario-kart-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>Read the data and summarize.</p>
-<div class="sourceCode" id="cb1078"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1081"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mariokart</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/mariokart.csv"</span>, col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mariokart</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 10 x 12
@@ -163,7 +163,7 @@
 ##  9 20039206~        3     29 used      0.99    4        47   priori~          27
 ## 10 33036416~        7      8 used     20.0     4        50   firstC~         201
 ## # ... with 3 more variables: stock_photo &lt;chr&gt;, wheels &lt;dbl&gt;, title &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb1080"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1083"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">mariokart</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
@@ -215,14 +215,14 @@
 <code>wheels</code>: the number of Wii wheels included with the auction (a <strong>Wii wheel</strong> is a plastic racing wheel that holds the Wii controller and is an optional but helpful accessory for playing Mario Kart)</li>
 </ol>
 <p>Remember that we removed a couple of outlier sales that included multiple items. Before we start let’s clean up the data again to include removing those outliers.</p>
-<div class="sourceCode" id="cb1082"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1085"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mariokart</span> <span class="op">&lt;-</span> <span class="va">mariokart</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">total_pr</span> <span class="op">&lt;=</span> <span class="fl">100</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>cond <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">cond</span><span class="op">)</span>,</span>
 <span>         stock_photo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">stock_photo</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">cond</span>, <span class="va">stock_photo</span>, <span class="va">total_pr</span>, <span class="va">duration</span>, <span class="va">wheels</span><span class="op">)</span></span></code></pre></div>
 <p>Next let’s summarize the data.</p>
-<div class="sourceCode" id="cb1083"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1086"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">mariokart</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
@@ -244,7 +244,7 @@
 <span class="header-section-number">32.2.2</span> Analyzing contingency table<a class="anchor" aria-label="anchor" href="#analyzing-contingency-table"><i class="fas fa-link"></i></a>
 </h3>
 <p>As a review and introduction to logistic regression, let’s analyze the relationship between game condition and stock photo.</p>
-<div class="sourceCode" id="cb1085"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1088"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">cond</span> <span class="op">~</span> <span class="va">stock_photo</span>, data <span class="op">=</span> <span class="va">mariokart</span>, margins <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>      format <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##        stock_photo
@@ -253,7 +253,7 @@
 ##   used  0.8888889 0.4761905
 ##   Total 1.0000000 1.0000000</code></pre>
 <p>We could analyze this by comparing the proportion of new condition games for each stock photo value using both randomization, empirical <span class="math inline">\(p\)</span>-values, and the central limit theorem. We will just use an exact permutation test, <strong>Fisher Exact Test</strong>, which just uses the hypergeometric distribution.</p>
-<div class="sourceCode" id="cb1087"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1090"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/fisher.test.html">fisher.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">cond</span> <span class="op">+</span> <span class="va">stock_photo</span>, data <span class="op">=</span> <span class="va">mariokart</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  Fisher's Exact Test for Count Data
@@ -309,10 +309,10 @@ Figure 32.1: Logitstic function with some example points plotted.
 <p>Here we create a model with just an intercept.</p>
 <p>In <code>R</code> we use the <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> function to fit a logistic regression model. It has the same formula format as <code>lm</code> but also requires a <code>family</code> argument. Since our response is binary, we use <code>binomial</code>. If we wanted to use <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> for linear regression assuming normally distributed residual, the family argument would be <code>gaussian</code>. This implies that multiple linear regression with the assumption of normally distributed errors is a special case of a generalized linear model. In <code>R</code>, the response is a 0/1 variable, we can control the outcome of interest, the 1, by using a logical argument in the formula.</p>
 <p>First to understand the output of logistic regression, let’s just run a model with an intercept term. Notice in the code chunk that the left hand side of the formula has a logical argument, this gives a 0/1 output with 1 being the value we want to predict.</p>
-<div class="sourceCode" id="cb1089"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1092"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mario_mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">cond</span> <span class="op">==</span> <span class="st">"new"</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">mariokart</span>, family <span class="op">=</span> <span class="st">"binomial"</span><span class="op">)</span></span></code></pre></div>
 <p>Let’s get regression output using the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> function.</p>
-<div class="sourceCode" id="cb1090"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1093"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mario_mod1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -347,7 +347,7 @@ Figure 32.1: Logitstic function with some example points plotted.
   \tag{32.2}
 \end{equation}\]</span></p>
 <p>Solving Equation <a href="LOGREG.html#eq:logistic2">(32.2)</a> for <span class="math inline">\(p_i\)</span>: <span class="math inline">\(\frac{e^{-0.329}}{1 + e^{-0.329}} = 0.418\)</span>. This is the estimated probability of the game condition being new. This point is plotted in Figure <a href="LOGREG.html#fig:logit-fig">32.1</a>. We can also check this result using a summary table.</p>
-<div class="sourceCode" id="cb1092"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1095"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">cond</span>, data <span class="op">=</span> <span class="va">mariokart</span>, format <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## cond
 ##       new      used 
@@ -358,10 +358,10 @@ Figure 32.1: Logitstic function with some example points plotted.
 <span class="header-section-number">32.2.5</span> Second model - stock_photo<a class="anchor" aria-label="anchor" href="#second-model---stock_photo"><i class="fas fa-link"></i></a>
 </h3>
 <p>Now that we are starting to understand the logistic regression model. Let’s add a predictor variable, <code>stock_photo</code>. Again, we have many methods to determine if a relationship between two categorical variables exists, logistic regression is another method.</p>
-<div class="sourceCode" id="cb1094"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1097"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mario_mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">cond</span> <span class="op">==</span> <span class="st">"new"</span> <span class="op">~</span> <span class="va">stock_photo</span>, data <span class="op">=</span> <span class="va">mariokart</span>,</span>
 <span>                 family <span class="op">=</span> <span class="st">"binomial"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb1095"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1098"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mario_mod2</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -388,7 +388,7 @@ Figure 32.1: Logitstic function with some example points plotted.
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>Examining the <strong><span class="math inline">\(p\)</span>-value</strong> associated with the coefficient for <code>stock_photo</code>, we can see that it is significant. Thus we reject the null hypothesis that the coefficient is zero. There is a relationship between <code>cond</code> and <code>stock_photo</code>, as we found with the Fisher’s test.</p>
 <p>We can use the <strong>broom</strong> package to summarize the output and generate model fits.</p>
-<div class="sourceCode" id="cb1097"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1100"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">mario_mod2</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   term           estimate std.error statistic   p.value
@@ -396,7 +396,7 @@ Figure 32.1: Logitstic function with some example points plotted.
 ## 1 (Intercept)       -2.08     0.530     -3.92 0.0000881
 ## 2 stock_photoyes     2.17     0.565      3.85 0.000119</code></pre>
 <p>Let’s convert these coefficients to estimated probabilities using the <code><a href="https://generics.r-lib.org/reference/augment.html">augment()</a></code> function. We need to specify the output as the <em>response</em>, this returns a probability, or else we will get the logit of the probability, the link value.</p>
-<div class="sourceCode" id="cb1099"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1102"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">mario_mod2</span>,</span>
 <span>        newdata <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>stock_photo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"yes"</span>, <span class="st">"no"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>        type.predict <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span></span></code></pre></div>
@@ -406,7 +406,7 @@ Figure 32.1: Logitstic function with some example points plotted.
 ## 1 yes           0.524
 ## 2 no            0.111</code></pre>
 <p>These are the conditional probability of a new condition based on status of <code>stock_photo</code>. We can see this using the <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code> function.</p>
-<div class="sourceCode" id="cb1101"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1104"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">cond</span> <span class="op">~</span> <span class="va">stock_photo</span>, data <span class="op">=</span> <span class="va">mariokart</span>, margins <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>      format <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##        stock_photo
@@ -415,10 +415,10 @@ Figure 32.1: Logitstic function with some example points plotted.
 ##   used  0.8888889 0.4761905
 ##   Total 1.0000000 1.0000000</code></pre>
 <p>Or from the model coefficients.</p>
-<div class="sourceCode" id="cb1103"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1106"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2.079442</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2.079442</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.1111111</code></pre>
-<div class="sourceCode" id="cb1105"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1108"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2.079442</span> <span class="op">+</span> <span class="fl">2.174752</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2.079442</span> <span class="op">+</span> <span class="fl">2.174752</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.5238095</code></pre>
 <blockquote>
@@ -426,10 +426,10 @@ Figure 32.1: Logitstic function with some example points plotted.
 Fit a logistic regression model with <code>cond</code> as used and <code>stock_photo</code> as a predictor.</p>
 </blockquote>
 <p>We repeat the code from above.</p>
-<div class="sourceCode" id="cb1107"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1110"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mario_mod3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">cond</span> <span class="op">==</span> <span class="st">"used"</span> <span class="op">~</span> <span class="va">stock_photo</span>, data <span class="op">=</span> <span class="va">mariokart</span>,</span>
 <span>                 family <span class="op">=</span> <span class="st">"binomial"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb1108"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1111"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">mario_mod3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   term           estimate std.error statistic   p.value
@@ -437,7 +437,7 @@ Fit a logistic regression model with <code>cond</code> as used and <code>stock_p
 ## 1 (Intercept)        2.08     0.530      3.92 0.0000881
 ## 2 stock_photoyes    -2.17     0.565     -3.85 0.000119</code></pre>
 <p>Again, let’s convert these coefficients to estimated probabilities using the <code><a href="https://generics.r-lib.org/reference/augment.html">augment()</a></code> function.</p>
-<div class="sourceCode" id="cb1110"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1113"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">mario_mod3</span>,</span>
 <span>        newdata <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>stock_photo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"yes"</span>, <span class="st">"no"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>        type.predict <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span></span></code></pre></div>
@@ -455,7 +455,7 @@ Fit a logistic regression model with <code>cond</code> as used and <code>stock_p
 </h3>
 <p>At this point it seems that we created a great deal of work just to get the same results that we had from other methods. However, the logistic regression model allows us to add other predictors and it also gives us standard errors for the parameter estimates.</p>
 <p>Let’s first discuss the interpretation of coefficients. As a reminder, the fitted coefficients are reported from the model summary.</p>
-<div class="sourceCode" id="cb1112"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1115"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">mario_mod2</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   term           estimate std.error statistic   p.value
@@ -503,7 +503,7 @@ Fit a logistic regression model with <code>cond</code> as used and <code>stock_p
 <span class="header-section-number">32.2.7</span> Comparing models<a class="anchor" aria-label="anchor" href="#comparing-models"><i class="fas fa-link"></i></a>
 </h3>
 <p>Just as is the case for linear regression, we can compare nested models. When we examine the output of model there is a line with the <strong>residual deviance</strong>. This model is not fit using least squares but using maximum likelihood. Deviance is 2 times the negative of the log likelihood. We negate the log likelihood so that maximizing the log likelihood is equivalent to minimizing the negation. This allows the same thought process of minimizing deviance as we had for minimizing residual sum of squares. The multiplication by 2 is because an asymptotic argument shows that 2 times the negative log likelihood is approximately distributed as a Chi-square random variable.</p>
-<div class="sourceCode" id="cb1114"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mario_mod2</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -529,7 +529,7 @@ Fit a logistic regression model with <code>cond</code> as used and <code>stock_p
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>Similar to linear regression, we can use the <code><a href="https://rdrr.io/r/stats/anova.html">anova()</a></code> function to compare nested models.</p>
-<div class="sourceCode" id="cb1116"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">mario_mod1</span>, <span class="va">mario_mod2</span>, test <span class="op">=</span> <span class="st">"Chisq"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Analysis of Deviance Table
 ## 
@@ -543,7 +543,7 @@ Fit a logistic regression model with <code>cond</code> as used and <code>stock_p
 <p>Adding, <code>stock_photo</code> is a statistically significant result. The <span class="math inline">\(p\)</span>-value is different from the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> function, because it assumes the coefficient follows a normal distribution. Different assumptions, but the same conclusion.</p>
 <p>The use of <span class="math inline">\(p\)</span>-value to pick a best model uses statistical assumptions to select the features. Another approach is to use a predictive measure. In machine learning contexts, we use many different predictive performance measures for model selection but many are based on a <strong>confusion matrix</strong>.</p>
 <p>A confusion matrix generates a 2 by 2 matrix of predicted outcomes versus actual outcomes. For logistic regression, the output is a probability of success. To convert this to 0/1 outcome we pick a threshold. It is common to use 0.5 as the threshold. Probabilities above 0.5 are considered a success, in the context of our problem a new game. Let’s generate the confusion matrix.</p>
-<div class="sourceCode" id="cb1118"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">mario_mod2</span>, type.predict <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>actual<span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">'cond'</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span>result <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">.fitted</span> <span class="op">&gt;</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
@@ -555,7 +555,7 @@ Fit a logistic regression model with <code>cond</code> as used and <code>stock_p
 ##      1 50 55</code></pre>
 <p>One single number summary metric is accuracy. In this case the model was correct on <span class="math inline">\(32 + 55\)</span> out of the 141 cases, or 61.7% are correct.</p>
 <p>This looks like the same table we get comparing <code>cond</code> to <code>stock_photo</code>. This is the case because of the binary nature of the predictor. We only have two probability values in our prediction.</p>
-<div class="sourceCode" id="cb1120"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1123"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">cond</span> <span class="op">+</span> <span class="va">stock_photo</span>, data <span class="op">=</span> <span class="va">mariokart</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##       stock_photo
 ## cond   no yes
@@ -569,11 +569,11 @@ Fit a logistic regression model with <code>cond</code> as used and <code>stock_p
 <span class="header-section-number">32.3</span> Multiple logistic regression<a class="anchor" aria-label="anchor" href="#multiple-logistic-regression"><i class="fas fa-link"></i></a>
 </h2>
 <p>Let’s add <code>total_pr</code> to the model. This model is something that we could not have done in the previous models we learned about.</p>
-<div class="sourceCode" id="cb1122"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mario_mod4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">cond</span> <span class="op">==</span> <span class="st">"new"</span> <span class="op">~</span> <span class="va">stock_photo</span> <span class="op">+</span> <span class="va">total_pr</span>,</span>
 <span>                  data <span class="op">=</span> <span class="va">mariokart</span>, family <span class="op">=</span> <span class="st">"binomial"</span><span class="op">)</span></span></code></pre></div>
 <p>Notice that we use the same formula syntax as we had done with linear regression.</p>
-<div class="sourceCode" id="cb1123"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mario_mod4</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -607,7 +607,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 <p>For one dollar increase in total price of the auction, the odds ratio increases by <span class="math inline">\(exp(\beta_2)\)</span>, 1.21, for a given condition of the stock photo variable.</p>
 <p>This is similar to an interpretation we had for multiple linear regression. We had to specify that the other predictors are held constant and then we increased the variable of interest by one unit.</p>
 <p>Besides using individual predictor <span class="math inline">\(p\)</span>-values to assess the model, can also use a confusion matrix.</p>
-<div class="sourceCode" id="cb1125"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1128"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">mario_mod4</span>, type.predict <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>actual <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">'cond'</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span>result <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">.fitted</span> <span class="op">&gt;</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
@@ -619,11 +619,11 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 ##      1 11 43</code></pre>
 <p>For our new model, the accuracy improved to <span class="math inline">\(71 + 43\)</span> out of the 141 cases, or 80.9.7%. Without a measure of variability, we don’t know if this is significant improvement or just the variability in the modeling procedure. On the surface, it appears to be an improvement.</p>
 <p>As we experiment to improve the model, let’s use a quadratic term in our model.</p>
-<div class="sourceCode" id="cb1127"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1130"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mario_mod5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">cond</span> <span class="op">==</span> <span class="st">"new"</span> <span class="op">~</span> <span class="va">stock_photo</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">total_pr</span>, <span class="fl">2</span><span class="op">)</span>,</span>
 <span>                  data <span class="op">=</span> <span class="va">mariokart</span>, family <span class="op">=</span> <span class="st">"binomial"</span><span class="op">)</span></span></code></pre></div>
 <p>Using the individual <span class="math inline">\(p\)</span>-values, it appears that a quadratic term is significant but it is marginal.</p>
-<div class="sourceCode" id="cb1128"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1131"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mario_mod5</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -651,7 +651,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 ## 
 ## Number of Fisher Scoring iterations: 6</code></pre>
 <p>We get a similar result if we use the <code><a href="https://rdrr.io/r/stats/anova.html">anova()</a></code> function.</p>
-<div class="sourceCode" id="cb1130"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1133"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">mario_mod4</span>, <span class="va">mario_mod5</span>, test <span class="op">=</span> <span class="st">"Chi"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Analysis of Deviance Table
 ## 
@@ -663,7 +663,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>Finally, the confusion matrix results in a slight improvement in accuracy to 82.3%.</p>
-<div class="sourceCode" id="cb1132"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">mario_mod5</span>, type.predict <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>actual <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">'cond'</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span>result <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">.fitted</span> <span class="op">&gt;</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
@@ -674,7 +674,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 ##      0 69 12
 ##      1 13 47</code></pre>
 <p>Almost any classifier will have some error. In the model above, we have decided that it is okay to allow up to 9%, 13 out of 141, of the games for sale to be classified as new when they are really used. If we wanted to make it a little harder to classify an item as new, we could use a cutoff, threshold, of 0.75. This would have two effects. Because it raises the standard for what can be classified as new, it reduces the number of used games that are classified as new. However, it will also fail to correctly classify an increased fraction of new games as new, see the code below. No matter the complexity and the confidence we might have in our model, these practical considerations are absolutely crucial to making a helpful classification model. Without them, we could actually do more harm than good by using our statistical model. This tradeoff is similar to the one we found between Type 1 and Type 2 errors. Notice that the accuracy has also dropped slightly.</p>
-<div class="sourceCode" id="cb1134"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1137"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">mario_mod5</span>, type.predict <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>actual <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">'cond'</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span>result <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">.fitted</span> <span class="op">&gt;</span> <span class="fl">0.75</span><span class="op">)</span>,</span>
@@ -689,7 +689,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 <p><strong>Exercise</strong> Find the probability that an auctioned game is new if the total price is 50 and it uses a stock photo.</p>
 </blockquote>
 <p>It is not clear how to use the coefficients in the regression output since <code>R</code> is performing a transformation on <code>total_pr</code> variable. Let’s approach this in two ways. First we will use the <code><a href="https://generics.r-lib.org/reference/augment.html">augment()</a></code> function to do the hard work.</p>
-<div class="sourceCode" id="cb1136"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1139"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">mario_mod5</span>,</span>
 <span>        newdata <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>stock_photo <span class="op">=</span> <span class="st">"yes"</span>, total_pr <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>,</span>
 <span>        type.predict <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span></span></code></pre></div>
@@ -699,7 +699,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 ## 1 yes               50   0.693</code></pre>
 <p>We predict that the probability of the game being new if it uses a stock photo and the total price is 50 is 69.3%.</p>
 <p>If we want to recreate the calculation, we need to use a <strong>raw</strong> polynomial.</p>
-<div class="sourceCode" id="cb1138"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1141"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mario_mod6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">cond</span> <span class="op">==</span> <span class="st">"new"</span> <span class="op">~</span> <span class="va">stock_photo</span> <span class="op">+</span> <span class="va">total_pr</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,</span>
 <span>                  data <span class="op">=</span> <span class="va">mariokart</span>, family <span class="op">=</span> <span class="st">"binomial"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">mario_mod6</span><span class="op">)</span></span></code></pre></div>
@@ -714,7 +714,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 <p><span class="math display">\[
 -30.67 + 2.04 + 0.969 * 50 -0.007*50^2 = 0.814
 \]</span></p>
-<div class="sourceCode" id="cb1140"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1143"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">mario_mod6</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">50</span>, <span class="fl">50</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
@@ -724,7 +724,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 <p><span class="math display">\[
 \frac{\ e^{.814}\ }{\ 1\ +\ e^{.814}\ } = 0.693
 \]</span></p>
-<div class="sourceCode" id="cb1142"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1145"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">.814</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">.814</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.6929612</code></pre>
 <div id="diagnostics-for-logistic-regression" class="section level3" number="32.3.1">
@@ -753,7 +753,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 <span class="header-section-number">32.4.1</span> Confidence intervals for a parameter<a class="anchor" aria-label="anchor" href="#confidence-intervals-for-a-parameter"><i class="fas fa-link"></i></a>
 </h3>
 <p>First, let’s use the <code>R</code> built-in function <code><a href="https://rdrr.io/r/stats/confint.html">confint()</a></code> to find the confidence interval for the simple logistic regression model coefficients.</p>
-<div class="sourceCode" id="cb1144"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1147"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">mario_mod4</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Waiting for profiling to be done...</code></pre>
 <pre><code>##                      2.5 %     97.5 %
@@ -761,7 +761,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 ## stock_photoyes   0.8888216  3.6268545
 ## total_pr         0.1297024  0.2705395</code></pre>
 <p>These are not symmetric around the estimate because the method is using a profile-likelihood method. We can get symmetric intervals based on the central limit theorem using the function <code><a href="https://rdrr.io/r/stats/confint.html">confint.default()</a></code>.</p>
-<div class="sourceCode" id="cb1147"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint.default</a></span><span class="op">(</span><span class="va">mario_mod4</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##                      2.5 %     97.5 %
 ## (Intercept)    -15.0107641 -7.6282654
@@ -769,11 +769,11 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 ## total_pr         0.1236583  0.2632982</code></pre>
 <p>These results are close. We recommend using the profile-likelihood method.</p>
 <p>Now, let’s work with the <code>do()</code> function to determine if we can get similar results.</p>
-<div class="sourceCode" id="cb1149"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1152"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">do</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="va">mario_mod4</span></span></code></pre></div>
 <pre><code>##   Intercept stock_photoyes  total_pr .row .index
 ## 1 -11.31951       2.116325 0.1934783    1      1</code></pre>
-<div class="sourceCode" id="cb1151"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1154"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">mario_mod4</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 3 x 5
 ##   term           estimate std.error statistic       p.value
@@ -782,19 +782,19 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 ## 2 stock_photoyes    2.12     0.686       3.09 0.00202      
 ## 3 total_pr          0.193    0.0356      5.43 0.0000000560</code></pre>
 <p>It looks like <code>do()</code> is performing as expected. Let’s now perform one resample to see what happens.</p>
-<div class="sourceCode" id="cb1153"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">23</span><span class="op">)</span></span>
 <span><span class="fu">do</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">cond</span> <span class="op">==</span> <span class="st">"new"</span> <span class="op">~</span> <span class="va">stock_photo</span> <span class="op">+</span> <span class="va">total_pr</span>,</span>
 <span>          data <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">mariokart</span><span class="op">)</span>, family <span class="op">=</span> <span class="st">"binomial"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   Intercept stock_photoyes  total_pr .row .index
 ## 1 -14.06559       4.945683 0.1940279    1      1</code></pre>
 <p>Again, it looks like what we expect. Now let’s bootstrap the coefficients and summarize the results.</p>
-<div class="sourceCode" id="cb1155"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1158"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">5011</span><span class="op">)</span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">do</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">cond</span> <span class="op">==</span> <span class="st">"new"</span> <span class="op">~</span> <span class="va">stock_photo</span> <span class="op">+</span> <span class="va">total_pr</span>, </span>
 <span>                        data <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">mariokart</span><span class="op">)</span>, family <span class="op">=</span> <span class="st">"binomial"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
-<div class="sourceCode" id="cb1157"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1160"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   Intercept stock_photoyes  total_pr .row .index
 ## 1 -11.22155       1.665492 0.1986654    1      1
@@ -804,7 +804,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 ## 5 -10.86631       3.255767 0.1672335    1      5
 ## 6 -13.62425       1.842765 0.2533934    1      6</code></pre>
 <p>Now we will plot the bootstrap sampling distribution on the parameter associated with <code>total_pr</code>.</p>
-<div class="sourceCode" id="cb1159"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1162"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">total_pr</span>, fill <span class="op">=</span> <span class="st">"cyan"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -812,7 +812,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 <span>          x <span class="op">=</span> <span class="st">"total price paramater estimate"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="32-Logistic-Regression_files/figure-html/unnamed-chunk-43-1.png" width="672"></div>
 <p>The printout from the logistic regression model assumes normality for the sampling distribution of the <code>total_pr</code> coefficient, but it appears to be positively skewed, skewed to the right. The 95% confidence interval found using <code><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata()</a></code>.</p>
-<div class="sourceCode" id="cb1160"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1163"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">total_pr</span>, data <span class="op">=</span> <span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##          lower     upper central.p
 ## 2.5% 0.1388783 0.3082659      0.95</code></pre>
@@ -823,7 +823,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 <span class="header-section-number">32.4.2</span> Confidence intervals for probability of success<a class="anchor" aria-label="anchor" href="#confidence-intervals-for-probability-of-success"><i class="fas fa-link"></i></a>
 </h3>
 <p>We can use the results from the bootstrap to get a confidence interval on probability of success. We will calculate a confidence for a game with a stock photo and total price of $50. As a reminder, the probability of the game being new is 0.69.</p>
-<div class="sourceCode" id="cb1162"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">mario_mod5</span>,</span>
 <span>        newdata <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>stock_photo <span class="op">=</span> <span class="st">"yes"</span>, total_pr <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>,</span>
 <span>        type.predict <span class="op">=</span> <span class="st">"response"</span><span class="op">)</span></span></code></pre></div>
@@ -832,7 +832,7 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 ##   &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 yes               50   0.693</code></pre>
 <p>The key is to use the coefficient from each resampled data set to calculate a probability of success.</p>
-<div class="sourceCode" id="cb1164"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1167"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   Intercept stock_photoyes  total_pr .row .index
 ## 1 -11.22155       1.665492 0.1986654    1      1
@@ -841,10 +841,10 @@ Interpret the coefficient associated with the predictor <code>total_pr</code>.</
 ## 4 -19.25785       5.816050 0.2829247    1      4
 ## 5 -10.86631       3.255767 0.1672335    1      5
 ## 6 -13.62425       1.842765 0.2533934    1      6</code></pre>
-<div class="sourceCode" id="cb1166"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results_pred</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pred <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span><span class="op">*</span><span class="op">(</span><span class="va">Intercept</span> <span class="op">+</span> <span class="va">stock_photoyes</span> <span class="op">+</span> <span class="fl">50</span><span class="op">*</span><span class="va">total_pr</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb1167"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1170"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">pred</span>, data <span class="op">=</span> <span class="va">results_pred</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##        lower     upper central.p
 ## 2.5% 0.50388 0.7445598      0.95</code></pre>
@@ -953,7 +953,7 @@ Are there any outliers that are likely to have a very large influence on the log
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-17.</p>
+    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

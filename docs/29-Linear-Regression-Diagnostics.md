@@ -61,7 +61,7 @@ You may have noticed some other information that appeared in the summary of our 
 
 ### Residual Standard Error
 
-The "residual standard error" is the estimate of $\sigma$, the unexplained variance in our response. In our example, this turned out to be 78.26. If the assumptions of normality and constant variance are valid, we would expect the majority, 68\%, of the observed values at a given input to be within $\pm 78.26$ of the mean value.
+The "residual standard error" is the estimate of $\sigma$, the unexplained variance in our response. In our example, this turned out to be 78.26. If the assumptions of normality and constant variance are valid, we would expect the majority, 68\%, of the observed values at a given input to be within $\pm 78.26$ (one standard deviation) of the mean value. We would expect 95\% of the observed values at a given input to be within $\pm 156.52$ (two standard deviations) of the mean value. 
 
 If we want to extract just this value from the model object, first recognize that `summary(my.model)` is a list with several components:
 

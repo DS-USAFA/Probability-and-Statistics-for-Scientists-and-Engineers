@@ -194,10 +194,10 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 </h3>
 <p>The table of data shows that 35 bank supervisors recommended promotion and 13 did not. Now, suppose the bankers’ decisions were independent of gender, that is the null hypothesis is true. Then, if we conducted the experiment again with a different random assignment of files, differences in promotion rates would be based only on random fluctuation. We can actually perform this <strong>randomization</strong>, which simulates what would have happened if the bankers’ decisions had been independent of gender but we had distributed the files differently.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The test procedure we employ in this section is formally called a &lt;strong&gt;permutation test&lt;/strong&gt;.&lt;/p&gt;"><sup>72</sup></a> We will walk through the steps next.</p>
 <p>First let’s import the data.</p>
-<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">discrim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/discrimination_study.csv"</span><span class="op">)</span></span></code></pre></div>
 <p>Let’s inspect the data set.</p>
-<div class="sourceCode" id="cb445"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb448"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">discrim</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
@@ -208,7 +208,7 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 ## 1 female (50%), male (50%)                     
 ## 2 promoted (72.9%), not_promoted (27.1%)</code></pre>
 <p>Let’s look at a table of the data, showing <em>gender</em> versus <em>decision</em>.</p>
-<div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb450"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">gender</span> <span class="op">+</span> <span class="va">decision</span>, <span class="va">discrim</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##         decision
 ## gender   not_promoted promoted Total
@@ -217,12 +217,12 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 ##   Total            13       35    48</code></pre>
 <p>Let’s do some categorical data cleaning. To get the <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code> results to look like our initial table, we need to change the variables from characters to factors and reorder the levels. By default, factor levels are ordered alphabetically, but we want <em>promoted</em> and <em>male</em> to appear as the first levels in the table.</p>
 <p>We will use <code><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_if()</a></code> to convert character variables to factors and <code><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel()</a></code> to reorder the levels.</p>
-<div class="sourceCode" id="cb449"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb452"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">discrim</span> <span class="op">&lt;-</span> <span class="va">discrim</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_if</a></span><span class="op">(</span><span class="va">is.character</span>, <span class="va">as.factor</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>gender <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">gender</span>, <span class="st">"male"</span><span class="op">)</span>,</span>
 <span>         decision <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">decision</span>, <span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb450"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb453"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">discrim</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   gender decision    
@@ -233,7 +233,7 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 ## 4 female promoted    
 ## 5 female promoted    
 ## 6 female promoted</code></pre>
-<div class="sourceCode" id="cb452"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb455"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">gender</span> <span class="op">+</span> <span class="va">decision</span>, <span class="va">discrim</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##         decision
 ## gender   promoted not_promoted Total
@@ -242,7 +242,7 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 ##   Total        35           13    48</code></pre>
 <p>Now that we have the data in the form that we want, we are ready to conduct the <em>permutation test</em>, a simulation of what would have happened if the bankers’ decisions had been independent of gender but we had distributed the files differently. To think about this <em>simulation</em>, imagine we actually had the personnel files. We thoroughly shuffle 48 personnel files, 24 labeled <em>male</em> and 24 labeled <em>female</em>, and deal these files into two stacks. We will deal 35 files into the first stack, which will represent the 35 supervisors who recommended promotion. The second stack will have 13 files, and it will represent the 13 supervisors who recommended against promotion. That is, we keep the same number of files in the <em>promoted</em> and <em>not_promoted</em> categories, and imagine simply shuffling the <em>male</em> and <em>female</em> labels around. Remember that the files are identical except for the listed gender. This simulation then assumes that gender is not important and, thus, we can randomly assign the files to any of the supervisors. Then, as we did with the original data, we tabulate the results and determine the fraction of <em>male</em> and <em>female</em> candidates who were promoted. Since we don’t actually physically have the files, we will do this shuffle via computer code.</p>
 <p>Since the randomization of files in this simulation is independent of the promotion decisions, any difference in the two fractions is entirely due to chance. The following code shows the results of such a simulation.</p>
-<div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb457"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">gender</span><span class="op">)</span> <span class="op">+</span> <span class="va">decision</span>, <span class="va">discrim</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##                decision
@@ -256,12 +256,12 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 What is the difference in promotion rates between the two simulated groups? How does this compare to the observed difference, 29.2%, from the actual study?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(18/24 - 17/24 = 0.042\)&lt;/span&gt; or about 4.2% in favor of the men. This difference due to chance is much smaller than the difference observed in the actual groups.&lt;/p&gt;'><sup>73</sup></a></p>
 </blockquote>
 <p>Calculating by hand will not help in a simulation, so we must write a function or use an existing one. We will use <code><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffprop()</a></code> from the <strong>mosaic</strong> package. The code to find the difference for the original data is:</p>
-<div class="sourceCode" id="cb456"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb459"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffprop</a></span><span class="op">(</span><span class="va">decision</span> <span class="op">~</span> <span class="va">gender</span>, data <span class="op">=</span> <span class="va">discrim</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   diffprop 
 ## -0.2916667</code></pre>
 <p>Notice that this is subtracting the proportion of males promoted from the proportion of females promoted. This does not impact our results as this is an arbitrary decision. We just need to be consistent in our analysis. If we prefer to use positive values, we can adjust the order easily.</p>
-<div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb461"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffprop</a></span><span class="op">(</span><span class="va">decision</span> <span class="op">~</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">gender</span>, <span class="st">"female"</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">discrim</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##  diffprop 
 ## 0.2916667</code></pre>
@@ -275,16 +275,16 @@ What is the difference in promotion rates between the two simulated groups? How 
 <p><span class="math display">\[
 \frac{48!}{24!\cdot24!} \approx 3.2 \cdot 10^{13}
 \]</span></p>
-<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb463"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">48</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">24</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">24</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 3.22476e+13</code></pre>
 <p>As is often the case, the number of all possible permutations is too large to find by hand or even via code. Thus, we will use a simulation, a subset of all possible permutations, to approximate the permutation test. Using simulation in this way is called a <em>randomization test</em>.</p>
 <p>Let’s simulate the experiment and plot the simulated values of the difference in the proportions of male and female files recommended for promotion.</p>
-<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2022</span><span class="op">)</span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">do</span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffprop</a></span><span class="op">(</span><span class="va">decision</span> <span class="op">~</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">gender</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">discrim</span><span class="op">)</span></span></code></pre></div>
 <p>In Figure <a href="CS3.html#fig:teststat1-fig">18.1</a>, we will insert a vertical line at the value of our observed difference.</p>
-<div class="sourceCode" id="cb463"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">diffprop</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="op">-</span><span class="fl">0.2916667</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -304,14 +304,14 @@ Figure 18.1: Distribution of test statistic.
 How often would you observe a difference as extreme as -29.2% (-0.292) according to the figure? (Often, sometimes, rarely, or never?)</p>
 </blockquote>
 <p>It appears that a difference as extreme as -29.2% due to chance alone would only happen rarely. We can estimate the probability using the <code>results</code> object.</p>
-<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>p_value <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">diffprop</span> <span class="op">&lt;=</span> <span class="va">obs</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   p_value
 ## 1  0.0257</code></pre>
 <p>In our simulations, only 2.6% of the simulated test statistics were less than or equal to the observed test statistic, as or more extreme relative to the null hypothesis. Such a low probability indicates that observing such a large difference in proportions from chance alone is rare. This probability is known as a <strong><span class="math inline">\(p\)</span>-value</strong>. The <span class="math inline">\(p\)</span>-value is a conditional probability, the probability of the observed value or more extreme given that the null hypothesis is true.</p>
 <p>We could have also found the exact <span class="math inline">\(p\)</span>-value using the hypergeometric distribution. We have 13 <em>not_promoted</em> positions, so we could have anywhere between 0 and 13 females not promoted. We observed 10 females not promoted. Thus, the exact <span class="math inline">\(p\)</span>-value from the hypergeometric distribution is the probability of 10 or more females not promoted (as or more extreme than the observed) when we select 13 people from a pool of 24 males and 24 females, and the selection is done without replacement.</p>
-<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb469"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">phyper</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">24</span>, <span class="fl">24</span>, <span class="fl">13</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.02449571</code></pre>
 <p>Again, we see a low probability, only 2.4%, of observing 10 or more females not promoted, given that the null hypothesis is true.</p>
@@ -384,7 +384,7 @@ There were 48 files and 48 supervisors. A total of 35 files were recommended for
 <p>The data is in a file called <code>Stanford_heart_study.csv</code>. Read the data in and answer the following questions.</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>What proportion of patients in the treatment group and what proportion of patients in the control group died? Note: One approach for investigating whether or not the treatment is effective is to use a randomization technique.</p></li>
-<li><p>What are the claims being tested? Use the same null and alternative hypothesis notation used in the lesson notes.</p></li>
+<li><p>What are the claims being tested? Use the same null and alternative hypothesis notation used in the chapter notes.</p></li>
 <li><p>The paragraph below describes the set up for such approach, if we were to do it without using statistical software. Fill in the blanks with a number or phrase, whichever is appropriate.</p></li>
 </ol>
 <blockquote>
@@ -436,7 +436,7 @@ There were 48 files and 48 supervisors. A total of 35 files were recommended for
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-17.</p>
+    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

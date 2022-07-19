@@ -248,7 +248,7 @@ categorical-data-1
 contingency-tables-and-bar-plots
 column-proportions
 segmented-bar-and-mosaic-plots
-the-only-pie-chart-you-will-see-in-this-course-hopefully
+the-only-pie-chart-you-will-see-in-this-book-hopefully
 comparing-numerical-data-across-groups
 homework-problems-5
 CS2

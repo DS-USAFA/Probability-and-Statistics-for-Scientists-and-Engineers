@@ -13,9 +13,9 @@
 
 ## Continuous distributions 
 
-In this lesson we will explore continuous distributions. This means we work with probability density functions and use them to find probabilities. Thus we must integrate, either numerically, graphically, or mathematically. The cumulative distribution function will also play an important role in this lesson. 
+In this chapter we will explore continuous distributions. This means we work with probability density functions and use them to find probabilities. Thus we must integrate, either numerically, graphically, or mathematically. The cumulative distribution function will also play an important role in this chapter. 
 
-There are many more distributions than the ones in this lesson but these are the most common and will set you up to learn and use any others in the future.
+There are many more distributions than the ones in this chapter but these are the most common and will set you up to learn and use any others in the future.
 
 ### Uniform distribution
 
@@ -57,9 +57,9 @@ integrate(function(x)dunif(x),0,1)
 
 ### Exponential distribution
 
-Recall from the lesson on named discrete distributions, we discussed the Poisson process. If arrivals follow a Poisson process, we know that the number of arrivals in a specified amount of time follows a Poisson distribution, and the time until the next arrival follows the *exponential* distribution. In the Poisson distribution, the number of arrivals is random and the interval is fixed. In the exponential distribution we change this, the interval is random and the arrivals are fixed at 1. This is a subtle point but worth the time to make sure you understand. 
+Recall from the chapter on named discrete distributions, we discussed the Poisson process. If arrivals follow a Poisson process, we know that the number of arrivals in a specified amount of time follows a Poisson distribution, and the time until the next arrival follows the *exponential* distribution. In the Poisson distribution, the number of arrivals is random and the interval is fixed. In the exponential distribution we change this, the interval is random and the arrivals are fixed at 1. This is a subtle point but worth the time to make sure you understand. 
 
-Let $X$ be the number of arrivals in a time interval $T$, where arrivals occur according to a Poisson process with an average of $\lambda$ arrivals per unit time interval. From the previous lesson, we know that $X\sim \textsf{Poisson}(\lambda T)$. Now let $Y$ be the time until the next arrival. Then $Y$ follows the exponential distribution with parameter $\lambda$ which has units of inverse base time:
+Let $X$ be the number of arrivals in a time interval $T$, where arrivals occur according to a Poisson process with an average of $\lambda$ arrivals per unit time interval. From the previous chapter, we know that $X\sim \textsf{Poisson}(\lambda T)$. Now let $Y$ be the time until the next arrival. Then $Y$ follows the exponential distribution with parameter $\lambda$ which has units of inverse base time:
 
 $$
 Y \sim \textsf{Expon}(\lambda)
@@ -312,7 +312,7 @@ $$
 \Var(Z)=\Var\left(\frac{X-\mu}{\sigma}\right)=\frac{1}{\sigma^2}\left(\Var(X)-0\right)=\frac{1}{\sigma^2} \sigma^2=1
 $$
 
-Note that this does not prove that $Z$ follows the standard normal distribution; we have merely shown that $Z$ has a mean of 0 and a variance of 1. We will discuss transformation of random variables in a later lesson. 
+Note that this does not prove that $Z$ follows the standard normal distribution; we have merely shown that $Z$ has a mean of 0 and a variance of 1. We will discuss transformation of random variables in a later chapter. 
 
 > *Example*:  
 Let $X \sim \textsf{Norm}(\mu=200,\sigma=15)$. Compute $\Prob(X\leq 160)$, $\Prob(180\leq X < 230)$, and $\Prob(X>\mu+\sigma)$. Find the median and 95th percentile of $X$. 

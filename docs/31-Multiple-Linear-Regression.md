@@ -752,7 +752,7 @@ We are 95\% confident that the price of a Mario Kart sale for a new item with 2 
 
 ### Diagnostics
 
-The diagnostics for the model are similar to what we did in a previous lesson. Nothing in these plots gives us concern; however, there is one leverage point, Figure \@ref(fig:diag305-fig).
+The diagnostics for the model are similar to what we did in a previous chapter. Nothing in these plots gives us concern; however, there is one leverage point, Figure \@ref(fig:diag305-fig).
 
 
 ```r

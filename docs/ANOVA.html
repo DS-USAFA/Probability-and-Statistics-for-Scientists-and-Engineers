@@ -160,10 +160,10 @@
 </h3>
 <p>Let’s revisit the MLB batting performance example. We would like to discern whether there are real differences between the batting performance of baseball players according to their position. We will now consider all four positions from the dataset: outfielder (<code>OF</code>), infielder (<code>IF</code>), designated hitter (<code>DH</code>), and catcher (<code>C</code>). The data is available in the <code>mlb_obp.csv</code> file. As a reminder, batting performance is measured by on-base percentage.</p>
 <p>Read the data into <code>R</code>.</p>
-<div class="sourceCode" id="cb663"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb665"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mlb_obp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/mlb_obp.csv"</span><span class="op">)</span></span></code></pre></div>
 <p>Let’s review our data:</p>
-<div class="sourceCode" id="cb664"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb666"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">mlb_obp</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
@@ -176,11 +176,11 @@
 ##   name   class   min    Q1 median     Q3   max     mean         sd   n missing
 ## 1  obp numeric 0.174 0.309  0.331 0.3545 0.437 0.332159 0.03570249 327       0</code></pre>
 <p>Next, change the variable <code>position</code> to a factor to give us greater control.</p>
-<div class="sourceCode" id="cb666"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb668"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mlb_obp</span> <span class="op">&lt;-</span> <span class="va">mlb_obp</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">position</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Let’s look at summary statistics of the on-base percentage by position, this time considering all four positions.</p>
-<div class="sourceCode" id="cb667"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb669"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   position   min      Q1 median      Q3   max      mean         sd   n missing
 ## 1        C 0.219 0.30000 0.3180 0.35700 0.405 0.3226154 0.04513175  39       0
@@ -198,7 +198,7 @@ Write the null and corresponding alternative hypotheses in plain language.<a cla
 Construct side-by-side boxplots.</p>
 </blockquote>
 <p>Figure <a href="ANOVA.html#fig:box231-fig">23.1</a> shows the side-by-side boxplots for all four positions.</p>
-<div class="sourceCode" id="cb669"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb671"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mlb_obp</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_boxplot</span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Position Played"</span>, y <span class="op">=</span> <span class="st">"On-Base Percentage"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -267,7 +267,7 @@ All observations must be independent. More specifically, observations must be in
 As with one- and two-sample testing for means, the normality assumption is especially important when the sample size is quite small. When we have larger data sets (and larger groups) and there are no extreme outliers, the normality condition is not usually a concern. The normal probability plots (quantile-quantile plots) for each group of the MLB data are shown below; there is some deviation from normality for infielders, but this isn’t a substantial concern since there are over 150 observations in that group and the outliers are not extreme. Sometimes in ANOVA, there are so many groups or so few observations per group that checking normality for each group isn’t reasonable. One solution is to combine the groups into one set of data. First, calculate the <strong>residuals</strong> of the baseball data, which are calculated by taking the observed values and subtracting the corresponding group means. For example, an outfielder with OBP of 0.435 would have a residual of <span class="math inline">\(0.435 - \bar{x}_{OF} = 0.082\)</span>. Then, to check the normality condition, create a normal probability plot using all the residuals simultaneously.</p>
 </blockquote>
 <p>Figure <a href="ANOVA.html#fig:qq233-fig">23.3</a> is the quantile-quantile plot to assess the normality assumption.</p>
-<div class="sourceCode" id="cb670"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb672"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mlb_obp</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_qq</span><span class="op">(</span><span class="op">~</span><span class="va">obp</span> <span class="op">|</span> <span class="va">position</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_qqline</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -286,18 +286,18 @@ The final assumption is that the variance within the groups is about equal from 
 <p>Let’s write the hypotheses for the MLB example again:</p>
 <p><span class="math inline">\(H_0\)</span>: The average on-base percentage is equal across the four positions.<br><span class="math inline">\(H_A\)</span>: The average on-base percentage varies across some (or all) groups.</p>
 <p>The test statistic is the ratio of the between-groups variance (mean square between groups, <span class="math inline">\(MSG\)</span>) and the pooled within-group variance (mean squared error, <span class="math inline">\(MSE\)</span>). We perform ANOVA in <code>R</code> using the <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> function, and use the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> function to extract the most important information from the output.</p>
-<div class="sourceCode" id="cb671"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb673"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##              Df Sum Sq  Mean Sq F value Pr(&gt;F)
 ## position      3 0.0076 0.002519   1.994  0.115
 ## Residuals   323 0.4080 0.001263</code></pre>
 <p>This table contains all the information we need. It has the degrees of freedom, sums of squares, mean squared errors, <span class="math inline">\(F\)</span> test statistic, and <span class="math inline">\(p\)</span>-value. The test statistic <span class="math inline">\(\left(\frac{MSG}{MSE}\right)\)</span> is 1.994, <span class="math inline">\(\frac{0.002519}{0.001263} = 1.994\)</span>. The <span class="math inline">\(p\)</span>-value is larger than 0.05, indicating the evidence is not strong enough to reject the null hypothesis at a significance level of 0.05. That is, the data do not provide strong evidence that the average on-base percentage varies by player’s primary field position.</p>
 <p>The calculation of the <span class="math inline">\(p\)</span>-value can also be done by finding the probability associated with the upper tail of the <span class="math inline">\(F\)</span> distribution:</p>
-<div class="sourceCode" id="cb673"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb675"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">pf</a></span><span class="op">(</span><span class="fl">1.994</span>, <span class="fl">3</span>, <span class="fl">323</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.1147443</code></pre>
 <p>Figure <a href="ANOVA.html#fig:dens234-fig">23.4</a> is a plot of the <span class="math inline">\(F\)</span> distribution with the observed <span class="math inline">\(F\)</span> test statistic shown as a red line.</p>
-<div class="sourceCode" id="cb675"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb677"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"f"</span>, df1 <span class="op">=</span> <span class="fl">3</span>, df2 <span class="op">=</span> <span class="fl">323</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">1.994</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -315,9 +315,9 @@ Figure 23.4: The F distribution
 </h4>
 <p>We can repeat the same analysis using a permutation test. We will first run it using a ratio of variances (mean squares) and then, for interest, as a difference in variances.</p>
 <p>We need a way to extract the mean squares from the output. The <strong>broom</strong> package contains a function called <code><a href="https://generics.r-lib.org/reference/tidy.html">tidy()</a></code> that cleans up output from functions and makes them into data frames.</p>
-<div class="sourceCode" id="cb676"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb678"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb677"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb679"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 2 x 6
@@ -326,7 +326,7 @@ Figure 23.4: The F distribution
 ## 1 position      3 0.00756 0.00252      1.99   0.115
 ## 2 Residuals   323 0.408   0.00126     NA     NA</code></pre>
 <p>Let’s summarize the values in the <code>meansq</code> column and develop our test statistic, the ratio of mean squares. We could just pull the statistic (using the <code><a href="https://dplyr.tidyverse.org/reference/pull.html">pull()</a></code> function) but we want to be able to generate a different test statistic, the difference of mean squares, as well.</p>
-<div class="sourceCode" id="cb679"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb681"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="va">meansq</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">/</span> <span class="va">meansq</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> </span></code></pre></div>
@@ -335,7 +335,7 @@ Figure 23.4: The F distribution
 ##   &lt;dbl&gt;
 ## 1  1.99</code></pre>
 <p>Now we are ready. First, get our observed test statistic using <code><a href="https://dplyr.tidyverse.org/reference/pull.html">pull()</a></code>.</p>
-<div class="sourceCode" id="cb681"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb683"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="va">meansq</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">/</span> <span class="va">meansq</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -343,7 +343,7 @@ Figure 23.4: The F distribution
 <span><span class="va">obs</span></span></code></pre></div>
 <pre><code>## [1] 1.994349</code></pre>
 <p>Let’s put our test statistic into a function that includes shuffling the <code>position</code> variable.</p>
-<div class="sourceCode" id="cb683"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb685"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">f_stat</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">position</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">x</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -351,17 +351,17 @@ Figure 23.4: The F distribution
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Now, we run our function.</p>
-<div class="sourceCode" id="cb684"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb686"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">5321</span><span class="op">)</span></span>
 <span><span class="fu">f_stat</span><span class="op">(</span><span class="va">mlb_obp</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.1185079</code></pre>
 <p>Next, we run the randomization test using the <code>do()</code> function. There is an easier way to do all of this work with the <strong>purrr</strong> package but we will continue with the work we have started.</p>
-<div class="sourceCode" id="cb686"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb688"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">5321</span><span class="op">)</span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">do</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fu">f_stat</span><span class="op">(</span><span class="va">mlb_obp</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>The above code is slow in executing because the <strong>tidyverse</strong> functions inside our <code>f_stat()</code> function are slow.</p>
 <p>Figure <a href="ANOVA.html#fig:hist235-fig">23.5</a> is a plot of the sampling distribution from the randomization test. The <span class="math inline">\(F\)</span> distribution is overlaid as a dark blue curve.</p>
-<div class="sourceCode" id="cb687"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb689"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_dhistogram</span><span class="op">(</span><span class="op">~</span><span class="va">result</span>, fill <span class="op">=</span> <span class="st">"cyan"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_dist</span><span class="op">(</span><span class="st">"f"</span>, df1 <span class="op">=</span> <span class="fl">3</span>, df2 <span class="op">=</span> <span class="fl">323</span>, color <span class="op">=</span> <span class="st">"darkblue"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -377,24 +377,24 @@ Figure 23.5: The sampling distribution of the ratio of variances randomization t
 </p>
 </div>
 <p>The <span class="math inline">\(p\)</span>-value is</p>
-<div class="sourceCode" id="cb688"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb690"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">result</span> <span class="op">&gt;=</span> <span class="va">obs</span><span class="op">)</span>, <span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## prop_TRUE 
 ## 0.0959041</code></pre>
 <p>This is a similar <span class="math inline">\(p\)</span>-value to the ANOVA output.</p>
 <p>Now, let’s repeat the analysis but use the difference in variance (mean squares) as our test statistic. We’ll define a new function that calculates the test statistic and then run the randomization test.</p>
-<div class="sourceCode" id="cb690"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb692"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">f_stat2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">position</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">x</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="va">meansq</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">-</span> <span class="va">meansq</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">stat</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb691"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb693"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">5321</span><span class="op">)</span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">do</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fu">f_stat2</span><span class="op">(</span><span class="va">mlb_obp</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Figure <a href="ANOVA.html#fig:hist236-fig">23.6</a> is the plot of the sampling distribution of the difference in variances.</p>
-<div class="sourceCode" id="cb692"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb694"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_dhistogram</span><span class="op">(</span><span class="op">~</span><span class="va">result</span>, fill <span class="op">=</span> <span class="st">"cyan"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0.001255972</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -409,7 +409,7 @@ Figure 23.6: The sampling distribution of the difference in variances randomizat
 </p>
 </div>
 <p>We need the observed test statistic in order to calculate a <span class="math inline">\(p\)</span>-value.</p>
-<div class="sourceCode" id="cb693"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb695"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">obp</span> <span class="op">~</span> <span class="va">position</span>, data <span class="op">=</span> <span class="va">mlb_obp</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="va">meansq</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">-</span> <span class="va">meansq</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -417,7 +417,7 @@ Figure 23.6: The sampling distribution of the difference in variances randomizat
 <span><span class="va">obs</span></span></code></pre></div>
 <pre><code>## [1] 0.001255972</code></pre>
 <p>The <span class="math inline">\(p\)</span>-value is</p>
-<div class="sourceCode" id="cb695"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb697"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">result</span> <span class="op">&gt;=</span> <span class="va">obs</span><span class="op">)</span>, <span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## prop_TRUE 
 ## 0.0959041</code></pre>
@@ -433,6 +433,24 @@ If we reject the null hypothesis in the ANOVA test, we know that at least one me
 <h2>
 <span class="header-section-number">23.4</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-22"><i class="fas fa-link"></i></a>
 </h2>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Census data.</strong> A group of researchers wants to conduct an Analysis of Variance to investigate whether there is a relationship between marital status and total personal income. They obtained a random sample of 500 observations from the 2000 U.S. Census. The data is available in the <code>census</code> data set in the <strong>openintro</strong> package.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>State the null and alternative hypotheses in context of the research problem. Note: there are six different marital status types.</p></li>
+<li><p>Using the <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> function, conduct an ANOVA using a significance level of <span class="math inline">\(\alpha = 0.05\)</span>. Clearly state your conclusion.</p></li>
+<li><p>Is an ANOVA, using the <span class="math inline">\(F\)</span> distribution, appropriate for this data set? Why or why not? Clearly communicate your answer, including appropriate data visualizations.</p></li>
+<li><p>Repeat part b), but use a randomization test this time. You should use <span class="math inline">\(F\)</span>, the test statistic for ANOVA, as your test statistic.</p></li>
+<li><p>How do we determine which groups are different?</p></li>
+<li><p>Below is a boxplot of the total personal income by marital status. We have “zoomed in” on the <span class="math inline">\(y\)</span>-axis, considering only total personal income between $0 and $100,000, and rotated the text on the <span class="math inline">\(x\)</span>-axis. The largest difference between sample means appears to be between the separated and married/spouse absent groups. Why can’t we simply determine whether there is a statistically significant difference between <span class="math inline">\(\mu_{\text{absent}}\)</span> and <span class="math inline">\(\mu_{\text{separated}}\)</span>?</p></li>
+</ol>
+<div class="sourceCode" id="cb699"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">census</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_boxplot</span><span class="op">(</span><span class="va">total_personal_income</span> <span class="op">~</span> <span class="va">marital_status</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_lims</span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100000</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="23-Analysis-of-Variance_files/figure-html/unnamed-chunk-19-1.png" width="672"></div>
 
 </div>
 </div>
@@ -470,7 +488,7 @@ If we reject the null hypothesis in the ANOVA test, we know that at least one me
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-17.</p>
+    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

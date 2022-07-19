@@ -33,7 +33,7 @@ Another common misunderstanding involves the direction of conditional probabilit
 
 ## Independence
 
-Two events, $A$ and $B$, are said to be independent if the probability of one occurring does not change whether or not the other has occurred. We looked at this last lesson but now we have another way of looking at it using conditional probabilities. For example, let's say the probability that a randomly selected student has seen the latest superhero movie is 0.55. What if we randomly select a student and we see that he/she is wearing a black backpack? Does that probability change? Likely not, since movie attendance is probably not related to choice of backpack color. These two events are independent. 
+Two events, $A$ and $B$, are said to be independent if the probability of one occurring does not change whether or not the other has occurred. We looked at this last chapter but now we have another way of looking at it using conditional probabilities. For example, let's say the probability that a randomly selected student has seen the latest superhero movie is 0.55. What if we randomly select a student and we see that he/she is wearing a black backpack? Does that probability change? Likely not, since movie attendance is probably not related to choice of backpack color. These two events are independent. 
 
 Mathematically, $A$ and $B$ are considered independent if and only if
 $$

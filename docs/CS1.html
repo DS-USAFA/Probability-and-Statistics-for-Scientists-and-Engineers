@@ -135,7 +135,7 @@
 <h2>
 <span class="header-section-number">1.2</span> Introduction to descriptive statistical modeling<a class="anchor" aria-label="anchor" href="#introduction-to-descriptive-statistical-modeling"><i class="fas fa-link"></i></a>
 </h2>
-<p>In this first block of material, we will focus on data types, collection methods, summaries, and visualizations. We also intend to introduce computing via the <code>R</code> package. Programming in <code>R</code> requires some focus early in the course and we will supplement with some online courses. There is relatively little mathematics in this first block.</p>
+<p>In this first block of material, we will focus on data types, collection methods, summaries, and visualizations. We also intend to introduce computing via the <code>R</code> package. Programming in <code>R</code> requires some focus early in this book and we will supplement with some online courses. There is relatively little mathematics in this first block.</p>
 </div>
 <div id="the-data-analytic-process" class="section level2" number="1.3">
 <h2>
@@ -150,7 +150,7 @@
 <li><p>Form a conclusion.</p></li>
 <li><p>Make decisions based on the conclusion.</p></li>
 </ol>
-<p>This is typical of an explanatory process because it starts with a research question and proceeds. However, sometimes an analysis is exploratory in nature. There is data but not necessarily a research question. The purpose of the analysis is to find interesting features in the data and sometimes generate hypotheses. In this course we focus on the explanatory aspects of analysis.</p>
+<p>This is typical of an explanatory process because it starts with a research question and proceeds. However, sometimes an analysis is exploratory in nature. There is data but not necessarily a research question. The purpose of the analysis is to find interesting features in the data and sometimes generate hypotheses. In this book, we focus on the explanatory aspects of analysis.</p>
 <p>Statistics as a subject focuses on making stages 2-5 objective, rigorous, and efficient. That is, statistics has three primary components:</p>
 <ul>
 <li>How best can we collect data?<br>
@@ -159,13 +159,13 @@
 </li>
 <li>And what can we infer from the analysis?</li>
 </ul>
-<p>The topics scientists investigate are as diverse as the questions they ask. However, many of these investigations can be addressed with a small number of data collection techniques, analytic tools, and fundamental concepts in statistical inference. This lesson provides a glimpse into these and other themes we will encounter throughout the rest of the course.</p>
+<p>The topics scientists investigate are as diverse as the questions they ask. However, many of these investigations can be addressed with a small number of data collection techniques, analytic tools, and fundamental concepts in statistical inference. This chapter provides a glimpse into these and other themes we will encounter throughout the rest of the book.</p>
 </div>
 <div id="case-study" class="section level2" number="1.4">
 <h2>
 <span class="header-section-number">1.4</span> Case study<a class="anchor" aria-label="anchor" href="#case-study"><i class="fas fa-link"></i></a>
 </h2>
-<p>In this lesson we will consider an experiment that studies effectiveness of stents in treating patients at risk of stroke. <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.nejm.org/doi/full/10.1056/NEJMoa1105335"&gt;Chimowitz MI, Lynn MJ, Derdeyn CP, et al. 2011. Stenting versus Aggressive Medical Therapy for Intracranial Arterial Stenosis. New England Journal of Medicine 365:993-1003.&lt;/a&gt;&lt;/p&gt;'><sup>1</sup></a> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.nytimes.com/2011/09/08/health/research/08stent.html"&gt;NY Times article reporting on the study&lt;/a&gt;&lt;/p&gt;'><sup>2</sup></a> Stents are small mesh tubes that are placed inside narrow or weak arteries to assist in patient recovery after cardiac events and reduce the risk of an additional heart attack or death. Many doctors have hoped that there would be similar benefits for patients at risk of stroke. We start by writing the principal question the researchers hope to answer:</p>
+<p>In this chapter, we will consider an experiment that studies effectiveness of stents in treating patients at risk of stroke. <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.nejm.org/doi/full/10.1056/NEJMoa1105335"&gt;Chimowitz MI, Lynn MJ, Derdeyn CP, et al. 2011. Stenting versus Aggressive Medical Therapy for Intracranial Arterial Stenosis. New England Journal of Medicine 365:993-1003.&lt;/a&gt;&lt;/p&gt;'><sup>1</sup></a> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.nytimes.com/2011/09/08/health/research/08stent.html"&gt;NY Times article reporting on the study&lt;/a&gt;&lt;/p&gt;'><sup>2</sup></a> Stents are small mesh tubes that are placed inside narrow or weak arteries to assist in patient recovery after cardiac events and reduce the risk of an additional heart attack or death. Many doctors have hoped that there would be similar benefits for patients at risk of stroke. We start by writing the principal question the researchers hope to answer:</p>
 <div id="research-question" class="section level3" number="1.4.1">
 <h3>
 <span class="header-section-number">1.4.1</span> Research question<a class="anchor" aria-label="anchor" href="#research-question"><i class="fas fa-link"></i></a>
@@ -251,7 +251,7 @@ a package can be used, it must be installed on the computer (once per computer o
 ## 1 control (50.3%), trmt (49.7%)                
 ## 2 no_event (89.8%), stroke (10.2%)             
 ## 3 no_event (83.8%), stroke (16.2%)</code></pre>
-<p>To keep things simple, we will only look at the <code>outcome30</code> variable in this case study. We will summarize the data in a table. Later in the course, we will learn to do this using the <strong>tidy</strong> package; for now we use the <strong>mosaic</strong> package. This package makes use of the modeling formula that you will use extensively later in this course. The modeling formula is also used in Math 378.</p>
+<p>To keep things simple, we will only look at the <code>outcome30</code> variable in this case study. We will summarize the data in a table. Later in the book, we will learn to do this using the <strong>tidy</strong> package; for now we use the <strong>mosaic</strong> package. This package makes use of the modeling formula that you will use extensively later in this book. The modeling formula is also used in Math 378.</p>
 <p>We want to summarize the data by making a table. From <code>mosaic</code>, we use the <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code> function. Before using this function, we have to understand the basic formula notation that <code>mosaic</code> uses. The basic format is:</p>
 <pre><code>goal(y ~ x, data = MyData, ...) # pseudo-code for the formula template</code></pre>
 <p>We read <code>y ~ x</code> as “y tilde x” and interpret it in the equivalent forms: “y broken down by x”; “y modeled by x”; “y explained by x”; “y depends on x”; or “y accounted for by x.” For graphics, it’s reasonable to read the formula as “y vs. x”, which is exactly the convention used for coordinate axes.</p>
@@ -451,7 +451,7 @@ iii. Create a barchart of the data.</li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-17.</p>
+    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

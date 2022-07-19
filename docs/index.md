@@ -6,7 +6,7 @@ author:
 - Ken Horton
 - Kris Pruitt
 - Bradley Warner
-date: "2022-07-17"
+date: "2022-07-19"
 header-includes:
    - \usepackage{multirow}
    - \usepackage{multicol}
@@ -37,7 +37,7 @@ This book makes extensive using of the `R` programming language. In particular w
 
 ## Book structure and how to use it
 
-This book is divided into four parts. Each part begins with a case study that introduces many of the main ideas of each part. Each chapter is designed to be a standalone 50 minute lesson. Within each lesson, we give exercises that can be worked in class and we provide learning objectives. 
+This book is divided into four parts. Each part begins with a case study that introduces many of the main ideas of each part. Each chapter is designed to be a standalone 50 minute lesson. Within each chapter, we give exercises that can be worked in class and we provide learning objectives. 
 
 This book assumes students have access to `R`. Finally, we keep the number of homework problems to a reasonable level and assign all problems.
 
@@ -82,7 +82,7 @@ This book is licensed under the [Creative Commons Attribution-NonCommercial-Shar
 
 ## File Creation Information 
 
-  * File creation date: 2022-07-17
+  * File creation date: 2022-07-19
   * R version 4.1.3 (2022-03-10)
 
 

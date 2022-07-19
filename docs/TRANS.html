@@ -217,19 +217,19 @@ f_Y(y)=\frac{1}{2\sqrt{y}}
 \int_0^1 \frac{1}{2\sqrt{y}} \mathop{}\!\mathrm{d}y = \sqrt{y}\bigg|_0^1 = 1
 \]</span>
 We can also do this using <code>R</code> but we first have to create a function that can take vector input.</p>
-<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">y_pdf</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fl">1</span><span class="op">/</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb405"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">y_pdf</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Vectorize.html">Vectorize</a></span><span class="op">(</span><span class="va">y_pdf</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb409"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="va">y_pdf</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 1 with absolute error &lt; 2.9e-15</code></pre>
 <p>Notice that since the domain of the original random variable was non-negative, the squared function had an inverse.</p>
 <p>The pdf of the random variable <span class="math inline">\(Y\)</span> is plotted in Figure <a href="TRANS.html#fig:pdf161-fig">16.1</a>.</p>
 
-<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb411"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">gf_line</span><span class="op">(</span><span class="fu">y_pdf</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.01</span>,<span class="fl">1</span>,<span class="fl">.01</span><span class="op">)</span><span class="op">)</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.01</span>,<span class="fl">1</span>,<span class="fl">.01</span><span class="op">)</span>,xlab<span class="op">=</span><span class="st">"Y"</span>,ylab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu">f</span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
@@ -270,18 +270,18 @@ f_Y(y)=f_X(\sqrt{y})\bigg|\frac{\mathop{}\!\mathrm{d}}{\mathop{}\!\mathrm{d}y} \
 <h3>
 <span class="header-section-number">16.2.5</span> Simulation<a class="anchor" aria-label="anchor" href="#simulation-2"><i class="fas fa-link"></i></a>
 </h3>
-<p>We can also get an estimate of the distribution by simulating the random variable. If we have the cdf and can find its inverse, then just like we did in an earlier lesson, we sample from a uniform distribution and apply the inverse to get the distribution.</p>
+<p>We can also get an estimate of the distribution by simulating the random variable. If we have the cdf and can find its inverse, then just like we did in an earlier chapter, we sample from a uniform distribution and apply the inverse to get the distribution.</p>
 <p>In an earlier chapter we had the example:</p>
 <blockquote>
 <p>Let <span class="math inline">\(X\)</span> be a continuous random variable with <span class="math inline">\(f_X(x)=2x\)</span> where <span class="math inline">\(0 \leq x \leq 1\)</span>.</p>
 </blockquote>
 <p>Now let’s find an approximation to the distribution of <span class="math inline">\(Y = \ln{X}\)</span> using simulation.</p>
 <p>The cdf of <span class="math inline">\(X\)</span> is <span class="math inline">\(F_X(x)=x^2\)</span> where <span class="math inline">\(0 \leq x \leq 1\)</span>. We will draw a uniform random variable and then take the square root to simulate a random variable from <span class="math inline">\(f_X(x)\)</span>. We will replicate this 10,000 times. In <code>R</code> our code, which we have done before, is:</p>
-<div class="sourceCode" id="cb409"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1107</span><span class="op">)</span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Remember, we are using the square root because we want the inverse of the cdf and not, for this method, the inverse of the transformation function as when we were using the mathematical method. This can be a point of confusion.</p>
-<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb413"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
@@ -290,7 +290,7 @@ f_Y(y)=f_X(\sqrt{y})\bigg|\frac{\mathop{}\!\mathrm{d}}{\mathop{}\!\mathrm{d}y} \
 ##          sd     n missing
 ## 1 0.2341494 10000       0</code></pre>
 <p>Figure <a href="TRANS.html#fig:dens161-fig">16.2</a> is a density plot of the simulated original random variable.</p>
-<div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb415"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_density</span><span class="op">(</span><span class="op">~</span><span class="va">sqrt</span>,xlab<span class="op">=</span><span class="st">"X"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -302,11 +302,11 @@ Figure 16.2: The density plot of the original using simulation.
 </p>
 </div>
 <p>Now to find the distribution of <span class="math inline">\(Y\)</span> we just apply the transformation.</p>
-<div class="sourceCode" id="cb413"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb416"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">y_results</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">sqrt</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Figure <a href="TRANS.html#fig:dens162-fig">16.3</a> is the density plot of the transformed random variable from the simulation. We can see that the support for <span class="math inline">\(Y\)</span> is <span class="math inline">\(-\infty &lt; y \leq 0\)</span> and the density is tight near zero but skewed to the left.</p>
-<div class="sourceCode" id="cb414"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb417"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">y_results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_density</span><span class="op">(</span><span class="op">~</span><span class="va">y</span>,xlab<span class="op">=</span><span class="st">"X"</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -317,7 +317,7 @@ Figure 16.2: The density plot of the original using simulation.
 Figure 16.3: The density plot of the transformed random variable from the simulation.
 </p>
 </div>
-<div class="sourceCode" id="cb415"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb418"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">y_results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
@@ -343,10 +343,10 @@ X\sim \textsf{Unif}(5,6)\hspace{1.5cm} Y\sim \textsf{Unif}(5,6)
 <p><strong>Exercise</strong>:</p>
 </blockquote>
 <p>Complete the code on your own before looking at the code below.</p>
-<div class="sourceCode" id="cb417"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb420"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">354</span><span class="op">)</span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">100000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb418"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb421"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##          abs
 ## 1 0.03171229
@@ -356,7 +356,7 @@ X\sim \textsf{Unif}(5,6)\hspace{1.5cm} Y\sim \textsf{Unif}(5,6)
 ## 5 0.08663187
 ## 6 0.40622840</code></pre>
 <p>Figure <a href="TRANS.html#fig:dens163-fig">16.4</a> is a plot of the estimated density of the transformation.</p>
-<div class="sourceCode" id="cb420"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb423"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_density</span><span class="op">(</span><span class="op">~</span><span class="va">abs</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -368,7 +368,7 @@ Figure 16.4: The density of the absolute value of the difference in uniform rand
 </p>
 </div>
 <p>Or as a histogram in Figure <a href="TRANS.html#fig:hist163-fig">16.5</a>.</p>
-<div class="sourceCode" id="cb421"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">abs</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -379,7 +379,7 @@ Figure 16.4: The density of the absolute value of the difference in uniform rand
 Figure 16.5: Histogram of the absolute value of the difference in random variables.
 </p>
 </div>
-<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb425"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
@@ -391,7 +391,7 @@ Figure 16.5: Histogram of the absolute value of the difference in random variabl
 <p><strong>Exercise</strong>:<br>
 Now suppose whomever arrives first will only wait 5 minutes and then leave. What is the probability you eat together?</p>
 </blockquote>
-<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb427"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu">mean</span><span class="op">(</span><span class="va">abs</span><span class="op">&lt;=</span><span class="fl">5</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   mean(abs &lt;= 5/60)
@@ -401,23 +401,23 @@ Now suppose whomever arrives first will only wait 5 minutes and then leave. What
 How long should the first person wait so that there is at least a 50% probability of you eating together?</p>
 </blockquote>
 <p>Let’s write a function to find the cdf.</p>
-<div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb429"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">z_cdf</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu">mean</span><span class="op">(</span><span class="va">results</span><span class="op">$</span><span class="va">abs</span><span class="op">&lt;=</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb427"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">z_cdf</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Vectorize.html">Vectorize</a></span><span class="op">(</span><span class="va">z_cdf</span><span class="op">)</span></span></code></pre></div>
 <p>Now test for 5 minutes to make sure our function is correct since we determined above that this value should be 0.15966.</p>
-<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb431"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">z_cdf</span><span class="op">(</span><span class="fl">5</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.15966</code></pre>
 <p>Let’s plot to see what the cdf looks like.</p>
-<div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb433"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">gf_line</span><span class="op">(</span><span class="fu">z_cdf</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">.01</span><span class="op">)</span><span class="op">)</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">.01</span><span class="op">)</span>,xlab<span class="op">=</span><span class="st">"Time Difference"</span>,ylab<span class="op">=</span><span class="st">"CDF"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="16-Transformations_files/figure-html/unnamed-chunk-16-1.png" width="672"></div>
 <p>It looks like somewhere around 15 minutes, a quarter of an hour. But we will find a better answer by finding the root. In the code that follows we want to find where the cdf equals 0.5. The function <code><a href="https://rdrr.io/r/stats/uniroot.html">uniroot()</a></code> solves the given equations for roots so we want to put in the cdf minus 0.5. In other words, <code><a href="https://rdrr.io/r/stats/uniroot.html">uniroot()</a></code> solves <span class="math inline">\(f(x)=0\)</span> for x.</p>
-<div class="sourceCode" id="cb431"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb434"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/uniroot.html">uniroot</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="fu">z_cdf</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">-</span><span class="fl">.5</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.25</span>,<span class="fl">35</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">root</span></span></code></pre></div>
 <pre><code>## [1] 0.2916077</code></pre>
 <p>So it is actually 0.292 hours, 17.5 minutes. So round up and wait 18 minutes.</p>
@@ -454,7 +454,7 @@ Figure 16.6: pdf of <span class="math inline">\(T\)</span>
 <li><p>To use the cdf to simulate random variables from this distribution, we need the inverse of the cdf which means we have to solve a quadratic equation. We can do this mathematically or just use the function <code><a href="https://rdrr.io/r/stats/uniroot.html">uniroot()</a></code>. So first, we will make sure we understand how to use <code><a href="https://rdrr.io/r/stats/uniroot.html">uniroot()</a></code>.</p></li>
 </ol>
 <p>As a check, we know the median of the distribution is approximately 15.857. Here is code to show that 15.857 is approximately the median. We are integrating the pdf from 10 to 15.857 to confirm that this is 0.5.</p>
-<div class="sourceCode" id="cb433"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb436"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">-</span><span class="va">x</span><span class="op">/</span><span class="fl">200</span><span class="op">+</span><span class="fl">3</span><span class="op">/</span><span class="fl">20</span>,<span class="fl">10</span>,<span class="fl">15.857</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 0.4999389 with absolute error &lt; 5.6e-15</code></pre>
 <p>Use <code><a href="https://rdrr.io/r/stats/uniroot.html">uniroot()</a></code> and your cdf to confirm that 15.857 is the median.</p>
@@ -509,7 +509,7 @@ Figure 16.6: pdf of <span class="math inline">\(T\)</span>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-17.</p>
+    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

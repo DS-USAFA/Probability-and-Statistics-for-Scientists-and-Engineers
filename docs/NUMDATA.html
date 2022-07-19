@@ -137,7 +137,7 @@
 <h2>
 <span class="header-section-number">5.2</span> Numerical Data<a class="anchor" aria-label="anchor" href="#numerical-data-1"><i class="fas fa-link"></i></a>
 </h2>
-<p>This lesson introduces techniques for exploring and summarizing numerical variables. The <code>email50</code> and <code>mlb</code> data sets from the <strong>openintro</strong> package and a subset of <code>county_complete</code> from <strong>usdata</strong> provide rich opportunities for examples. Recall that outcomes of numerical variables are numbers on which it is reasonable to perform basic arithmetic operations. For example, the <code>pop2010</code> variable, which represents the population of counties in 2010, is numerical since we can sensibly discuss the difference or ratio of the populations in two counties. On the other hand, area codes and zip codes are not numerical.</p>
+<p>This chapter introduces techniques for exploring and summarizing numerical variables. The <code>email50</code> and <code>mlb</code> data sets from the <strong>openintro</strong> package and a subset of <code>county_complete</code> from the <strong>usdata</strong> package provide rich opportunities for examples. Recall that outcomes of numerical variables are numbers on which it is reasonable to perform basic arithmetic operations. For example, the <code>pop2010</code> variable, which represents the population of counties in 2010, is numerical since we can sensibly discuss the difference or ratio of the populations in two counties. On the other hand, area codes and zip codes are not numerical.</p>
 <div id="scatterplots-for-paired-data" class="section level3" number="5.2.1">
 <h3>
 <span class="header-section-number">5.2.1</span> Scatterplots for paired data<a class="anchor" aria-label="anchor" href="#scatterplots-for-paired-data"><i class="fas fa-link"></i></a>
@@ -266,14 +266,14 @@ Besides the mean, what can you see in the dot plot that you cannot see in the hi
 <div class="inline-figure"><img src="05-Numerical-Data_files/figure-html/unnamed-chunk-4-1.png" width="672"></div>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
-Look at the help menu for <code>gf_histogram</code> and change the x-axis label, change the bin width to 5, and have the left bin start at 0.^[Here is the code for the exercise:</p>
+Look at the help menu for <code>gf_histogram</code> and change the x-axis label, change the bin width to 5, and have the left bin start at 0.</p>
 </blockquote>
+<p>Here is the code for the exercise:</p>
 <pre><code>email50 %&gt;%
    gf_histogram(~num_char, binwidth = 5,boundary = 0,
    xlab = "The Number of Characters (in thousands)", 
    color = "black", fill = "cyan") %&gt;%
    gf_theme(theme_classic())</code></pre>
-<p>]</p>
 <p>In addition to looking at whether a distribution is skewed or symmetric, histograms can be used to identify modes. A <strong>mode</strong> is represented by a prominent peak in the distribution.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Another definition of mode, which is not typically used in statistics, is the value with the most occurrences. It is common to have &lt;em&gt;no&lt;/em&gt; observations with the same value in a data set, which makes this other definition useless for many real data sets.&lt;/p&gt;"><sup>43</sup></a> There is only one prominent peak in the histogram of <code>num_char</code>.</p>
 <p>Figure <a href="NUMDATA.html#fig:histmulti-fig">5.6</a> show histograms that have one, two, or three prominent peaks. Such distributions are called <strong>unimodal</strong>, <strong>bimodal</strong>, and <strong>multimodal</strong>, respectively. Any distribution with more than 2 prominent peaks is called multimodal. Notice that there was one prominent peak in the unimodal distribution with a second less prominent peak that was not counted since the separation between the two peaks is relatively small, and it only differs from its neighboring bins by a few observations.</p>
 <div class="figure">
@@ -359,7 +359,7 @@ Earlier, the concept of shape of a distribution was introduced. A good descripti
 <p><em>Example</em>:<br>
 Describe the distribution of the <code>num_char</code> variable using the histogram in Figure <a href="NUMDATA.html#fig:hist5-fig">5.5</a>. The description should incorporate the center, variability, and shape of the distribution, and it should also be placed in context: the number of characters in emails. Also note any especially unusual cases/observations.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The distribution of email character counts is unimodal and very strongly skewed to the high end (right skewed). Many of the counts fall near the mean at 11,600, and most fall within one standard deviation (13,130) of the mean. There is one exceptionally long email with about 65,000 characters.&lt;/p&gt;"><sup>47</sup></a></p>
 </blockquote>
-<p>In practice, the variance and standard deviation are sometimes used as a means to an end, where the <em>end</em> is being able to accurately estimate the uncertainty associated with a sample statistic. For example, later in the course we will use the variance and standard deviation to assess how close the sample mean is to the population mean.</p>
+<p>In practice, the variance and standard deviation are sometimes used as a means to an end, where the <em>end</em> is being able to accurately estimate the uncertainty associated with a sample statistic. For example, later in the book we will use the variance and standard deviation to assess how close the sample mean is to the population mean.</p>
 </div>
 <div id="box-plots-quartiles-and-the-median" class="section level3" number="5.2.5">
 <h3>
@@ -436,23 +436,39 @@ Using Figure <a href="NUMDATA.html#fig:box-fig">5.10</a>, estimate the following
 <span class="header-section-number">5.2.6</span> Robust statistics<a class="anchor" aria-label="anchor" href="#robust-statistics"><i class="fas fa-link"></i></a>
 </h3>
 <p>How are the <em>sample statistics</em> of the <code>num_char</code> data set affected by the observation with value 64,401? What would we see if this email wasn’t present in the data set? What would happen to these <em>summary statistics</em> if the observation at 64,401 had been even larger, say 150,000? These scenarios are plotted alongside the original data in Figure <a href="NUMDATA.html#fig:box2-fig">5.11</a>, and sample statistics are computed in <code>R</code>.</p>
+<p>First, we create a new data frame containing the three scenarios: 1) the original data, 2) the data with the extreme observation dropped, and 3) the data with the extreme observation increased.</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># code to create the `robust` data frame</span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">email50</span><span class="op">$</span><span class="va">num_char</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p1</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="va">p1</span></span>
+<span><span class="va">p3</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">150</span></span>
+<span></span>
+<span><span class="va">robust</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, <span class="va">p3</span><span class="op">)</span>,</span>
+<span>                     group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Original"</span>, <span class="fl">50</span><span class="op">)</span>,</span>
+<span>                             <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Dropped"</span>, <span class="fl">49</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Increased"</span>, <span class="fl">50</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">robust</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    value    group
+## 1 21.705 Original
+## 2  7.011 Original
+## 3  0.631 Original
+## 4  2.454 Original
+## 5 41.623 Original
+## 6  0.057 Original</code></pre>
+<p>Now, we create a side-by-side boxplots for each scenario.</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">gf_boxplot</span><span class="op">(</span><span class="va">value</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">robust</span>, xlab <span class="op">=</span> <span class="st">"Data Group"</span>,</span>
+<span>           ylab <span class="op">=</span> <span class="st">"Number of Characters (in thousands)"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>   <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:box2-fig"></span>
 <img src="05-Numerical-Data_files/figure-html/box2-fig-1.png" alt="Box plots of the original character count data and two modified data sets, one where the outlier at 64,401 is dropped and one where its value is increased." width="672"><p class="caption">
 Figure 5.11: Box plots of the original character count data and two modified data sets, one where the outlier at 64,401 is dropped and one where its value is increased.
 </p>
 </div>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">email50</span><span class="op">$</span><span class="va">num_char</span></span>
-<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p1</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="va">p1</span></span>
-<span><span class="va">p3</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">150</span></span>
-<span></span>
-<span><span class="va">robust</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, <span class="va">p3</span><span class="op">)</span>, </span>
-<span>                     group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Original"</span>, <span class="fl">50</span><span class="op">)</span>, </span>
-<span>                               <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Dropped"</span>, <span class="fl">49</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Increased"</span>, <span class="fl">50</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">value</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">robust</span><span class="op">)</span></span></code></pre></div>
+<p>We can also use <code><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats()</a></code> to calculate summary statistics of <code>value</code> by <code>group</code>, using the <code>robust</code> data frame created above.</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">value</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">robust</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##       group   min     Q1 median       Q3     max     mean       sd  n missing
 ## 1   Dropped 0.057 2.4540 6.7680 14.15600  42.793 10.52061 10.79768 49       0
 ## 2 Increased 0.057 2.5355 6.8895 15.41075 150.000 13.31020 22.43436 50       0
@@ -584,7 +600,7 @@ Figure 5.14: A scatterplot of <code>line_breaks</code> versus <code>num_char</co
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-17.</p>
+    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

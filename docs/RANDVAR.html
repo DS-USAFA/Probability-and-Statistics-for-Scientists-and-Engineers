@@ -170,7 +170,7 @@ S_X=\{0,1,2,3\}
 <h3>
 <span class="header-section-number">10.2.2</span> Discrete vs Continuous<a class="anchor" aria-label="anchor" href="#discrete-vs-continuous"><i class="fas fa-link"></i></a>
 </h3>
-<p>A <em>discrete</em> random variable has a sample space that consists of a countable set of values. <span class="math inline">\(X\)</span> in our example above is a discrete random variable. Note that “countable” does not necessarily mean “finite”. For example, a random variable with a Poisson distribution (a topic for a later lesson) has a sample space of <span class="math inline">\(\{0,1,2,...\}\)</span>. This sample space is unbounded, but it is considered <em>countably</em> infinite, and thus the random variable would be considered discrete.</p>
+<p>A <em>discrete</em> random variable has a sample space that consists of a countable set of values. <span class="math inline">\(X\)</span> in our example above is a discrete random variable. Note that “countable” does not necessarily mean “finite”. For example, a random variable with a Poisson distribution (a topic for a later chapter) has a sample space of <span class="math inline">\(\{0,1,2,...\}\)</span>. This sample space is unbounded, but it is considered <em>countably</em> infinite, and thus the random variable would be considered discrete.</p>
 <p>A <em>continuous</em> random variable has a sample space that is a continuous interval. For example, let <span class="math inline">\(Y\)</span> be the random variable corresponding to the height of a randomly selected individual. <span class="math inline">\(Y\)</span> is a continuous random variable because a person could measure 68.1 inches, 68.2 inches, or perhaps any value in between. Note that when we measure height, our precision is limited by our measuring device, so we are technically “discretizing” height. However, even in these cases, we typically consider height to be a continuous random variable.</p>
 <p>A <em>mixed</em> random variable is exactly what it sounds like. It has a sample space that is both discrete and continuous. How could such a thing occur? Consider an experiment where a person rolls a standard six-sided die. If it lands on anything other than one, the result of the die roll is recorded. If it lands on one, the person spins a wheel, and the angle in degrees of the resulting spin, divided by 360, is recorded. If our random variable <span class="math inline">\(Z\)</span> is the number that is recorded in this experiment, the sample space of <span class="math inline">\(Z\)</span> is <span class="math inline">\([0,1] \cup \{2,3,4,5,6\}\)</span>. We will not be spending much time on mixed random variables. However they do occur in practice, consider the job of analyzing bomb error data. If the bomb hits within a certain radius, the error is 0. Otherwise it is measured in a radial direction. This data is mixed.</p>
 </div>
@@ -189,7 +189,7 @@ S_X=\{0,1,2,3\}
 <span class="math display">\[
 f_X(x)=\mbox{P}(X=x)
 \]</span></p>
-<p>Note that the pmf is a <em>function</em>. Functions have input and output. The input of a pmf is any real number. The output of a pmf is the probability that the random variable takes the inputted value. The pmf must follow the axioms of probability described in the Probability Rules lesson. Primarily,</p>
+<p>Note that the pmf is a <em>function</em>. Functions have input and output. The input of a pmf is any real number. The output of a pmf is the probability that the random variable takes the inputted value. The pmf must follow the axioms of probability described in the Probability Rules chapter. Primarily,</p>
 <ol style="list-style-type: decimal">
 <li><p>For all <span class="math inline">\(x \in \mathbb{R}\)</span>, <span class="math inline">\(0 \leq f_X(x) \leq 1\)</span>.</p></li>
 <li><p><span class="math inline">\(\sum_x f_X(x) = 1\)</span>, where the <span class="math inline">\(x\)</span> in the index of the sum simply denotes that we are summing across the entire domain or support of <span class="math inline">\(X\)</span>.</p></li>
@@ -271,50 +271,50 @@ Figure 10.2: Cumulative Distribution Function of <span class="math inline">\(X\)
 Simulate a random variable for the number of heads in flipping a coin three times.</p>
 </blockquote>
 <p>First we will create the pmf.</p>
-<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pmf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">8</span>,<span class="fl">3</span><span class="op">/</span><span class="fl">8</span>,<span class="fl">3</span><span class="op">/</span><span class="fl">8</span>,<span class="fl">1</span><span class="op">/</span><span class="fl">8</span><span class="op">)</span></span>
 <span><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">pmf</span></span></code></pre></div>
 <pre><code>## [1] 0.125 0.375 0.375 0.125</code></pre>
 <p>We get the cdf from the cumulative sum.</p>
-<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">pmf</span><span class="op">)</span></span>
 <span><span class="va">cdf</span></span></code></pre></div>
 <pre><code>## [1] 0.125 0.500 0.875 1.000</code></pre>
 <p>Next, we will generate a random number between 0 and 1.</p>
-<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1153</span><span class="op">)</span></span>
 <span><span class="va">ran_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">ran_num</span></span></code></pre></div>
 <pre><code>## [1] 0.7381891</code></pre>
 <p>Finally, we will find the value of the random variable. We will do each step separately first so you can understand the code.</p>
-<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span></span></code></pre></div>
 <pre><code>## [1] FALSE FALSE  TRUE  TRUE</code></pre>
-<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 3 4</code></pre>
-<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">values</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>Let’s make this a function.</p>
-<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">simple_rv</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">values</span>,<span class="va">cdf</span><span class="op">)</span><span class="op">{</span></span>
 <span><span class="va">ran_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">values</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ran_num</span> <span class="op">&lt;</span> <span class="va">cdf</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Now let’s generate 10000 values from this random variable.</p>
-<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu">simple_rv</span><span class="op">(</span><span class="va">values</span>,<span class="va">cdf</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## quantitative variables:  
 ##        name   class min Q1 median Q3 max   mean       sd     n missing
 ## 1 simple_rv numeric   0  1      2  2   3 1.5048 0.860727 10000       0</code></pre>
-<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">simple_rv</span>,data<span class="op">=</span><span class="va">results</span>,format<span class="op">=</span><span class="st">"proportion"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## simple_rv
 ##      0      1      2      3 
@@ -354,7 +354,7 @@ Find the expected value (or mean) of <span class="math inline">\(X\)</span>: the
 </blockquote>
 <p>We are using <span class="math inline">\(\mu\)</span> because it is a population parameter.</p>
 <p>From our simulation above, we can find the mean as an estimate of the expected value. This is really a statistic since our simulation is data from the population and thus will have variance from sample to sample.</p>
-<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">mean</span><span class="op">(</span><span class="op">~</span><span class="va">simple_rv</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1.5048</code></pre>
 </div>
@@ -383,12 +383,12 @@ Find the variance of <span class="math inline">\(X\)</span>: the number of heads
 = (0-1.5)^2 \times \frac{1}{8} + (1-1.5)^2 \times \frac{3}{8}+(2-1.5)^2 \times \frac{3}{8} + (3-1.5)^2\times \frac{1}{8}
 \]</span>
 In <code>R</code> this is:</p>
-<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="fl">0</span><span class="op">-</span><span class="fl">1.5</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">1</span><span class="op">/</span><span class="fl">8</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fl">1.5</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">3</span><span class="op">/</span><span class="fl">8</span> <span class="op">+</span> <span class="op">(</span><span class="fl">2</span><span class="op">-</span><span class="fl">1.5</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">3</span><span class="op">/</span><span class="fl">8</span> <span class="op">+</span> <span class="op">(</span><span class="fl">3</span><span class="op">-</span><span class="fl">1.5</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">1</span><span class="op">/</span><span class="fl">8</span></span></code></pre></div>
 <pre><code>## [1] 0.75</code></pre>
 <p>The variance of <span class="math inline">\(X\)</span> is 0.75.</p>
 <p>We can find the variance of the simulation but <code>R</code> uses the sample variance and this is the population variance. So we need to multiply by <span class="math inline">\(\frac{n-1}{n}\)</span></p>
-<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">var</a></span><span class="op">(</span><span class="op">~</span><span class="va">simple_rv</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fl">10000</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span></span></code></pre></div>
 <pre><code>## [1] 0.740777</code></pre>
 </div>
@@ -518,7 +518,7 @@ and
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-17.</p>
+    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

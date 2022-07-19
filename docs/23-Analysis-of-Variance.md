@@ -441,9 +441,28 @@ If we reject the null hypothesis in the ANOVA test, we know that at least one me
 
 ## Homework Problems
 
-  
+1. **Census data.** A group of researchers wants to conduct an Analysis of Variance to investigate whether there is a relationship between marital status and total personal income. They obtained a random sample of 500 observations from the 2000 U.S. Census. The data is available in the `census` data set in the **openintro** package. 
+
+a. State the null and alternative hypotheses in context of the research problem. Note: there are six different marital status types.  
+
+b. Using the `aov()` function, conduct an ANOVA using a significance level of $\alpha = 0.05$. Clearly state your conclusion. 
+
+c. Is an ANOVA, using the $F$ distribution, appropriate for this data set?  Why or why not? Clearly communicate your answer, including appropriate data visualizations.  
+
+d. Repeat part b), but use a randomization test this time. You should use $F$, the test statistic for ANOVA, as your test statistic.  
+
+e. How do we determine which groups are different? 
+
+f. Below is a boxplot of the total personal income by marital status. We have "zoomed in" on the $y$-axis, considering only total personal income between \$0 and \$100,000, and rotated the text on the $x$-axis. The largest difference between sample means appears to be between the separated and married/spouse absent groups. Why can't we simply determine whether there is a statistically significant difference between $\mu_{\text{absent}}$ and $\mu_{\text{separated}}$? 
 
 
+```r
+census %>%
+  gf_boxplot(total_personal_income ~ marital_status) %>%
+  gf_lims(y = c(0, 100000)) %>%
+  gf_theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+<img src="23-Analysis-of-Variance_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 
 
- 
