@@ -21,7 +21,7 @@ Remember that we have been using data to answer research questions. So far, we c
 
 In obtaining the sampling distribution, we used randomization as an approximation to permutation exact tests, probability models, and mathematical models. Each of these had different assumptions and different areas where they could be applied. In some cases, several methods can be applied to the problem to get a sense of the robustness to different assumptions. For example, if you run a randomization test and a test using the CLT, and they both give you similar results, you can feel better about your decision.
 
-Finding a single number metric to answer our research question can be difficult. For example, in the homework for Chapter \@ref(HYPTESTCLT), we wanted to determine if the prices of books at a campus bookstore were different from Amazon's prices. The metric we decided to use was the mean of the differences in prices. But is this the best way to answer the question? This metric has been used historically because of the need to use the $t$ distribution. However, there are other ways in which the prices of books can differ.  
+Finding a single number metric to answer our research question can be difficult. For example, in Chapter \@ref(HYPTESTSIM), we wanted to determine if the distribution of lengths of commercials for premium and basic channels was different. The difference in means has been used for historical reasons, and we now know that is because of the need to use the $t$ distribution. But is this the best way to answer the question? Because we wanted to think creatively, we ended up using the ratio of median lengths as our single number metric. However, there are other ways in which the distribution of lengths of commercials can differ. 
 
 Jack Welch was the CEO of GE for years and he made the claim that customers don't care about the average, but they do care about variability. The average temperature setting of your GE refrigerator could be off and you would adapt. However, if the temperature had great variability, then you would be upset. So metrics that incorporate variability might be good. In Chapter \@ref(HYPTESTSIM), we looked at the length of commercials for basic and premium TV channels. In using a randomization test, we assumed in the null hypothesis that there was no difference in the distributions. However, in the alternative hypothesis, we measured the difference in distributions using only medians, a measure of average. The medians of these two populations could be equal, but the distributions could differ in other ways, like variability. We could conduct a separate test for variances, but we have to be careful about multiple comparisons because, in that case, the Type 1 error is inflated.  
 
@@ -56,7 +56,7 @@ The $\textsf{Chisq}(n-1)$ distribution is read as the "chi-squared" distribution
 
 The proof of this lemma is outside the scope of this book, but it is not terribly complicated. It follows from the fact that the sum of $n$ squared random variables, each with the standard normal distribution, follows the chi-squared distribution with $n$ degrees of freedom. 
 
-This lemma can be used to draw inferences about $\sigma^2$. For a particular value of $\sigma^2$, we know how $S^2$ should behave. So, for a particular value of $S^2$, we can figure out reasonable values of $\sigma^2$. In practice, one rarely estimates $\sigma$ for the purpose of inference on $\sigma$. Typically, we are interested in estimating $\mu$ and we need to account for the added uncertainty by estimating $\sigma$ as well. That is what we will discuss in the next section.  
+This lemma can be used to draw inferences about $\sigma^2$. For a particular value of $\sigma^2$, we know how $S^2$ should behave. So, for a particular value of $S^2$, we can figure out reasonable values of $\sigma^2$. In practice, one rarely estimates $\sigma$ for the purpose of inference on $\sigma$. Typically, we are interested in estimating $\mu$ and we need to account for the added uncertainty by estimating $\sigma$ as well.  
 
 The chi-squared distribution takes on positive values and is right skewed. The degrees of freedom influence the shape and location of the distribution. As the degrees of freedom increase, it becomes more similar to a normal distribution. That is, the distribution becomes more symmetric with larger variability, and the center of the distribution moves to the right. Figure \@ref(fig:chisq221-fig) demonstrates these trends.
 
@@ -236,9 +236,9 @@ chisq.test(tally(~substance + sex, data = HELPrct))$expected
 
 Now, we can find the value of the test statistic, $X^2$: 
 
-$$
-X^2 = {(36 - 41.81)^2 \over 41.81} + {(141 - 135.19)^2 \over 135.19} + {(41 - 35.90)^2 \over 35.90} + {(111 - 116.10)^2 \over 116.10} + {(30 - 29.29)^2 \over 29.29} + {(94 - 94.71)^2 \over 94.71} 
-$$
+\begin{multline}
+X^2 = {(36 - 41.81)^2 \over 41.81} + {(141 - 135.19)^2 \over 135.19} + {(41 - 35.90)^2 \over 35.90} \\ + {(111 - 116.10)^2 \over 116.10} + {(30 - 29.29)^2 \over 29.29} + {(94 - 94.71)^2 \over 94.71} 
+\end{multline}
 
 As you can probably tell, $X^2$ is essentially comparing the observed counts with the expected counts under $H_0$. The larger the difference between observed and expected count, the larger the value of $X^2$. It is normalized by dividing by the expected counts since more data in a cell leads to a larger contribution to the sum. Under $H_0$, this statistic follows the chi-squared distribution with $(r-1)\times(c-1)$ degrees of freedom ($r$ is the number of rows and $c$ is the number of columns). In our example, we have $(3 - 1)\times (2 - 1) = 2$ degrees of freedom.  
 
@@ -381,7 +381,7 @@ The point estimate of interest is the difference between the sample means, and t
 
 There are variations of this test statistic that use a pooled standard deviation or allow for paired, dependent, data, but these settings are beyond the scope of this book. We leave it to the reader to find out more about those situations as needed, and remind the reader that a lot of data analysis (and the associated code) is done via internet search.    
 
-When the null hypothesis (no difference in sample means) is true and the conditions are met, the test statistic $T$ has a $t$ distribution with $df = \min(n_1 - 1, n_2 - 1)$. More complicated calculations can be done to find the *exact* degrees of freedom, but this is again beyond the scope of this book. We leave it to the reader to find out more.  
+When the null hypothesis (no difference in sample means) is true and the conditions are met, the test statistic $T$ has a $t$ distribution with $df \approx \min(n_1 - 1, n_2 - 1)$. More complicated calculations can be done to find the *exact* degrees of freedom, but this is again beyond the scope of this book. We leave it to the reader to find out more.  
 
 Let's now turn to an example to illustrate this new statistical test.  
 
@@ -594,9 +594,7 @@ In the next chapter, we will learn how to use the $F$ statistic and ANOVA to tes
 
 ## Homework Problems
 
-1. Golf balls   
-
-Repeat the analysis of the golf ball problem from earlier in the book. This time, we'll compare the observed proportions to a distribution, sometimes called a chi-squared goodness-of-fit test.  
+1. **Golf balls**. Repeat the analysis of the golf ball problem from earlier in the book. This time, we'll compare the observed proportions to a distribution, sometimes called a chi-squared goodness-of-fit test.  
 
 a. Load the data and tally the data into a table. The data is available in `golf_balls.csv`.   
 
@@ -607,32 +605,26 @@ c. Repeat part b), but assume balls with the numbers 1 and 2 occur 30\% of the t
 d. Repeat part c), but use a randomization test this time. You should use $X^2$, the chi-squared test statistic as your test statistic.  
 
 
-2. Test of variance
-
-    We have not performed a test of variance so we will create our own. Use the `mlb_obp_subset` data set, with only the `IF` and `OF` positions, to conduct a test of equality of two variances. The hypotheses are:  
+2. **Test of variance**. We have not performed a test of variance so we will create our own. Use the `mlb_obp_subset` data set, with only the `IF` and `OF` positions, to conduct a test of equality of two variances. The hypotheses are:  
 
 $H_0$: $\sigma^2_{IF} = \sigma^2_{OF}$. There is no difference in the variance of on-base percentage for infielders and outfielders.   
 $H_A$: $\sigma^2_{IF} \neq \sigma^2_{OF}$. There is a difference in variances.  
  
-    Use the difference in sample standard deviations as your test statistic. Using a randomization test, find the $p$-value and discuss your decision. Make sure to include all steps of a hypothesis test.   
+  Use the difference in sample standard deviations as your test statistic. Using a randomization test, find the $p$-value and discuss your decision. Make sure to include all steps of a hypothesis test.   
 
 
-3. Exploration of the chi-squared and $t$ distributions. 
+3. **Exploration of the chi-squared and $t$ distributions**. 
 
 a. In `R`, plot the pdf of a random variable with a chi-squared distribution with one degree of freedom. On the same plot, include the pdfs with 5, 10 and 50 degrees of freedom. Describe how the behavior of the pdf changes with increasing degrees of freedom.   
 
 b. Repeat part (a) with the $t$ distribution. Add the pdf of a standard normal random variable as well. What do you notice?  
 
 
-4. Paired data  
+4. **Paired data**. Are textbooks actually cheaper online? Here we compare the price of textbooks at the University of California, Los Angeles (UCLA) bookstore and at Amazon.com. Seventy-three UCLA courses were randomly sampled in Spring 2010, representing less than 10\% of all UCLA courses. When a class had multiple books, only the most expensive text was considered. The data is in the file `textbooks.csv` under the data folder.
 
-Are textbooks actually cheaper online? Here we compare the price of textbooks at the University of California, Los Angeles (UCLA) bookstore and at Amazon.com. Seventy-three UCLA courses were randomly sampled in Spring 2010, representing less than 10\% of all UCLA courses. When a class had multiple books, only the most expensive text was considered.
+    Each textbook has two corresponding prices in the data set: one for the UCLA bookstore and one for Amazon. Therefore, each textbook price from the UCLA bookstore has a natural correspondence with a textbook price from Amazon. When two sets of observations have this special correspondence, they are said to be **paired**.
 
-The data is in the file `textbooks.csv` under the data folder.
-
-Each textbook has two corresponding prices in the data set: one for the UCLA bookstore and one for Amazon. Therefore, each textbook price from the UCLA bookstore has a natural correspondence with a textbook price from Amazon. When two sets of observations have this special correspondence, they are said to be **paired**.
-
-To analyze paired data, it is often useful to look at the difference in outcomes of each pair of observations. In  `textbooks`, we look at the difference in prices, which is represented as the `diff` variable. It is important that we always subtract using a consistent order; here Amazon prices are always subtracted from UCLA prices. 
+  To analyze paired data, it is often useful to look at the difference in outcomes of each pair of observations. In  `textbooks`, we look at the difference in prices, which is represented as the `diff` variable. It is important that we always subtract using a consistent order; here Amazon prices are always subtracted from UCLA prices. 
 
 a. Is this data tidy? Explain.  
 
