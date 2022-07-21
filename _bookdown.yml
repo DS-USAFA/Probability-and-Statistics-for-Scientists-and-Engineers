@@ -1,4 +1,4 @@
-book_filename: "Computational Probability and Statistics - MASTER EDITION"
+book_filename: "Probability and Statistics for Scientists and Engineers"
 output_dir: "docs"
 new_session: yes
 before_chapter_script: "library_load.R"
@@ -25,8 +25,8 @@ rmd_files: [
    "13-Named-Continuous-Distributions.Rmd",                        
    "14-Multivariate-Distributions.Rmd",                            
    "15-Multivariate-Expectation.Rmd",                              
-   "16-Transformations.Rmd",                                       
-   "17-Estimation-Methods.Rmd",                                    
+   # "16-Transformations.Rmd",                                       
+   # "17-Estimation-Methods.Rmd",                                    
    "18-Hypothesis-Testing-Case-Study.Rmd",                         
    "19-Hypothesis-Testing-Simulation.Rmd",                                    
    "20-Hypothesis-Testing-ProbDist.Rmd",                                   

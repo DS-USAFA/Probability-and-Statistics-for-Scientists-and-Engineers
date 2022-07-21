@@ -1,5 +1,5 @@
 --- 
-title: "Computational Probability and Statistics - MASTER"
+title: "Probability and Statistics for Scientists and Engineers"
 author: 
 - Matthew Davis
 - Brianna Hitt
@@ -15,8 +15,8 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-cover-image: "figures/Cover_Majors.png"
-description: "This is a set of notes used for Math 377 (and Math 356) starting in the fall of 2020 (spring 2022) that has been compiled into a book."
+cover-image: "figures/Cover_Engineers.png"
+description: "This is a set of notes used for Math 356 starting in the spring of 2022 that has been compiled into a book."
 ---
 
 \input{latex/math-definitions.tex}
