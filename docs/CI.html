@@ -4,22 +4,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 24 Confidence Intervals | Computational Probability and Statistics - MASTER</title>
+<title>Chapter 22 Confidence Intervals | Probability and Statistics for Scientists and Engineers</title>
 <meta name="author" content="Matthew Davis">
 <meta name="author" content="Brianna Hitt">
 <meta name="author" content="Ken Horton">
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
-<meta name="description" content="24.1 Objectives Using asymptotic methods based on the normal distribution, construct and interpret a confidence interval for an unknown parameter. Describe the relationships between confidence...">
+<meta name="description" content="22.1 Objectives Using asymptotic methods based on the normal distribution, construct and interpret a confidence interval for an unknown parameter. Describe the relationships between confidence...">
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
-<meta property="og:title" content="Chapter 24 Confidence Intervals | Computational Probability and Statistics - MASTER">
+<meta property="og:title" content="Chapter 22 Confidence Intervals | Probability and Statistics for Scientists and Engineers">
 <meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover_Majors.png">
-<meta property="og:description" content="24.1 Objectives Using asymptotic methods based on the normal distribution, construct and interpret a confidence interval for an unknown parameter. Describe the relationships between confidence...">
+<meta property="og:image" content="/figures/Cover_Engineers.png">
+<meta property="og:description" content="22.1 Objectives Using asymptotic methods based on the normal distribution, construct and interpret a confidence interval for an unknown parameter. Describe the relationships between confidence...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 24 Confidence Intervals | Computational Probability and Statistics - MASTER">
-<meta name="twitter:description" content="24.1 Objectives Using asymptotic methods based on the normal distribution, construct and interpret a confidence interval for an unknown parameter. Describe the relationships between confidence...">
-<meta name="twitter:image" content="/figures/Cover_Majors.png">
+<meta name="twitter:title" content="Chapter 22 Confidence Intervals | Probability and Statistics for Scientists and Engineers">
+<meta name="twitter:description" content="22.1 Objectives Using asymptotic methods based on the normal distribution, construct and interpret a confidence interval for an unknown parameter. Describe the relationships between confidence...">
+<meta name="twitter:image" content="/figures/Cover_Engineers.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -60,7 +60,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Computational Probability and Statistics - MASTER</a>
+        <a href="index.html" title="">Probability and Statistics for Scientists and Engineers</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -91,25 +91,23 @@
 <li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
 <li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
 <li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
-<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
-<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
 <li class="book-part">Inferential Statistical Modeling</li>
-<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Hypothesis Testing Case Study</a></li>
-<li><a class="" href="HYPTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></li>
-<li><a class="" href="HYPTESTDIST.html"><span class="header-section-number">20</span> Hypothesis Testing with Known Distributions</a></li>
-<li><a class="" href="HYPTESTCLT.html"><span class="header-section-number">21</span> Hypothesis Testing with the Central Limit Theorem</a></li>
-<li><a class="" href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></li>
-<li><a class="" href="ANOVA.html"><span class="header-section-number">23</span> Analysis of Variance</a></li>
-<li><a class="active" href="CI.html"><span class="header-section-number">24</span> Confidence Intervals</a></li>
-<li><a class="" href="BOOT.html"><span class="header-section-number">25</span> Bootstrap</a></li>
+<li><a class="" href="CS3.html"><span class="header-section-number">16</span> Hypothesis Testing Case Study</a></li>
+<li><a class="" href="HYPTESTSIM.html"><span class="header-section-number">17</span> Hypothesis Testing with Simulation</a></li>
+<li><a class="" href="HYPTESTDIST.html"><span class="header-section-number">18</span> Hypothesis Testing with Known Distributions</a></li>
+<li><a class="" href="HYPTESTCLT.html"><span class="header-section-number">19</span> Hypothesis Testing with the Central Limit Theorem</a></li>
+<li><a class="" href="ADDTESTS.html"><span class="header-section-number">20</span> Additional Hypothesis Tests</a></li>
+<li><a class="" href="ANOVA.html"><span class="header-section-number">21</span> Analysis of Variance</a></li>
+<li><a class="active" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
+<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
 <li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">26</span> Linear Regression Case Study</a></li>
-<li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
-<li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
-<li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation-Based Linear Regression</a></li>
-<li><a class="" href="LRMULTI.html"><span class="header-section-number">31</span> Multiple Linear Regression</a></li>
-<li><a class="" href="LOGREG.html"><span class="header-section-number">32</span> Logistic Regression</a></li>
+<li><a class="" href="CS4.html"><span class="header-section-number">24</span> Linear Regression Case Study</a></li>
+<li><a class="" href="LRBASICS.html"><span class="header-section-number">25</span> Linear Regression Basics</a></li>
+<li><a class="" href="LRINF.html"><span class="header-section-number">26</span> Linear Regression Inference</a></li>
+<li><a class="" href="LRDIAG.html"><span class="header-section-number">27</span> Regression Diagnostics</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">28</span> Simulation-Based Linear Regression</a></li>
+<li><a class="" href="LRMULTI.html"><span class="header-section-number">29</span> Multiple Linear Regression</a></li>
+<li><a class="" href="LOGREG.html"><span class="header-section-number">30</span> Logistic Regression</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -118,13 +116,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="CI" class="section level1" number="24">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="CI" class="section level1" number="22">
 <h1>
-<span class="header-section-number">24</span> Confidence Intervals<a class="anchor" aria-label="anchor" href="#CI"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22</span> Confidence Intervals<a class="anchor" aria-label="anchor" href="#CI"><i class="fas fa-link"></i></a>
 </h1>
-<div id="objectives-24" class="section level2" number="24.1">
+<div id="objectives-22" class="section level2" number="22.1">
 <h2>
-<span class="header-section-number">24.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-24"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-22"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
 <li><p>Using asymptotic methods based on the normal distribution, construct and interpret a confidence interval for an unknown parameter.</p></li>
@@ -133,14 +131,14 @@
 <li><p>Calculate confidence intervals for proportions using three different approaches in <code>R</code>: explicit calculation, <code><a href="https://www.mosaic-web.org/mosaic/reference/binom.test.html">binom.test()</a></code>, and <code><a href="https://www.mosaic-web.org/mosaic/reference/prop_test.html">prop_test()</a></code>.</p></li>
 </ol>
 </div>
-<div id="confidence-intervals-1" class="section level2" number="24.2">
+<div id="confidence-intervals-1" class="section level2" number="22.2">
 <h2>
-<span class="header-section-number">24.2</span> Confidence intervals<a class="anchor" aria-label="anchor" href="#confidence-intervals-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.2</span> Confidence intervals<a class="anchor" aria-label="anchor" href="#confidence-intervals-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>A point estimate provides a single plausible value for a parameter. However, a point estimate is rarely perfect; usually there is some error in the estimate. In addition to supplying a point estimate of a parameter, the next logical step would be to provide a plausible <em>range of values</em> for the parameter.</p>
-<div id="capturing-the-population-parameter" class="section level3" number="24.2.1">
+<div id="capturing-the-population-parameter" class="section level3" number="22.2.1">
 <h3>
-<span class="header-section-number">24.2.1</span> Capturing the population parameter<a class="anchor" aria-label="anchor" href="#capturing-the-population-parameter"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.2.1</span> Capturing the population parameter<a class="anchor" aria-label="anchor" href="#capturing-the-population-parameter"><i class="fas fa-link"></i></a>
 </h3>
 <p>A plausible range of values for the population parameter is called a <strong>confidence interval</strong>. Using only a point estimate is like fishing in a murky lake with a spear, and using a confidence interval is like fishing with a net. We can throw a spear where we saw a fish, but we will probably miss. On the other hand, if we toss a net in that area, we have a good chance of catching the fish.</p>
 <p>If we report a point estimate, we probably will not hit the exact population parameter. On the other hand, if we report a range of plausible values – a confidence interval – we have a good shot at capturing the parameter.</p>
@@ -149,9 +147,9 @@
 If we want to be very certain we capture the population parameter, should we use a wider interval or a smaller interval?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;If we want to be more certain we will capture the fish, we should use a wider net. Likewise, we use a wider confidence interval if we want to be more certain that we capture the parameter. A higher level of confidence implies a wider interval.&lt;/p&gt;"><sup>93</sup></a></p>
 </blockquote>
 </div>
-<div id="constructing-a-confidence-interval" class="section level3" number="24.2.2">
+<div id="constructing-a-confidence-interval" class="section level3" number="22.2.2">
 <h3>
-<span class="header-section-number">24.2.2</span> Constructing a confidence interval<a class="anchor" aria-label="anchor" href="#constructing-a-confidence-interval"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.2.2</span> Constructing a confidence interval<a class="anchor" aria-label="anchor" href="#constructing-a-confidence-interval"><i class="fas fa-link"></i></a>
 </h3>
 <p>The general formula for constructing a confidence interval is</p>
 <p><span class="math display">\[\text{point estimate} \ \pm\ \text{critical value}\times \text{standard error}\]</span></p>
@@ -169,14 +167,14 @@ When the sampling distribution of a point estimate can reasonably be modeled as 
 where <span class="math inline">\(\hat{\theta}\)</span> is our estimate of the parameter and <span class="math inline">\(SE_{\hat{\theta}}\)</span> is the standard error of that estimate.</p>
 </blockquote>
 <p>We can be <strong>95% confident</strong> this interval captures the true value of the parameter. The number of standard errors to include in the interval (e.g., 1.96) can be found using the <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> function. Note that the <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> function calculates the lower tail quantile of a standard normal distribution by default. If we want 0.95 probability in the middle, that leaves 0.025 in each tail. Thus, we use 0.975 in the <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> function for a 95% confidence interval.</p>
-<div class="sourceCode" id="cb700"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb660"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.975</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
 Compute the area between -1.96 and 1.96 for a normal distribution with mean 0 and standard deviation 1.</p>
 </blockquote>
-<div class="sourceCode" id="cb702"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb662"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">1.96</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.96</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.9500042</code></pre>
 <p>In mathematical terms, the derivation of this confidence interval is as follows:</p>
@@ -192,11 +190,11 @@ Compute the area between -1.96 and 1.96 for a normal distribution with mean 0 an
 <p><span class="math display">\[
 \mbox{P}\left(-z_{\alpha/2} \leq {\bar{X} - \mu\over \sigma/\sqrt{n}} \leq z_{\alpha/2}\right) = 1 - \alpha
 \]</span></p>
-<p>where <span class="math inline">\(z_{\alpha/2}\)</span> is such that <span class="math inline">\(\mbox{P}(Z\geq z_{\alpha/2}) = \alpha/2\)</span>, where <span class="math inline">\(Z\sim \textsf{Norm}(0,1)\)</span>. See Figure <a href="CI.html#fig:dens241-fig">24.1</a> for an illustration.</p>
+<p>where <span class="math inline">\(z_{\alpha/2}\)</span> is such that <span class="math inline">\(\mbox{P}(Z\geq z_{\alpha/2}) = \alpha/2\)</span>, where <span class="math inline">\(Z\sim \textsf{Norm}(0,1)\)</span>. See Figure <a href="CI.html#fig:dens241-fig">22.1</a> for an illustration.</p>
 <div class="figure">
 <span style="display:block;" id="fig:dens241-fig"></span>
 <img src="24-Confidence-Intervals_files/figure-html/dens241-fig-1.png" alt="The pdf of a standard normal distribution, showing the idea of how to develop a confidence interval." width="672"><p class="caption">
-Figure 24.1: The pdf of a standard normal distribution, showing the idea of how to develop a confidence interval.
+Figure 22.1: The pdf of a standard normal distribution, showing the idea of how to develop a confidence interval.
 </p>
 </div>
 <p>So, we know that <span class="math inline">\((1 - \alpha)*100\%\)</span> of the time, <span class="math inline">\({\bar{X} - \mu\over \sigma/\sqrt{n}}\)</span> will be between <span class="math inline">\(-z_{\alpha/2}\)</span> and <span class="math inline">\(z_{\alpha/2}\)</span>.</p>
@@ -212,20 +210,20 @@ Figure 24.1: The pdf of a standard normal distribution, showing the idea of how 
 \]</span></p>
 <p>Notice in this equation that we are using the lower case <span class="math inline">\(\bar{x}\)</span>, the observed sample mean, and thus nothing is random in the interval. Thus, we will not use probabilistic statements about confidence intervals when we calculate numerical values from data for the upper and/or lower limits.</p>
 <p>In most applications, the most common value of <span class="math inline">\(\alpha\)</span> is 0.05. In that case, we construct a 95% confidence interval by finding <span class="math inline">\(z_{0.05/2} = z_{0.025}\)</span> or <span class="math inline">\(z_{1 - 0.05/2} = z_{0.975}\)</span>, which can be found easily with <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code>:</p>
-<div class="sourceCode" id="cb704"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb664"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fl">0.05</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
-<div class="sourceCode" id="cb706"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb666"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.975</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
 <p>Notice that we prefer to use the upper tail probability so that quantile values are positive.</p>
-<div class="sourceCode" id="cb708"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb668"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.025</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] -1.959964</code></pre>
 <p>The value of <span class="math inline">\(z_{0.025}\)</span> is negative; this requires a little more care when calculating the confidence interval due to changing signs. We recommend always using the upper tail probability for this reason.</p>
-<div id="unknown-variance" class="section level4" number="24.2.2.1">
+<div id="unknown-variance" class="section level4" number="22.2.2.1">
 <h4>
-<span class="header-section-number">24.2.2.1</span> Unknown Variance<a class="anchor" aria-label="anchor" href="#unknown-variance"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.2.2.1</span> Unknown Variance<a class="anchor" aria-label="anchor" href="#unknown-variance"><i class="fas fa-link"></i></a>
 </h4>
 <p>When inferring about the population mean, we will usually have to estimate the underlying, population, standard deviation <span class="math inline">\(\sigma\)</span> as well. We usually estimate <span class="math inline">\(\sigma\)</span> with <span class="math inline">\(S\)</span>, the sample standard deviation. This introduces an extra level of uncertainty to the confidence interval. We found that while <span class="math inline">\({\bar{X} - \mu \over \sigma/\sqrt{n}}\)</span> has an approximate normal distribution, <span class="math inline">\({\bar{X} - \mu\over S/\sqrt{n}}\)</span> follows the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n - 1\)</span> degrees of freedom. This requires the additional assumption that the parent population, the distribution of <span class="math inline">\(X\)</span>, is normal.</p>
 <p>Thus, when <span class="math inline">\(\sigma\)</span> is unknown, a <span class="math inline">\((1 - \alpha)*100\%\)</span> confidence interval for the mean is given by:</p>
@@ -237,16 +235,16 @@ Figure 24.1: The pdf of a standard normal distribution, showing the idea of how 
 <p>For large sample sizes, the choice of using the normal distribution or the <span class="math inline">\(t\)</span> distribution is irrelevant because they are very similar to each other. The <span class="math inline">\(t\)</span> distribution requires us to use the degrees of freedom though, so be careful.</p>
 </div>
 </div>
-<div id="body-temperature-example" class="section level3" number="24.2.3">
+<div id="body-temperature-example" class="section level3" number="22.2.3">
 <h3>
-<span class="header-section-number">24.2.3</span> Body Temperature Example<a class="anchor" aria-label="anchor" href="#body-temperature-example"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.2.3</span> Body Temperature Example<a class="anchor" aria-label="anchor" href="#body-temperature-example"><i class="fas fa-link"></i></a>
 </h3>
 <blockquote>
 <p><em>Example</em>:<br>
-Find a 95% confidence interval for the body temperature data from Chapter <a href="HYPTESTCLT.html#HYPTESTCLT">21</a>.</p>
+Find a 95% confidence interval for the body temperature data from Chapter <a href="HYPTESTCLT.html#HYPTESTCLT">19</a>.</p>
 </blockquote>
 <p>We need the mean, standard deviation, and sample size from this data. We can find those values using <code><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats()</a></code>. The following <code>R</code> code calculates the confidence interval, using the values from <code><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats()</a></code> and the expression for a 95% confidence interval given above. Make sure you can follow the code. It can usually help to to run the code line-by-line (i.e., run the first two lines only, then the first three lines only, and so on).</p>
-<div class="sourceCode" id="cb710"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb670"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">temperature</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>, data <span class="op">=</span> <span class="va">.</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">mean</span>, <span class="va">sd</span>, <span class="va">n</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -261,7 +259,7 @@ Find a 95% confidence interval for the body temperature data from Chapter <a hre
 There is a link between hypothesis testing and confidence intervals. A confidence interval provides us with a range of feasible values for the parameter. In hypothesis testing, we are trying to determine whether the null hypothesized value is a feasible value of the parameter. Remember when we used the body temperature data in a hypothesis test, the null hypothesis was <span class="math inline">\(H_0\)</span>: The average body temperature is 98.6 degrees Fahrenheit, <span class="math inline">\(\mu = 98.6\)</span>. This null hypothesized value is not inside the interval, so we could reject the null hypothesis with this confidence interval and conclude that 98.6 degrees is not a feasible value of the true mean body temperature.</p>
 </blockquote>
 <p>We could also use <code>R</code> to find the confidence interval and conduct the hypothesis test. Notice that the connection between confidence intervals and hypothesis testing is reinforced here; we can use the <code><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test()</a></code> function to conduct a <span class="math inline">\(t\)</span>-test and to calculate a confidence interval. Read about the function <code><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test()</a></code> in the help menu to determine why we used the <code>mu</code> option.</p>
-<div class="sourceCode" id="cb712"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb672"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>, data <span class="op">=</span> <span class="va">temperature</span>, mu <span class="op">=</span> <span class="fl">98.6</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
@@ -275,7 +273,7 @@ There is a link between hypothesis testing and confidence intervals. A confidenc
 ## mean of x 
 ##  98.24923</code></pre>
 <p>We can use the following code if we only want the interval:</p>
-<div class="sourceCode" id="cb714"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb674"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>, data <span class="op">=</span> <span class="va">temperature</span>, mu <span class="op">=</span> <span class="fl">98.6</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   mean of x  lower    upper level
 ## 1  98.24923 98.122 98.37646  0.95</code></pre>
@@ -284,58 +282,58 @@ There is a link between hypothesis testing and confidence intervals. A confidenc
 \mbox{P}\left(\bar{X}-z_{\alpha/2}{\sigma\over\sqrt{n}}\leq \mu \leq \bar{X}+z_{\alpha/2}{\sigma\over\sqrt{n}}\right)=1-\alpha
 \]</span></p>
 </div>
-<div id="one-sided-intervals" class="section level3" number="24.2.4">
+<div id="one-sided-intervals" class="section level3" number="22.2.4">
 <h3>
-<span class="header-section-number">24.2.4</span> One-sided Intervals<a class="anchor" aria-label="anchor" href="#one-sided-intervals"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.2.4</span> One-sided Intervals<a class="anchor" aria-label="anchor" href="#one-sided-intervals"><i class="fas fa-link"></i></a>
 </h3>
-<p>If you remember the hypothesis test for body temperature in Chapter <a href="HYPTESTCLT.html#HYPTESTCLT">21</a> on the central limit theorem, you may be crying foul. That was a one-sided hypothesis test and we just conducted a two-sided test. So far, we have discussed only “two-sided” intervals. These intervals have an upper and lower bound. Typically, <span class="math inline">\(\alpha\)</span> is apportioned equally between the two tails. (Thus, we look for <span class="math inline">\(z_{\alpha/2}\)</span> or <span class="math inline">\(z_{1 - \alpha/2}\)</span>.)</p>
+<p>If you remember the hypothesis test for body temperature in Chapter <a href="HYPTESTCLT.html#HYPTESTCLT">19</a> on the central limit theorem, you may be crying foul. That was a one-sided hypothesis test and we just conducted a two-sided test. So far, we have discussed only “two-sided” intervals. These intervals have an upper and lower bound. Typically, <span class="math inline">\(\alpha\)</span> is apportioned equally between the two tails. (Thus, we look for <span class="math inline">\(z_{\alpha/2}\)</span> or <span class="math inline">\(z_{1 - \alpha/2}\)</span>.)</p>
 <p>In “one-sided” intervals, we only bound the interval on one side, providing only an upper bound or only a lower bound. We construct one-sided intervals when we are concerned with whether a parameter exceeds or stays below some threshold. Building a one-sided interval is similar to building two-sided intervals, but rather than dividing <span class="math inline">\(\alpha\)</span> into two, we simply apportion all of <span class="math inline">\(\alpha\)</span> to the relevant side. The difficult part is in determining whether we need an upper bound or lower bound.</p>
 <p>For the body temperature study, the alternative hypothesis was that the mean body temperature was less than 98.6. We are trying to reject the null hypothesis by showing an alternative that is smaller than the null hypothesized value. Finding the lower limit does not help us because the confidence interval indicates an interval that starts at the lower value and is unbounded above. Let’s just make up some numbers to help illustrate this. Suppose the lower confidence bound is 97.5. All we know is that the true average temperature is 97.5 or greater. This is not helpful in determining whether the true average temperature is less than 98.6. However, if we find an upper confidence bound and the value is 98.1, we know the true average temperature is most likely no larger than this value, and hence, is less than 98.6. This is much more helpful. In our confidence interval, we want to find the largest value the mean could reasonably be and, thus, we want the upper bound.</p>
 <p>We now repeat the analysis with this in mind.</p>
-<div class="sourceCode" id="cb716"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb676"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">temperature</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>, data <span class="op">=</span> <span class="va">.</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">mean</span>, <span class="va">sd</span>, <span class="va">n</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>upper_bound <span class="op">=</span> <span class="va">mean</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">0.95</span>, <span class="fl">129</span><span class="op">)</span><span class="op">*</span><span class="va">sd</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   upper_bound
 ## 1    98.35577</code></pre>
-<div class="sourceCode" id="cb718"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb678"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>, data <span class="op">=</span> <span class="va">temperature</span>, alternative <span class="op">=</span> <span class="st">"less"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   mean of x lower    upper level
 ## 1  98.24923  -Inf 98.35577  0.95</code></pre>
-<p>Notice that the probability in <code><a href="https://rdrr.io/r/stats/TDist.html">qt()</a></code> has been adjusted to calculate <span class="math inline">\(t_{1 - \alpha}\)</span>. Additionally, the upper bound in the one-sided interval is smaller than the upper bound in the two-sided interval because all 0.05 is going into the upper tail. See Figure <a href="CI.html#fig:dens242-fig">24.2</a> for an illustration of a one-sided interval.</p>
+<p>Notice that the probability in <code><a href="https://rdrr.io/r/stats/TDist.html">qt()</a></code> has been adjusted to calculate <span class="math inline">\(t_{1 - \alpha}\)</span>. Additionally, the upper bound in the one-sided interval is smaller than the upper bound in the two-sided interval because all 0.05 is going into the upper tail. See Figure <a href="CI.html#fig:dens242-fig">22.2</a> for an illustration of a one-sided interval.</p>
 <div class="figure">
 <span style="display:block;" id="fig:dens242-fig"></span>
 <img src="24-Confidence-Intervals_files/figure-html/dens242-fig-1.png" alt="The pdf of a standard normal distribution, showing the idea of how to develop a one-sided confidence interval." width="672"><p class="caption">
-Figure 24.2: The pdf of a standard normal distribution, showing the idea of how to develop a one-sided confidence interval.
+Figure 22.2: The pdf of a standard normal distribution, showing the idea of how to develop a one-sided confidence interval.
 </p>
 </div>
 </div>
 </div>
-<div id="confidence-intervals-for-one-proportion" class="section level2" number="24.3">
+<div id="confidence-intervals-for-one-proportion" class="section level2" number="22.3">
 <h2>
-<span class="header-section-number">24.3</span> Confidence intervals for one proportion<a class="anchor" aria-label="anchor" href="#confidence-intervals-for-one-proportion"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.3</span> Confidence intervals for one proportion<a class="anchor" aria-label="anchor" href="#confidence-intervals-for-one-proportion"><i class="fas fa-link"></i></a>
 </h2>
-<p>In Chapters <a href="HYPTESTDIST.html#HYPTESTDIST">20</a> and <a href="HYPTESTCLT.html#HYPTESTCLT">21</a>, we had an example of a single proportion. A Stanford University graduate student conducted an experiment using the tapper-listener game. The tapper picks a well-known song, taps the tune, and sees if the listener can guess the song. The researcher wanted to know whether a 50% correct-guess rate was a reasonable expectation. There was no second variable to shuffle, so we were unable to use a randomization test with this example. However, we used the CLT and simulation with a binomial probability model to perform hypothesis tests. In this section, we will use a confidence interval to answer our research question, and compare it to the results from hypothesis testing.</p>
+<p>In Chapters <a href="HYPTESTDIST.html#HYPTESTDIST">18</a> and <a href="HYPTESTCLT.html#HYPTESTCLT">19</a>, we had an example of a single proportion. A Stanford University graduate student conducted an experiment using the tapper-listener game. The tapper picks a well-known song, taps the tune, and sees if the listener can guess the song. The researcher wanted to know whether a 50% correct-guess rate was a reasonable expectation. There was no second variable to shuffle, so we were unable to use a randomization test with this example. However, we used the CLT and simulation with a binomial probability model to perform hypothesis tests. In this section, we will use a confidence interval to answer our research question, and compare it to the results from hypothesis testing.</p>
 <p>In the study, 42 out of 120 listeners (<span class="math inline">\(\hat{p} = 0.35\)</span>) correctly guessed the tune.</p>
-<div id="confidence-interval-for-one-proportion-using-the-normal-model" class="section level3" number="24.3.1">
+<div id="confidence-interval-for-one-proportion-using-the-normal-model" class="section level3" number="22.3.1">
 <h3>
-<span class="header-section-number">24.3.1</span> Confidence interval for one proportion using the normal model<a class="anchor" aria-label="anchor" href="#confidence-interval-for-one-proportion-using-the-normal-model"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.3.1</span> Confidence interval for one proportion using the normal model<a class="anchor" aria-label="anchor" href="#confidence-interval-for-one-proportion-using-the-normal-model"><i class="fas fa-link"></i></a>
 </h3>
-<p>The conditions for applying the normal model were already verified in Chapter <a href="HYPTESTCLT.html#HYPTESTCLT">21</a>; the number of successes and failures is at least 10 and each guess (observation) is an independent observation from a binomial distribution. Thus, we can proceed to the construction of the confidence interval. Remember, the form of the confidence interval is</p>
+<p>The conditions for applying the normal model were already verified in Chapter <a href="HYPTESTCLT.html#HYPTESTCLT">19</a>; the number of successes and failures is at least 10 and each guess (observation) is an independent observation from a binomial distribution. Thus, we can proceed to the construction of the confidence interval. Remember, the form of the confidence interval is</p>
 <p><span class="math display">\[\text{point estimate} \ \pm\ z^{\star}\times SE\]</span></p>
 <p>Our point estimate is <span class="math inline">\(\hat{p} = 0.35\)</span>. The standard error is slightly different because we don’t know the true (or hypothesized) value of <span class="math inline">\(\pi\)</span>. Instead, we can use <span class="math inline">\(\hat{p}\)</span> to estimate <span class="math inline">\(\pi\)</span>.</p>
 <p><span class="math display">\[SE = \sqrt{\hat{\pi} (1 - \hat{\pi}) \over n}\]</span></p>
 <p><span class="math display">\[SE \approx \sqrt{0.35(1 - 0.35) \over 120} = 0.0435\]</span></p>
 <p>The critical value, the number of standard deviations needed for the confidence interval, is found from the normal quantile.</p>
-<div class="sourceCode" id="cb720"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb680"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.975</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
 <p>Then, the 95% confidence interval is</p>
 <p><span class="math display">\[0.35 \pm 1.96\times 0.0435 \qquad \rightarrow \qquad (0.265, 0.435)\]</span></p>
 <p>We are 95% confident that the true correct-guess rate in the tapper-listener game is between 26.5% and 43.5%. Since this does not include 50% (or 0.50), we are confident the true correct-guess rate is different from 50%. This supports the results from the hypothesis tests, both of which resulted in <span class="math inline">\(p\)</span>-values around 0.001, leading us to reject the null hypothesis and conclude that the true correct-guess rate was different from 50%.</p>
 <p>Of course, <code>R</code> has built-in functions to perform the hypothesis test and calculate the confidence interval for a single proportion.</p>
-<div class="sourceCode" id="cb722"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb682"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/prop_test.html">prop_test</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">42</span>, n <span class="op">=</span> <span class="fl">120</span>, p <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  1-sample proportions test with continuity correction
@@ -348,7 +346,7 @@ Figure 24.2: The pdf of a standard normal distribution, showing the idea of how 
 ## sample estimates:
 ##    p 
 ## 0.35</code></pre>
-<div class="sourceCode" id="cb724"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb684"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/binom.test.html">binom.test</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">42</span>, n <span class="op">=</span> <span class="fl">120</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## 
@@ -363,7 +361,7 @@ Figure 24.2: The pdf of a standard normal distribution, showing the idea of how 
 ##                   0.35</code></pre>
 <p>Both functions give similar confidence intervals. The documentation for <code><a href="https://www.mosaic-web.org/mosaic/reference/prop_test.html">prop_test()</a></code> and <code><a href="https://www.mosaic-web.org/mosaic/reference/binom.test.html">binom.test()</a></code> provide details on additional options, such as one-sided intervals and different confidence levels.</p>
 <p>The <span class="math inline">\(p\)</span>-values are a little different than the ones we calculated (0.0012 for the simulation and 0.0010 for the normal-based test) because a correction factor was applied in <code><a href="https://www.mosaic-web.org/mosaic/reference/prop_test.html">prop_test()</a></code> and a different type of interval was used in <code><a href="https://www.mosaic-web.org/mosaic/reference/binom.test.html">binom.test()</a></code>. We leave it to the reader to learn more about these functions and related topics online. The code below calculates the confidence interval without a continuity correction. This confidence interval is closer to what we calculated by hand, and we come to the same conclusion because 50% is not contained in the interval.</p>
-<div class="sourceCode" id="cb726"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb686"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/prop_test.html">prop_test</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">42</span>, n <span class="op">=</span> <span class="fl">120</span>, p <span class="op">=</span> <span class="fl">0.5</span>, correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  1-sample proportions test without continuity correction
@@ -378,37 +376,37 @@ Figure 24.2: The pdf of a standard normal distribution, showing the idea of how 
 ## 0.35</code></pre>
 </div>
 </div>
-<div id="confidence-intervals-for-two-proportions" class="section level2" number="24.4">
+<div id="confidence-intervals-for-two-proportions" class="section level2" number="22.4">
 <h2>
-<span class="header-section-number">24.4</span> Confidence intervals for two proportions<a class="anchor" aria-label="anchor" href="#confidence-intervals-for-two-proportions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.4</span> Confidence intervals for two proportions<a class="anchor" aria-label="anchor" href="#confidence-intervals-for-two-proportions"><i class="fas fa-link"></i></a>
 </h2>
 <p>Throughout hypothesis testing, we had several examples of two proportions. We tested these problems with a randomization test or using a hypergeometric distribution. But in our chapters and homework, we have not presented the hypothesis test for two proportions using the asymptotic normal distribution, the central limit theorem. In this section, we will use a confidence interval to answer our research question, and compare it to the results from hypothesis testing.</p>
-<p>In Chapters <a href="HYPTESTSIM.html#HYPTESTSIM">19</a> and <a href="HYPTESTDIST.html#HYPTESTDIST">20</a>, we encountered an experiment that investigated whether providing blood thinners to patients who received CPR for a heart attack helped or hurt survival. It is believed that blood thinners (treatment group) negatively affect internal injuries that may result from CPR, leading to lower survival rates. The results from the experiment, which included 90 patients, are summarized in the <code>R</code> code below. These results are surprising! The point estimate suggests that patients who received blood thinners may have a <strong>higher</strong> survival rate: <span class="math display">\[p_{\text{treatment}} - p_{\text{control}} = 0.13\]</span>.</p>
-<div class="sourceCode" id="cb728"><pre class="downlit sourceCode r">
+<p>In Chapters <a href="HYPTESTSIM.html#HYPTESTSIM">17</a> and <a href="HYPTESTDIST.html#HYPTESTDIST">18</a>, we encountered an experiment that investigated whether providing blood thinners to patients who received CPR for a heart attack helped or hurt survival. It is believed that blood thinners (treatment group) negatively affect internal injuries that may result from CPR, leading to lower survival rates. The results from the experiment, which included 90 patients, are summarized in the <code>R</code> code below. These results are surprising! The point estimate suggests that patients who received blood thinners may have a <strong>higher</strong> survival rate: <span class="math display">\[p_{\text{treatment}} - p_{\text{control}} = 0.13\]</span>.</p>
+<div class="sourceCode" id="cb688"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">thinner</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/blood_thinner.csv"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb729"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb689"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span> <span class="va">group</span> <span class="op">+</span> <span class="va">outcome</span>, data <span class="op">=</span> <span class="va">thinner</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##            outcome
 ## group       died survived Total
 ##   control     39       11    50
 ##   treatment   26       14    40
 ##   Total       65       25    90</code></pre>
-<div class="sourceCode" id="cb731"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb691"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="va">outcome</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">thinner</span>, margins <span class="op">=</span> <span class="cn">TRUE</span>, format <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##           group
 ## outcome    control treatment
 ##   died        0.78      0.65
 ##   survived    0.22      0.35
 ##   Total       1.00      1.00</code></pre>
-<div class="sourceCode" id="cb733"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb693"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffprop</a></span><span class="op">(</span><span class="va">outcome</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">thinner</span><span class="op">)</span></span>
 <span><span class="va">obs</span></span></code></pre></div>
 <pre><code>## diffprop 
 ##    -0.13</code></pre>
 <p>Notice that because <code>R</code> uses the variable names in alphabetic order, we have <span class="math inline">\(p_{\text{control}} - p_{\text{treatment}} = -0.13\)</span>. This is not a problem. We could fix this by changing the variables to factors and reordering the levels.</p>
-<div id="confidence-interval-for-two-proportions-using-the-normal-model" class="section level3" number="24.4.1">
+<div id="confidence-interval-for-two-proportions-using-the-normal-model" class="section level3" number="22.4.1">
 <h3>
-<span class="header-section-number">24.4.1</span> Confidence interval for two proportions using the normal model<a class="anchor" aria-label="anchor" href="#confidence-interval-for-two-proportions-using-the-normal-model"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.4.1</span> Confidence interval for two proportions using the normal model<a class="anchor" aria-label="anchor" href="#confidence-interval-for-two-proportions-using-the-normal-model"><i class="fas fa-link"></i></a>
 </h3>
 <p>The conditions for applying the normal-based model (i.e., CLT) are met: the number of successes and failures in each group is at least 10 and each observation can be thought of as an independent observation from a hypergeometric distribution. Thus, we can proceed to the construction of the confidence interval. The form of the confidence interval is</p>
 <p><span class="math display">\[\text{point estimate} \ \pm\ z^{\star}\times SE\]</span></p>
@@ -418,7 +416,7 @@ Figure 24.2: The pdf of a standard normal distribution, showing the idea of how 
 <p><span class="math display">\[SE \approx \sqrt{\frac{0.22(1 - 0.22)}{50} + \frac{0.35(1 - 0.35)}{40}} = 0.0955\]</span></p>
 <p>It is close to the pooled value<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;When the null hypothesis is that &lt;span class="math inline"&gt;\(p_1 - p_2 = 0\)&lt;/span&gt;, we sometimes use the &lt;em&gt;pooled proportion&lt;/em&gt; to check the success-failure condition and calculate the standard error. In our example, the pooled proportion is &lt;span class="math display"&gt;\[\hat{p}_{\text{pooled}} = \frac{\text{# of patients who survived in the entire study}}{\text{# of patients in the entire study}}\]&lt;/span&gt; &lt;span class="math display"&gt;\[\hat{p}_{\text{pooled}} = \frac{11 + 14}{90} = 0.278\]&lt;/span&gt; The success-failure condition is met and the standard error (using the pooled proportion) is 0.09501. We leave it to the reader to find out more about using pooled standard deviations with two samples.&lt;/p&gt;'><sup>94</sup></a> because of the nearly equal sample sizes.</p>
 <p>The critical value is again found from the normal quantile.</p>
-<div class="sourceCode" id="cb735"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb695"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.975</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
 <p>The 95% confidence interval is</p>
@@ -426,7 +424,7 @@ Figure 24.2: The pdf of a standard normal distribution, showing the idea of how 
 <p>We are 95% confident that the difference in proportions of survival for the control and treatment groups is between -0.317 and 0.057. Because this does include zero, we are not confident they are different. This supports our conclusions from the hypothesis tests; we found a <span class="math inline">\(p\)</span>-value of around 0.26 and failed to reject the null hypothesis that the two proportions were different, or that the difference in the two proportions was different from zero.</p>
 <p>Note that this confidence interval is not an accurate method for smaller samples sizes. This is because the actual coverage rate, the percentage of intervals that contain the true population parameter, will not be the nominal, stated, coverage rate. This means it is not true that 95% of similarly constructed 95% confidence intervals will contain the true parameter. This is because the pooled estimate of the standard error is not accurate for small sample sizes. For the example above, the sample sizes are large enough and the performance of the method should be adequate.</p>
 <p>The <code><a href="https://www.mosaic-web.org/mosaic/reference/prop_test.html">prop_test()</a></code> function in <code>R</code>, used for the single proportion example, can also be used to calculate the hypothesis test and confidence interval for two proportions.</p>
-<div class="sourceCode" id="cb737"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb697"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/prop_test.html">prop_test</a></span><span class="op">(</span><span class="va">outcome</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">thinner</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  2-sample test for equality of proportions with continuity correction
@@ -440,7 +438,7 @@ Figure 24.2: The pdf of a standard normal distribution, showing the idea of how 
 ## prop 1 prop 2 
 ##   0.78   0.65</code></pre>
 <p>The <span class="math inline">\(p\)</span>-value is close to the one found in the randomization test, which is an approximation of the exact permutation test, because a correction factor was applied. We again provide code below without the correction factor and get a <span class="math inline">\(p\)</span>-value more similar to that found using the hypergeometric distribution, and a confidence interval more similar to what we calculated above. The confidence interval is a little different because the function used <em>died</em> as its success event, but since zero is contained in the interval, we get the same conclusion.</p>
-<div class="sourceCode" id="cb739"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb699"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/prop_test.html">prop_test</a></span><span class="op">(</span><span class="va">outcome</span> <span class="op">~</span> <span class="va">group</span>, data <span class="op">=</span> <span class="va">thinner</span>, correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  2-sample test for equality of proportions without continuity
@@ -458,9 +456,9 @@ Figure 24.2: The pdf of a standard normal distribution, showing the idea of how 
 <p>As with hypothesis tests, confidence intervals are imperfect. About 1-in-20 properly constructed 95% confidence intervals will fail to capture the parameter of interest. This is a similar idea to our Type 1 error.</p>
 </div>
 </div>
-<div id="changing-the-confidence-level" class="section level2" number="24.5">
+<div id="changing-the-confidence-level" class="section level2" number="22.5">
 <h2>
-<span class="header-section-number">24.5</span> Changing the confidence level<a class="anchor" aria-label="anchor" href="#changing-the-confidence-level"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.5</span> Changing the confidence level<a class="anchor" aria-label="anchor" href="#changing-the-confidence-level"><i class="fas fa-link"></i></a>
 </h2>
 <p>Suppose we want to consider confidence intervals where the confidence level is somewhat higher than 95%; perhaps we would like a confidence level of 99%. Think back to the analogy about trying to catch a fish: if we want to be more sure that we will catch the fish, we should use a wider net. To create a 99% confidence level, we must also widen our 95% interval. On the other hand, if we want a more narrow interval, we must calculate an interval with lower confidence, such as 90%.</p>
 <p>The 95% confidence interval structure provides guidance in how to make intervals with new confidence levels. Below is a general 95% confidence interval for a point estimate that comes from a nearly normal distribution:</p>
@@ -471,14 +469,14 @@ Figure 24.2: The pdf of a standard normal distribution, showing the idea of how 
 If <span class="math inline">\(X\)</span> is a normally distributed random variable, how often will <span class="math inline">\(X\)</span> be within 2.58 standard deviations of the mean?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;This is equivalent to asking how often a standard normal variable will be greater than -2.58 but less than 2.58. To determine this probability, look up -2.58 and 2.58 in &lt;code&gt;R&lt;/code&gt; using &lt;code&gt;pnorm()&lt;/code&gt; (0.0049 and 0.9951). Thus, there is a &lt;span class="math inline"&gt;\(0.9951-0.0049 \approx 0.99\)&lt;/span&gt; probability that the unobserved random variable &lt;span class="math inline"&gt;\(X\)&lt;/span&gt; will be within 2.58 standard deviations of the mean.&lt;/p&gt;'><sup>95</sup></a></p>
 </blockquote>
 <p>To create a 99% confidence interval, change 1.96 in the 95% confidence interval formula to be <span class="math inline">\(2.58\)</span>. We can use <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> to calculate this value. Remember that <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> uses the lower tail probability, so if we want 0.99 probability in the middle of the interval, we need to use 0.995 in the function. Follow the same reasoning to calculate confidence intervals with different confidence levels.</p>
-<div class="sourceCode" id="cb741"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb701"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.995</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 2.575829</code></pre>
 <p>The normal approximation is crucial to the precision of these confidence intervals. In the next chapter, we will learn a method called the <strong>bootstrap</strong> that will allow us to find confidence intervals without the assumption of normality.</p>
 </div>
-<div id="changing-the-sample-size" class="section level2" number="24.6">
+<div id="changing-the-sample-size" class="section level2" number="22.6">
 <h2>
-<span class="header-section-number">24.6</span> Changing the sample size<a class="anchor" aria-label="anchor" href="#changing-the-sample-size"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.6</span> Changing the sample size<a class="anchor" aria-label="anchor" href="#changing-the-sample-size"><i class="fas fa-link"></i></a>
 </h2>
 <blockquote>
 <p><strong>Exercise</strong>:
@@ -494,9 +492,9 @@ By how much do we have to increase the sample size in order to reduce the margin
 \]</span></p>
 <p>The margin of error is the critical value multiplied by the standard error, the right side of each expression. In both equations, we have <span class="math inline">\(\sqrt{n}\)</span> in the denominator of the standard error. Suppose we calculate a confidence interval based on a sample size of 100. Then, a confidence interval based on a sample size of 200 would have a standard error that is reduced by a factor of <span class="math inline">\(1/\sqrt{2}\)</span>. Compared to the original interval (sample size of 100), a confidence interval based on a sample size of 400 would have a standard error that is reduced by a factor of <span class="math inline">\(1/\sqrt{4} = 1/2\)</span>. As the sample size increases, the standard error (and hence, the margin of error) decreases, and the interval gets more narrow. We can think of this another way: as the sample size increases and we gain more information about the population, our confidence interval gets more precise. A smaller sample size (less information about the population) results in a wider confidence interval.</p>
 </div>
-<div id="interpreting-confidence-intervals" class="section level2" number="24.7">
+<div id="interpreting-confidence-intervals" class="section level2" number="22.7">
 <h2>
-<span class="header-section-number">24.7</span> Interpreting confidence intervals<a class="anchor" aria-label="anchor" href="#interpreting-confidence-intervals"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.7</span> Interpreting confidence intervals<a class="anchor" aria-label="anchor" href="#interpreting-confidence-intervals"><i class="fas fa-link"></i></a>
 </h2>
 <p>A careful eye might have observed the somewhat awkward language used to describe confidence intervals.</p>
 <blockquote>
@@ -510,9 +508,9 @@ Approximately 95% of similarly constructed intervals will contain the population
 <p><strong>Incorrect</strong> language might try to describe the confidence interval as capturing the population parameter with a certain probability. This is one of the most common errors. While it might be useful to think of it as a probability, the confidence level only quantifies how plausible it is that the parameter is in the interval. Once again, we remind the reader that we do not make probabilistic statements about a realized interval; there are no random components in the interval once we observe data, so there is no probability associated with the calculated interval.</p>
 <p>Another especially important consideration of confidence intervals is that they <strong>only try to capture the population parameter</strong>. Our intervals say nothing about the confidence of capturing individual observations, a proportion of the observations, or point estimates. Confidence intervals only attempt to capture population parameters.</p>
 </div>
-<div id="homework-problems-23" class="section level2" number="24.8">
+<div id="homework-problems-21" class="section level2" number="22.8">
 <h2>
-<span class="header-section-number">24.8</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-23"><i class="fas fa-link"></i></a>
+<span class="header-section-number">22.8</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-21"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
 <li>Chronic illness</li>
@@ -594,31 +592,31 @@ n   &amp; \bar{x}   &amp; s     &amp; min   &amp; max \\
 </div>
 
   <div class="chapter-nav">
-<div class="prev"><a href="ANOVA.html"><span class="header-section-number">23</span> Analysis of Variance</a></div>
-<div class="next"><a href="BOOT.html"><span class="header-section-number">25</span> Bootstrap</a></div>
+<div class="prev"><a href="ANOVA.html"><span class="header-section-number">21</span> Analysis of Variance</a></div>
+<div class="next"><a href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#CI"><span class="header-section-number">24</span> Confidence Intervals</a></li>
-<li><a class="nav-link" href="#objectives-24"><span class="header-section-number">24.1</span> Objectives</a></li>
+<li><a class="nav-link" href="#CI"><span class="header-section-number">22</span> Confidence Intervals</a></li>
+<li><a class="nav-link" href="#objectives-22"><span class="header-section-number">22.1</span> Objectives</a></li>
 <li>
-<a class="nav-link" href="#confidence-intervals-1"><span class="header-section-number">24.2</span> Confidence intervals</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#capturing-the-population-parameter"><span class="header-section-number">24.2.1</span> Capturing the population parameter</a></li>
-<li><a class="nav-link" href="#constructing-a-confidence-interval"><span class="header-section-number">24.2.2</span> Constructing a confidence interval</a></li>
-<li><a class="nav-link" href="#body-temperature-example"><span class="header-section-number">24.2.3</span> Body Temperature Example</a></li>
-<li><a class="nav-link" href="#one-sided-intervals"><span class="header-section-number">24.2.4</span> One-sided Intervals</a></li>
+<a class="nav-link" href="#confidence-intervals-1"><span class="header-section-number">22.2</span> Confidence intervals</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#capturing-the-population-parameter"><span class="header-section-number">22.2.1</span> Capturing the population parameter</a></li>
+<li><a class="nav-link" href="#constructing-a-confidence-interval"><span class="header-section-number">22.2.2</span> Constructing a confidence interval</a></li>
+<li><a class="nav-link" href="#body-temperature-example"><span class="header-section-number">22.2.3</span> Body Temperature Example</a></li>
+<li><a class="nav-link" href="#one-sided-intervals"><span class="header-section-number">22.2.4</span> One-sided Intervals</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#confidence-intervals-for-one-proportion"><span class="header-section-number">24.3</span> Confidence intervals for one proportion</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#confidence-interval-for-one-proportion-using-the-normal-model"><span class="header-section-number">24.3.1</span> Confidence interval for one proportion using the normal model</a></li></ul>
+<a class="nav-link" href="#confidence-intervals-for-one-proportion"><span class="header-section-number">22.3</span> Confidence intervals for one proportion</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#confidence-interval-for-one-proportion-using-the-normal-model"><span class="header-section-number">22.3.1</span> Confidence interval for one proportion using the normal model</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#confidence-intervals-for-two-proportions"><span class="header-section-number">24.4</span> Confidence intervals for two proportions</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#confidence-interval-for-two-proportions-using-the-normal-model"><span class="header-section-number">24.4.1</span> Confidence interval for two proportions using the normal model</a></li></ul>
+<a class="nav-link" href="#confidence-intervals-for-two-proportions"><span class="header-section-number">22.4</span> Confidence intervals for two proportions</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#confidence-interval-for-two-proportions-using-the-normal-model"><span class="header-section-number">22.4.1</span> Confidence interval for two proportions using the normal model</a></li></ul>
 </li>
-<li><a class="nav-link" href="#changing-the-confidence-level"><span class="header-section-number">24.5</span> Changing the confidence level</a></li>
-<li><a class="nav-link" href="#changing-the-sample-size"><span class="header-section-number">24.6</span> Changing the sample size</a></li>
-<li><a class="nav-link" href="#interpreting-confidence-intervals"><span class="header-section-number">24.7</span> Interpreting confidence intervals</a></li>
-<li><a class="nav-link" href="#homework-problems-23"><span class="header-section-number">24.8</span> Homework Problems</a></li>
+<li><a class="nav-link" href="#changing-the-confidence-level"><span class="header-section-number">22.5</span> Changing the confidence level</a></li>
+<li><a class="nav-link" href="#changing-the-sample-size"><span class="header-section-number">22.6</span> Changing the sample size</a></li>
+<li><a class="nav-link" href="#interpreting-confidence-intervals"><span class="header-section-number">22.7</span> Interpreting confidence intervals</a></li>
+<li><a class="nav-link" href="#homework-problems-21"><span class="header-section-number">22.8</span> Homework Problems</a></li>
 </ul>
 
       <div class="book-extra">
@@ -636,7 +634,7 @@ n   &amp; \bar{x}   &amp; s     &amp; min   &amp; max \\
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-21.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

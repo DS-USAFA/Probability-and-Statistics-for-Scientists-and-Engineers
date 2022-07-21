@@ -4,22 +4,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 21 Hypothesis Testing with the Central Limit Theorem | Computational Probability and Statistics - MASTER</title>
+<title>Chapter 19 Hypothesis Testing with the Central Limit Theorem | Probability and Statistics for Scientists and Engineers</title>
 <meta name="author" content="Matthew Davis">
 <meta name="author" content="Brianna Hitt">
 <meta name="author" content="Ken Horton">
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
-<meta name="description" content="21.1 Objectives Explain the central limit theorem and when it can be used for inference. Conduct hypothesis tests of a single mean and proportion using the CLT and R. Explain how the \(t\)...">
+<meta name="description" content="19.1 Objectives Explain the central limit theorem and when it can be used for inference. Conduct hypothesis tests of a single mean and proportion using the CLT and R. Explain how the \(t\)...">
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
-<meta property="og:title" content="Chapter 21 Hypothesis Testing with the Central Limit Theorem | Computational Probability and Statistics - MASTER">
+<meta property="og:title" content="Chapter 19 Hypothesis Testing with the Central Limit Theorem | Probability and Statistics for Scientists and Engineers">
 <meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover_Majors.png">
-<meta property="og:description" content="21.1 Objectives Explain the central limit theorem and when it can be used for inference. Conduct hypothesis tests of a single mean and proportion using the CLT and R. Explain how the \(t\)...">
+<meta property="og:image" content="/figures/Cover_Engineers.png">
+<meta property="og:description" content="19.1 Objectives Explain the central limit theorem and when it can be used for inference. Conduct hypothesis tests of a single mean and proportion using the CLT and R. Explain how the \(t\)...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 21 Hypothesis Testing with the Central Limit Theorem | Computational Probability and Statistics - MASTER">
-<meta name="twitter:description" content="21.1 Objectives Explain the central limit theorem and when it can be used for inference. Conduct hypothesis tests of a single mean and proportion using the CLT and R. Explain how the \(t\)...">
-<meta name="twitter:image" content="/figures/Cover_Majors.png">
+<meta name="twitter:title" content="Chapter 19 Hypothesis Testing with the Central Limit Theorem | Probability and Statistics for Scientists and Engineers">
+<meta name="twitter:description" content="19.1 Objectives Explain the central limit theorem and when it can be used for inference. Conduct hypothesis tests of a single mean and proportion using the CLT and R. Explain how the \(t\)...">
+<meta name="twitter:image" content="/figures/Cover_Engineers.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -60,7 +60,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Computational Probability and Statistics - MASTER</a>
+        <a href="index.html" title="">Probability and Statistics for Scientists and Engineers</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -91,25 +91,23 @@
 <li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
 <li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
 <li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
-<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
-<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
 <li class="book-part">Inferential Statistical Modeling</li>
-<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Hypothesis Testing Case Study</a></li>
-<li><a class="" href="HYPTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></li>
-<li><a class="" href="HYPTESTDIST.html"><span class="header-section-number">20</span> Hypothesis Testing with Known Distributions</a></li>
-<li><a class="active" href="HYPTESTCLT.html"><span class="header-section-number">21</span> Hypothesis Testing with the Central Limit Theorem</a></li>
-<li><a class="" href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></li>
-<li><a class="" href="ANOVA.html"><span class="header-section-number">23</span> Analysis of Variance</a></li>
-<li><a class="" href="CI.html"><span class="header-section-number">24</span> Confidence Intervals</a></li>
-<li><a class="" href="BOOT.html"><span class="header-section-number">25</span> Bootstrap</a></li>
+<li><a class="" href="CS3.html"><span class="header-section-number">16</span> Hypothesis Testing Case Study</a></li>
+<li><a class="" href="HYPTESTSIM.html"><span class="header-section-number">17</span> Hypothesis Testing with Simulation</a></li>
+<li><a class="" href="HYPTESTDIST.html"><span class="header-section-number">18</span> Hypothesis Testing with Known Distributions</a></li>
+<li><a class="active" href="HYPTESTCLT.html"><span class="header-section-number">19</span> Hypothesis Testing with the Central Limit Theorem</a></li>
+<li><a class="" href="ADDTESTS.html"><span class="header-section-number">20</span> Additional Hypothesis Tests</a></li>
+<li><a class="" href="ANOVA.html"><span class="header-section-number">21</span> Analysis of Variance</a></li>
+<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
+<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
 <li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">26</span> Linear Regression Case Study</a></li>
-<li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
-<li><a class="" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
-<li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation-Based Linear Regression</a></li>
-<li><a class="" href="LRMULTI.html"><span class="header-section-number">31</span> Multiple Linear Regression</a></li>
-<li><a class="" href="LOGREG.html"><span class="header-section-number">32</span> Logistic Regression</a></li>
+<li><a class="" href="CS4.html"><span class="header-section-number">24</span> Linear Regression Case Study</a></li>
+<li><a class="" href="LRBASICS.html"><span class="header-section-number">25</span> Linear Regression Basics</a></li>
+<li><a class="" href="LRINF.html"><span class="header-section-number">26</span> Linear Regression Inference</a></li>
+<li><a class="" href="LRDIAG.html"><span class="header-section-number">27</span> Regression Diagnostics</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">28</span> Simulation-Based Linear Regression</a></li>
+<li><a class="" href="LRMULTI.html"><span class="header-section-number">29</span> Multiple Linear Regression</a></li>
+<li><a class="" href="LOGREG.html"><span class="header-section-number">30</span> Logistic Regression</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -118,13 +116,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="HYPTESTCLT" class="section level1" number="21">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="HYPTESTCLT" class="section level1" number="19">
 <h1>
-<span class="header-section-number">21</span> Hypothesis Testing with the Central Limit Theorem<a class="anchor" aria-label="anchor" href="#HYPTESTCLT"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19</span> Hypothesis Testing with the Central Limit Theorem<a class="anchor" aria-label="anchor" href="#HYPTESTCLT"><i class="fas fa-link"></i></a>
 </h1>
-<div id="objectives-21" class="section level2" number="21.1">
+<div id="objectives-19" class="section level2" number="19.1">
 <h2>
-<span class="header-section-number">21.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-21"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-19"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
 <li><p>Explain the central limit theorem and when it can be used for inference.</p></li>
@@ -132,38 +130,38 @@
 <li><p>Explain how the <span class="math inline">\(t\)</span> distribution relates to the normal distribution, where it is used, and how changing parameters impacts the shape of the distribution.</p></li>
 </ol>
 </div>
-<div id="central-limit-theorem" class="section level2" number="21.2">
+<div id="central-limit-theorem" class="section level2" number="19.2">
 <h2>
-<span class="header-section-number">21.2</span> Central limit theorem<a class="anchor" aria-label="anchor" href="#central-limit-theorem"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.2</span> Central limit theorem<a class="anchor" aria-label="anchor" href="#central-limit-theorem"><i class="fas fa-link"></i></a>
 </h2>
 <p>We’ve encountered several research questions and associated hypothesis tests so far in this block of material. While they differ in the settings, in their outcomes, and also in the technique we use to analyze the data, many of them have something in common: for a certain class of test statistics, the general shape of the sampling distribution under the null hypothesis looks like a normal distribution.</p>
-<div id="null-distribution" class="section level3" number="21.2.1">
+<div id="null-distribution" class="section level3" number="19.2.1">
 <h3>
-<span class="header-section-number">21.2.1</span> Null distribution<a class="anchor" aria-label="anchor" href="#null-distribution"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.2.1</span> Null distribution<a class="anchor" aria-label="anchor" href="#null-distribution"><i class="fas fa-link"></i></a>
 </h3>
-<p>As a reminder, in the tapping and listening problem, we used the proportion of correct guesses as our test statistic. Under the null hypothesis, we assumed the probability of success was 0.5. The estimate of the sampling distribution of our test statistic is shown in Figure <a href="HYPTESTCLT.html#fig:dens211-fig">21.1</a>.</p>
+<p>As a reminder, in the tapping and listening problem, we used the proportion of correct guesses as our test statistic. Under the null hypothesis, we assumed the probability of success was 0.5. The estimate of the sampling distribution of our test statistic is shown in Figure <a href="HYPTESTCLT.html#fig:dens211-fig">19.1</a>.</p>
 <div class="figure">
 <span style="display:block;" id="fig:dens211-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/dens211-fig-1.png" alt="Sampling distribution of the proportion." width="672"><p class="caption">
-Figure 21.1: Sampling distribution of the proportion.
+Figure 19.1: Sampling distribution of the proportion.
 </p>
 </div>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
 Describe the shape of the distribution and note anything that you find interesting.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;In general, the distribution is reasonably symmetric. It is unimodal and looks like a normal distribution.&lt;/p&gt;"><sup>87</sup></a></p>
 </blockquote>
-<p>In Figure <a href="HYPTESTCLT.html#fig:dens212-fig">21.2</a>, we have overlayed a normal distribution on the histogram of the estimated sampling distribution. This allows us to visually compare a normal probability density curve with the empirical (based on data, or simulation in this case) sampling distribution.</p>
+<p>In Figure <a href="HYPTESTCLT.html#fig:dens212-fig">19.2</a>, we have overlayed a normal distribution on the histogram of the estimated sampling distribution. This allows us to visually compare a normal probability density curve with the empirical (based on data, or simulation in this case) sampling distribution.</p>
 <div class="figure">
 <span style="display:block;" id="fig:dens212-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/dens212-fig-1.png" alt="Sampling distribution of the sample proportion." width="672"><p class="caption">
-Figure 21.2: Sampling distribution of the sample proportion.
+Figure 19.2: Sampling distribution of the sample proportion.
 </p>
 </div>
 <p>This similarity between the empirical and theoretical distributions is not a coincidence, but rather is guaranteed by mathematical theory. This chapter will be a little more notation- and algebra-intensive than the previous chapters. However, the goal is to develop a tool that will help us find sampling distributions for many types of test statistics and, thus, find <span class="math inline">\(p\)</span>-values. This chapter involves classical statistics often taught in AP high school classes, as well as many introductory undergraduate statistics courses. Remember that before the advances of modern computing, these mathematical solutions were all that was available.</p>
 </div>
-<div id="theorem---central-limit-theorem" class="section level3" number="21.2.2">
+<div id="theorem---central-limit-theorem" class="section level3" number="19.2.2">
 <h3>
-<span class="header-section-number">21.2.2</span> Theorem - central limit theorem<a class="anchor" aria-label="anchor" href="#theorem---central-limit-theorem"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.2.2</span> Theorem - central limit theorem<a class="anchor" aria-label="anchor" href="#theorem---central-limit-theorem"><i class="fas fa-link"></i></a>
 </h3>
 <p>Theorem: Let <span class="math inline">\(X_1, X_2, ..., X_n\)</span> be a sequence of i.i.d., independent and identically distributed, random variables from a distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma &lt; \infty\)</span>. Then,</p>
 <p><span class="math display">\[
@@ -178,13 +176,13 @@ Figure 21.2: Sampling distribution of the sample proportion.
 <p>If you go back and review examples, exercises, and homework problems from the previous chapters on hypothesis testing, you will see that we found symmetric, normal-“looking” sampling distributions when we created test statistics that involved the process of summing. One example of a skewed sampling distribution was the golf ball example, where our test statistic was the difference between the maximum and minimum value (and did not involve a summation of all the observations). It is hard to overstate the historical importance of this theorem to the field of inferential statistics and science in general.</p>
 <p>To get an understanding and some intuition of the central limit theorem, let’s simulate some data and evaluate.</p>
 </div>
-<div id="simulating-data-for-the-clt" class="section level3" number="21.2.3">
+<div id="simulating-data-for-the-clt" class="section level3" number="19.2.3">
 <h3>
-<span class="header-section-number">21.2.3</span> Simulating data for the CLT<a class="anchor" aria-label="anchor" href="#simulating-data-for-the-clt"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.2.3</span> Simulating data for the CLT<a class="anchor" aria-label="anchor" href="#simulating-data-for-the-clt"><i class="fas fa-link"></i></a>
 </h3>
 <p>For this section, we are going to use an artificial example where we know the population distribution and parameters. We will repeat sampling from this population distribution many times and plot the distribution of the summary statistic of interest, the sample mean, to demonstrate the CLT. This is purely an educational thought experiment to give ourselves confidence about the validity of the CLT.</p>
-<p>Suppose there is an upcoming election in Colorado and Proposition A is on the ballot. Now suppose that 65% of Colorado voters support Proposition A. We poll a random sample of <span class="math inline">\(n\)</span> Colorado voters. Prior to conducting the sample, we can think about the sample as a sequence of i.i.d. random variables (voters) from the binomial distribution with one trial (vote) in each run and a probability of success (support for the measure) of 0.65. In other words, each random variable will take a value of 1 (support) or 0 (oppose). Figure <a href="HYPTESTCLT.html#fig:dens213-fig">21.3</a> is a plot of the pmf of the parent distribution (<span class="math inline">\(\textsf{Binom}(1,\, 0.65)\)</span>):</p>
-<div class="sourceCode" id="cb573"><pre class="downlit sourceCode r">
+<p>Suppose there is an upcoming election in Colorado and Proposition A is on the ballot. Now suppose that 65% of Colorado voters support Proposition A. We poll a random sample of <span class="math inline">\(n\)</span> Colorado voters. Prior to conducting the sample, we can think about the sample as a sequence of i.i.d. random variables (voters) from the binomial distribution with one trial (vote) in each run and a probability of success (support for the measure) of 0.65. In other words, each random variable will take a value of 1 (support) or 0 (oppose). Figure <a href="HYPTESTCLT.html#fig:dens213-fig">19.3</a> is a plot of the pmf of the parent distribution (<span class="math inline">\(\textsf{Binom}(1,\, 0.65)\)</span>):</p>
+<div class="sourceCode" id="cb533"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"binom"</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.65</span>, plot_size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -192,72 +190,72 @@ Figure 21.2: Sampling distribution of the sample proportion.
 <div class="figure">
 <span style="display:block;" id="fig:dens213-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/dens213-fig-1.png" alt="Binomial pmf with one trial and probability of success of 0.65." width="672"><p class="caption">
-Figure 21.3: Binomial pmf with one trial and probability of success of 0.65.
+Figure 19.3: Binomial pmf with one trial and probability of success of 0.65.
 </p>
 </div>
 <p>This is clearly not normally distributed. It is, in fact, discrete. The mean of <span class="math inline">\(X\)</span> is 0.65 and the standard deviation is <span class="math inline">\(\sqrt{0.65(1 - 0.65)} = 0.477\)</span>.</p>
 <p>In our first simulation, we let the sample size be <span class="math inline">\(n = 10\)</span>. This is typically too small for the CLT to apply, but we will still use it as a starting point. In the code below, we will obtain a sample of size 10 from this binomial distribution and record the observed mean <span class="math inline">\(\bar{x}\)</span>, which is a method of moments estimate of the probability of success. We will repeat this process 10,000 times to get an empirical distribution of <span class="math inline">\(\bar{X}\)</span>. (Note that <span class="math inline">\(\bar{X}\)</span> is a mean of 1s and 0s, and can be thought of as the proportion of voters in the sample that support the measure. Often, the population proportion is denoted as <span class="math inline">\(\pi\)</span> and the sample proportion is denoted as <span class="math inline">\(\hat{\pi}\)</span>.)</p>
-<div class="sourceCode" id="cb574"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb534"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">5501</span><span class="op">)</span></span>
-<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">do</span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu">mean</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">0.65</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu">mean</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">0.65</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Since we are summing i.i.d. variables, the sampling distribution of the mean should look like a normal distribution. The mean should be close to 0.65 (the mean from the parent distribution), and the standard deviation should be close to <span class="math inline">\(\sqrt{\frac{p(1 - p)}{n}} = \sqrt{\frac{0.65(1 - 0.65)}{10}} = 0.151\)</span> (the standard deviation of the parent distribution divided by <span class="math inline">\(\sqrt{n}\)</span>).</p>
-<div class="sourceCode" id="cb575"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb535"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="op">~</span><span class="va">mean</span>, data <span class="op">=</span> <span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##  min  Q1 median  Q3 max    mean        sd     n missing
 ##  0.1 0.5    0.7 0.8   1 0.64932 0.1505716 10000       0</code></pre>
-<p>Remember from our chapters on probability, these results for the mean and standard deviation do not depend on the CLT. They are results from the properties of expectation on independent samples. The distribution of the sample mean (i.e., the shape of the sampling distribution) is approximately normal as a result of the CLT, Figure <a href="HYPTESTCLT.html#fig:dens214-fig">21.4</a>.</p>
+<p>Remember from our chapters on probability, these results for the mean and standard deviation do not depend on the CLT. They are results from the properties of expectation on independent samples. The distribution of the sample mean (i.e., the shape of the sampling distribution) is approximately normal as a result of the CLT, Figure <a href="HYPTESTCLT.html#fig:dens214-fig">19.4</a>.</p>
 <div class="figure">
 <span style="display:block;" id="fig:dens214-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/dens214-fig-1.png" alt="Sampling distribution of the sample proportion with sample size of 10." width="672"><p class="caption">
-Figure 21.4: Sampling distribution of the sample proportion with sample size of 10.
+Figure 19.4: Sampling distribution of the sample proportion with sample size of 10.
 </p>
 </div>
 <p>Note that the sampling distribution of the sample mean has a bell-curve shape, but with some skew to the left for this particular small sample size. That is why we state that the approximation improves with sample size.</p>
 <p>As a way to determine the impact of the sample size on inference to the population, let’s record how often a sample of 10 failed to indicate support for the measure. (How often was the sample proportion less than or equal to 0.5?) Remember, in this artificial example, we know that the population is in favor of the measure, 65% approval. However, if our point estimate is below 0.5, we would be led to believe that the population does not support the measure.</p>
-<div class="sourceCode" id="cb577"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb537"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>low_result <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="op">~</span><span class="va">mean</span> <span class="op">&lt;=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   low_result
 ## 1     0.2505</code></pre>
 <p>Even though we know that 65% of Colorado voters support the measure, a sample of size 10 failed to indicate support 25.05% of the time.</p>
-<p>Let’s take a larger sample. In the code below, we will repeat what we did above but with a sample of size 25. Figure <a href="HYPTESTCLT.html#fig:dens215-fig">21.5</a> plots the sampling distribution.</p>
-<div class="sourceCode" id="cb579"><pre class="downlit sourceCode r">
+<p>Let’s take a larger sample. In the code below, we will repeat what we did above but with a sample of size 25. Figure <a href="HYPTESTCLT.html#fig:dens215-fig">19.5</a> plots the sampling distribution.</p>
+<div class="sourceCode" id="cb539"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">5501</span><span class="op">)</span></span>
-<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">do</span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu">mean</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">1</span>, <span class="fl">0.65</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu">mean</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">1</span>, <span class="fl">0.65</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:dens215-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/dens215-fig-1.png" alt="Sampling distribution of the sample proportion with sample size of 25." width="672"><p class="caption">
-Figure 21.5: Sampling distribution of the sample proportion with sample size of 25.
+Figure 19.5: Sampling distribution of the sample proportion with sample size of 25.
 </p>
 </div>
-<div class="sourceCode" id="cb580"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb540"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>low_result <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="op">~</span><span class="va">mean</span> <span class="op">&lt;=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   low_result
 ## 1     0.0623</code></pre>
-<p>When increasing the sample size to 25, the standard deviation of our sample proportion decreased. According to the central limit theorem, it should have decreased to <span class="math inline">\(\sigma/\sqrt{25} = \sqrt{\frac{p(1 - p)}{25}} = 0.095\)</span>. Also, the skew became less severe (the shape became “more normal”). Further, the sample of size 25 failed to indicate support only 6.23% of the time. It reasonably follows that an even larger sample would continue these trends. Figure <a href="HYPTESTCLT.html#fig:dens216-fig">21.6</a> demonstrates these trends.</p>
+<p>When increasing the sample size to 25, the standard deviation of our sample proportion decreased. According to the central limit theorem, it should have decreased to <span class="math inline">\(\sigma/\sqrt{25} = \sqrt{\frac{p(1 - p)}{25}} = 0.095\)</span>. Also, the skew became less severe (the shape became “more normal”). Further, the sample of size 25 failed to indicate support only 6.23% of the time. It reasonably follows that an even larger sample would continue these trends. Figure <a href="HYPTESTCLT.html#fig:dens216-fig">19.6</a> demonstrates these trends.</p>
 <div class="figure">
 <span style="display:block;" id="fig:dens216-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/dens216-fig-1.png" alt="Sampling distribution of the proportion for different sample sizes." width="672"><p class="caption">
-Figure 21.6: Sampling distribution of the proportion for different sample sizes.
+Figure 19.6: Sampling distribution of the proportion for different sample sizes.
 </p>
 </div>
 </div>
-<div id="summary-of-example" class="section level3" number="21.2.4">
+<div id="summary-of-example" class="section level3" number="19.2.4">
 <h3>
-<span class="header-section-number">21.2.4</span> Summary of example<a class="anchor" aria-label="anchor" href="#summary-of-example"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.2.4</span> Summary of example<a class="anchor" aria-label="anchor" href="#summary-of-example"><i class="fas fa-link"></i></a>
 </h3>
 <p>In this example, we knew the true proportion of voters who supported the proposition. Based on that knowledge, we simulated the behavior of the sample proportion. We did this by taking a sample of size <span class="math inline">\(n\)</span>, recording the sample proportion (sample mean of 1s and 0s), and repeating that process thousands of times. In reality, we will not know the true underlying level of support; further, we will not take a sample repeatedly, thousands of times, from the parent population. Sampling can be expensive and time-consuming. Thus, we would take one random sample of size <span class="math inline">\(n\)</span>, and acknowledge that the resulting sample proportion is but one observation from an underlying normal distribution. We would then determine what values of <span class="math inline">\(\pi\)</span> (the true unknown population proportion) could reasonably have resulted in the observed sample proportion.</p>
 </div>
 </div>
-<div id="the-t-distribution" class="section level2" number="21.3">
+<div id="the-t-distribution" class="section level2" number="19.3">
 <h2>
-<span class="header-section-number">21.3</span> The <span class="math inline">\(t\)</span>-distribution<a class="anchor" aria-label="anchor" href="#the-t-distribution"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.3</span> The <span class="math inline">\(t\)</span>-distribution<a class="anchor" aria-label="anchor" href="#the-t-distribution"><i class="fas fa-link"></i></a>
 </h2>
 <p>Prior to using the CLT in hypothesis testing, we want to discuss other sampling distributions that are based on the CLT or normality assumptions. A large part of theoretical statistics has been about mathematically deriving the distribution of sample statistics. In these methods, we obtain a sample statistic, determine the distribution of that statistic under certain conditions, and then use that information to make a statement about the population parameter. We now discuss a commonly used sampling distribution: the <span class="math inline">\(t\)</span> distribution.</p>
-<div id="students-t" class="section level3" number="21.3.1">
+<div id="students-t" class="section level3" number="19.3.1">
 <h3>
-<span class="header-section-number">21.3.1</span> Student’s t<a class="anchor" aria-label="anchor" href="#students-t"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.3.1</span> Student’s t<a class="anchor" aria-label="anchor" href="#students-t"><i class="fas fa-link"></i></a>
 </h3>
 <p>Let <span class="math inline">\(X_1, X_2, ..., X_n\)</span> be an i.i.d. sequence of random variables, each with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>. Recall that the central limit theorem tells us that</p>
 <p><span class="math display">\[
@@ -277,45 +275,45 @@ Figure 21.6: Sampling distribution of the proportion for different sample sizes.
 <p>The <span class="math inline">\(\textsf{t}(n - 1)\)</span> distribution is read as the “<span class="math inline">\(t\)</span>” distribution. The <span class="math inline">\(t\)</span> distribution has one parameter: degrees of freedom. The left-hand side of the expression above <span class="math inline">\(\left({\bar{X}-\mu\over S/\sqrt{n}}\right)\)</span> is referred to as the <span class="math inline">\(t\)</span> statistic, and it tells us how many standard deviations our sample mean is from the population mean.</p>
 <p>The proof of this lemma is outside the scope of this book, but it is not terribly complicated. It follows from some simple algebra and the fact that the ratio of a standard normal random variable and the square root of a chi-squared random variable, <span class="math inline">\(S\)</span>, divided by it’s degrees of freedom follows a <span class="math inline">\(t\)</span> distribution.</p>
 <p>The <span class="math inline">\(t\)</span> distribution is very similar to the standard normal distribution, but has longer tails. This seems to make sense in the context of estimating <span class="math inline">\(\mu\)</span> because substituting the sample standard deviation <span class="math inline">\(S\)</span> for the population standard deviation <span class="math inline">\(\sigma\)</span> adds variability to the random variable.</p>
-<p>Figure <a href="HYPTESTCLT.html#fig:t211-fig">21.7</a> is a plot of the <span class="math inline">\(t\)</span> distribution, shown as a blue line, and has a bell shape that looks very similar to a normal distribution, show as a red line. However, the tails of the <span class="math inline">\(t\)</span> distribution are thicker, which means observations are more likely to fall beyond two standard deviations from the mean than under the normal distribution. When our sample is small, the value <span class="math inline">\(s\)</span> used to compute the standard error <span class="math inline">\((s/\sqrt{n})\)</span> isn’t very reliable. The extra thick tails of the <span class="math inline">\(t\)</span> distribution are exactly the correction we need to resolve this problem. When the degrees of freedom is about 30 or more, the <span class="math inline">\(t\)</span> distribution is nearly indistinguishable from the normal distribution.</p>
-<div class="sourceCode" id="cb582"><pre class="downlit sourceCode r">
+<p>Figure <a href="HYPTESTCLT.html#fig:t211-fig">19.7</a> is a plot of the <span class="math inline">\(t\)</span> distribution, shown as a blue line, and has a bell shape that looks very similar to a normal distribution, show as a red line. However, the tails of the <span class="math inline">\(t\)</span> distribution are thicker, which means observations are more likely to fall beyond two standard deviations from the mean than under the normal distribution. When our sample is small, the value <span class="math inline">\(s\)</span> used to compute the standard error <span class="math inline">\((s/\sqrt{n})\)</span> isn’t very reliable. The extra thick tails of the <span class="math inline">\(t\)</span> distribution are exactly the correction we need to resolve this problem. When the degrees of freedom is about 30 or more, the <span class="math inline">\(t\)</span> distribution is nearly indistinguishable from the normal distribution.</p>
+<div class="sourceCode" id="cb542"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">gf_dist</span><span class="op">(</span><span class="st">"norm"</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_dist</span><span class="op">(</span><span class="st">"t"</span>, df <span class="op">=</span> <span class="fl">3</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:t211-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/t211-fig-1.png" alt="The distibtion of t." width="672"><p class="caption">
-Figure 21.7: The distibtion of t.
+Figure 19.7: The distibtion of t.
 </p>
 </div>
 </div>
-<div id="important-note" class="section level3" number="21.3.2">
+<div id="important-note" class="section level3" number="19.3.2">
 <h3>
-<span class="header-section-number">21.3.2</span> Important Note<a class="anchor" aria-label="anchor" href="#important-note"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.3.2</span> Important Note<a class="anchor" aria-label="anchor" href="#important-note"><i class="fas fa-link"></i></a>
 </h3>
 <p>You may have noticed an important condition in the lemma above. It was assumed that each <span class="math inline">\(X_i\)</span> in the sequence of random variables was <em>normally</em> distributed. While the central limit theorem has no such normality assumption, the distribution of the <span class="math inline">\(t\)</span> statistic is subject to the distribution of the underlying population. With a large enough sample size, this assumption is not necessary. There is no magic number, but some resources state that as long as <span class="math inline">\(n\)</span> is at least 30-40, the underlying distribution doesn’t matter. This coincides with what we said previously: when the degrees of freedom is about 30 or more, the <span class="math inline">\(t\)</span> distribution is nearly indistinguishable from the normal distribution. For smaller sample sizes, the underlying distribution should be relatively symmetric and unimodal.</p>
 <p>One advantage of simulation-based inference methods is that these methods do not rely on any such distributional assumptions. However, the simulation-based methods may have smaller power for the same sample size.</p>
 </div>
 </div>
-<div id="hypothesis-tests-using-the-clt" class="section level2" number="21.4">
+<div id="hypothesis-tests-using-the-clt" class="section level2" number="19.4">
 <h2>
-<span class="header-section-number">21.4</span> Hypothesis tests using the CLT<a class="anchor" aria-label="anchor" href="#hypothesis-tests-using-the-clt"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.4</span> Hypothesis tests using the CLT<a class="anchor" aria-label="anchor" href="#hypothesis-tests-using-the-clt"><i class="fas fa-link"></i></a>
 </h2>
 <p>We are now ready to reexamine some of our previous examples using the mathematically derived sampling distribution via the CLT.</p>
-<div id="body-temperature" class="section level3" number="21.4.1">
+<div id="body-temperature" class="section level3" number="19.4.1">
 <h3>
-<span class="header-section-number">21.4.1</span> Body temperature<a class="anchor" aria-label="anchor" href="#body-temperature"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.4.1</span> Body temperature<a class="anchor" aria-label="anchor" href="#body-temperature"><i class="fas fa-link"></i></a>
 </h3>
-<p>We will repeat the body temperature analysis from Chapter <a href="HYPTESTDIST.html#HYPTESTDIST">20</a> homework, now using the CLT. We will use <span class="math inline">\(\alpha = 0.05\)</span>. Recall that a paper from the American Medical Association<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Mackowiak, P. A., Wasserman, S. S., and Levine, M. M. (1992), “A Critical Appraisal of 98.6 Degrees F, the Upper Limit of the Normal Body Temperature, and Other Legacies of Carl Reinhold August Wunderlich,” Journal of the American Medical Association, 268, 1578-1580.&lt;/p&gt;"><sup>88</sup></a> questioned the long-held belief that the average body temperature of a human is 98.6 degrees Fahrenheit. The authors of the paper believe that the average human body temperature is less than 98.6.</p>
-<div id="step-1--state-the-null-and-alternative-hypotheses-4" class="section level4" number="21.4.1.1">
+<p>We will repeat the body temperature analysis from Chapter <a href="HYPTESTDIST.html#HYPTESTDIST">18</a> homework, now using the CLT. We will use <span class="math inline">\(\alpha = 0.05\)</span>. Recall that a paper from the American Medical Association<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Mackowiak, P. A., Wasserman, S. S., and Levine, M. M. (1992), “A Critical Appraisal of 98.6 Degrees F, the Upper Limit of the Normal Body Temperature, and Other Legacies of Carl Reinhold August Wunderlich,” Journal of the American Medical Association, 268, 1578-1580.&lt;/p&gt;"><sup>88</sup></a> questioned the long-held belief that the average body temperature of a human is 98.6 degrees Fahrenheit. The authors of the paper believe that the average human body temperature is less than 98.6.</p>
+<div id="step-1--state-the-null-and-alternative-hypotheses-4" class="section level4" number="19.4.1.1">
 <h4>
-<span class="header-section-number">21.4.1.1</span> Step 1- State the null and alternative hypotheses<a class="anchor" aria-label="anchor" href="#step-1--state-the-null-and-alternative-hypotheses-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.4.1.1</span> Step 1- State the null and alternative hypotheses<a class="anchor" aria-label="anchor" href="#step-1--state-the-null-and-alternative-hypotheses-4"><i class="fas fa-link"></i></a>
 </h4>
 <p><span class="math inline">\(H_0\)</span>: The average body temperature is 98.6; <span class="math inline">\(\mu = 98.6\)</span><br><span class="math inline">\(H_A\)</span>: The average body temperature is less than 98.6; <span class="math inline">\(\mu &lt; 98.6\)</span></p>
 </div>
-<div id="step-2---compute-a-test-statistic.-5" class="section level4" number="21.4.1.2">
+<div id="step-2---compute-a-test-statistic.-5" class="section level4" number="19.4.1.2">
 <h4>
-<span class="header-section-number">21.4.1.2</span> Step 2 - Compute a test statistic.<a class="anchor" aria-label="anchor" href="#step-2---compute-a-test-statistic.-5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.4.1.2</span> Step 2 - Compute a test statistic.<a class="anchor" aria-label="anchor" href="#step-2---compute-a-test-statistic.-5"><i class="fas fa-link"></i></a>
 </h4>
 <p>The population variance is unknown, so we will use the <span class="math inline">\(t\)</span> distribution. Remember that</p>
 <p><span class="math display">\[
@@ -326,11 +324,11 @@ Thus, our test statistic is</p>
 \frac{\bar{x} - 98.6}{s / \sqrt{n}}
 \]</span></p>
 <p>The data is available in the file “temperature.csv”.</p>
-<div class="sourceCode" id="cb583"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb543"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>, data <span class="op">=</span> <span class="va">temperature</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   min   Q1 median   Q3   max     mean        sd   n missing
 ##  96.3 97.8   98.3 98.7 100.8 98.24923 0.7331832 130       0</code></pre>
-<div class="sourceCode" id="cb585"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb545"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">temperature</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">temperature</span><span class="op">)</span>, sd <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">temperature</span><span class="op">)</span>, </span>
 <span>            test_stat <span class="op">=</span> <span class="op">(</span><span class="va">mean</span> <span class="op">-</span> <span class="fl">98.6</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">sd</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">130</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -340,16 +338,16 @@ Thus, our test statistic is</p>
 ## 1  98.2 0.733     -5.45</code></pre>
 <p>Remember, the <span class="math inline">\(t\)</span> statistic tells us how many standard deviations the sample mean is from the population mean (the null hypothesis value). The sample mean of our data is over 5 standard deviations below the null hypothesis mean. We have some assumptions that we will discuss at the end of this problem.</p>
 </div>
-<div id="step-3---determine-the-p-value.-5" class="section level4" number="21.4.1.3">
+<div id="step-3---determine-the-p-value.-5" class="section level4" number="19.4.1.3">
 <h4>
-<span class="header-section-number">21.4.1.3</span> Step 3 - Determine the <span class="math inline">\(p\)</span>-value.<a class="anchor" aria-label="anchor" href="#step-3---determine-the-p-value.-5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.4.1.3</span> Step 3 - Determine the <span class="math inline">\(p\)</span>-value.<a class="anchor" aria-label="anchor" href="#step-3---determine-the-p-value.-5"><i class="fas fa-link"></i></a>
 </h4>
 <p>We now want to find the <span class="math inline">\(p\)</span>-value from <span class="math inline">\(\mbox{P}(t \leq -5.45)\)</span> on 129 <span class="math inline">\((n - 1)\)</span> degrees of freedom, given the null hypothesis is true. That is, given the true mean human body temperature is 98.6. We will use <code>R</code> to get the one-sided <span class="math inline">\(p\)</span>-value.</p>
-<div class="sourceCode" id="cb587"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb547"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5.45</span>, <span class="fl">129</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1.232178e-07</code></pre>
 <p>We could also use the <code>R</code> function <code><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test()</a></code>, in which we specify the variable of interest, the data set, the hypothesized mean value, and the alternative hypothesis. Remember to use <code><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">help(t_test)</a></code> or <code><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">?t_test</a></code> to access the <code>R</code> documentation for the <code>t_test</code> function.</p>
-<div class="sourceCode" id="cb589"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb549"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>, data <span class="op">=</span> <span class="va">temperature</span>, mu <span class="op">=</span> <span class="fl">98.6</span>, alternative <span class="op">=</span> <span class="st">"less"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
@@ -364,22 +362,22 @@ Thus, our test statistic is</p>
 ##  98.24923</code></pre>
 <p>You should notice this <span class="math inline">\(p\)</span>-value is much smaller than the <span class="math inline">\(p\)</span>-value from the method used in homework problem 3 in the last chapter. That is because this test statistic involves more assumptions and uses the data as continuous and not discrete (a positive or negative difference between 98.6 and the observed value).</p>
 </div>
-<div id="step-4---draw-a-conclusion-7" class="section level4" number="21.4.1.4">
+<div id="step-4---draw-a-conclusion-7" class="section level4" number="19.4.1.4">
 <h4>
-<span class="header-section-number">21.4.1.4</span> Step 4 - Draw a conclusion<a class="anchor" aria-label="anchor" href="#step-4---draw-a-conclusion-7"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.4.1.4</span> Step 4 - Draw a conclusion<a class="anchor" aria-label="anchor" href="#step-4---draw-a-conclusion-7"><i class="fas fa-link"></i></a>
 </h4>
 <p>Based on our data, if the true mean human body temperature is 98.6, then the probability of observing a mean of 98.25 or less is only 0.00000012. This is extremely unlikely, so we reject the null hypothesis that the average body temperature is 98.6 and conclude that there is sufficient evidence to say that the true average body temperature is less than 98.6.</p>
 </div>
 </div>
 </div>
-<div id="summary-and-rules-of-thumb" class="section level2" number="21.5">
+<div id="summary-and-rules-of-thumb" class="section level2" number="19.5">
 <h2>
-<span class="header-section-number">21.5</span> Summary and rules of thumb<a class="anchor" aria-label="anchor" href="#summary-and-rules-of-thumb"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.5</span> Summary and rules of thumb<a class="anchor" aria-label="anchor" href="#summary-and-rules-of-thumb"><i class="fas fa-link"></i></a>
 </h2>
 <p>We have covered a great deal in this chapter. At its core, the central limit theorem is a statement about the distribution of a sum of independent, identically distributed random variables. This sum is approximately normal.</p>
-<div id="numerical-data-2" class="section level3" number="21.5.1">
+<div id="numerical-data-2" class="section level3" number="19.5.1">
 <h3>
-<span class="header-section-number">21.5.1</span> Numerical data<a class="anchor" aria-label="anchor" href="#numerical-data-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.5.1</span> Numerical data<a class="anchor" aria-label="anchor" href="#numerical-data-2"><i class="fas fa-link"></i></a>
 </h3>
 <p>First, we summarize rules of thumb for the use of the CLT and <span class="math inline">\(t\)</span> distribution.</p>
 <ol style="list-style-type: decimal">
@@ -394,41 +392,41 @@ Thus, our test statistic is</p>
 <li><p>Observations come from a nearly normal distribution. This second condition is difficult to verify with small data sets. We often (i) take a look at a plot of the data for obvious departures from the normal distribution, usually in the form of prominent outliers, and (ii) consider whether any previous experiences alert us that the data may not be nearly normal. However, if the sample size is somewhat large, then we can relax this condition. For example, moderate skew is acceptable when the sample size is 30 or more, and strong skew is acceptable when the sample size is about 60 or more.</p></li>
 </ol>
 <p>A typical plot used to evaluate the normality assumption is called the quantile-quantile plot. We form a scatterplot of the empirical quantiles from the data versus exact quantile values from the theoretical distribution. If the points fall along a line, then the data match the distribution. An exact match is not realistic, so we look for major departures from the line.</p>
-<p>Figure <a href="HYPTESTCLT.html#fig:qq211-fig">21.8</a> is our quantile-quantile plot for the body temperature data. The largest value may be an outlier. We may want to verify the data point was entered correctly. The fact that the points are above the line for the larger values and below the line for the smaller values indicates that our data may have longer tails than the normal distribution. There are really only 3 values in the larger quantiles, so in fact, the data may be slightly skewed to the left. This was also indicated by a comparison of the mean and median. However, since we have 130 data points these results do not overly concern us, and should not impact our findings.</p>
-<div class="sourceCode" id="cb591"><pre class="downlit sourceCode r">
+<p>Figure <a href="HYPTESTCLT.html#fig:qq211-fig">19.8</a> is our quantile-quantile plot for the body temperature data. The largest value may be an outlier. We may want to verify the data point was entered correctly. The fact that the points are above the line for the larger values and below the line for the smaller values indicates that our data may have longer tails than the normal distribution. There are really only 3 values in the larger quantiles, so in fact, the data may be slightly skewed to the left. This was also indicated by a comparison of the mean and median. However, since we have 130 data points these results do not overly concern us, and should not impact our findings.</p>
+<div class="sourceCode" id="cb551"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">gf_qq</span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>, data <span class="op">=</span> <span class="va">temperature</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_qqline</span><span class="op">(</span><span class="op">~</span><span class="va">temperature</span>, data <span class="op">=</span> <span class="va">temperature</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:qq211-fig"></span>
 <img src="21-Central-Limit-Theorem_files/figure-html/qq211-fig-1.png" alt="Q-Q plot for body temperature data." width="672"><p class="caption">
-Figure 21.8: Q-Q plot for body temperature data.
+Figure 19.8: Q-Q plot for body temperature data.
 </p>
 </div>
 <p>Extreme data points, outliers, can be cause for concern. In later chapters, we will look for ways to detect outliers but we have also seen them in our boxplots. First, outliers are problematic because normal distributions rarely have outliers, so the presence of one may indicate a departure from normality. Second, outliers have a big impact on estimation methods for the mean and standard deviation, whether it is a method of moments or maximum likelihood estimate.</p>
 <p>We can also check the impacts of the assumptions by using other methods (like those in previous chapters) for the hypothesis test. If all methods give the same conclusion, we can be confident in the results. Another way to check robustness to assumptions is to simulate data from different distributions and evaluate the performance of the test under the simulated data.</p>
 </div>
-<div id="binary-data" class="section level3" number="21.5.2">
+<div id="binary-data" class="section level3" number="19.5.2">
 <h3>
-<span class="header-section-number">21.5.2</span> Binary data<a class="anchor" aria-label="anchor" href="#binary-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.5.2</span> Binary data<a class="anchor" aria-label="anchor" href="#binary-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>The distribution of a binomial random variable or simple scalar transformations of it, such as the proportions of success found by dividing by the sample size, are approximately normal by the CLT. Since binomial random variables are bounded by zero and the number of trials, we have to make sure our probability of success is not close to zero or one. That is, the number of successes is not close to 0 or <span class="math inline">\(n\)</span>. A general rule of thumb is that the number of successes and failures be at least 10.</p>
 </div>
-<div id="tappers-and-listeners-1" class="section level3" number="21.5.3">
+<div id="tappers-and-listeners-1" class="section level3" number="19.5.3">
 <h3>
-<span class="header-section-number">21.5.3</span> Tappers and listeners<a class="anchor" aria-label="anchor" href="#tappers-and-listeners-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.5.3</span> Tappers and listeners<a class="anchor" aria-label="anchor" href="#tappers-and-listeners-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>Recall that a Stanford University graduate student conducted an experiment using the tapper-listener game. The tapper picks a well-known song, taps it’s tune, and sees if the listener can guess the song. About 50% of the tappers expected the listener to correctly guess the song. The researcher wanted to determine whether this was a reasonable expectation.</p>
-<div id="step-1--state-the-null-and-alternative-hypotheses." class="section level4" number="21.5.3.1">
+<div id="step-1--state-the-null-and-alternative-hypotheses." class="section level4" number="19.5.3.1">
 <h4>
-<span class="header-section-number">21.5.3.1</span> Step 1- State the null and alternative hypotheses.<a class="anchor" aria-label="anchor" href="#step-1--state-the-null-and-alternative-hypotheses."><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.5.3.1</span> Step 1- State the null and alternative hypotheses.<a class="anchor" aria-label="anchor" href="#step-1--state-the-null-and-alternative-hypotheses."><i class="fas fa-link"></i></a>
 </h4>
 <p>Here are the two hypotheses:</p>
 <p><span class="math inline">\(H_0\)</span>: The tappers are correct, and generally 50% of the time listeners are able to guess the tune. <span class="math inline">\(p = 0.50\)</span><br><span class="math inline">\(H_A\)</span>: The tappers are incorrect, and either more than or less than 50% of listeners will be able to guess the tune. <span class="math inline">\(p \neq 0.50\)</span></p>
 </div>
-<div id="step-2---compute-a-test-statistic.-6" class="section level4" number="21.5.3.2">
+<div id="step-2---compute-a-test-statistic.-6" class="section level4" number="19.5.3.2">
 <h4>
-<span class="header-section-number">21.5.3.2</span> Step 2 - Compute a test statistic.<a class="anchor" aria-label="anchor" href="#step-2---compute-a-test-statistic.-6"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.5.3.2</span> Step 2 - Compute a test statistic.<a class="anchor" aria-label="anchor" href="#step-2---compute-a-test-statistic.-6"><i class="fas fa-link"></i></a>
 </h4>
 <p>The test statistic that we want to use is the sample mean <span class="math inline">\(\bar{X}\)</span>. This is the mean of the 1s and 0s for each guess, where a 1 indicates a correct guess and a 0 indicates an incorrect guess. This is a method of moments estimate of the probability of success. These are independent samples from the same binomial distribution, so by the CLT,</p>
 <p><span class="math display">\[
@@ -437,28 +435,28 @@ Figure 21.8: Q-Q plot for body temperature data.
 <p>As we learned, this approximation improves with sample size. As a rule of thumb, most analysts are comfortable with using the CLT for this problem if the number of successes and failures are both 10 or greater.</p>
 <p>In our study, 42 out of 120 listeners (<span class="math inline">\(\bar{x} = \hat{p} = 0.35\)</span>) were able to guess the tune. This is the observed value of the test statistic.</p>
 </div>
-<div id="step-3---determine-the-p-value.-6" class="section level4" number="21.5.3.3">
+<div id="step-3---determine-the-p-value.-6" class="section level4" number="19.5.3.3">
 <h4>
-<span class="header-section-number">21.5.3.3</span> Step 3 - Determine the <span class="math inline">\(p\)</span>-value.<a class="anchor" aria-label="anchor" href="#step-3---determine-the-p-value.-6"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.5.3.3</span> Step 3 - Determine the <span class="math inline">\(p\)</span>-value.<a class="anchor" aria-label="anchor" href="#step-3---determine-the-p-value.-6"><i class="fas fa-link"></i></a>
 </h4>
 <p>We now want to find the <span class="math inline">\(p\)</span>-value from the one-sided probability <span class="math inline">\(\mbox{P}(\bar{X} \leq 0.35)\)</span>, given the null hypothesis is true. That is, given that the true probability of success is 0.50. We will use <code>R</code> to get the one-sided value and then double it since the test is two-sided and the sampling distribution is symmetrical.</p>
-<div class="sourceCode" id="cb592"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb552"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">0.35</span>, mean <span class="op">=</span> <span class="fl">0.5</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">0.5</span><span class="op">*</span><span class="fl">0.5</span> <span class="op">/</span> <span class="fl">120</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.001015001</code></pre>
-<p>That is a small <span class="math inline">\(p\)</span>-value and consistent with what we got using both the exact binomial test and the simulated empirical <span class="math inline">\(p\)</span>-values in Chapter <a href="HYPTESTDIST.html#HYPTESTDIST">20</a>.</p>
+<p>That is a small <span class="math inline">\(p\)</span>-value and consistent with what we got using both the exact binomial test and the simulated empirical <span class="math inline">\(p\)</span>-values in Chapter <a href="HYPTESTDIST.html#HYPTESTDIST">18</a>.</p>
 <blockquote>
 <p><strong>Important note</strong>:
 In the calculation of the standard deviation of the sampling distribution, we used the null hypothesized value of the probability of success.</p>
 </blockquote>
 </div>
-<div id="step-4---draw-a-conclusion-8" class="section level4" number="21.5.3.4">
+<div id="step-4---draw-a-conclusion-8" class="section level4" number="19.5.3.4">
 <h4>
-<span class="header-section-number">21.5.3.4</span> Step 4 - Draw a conclusion<a class="anchor" aria-label="anchor" href="#step-4---draw-a-conclusion-8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.5.3.4</span> Step 4 - Draw a conclusion<a class="anchor" aria-label="anchor" href="#step-4---draw-a-conclusion-8"><i class="fas fa-link"></i></a>
 </h4>
 <p>Based on our data, if the listeners were guessing correct 50% of the time, there is about a 1-in-1000 chance that only 42 or less, or 78 or more, listeners would get it right. This is much less than 0.05, so we reject the null hypothesis that the listeners are guessing correctly half of the time. There is sufficient evidence to conclude that the true correct-guess rate is different from 50%.</p>
 <p>Note that <code>R</code> has built in functions to perform this test. If you explore these functions, use <code><a href="https://www.mosaic-web.org/mosaic/reference/prop.test.html">help(prop.test)</a></code> or <code><a href="https://www.mosaic-web.org/mosaic/reference/prop.test.html">?prop.test</a></code> to learn more. You will find options to improve the performance of the test. You are welcome to and should read about these methods. Again, before computers, researchers spent time optimizing the performance of the asymptotic methods such as the CLT.</p>
 <p>Here is the test of a single proportion for the tapper-listener example using <code>R</code>.</p>
-<div class="sourceCode" id="cb594"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb554"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/prop.test.html">prop.test</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">42</span>, n <span class="op">=</span> <span class="fl">120</span>, p <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  1-sample proportions test with continuity correction
@@ -476,12 +474,12 @@ In the calculation of the standard deviation of the sampling distribution, we us
 <p><strong>Exercise</strong>:<br>
 How do you conduct a one-sided test? What if the null value were 0.45?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;We will only extract the &lt;span class="math inline"&gt;\(p\)&lt;/span&gt;-value in this exercise.&lt;/p&gt;'><sup>89</sup></a></p>
 </blockquote>
-<div class="sourceCode" id="cb596"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb556"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/interval.html">pval</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/prop.test.html">prop.test</a></span><span class="op">(</span><span class="fl">42</span>, <span class="fl">120</span>, alternative <span class="op">=</span> <span class="st">"less"</span>, p <span class="op">=</span> <span class="fl">0.45</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   p.value 
 ## 0.0174214</code></pre>
 <p>The exact test uses the function <code><a href="https://www.mosaic-web.org/mosaic/reference/binom.test.html">binom.test()</a></code>.</p>
-<div class="sourceCode" id="cb598"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb558"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/binom.test.html">binom.test</a></span><span class="op">(</span><span class="fl">42</span>,<span class="fl">120</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## 
@@ -494,16 +492,16 @@ How do you conduct a one-sided test? What if the null value were 0.45?<a class="
 ## sample estimates:
 ## probability of success 
 ##                   0.35</code></pre>
-<p>This is the same as the code we used in Chapter <a href="HYPTESTDIST.html#HYPTESTDIST">20</a>:</p>
-<div class="sourceCode" id="cb600"><pre class="downlit sourceCode r">
+<p>This is the same as the code we used in Chapter <a href="HYPTESTDIST.html#HYPTESTDIST">18</a>:</p>
+<div class="sourceCode" id="cb560"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">42</span>, <span class="fl">120</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.001299333</code></pre>
 </div>
 </div>
 </div>
-<div id="homework-problems-20" class="section level2" number="21.6">
+<div id="homework-problems-18" class="section level2" number="19.6">
 <h2>
-<span class="header-section-number">21.6</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-20"><i class="fas fa-link"></i></a>
+<span class="header-section-number">19.6</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-18"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
 <li>Suppose we roll a fair six-sided die and let <span class="math inline">\(X\)</span> be the resulting number. The distribution of <span class="math inline">\(X\)</span> is discrete uniform. (Each of the six discrete outcomes is equally likely.)</li>
@@ -559,38 +557,38 @@ How do you conduct a one-sided test? What if the null value were 0.45?<a class="
 </div>
 
   <div class="chapter-nav">
-<div class="prev"><a href="HYPTESTDIST.html"><span class="header-section-number">20</span> Hypothesis Testing with Known Distributions</a></div>
-<div class="next"><a href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></div>
+<div class="prev"><a href="HYPTESTDIST.html"><span class="header-section-number">18</span> Hypothesis Testing with Known Distributions</a></div>
+<div class="next"><a href="ADDTESTS.html"><span class="header-section-number">20</span> Additional Hypothesis Tests</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#HYPTESTCLT"><span class="header-section-number">21</span> Hypothesis Testing with the Central Limit Theorem</a></li>
-<li><a class="nav-link" href="#objectives-21"><span class="header-section-number">21.1</span> Objectives</a></li>
+<li><a class="nav-link" href="#HYPTESTCLT"><span class="header-section-number">19</span> Hypothesis Testing with the Central Limit Theorem</a></li>
+<li><a class="nav-link" href="#objectives-19"><span class="header-section-number">19.1</span> Objectives</a></li>
 <li>
-<a class="nav-link" href="#central-limit-theorem"><span class="header-section-number">21.2</span> Central limit theorem</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#null-distribution"><span class="header-section-number">21.2.1</span> Null distribution</a></li>
-<li><a class="nav-link" href="#theorem---central-limit-theorem"><span class="header-section-number">21.2.2</span> Theorem - central limit theorem</a></li>
-<li><a class="nav-link" href="#simulating-data-for-the-clt"><span class="header-section-number">21.2.3</span> Simulating data for the CLT</a></li>
-<li><a class="nav-link" href="#summary-of-example"><span class="header-section-number">21.2.4</span> Summary of example</a></li>
+<a class="nav-link" href="#central-limit-theorem"><span class="header-section-number">19.2</span> Central limit theorem</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#null-distribution"><span class="header-section-number">19.2.1</span> Null distribution</a></li>
+<li><a class="nav-link" href="#theorem---central-limit-theorem"><span class="header-section-number">19.2.2</span> Theorem - central limit theorem</a></li>
+<li><a class="nav-link" href="#simulating-data-for-the-clt"><span class="header-section-number">19.2.3</span> Simulating data for the CLT</a></li>
+<li><a class="nav-link" href="#summary-of-example"><span class="header-section-number">19.2.4</span> Summary of example</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#the-t-distribution"><span class="header-section-number">21.3</span> The \(t\)-distribution</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#students-t"><span class="header-section-number">21.3.1</span> Student’s t</a></li>
-<li><a class="nav-link" href="#important-note"><span class="header-section-number">21.3.2</span> Important Note</a></li>
+<a class="nav-link" href="#the-t-distribution"><span class="header-section-number">19.3</span> The \(t\)-distribution</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#students-t"><span class="header-section-number">19.3.1</span> Student’s t</a></li>
+<li><a class="nav-link" href="#important-note"><span class="header-section-number">19.3.2</span> Important Note</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#hypothesis-tests-using-the-clt"><span class="header-section-number">21.4</span> Hypothesis tests using the CLT</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#body-temperature"><span class="header-section-number">21.4.1</span> Body temperature</a></li></ul>
+<a class="nav-link" href="#hypothesis-tests-using-the-clt"><span class="header-section-number">19.4</span> Hypothesis tests using the CLT</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#body-temperature"><span class="header-section-number">19.4.1</span> Body temperature</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#summary-and-rules-of-thumb"><span class="header-section-number">21.5</span> Summary and rules of thumb</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#numerical-data-2"><span class="header-section-number">21.5.1</span> Numerical data</a></li>
-<li><a class="nav-link" href="#binary-data"><span class="header-section-number">21.5.2</span> Binary data</a></li>
-<li><a class="nav-link" href="#tappers-and-listeners-1"><span class="header-section-number">21.5.3</span> Tappers and listeners</a></li>
+<a class="nav-link" href="#summary-and-rules-of-thumb"><span class="header-section-number">19.5</span> Summary and rules of thumb</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#numerical-data-2"><span class="header-section-number">19.5.1</span> Numerical data</a></li>
+<li><a class="nav-link" href="#binary-data"><span class="header-section-number">19.5.2</span> Binary data</a></li>
+<li><a class="nav-link" href="#tappers-and-listeners-1"><span class="header-section-number">19.5.3</span> Tappers and listeners</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#homework-problems-20"><span class="header-section-number">21.6</span> Homework Problems</a></li>
+<li><a class="nav-link" href="#homework-problems-18"><span class="header-section-number">19.6</span> Homework Problems</a></li>
 </ul>
 
       <div class="book-extra">
@@ -608,7 +606,7 @@ How do you conduct a one-sided test? What if the null value were 0.45?<a class="
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-21.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

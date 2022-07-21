@@ -4,22 +4,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 28 Linear Regression Inference | Computational Probability and Statistics - MASTER</title>
+<title>Chapter 26 Linear Regression Inference | Probability and Statistics for Scientists and Engineers</title>
 <meta name="author" content="Matthew Davis">
 <meta name="author" content="Brianna Hitt">
 <meta name="author" content="Ken Horton">
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
-<meta name="description" content="28.1 Objectives Given a simple linear regression model, conduct inference on the coefficients \(\beta_0\) and \(\beta_1\). Given a simple linear regression model, calculate the predicted response...">
+<meta name="description" content="26.1 Objectives Given a simple linear regression model, conduct inference on the coefficients \(\beta_0\) and \(\beta_1\). Given a simple linear regression model, calculate the predicted response...">
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
-<meta property="og:title" content="Chapter 28 Linear Regression Inference | Computational Probability and Statistics - MASTER">
+<meta property="og:title" content="Chapter 26 Linear Regression Inference | Probability and Statistics for Scientists and Engineers">
 <meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover_Majors.png">
-<meta property="og:description" content="28.1 Objectives Given a simple linear regression model, conduct inference on the coefficients \(\beta_0\) and \(\beta_1\). Given a simple linear regression model, calculate the predicted response...">
+<meta property="og:image" content="/figures/Cover_Engineers.png">
+<meta property="og:description" content="26.1 Objectives Given a simple linear regression model, conduct inference on the coefficients \(\beta_0\) and \(\beta_1\). Given a simple linear regression model, calculate the predicted response...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 28 Linear Regression Inference | Computational Probability and Statistics - MASTER">
-<meta name="twitter:description" content="28.1 Objectives Given a simple linear regression model, conduct inference on the coefficients \(\beta_0\) and \(\beta_1\). Given a simple linear regression model, calculate the predicted response...">
-<meta name="twitter:image" content="/figures/Cover_Majors.png">
+<meta name="twitter:title" content="Chapter 26 Linear Regression Inference | Probability and Statistics for Scientists and Engineers">
+<meta name="twitter:description" content="26.1 Objectives Given a simple linear regression model, conduct inference on the coefficients \(\beta_0\) and \(\beta_1\). Given a simple linear regression model, calculate the predicted response...">
+<meta name="twitter:image" content="/figures/Cover_Engineers.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -60,7 +60,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Computational Probability and Statistics - MASTER</a>
+        <a href="index.html" title="">Probability and Statistics for Scientists and Engineers</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -91,25 +91,23 @@
 <li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
 <li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
 <li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
-<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
-<li><a class="" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
 <li class="book-part">Inferential Statistical Modeling</li>
-<li><a class="" href="CS3.html"><span class="header-section-number">18</span> Hypothesis Testing Case Study</a></li>
-<li><a class="" href="HYPTESTSIM.html"><span class="header-section-number">19</span> Hypothesis Testing with Simulation</a></li>
-<li><a class="" href="HYPTESTDIST.html"><span class="header-section-number">20</span> Hypothesis Testing with Known Distributions</a></li>
-<li><a class="" href="HYPTESTCLT.html"><span class="header-section-number">21</span> Hypothesis Testing with the Central Limit Theorem</a></li>
-<li><a class="" href="ADDTESTS.html"><span class="header-section-number">22</span> Additional Hypothesis Tests</a></li>
-<li><a class="" href="ANOVA.html"><span class="header-section-number">23</span> Analysis of Variance</a></li>
-<li><a class="" href="CI.html"><span class="header-section-number">24</span> Confidence Intervals</a></li>
-<li><a class="" href="BOOT.html"><span class="header-section-number">25</span> Bootstrap</a></li>
+<li><a class="" href="CS3.html"><span class="header-section-number">16</span> Hypothesis Testing Case Study</a></li>
+<li><a class="" href="HYPTESTSIM.html"><span class="header-section-number">17</span> Hypothesis Testing with Simulation</a></li>
+<li><a class="" href="HYPTESTDIST.html"><span class="header-section-number">18</span> Hypothesis Testing with Known Distributions</a></li>
+<li><a class="" href="HYPTESTCLT.html"><span class="header-section-number">19</span> Hypothesis Testing with the Central Limit Theorem</a></li>
+<li><a class="" href="ADDTESTS.html"><span class="header-section-number">20</span> Additional Hypothesis Tests</a></li>
+<li><a class="" href="ANOVA.html"><span class="header-section-number">21</span> Analysis of Variance</a></li>
+<li><a class="" href="CI.html"><span class="header-section-number">22</span> Confidence Intervals</a></li>
+<li><a class="" href="BOOT.html"><span class="header-section-number">23</span> Bootstrap</a></li>
 <li class="book-part">Predictive Statistical Modeling</li>
-<li><a class="" href="CS4.html"><span class="header-section-number">26</span> Linear Regression Case Study</a></li>
-<li><a class="" href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></li>
-<li><a class="active" href="LRINF.html"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
-<li><a class="" href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></li>
-<li><a class="" href="LRSIM.html"><span class="header-section-number">30</span> Simulation-Based Linear Regression</a></li>
-<li><a class="" href="LRMULTI.html"><span class="header-section-number">31</span> Multiple Linear Regression</a></li>
-<li><a class="" href="LOGREG.html"><span class="header-section-number">32</span> Logistic Regression</a></li>
+<li><a class="" href="CS4.html"><span class="header-section-number">24</span> Linear Regression Case Study</a></li>
+<li><a class="" href="LRBASICS.html"><span class="header-section-number">25</span> Linear Regression Basics</a></li>
+<li><a class="active" href="LRINF.html"><span class="header-section-number">26</span> Linear Regression Inference</a></li>
+<li><a class="" href="LRDIAG.html"><span class="header-section-number">27</span> Regression Diagnostics</a></li>
+<li><a class="" href="LRSIM.html"><span class="header-section-number">28</span> Simulation-Based Linear Regression</a></li>
+<li><a class="" href="LRMULTI.html"><span class="header-section-number">29</span> Multiple Linear Regression</a></li>
+<li><a class="" href="LOGREG.html"><span class="header-section-number">30</span> Logistic Regression</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -118,13 +116,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="LRINF" class="section level1" number="28">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="LRINF" class="section level1" number="26">
 <h1>
-<span class="header-section-number">28</span> Linear Regression Inference<a class="anchor" aria-label="anchor" href="#LRINF"><i class="fas fa-link"></i></a>
+<span class="header-section-number">26</span> Linear Regression Inference<a class="anchor" aria-label="anchor" href="#LRINF"><i class="fas fa-link"></i></a>
 </h1>
-<div id="objectives-28" class="section level2" number="28.1">
+<div id="objectives-26" class="section level2" number="26.1">
 <h2>
-<span class="header-section-number">28.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-28"><i class="fas fa-link"></i></a>
+<span class="header-section-number">26.1</span> Objectives<a class="anchor" aria-label="anchor" href="#objectives-26"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
 <li><p>Given a simple linear regression model, conduct inference on the coefficients <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>.</p></li>
@@ -132,14 +130,14 @@
 <li><p>Build and interpret confidence and prediction intervals for values of the response variable.</p></li>
 </ol>
 </div>
-<div id="introduction-4" class="section level2" number="28.2">
+<div id="introduction-4" class="section level2" number="26.2">
 <h2>
-<span class="header-section-number">28.2</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">26.2</span> Introduction<a class="anchor" aria-label="anchor" href="#introduction-4"><i class="fas fa-link"></i></a>
 </h2>
 <p>In this chapter we discuss uncertainty in the estimates of the slope and y-intercept for a regression line. This will allow us to perform inference and predictions. Just as we identified standard errors for point estimates in previous chapters, we first discuss standard errors for these new estimates. This chapter is a classical chapter in the sense that we will be using the normal distribution. We will assume that the errors are normally distributed with constant variance. Later in the book, we will relax these assumptions.</p>
-<div id="regression" class="section level3" number="28.2.1">
+<div id="regression" class="section level3" number="26.2.1">
 <h3>
-<span class="header-section-number">28.2.1</span> Regression<a class="anchor" aria-label="anchor" href="#regression"><i class="fas fa-link"></i></a>
+<span class="header-section-number">26.2.1</span> Regression<a class="anchor" aria-label="anchor" href="#regression"><i class="fas fa-link"></i></a>
 </h3>
 <p>Last chapter, we introduced linear models using the simple linear regression model:
 <span class="math display">\[
@@ -164,35 +162,35 @@ E(Y|X=x)=E(\beta_0+\beta_1x+e)=Y=\beta_0+\beta_1x+E(e)=\beta_0+\beta_1x
 because <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, and <span class="math inline">\(x\)</span> are constants.</p>
 <p>It should be abundantly clear by now that <span class="math inline">\(\hat{Y}_*\)</span>, <span class="math inline">\(\hat{\beta}_0\)</span>, and <span class="math inline">\(\hat{\beta}_1\)</span> are <strong><em>estimators</em></strong>. Being estimators, they are dependent on our random sample, our data. If we collect a new random sample from the same population, we will get new estimates from these estimators. Thus, we can think of <span class="math inline">\(\hat{Y}_*\)</span>, <span class="math inline">\(\hat{\beta}_0\)</span>, and <span class="math inline">\(\hat{\beta}_1\)</span> as <strong>random variables</strong>. Like all random variables, they have distributions. We can use the distribution of an estimator to build confidence intervals and conduct hypothesis tests about the true values of the parameter it is intended to estimate. The estimators based on least squares are unbiased, their distributions are centered around the actual values of <span class="math inline">\(Y\)</span>, <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, respectively.</p>
 </div>
-<div id="review-of-assumptions" class="section level3" number="28.2.2">
+<div id="review-of-assumptions" class="section level3" number="26.2.2">
 <h3>
-<span class="header-section-number">28.2.2</span> Review of assumptions<a class="anchor" aria-label="anchor" href="#review-of-assumptions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">26.2.2</span> Review of assumptions<a class="anchor" aria-label="anchor" href="#review-of-assumptions"><i class="fas fa-link"></i></a>
 </h3>
-<p>We will review the assumptions of the least squares model because they are important for inference. Refer to Figure <a href="LRINF.html#fig:assump271-fig">28.1</a>, which plots the linear regression in the top row and the residuals in the second row. We generally assume the following:</p>
+<p>We will review the assumptions of the least squares model because they are important for inference. Refer to Figure <a href="LRINF.html#fig:assump271-fig">26.1</a>, which plots the linear regression in the top row and the residuals in the second row. We generally assume the following:</p>
 <ol style="list-style-type: decimal">
 <li>
-<strong>Fit</strong>. The data should show a linear trend. If there is a nonlinear trend, a transformation of the explanatory variable or a more advanced regression method should be applied. When looking at the residual plot, if the trend is linear, we should see a spread of points that are flat. The left column of Figure <a href="LRINF.html#fig:assump271-fig">28.1</a> is an example of a nonlinear relationship. The top plot is the regression plot and we can see what looks like a quadratic relationship instead of a linear one. The residual plot, the plot in the lower left corner of Figure <a href="LRINF.html#fig:assump271-fig">28.1</a>, also exhibits this non-linear trend.<br>
+<strong>Fit</strong>. The data should show a linear trend. If there is a nonlinear trend, a transformation of the explanatory variable or a more advanced regression method should be applied. When looking at the residual plot, if the trend is linear, we should see a spread of points that are flat. The left column of Figure <a href="LRINF.html#fig:assump271-fig">26.1</a> is an example of a nonlinear relationship. The top plot is the regression plot and we can see what looks like a quadratic relationship instead of a linear one. The residual plot, the plot in the lower left corner of Figure <a href="LRINF.html#fig:assump271-fig">26.1</a>, also exhibits this non-linear trend.<br>
 </li>
 <li>
-<strong>Nearly normal residuals</strong>. Generally the residuals must be nearly normal to use a <span class="math inline">\(t\)</span> or <span class="math inline">\(F\)</span> for inference. When this assumption is found to be unreasonable, it is usually because of <strong>outliers</strong> or concerns about <strong>influential</strong> points. An example of non-normal residuals is shown in the second column of Figure <a href="LRINF.html#fig:assump271-fig">28.1</a>. A <strong>qq</strong> plot is also useful as a diagnostic tool as we have seen. We can still use the <strong>bootstrap</strong> as an inference tool if the normality assumption is unreasonable.<br>
+<strong>Nearly normal residuals</strong>. Generally the residuals must be nearly normal to use a <span class="math inline">\(t\)</span> or <span class="math inline">\(F\)</span> for inference. When this assumption is found to be unreasonable, it is usually because of <strong>outliers</strong> or concerns about <strong>influential</strong> points. An example of non-normal residuals is shown in the second column of Figure <a href="LRINF.html#fig:assump271-fig">26.1</a>. A <strong>qq</strong> plot is also useful as a diagnostic tool as we have seen. We can still use the <strong>bootstrap</strong> as an inference tool if the normality assumption is unreasonable.<br>
 </li>
 <li>
-<strong>Constant variability</strong>. The variability of points around the least squares line remains roughly constant. An example of non-constant variability is shown in the third panel of Figure <a href="LRINF.html#fig:assump271-fig">28.1</a>. The constant variability assumption is needed for the <span class="math inline">\(t\)</span> and <span class="math inline">\(F\)</span> distributions. It is not required for the bootstrap method.<br>
+<strong>Constant variability</strong>. The variability of points around the least squares line remains roughly constant. An example of non-constant variability is shown in the third panel of Figure <a href="LRINF.html#fig:assump271-fig">26.1</a>. The constant variability assumption is needed for the <span class="math inline">\(t\)</span> and <span class="math inline">\(F\)</span> distributions. It is not required for the bootstrap method.<br>
 </li>
 <li>
-<strong>Independent observations</strong>. Be cautious about applying regression to data collected sequentially in what is called a <strong>time series</strong>. Such data may have an underlying structure that should be considered in a model and analysis. An example of a time series where independence is violated is shown in the fourth panel of Figure <a href="LRINF.html#fig:assump271-fig">28.1</a>. More advanced methods are required for time series data even including using a bootstrap.</li>
+<strong>Independent observations</strong>. Be cautious about applying regression to data collected sequentially in what is called a <strong>time series</strong>. Such data may have an underlying structure that should be considered in a model and analysis. An example of a time series where independence is violated is shown in the fourth panel of Figure <a href="LRINF.html#fig:assump271-fig">26.1</a>. More advanced methods are required for time series data even including using a bootstrap.</li>
 </ol>
 <p>In a later chapter we will explore more regression diagnostics.</p>
 <div class="figure">
 <span style="display:block;" id="fig:assump271-fig"></span>
 <img src="28-Linear-Regression-Inference_files/figure-html/assump271-fig-1.png" alt="Plots of linear regression and residual to illustrate the assumptions of the model." width="672"><p class="caption">
-Figure 28.1: Plots of linear regression and residual to illustrate the assumptions of the model.
+Figure 26.1: Plots of linear regression and residual to illustrate the assumptions of the model.
 </p>
 </div>
 </div>
-<div id="distribution-of-our-estimators" class="section level3" number="28.2.3">
+<div id="distribution-of-our-estimators" class="section level3" number="26.2.3">
 <h3>
-<span class="header-section-number">28.2.3</span> Distribution of our estimators<a class="anchor" aria-label="anchor" href="#distribution-of-our-estimators"><i class="fas fa-link"></i></a>
+<span class="header-section-number">26.2.3</span> Distribution of our estimators<a class="anchor" aria-label="anchor" href="#distribution-of-our-estimators"><i class="fas fa-link"></i></a>
 </h3>
 <p>With the assumption that the error term is normally distributed, we can find the distributions of our estimates, which turn out to be normal:</p>
 <p><span class="math display">\[
@@ -207,9 +205,9 @@ Figure 28.1: Plots of linear regression and residual to illustrate the assumptio
 <p>Notice that all three of these are unbiased, the expected value is equal to the parameter being estimated. Looking at the variance of the slope estimate we can see that is a function of the underlying unexplained variance, <span class="math inline">\(\sigma^2\)</span> and the data. The denominator is increased by having a larger spread in the explanatory variable. The slope of the estimated line is more stable, less variable, if the independent variable has high variance. That is interesting. If you are designing an experiment, this gives you insight in how to select the range of values for your explanatory variable.</p>
 </div>
 </div>
-<div id="inference" class="section level2" number="28.3">
+<div id="inference" class="section level2" number="26.3">
 <h2>
-<span class="header-section-number">28.3</span> Inference<a class="anchor" aria-label="anchor" href="#inference"><i class="fas fa-link"></i></a>
+<span class="header-section-number">26.3</span> Inference<a class="anchor" aria-label="anchor" href="#inference"><i class="fas fa-link"></i></a>
 </h2>
 <p>Now that we know how the coefficient estimates and the average predicted values behave, we can perform inference on their true values. Let’s take <span class="math inline">\(\hat{\beta}_1\)</span> for demonstration:</p>
 <p><span class="math display">\[
@@ -243,13 +241,13 @@ We only have <span class="math inline">\(n-2\)</span> degrees of freedom because
 \]</span></p>
 <p>has the <span class="math inline">\(\textsf{t}\)</span> distribution with <span class="math inline">\(n-2\)</span> degrees of freedom. Thus, once we collect a sample and obtain the observed <span class="math inline">\(\hat{\beta_1}\)</span> and <span class="math inline">\(\hat \sigma\)</span>, we can calculate this quantity and determine whether it is far enough from zero to reject <span class="math inline">\(H_0\)</span>.</p>
 <p>Similarly, we can use the distribution of <span class="math inline">\(\hat \beta_0\)</span> to build a confidence interval or conduct a hypothesis test on <span class="math inline">\(\beta_0\)</span>, but we usually don’t. This has to do with the interpretation of <span class="math inline">\(\beta_0\)</span>.</p>
-<div id="starbucks" class="section level3" number="28.3.1">
+<div id="starbucks" class="section level3" number="26.3.1">
 <h3>
-<span class="header-section-number">28.3.1</span> Starbucks<a class="anchor" aria-label="anchor" href="#starbucks"><i class="fas fa-link"></i></a>
+<span class="header-section-number">26.3.1</span> Starbucks<a class="anchor" aria-label="anchor" href="#starbucks"><i class="fas fa-link"></i></a>
 </h3>
 <p>That was a great deal of mathematics and theory. Let’s put it to use on the example from Starbucks. In the file <code>data/starbucks.csv</code> we have nutritional facts for several Starbucks’ food items. We used this data in the homework for last chapter. We will use this data again to illustrate the ideas we have introduced in this section.</p>
 <p>Read in the data.</p>
-<div class="sourceCode" id="cb879"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb839"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">starbucks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/starbucks.csv"</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>type<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">type</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <blockquote>
@@ -257,7 +255,7 @@ We only have <span class="math inline">\(n-2\)</span> degrees of freedom because
 Summarize and explore the data.</p>
 </blockquote>
 <p>Let’s look at a summary of the data.</p>
-<div class="sourceCode" id="cb880"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb840"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">starbucks</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Rows: 77
 ## Columns: 7
@@ -268,7 +266,7 @@ Summarize and explore the data.</p>
 ## $ fiber    &lt;dbl&gt; 5, 7, 0, 4, 0, 5, 2, 0, 0, 0, 2, 3, 2, 2, 3, 3, 2, 3, 0, 2, 0~
 ## $ protein  &lt;dbl&gt; 10, 6, 5, 7, 0, 6, 7, 6, 5, 7, 4, 6, 5, 5, 12, 7, 8, 6, 0, 10~
 ## $ type     &lt;fct&gt; bakery, bakery, bakery, bakery, bakery, bakery, bakery, baker~</code></pre>
-<div class="sourceCode" id="cb882"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb842"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">starbucks</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
@@ -291,8 +289,8 @@ Summarize and explore the data.</p>
 <p><strong>Exercise</strong>:<br>
 Create a scatterplot of calories and carbohydrate, carbs, content.</p>
 </blockquote>
-<p>Figure <a href="LRINF.html#fig:scat271-fig">28.2</a> is the scatterplot.</p>
-<div class="sourceCode" id="cb884"><pre class="downlit sourceCode r">
+<p>Figure <a href="LRINF.html#fig:scat271-fig">26.2</a> is the scatterplot.</p>
+<div class="sourceCode" id="cb844"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">starbucks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_point</span><span class="op">(</span><span class="va">calories</span><span class="op">~</span><span class="va">carb</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Carbohydrates"</span>,y<span class="op">=</span><span class="st">"Calories"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -300,7 +298,7 @@ Create a scatterplot of calories and carbohydrate, carbs, content.</p>
 <div class="figure">
 <span style="display:block;" id="fig:scat271-fig"></span>
 <img src="28-Linear-Regression-Inference_files/figure-html/scat271-fig-1.png" alt="Scatterplot of calories and carbohydrate content in Starbucks' products." width="672"><p class="caption">
-Figure 28.2: Scatterplot of calories and carbohydrate content in Starbucks’ products.
+Figure 26.2: Scatterplot of calories and carbohydrate content in Starbucks’ products.
 </p>
 </div>
 <blockquote>
@@ -308,9 +306,9 @@ Figure 28.2: Scatterplot of calories and carbohydrate content in Starbucks’ pr
 Use <code>R</code> to fit a linear regression model by regressing <code>calories</code> on <code>carb</code>.</p>
 </blockquote>
 <p>The results of fitting a linear least squares model is stored in the <code>star_mod</code> object.</p>
-<div class="sourceCode" id="cb885"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb845"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">star_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">calories</span> <span class="op">~</span> <span class="va">carb</span>, data <span class="op">=</span> <span class="va">starbucks</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb886"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb846"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -330,9 +328,9 @@ Use <code>R</code> to fit a linear regression model by regressing <code>calories
 ## Residual standard error: 78.26 on 75 degrees of freedom
 ## Multiple R-squared:  0.4556, Adjusted R-squared:  0.4484 
 ## F-statistic: 62.77 on 1 and 75 DF,  p-value: 1.673e-11</code></pre>
-<div id="hypothesis-test" class="section level4" number="28.3.1.1">
+<div id="hypothesis-test" class="section level4" number="26.3.1.1">
 <h4>
-<span class="header-section-number">28.3.1.1</span> Hypothesis test<a class="anchor" aria-label="anchor" href="#hypothesis-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">26.3.1.1</span> Hypothesis test<a class="anchor" aria-label="anchor" href="#hypothesis-test"><i class="fas fa-link"></i></a>
 </h4>
 <p>In the second row of the <strong>Coefficients</strong> portion of the table we have our point estimate, standard error, test statistic, and <span class="math inline">\(p\)</span>-value for the slope.</p>
 <p>The hypotheses for this output is<br><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_1 = 0\)</span>. The true linear model has slope zero. The carb content has no impact on the the calorie content.<br><span class="math inline">\(H_A\)</span>: <span class="math inline">\(\beta_1 \neq 0\)</span>. The true linear model has a slope different than zero. The higher the carb content, the greater the average calorie content or vice-versa.</p>
@@ -341,21 +339,21 @@ Use <code>R</code> to fit a linear regression model by regressing <code>calories
 {\hat{\beta}_1-0 \over {\hat \sigma \over \sqrt{ \sum (x_i-\bar{x})^2}}}
 \]</span>
 The denominator is the standard error of the estimate. The estimate of the residual standard deviation is reported in the last line as 78.26. But it is just the square root of the sum of squared residuals divided by the degrees of freedom.</p>
-<div class="sourceCode" id="cb888"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb848"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sighat</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">star_mod</span><span class="op">$</span><span class="va">residuals</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span><span class="fl">75</span><span class="op">)</span></span>
 <span><span class="va">sighat</span></span></code></pre></div>
 <pre><code>## [1] 78.25956</code></pre>
 <p>The standard error of the slope estimate is, and confirmed in the table:</p>
-<div class="sourceCode" id="cb890"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb850"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">std_er</span><span class="op">&lt;-</span><span class="va">sighat</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">starbucks</span><span class="op">$</span><span class="va">carb</span><span class="op">-</span><span class="fu">mean</span><span class="op">(</span><span class="va">starbucks</span><span class="op">$</span><span class="va">carb</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">std_er</span></span></code></pre></div>
 <pre><code>## [1] 0.5423626</code></pre>
 <p>The test statistic is</p>
-<div class="sourceCode" id="cb892"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb852"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="fl">4.2971</span><span class="op">-</span><span class="fl">0</span><span class="op">)</span><span class="op">/</span><span class="va">std_er</span></span></code></pre></div>
 <pre><code>## [1] 7.922928</code></pre>
 <p>And the <span class="math inline">\(p\)</span>-value</p>
-<div class="sourceCode" id="cb894"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb854"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="op">(</span><span class="fl">4.2971</span><span class="op">-</span><span class="fl">0</span><span class="op">)</span><span class="op">/</span><span class="va">std_er</span>,<span class="fl">73</span>,lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1.965319e-11</code></pre>
 <p>This is slightly different from the table value because of the precision of the computer and the small <span class="math inline">\(p\)</span>-value.</p>
@@ -363,9 +361,9 @@ The denominator is the standard error of the estimate. The estimate of the resid
 <p>The computer software uses zero in the null hypothesis, if you wanted to test another value of the slope then you would have to do the calculations step by step like we did above.</p>
 <p>By the way, this was not a <code>tidy</code> way to do the calculation. The <strong>broom</strong> package makes it easier to use <code>tidy</code> ideas on the regression model. We used these ideas in the last chapter.</p>
 <p>As a reminder:</p>
-<div class="sourceCode" id="cb896"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb856"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb897"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb857"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span> </span></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   term        estimate std.error statistic  p.value
@@ -373,7 +371,7 @@ The denominator is the standard error of the estimate. The estimate of the resid
 ## 1 (Intercept)   146.      25.9        5.63 2.93e- 7
 ## 2 carb            4.30     0.542      7.92 1.67e-11</code></pre>
 <p>And step by step:</p>
-<div class="sourceCode" id="cb899"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb859"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">term</span><span class="op">==</span><span class="st">"carb"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>test_stat<span class="op">=</span><span class="op">(</span><span class="va">estimate</span><span class="op">-</span><span class="fl">0</span><span class="op">)</span><span class="op">/</span><span class="va">std.error</span>,p_value<span class="op">=</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="va">test_stat</span>,df<span class="op">=</span><span class="fl">73</span>,lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -382,12 +380,12 @@ The denominator is the standard error of the estimate. The estimate of the resid
 ##       &lt;dbl&gt;    &lt;dbl&gt;
 ## 1      7.92 1.97e-11</code></pre>
 </div>
-<div id="confidence-interval" class="section level4" number="28.3.1.2">
+<div id="confidence-interval" class="section level4" number="26.3.1.2">
 <h4>
-<span class="header-section-number">28.3.1.2</span> Confidence interval<a class="anchor" aria-label="anchor" href="#confidence-interval"><i class="fas fa-link"></i></a>
+<span class="header-section-number">26.3.1.2</span> Confidence interval<a class="anchor" aria-label="anchor" href="#confidence-interval"><i class="fas fa-link"></i></a>
 </h4>
 <p>We could calculate the confidence interval from the point estimate, standard error, and critical value but we will let <code>R</code> do it for us.</p>
-<div class="sourceCode" id="cb901"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb861"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">star_mod</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##                 2.5 %     97.5 %
 ## (Intercept) 94.387896 197.652967
@@ -397,9 +395,9 @@ The denominator is the standard error of the estimate. The estimate of the resid
 </div>
 </div>
 </div>
-<div id="inference-on-predictions" class="section level2" number="28.4">
+<div id="inference-on-predictions" class="section level2" number="26.4">
 <h2>
-<span class="header-section-number">28.4</span> Inference on Predictions<a class="anchor" aria-label="anchor" href="#inference-on-predictions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">26.4</span> Inference on Predictions<a class="anchor" aria-label="anchor" href="#inference-on-predictions"><i class="fas fa-link"></i></a>
 </h2>
 <p>Similarly, we can take advantage of the distribution of <span class="math inline">\(\hat Y_*\)</span> to build a confidence interval on <span class="math inline">\(Y_*\)</span> (the average value of <span class="math inline">\(Y\)</span> at some value <span class="math inline">\(x_*\)</span>):</p>
 <p><span class="math display">\[
@@ -410,12 +408,12 @@ Y_*\in \left(\hat Y_* \pm t_{\alpha/2,n-2}\hat \sigma \sqrt{{1\over n}+{(x_*-\ba
 <p><span class="math display">\[
 Y_{new}\in \left(\hat Y_* \pm t_{\alpha/2,n-2}\hat \sigma \sqrt{1+{1\over n}+{(x_*-\bar{x})^2\over \sum (x_i-\bar{x})^2}} \right)
 \]</span></p>
-<div id="starbucks-1" class="section level3" number="28.4.1">
+<div id="starbucks-1" class="section level3" number="26.4.1">
 <h3>
-<span class="header-section-number">28.4.1</span> Starbucks<a class="anchor" aria-label="anchor" href="#starbucks-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">26.4.1</span> Starbucks<a class="anchor" aria-label="anchor" href="#starbucks-1"><i class="fas fa-link"></i></a>
 </h3>
-<p>Continuing with the <code>Starbucks</code> example. In plotting the data, we can have <code>R</code> plot the confidence and prediction bands, Figure <a href="LRINF.html#fig:ci271-fig">28.3</a>. We will observe the width of both of these intervals increase as we move away from the center of the data and also that prediction intervals are wider than the confidence interval.</p>
-<div class="sourceCode" id="cb903"><pre class="downlit sourceCode r">
+<p>Continuing with the <code>Starbucks</code> example. In plotting the data, we can have <code>R</code> plot the confidence and prediction bands, Figure <a href="LRINF.html#fig:ci271-fig">26.3</a>. We will observe the width of both of these intervals increase as we move away from the center of the data and also that prediction intervals are wider than the confidence interval.</p>
+<div class="sourceCode" id="cb863"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">starbucks</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_point</span><span class="op">(</span><span class="va">calories</span><span class="op">~</span><span class="va">carb</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Carbohydrates"</span>,y<span class="op">=</span><span class="st">"Calories"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -425,19 +423,19 @@ Y_{new}\in \left(\hat Y_* \pm t_{\alpha/2,n-2}\hat \sigma \sqrt{1+{1\over n}+{(x
 <div class="figure">
 <span style="display:block;" id="fig:ci271-fig"></span>
 <img src="28-Linear-Regression-Inference_files/figure-html/ci271-fig-1.png" alt="Confidence and predictions bands for linear regression model of calories and carbs in Starbucks' products." width="672"><p class="caption">
-Figure 28.3: Confidence and predictions bands for linear regression model of calories and carbs in Starbucks’ products.
+Figure 26.3: Confidence and predictions bands for linear regression model of calories and carbs in Starbucks’ products.
 </p>
 </div>
 <p>We have not done diagnostics yet and it may be that using a linear regression model for this data may not be appropriate. But for the sake of learning we will continue. To find these confidence intervals we need a value for <code>carb</code> so let’s use 60 and 70.</p>
 <p>We create a data frame with the new values of <code>carb</code> in it. Then we will use the <code>predict</code> function to find the confidence interval. Using the option <code>interval</code> set to <code>confidence</code> will return a confidence interval for the average calorie content for each value in the new data frame.</p>
-<div class="sourceCode" id="cb904"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb864"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">new_carb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>carb<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">60</span>,<span class="fl">70</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">star_mod</span>, newdata <span class="op">=</span> <span class="va">new_carb</span>, interval <span class="op">=</span> <span class="st">'confidence'</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 403.8455 379.7027 427.9883
 ## 2 446.8163 414.3687 479.2640</code></pre>
 <p>Or using the <strong>broom</strong> package.</p>
-<div class="sourceCode" id="cb906"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb866"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">star_mod</span>,newdata<span class="op">=</span><span class="va">new_carb</span>,interval<span class="op">=</span><span class="st">"confidence"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 2 x 4
 ##    carb .fitted .lower .upper
@@ -451,7 +449,7 @@ Give the 95% confidence interval of average calories for 70 grams of carbohydrat
 </blockquote>
 <p>We are 95% confident that the average calories in a Starbucks’ menu item with 70 grams carbs is between 414.4 and 479.3.</p>
 <p>For the prediction interval, we simply need to change the option in <code>interval</code>:</p>
-<div class="sourceCode" id="cb908"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb868"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">new_carb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>carb<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">60</span>,<span class="fl">70</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">star_mod</span>, newdata <span class="op">=</span> <span class="va">new_carb</span>, interval <span class="op">=</span> <span class="st">'prediction'</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##        fit      lwr      upr
@@ -463,23 +461,23 @@ Give the 95% confidence interval of average calories for 70 grams of carbohydrat
 Give the 90% prediction interval of average calories for 70 grams of carbohydrates.</p>
 </blockquote>
 <p>We changed the confidence level. Since we are less confident, the interval will be narrower than the 95% prediction interval we just calculated.</p>
-<div class="sourceCode" id="cb910"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb870"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">star_mod</span>, newdata <span class="op">=</span> <span class="va">new_carb</span>, level<span class="op">=</span><span class="fl">0.9</span>, interval <span class="op">=</span> <span class="st">'prediction'</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 403.8455 271.9565 535.7345
 ## 2 446.8163 313.6879 579.9448</code></pre>
 <p>We are 90% confident the next Starbucks’ menu item that has 70 grams of carbs will have a calorie content between 313.7 and 579.9.</p>
 </div>
-<div id="summary-2" class="section level3" number="28.4.2">
+<div id="summary-2" class="section level3" number="26.4.2">
 <h3>
-<span class="header-section-number">28.4.2</span> Summary<a class="anchor" aria-label="anchor" href="#summary-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">26.4.2</span> Summary<a class="anchor" aria-label="anchor" href="#summary-2"><i class="fas fa-link"></i></a>
 </h3>
 <p>This chapter has introduced the process of inference for a simple linear regression model. We tested the slope estimate as well as generated confidence intervals for average and individual predicted values.</p>
 </div>
 </div>
-<div id="homework-problems-27" class="section level2" number="28.5">
+<div id="homework-problems-25" class="section level2" number="26.5">
 <h2>
-<span class="header-section-number">28.5</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-27"><i class="fas fa-link"></i></a>
+<span class="header-section-number">26.5</span> Homework Problems<a class="anchor" aria-label="anchor" href="#homework-problems-25"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
 <li><p>In the chapter reading, we noticed that the 95% prediction interval was much wider than the 95% confidence interval. In words, explain why this is.</p></li>
@@ -511,30 +509,30 @@ Give the 90% prediction interval of average calories for 70 grams of carbohydrat
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="LRBASICS.html"><span class="header-section-number">27</span> Linear Regression Basics</a></div>
-<div class="next"><a href="LRDIAG.html"><span class="header-section-number">29</span> Regression Diagnostics</a></div>
+<div class="prev"><a href="LRBASICS.html"><span class="header-section-number">25</span> Linear Regression Basics</a></div>
+<div class="next"><a href="LRDIAG.html"><span class="header-section-number">27</span> Regression Diagnostics</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#LRINF"><span class="header-section-number">28</span> Linear Regression Inference</a></li>
-<li><a class="nav-link" href="#objectives-28"><span class="header-section-number">28.1</span> Objectives</a></li>
+<li><a class="nav-link" href="#LRINF"><span class="header-section-number">26</span> Linear Regression Inference</a></li>
+<li><a class="nav-link" href="#objectives-26"><span class="header-section-number">26.1</span> Objectives</a></li>
 <li>
-<a class="nav-link" href="#introduction-4"><span class="header-section-number">28.2</span> Introduction</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#regression"><span class="header-section-number">28.2.1</span> Regression</a></li>
-<li><a class="nav-link" href="#review-of-assumptions"><span class="header-section-number">28.2.2</span> Review of assumptions</a></li>
-<li><a class="nav-link" href="#distribution-of-our-estimators"><span class="header-section-number">28.2.3</span> Distribution of our estimators</a></li>
+<a class="nav-link" href="#introduction-4"><span class="header-section-number">26.2</span> Introduction</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#regression"><span class="header-section-number">26.2.1</span> Regression</a></li>
+<li><a class="nav-link" href="#review-of-assumptions"><span class="header-section-number">26.2.2</span> Review of assumptions</a></li>
+<li><a class="nav-link" href="#distribution-of-our-estimators"><span class="header-section-number">26.2.3</span> Distribution of our estimators</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#inference"><span class="header-section-number">28.3</span> Inference</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#starbucks"><span class="header-section-number">28.3.1</span> Starbucks</a></li></ul>
+<a class="nav-link" href="#inference"><span class="header-section-number">26.3</span> Inference</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#starbucks"><span class="header-section-number">26.3.1</span> Starbucks</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#inference-on-predictions"><span class="header-section-number">28.4</span> Inference on Predictions</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#starbucks-1"><span class="header-section-number">28.4.1</span> Starbucks</a></li>
-<li><a class="nav-link" href="#summary-2"><span class="header-section-number">28.4.2</span> Summary</a></li>
+<a class="nav-link" href="#inference-on-predictions"><span class="header-section-number">26.4</span> Inference on Predictions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#starbucks-1"><span class="header-section-number">26.4.1</span> Starbucks</a></li>
+<li><a class="nav-link" href="#summary-2"><span class="header-section-number">26.4.2</span> Summary</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#homework-problems-27"><span class="header-section-number">28.5</span> Homework Problems</a></li>
+<li><a class="nav-link" href="#homework-problems-25"><span class="header-section-number">26.5</span> Homework Problems</a></li>
 </ul>
 
       <div class="book-extra">
@@ -552,7 +550,7 @@ Give the 90% prediction interval of average calories for 70 grams of carbohydrat
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-21.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
