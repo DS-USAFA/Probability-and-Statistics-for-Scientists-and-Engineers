@@ -45,14 +45,12 @@ Generally, what you should know about building confidence intervals is laid out 
 
 4. Use this distribution to obtain a range of feasible values (a confidence interval) for the parameter. (For example, if $\mu$ is the parameter of interest and we are using the CLT, then $\frac{\bar{X} - \mu}{\sigma/\sqrt{n}}\sim \textsf{Norm}(0,1)$. We can solve this equation for $\mu$ to find a range of feasible values.)
 
-Let's do an example to solidify these ideas.  
-
 > **Constructing a 95\% confidence interval** 
 When the sampling distribution of a point estimate can reasonably be modeled as normal, the point estimate we observe will be within 1.96 standard errors of the true value of interest about 95\% of the time. Thus, a **95\% confidence interval** for such a point estimate can be constructed as  
 $$ \hat{\theta} \pm\ 1.96 \times SE_{\hat{\theta}},$$
 where $\hat{\theta}$ is our estimate of the parameter and $SE_{\hat{\theta}}$ is the standard error of that estimate. 
 
-We can be **95\% confident** this interval captures the true value of the parameter. The number of standard errors to include in the interval (e.g., 1.96) can be found using the `qnorm()` function. Note that the `qnorm()` function calculates the lower tail probability of a standard normal distribution by default. If we want 0.95 probability in the middle, that leaves 0.025 in each tail. Thus, we use 0.975 in the `qnorm()` function for a 95\% confidence interval.
+We can be **95\% confident** this interval captures the true value of the parameter. The number of standard errors to include in the interval (e.g., 1.96) can be found using the `qnorm()` function. Note that the `qnorm()` function calculates the lower tail quantile of a standard normal distribution by default. If we want 0.95 probability in the middle, that leaves 0.025 in each tail. Thus, we use 0.975 in the `qnorm()` function for a 95\% confidence interval.
 
 
 ```r
@@ -142,7 +140,7 @@ qnorm(.975)
 ## [1] 1.959964
 ```
 
-Notice that we prefer to find the upper tail probability so that values are positive. 
+Notice that we prefer to use the upper tail probability so that quantile values are positive. 
 
 
 ```r
@@ -153,7 +151,7 @@ qnorm(0.025)
 ## [1] -1.959964
 ```
 
-The value of $z_{0.025}$ is negative; this requires a little more care when calculating the confidence interval due to changing signs. We recommend always finding the upper tail probability for this reason. 
+The value of $z_{0.025}$ is negative; this requires a little more care when calculating the confidence interval due to changing signs. We recommend always using the upper tail probability for this reason. 
 
 
 #### Unknown Variance 
@@ -450,7 +448,7 @@ where $p_{\text{control}}$ and $p_{\text{treatment}}$ are the proportion of pati
 
 $$SE \approx \sqrt{\frac{0.22(1 - 0.22)}{50} + \frac{0.35(1 - 0.35)}{40}} = 0.0955$$
 
-It is close to the pooled value^[When the null hypothesis is that $p_1 - p_2 = 0$, we sometimes used the *pooled proportion* to check the success-failure condition and calculate the standard error. In our example, the pooled proportion is $$\hat{p}_{\text{pooled}} = \frac{\text{# of patients who survived in the entire study}}{\text{# of patients in the entire study}} = \frac{11 + 14}{90} = 0.278$$ The success-failure condition is met and the standard error (using the pooled proportion) is 0.09501. We leave it to the reader to find out more about using pooled standard deviations with two samples.] because of the nearly equal sample sizes.
+It is close to the pooled value^[When the null hypothesis is that $p_1 - p_2 = 0$, we sometimes use the *pooled proportion* to check the success-failure condition and calculate the standard error. In our example, the pooled proportion is $$\hat{p}_{\text{pooled}} = \frac{\text{# of patients who survived in the entire study}}{\text{# of patients in the entire study}}$$ $$\hat{p}_{\text{pooled}} = \frac{11 + 14}{90} = 0.278$$ The success-failure condition is met and the standard error (using the pooled proportion) is 0.09501. We leave it to the reader to find out more about using pooled standard deviations with two samples.] because of the nearly equal sample sizes.
 
 The critical value is again found from the normal quantile.
 
@@ -532,7 +530,7 @@ There are three components to this interval: the point estimate, "1.96", and the
 >**Exercise**:
 If $X$ is a normally distributed random variable, how often will $X$ be within 2.58 standard deviations of the mean?^[This is equivalent to asking how often a standard normal variable will be greater than -2.58 but less than 2.58. To determine this probability, look up -2.58 and 2.58 in `R` using `pnorm()` (0.0049 and 0.9951). Thus, there is a $0.9951-0.0049 \approx 0.99$ probability that the unobserved random variable $X$ will be within 2.58 standard deviations of the mean.]
 
-To create a 99\% confidence interval, change 1.96 in the 95\% confidence interval formula to be $2.58$. We can use `qnorm()` to calculate this value. Remember that `qnorm()` finds the lower tail probability, so if we want 0.99 probability in the middle of the interval, we need to use 0.995 in the function. Follow the same reasoning to calculate confidence intervals with different confidence levels.
+To create a 99\% confidence interval, change 1.96 in the 95\% confidence interval formula to be $2.58$. We can use `qnorm()` to calculate this value. Remember that `qnorm()` uses the lower tail probability, so if we want 0.99 probability in the middle of the interval, we need to use 0.995 in the function. Follow the same reasoning to calculate confidence intervals with different confidence levels.
 
 
 ```r
@@ -573,7 +571,7 @@ A careful eye might have observed the somewhat awkward language used to describe
 > Correct interpretation:  
 We are XX\% confident that the population parameter is between lower bound and upper bound. 
 
-> Correct interpretation: 
+> Correct interpretation:  
 Approximately 95% of similarly constructed intervals will contain the population parameter. 
 
 **Incorrect** language might try to describe the confidence interval as capturing the population parameter with a certain probability. This is one of the most common errors. While it might be useful to think of it as a probability, the confidence level only quantifies how plausible it is that the parameter is in the interval. Once again, we remind the reader that we do not make probabilistic statements about a realized interval; there are no random components in the interval once we observe data, so there is no probability associated with the calculated interval. 

@@ -163,13 +163,12 @@ If we want to be very certain we capture the population parameter, should we use
 <li><p>Determine the distribution of your estimate, or a function of your estimate.</p></li>
 <li><p>Use this distribution to obtain a range of feasible values (a confidence interval) for the parameter. (For example, if <span class="math inline">\(\mu\)</span> is the parameter of interest and we are using the CLT, then <span class="math inline">\(\frac{\bar{X} - \mu}{\sigma/\sqrt{n}}\sim \textsf{Norm}(0,1)\)</span>. We can solve this equation for <span class="math inline">\(\mu\)</span> to find a range of feasible values.)</p></li>
 </ol>
-<p>Let’s do an example to solidify these ideas.</p>
 <blockquote>
 <p><strong>Constructing a 95% confidence interval</strong>
 When the sampling distribution of a point estimate can reasonably be modeled as normal, the point estimate we observe will be within 1.96 standard errors of the true value of interest about 95% of the time. Thus, a <strong>95% confidence interval</strong> for such a point estimate can be constructed as<br><span class="math display">\[ \hat{\theta} \pm\ 1.96 \times SE_{\hat{\theta}},\]</span>
 where <span class="math inline">\(\hat{\theta}\)</span> is our estimate of the parameter and <span class="math inline">\(SE_{\hat{\theta}}\)</span> is the standard error of that estimate.</p>
 </blockquote>
-<p>We can be <strong>95% confident</strong> this interval captures the true value of the parameter. The number of standard errors to include in the interval (e.g., 1.96) can be found using the <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> function. Note that the <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> function calculates the lower tail probability of a standard normal distribution by default. If we want 0.95 probability in the middle, that leaves 0.025 in each tail. Thus, we use 0.975 in the <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> function for a 95% confidence interval.</p>
+<p>We can be <strong>95% confident</strong> this interval captures the true value of the parameter. The number of standard errors to include in the interval (e.g., 1.96) can be found using the <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> function. Note that the <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> function calculates the lower tail quantile of a standard normal distribution by default. If we want 0.95 probability in the middle, that leaves 0.025 in each tail. Thus, we use 0.975 in the <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> function for a 95% confidence interval.</p>
 <div class="sourceCode" id="cb700"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.975</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
@@ -219,11 +218,11 @@ Figure 24.1: The pdf of a standard normal distribution, showing the idea of how 
 <div class="sourceCode" id="cb706"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.975</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
-<p>Notice that we prefer to find the upper tail probability so that values are positive.</p>
+<p>Notice that we prefer to use the upper tail probability so that quantile values are positive.</p>
 <div class="sourceCode" id="cb708"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.025</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] -1.959964</code></pre>
-<p>The value of <span class="math inline">\(z_{0.025}\)</span> is negative; this requires a little more care when calculating the confidence interval due to changing signs. We recommend always finding the upper tail probability for this reason.</p>
+<p>The value of <span class="math inline">\(z_{0.025}\)</span> is negative; this requires a little more care when calculating the confidence interval due to changing signs. We recommend always using the upper tail probability for this reason.</p>
 <div id="unknown-variance" class="section level4" number="24.2.2.1">
 <h4>
 <span class="header-section-number">24.2.2.1</span> Unknown Variance<a class="anchor" aria-label="anchor" href="#unknown-variance"><i class="fas fa-link"></i></a>
@@ -417,7 +416,7 @@ Figure 24.2: The pdf of a standard normal distribution, showing the idea of how 
 <p><span class="math display">\[SE    = \sqrt{\frac{p_{\text{control}}(1 - p_{\text{control}})}{n_{\text{control}}} + \frac{p_{\text{treatment}}(1 - p_{\text{treatment}})}{n_{\text{treatment}}}}\]</span></p>
 <p>where <span class="math inline">\(p_{\text{control}}\)</span> and <span class="math inline">\(p_{\text{treatment}}\)</span> are the proportion of patients who survive in the control group and treatment group, respectively. Thus, we have</p>
 <p><span class="math display">\[SE \approx \sqrt{\frac{0.22(1 - 0.22)}{50} + \frac{0.35(1 - 0.35)}{40}} = 0.0955\]</span></p>
-<p>It is close to the pooled value<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;When the null hypothesis is that &lt;span class="math inline"&gt;\(p_1 - p_2 = 0\)&lt;/span&gt;, we sometimes used the &lt;em&gt;pooled proportion&lt;/em&gt; to check the success-failure condition and calculate the standard error. In our example, the pooled proportion is &lt;span class="math display"&gt;\[\hat{p}_{\text{pooled}} = \frac{\text{# of patients who survived in the entire study}}{\text{# of patients in the entire study}} = \frac{11 + 14}{90} = 0.278\]&lt;/span&gt; The success-failure condition is met and the standard error (using the pooled proportion) is 0.09501. We leave it to the reader to find out more about using pooled standard deviations with two samples.&lt;/p&gt;'><sup>94</sup></a> because of the nearly equal sample sizes.</p>
+<p>It is close to the pooled value<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;When the null hypothesis is that &lt;span class="math inline"&gt;\(p_1 - p_2 = 0\)&lt;/span&gt;, we sometimes use the &lt;em&gt;pooled proportion&lt;/em&gt; to check the success-failure condition and calculate the standard error. In our example, the pooled proportion is &lt;span class="math display"&gt;\[\hat{p}_{\text{pooled}} = \frac{\text{# of patients who survived in the entire study}}{\text{# of patients in the entire study}}\]&lt;/span&gt; &lt;span class="math display"&gt;\[\hat{p}_{\text{pooled}} = \frac{11 + 14}{90} = 0.278\]&lt;/span&gt; The success-failure condition is met and the standard error (using the pooled proportion) is 0.09501. We leave it to the reader to find out more about using pooled standard deviations with two samples.&lt;/p&gt;'><sup>94</sup></a> because of the nearly equal sample sizes.</p>
 <p>The critical value is again found from the normal quantile.</p>
 <div class="sourceCode" id="cb735"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.975</span><span class="op">)</span></span></code></pre></div>
@@ -471,7 +470,7 @@ Figure 24.2: The pdf of a standard normal distribution, showing the idea of how 
 <p><strong>Exercise</strong>:
 If <span class="math inline">\(X\)</span> is a normally distributed random variable, how often will <span class="math inline">\(X\)</span> be within 2.58 standard deviations of the mean?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;This is equivalent to asking how often a standard normal variable will be greater than -2.58 but less than 2.58. To determine this probability, look up -2.58 and 2.58 in &lt;code&gt;R&lt;/code&gt; using &lt;code&gt;pnorm()&lt;/code&gt; (0.0049 and 0.9951). Thus, there is a &lt;span class="math inline"&gt;\(0.9951-0.0049 \approx 0.99\)&lt;/span&gt; probability that the unobserved random variable &lt;span class="math inline"&gt;\(X\)&lt;/span&gt; will be within 2.58 standard deviations of the mean.&lt;/p&gt;'><sup>95</sup></a></p>
 </blockquote>
-<p>To create a 99% confidence interval, change 1.96 in the 95% confidence interval formula to be <span class="math inline">\(2.58\)</span>. We can use <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> to calculate this value. Remember that <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> finds the lower tail probability, so if we want 0.99 probability in the middle of the interval, we need to use 0.995 in the function. Follow the same reasoning to calculate confidence intervals with different confidence levels.</p>
+<p>To create a 99% confidence interval, change 1.96 in the 95% confidence interval formula to be <span class="math inline">\(2.58\)</span>. We can use <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> to calculate this value. Remember that <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> uses the lower tail probability, so if we want 0.99 probability in the middle of the interval, we need to use 0.995 in the function. Follow the same reasoning to calculate confidence intervals with different confidence levels.</p>
 <div class="sourceCode" id="cb741"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.995</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 2.575829</code></pre>
@@ -505,7 +504,7 @@ By how much do we have to increase the sample size in order to reduce the margin
 We are XX% confident that the population parameter is between lower bound and upper bound.</p>
 </blockquote>
 <blockquote>
-<p>Correct interpretation:
+<p>Correct interpretation:<br>
 Approximately 95% of similarly constructed intervals will contain the population parameter.</p>
 </blockquote>
 <p><strong>Incorrect</strong> language might try to describe the confidence interval as capturing the population parameter with a certain probability. This is one of the most common errors. While it might be useful to think of it as a probability, the confidence level only quantifies how plausible it is that the parameter is in the interval. Once again, we remind the reader that we do not make probabilistic statements about a realized interval; there are no random components in the interval once we observe data, so there is no probability associated with the calculated interval.</p>
@@ -637,7 +636,7 @@ n   &amp; \bar{x}   &amp; s     &amp; min   &amp; max \\
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-19.</p>
+    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

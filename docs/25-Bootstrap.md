@@ -338,7 +338,7 @@ confint(boot_results, method = c("percentile", "stderr"))
 ## 2 mean 67.15047 70.78401  0.95     stderr   68.938        1.816768 49
 ```
 
-The $t$ interval with the bootstrap standard error is the more accurate method of calculating a bootstrap confidence interval. However, the percentile method usually results in a very similar interval and the standard error method can only be used when the bootstrap distribution is roughly shaped like a $t$ distribution. You can learn more about bootstrap confidence intervals online.^[Also, see resources like *Statistical Inference via Data Science* by Chester Ismay and Albert Kim, https://moderndive.com/index.html]
+The $t$ interval with the bootstrap standard error is the more accurate method of calculating a bootstrap confidence interval. However, the percentile method usually results in a very similar interval and the standard error method can only be used when the bootstrap distribution is roughly shaped like a $t$ distribution. You can learn more about bootstrap confidence intervals online.^[Also, see resources like *Statistical Inference via Data Science* by Chester Ismay and Albert Kim.]
 
 
 ## Non-standard sample statistics
