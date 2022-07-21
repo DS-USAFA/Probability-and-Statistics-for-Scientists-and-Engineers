@@ -4,10 +4,10 @@ bookdown::gitbook:
     toc:
       collapse: section
       before: |
-        <li><a href="./">Computational Probability and Statistics - MASTER EDITION</a></li>
+        <li><a href="./">Computational Probability and Statistics</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit : https://github.com/DS-USAFA/Probability-and-Statistics-MASTER/%s
+    edit : https://github.com/DS-USAFA/Computational-Probability-and-Statistics/%s
     sharing: null
     info: no
     download: no
@@ -19,10 +19,10 @@ bookdown::bs4_book:
     toc:
       collapse: section
       before: |
-        <li><a href="./">Computational Probability and Statistics - MASTER EDITION</a></li>
+        <li><a href="./">Computational Probability and Statistics</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-  repo: https://github.com/DS-USAFA/Probability-and-Statistics-MASTER
+  repo: https://github.com/DS-USAFA/Computational-Probability-and-Statistics
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
