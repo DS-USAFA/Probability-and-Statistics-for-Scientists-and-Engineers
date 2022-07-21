@@ -24,7 +24,7 @@ description: "This is a set of notes used for Math 356 starting in the spring of
 # Preface {-}
 
 
-<img src="./figures/Cover_Majors.png" width="100%" />
+<img src="./figures/Cover_Engineers.png" width="100%" />
   
 
 This book is based on the notes we created for our students as part of a one semester course on probability and statistics. We developed these notes from three primary resources. The most important is the Openintro Introductory Statistics with Randomization and Simulation [@ointrorand] book. In parts, we have used their notes and homework problems. However, in most cases we have altered their work to fit our needs. The second most important book for our work is Introduction to Probability and Statistics Using R [@ipsur]. Finally, we have used some examples, code, and ideas from the first edition of Prium's book, Foundations and Applications of Statistics: An Introduction Using R [@pruim2011foundations].  
