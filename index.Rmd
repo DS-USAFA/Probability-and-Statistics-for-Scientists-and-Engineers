@@ -25,7 +25,7 @@ description: "This is a set of notes used for Math 356 starting in the spring of
 
 
 ```{r echo=FALSE, out.width="100%"}
-knitr::include_graphics("./figures/Cover_Majors.png")
+knitr::include_graphics("./figures/Cover_Engineers.png")
 ```
   
 
