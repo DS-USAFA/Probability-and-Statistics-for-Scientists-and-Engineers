@@ -517,6 +517,17 @@ d. Find $\Var(3X+2Y)$.
 $$
 f_{X,Y}(x,y)=1
 $$
+where $0 \leq x \leq 1$ and $0 \leq y \leq 2x$. 
+
+a. Find $\E(X)$ and $\E(Y)$. 
+
+b. Find $\Var(X)$ and $\Var(Y)$. 
+
+c. Find $\Cov(X,Y)$ and $\rho$. Are $X$ and $Y$ independent?  
+
+d. Find $\Var\left(\frac{X}{2}+2Y\right)$. 
+
+
 
 
 3. Suppose $X$ and $Y$ are *independent* random variables. Show that $\E(XY)=\E(X)\E(Y)$. 
