@@ -51,6 +51,7 @@ fig:line71-fig
 fig:scat71-fig
 fig:scat72-fig
 fig:scat73-fig
+fig:prob-stats
 fig:bar81-fig
 fig:sens
 fig:pmf101-fig
