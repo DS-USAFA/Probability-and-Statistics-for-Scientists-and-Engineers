@@ -101,7 +101,7 @@ $$
 
 for $x \in \{0,1,...,n\}$ and 0 otherwise. 
 
-Let's take a moment to dissect this pmf. We are looking for the probability of obtaining $x$ successes out of $n$ trials. The $p^x$ represents the probability of $x$ successes, using the multiplication rule because of the independence assumption. The term $(1-p)^{n-x}$ represents the probability of the remainder of the trials as failures. Finally, the $n\choose x$ term represents the number of ways to obtain $x$ successes out of $n$ trials. For example, there are three ways to obtain 1 success out of 3 trials (one success followed by two failures; one success, one failure then one success; or two failures followed by a success). 
+Let's take a moment to dissect this pmf. We are looking for the probability of obtaining $x$ successes out of $n$ trials. The $p^x$ represents the probability of $x$ successes, using the multiplication rule because of the independence assumption. The term $(1-p)^{n-x}$ represents the probability of the remainder of the trials as failures. Finally, the $n\choose x$ term represents the number of ways to obtain $x$ successes out of $n$ trials. For example, there are three ways to obtain 1 success out of 3 trials (one success followed by two failures; one failure, one success and then one failure; or two failures followed by a success). 
 
 The expected value of a binomially distributed random variable is given by $\E(X)=np$ and the variance is given by $\Var(X)=np(1-p)$. 
 

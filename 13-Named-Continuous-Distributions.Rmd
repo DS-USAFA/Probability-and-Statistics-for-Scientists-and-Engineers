@@ -57,6 +57,7 @@ $$
 Note on $\lambda$: One point of confusion involving the parameters of the Poisson and exponential distributions. The parameter of the Poisson distribution (usually denoted as $\lambda$) represents the average number of arrivals in whatever amount of time specified by the random variable. In the case of the exponential distribution, the parameter (also denoted as $\lambda$) represents the average number of arrivals per unit time. For example, suppose arrivals follow a Poisson process with an average of 10 arrivals per day. $X$, the number of arrivals in 5 days, follows a Poisson distribution with parameter $\lambda=50$, since that is the average number of arrivals in the amount of time specified by $X$. Meanwhile, $Y$, the time in days until the next arrival, follows an exponential distribution with parameter $\lambda=10$ (the average number of arrivals per day). 
 
 The pdf of $Y$ is given by:
+
 $$
 f_Y(y)=\lambda e^{-\lambda y}, \hspace{0.3cm} y>0
 $$
@@ -69,11 +70,14 @@ Suppose at a local retail store, customers arrive to a checkout counter accordin
 Since one arrival shows up every three minutes, the average number of arrivals per unit time is 1/3 arrival per minute. Thus, $Y\sim \textsf{Expon}(\lambda=1/3)$. This means that $\E(Y)=3$ and $\Var(Y)=9$. 
 
 To find $\Prob(Y>5)$, we could integrate the pdf of $Y$:
+
 $$
-\Prob(Y>5)=\int_5^\infty \frac{1}{3}e^{-\frac{1}{3}y}\diff y = \lim_{a \to +\infty}\int_5^a \frac{1}{3}e^{-\frac{1}{3}y}\diff y = $$
+\Prob(Y>5)=\int_5^\infty \frac{1}{3}e^{-\frac{1}{3}y}\diff y = \lim_{a \to +\infty}\int_5^a \frac{1}{3}e^{-\frac{1}{3}y}\diff y = 
+$$
 
 
-$$\lim_{a \to +\infty} -e^{-\frac{1}{3}y}\bigg|_5^a=\lim_{a \to +\infty} -e^{-\frac{a}{3}}-(-e^{-\frac{5}{3}})= 0 + 0.189 = 0.189
+$$
+\lim_{a \to +\infty} -e^{-\frac{1}{3}y}\bigg|_5^a=\lim_{a \to +\infty} -e^{-\frac{a}{3}}-(-e^{-\frac{5}{3}})= 0 + 0.189 = 0.189
 $$
 
 Alternatively, we could use `R`:
@@ -182,6 +186,7 @@ and 0 otherwise. The mean and variance of $X$ are $\E(X)=\frac{\alpha}{\lambda}$
 #### Gamma function
 
 You may have little to no background with the Gamma function ($\Gamma (\alpha)$). This is different from the gamma distribution. The gamma function is simply a function and is defined by:
+
 $$
 \Gamma (\alpha)=\int_0^\infty t^{\alpha-1}e^{-t}\diff t
 $$
@@ -342,7 +347,7 @@ f. Use the function `stripplot()` to visualize the arrival of 30 vehicles using 
 
 a. Find the probability that 20 hours pass without a computer error.  
 b. Find the probability that 45 hours pass without a computer error, given that 25 hours have already passed. Does the memory-less property apply to the Gamma distribution?   
-c. Find $a$ and $b$: There is a 95% probability time until next computer error will be between $a$ and $b$. (note: technically, there are many answers to this question, but find $a$ and $b$ such that each tail has equal probability.) 
+c. Find $a$ and $b$ where there is a 95% probability time until next computer error will be between $a$ and $b$. (note: technically, there are many answers to this question, but find $a$ and $b$ such that each tail has equal probability.) 
 
 
 \pagebreak

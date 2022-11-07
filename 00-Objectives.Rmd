@@ -32,7 +32,7 @@
 
 ### 4 - Studies {-}    
 
-1) Define and use properly in context all new terminology, to include: *confounding variable*, *prospective study*, *retrospective study*, *simple random sampling*, *stratified sampling*, *strata*, *cluster sampling*, *multistage sampling*, *experiment*, *randomized experiment*, *control*, *replicate*, *blocking*, *blocks*, *treatment group*, *control group*, *blinded study*, *placebo*, *placebo effect*, and *double-blind*.  
+1) Define and use properly in context all new terminology, to include: *confounding variable*, *prospective study*, *retrospective study*, *simple random sampling*, *stratified sampling*, *strata*, *cluster sampling*, *multistage sampling*, *experiment*, *randomized experiment*, *control*, *replicate*, *blocking*, *treatment group*, *control group*, *blinded study*, *placebo*, *placebo effect*, and *double-blind*.  
 
 2) Given a study description, be able to describe the study using correct terminology.  
 

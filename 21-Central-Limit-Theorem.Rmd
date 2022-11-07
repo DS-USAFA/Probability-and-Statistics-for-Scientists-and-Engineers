@@ -195,7 +195,7 @@ The $t$ distribution is very similar to the standard normal distribution, but ha
 
 Figure \@ref(fig:t211-fig) is a plot of the $t$ distribution, shown as a blue line, and has a bell shape that looks very similar to a normal distribution, show as a red line. However, the tails of the $t$ distribution are thicker, which means observations are more likely to fall beyond two standard deviations from the mean than under the normal distribution. When our sample is small, the value $s$ used to compute the standard error $(s/\sqrt{n})$ isn't very reliable. The extra thick tails of the $t$ distribution are exactly the correction we need to resolve this problem. When the degrees of freedom is about 30 or more, the $t$ distribution is nearly indistinguishable from the normal distribution.
 
-```{r t211-fig,fig.cap="The distibtion of t."}
+```{r t211-fig,fig.cap="The distribution of t."}
 gf_dist("norm", color = "red") %>%
   gf_dist("t", df = 3, color = "blue") %>%
   gf_theme(theme_bw())

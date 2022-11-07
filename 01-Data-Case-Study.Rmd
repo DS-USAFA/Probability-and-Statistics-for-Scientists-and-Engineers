@@ -43,7 +43,7 @@ The topics scientists investigate are as diverse as the questions they ask. Howe
   
 ## Case study
 
-In this chapter, we will consider an experiment that studies effectiveness of stents in treating patients at risk of stroke. ^[[Chimowitz MI, Lynn MJ, Derdeyn CP, et al. 2011. Stenting versus Aggressive Medical Therapy for Intracranial Arterial Stenosis. New England Journal of Medicine 365:993-1003.](http://www.nejm.org/doi/full/10.1056/NEJMoa1105335)] ^[[NY Times article reporting on the study](http://www.nytimes.com/2011/09/08/health/research/08stent.html)] Stents are small mesh tubes that are placed inside narrow or weak arteries to assist in patient recovery after cardiac events and reduce the risk of an additional heart attack or death. Many doctors have hoped that there would be similar benefits for patients at risk of stroke. We start by writing the principal question the researchers hope to answer:  
+In this chapter, we will consider an experiment that studies effectiveness of stents in treating patients at risk of stroke. ^[Chimowitz MI, Lynn MJ, Derdeyn CP, et al. 2011. Stenting versus Aggressive Medical Therapy for Intracranial Arterial Stenosis. New England Journal of Medicine 365:993-1003.] ^[NY Times article reporting on the study: http://www.nytimes.com/2011/09/08/health/research/08stent.html] Stents are small mesh tubes that are placed inside narrow or weak arteries to assist in patient recovery after cardiac events and reduce the risk of an additional heart attack or death. Many doctors have hoped that there would be similar benefits for patients at risk of stroke. We start by writing the principal question the researchers hope to answer:  
 
 ### Research question
 
@@ -127,7 +127,7 @@ setwd('C:/Users/Brianna.Hitt/Documents/ProbStat/Another Folder')
 In `R` if you use the `view()`, you will see the data in what looks like a standard spreadsheet.
 
 ```{r eval=FALSE}
-view(stent_study)
+View(stent_study)
 ```
 
 
@@ -190,7 +190,7 @@ We can compute summary statistics from the table. A **summary statistic** is a s
 
 It is often important to visualize the data. The table is a type of visualization, but in this section we will introduce a graphical method called bar charts.
 
-We will use the [**ggformula**](https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html) package to visualize the data. It is a wrapper to the **ggplot2** package which is becoming the industry standard for generating professional graphics. However, the interface for **ggplot2** can be difficult to learn and we will ease into it by using `ggformula`, which makes use of the formula notation introduced above. The **ggformula** package was loaded when we loaded `mosaic`.^[https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html]
+We will use the [**ggformula**](https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula.html) package to visualize the data. It is a wrapper to the **ggplot2** package which is becoming the industry standard for generating professional graphics. However, the interface for **ggplot2** can be difficult to learn and we will ease into it by using `ggformula`, which makes use of the formula notation introduced above. The **ggformula** package was loaded when we loaded `mosaic`.^[https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html]
 
 To generate a basic graphic, we need to ask ourselves what information we are trying to see, what particular type of graph is best, what corresponding `R` function to use, and what information that `R` function needs in order to build a plot. For categorical data, we want a bar chart and the `R` function `gf_bar()` needs the data object and the variable(s) of interest.
 
@@ -238,7 +238,7 @@ Notice that we used the pipe operator, `%>%`. This operator allows us to string 
 
 ### Conclusion
 
-These two summary statistics (the proportions of people who had a stroke) are useful in looking for differences in the groups, and we are in for a surprise: an additional 9\% of patients in the treatment group had a stroke! This is important for two reasons. First, it is contrary to what doctors expected, which was that stents would *reduce* the rate of strokes. Second, it leads to a statistical question: do the data show a **real** difference due to the treatment?
+These two summary statistics (the proportions of people who had a stroke) are useful in looking for differences in the groups, and we are in for a surprise: an additional 9\% of patients in the treatment group had a stroke! This is important for two reasons. First, it is contrary to what doctors expected, which was that stents would *reduce* the rate of strokes. Second, it leads to a statistical question: do the data show a real difference due to the treatment?
 
 This second question is subtle. Suppose you flip a coin 100 times. While the chance a coin lands heads in any given coin flip is 50\%, we probably won't observe exactly 50 heads. This type of fluctuation is part of almost any type of data generating process. It is possible that the 9\% difference in the stent study is due to this natural variation. However, the larger the difference we observe (for a particular sample size), the less believable it is that the difference is due to chance. So what we are really asking is the following: is the difference so large that we should reject the notion that it was due to chance? 
 
@@ -265,25 +265,21 @@ stent_study <- read_csv(___)
 ```
   
 
-  b. Complete the steps below. The start of code is provided below.  
+  b. Complete the steps below. The start of code is provided below. You will need to add `{r}` to the start of each code chunk or insert your own code chunks to use the code. 
+  
     i. Use `inspect` on the data.  
-    ii. Create a table of `outcome365` and `group`. Comment on the results.  
-    iii. Create a barchart of the data.  
     
-
-Using `inspect`:  
-
 ```
 inspect(___)
 ```
 
-The table: 
-
+    ii. Create a table of `outcome365` and `group`. Comment on the results.  
+    
 ```
 tally(outcome365 ~ ___, data = stent_study, format = ___, margins = TRUE)
 ```
 
-Barchart:  
+    iii. Create a barchart of the data.  
 
 ```
 stent_study %>%
@@ -294,12 +290,9 @@ stent_study %>%
           y = ___)
 ```
 
-2. **Migraine and acupuncture**.  A migraine is a particularly painful type of headache, which patients sometimes wish to treat with acupuncture. To determine whether acupuncture relieves migraine pain, researchers conducted a randomized controlled study where 89 females diagnosed with migraine headaches were randomly assigned to one of two groups: treatment or control. The 43 patients in the treatment group received acupuncture that is specifically designed to treat migraines. The 46 patients in the control group received placebo acupuncture (needle insertion at nonacupoint locations). Then 24 hours after patients received acupuncture, they were asked if they were pain free.^[G. Allais et al. [“Ear acupuncture in the treatment of migraine attacks:  a randomized trial on the efficacy of appropriate versus inappropriate acupoints”.](http://www.ncbi.nlm.nih.gov/pubmed/21533739) In: Neurological Sci. 32.1 (2011), pp. 173–175.]
+2. **Migraine and acupuncture**.  A migraine is a particularly painful type of headache, which patients sometimes wish to treat with acupuncture. To determine whether acupuncture relieves migraine pain, researchers conducted a randomized controlled study where 89 females diagnosed with migraine headaches were randomly assigned to one of two groups: treatment or control. The 43 patients in the treatment group received acupuncture that is specifically designed to treat migraines. The 46 patients in the control group received placebo acupuncture (needle insertion at nonacupoint locations). Then 24 hours after patients received acupuncture, they were asked if they were pain free.^[G. Allais et al. “Ear acupuncture in the treatment of migraine attacks:  a randomized trial on the efficacy of appropriate versus inappropriate acupoints”. http://www.ncbi.nlm.nih.gov/pubmed/21533739 In: Neurological Sci. 32.1 (2011), pp. 173–175.]
 
-
-The data is in the file `migraine_study.csv` in the `data` folder.
-
-Complete the following work:
+    The data is in the file `migraine_study.csv` in the `data` folder. Complete the following work:
 
   a. Read the data into an object called `migraine_study`.  
   
@@ -318,12 +311,16 @@ head(migraine_study)
 tally(___)
 ```
    
-  
   c. Report the percent of patients in the treatment group who were pain free 24 hours after receiving acupuncture.  
+  
   d. Repeat for the control group.  
+  
   e. At first glance, does acupuncture appear to be an effective treatment for migraines? Explain your reasoning.  
+  
   f. Do the data provide convincing evidence that there is a real pain reduction for those patients in the treatment group? Or do you think that the observed difference might just be due to chance?  
   
-Compile, `knit`, this report into an html and a pdf. In order to `knit` the report into a pdf, you may need to install the `knitr` and `tinytex` packages in `R`.
+  
+3. Compile, `knit`, this report into an html and a pdf. In order to `knit` the report into a pdf, you may need to install the `knitr` and `tinytex` packages in `R`.
 
 
+[Solutions Manual](https://ds-usafa.github.io/CPS-Solutions-Manual/CS1.html)

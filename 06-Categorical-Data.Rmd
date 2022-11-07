@@ -48,7 +48,7 @@ email %>%
 
 Notice the use of the `pipe` operator and how it adds to the ease of reading the code. The `select()` function allows us to narrow down the columns/variables to the two of interest. Then `inspect()` gives us information about those variables. We read from top line; we start with the data set `email`, input it into `select()` and select variables from it, and then use `inspect()` to summarize the variables.
 
-As indicated above, `number` is a categorical variable (a *factor*) that describes whether an email contains no numbers, only small numbers (values under 1 million), or at least one big number (a value of 1 million or more). The variable `spam` is a numeric variable, where `1` indicates the email is spam and `0` indicates the email is not spam. To treat `spam` as categorical, we will want to change it to a *factor*, but first we will build a table that summarizes data for the two variables (Table \@ref(tab:contin1-tab)). This table is called a **contingency table**. Each value in the table represents the number of times a particular combination of variable outcomes occurred. 
+As indicated above, `number` is a categorical variable (a *factor*) that describes whether an email contains no numbers, only small numbers (values under 1 million), or at least one big number (a value of 1 million or more). The variable `spam` is a numeric variable, where `1` indicates the email is spam and `0` indicates the email is not spam. To treat `spam` as categorical, we will want to change it to a *factor*, but first we will build a table that summarizes data for the two variables (Table \@ref(tab:contin1-tab)). This table is called a **contingency table**^[A contingency table is a two-way table that shows the distribution of one variable in rows and a second variable in columns.]. Each value in the table represents the number of times a particular combination of variable outcomes occurred. 
 
 ```{r contin1-tab,echo=FALSE}
 knitr::kable(
@@ -65,7 +65,7 @@ Below is the `R` code to generate the contingency table.
 tally(~spam + number, data = email, margins = TRUE)
 ```
 
-The value 149 corresponds to the number of emails in the data set that are spam *and* had no numbers listed in the email. Row and column totals are also included. The **row totals**  provide the total counts across each row (e.g. $149 + 168 + 50 = 367$), and **column totals** are total counts down each column. The row and column totals are known as **marginal** counts (hence, `margins = TRUE`) and the values in the table, such as 149, as **joint** counts.  
+The value 149 corresponds to the number of emails in the data set that are spam *and* had no numbers listed in the email. Row and column totals are also included. The **row totals**  provide the total counts across each row (e.g. $149 + 168 + 50 = 367$), and **column totals** are total counts down each column. The row and column totals are known as **marginal**^[Marginal counts are counts based on only one of the variables in a contingency table. For example, there are 367 spam emails in the table.] counts (hence, `margins = TRUE`) and the values in the table are known as **joint**^[Joint counts are counts based on both variables in a contingency table. For example, there are 149 emails that are spam *and* contain no numbers.] counts.  
 
 Let's turn `spam` into a factor and update the `email` data object. We will use `mutate()` to do this.  
 
@@ -370,7 +370,7 @@ Another useful plotting method uses **density plots** to compare numerical data 
 cc_reduced %>%
   gf_dens(~med_income, color = ~pop_gain, lwd = 1) %>%
   gf_theme(theme_bw()) %>%
-  gf_labs(x = "Median household income", y = "", col = "Population \nChange")
+  gf_labs(x = "Median household income", y = "Density", col = "Population \nChange")
 ```
 
 > **Exercise**:  

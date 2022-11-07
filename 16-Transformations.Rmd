@@ -1,4 +1,4 @@
-# Transformations {#TRANS}
+# Transformations {#TRANSF}
 
 ```{r include=FALSE}
 library(cubature)

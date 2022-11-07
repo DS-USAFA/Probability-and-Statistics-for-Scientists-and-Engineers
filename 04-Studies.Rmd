@@ -96,7 +96,7 @@ library(usdata)
 
 
 ```{r warning=FALSE,echo=FALSE,warning=FALSE,message=FALSE}
-county_M377 <- county_complete %>% 
+county_subset <- county_complete %>% 
   select(name, state, pop2000, pop2010, fed_spend = fed_spending_2009, 
          poverty = poverty_2010, homeownership = homeownership_2010, 
          multi_unit = housing_multi_unit_2010, income = per_capita_income_2010, 
@@ -108,7 +108,7 @@ county_M377 <- county_complete %>%
 
 ```{r homeown2-fig,echo=FALSE,fig.cap="A scatterplot of the homeownership rate versus the percent of units that are in multi-unit structures for all 3,143 counties."}
 pch <- 1
-cex <- sqrt(county_M377$pop2010 / 1e6)
+cex <- sqrt(county_subset$pop2010 / 1e6)
 colPop <- fadeColor(ifelse(cex > 0.35, COL[4], COL[1]), 
                     substr(gray(0.6 + cex*0.1), 2, 3))
 colSm <- colPop
@@ -119,19 +119,19 @@ gp1 <- cex < 0.32
 colSm  <- COL[1, 3]
 colPop <- COL[1, 3]
 cexF   <- 1
-plot(county_M377$multi_unit[gp1], county_M377$homeownership[gp1], 
+plot(county_subset$multi_unit[gp1], county_subset$homeownership[gp1], 
      pch = pch, col = colSm, xlab = "", ylab = "Percent of Homeownership", 
      axes = FALSE, cex = ifelse(cex < 0.32, 0.32, cex)[gp1], 
-     xlim = range(county_M377$multi_unit), 
-     ylim = range(county_M377$homeownership))
+     xlim = range(county_subset$multi_unit), 
+     ylim = range(county_subset$homeownership))
 at = seq(0, 100, 20)
 axis(1, at, paste0(at, "%"))
 axis(2, at, paste0(at, "%"))
 box()
-points(county_M377$multi_unit[!gp1], county_M377$homeownership[!gp1], 
+points(county_subset$multi_unit[!gp1], county_subset$homeownership[!gp1], 
        pch = pch, col = colPop, xlab = "", ylab = "Percent of Homeownership", 
        cex = ifelse(cex < 0.32, 0.32, cex)[!gp1])
-points(county_M377$multi_unit[!gp1], county_M377$homeownership[!gp1], 
+points(county_subset$multi_unit[!gp1], county_subset$homeownership[!gp1], 
        pch = 20, cex = 0.2, col = COL[5, 3])
 #points(cc$housing_multi_unit, cc$home_ownership, pch = ".", cex = 1)
 #rug(county$poverty[county$fed_spend > 40], side = 3)
@@ -287,7 +287,7 @@ text(X, Y + above*(R+0.01), paste("Cluster", 1:length(X)),
 
 ```
 
-**Simple random sampling** is probably the most intuitive form of random sampling. Consider the salaries of Major League Baseball (MLB) players, where each player is a member of one of the league's 30 teams. To take a simple random sample of 120 baseball players and their salaries from the 2010 season, we could write the names of that season's 828 players onto slips of paper, drop the slips into a bucket, shake the bucket around until we are sure the names are all mixed up, then draw out slips until we have the sample of 120 players. In general, a sample is referred to as ``simple random'' if each case in the population has an equal chance of being included in the final sample *and* knowing that a case is included in a sample does not provide useful information about which other cases are included.
+**Simple random sampling** is probably the most intuitive form of random sampling, in which each individual in the population has an equal chance of being chosen. Consider the salaries of Major League Baseball (MLB) players, where each player is a member of one of the league's 30 teams. To take a simple random sample of 120 baseball players and their salaries from the 2010 season, we could write the names of that season's 828 players onto slips of paper, drop the slips into a bucket, shake the bucket around until we are sure the names are all mixed up, then draw out slips until we have the sample of 120 players. In general, a sample is referred to as "simple random" if each case in the population has an equal chance of being included in the final sample *and* knowing that a case is included in a sample does not provide useful information about which other cases are included or not.
 
 **Stratified sampling** is a divide-and-conquer sampling strategy. The population is divided into groups called **strata**. The strata are chosen so that similar cases are grouped together, then a second sampling method, usually simple random sampling, is employed within each stratum. In the baseball salary example, the teams could represent the strata; some teams have a lot more money (we're looking at you, Yankees). Then we might randomly sample 4 players from each team for a total of 120 players.
 
@@ -320,7 +320,7 @@ Randomized experiments are generally built on four principles.
 
 3. **Replication**. The more cases researchers observe, the more accurately they can estimate the effect of the explanatory variable on the response. In a single study, we **replicate** by collecting a sufficiently large sample. Additionally, a group of scientists may replicate an entire study to verify an earlier finding. You replicate to the level of variability you want to estimate. For example, in flight test, we can run the same flight conditions again to get a replicate; however, if the same plane and pilot are being used, the replicate is not getting the pilot-to-pilot or the plane-to-plane variability.
 
-4. **Blocking**. Researchers sometimes know or suspect that variables, other than the treatment, influence the response. Under these circumstances, they may first group individuals based on this variable and then randomize cases within each block to the treatment groups. This strategy is often referred to as **blocking**. For instance, if we are looking at the effect of a drug on heart attacks, we might first split patients into low-risk and high-risk **blocks**, then randomly assign half the patients from each block to the control group and the other half to the treatment group, as shown in Figure \@ref(fig:exp4-fig). This strategy ensures each treatment group has an equal number of low-risk and high-risk patients.
+4. **Blocking**. Researchers sometimes know or suspect that variables, other than the treatment, influence the response. Under these circumstances, they may first group individuals based on this variable and then randomize cases within each block, or group, to the treatments. This strategy is often referred to as **blocking**. For instance, if we are looking at the effect of a drug on heart attacks, we might first split patients into low-risk and high-risk blocks, then randomly assign half the patients from each block to the control group and the other half to the treatment group, as shown in Figure \@ref(fig:exp4-fig). This strategy ensures each treatment group has an equal number of low-risk and high-risk patients.
 
 
 
@@ -447,7 +447,7 @@ It is important to incorporate the first three experimental design principles in
 
 Randomized experiments are the gold standard for data collection, but they do not ensure an unbiased perspective into the cause and effect relationships in all cases. Human studies are perfect examples where bias can unintentionally arise. Here we reconsider a study where a new drug was used to treat heart attack patients.^[Anturane Reinfarction Trial Research Group. 1980. Sulfinpyrazone in the prevention of sudden death after myocardial infarction. New England Journal of Medicine 302(5):250-256.] In particular, researchers wanted to know if the drug reduced deaths in patients.
 
-These researchers designed a randomized experiment because they wanted to draw causal conclusions about the drug's effect. Study volunteers^[Human subjects are often called **patients**, **volunteers**, or **study participants**.] were randomly placed into two study groups. One group, the **treatment group**, received the drug. The other group, called the **control group**, did not receive any drug treatment.
+These researchers designed a randomized experiment because they wanted to draw causal conclusions about the drug's effect. Study volunteers^[Human subjects are often called **patients**, **volunteers**, or **study participants**.] were randomly placed into two study groups. One group, the **treatment group**, received the experimental treatment of interest (the new drug to treat heart attack patients). The other group, called the **control group**, did not receive any drug treatment. The comparison between the treatment and control groups allows researchers to determine whether the treatment really has an effect. 
 
 Put yourself in the place of a person in the study. If you are in the treatment group, you are given a fancy new drug that you anticipate will help you. On the other hand, a person in the other group doesn't receive the drug and sits idly, hoping her participation doesn't increase her risk of death. These perspectives suggest there are actually two effects: the one of interest is the effectiveness of the drug, and the second is an emotional effect that is difficult to quantify.
 
@@ -468,14 +468,14 @@ a. What type of study is this?
 b. Suggest a sampling strategy for carrying out this study.  
 
 
-2. **Flawed reasoning**.  Identify the flaw in reasoning in the following scenarios. Explain what the individuals in the study should have done differently if they want to be able to make such strong conclusions.
+2. **Flawed reasoning**. Identify the flaw in reasoning in the following scenarios. Explain what the individuals in the study should have done differently if they want to be able to make such strong conclusions.
 
 a. Students at an elementary school are given a questionnaire that they are required to return after their parents have completed it. One of the questions asked is, *Do you find that your work schedule makes it difficult for you to spend time with your kids after school?* Of the parents who replied, 85% said *no*. Based on these results, the school officials conclude that a great majority of the parents have no difficulty spending time with their kids after school.  
 
 b. A survey is conducted on a simple random sample of 1,000 women who recently gave birth, asking them about whether or not they smoked during pregnancy. A follow-up survey asking if the children have respiratory problems is conducted 3 years later, however, only 567 of these women are reached at the same address. The researcher reports that these 567 women are representative of all mothers.  
 
 
-3. **Sampling strategies**.  A statistics student who is curious about the relationship between the amount of time students spend on social networking sites and their performance at school decides to conduct a survey. Four research strategies for collecting data are described below. In each, name the sampling method proposed and any bias you might expect.
+3. **Sampling strategies**.  A statistics student who is curious about the relationship between the amount of time students spend on social networking sites and their performance at school decides to conduct a survey. Four research strategies for collecting data are described below. In each, name the sampling method proposed and any bias you might expect. *Note: Sampling methods from both Chapter 3 (Overview of Data Collection Principles) and Chapter 4 (Studies) may be used for this problem.*
 
 a. He randomly samples 40 students from the study's population, gives them the survey, asks them to fill it out and bring it back the next day.  
 
