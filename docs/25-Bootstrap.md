@@ -873,7 +873,7 @@ f. Find a $p$-value.
 g. How does the $p$-value compare with those in the reading?    
 
 
-3. Bootstrap hypothesis testing  
+3. Bootstrap for the $F$ statistic.  
 
     Repeat the analysis of the MLB data from Chapter \@ref(ANOVA), but this time generate a bootstrap distribution of the $F$ statistic.  
 

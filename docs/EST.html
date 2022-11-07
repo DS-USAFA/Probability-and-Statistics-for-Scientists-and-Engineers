@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 17 Estimation Methods | Computational Probability and Statistics - MASTER</title>
+<title>Chapter 17 Estimation Methods | Probability and Statistics for Scientists and Engineers</title>
 <meta name="author" content="Matthew Davis">
 <meta name="author" content="Brianna Hitt">
 <meta name="author" content="Ken Horton">
@@ -12,14 +12,14 @@
 <meta name="author" content="Bradley Warner">
 <meta name="description" content="17.1 Objectives Obtain a method of moments estimate of a parameter or set of parameters. Given a random sample from a distribution, obtain the likelihood function. Obtain a maximum likelihood...">
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
-<meta property="og:title" content="Chapter 17 Estimation Methods | Computational Probability and Statistics - MASTER">
+<meta property="og:title" content="Chapter 17 Estimation Methods | Probability and Statistics for Scientists and Engineers">
 <meta property="og:type" content="book">
-<meta property="og:image" content="/figures/Cover_Majors.png">
+<meta property="og:image" content="/figures/Cover_Engineers.png">
 <meta property="og:description" content="17.1 Objectives Obtain a method of moments estimate of a parameter or set of parameters. Given a random sample from a distribution, obtain the likelihood function. Obtain a maximum likelihood...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 17 Estimation Methods | Computational Probability and Statistics - MASTER">
+<meta name="twitter:title" content="Chapter 17 Estimation Methods | Probability and Statistics for Scientists and Engineers">
 <meta name="twitter:description" content="17.1 Objectives Obtain a method of moments estimate of a parameter or set of parameters. Given a random sample from a distribution, obtain the likelihood function. Obtain a maximum likelihood...">
-<meta name="twitter:image" content="/figures/Cover_Majors.png">
+<meta name="twitter:image" content="/figures/Cover_Engineers.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -60,7 +60,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Computational Probability and Statistics - MASTER</a>
+        <a href="index.html" title="">Probability and Statistics for Scientists and Engineers</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -91,7 +91,7 @@
 <li><a class="" href="CONTNNAMED.html"><span class="header-section-number">13</span> Named Continuous Distributions</a></li>
 <li><a class="" href="MULTIDISTS.html"><span class="header-section-number">14</span> Multivariate Distributions</a></li>
 <li><a class="" href="MULTIEXP.html"><span class="header-section-number">15</span> Multivariate Expectation</a></li>
-<li><a class="" href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></li>
+<li><a class="" href="TRANSF.html"><span class="header-section-number">16</span> Transformations</a></li>
 <li><a class="active" href="EST.html"><span class="header-section-number">17</span> Estimation Methods</a></li>
 <li class="book-part">Inferential Statistical Modeling</li>
 <li><a class="" href="CS3.html"><span class="header-section-number">18</span> Hypothesis Testing Case Study</a></li>
@@ -114,7 +114,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/DS-USAFA/Probability-and-Statistics-MASTER">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -143,11 +143,11 @@
 <p>We started this book with descriptive models of data and then moved onto probability models. In these probability models, we have been characterizing experiments and random processes using both theory and simulation. These models are using a model about a random event to make decisions about data. These models are about the population and are used to make decisions about samples and data. For example, suppose we flip a fair coin 10 times, and record the number of heads. The population is the collection of all possible outcomes of this experiment. In this case, the population is infinite, as we could run this experiment repeatedly without limit. If we assume, model, the number of heads as a binomial distribution, we know the exact distribution of the outcomes. For example, we know that exactly 24.61% of the time, we will obtain 5 heads out of 10 flips of a fair coin. We can also use the model to characterize the variance, that is when it does not equal 5 and how much different from 5 it will be. However, these probability models are highly dependent on the assumptions and the values of the parameters.</p>
 <p>From this point on in the book, we will focus on <em>statistical</em> models. Statistical models describe one or more variables and their relationships. We use these models to make decisions about the population, to predict future outcomes, or both. Often we don’t know the true underlying process; all we have is a <em>sample</em> of observations and perhaps some context. Using <em>inferential</em> statistics, we can draw conclusions about the underlying process. For example, suppose we are given a coin and we don’t know whether it is fair. So, we flip it a number of times to obtain a sample of outcomes. We can use that sample to decide whether the coin could be fair.</p>
 <p>In some sense, we’ve already explored some of these concepts. In our simulation examples, we have drawn observations from a population of interest and used those observations to estimate characteristics of another population or segment of the experiment. For example, we explored random variable <span class="math inline">\(Z\)</span>, where <span class="math inline">\(Z=|X - Y|\)</span> and <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> were both uniform random variables. Instead of dealing with the distribution of <span class="math inline">\(Z\)</span> directly, we simulated many observations from <span class="math inline">\(Z\)</span> and used this simulation to describe the behavior of <span class="math inline">\(Z\)</span>.</p>
-<p>Statistical models and probability models are not separate. In statistical models we find relationships, the explained portion of variation, and use probability models for the remaining random variation. In Figure <a href="EST.html#fig:prob-stats">17.1</a>, we demonstrate this relationship between the two types of models. In the first part of our studies, we will use univariate data in statistical models to estimate the parameters of a probability model. From there we will develop more sophisticated models to include multivariate models.</p>
+<p>Statistical models and probability models are not separate. In statistical models we find relationships, the explained portion of variation, and use probability models for the remaining random variation. In Figure <a href="PROBRULES.html#fig:prob-stats">8.1</a>, we demonstrate this relationship between the two types of models. In the first part of our studies, we will use univariate data in statistical models to estimate the parameters of a probability model. From there we will develop more sophisticated models to include multivariate models.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:prob-stats"></span>
 <img src="figures/Prob_Stats.png" alt="A graphical representation of probability and statistics. In probability, we describe what we expect to happen if we know that underlying process; in statistics, we don't know the underlying process, and must infer based on representative samples." width="576"><p class="caption">
-Figure 17.1: A graphical representation of probability and statistics. In probability, we describe what we expect to happen if we know that underlying process; in statistics, we don’t know the underlying process, and must infer based on representative samples.
+Figure 8.1: A graphical representation of probability and statistics. In probability, we describe what we expect to happen if we know that underlying process; in statistics, we don’t know the underlying process, and must infer based on representative samples.
 </p>
 </div>
 </div>
@@ -283,15 +283,15 @@ Continuing our example. Find the maximum likelihood estimator for <span class="m
 <span class="math display">\[
 L(\pi;\boldsymbol{x})= \pi^{\sum x_i}(1-\pi)^{n-\sum x_i}
 \]</span></p>
-<p>Figure <a href="EST.html#fig:lik1-fig">17.2</a> is a plot of the likelihood function as a function of the unknown parameter <span class="math inline">\(\pi\)</span>.</p>
+<p>Figure <a href="EST.html#fig:lik1-fig">17.1</a> is a plot of the likelihood function as a function of the unknown parameter <span class="math inline">\(\pi\)</span>.</p>
 <pre><code>## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.</code></pre>
 <div class="figure">
 <span style="display:block;" id="fig:lik1-fig"></span>
 <img src="17-Estimation-Methods_files/figure-html/lik1-fig-1.png" alt="Likelihood function for 18 successes in 50 trials" width="672"><p class="caption">
-Figure 17.2: Likelihood function for 18 successes in 50 trials
+Figure 17.1: Likelihood function for 18 successes in 50 trials
 </p>
 </div>
-<p>By visual inspection, the value of <span class="math inline">\(\pi\)</span> that makes our data most likely, maximizes the likelihood function, is something a little less than 0.4, the actual value is 0.36 as indicated by the blue line in Figure <a href="EST.html#fig:lik1-fig">17.2</a>.</p>
+<p>By visual inspection, the value of <span class="math inline">\(\pi\)</span> that makes our data most likely, maximizes the likelihood function, is something a little less than 0.4, the actual value is 0.36 as indicated by the blue line in Figure <a href="EST.html#fig:lik1-fig">17.1</a>.</p>
 <p>To maximize by mathematical methods, we need to take the derivative of the likelihood function with respect to <span class="math inline">\(\pi\)</span>. We can do this because the likelihood function is a continuous function. Even though the binomial is a discrete random variable, its likelihood is a continuous function.</p>
 <p>We can find the derivative of the likelihood function by applying the product rule:
 <span class="math display">\[
@@ -326,13 +326,13 @@ l(\pi;\boldsymbol{x})=\log L(\pi;\boldsymbol{x})= \log \left(\pi^{\sum x_i}(1-\p
 <span class="header-section-number">17.5.3</span> Numerical Methods<a class="anchor" aria-label="anchor" href="#numerical-methods"><i class="fas fa-link"></i></a>
 </h3>
 <p>When obtaining MLEs, there are times when analytical methods (calculus) are not feasible or not possible. In the Pruim book <span class="citation">(<a href="references.html#ref-pruim2011foundations" role="doc-biblioref">R. J. Pruim 2011</a>)</span>, there is a good example regarding data from Old Faithful at Yellowstone National Park. We need to load the <strong>fastR2</strong> package for this example.</p>
-<div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb443"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rpruim/fastR2">fastR2</a></span><span class="op">)</span></span></code></pre></div>
-<p>The <code>faithful</code> data set is preloaded into <code>R</code> and contains 272 observations of 2 variables: eruption time in minutes and waiting time until next eruption. If we plot eruption durations, we notice that the distribution appears bimodal, see Figure <a href="EST.html#fig:hist171-fig">17.3</a>.</p>
+<p>The <code>faithful</code> data set is preloaded into <code>R</code> and contains 272 observations of 2 variables: eruption time in minutes and waiting time until next eruption. If we plot eruption durations, we notice that the distribution appears bimodal, see Figure <a href="EST.html#fig:hist171-fig">17.2</a>.</p>
 <div class="figure">
 <span style="display:block;" id="fig:hist171-fig"></span>
 <img src="17-Estimation-Methods_files/figure-html/hist171-fig-1.png" alt="Histogram of eruption durations of Old Faithful." width="672"><p class="caption">
-Figure 17.3: Histogram of eruption durations of Old Faithful.
+Figure 17.2: Histogram of eruption durations of Old Faithful.
 </p>
 </div>
 <p>Within each section, the distribution appears somewhat bell-curve-ish so we’ll model the eruption time with a mixture of two normal distributions. In this mixture, a proportion <span class="math inline">\(\alpha\)</span> of our eruptions belong to one normal distribution and the remaining <span class="math inline">\(1-\alpha\)</span> belong to the other normal distribution. The density function of eruptions is given by:
@@ -341,7 +341,7 @@ Figure 17.3: Histogram of eruption durations of Old Faithful.
 \]</span></p>
 <p>where <span class="math inline">\(f\)</span> is the pdf of the normal distribution with parameters specified.</p>
 <p>We have five parameters to estimate: <span class="math inline">\(\alpha, \mu_1, \mu_2, \sigma_1, \sigma_2\)</span>. Obviously, estimation through differentiation is not feasible and thus we will use numerical methods. This code is less in the spirit of <code>tidyverse</code> but we want you to see the example. Try to work your way through the code below:</p>
-<div class="sourceCode" id="cb441"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Define function for pdf of eruptions as a mixture of normals</span></span>
 <span><span class="va">dmix</span><span class="op">&lt;-</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span>,<span class="va">alpha</span>,<span class="va">mu1</span>,<span class="va">mu2</span>,<span class="va">sigma1</span>,<span class="va">sigma2</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="kw">if</span><span class="op">(</span><span class="va">alpha</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">mu2</span>,<span class="va">sigma2</span><span class="op">)</span></span>
@@ -351,7 +351,7 @@ Figure 17.3: Histogram of eruption durations of Old Faithful.
 <span>  <span class="op">}</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Next write a function for the log-likelihood function. <code>R</code> is a vector based programming language so we send <code>theta</code> into the function as a vector argument.</p>
-<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb445"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Create the log-likelihood function</span></span>
 <span><span class="va">loglik</span><span class="op">&lt;-</span><span class="kw">function</span><span class="op">(</span><span class="va">theta</span>,<span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">alpha</span><span class="op">=</span><span class="va">theta</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
@@ -369,17 +369,17 @@ Figure 17.3: Histogram of eruption durations of Old Faithful.
 <span>  <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">density</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Find the sample mean and standard deviation of the eruption data to use as starting points in the optimization routine.</p>
-<div class="sourceCode" id="cb443"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m</span><span class="op">&lt;-</span><span class="fu">mean</span><span class="op">(</span><span class="va">faithful</span><span class="op">$</span><span class="va">eruptions</span><span class="op">)</span></span>
 <span><span class="va">s</span><span class="op">&lt;-</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">faithful</span><span class="op">$</span><span class="va">eruptions</span><span class="op">)</span></span></code></pre></div>
 <p>Use the function <code><a href="http://rpruim.github.io/fastR2/reference/nlmax.html">nlmax()</a></code> to maximize the non-linear log-likelihood function.</p>
-<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mle</span><span class="op">&lt;-</span><span class="fu"><a href="http://rpruim.github.io/fastR2/reference/nlmax.html">nlmax</a></span><span class="op">(</span><span class="va">loglik</span>,p<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="va">m</span><span class="op">-</span><span class="fl">1</span>,<span class="va">m</span><span class="op">+</span><span class="fl">1</span>,<span class="va">s</span>,<span class="va">s</span><span class="op">)</span>,x<span class="op">=</span><span class="va">faithful</span><span class="op">$</span><span class="va">eruptions</span><span class="op">)</span><span class="op">$</span><span class="va">estimate</span></span>
 <span><span class="va">mle</span></span></code></pre></div>
 <pre><code>## [1] 0.3484040 2.0186065 4.2733410 0.2356208 0.4370633</code></pre>
 <p>So, according to our MLEs, about 34.84% of the eruptions belong to the first normal distribution (the one on the left). Furthermore the parameters of that first distribution are a mean of 2.019 and a standard deviation of 0.236. Likewise, 65.16% of the eruptions belong to the second normal with mean of 4.27 and standard deviation of 0.437.</p>
 <p>Plotting the density atop the histogram shows a fairly good fit:</p>
-<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb449"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dmix2</span><span class="op">&lt;-</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">dmix</span><span class="op">(</span><span class="va">x</span>,<span class="va">mle</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,<span class="va">mle</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,<span class="va">mle</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>,<span class="va">mle</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>,<span class="va">mle</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#y_old&lt;-dmix2(seq(1,6,.01))</span></span>
 <span><span class="co">#x_old&lt;-seq(1,6,.01)</span></span>
@@ -394,7 +394,7 @@ Figure 17.3: Histogram of eruption durations of Old Faithful.
 <div class="figure">
 <span style="display:block;" id="fig:hist172-fig"></span>
 <img src="17-Estimation-Methods_files/figure-html/hist172-fig-1.png" alt="Histogram of eruption duration with estimated mixture of normals plotted on top." width="672"><p class="caption">
-Figure 17.4: Histogram of eruption duration with estimated mixture of normals plotted on top.
+Figure 17.3: Histogram of eruption duration with estimated mixture of normals plotted on top.
 </p>
 </div>
 <p>This is a fairly elaborate example but it is cool. You can see the power of the method and the software.</p>
@@ -432,7 +432,7 @@ Figure 17.4: Histogram of eruption duration with estimated mixture of normals pl
 
 
   <div class="chapter-nav">
-<div class="prev"><a href="TRANS.html"><span class="header-section-number">16</span> Transformations</a></div>
+<div class="prev"><a href="TRANSF.html"><span class="header-section-number">16</span> Transformations</a></div>
 <div class="next"><a href="CS3.html"><span class="header-section-number">18</span> Hypothesis Testing Case Study</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
@@ -454,8 +454,8 @@ Figure 17.4: Histogram of eruption duration with estimated mixture of normals pl
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/DS-USAFA/Probability-and-Statistics-MASTER/blob/master/17-Estimation-Methods.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/DS-USAFA/Probability-and-Statistics-MASTER/edit/master/17-Estimation-Methods.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/blob/main/17-Estimation-Methods.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/edit/main/17-Estimation-Methods.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -467,7 +467,7 @@ Figure 17.4: Histogram of eruption duration with estimated mixture of normals pl
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Probability and Statistics - MASTER</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-07-21.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-11-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

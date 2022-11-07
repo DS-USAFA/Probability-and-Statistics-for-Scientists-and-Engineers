@@ -253,19 +253,19 @@ Figure 9.1: A table of true results and test results for a hypothetical disease.
 <span class="header-section-number">9.4.3</span> Simulation<a class="anchor" aria-label="anchor" href="#simulation"><i class="fas fa-link"></i></a>
 </h3>
 <p>To do the simulation, we can think of it as flipping a coin. First let’s assume we are pulling 1,000,000 people from the population. The probability that any one person has the disease is 0.0001. We will use <code><a href="https://www.mosaic-web.org/mosaic/reference/rflip.html">rflip()</a></code> to get the 1,000,000 people and designate as no disease or disease.</p>
-<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">43</span><span class="op">)</span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/rflip.html">rflip</a></span><span class="op">(</span><span class="fl">1000000</span>,<span class="fl">0.0001</span>,summarize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">results</span></span></code></pre></div>
 <pre><code>##       n heads  tails  prob
 ## 1 1e+06   100 999900 1e-04</code></pre>
 <p>In this case 100 people had the disease. Now let’s find the positive test results. Of the 100 with the disease, all will test positive. Of those without disease, there is a 0.001 probability of testing positive.</p>
-<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/rflip.html">rflip</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">results</span><span class="op">[</span><span class="st">'tails'</span><span class="op">]</span><span class="op">)</span>,prob<span class="op">=</span><span class="fl">.001</span>,summarize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##        n heads  tails  prob
 ## 1 999900   959 998941 0.001</code></pre>
 <p>Now 959 tested positive. Thus the probability of having the disease given a positive test result is approximately:</p>
-<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">100</span><span class="op">/</span><span class="op">(</span><span class="fl">100</span><span class="op">+</span><span class="fl">959</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.09442871</code></pre>
 </div>
@@ -331,8 +331,8 @@ Figure 9.1: A table of true results and test results for a hypothetical disease.
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/blob/master/09-Conditional-Probability.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/edit/master/09-Conditional-Probability.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/blob/main/09-Conditional-Probability.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/edit/main/09-Conditional-Probability.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -344,7 +344,7 @@ Figure 9.1: A table of true results and test results for a hypothetical disease.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-09-25.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-11-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

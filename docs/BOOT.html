@@ -163,14 +163,14 @@
 <p><strong>Exercise</strong>
 Using both a traditional method, via the CLT or the t-distribution, and the bootstrap method, find 95% confidence intervals for <span class="math inline">\(\mu\)</span>. Compare the two intervals.</p>
 </blockquote>
-<div class="sourceCode" id="cb703"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb706"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">heights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">62.0</span>, <span class="fl">73.8</span>, <span class="fl">59.8</span>, <span class="fl">66.9</span>, <span class="fl">75.6</span>, <span class="fl">63.3</span>, <span class="fl">64.0</span>, <span class="fl">63.1</span>, <span class="fl">65.0</span>, <span class="fl">67.2</span>, </span>
 <span>             <span class="fl">73.0</span>, <span class="fl">62.3</span>, <span class="fl">60.8</span>, <span class="fl">65.7</span>, <span class="fl">60.8</span>, <span class="fl">65.8</span>, <span class="fl">63.3</span>, <span class="fl">54.9</span>, <span class="fl">67.8</span>, <span class="fl">65.1</span>, </span>
 <span>             <span class="fl">74.8</span>, <span class="fl">75.0</span>, <span class="fl">77.8</span>, <span class="fl">73.7</span>, <span class="fl">74.3</span>, <span class="fl">68.4</span>, <span class="fl">77.5</span>, <span class="fl">77.9</span>, <span class="fl">66.5</span>, <span class="fl">65.5</span>, </span>
 <span>             <span class="fl">71.7</span>, <span class="fl">75.9</span>, <span class="fl">81.7</span>, <span class="fl">76.5</span>, <span class="fl">77.8</span>, <span class="fl">75.0</span>, <span class="fl">64.6</span>, <span class="fl">59.4</span>, <span class="fl">60.7</span>, <span class="fl">69.2</span>, </span>
 <span>             <span class="fl">78.2</span>, <span class="fl">65.7</span>, <span class="fl">69.6</span>, <span class="fl">80.0</span>, <span class="fl">67.6</span>, <span class="fl">73.0</span>, <span class="fl">65.3</span>, <span class="fl">67.6</span>, <span class="fl">66.2</span>, <span class="fl">69.6</span><span class="op">)</span></span></code></pre></div>
 <p>Let’s look at the data. Figures <a href="ANOVA.html#fig:box231-fig">21.1</a> and <a href="BOOT.html#fig:dens231-fig">23.1</a> show a boxplot and density plot of the heights, respectively.</p>
-<div class="sourceCode" id="cb704"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb707"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">gf_boxplot</span><span class="op">(</span><span class="op">~</span><span class="va">heights</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_labs</span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Heights (in)"</span><span class="op">)</span></span></code></pre></div>
@@ -180,7 +180,7 @@ Using both a traditional method, via the CLT or the t-distribution, and the boot
 Figure 21.1: Boxplot of heights of local college students.
 </p>
 </div>
-<div class="sourceCode" id="cb705"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb708"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">gf_density</span><span class="op">(</span><span class="op">~</span><span class="va">heights</span>, fill <span class="op">=</span> <span class="st">"lightgrey"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Heights (in)"</span>, y <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
@@ -191,7 +191,7 @@ Figure 23.1: Density plot of heights of local college students.
 </p>
 </div>
 <p>The distribution of heights looks bimodal. There are likely both men and women in this sample, and thus we have two different population distributions of heights.</p>
-<div class="sourceCode" id="cb706"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb709"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="op">~</span><span class="va">heights</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   min   Q1 median     Q3  max   mean       sd  n missing
 ##  54.9 64.7   67.6 74.675 81.7 68.938 6.345588 50       0</code></pre>
@@ -200,12 +200,12 @@ Figure 23.1: Density plot of heights of local college students.
 <span class="header-section-number">23.4.1</span> Using traditional mathematical methods<a class="anchor" aria-label="anchor" href="#using-traditional-mathematical-methods"><i class="fas fa-link"></i></a>
 </h3>
 <p>The data comes from less than 10% of the population, so we feel good about the assumption of independence. However, the data is bimodal and clearly does not come from a normal distribution. The sample size is larger, so this may help us. We will use the <span class="math inline">\(t\)</span>-distribution and CLT, and compare our results with the bootstrap.</p>
-<div class="sourceCode" id="cb708"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb711"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="op">~</span><span class="va">heights</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   mean of x   lower   upper level
 ## 1    68.938 67.1346 70.7414  0.95</code></pre>
 <p>We can also calculate the confidence interval by hand.</p>
-<div class="sourceCode" id="cb710"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb713"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Using t</span></span>
 <span><span class="va">xbar</span> <span class="op">&lt;-</span> <span class="fu">mean</span><span class="op">(</span><span class="va">heights</span><span class="op">)</span></span>
 <span><span class="va">sd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">heights</span><span class="op">)</span></span>
@@ -214,9 +214,9 @@ Figure 23.1: Density plot of heights of local college students.
 <span><span class="va">xbar</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="va">tval</span><span class="op">*</span><span class="va">sd</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 67.1346 70.7414</code></pre>
 <p>If we want to use the <code>tidyverse</code>, we must convert <code>heights</code> to a data frame.</p>
-<div class="sourceCode" id="cb712"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb715"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">heights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>height <span class="op">=</span> <span class="va">heights</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb713"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb716"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">heights</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 x 1
 ##   height
@@ -227,7 +227,7 @@ Figure 23.1: Density plot of heights of local college students.
 ## 4   66.9
 ## 5   75.6
 ## 6   63.3</code></pre>
-<div class="sourceCode" id="cb715"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb718"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">heights</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">height</span><span class="op">)</span>, stand_dev <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span>, n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>            ci <span class="op">=</span> <span class="va">mean</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">0.975</span>, <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="va">stand_dev</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -237,7 +237,7 @@ Figure 23.1: Density plot of heights of local college students.
 ## 1  68.9      6.35    50  67.1
 ## 2  68.9      6.35    50  70.7</code></pre>
 <p>Using the CLT, we have:</p>
-<div class="sourceCode" id="cb717"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb720"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">heights</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">height</span><span class="op">)</span>, stand_dev <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span>, n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>            ci <span class="op">=</span> <span class="va">mean</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.975</span><span class="op">)</span><span class="op">*</span><span class="va">stand_dev</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -255,18 +255,18 @@ Figure 23.1: Density plot of heights of local college students.
 <p>The idea behind the bootstrap is that we will get an estimate of the distribution for the statistic of interest by sampling the original data with replacement. We must sample under the same scheme as the original data was collected. In <code>R</code>, we will use the <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample()</a></code> function from the <strong>mosaic</strong> package. There are entire packages dedicated to resampling, such as <strong>boot</strong>, and there is a great deal of information about these types of packages online.</p>
 <p>When applied to a dataframe, the <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample()</a></code> function samples rows with replacement to produce a new data frame with the same number of rows as the original. Some rows will be duplicated and others will be missing.</p>
 <p>To illustrate, let’s use <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample()</a></code> on the first 10 positive integers.</p>
-<div class="sourceCode" id="cb719"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb722"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">305</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##  [1] 8 7 8 1 4 4 2 2 6 9</code></pre>
 <p>Notice that 8, 4 and 2 appeared at least twice. The numbers 3 and 5 did not appear at all. This is a single bootstrap replicate of the data.</p>
 <p>We then calculate a point estimate on the bootstrap replicate. We repeat this process a large number of times, 1,000 or maybe even 10,000 times. The collection of the point estimates is called the bootstrap distribution. For the sample mean, ideally, the bootstrap distribution should be unimodal, roughly symmetric, and centered at the original estimate.</p>
 <p>Let’s generate the bootstrap distribution for our <code>heights</code> data.</p>
-<div class="sourceCode" id="cb721"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb724"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2115</span><span class="op">)</span></span>
-<span><span class="va">boot_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu">mean</span><span class="op">(</span><span class="op">~</span><span class="va">height</span>, data <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">heights</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">boot_results</span> <span class="op">&lt;-</span> <span class="fu">do</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu">mean</span><span class="op">(</span><span class="op">~</span><span class="va">height</span>, data <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">heights</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>The first few rows of the results are:</p>
-<div class="sourceCode" id="cb722"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb725"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">boot_results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##     mean
 ## 1 68.390
@@ -275,9 +275,9 @@ Figure 23.1: Density plot of heights of local college students.
 ## 4 68.534
 ## 5 70.980
 ## 6 68.424</code></pre>
-<p>The <code><a href="https://dplyr.tidyverse.org/reference/do.html">do()</a></code> function, by default, gives the column name of the last function used, in this case <code>mean()</code>. This is an unfortunate name as it can cause us some confusion.</p>
+<p>The <code>do()</code> function, by default, gives the column name of the last function used, in this case <code>mean()</code>. This is an unfortunate name as it can cause us some confusion.</p>
 <p>Figure <a href="BOOT.html#fig:boot251-fig">23.2</a> is a plot of the bootstrap sampling distribution. The observed mean from our original sample is shown as a black line.</p>
-<div class="sourceCode" id="cb724"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb727"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">boot_results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">mean</span>, fill <span class="op">=</span> <span class="st">"cyan"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">68.938</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -290,7 +290,7 @@ Figure 23.2: The sampling distribution approximated using a bootstrap distributi
 </p>
 </div>
 <p>We can also look at a summary of the bootstrap distribution:</p>
-<div class="sourceCode" id="cb725"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb728"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="op">~</span><span class="va">mean</span>, data <span class="op">=</span> <span class="va">boot_results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##     min      Q1 median    Q3  max     mean        sd    n missing
 ##  65.684 68.3915 68.976 69.55 72.3 68.96724 0.9040555 1000       0</code></pre>
@@ -300,12 +300,12 @@ Figure 23.2: The sampling distribution approximated using a bootstrap distributi
 <span class="header-section-number">23.4.2.1</span> Bootstrap percentile<a class="anchor" aria-label="anchor" href="#bootstrap-percentile"><i class="fas fa-link"></i></a>
 </h4>
 <p>For a 95% confidence interval, we simply want the middle 95% of the bootstrap distribution. That is, we want the 2.5 and 97.5 percentiles of the bootstrap distribution. The function <code><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata()</a></code> makes this easy for us by specifying the probability for the confidence interval desired.</p>
-<div class="sourceCode" id="cb727"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb730"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">mean</span>, data <span class="op">=</span> <span class="va">boot_results</span>, p <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##        lower   upper central.p
 ## 2.5% 67.2197 70.7964      0.95</code></pre>
 <p>We can also use the <code><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">qdata()</a></code> function, which gives the quantiles corresponding to the specified probabilities.</p>
-<div class="sourceCode" id="cb729"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb732"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">qdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">mean</span>, data <span class="op">=</span> <span class="va">boot_results</span>, p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##    2.5%   97.5% 
 ## 67.2197 70.7964</code></pre>
@@ -316,13 +316,13 @@ Figure 23.2: The sampling distribution approximated using a bootstrap distributi
 <span class="header-section-number">23.4.2.2</span> <span class="math inline">\(t\)</span> interval with bootstrap standard error<a class="anchor" aria-label="anchor" href="#t-interval-with-bootstrap-standard-error"><i class="fas fa-link"></i></a>
 </h4>
 <p>Since the bootstrap distribution looks like a <span class="math inline">\(t\)</span> distribution, we can use a <span class="math inline">\(t\)</span> interval with the bootstrap standard error. The standard deviation of the bootstrap distribution is the bootstrap standard error of the sample mean. We will not have to divide by <span class="math inline">\(\sqrt{n}\)</span> since we are dealing with the distribution of the mean directly. We simply find the standard deviation of the bootstrap distribution and use it as the standard error in the confidence interval.</p>
-<div class="sourceCode" id="cb731"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb734"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">xbar</span> <span class="op">&lt;-</span> <span class="fu">mean</span><span class="op">(</span><span class="va">boot_results</span><span class="op">$</span><span class="va">mean</span><span class="op">)</span></span>
 <span><span class="va">SE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">boot_results</span><span class="op">$</span><span class="va">mean</span><span class="op">)</span></span>
 <span><span class="va">xbar</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">0.975</span>, <span class="fl">49</span><span class="op">)</span><span class="op">*</span><span class="va">SE</span></span></code></pre></div>
 <pre><code>## [1] 67.15047 70.78401</code></pre>
 <p>We could of course use <code>tidyverse</code> but we must change the column name so that the <code>mean</code> column and the <code>mean()</code> function don’t conflict with each other.</p>
-<div class="sourceCode" id="cb733"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb736"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">boot_results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="va">mean</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">stat</span><span class="op">)</span>, stand_dev <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">stat</span><span class="op">)</span>, </span>
@@ -331,12 +331,12 @@ Figure 23.2: The sampling distribution approximated using a bootstrap distributi
 ## 1 68.96724 0.9040555 67.15047
 ## 2 68.96724 0.9040555 70.78401</code></pre>
 <p>Of course, there is a single built-in function to make this easier for us. The <code><a href="https://rdrr.io/r/stats/confint.html">confint()</a></code> function used with the bootstrap results can provide confidence intervals using both methods.</p>
-<div class="sourceCode" id="cb735"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb738"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">boot_results</span>, method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"percentile"</span>, <span class="st">"stderr"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   name    lower    upper level     method estimate margin.of.error df
 ## 1 mean 67.21970 70.79640  0.95 percentile   68.938              NA NA
 ## 2 mean 67.15047 70.78401  0.95     stderr   68.938        1.816768 49</code></pre>
-<p>The <span class="math inline">\(t\)</span> interval with the bootstrap standard error is the more accurate method of calculating a bootstrap confidence interval. However, the percentile method usually results in a very similar interval and the standard error method can only be used when the bootstrap distribution is roughly shaped like a <span class="math inline">\(t\)</span> distribution. You can learn more about bootstrap confidence intervals online.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Also, see resources like &lt;em&gt;Statistical Inference via Data Science&lt;/em&gt; by Chester Ismay and Albert Kim.&lt;/p&gt;"><sup>98</sup></a></p>
+<p>The <span class="math inline">\(t\)</span> interval with the bootstrap standard error is the more accurate method of calculating a bootstrap confidence interval. However, the percentile method usually results in a very similar interval and the standard error method can only be used when the bootstrap distribution is roughly shaped like a <span class="math inline">\(t\)</span> distribution. You can learn more about bootstrap confidence intervals online.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Also, see resources like &lt;em&gt;Statistical Inference via Data Science&lt;/em&gt; by Chester Ismay and Albert Kim.&lt;/p&gt;"><sup>106</sup></a></p>
 </div>
 </div>
 </div>
@@ -354,10 +354,10 @@ Figure 23.2: The sampling distribution approximated using a bootstrap distributi
 <p><strong>Exercise</strong>:<br>
 Find a 90% confidence interval for the median height of students at a local college.</p>
 </blockquote>
-<div class="sourceCode" id="cb737"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb740"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">427</span><span class="op">)</span></span>
-<span><span class="va">boot_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">median</a></span><span class="op">(</span><span class="op">~</span><span class="va">height</span>, data <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">heights</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb738"><pre class="downlit sourceCode r">
+<span><span class="va">boot_results</span> <span class="op">&lt;-</span> <span class="fu">do</span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">median</a></span><span class="op">(</span><span class="op">~</span><span class="va">height</span>, data <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">heights</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb741"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">boot_results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">median</span>, fill <span class="op">=</span> <span class="st">"cyan"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">67.6</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -370,11 +370,11 @@ Figure 23.3: The sampling distribution approximated using a bootstrap distributi
 </p>
 </div>
 <p>From Figure <a href="BOOT.html#fig:boot252-fig">23.3</a>, the bootstrap sampling distribution is not symmetrical so the <span class="math inline">\(t\)</span> interval approach may not be advisable. We will still calculate the confidence interval based on both approaches to compare the results.</p>
-<div class="sourceCode" id="cb739"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb742"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">median</span>, data <span class="op">=</span> <span class="va">boot_results</span>, p <span class="op">=</span> <span class="fl">0.90</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##    lower upper central.p
 ## 5%  65.8 70.65       0.9</code></pre>
-<div class="sourceCode" id="cb741"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb744"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">boot_results</span>, method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"percentile"</span>, <span class="st">"stderr"</span><span class="op">)</span>, level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##     name   lower   upper level     method estimate margin.of.error
 ## 1 median 65.8000 70.6500   0.9 percentile     67.6              NA
@@ -400,17 +400,17 @@ Figure 23.3: The sampling distribution approximated using a bootstrap distributi
 </h3>
 <p>Let’s return to the Health Evaluation and Linkage to Primary Care data set, <code>HELPrct</code> in the <strong>mosaicData</strong> package. Previously, we looked at whether there was a difference in <code>substance</code> of abuse between males and females.</p>
 <p>We are now interested in whether there is a difference between male and female ages. Let’s first take a look at the data to refresh our memory.</p>
-<div class="sourceCode" id="cb743"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb746"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"HELPrct"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb744"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb747"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">HELP_sub</span> <span class="op">&lt;-</span> <span class="va">HELPrct</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">age</span>, <span class="va">sex</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb745"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb748"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELP_sub</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##      sex min Q1 median   Q3 max     mean       sd   n missing
 ## 1 female  21 31     35 40.5  58 36.25234 7.584858 107       0
 ## 2   male  19 30     35 40.0  60 35.46821 7.750110 346       0</code></pre>
-<div class="sourceCode" id="cb747"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb750"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">HELP_sub</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_boxplot</span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">sex</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -421,7 +421,7 @@ Figure 23.3: The sampling distribution approximated using a bootstrap distributi
 Figure 23.4: The distribution of age in the HELP study by gender.
 </p>
 </div>
-<div class="sourceCode" id="cb748"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb751"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">HELP_sub</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_dhistogram</span><span class="op">(</span><span class="op">~</span><span class="va">age</span><span class="op">|</span><span class="va">sex</span>, fill <span class="op">=</span> <span class="st">"cyan"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -443,29 +443,29 @@ Figure 23.5: The distribution of age in the HELP study by gender.
 <p><span class="math inline">\(H_0\)</span>: There is no difference in average age for men and women in the detoxification unit. In statistical notation: <span class="math inline">\(\mu_{male} - \mu_{female} = 0\)</span>, where <span class="math inline">\(\mu_{female}\)</span> represents the mean age for female inpatients and <span class="math inline">\(\mu_{male}\)</span> represents the mean age for male inpatients.</p>
 <p><span class="math inline">\(H_A\)</span>: There is some difference in average age for men and women in the detoxification unit (<span class="math inline">\(\mu_{male} - \mu_{female} \neq 0\)</span>).</p>
 <p>Let’s perform a randomization test. The mean age by sex is again shown below.</p>
-<div class="sourceCode" id="cb749"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb752"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELP_sub</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##      sex min Q1 median   Q3 max     mean       sd   n missing
 ## 1 female  21 31     35 40.5  58 36.25234 7.584858 107       0
 ## 2   male  19 30     35 40.0  60 35.46821 7.750110 346       0</code></pre>
 <p>We calculate the observed difference in the mean ages. Notice we are subtracting the mean female age from the mean male age.</p>
-<div class="sourceCode" id="cb751"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb754"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obs_stat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffmean</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELP_sub</span><span class="op">)</span></span>
 <span><span class="va">obs_stat</span></span></code></pre></div>
 <pre><code>##   diffmean 
 ## -0.7841284</code></pre>
 <p>Under the null hypothesis, there is no difference in the average age for men and women. So, we shuffle the <code>sex</code> labels around to generate a sampling distribution under the null.</p>
-<div class="sourceCode" id="cb753"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb756"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">345</span><span class="op">)</span></span>
-<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffmean</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">HELP_sub</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb754"><pre class="downlit sourceCode r">
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">do</span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffmean</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">HELP_sub</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb757"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="op">~</span><span class="va">diffmean</span>, data <span class="op">=</span> <span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##        min         Q1     median     Q3      max        mean        sd     n
 ##  -3.378154 -0.5638809 0.01120955 0.5863 3.486224 0.009350908 0.8492454 10000
 ##  missing
 ##        0</code></pre>
 <p>The sampling distribution is centered on the null hypothesized value of 0, more or less, and the standard deviation is 0.849. This is an estimate of the variability of the difference in mean ages. The observed difference in means is shown as a red line on the sampling distribution in Figure <a href="BOOT.html#fig:hist255-fig">23.6</a>.</p>
-<div class="sourceCode" id="cb756"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb759"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">diffmean</span>, color <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="st">"cyan"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">obs_stat</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -480,13 +480,13 @@ Figure 23.6: The approximate sampling distribution of the difference of means fr
 </p>
 </div>
 <p>Our test statistic does not appear to be too extreme. Now, we calculate a two-sided <span class="math inline">\(p\)</span>-value.</p>
-<div class="sourceCode" id="cb757"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb760"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/prop.html">prop1</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">diffmean</span> <span class="op">&lt;=</span> <span class="va">obs_stat</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## prop_TRUE 
 ## 0.3523648</code></pre>
 <p>Based on this <span class="math inline">\(p\)</span>-value, we fail to reject the null hypothesis. There is not enough evidence to say that the mean age for men and women is different.</p>
 <p>Now, to construct a confidence interval based on the randomization, we have to be careful and think about this. The object <code>results</code> has the distribution of the difference in means, assuming there is no difference. To get a confidence interval, we want to center this distribution on the observed difference in means and not on zero. We will do this by adding the observed difference in means to the randomization results, and then find the percentile confidence interval.</p>
-<div class="sourceCode" id="cb759"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb762"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="op">(</span><span class="va">diffmean</span> <span class="op">+</span> <span class="va">obs_stat</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##          lower     upper central.p
 ## 2.5% -2.449246 0.8789368      0.95</code></pre>
@@ -535,7 +535,7 @@ Figure 23.6: The approximate sampling distribution of the difference of means fr
 <span class="header-section-number">23.6.5.1</span> Results<a class="anchor" aria-label="anchor" href="#results"><i class="fas fa-link"></i></a>
 </h4>
 <p>Back to the HELP data, the men and women were independent of each other. Additionally, the distributions in each population don’t show any clear deviations from normality. There is some slight skewness but the sample size reduces this concern, see Figure <a href="BOOT.html#fig:qq256-fig">23.7</a>. Finally, within each group we also need independence. If each group represents less than 10% of the population, we are good to go on this. This condition might be difficult to verify.</p>
-<div class="sourceCode" id="cb761"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb764"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">HELP_sub</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_qq</span><span class="op">(</span><span class="op">~</span><span class="va">age</span><span class="op">|</span><span class="va">sex</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_qqline</span><span class="op">(</span><span class="op">~</span><span class="va">age</span><span class="op">|</span><span class="va">sex</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -547,13 +547,13 @@ Figure 23.7: The quantile-quantile plots to check the normality assumption.
 </p>
 </div>
 <p>The distribution of males tends to have longer tails than a normal distribution, and the female distribution is skewed to the right. The sample sizes are large enough that this does not worry us. Below are the summary statistics by <code>sex</code> once more.</p>
-<div class="sourceCode" id="cb762"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb765"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELP_sub</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##      sex min Q1 median   Q3 max     mean       sd   n missing
 ## 1 female  21 31     35 40.5  58 36.25234 7.584858 107       0
 ## 2   male  19 30     35 40.0  60 35.46821 7.750110 346       0</code></pre>
 <p>Let’s find the confidence interval first. We use the smaller of <span class="math inline">\(n_1 - 1\)</span> and <span class="math inline">\(n_2 - 1\)</span> as the degrees of freedom: <span class="math inline">\(df = 106\)</span>.</p>
-<div class="sourceCode" id="cb764"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb767"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="fl">35.47</span> <span class="op">-</span> <span class="fl">36.25</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span><span class="fl">0.975</span>, <span class="fl">106</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">7.58</span><span class="op">^</span><span class="fl">2</span> <span class="op">/</span> <span class="fl">107</span> <span class="op">+</span> <span class="fl">7.75</span><span class="op">^</span><span class="fl">2</span> <span class="op">/</span> <span class="fl">346</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] -2.4512328  0.8912328</code></pre>
 <p>This result is very close to the interval we got with the permutation test.</p>
@@ -562,11 +562,11 @@ Figure 23.7: The quantile-quantile plots to check the normality assumption.
 <p><span class="math display">\[T \ =\ \frac{\text{point estimate} - \text{null value}}{SE}\]</span></p>
 <p><span class="math display">\[ = \frac{(35.47 - 36.25) - 0}{\sqrt{\left( \frac{7.58^2}{107}+ \frac{7.75^2}{346}\right)}}\ =\ - 0.92976 \]</span>
 We again use <span class="math inline">\(df = 106\)</span>. The <span class="math inline">\(p\)</span>-value is:</p>
-<div class="sourceCode" id="cb766"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb769"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">pt</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.92976</span>, <span class="fl">106</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.3546079</code></pre>
 <p>The results in <code>R</code> are slightly different due to the calculation of the degrees of freedom.</p>
-<div class="sourceCode" id="cb768"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb771"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELP_sub</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
@@ -597,7 +597,7 @@ Pooling standard deviations should be done only after careful research.</p>
 </blockquote>
 <p>A pooled standard deviation is only appropriate when background research indicates the population standard deviations are nearly equal. When the sample size is large and the condition may be adequately checked with data, the benefits of pooling the standard deviations greatly diminishes.</p>
 <p>In <code>R</code> we can test the difference of two means with equal variance using the <code>var.equal</code> argument.</p>
-<div class="sourceCode" id="cb770"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb773"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/ttest.html">t_test</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">HELP_sub</span>, var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
@@ -618,24 +618,24 @@ Pooling standard deviations should be done only after careful research.</p>
 <span class="header-section-number">23.6.6</span> Bootstrap<a class="anchor" aria-label="anchor" href="#bootstrap-2"><i class="fas fa-link"></i></a>
 </h3>
 <p>Finally, we will construct a confidence interval through the use of the bootstrap. In this problem, we have to be careful and sample within each group. Compare the following two bootstrap samples.</p>
-<div class="sourceCode" id="cb772"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb775"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">HELP_sub</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##      sex min Q1 median    Q3 max     mean       sd   n missing
 ## 1 female  21 30     33 38.75  50 34.64706 6.267387 102       0
 ## 2   male  19 29     33 39.00  59 34.74359 7.833066 351       0</code></pre>
 <p>and</p>
-<div class="sourceCode" id="cb774"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb777"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">favstats</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">HELP_sub</span>, groups <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##      sex min Q1 median   Q3 max     mean       sd   n missing
 ## 1 female  22 31     34 39.5  57 35.60748 6.901951 107       0
 ## 2   male  20 31     35 41.0  60 35.94798 8.039227 346       0</code></pre>
 <p>Notice in the second line of code, we are keeping the groups the same size by sampling within the <code>sex</code> variable.</p>
 <p>Now, let’s get our bootstrap distribution.</p>
-<div class="sourceCode" id="cb776"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb779"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2527</span><span class="op">)</span></span>
-<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffmean</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">HELP_sub</span>, groups <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">do</span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffmean</a></span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">HELP_sub</span>, groups <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Figure <a href="BOOT.html#fig:boot257-fig">23.8</a> is our sampling distribution from the bootstrap.</p>
-<div class="sourceCode" id="cb777"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb780"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">diffmean</span>, fill <span class="op">=</span> <span class="st">"cyan"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="va">theme_classic</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -646,7 +646,7 @@ Pooling standard deviations should be done only after careful research.</p>
 Figure 23.8: Bootstrap distribution of the difference in means.
 </p>
 </div>
-<div class="sourceCode" id="cb778"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb781"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/pqrdata.html">cdata</a></span><span class="op">(</span><span class="op">~</span><span class="va">diffmean</span>, p <span class="op">=</span> <span class="fl">0.95</span>, data <span class="op">=</span> <span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##          lower     upper central.p
 ## 2.5% -2.394406 0.8563786      0.95</code></pre>
@@ -712,7 +712,7 @@ Figure 23.8: Bootstrap distribution of the difference in means.
 </ol>
 <ol start="3" style="list-style-type: decimal">
 <li>
-<p>Bootstrap hypothesis testing</p>
+<p>Bootstrap for the <span class="math inline">\(F\)</span> statistic.</p>
 <p>Repeat the analysis of the MLB data from Chapter <a href="ANOVA.html#ANOVA">21</a>, but this time generate a bootstrap distribution of the <span class="math inline">\(F\)</span> statistic.</p>
 </li>
 </ol>
@@ -760,8 +760,8 @@ Figure 23.8: Bootstrap distribution of the difference in means.
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/blob/master/25-Bootstrap.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/edit/master/25-Bootstrap.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/blob/main/25-Bootstrap.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/edit/main/25-Bootstrap.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -773,7 +773,7 @@ Figure 23.8: Bootstrap distribution of the difference in means.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-09-25.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-11-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

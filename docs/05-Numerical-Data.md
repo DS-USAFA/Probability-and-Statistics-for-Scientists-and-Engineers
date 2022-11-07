@@ -67,7 +67,7 @@ Sometimes two variables are one too many: only one variable may be of interest. 
 </div>
 
 
-The **mean**, sometimes called the average, is a common way to measure the center of a **distribution** of data. To find the mean number of characters in the 50 emails, we add up all the character counts and divide by the number of emails. For computational convenience, the number of characters is listed in the thousands and rounded to the first decimal.
+The **mean**, sometimes called the average, is a common way to measure the center of a **distribution**^[The distribution of a variable is essentially the collection of all values of the variable in the data set. It tells us what values the variable takes on and how often. In the `email50` data set, we used a dotplot to view the distribution of `num_char`.] of data. To find the mean number of characters in the 50 emails, we add up all the character counts and divide by the number of emails. For computational convenience, the number of characters is listed in the thousands and rounded to the first decimal.
 
 $$\bar{x} = \frac{21.7 + 7.0 + \cdots + 15.8}{50} = 11.6$$
 
@@ -95,7 +95,7 @@ The `email50` data set is a sample from a larger population of emails that were 
 
 > *Example*: The average number of characters across all emails can be estimated using the sample data. Based on the sample of 50 emails, what would be a reasonable estimate of $\mu_x$, the mean number of characters in all emails in the `email` data set? (Recall that `email50` is a sample from `email`.)
 
-The sample mean, 11.6, may provide a reasonable estimate of $\mu_x$. While this number will not be perfect, it provides a **point estimate** of the population mean. Later in the text, we will develop tools to characterize the accuracy of point estimates, and we will find that point estimates based on larger samples tend to be more accurate than those based on smaller samples.
+The sample mean, 11.6, may provide a reasonable estimate of $\mu_x$. While this number will not be perfect, it provides a **point estimate**, a single plausible value, of the population mean. Later in the text, we will develop tools to characterize the accuracy of point estimates, and we will find that point estimates based on larger samples tend to be more accurate than those based on smaller samples.
 
 
 > *Example*:  
@@ -103,7 +103,7 @@ We might like to compute the average income per person in the US. To do so, we m
 
 The `county` data set is special in that each county actually represents many individual people. If we were to simply average across the `income` variable, we would be treating counties with 5,000 and 5,000,000 residents equally in the calculations. Instead, we should compute the total income for each county, add up all the counties' totals, and then divide by the number of people in all the counties. If we completed these steps with the `county` data, we would find that the per capita income for the US is \$27,348.43. Had we computed the *simple* mean of per capita income across counties, the result would have been just \$22,504.70!
 
-This previous example used what is called a **weighted mean**, which will be a key topic in the probability section. As a look ahead, the probability mass function gives the population proportions of each county's mean value, and thus, to find the population mean $\mu$, we will use a weighted mean.
+This previous example used what is called a **weighted mean**^[A weighted mean is an average in which some observations contribute more "weight" than others. In the `county` data set, we "weighted" the income for each county by dividing income by the county population.], which will be a key topic in the probability section. As a look ahead, the probability mass function gives the population proportions of each county's mean value, and thus, to find the population mean $\mu$, we will use a weighted mean.
 
 
 ### Histograms and shape
@@ -120,7 +120,7 @@ Dot plots show the exact value of each observation. This is useful for small dat
 ```
 
 
-These binned counts are plotted as bars in Figure \@ref(fig:hist5-fig) in what is called a **histogram**.
+These binned counts are plotted as bars in Figure \@ref(fig:hist5-fig) in what is called a **histogram**^[A histogram displays the distribution of a quantitative variable. It shows binned counts, the number of observations in a bin, or range of values.]. 
 
 <div class="figure">
 <img src="05-Numerical-Data_files/figure-html/hist5-fig-1.png" alt="A histogram of `num_char`. This distribution is very strongly skewed to the right." width="672" />

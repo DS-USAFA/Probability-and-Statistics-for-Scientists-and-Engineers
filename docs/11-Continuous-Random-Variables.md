@@ -75,7 +75,7 @@ library(mosaicCalc)
 
 ```
 ## function (x, C = 0) 
-## 1 * x^2 + C
+## x^2 + C
 ```
 
 

@@ -144,8 +144,8 @@
 </h2>
 <p>Multiple regression extends simple two-variable regression to the case that still has one response but many predictors (denoted <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, <span class="math inline">\(x_3\)</span>, …). The method is motivated by scenarios where many variables may be simultaneously connected to an output.</p>
 <p>To explore and explain these ideas, we will consider Ebay auctions of a video game called <strong>Mario Kart</strong> for the Nintendo Wii. The outcome variable of interest is the total price of an auction, which is the highest bid plus the shipping cost. We will try to determine how total price is related to each characteristic in an auction while simultaneously controlling for other variables. For instance, with all other characteristics held constant, are longer auctions associated with higher or lower prices? And, on average, how much more do buyers tend to pay for additional Wii wheels (plastic steering wheels that attach to the Wii controller) in auctions? Multiple regression will help us answer these and other questions.</p>
-<p>The data set is in the file <code>mariokart.csv</code> in the <code>data</code> folder. This data set includes results from 141 auctions.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Diez DM, Barr CD, and etinkaya-Rundel M. 2012. &lt;code&gt;openintro&lt;/code&gt;: OpenIntro data sets and supplemental functions. &lt;a href="http://cran.r-project.org/web/packages/openintro" class="uri"&gt;http://cran.r-project.org/web/packages/openintro&lt;/a&gt;&lt;/p&gt;'><sup>105</sup></a> Ten observations from this data set are shown in the <code>R</code> code below. Note that we force the first column to be interpreted as a character string since it is the identification code for each sale and has no numeric meaning. Just as in the case of simple linear regression, multiple regression also allows for categorical variables with many levels. Although we do have this type of variable in this data set, we will leave the discussion of these types of variables in multiple regression for advanced regression or machine learning courses.</p>
-<div class="sourceCode" id="cb974"><pre class="downlit sourceCode r">
+<p>The data set is in the file <code>mariokart.csv</code> in the <code>data</code> folder. This data set includes results from 141 auctions.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Diez DM, Barr CD, and etinkaya-Rundel M. 2012. &lt;code&gt;openintro&lt;/code&gt;: OpenIntro data sets and supplemental functions. &lt;a href="http://cran.r-project.org/web/packages/openintro" class="uri"&gt;http://cran.r-project.org/web/packages/openintro&lt;/a&gt;&lt;/p&gt;'><sup>113</sup></a> Ten observations from this data set are shown in the <code>R</code> code below. Note that we force the first column to be interpreted as a character string since it is the identification code for each sale and has no numeric meaning. Just as in the case of simple linear regression, multiple regression also allows for categorical variables with many levels. Although we do have this type of variable in this data set, we will leave the discussion of these types of variables in multiple regression for advanced regression or machine learning courses.</p>
+<div class="sourceCode" id="cb977"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mariokart</span> <span class="op">&lt;-</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/mariokart.csv"</span>, col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html">col_character</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mariokart</span>,n<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 10 x 12
@@ -184,11 +184,11 @@
 <span class="header-section-number">29.3.1</span> A single-variable model for the Mario Kart data<a class="anchor" aria-label="anchor" href="#a-single-variable-model-for-the-mario-kart-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>Let’s fit a linear regression model with the game’s condition as a predictor of auction price. Before we start let’s change <code>cond</code> and <code>stock_photo</code> into factors.</p>
-<div class="sourceCode" id="cb976"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb979"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mariokart</span> <span class="op">&lt;-</span> <span class="va">mariokart</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>cond<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">cond</span><span class="op">)</span>,stock_photo<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">stock_photo</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Next let’s summarize the data.</p>
-<div class="sourceCode" id="cb977"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb980"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">mariokart</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
@@ -223,7 +223,7 @@
 ## 6 5.184032e+04 143       0
 ## 7 8.471829e-01 143       0</code></pre>
 <p>Finally, let’s plot the data.</p>
-<div class="sourceCode" id="cb979"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb982"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mariokart</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">gf_boxplot</span><span class="op">(</span><span class="va">total_pr</span><span class="op">~</span><span class="va">cond</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -236,9 +236,9 @@ Figure 29.1: Total price of Mario Kart on Ebay for each condition.
 </div>
 <p>We have several outliers that may impact our analysis, Figure <a href="LRMULTI.html#fig:box301-fig">29.1</a>.</p>
 <p>Now let’s build the model.</p>
-<div class="sourceCode" id="cb980"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb983"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mario_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">~</span><span class="va">cond</span>,data<span class="op">=</span><span class="va">mariokart</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb981"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb984"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mario_mod</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -263,7 +263,7 @@ Figure 29.1: Total price of Mario Kart on Ebay for each condition.
 \hat{\text{totalprice}} = 53.771 - 6.623 \times \text{condused}
 \]</span></p>
 <p>A scatterplot for price versus game condition is shown in Figure <a href="LRMULTI.html#fig:scat301-fig">29.2</a>. Since the predictor is binary, the scatterplot is not appropriate but we will look at it for reference.</p>
-<div class="sourceCode" id="cb983"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb986"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mariokart</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_point</span><span class="op">(</span><span class="va">total_pr</span><span class="op">~</span><span class="va">cond</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -275,7 +275,7 @@ Figure 29.2: Scatterplot of total price of Mario Kart on Ebay versus condition.
 </p>
 </div>
 <p>The largest outlier probably is significantly impacting the relationship in the model. If we find the mean and median for the two groups, we will see this.</p>
-<div class="sourceCode" id="cb984"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb987"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mariokart</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">cond</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>xbar<span class="op">=</span><span class="fu">mean</span><span class="op">(</span><span class="va">total_pr</span><span class="op">)</span>, stand_dev<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sd</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">)</span>,xmedian<span class="op">=</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">median</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -286,7 +286,7 @@ Figure 29.2: Scatterplot of total price of Mario Kart on Ebay versus condition.
 ## 2 used   47.1     32.7     42.8</code></pre>
 <p>It appears that <strong>used</strong> items have a right skewed distribution where their average is higher because of at least one of the outliers.</p>
 <p>There are at least two outliers in the plot. Let’s gather more information about them.</p>
-<div class="sourceCode" id="cb986"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb989"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mariokart</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">total_pr</span> <span class="op">&gt;</span> <span class="fl">100</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 2 x 12
@@ -296,11 +296,11 @@ Figure 29.2: Scatterplot of total price of Mario Kart on Ebay versus condition.
 ## 2 130335427~        3     27 used      6.95     4       118. parcel           41
 ## # ... with 3 more variables: stock_photo &lt;fct&gt;, wheels &lt;dbl&gt;, title &lt;chr&gt;</code></pre>
 <p>If you look at the variable <code>title</code> there were additional items in the sale for these two observations. Let’s remove those two outliers and run the model again. Note that the reason we are removing them is not because they are annoying us and messing up our model. It is because we don’t think they are representative of the population of interest. Figure <a href="LRMULTI.html#fig:scat302-fig">29.3</a> is a boxplot of the data with the outliers dropped.</p>
-<div class="sourceCode" id="cb988"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb991"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mariokart_new</span> <span class="op">&lt;-</span> <span class="va">mariokart</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">total_pr</span> <span class="op">&lt;=</span> <span class="fl">100</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">total_pr</span>,<span class="va">cond</span>,<span class="va">stock_photo</span>,<span class="va">duration</span>,<span class="va">wheels</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb989"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb992"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mariokart_new</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##     total_pr       cond    stock_photo    duration          wheels     
 ##  Min.   :28.98   new :59   no : 36     Min.   : 1.000   Min.   :0.000  
@@ -309,7 +309,7 @@ Figure 29.2: Scatterplot of total price of Mario Kart on Ebay versus condition.
 ##  Mean   :47.43                         Mean   : 3.752   Mean   :1.149  
 ##  3rd Qu.:53.99                         3rd Qu.: 7.000   3rd Qu.:2.000  
 ##  Max.   :75.00                         Max.   :10.000   Max.   :4.000</code></pre>
-<div class="sourceCode" id="cb991"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb994"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mariokart_new</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">gf_boxplot</span><span class="op">(</span><span class="va">total_pr</span><span class="op">~</span><span class="va">cond</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -320,9 +320,9 @@ Figure 29.2: Scatterplot of total price of Mario Kart on Ebay versus condition.
 Figure 29.3: Boxplot of total price and condition with outliers removed.
 </p>
 </div>
-<div class="sourceCode" id="cb992"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb995"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mario_mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">~</span><span class="va">cond</span>,data<span class="op">=</span><span class="va">mariokart_new</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb993"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb996"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mario_mod2</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -353,7 +353,7 @@ Figure 29.3: Boxplot of total price and condition with outliers removed.
 Does the linear model seem reasonable? Which assumptions should you check?</p>
 </blockquote>
 <p>The model does seem reasonable in the sense that the assumptions on the errors is plausible. The residuals indicate some skewness to the right which may be driven predominantly by the skewness in the new items, Figure <a href="LRMULTI.html#fig:qq301-fig">29.4</a>.</p>
-<div class="sourceCode" id="cb995"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb998"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mario_mod2</span>,<span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:qq301-fig"></span>
@@ -362,7 +362,7 @@ Figure 29.4: Check of normality using quantile-quantile plot.
 </p>
 </div>
 <p>The normality assumption is somewhat suspect but we have more than 100 data points so the short tails of the distribution are not a concern. The shape of this curve indicates a positive skew.</p>
-<div class="sourceCode" id="cb996"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb999"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mario_mod2</span>,<span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:diag301-fig"></span>
@@ -371,7 +371,7 @@ Figure 29.5: Residual plot to assess equal variance assumption.
 </p>
 </div>
 <p>From Figure <a href="LRMULTI.html#fig:diag301-fig">29.5</a>, equal variance seems reasonable.</p>
-<div class="sourceCode" id="cb997"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1000"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mario_mod2</span>,<span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:diag302-fig"></span>
@@ -414,14 +414,14 @@ Interpret the coefficient for the game’s condition in the model. Is this coeff
      = \sum_{i=1}^{141} \left(y_i - \hat{y}_i\right)^2
 \]</span></p>
 <p>In our problem, there are 141 residuals, one for each observation. We use a computer to minimize the sum and compute point estimates.</p>
-<div class="sourceCode" id="cb998"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1001"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mario_mod_multi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">~</span><span class="va">.</span>, data<span class="op">=</span><span class="va">mariokart_new</span><span class="op">)</span></span></code></pre></div>
 <p>The formula <code>total_pr~.</code> uses a <em>dot</em>. This means we want to use all the predictors. We could have also used the following code:</p>
-<div class="sourceCode" id="cb999"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1002"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mario_mod_multi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">~</span><span class="va">cond</span><span class="op">+</span><span class="va">stock_photo</span><span class="op">+</span><span class="va">duration</span><span class="op">+</span><span class="va">wheels</span>, data<span class="op">=</span><span class="va">mariokart_new</span><span class="op">)</span></span></code></pre></div>
 <p>Recall, the <code>+</code> symbol does not mean to literally add the predictors together. It is not a mathematical operation but a formula operation that means to include the predictor.</p>
 <p>You can view a summary of the model using the <code>summmary()</code> function.</p>
-<div class="sourceCode" id="cb1000"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1003"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mario_mod_multi</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -566,24 +566,24 @@ A multiple regression model is a linear model with many predictors.</p>
 <p>when there are <span class="math inline">\(k\)</span> predictors. We often estimate the <span class="math inline">\(\beta_i\)</span> parameters using a computer.</p>
 <blockquote>
 <p><strong>Exercise</strong>:
-Write out the the multiple regression model using the point estimates from regression output. How many predictors are there in this model?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(\hat{y} = 41.34 + - 5.13x_1 + 1.08x_2 - 0.03x_3 + 7.29x_4\)&lt;/span&gt;, and there are &lt;span class="math inline"&gt;\(k=4\)&lt;/span&gt; predictor variables.&lt;/p&gt;'><sup>106</sup></a></p>
+Write out the the multiple regression model using the point estimates from regression output. How many predictors are there in this model?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(\hat{y} = 41.34 + - 5.13x_1 + 1.08x_2 - 0.03x_3 + 7.29x_4\)&lt;/span&gt;, and there are &lt;span class="math inline"&gt;\(k=4\)&lt;/span&gt; predictor variables.&lt;/p&gt;'><sup>114</sup></a></p>
 </blockquote>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
-What does <span class="math inline">\(\beta_4\)</span>, the coefficient of variable <span class="math inline">\(x_4\)</span> (Wii wheels), represent? What is the point estimate of <span class="math inline">\(\beta_4\)</span>?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;It is the average difference in auction price for each additional Wii wheel included when holding the other variables constant. The point estimate is &lt;span class="math inline"&gt;\(b_4 = 7.29\)&lt;/span&gt;.&lt;/p&gt;'><sup>107</sup></a></p>
+What does <span class="math inline">\(\beta_4\)</span>, the coefficient of variable <span class="math inline">\(x_4\)</span> (Wii wheels), represent? What is the point estimate of <span class="math inline">\(\beta_4\)</span>?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;It is the average difference in auction price for each additional Wii wheel included when holding the other variables constant. The point estimate is &lt;span class="math inline"&gt;\(b_4 = 7.29\)&lt;/span&gt;.&lt;/p&gt;'><sup>115</sup></a></p>
 </blockquote>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
 Compute the residual of the first observation in the dataframe using the regression equation.</p>
 </blockquote>
-<div class="sourceCode" id="cb1002"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1005"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mario_mod_multi</span><span class="op">$</span><span class="va">residuals</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code></pre></div>
 <pre><code>##        1 
 ## 1.923402</code></pre>
 <p>The <strong>broom</strong> package has a function <code><a href="https://generics.r-lib.org/reference/augment.html">augment()</a></code> that will calculate the predicted and residuals.</p>
-<div class="sourceCode" id="cb1004"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1007"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb1005"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1008"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">mario_mod_multi</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 1 x 11
@@ -600,7 +600,7 @@ We estimated a coefficient for <code>cond</code> as <span class="math inline">\(
 <p>The previous example describes a common issue in multiple regression: correlation among predictor variables. We say the two predictor variables are <strong>collinear</strong> (pronounced as <strong>co-linear</strong>) when they are correlated, and this collinearity complicates model estimation. While it is impossible to prevent collinearity from arising in observational data, experiments are usually designed to prevent predictors from being collinear.</p>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
-The estimated value of the intercept is 41.34, and one might be tempted to make some interpretation of this coefficient, such as, it is the model’s predicted price when each of the variables take a value of zero: the game is new, the primary image is not a stock photo, the auction duration is zero days, and there are no wheels included. Is there any value gained by making this interpretation?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Three of the variables (&lt;code&gt;cond&lt;/code&gt;, &lt;code&gt;stock_photo&lt;/code&gt;, and &lt;code&gt;wheels&lt;/code&gt;) do take value 0, but the auction duration is always one or more days. If the auction is not up for any days, then no one can bid on it! That means the total auction price would always be zero for such an auction; the interpretation of the intercept in this setting is not insightful.&lt;/p&gt;"><sup>108</sup></a></p>
+The estimated value of the intercept is 41.34, and one might be tempted to make some interpretation of this coefficient, such as, it is the model’s predicted price when each of the variables take a value of zero: the game is new, the primary image is not a stock photo, the auction duration is zero days, and there are no wheels included. Is there any value gained by making this interpretation?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Three of the variables (&lt;code&gt;cond&lt;/code&gt;, &lt;code&gt;stock_photo&lt;/code&gt;, and &lt;code&gt;wheels&lt;/code&gt;) do take value 0, but the auction duration is always one or more days. If the auction is not up for any days, then no one can bid on it! That means the total auction price would always be zero for such an auction; the interpretation of the intercept in this setting is not insightful.&lt;/p&gt;"><sup>116</sup></a></p>
 </blockquote>
 </div>
 <div id="inference-1" class="section level3" number="29.3.3">
@@ -609,7 +609,7 @@ The estimated value of the intercept is 41.34, and one might be tempted to make 
 </h3>
 <p>From the printout of the model summary, we can see that both the <code>stock_photo</code> and <code>duration</code> variables are not significantly different from zero. Thus we may want to drop them from the model. In a machine learning course, you explore different ways to determine the best model.</p>
 <p>Likewise, we could generate confidence intervals for the coefficients:</p>
-<div class="sourceCode" id="cb1007"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1010"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">mario_mod_multi</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##                     2.5 %     97.5 %
 ## (Intercept)    37.9566036 44.7264601
@@ -630,13 +630,13 @@ R^2 = 1 - \frac{\text{sum of squares of residuals}}{\text{sum of squares of the 
 This equation remains valid in the multiple regression framework, but a small enhancement can often be even more informative.</p>
 <blockquote>
 <p><strong>Exercise</strong>:
-The variance of the residuals for the model is <span class="math inline">\(4.901^2\)</span>, and the variance of the total price in all the auctions is 83.06. Estimate the <span class="math inline">\(R^2\)</span> for this model.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(R^2 = 1 - \frac{24.0198}{83.06} = 0.7108\)&lt;/span&gt;.&lt;/p&gt;'><sup>109</sup></a></p>
+The variance of the residuals for the model is <span class="math inline">\(4.901^2\)</span>, and the variance of the total price in all the auctions is 83.06. Estimate the <span class="math inline">\(R^2\)</span> for this model.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(R^2 = 1 - \frac{24.0198}{83.06} = 0.7108\)&lt;/span&gt;.&lt;/p&gt;'><sup>117</sup></a></p>
 </blockquote>
 <p>To get the <span class="math inline">\(R^2\)</span> we need the sum of squares and not variance, so we multiply by the appropriate degrees of freedom.</p>
-<div class="sourceCode" id="cb1009"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1012"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">1</span><span class="op">-</span><span class="op">(</span><span class="fl">24.0198</span><span class="op">*</span><span class="fl">136</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">83.05864</span><span class="op">*</span><span class="fl">140</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.7190717</code></pre>
-<div class="sourceCode" id="cb1011"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1014"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mario_mod_multi</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span></span></code></pre></div>
 <pre><code>## [1] 0.7190261</code></pre>
 <p>This strategy for estimating <span class="math inline">\(R^2\)</span> is acceptable when there is just a single variable. However, it becomes less helpful when there are many variables. The regular <span class="math inline">\(R^2\)</span> is actually a biased estimate of the amount of variability explained by the model. To get a better estimate, we use the adjusted <span class="math inline">\(R^2\)</span>.</p>
@@ -648,10 +648,10 @@ R_{adj}^{2} = 1-\frac{\text{sum of squares of residuals} / (n-k-1)}{\text{sum of
 \]</span>
 where <span class="math inline">\(n\)</span> is the number of cases used to fit the model and <span class="math inline">\(k\)</span> is the number of predictor variables in the model.</p>
 </blockquote>
-<p>Because <span class="math inline">\(k\)</span> is never negative, the adjusted <span class="math inline">\(R^2\)</span> will be smaller – often times just a little smaller – than the unadjusted <span class="math inline">\(R^2\)</span>. The reasoning behind the adjusted <span class="math inline">\(R^2\)</span> lies in the <strong>degrees of freedom</strong> associated with each variance. <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;In multiple regression, the degrees of freedom associated with the variance of the estimate of the residuals is &lt;span class="math inline"&gt;\(n-k-1\)&lt;/span&gt;, not &lt;span class="math inline"&gt;\(n-1\)&lt;/span&gt;. For instance, if we were to make predictions for new data using our current model, we would find that the unadjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; is an overly optimistic estimate of the reduction in variance in the response, and using the degrees of freedom in the adjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; formula helps correct this bias.&lt;/p&gt;'><sup>110</sup></a></p>
+<p>Because <span class="math inline">\(k\)</span> is never negative, the adjusted <span class="math inline">\(R^2\)</span> will be smaller – often times just a little smaller – than the unadjusted <span class="math inline">\(R^2\)</span>. The reasoning behind the adjusted <span class="math inline">\(R^2\)</span> lies in the <strong>degrees of freedom</strong> associated with each variance. <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;In multiple regression, the degrees of freedom associated with the variance of the estimate of the residuals is &lt;span class="math inline"&gt;\(n-k-1\)&lt;/span&gt;, not &lt;span class="math inline"&gt;\(n-1\)&lt;/span&gt;. For instance, if we were to make predictions for new data using our current model, we would find that the unadjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; is an overly optimistic estimate of the reduction in variance in the response, and using the degrees of freedom in the adjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; formula helps correct this bias.&lt;/p&gt;'><sup>118</sup></a></p>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
-Suppose you added another predictor to the model, but the variance of the errors didn’t go down. What would happen to the <span class="math inline">\(R^2\)</span>? What would happen to the adjusted <span class="math inline">\(R^2\)</span>?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;The unadjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; would stay the same and the adjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; would go down. Note that unadjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; never decreases by adding another predictor, it can only stay the same or increase. The adjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; increases only if the addition of a predictor reduces the variance of the error larger than add one to &lt;span class="math inline"&gt;\(k\)&lt;/span&gt; in denominator.&lt;/p&gt;'><sup>111</sup></a></p>
+Suppose you added another predictor to the model, but the variance of the errors didn’t go down. What would happen to the <span class="math inline">\(R^2\)</span>? What would happen to the adjusted <span class="math inline">\(R^2\)</span>?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;The unadjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; would stay the same and the adjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; would go down. Note that unadjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; never decreases by adding another predictor, it can only stay the same or increase. The adjusted &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; increases only if the addition of a predictor reduces the variance of the error larger than add one to &lt;span class="math inline"&gt;\(k\)&lt;/span&gt; in denominator.&lt;/p&gt;'><sup>119</sup></a></p>
 </blockquote>
 <p>Again, in a machine learning course, you will spend more time on how to select models. Using internal metrics of performance such as <span class="math inline">\(p\)</span>-values or adjusted <span class="math inline">\(R\)</span> squared are one way but using external measures of predictive performance such as <strong>cross validation</strong> or <strong>hold out</strong> sets will be introduced.</p>
 </div>
@@ -660,10 +660,10 @@ Suppose you added another predictor to the model, but the variance of the errors
 <span class="header-section-number">29.3.5</span> Reduced model<a class="anchor" aria-label="anchor" href="#reduced-model"><i class="fas fa-link"></i></a>
 </h3>
 <p>Now let’s drop <code>duration</code> from the model and compare to our previous model:</p>
-<div class="sourceCode" id="cb1013"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1016"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mario_mod_multi2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">~</span><span class="va">cond</span><span class="op">+</span><span class="va">stock_photo</span><span class="op">+</span><span class="va">wheels</span>, data<span class="op">=</span><span class="va">mariokart_new</span><span class="op">)</span></span></code></pre></div>
 <p>And the summary:</p>
-<div class="sourceCode" id="cb1014"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1017"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mario_mod_multi2</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -686,7 +686,7 @@ Suppose you added another predictor to the model, but the variance of the errors
 ## Multiple R-squared:  0.719,  Adjusted R-squared:  0.7128 
 ## F-statistic: 116.8 on 3 and 137 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>As a reminder, the previous model summary is:</p>
-<div class="sourceCode" id="cb1016"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1019"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mario_mod_multi</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -710,9 +710,9 @@ Suppose you added another predictor to the model, but the variance of the errors
 ## Multiple R-squared:  0.719,  Adjusted R-squared:  0.7108 
 ## F-statistic: 87.01 on 4 and 136 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Notice that the adjusted <span class="math inline">\(R^2\)</span> improved by dropping <code>duration</code>. Finally, let’s drop <code>stock_photo</code>.</p>
-<div class="sourceCode" id="cb1018"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1021"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mario_mod_multi3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">total_pr</span><span class="op">~</span><span class="va">cond</span><span class="op">+</span><span class="va">wheels</span>, data<span class="op">=</span><span class="va">mariokart_new</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb1019"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1022"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mario_mod_multi3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -740,7 +740,7 @@ Suppose you added another predictor to the model, but the variance of the errors
 <span class="header-section-number">29.3.6</span> Confidence and prediction intervals<a class="anchor" aria-label="anchor" href="#confidence-and-prediction-intervals"><i class="fas fa-link"></i></a>
 </h3>
 <p>Let’s suppose we want to predict the average total price for a Mario Kart sale with 2 wheels and in new condition. We can again use the <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> function.</p>
-<div class="sourceCode" id="cb1021"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1024"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">mario_mod_multi3</span>,newdata<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>cond<span class="op">=</span><span class="st">"new"</span>,wheels<span class="op">=</span><span class="fl">2</span><span class="op">)</span>,interval <span class="op">=</span> <span class="st">"confidence"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 56.83544 55.49789 58.17299</code></pre>
@@ -749,7 +749,7 @@ Suppose you added another predictor to the model, but the variance of the errors
 <p><strong>Exercise</strong>:
 Find and interpret the prediction interval for a new Mario Kart with 2 wheels.</p>
 </blockquote>
-<div class="sourceCode" id="cb1023"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1026"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">mario_mod_multi3</span>,newdata<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>cond<span class="op">=</span><span class="st">"new"</span>,wheels<span class="op">=</span><span class="fl">2</span><span class="op">)</span>,interval <span class="op">=</span> <span class="st">"prediction"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 56.83544 47.07941 66.59147</code></pre>
@@ -760,7 +760,7 @@ Find and interpret the prediction interval for a new Mario Kart with 2 wheels.</
 <span class="header-section-number">29.3.7</span> Diagnostics<a class="anchor" aria-label="anchor" href="#diagnostics"><i class="fas fa-link"></i></a>
 </h3>
 <p>The diagnostics for the model are similar to what we did in a previous chapter. Nothing in these plots gives us concern; however, there is one leverage point, Figure <a href="LRMULTI.html#fig:diag305-fig">29.7</a>.</p>
-<div class="sourceCode" id="cb1025"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1028"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">mario_mod_multi3</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:diag305-fig"></span>
@@ -776,10 +776,10 @@ Figure 29.7: Diagnostic residual plots for multiple regression model.
 </h2>
 <p>As a final short topic we want to explore <strong>feature engineering</strong>. Thus far we have not done any transformation to the predictors in the data set except maybe making categorical variables into factors. In data analysis competitions, such as Kaggle, feature engineering is often one of the most important steps. In a machine learning course, you will look at different tools but in this book we will look at simple transformations such as higher order terms and interactions.</p>
 <p>To make this section more relevant, we are going to switch to a different data set. Load the library <strong>ISLR</strong>.</p>
-<div class="sourceCode" id="cb1026"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1029"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.statlearning.com">ISLR</a></span><span class="op">)</span></span></code></pre></div>
 <p>The data set of interest is <code>Credit</code>. Use the help menu to read about the variables. This is a simulated data set of credit card debt.</p>
-<div class="sourceCode" id="cb1027"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1030"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">Credit</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Rows: 400
 ## Columns: 12
@@ -798,9 +798,9 @@ Figure 29.7: Diagnostic residual plots for multiple regression model.
 <p>Notice that <code>ID</code> is being treated as an integer. We could change it to a character since it is a label, but for our work in this chapter we will not bother.</p>
 <p>Suppose we suspected that there is a relationship between <code>Balance</code>, the response, and the predictors <code>Income</code> and <code>Student</code>. Note: we actually are using this model for educational purposes and did not go through a model selection process.</p>
 <p>The first model simply has these predictors in the model.</p>
-<div class="sourceCode" id="cb1029"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1032"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">credit_mod1</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Balance</span><span class="op">~</span><span class="va">Income</span><span class="op">+</span><span class="va">Student</span>,data<span class="op">=</span><span class="va">Credit</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb1030"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1033"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">credit_mod1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -822,7 +822,7 @@ Figure 29.7: Diagnostic residual plots for multiple regression model.
 ## Multiple R-squared:  0.2775, Adjusted R-squared:  0.2738 
 ## F-statistic: 76.22 on 2 and 397 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Let’s plot the data and the regression line. The impact of putting in the categorical variable <code>Student</code> is to just shift the intercept. The slope remains the same, Figure <a href="LRMULTI.html#fig:scat305-fig">29.8</a>.</p>
-<div class="sourceCode" id="cb1032"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1035"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">credit_mod1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_point</span><span class="op">(</span><span class="va">Balance</span><span class="op">~</span><span class="va">Income</span>,color<span class="op">=</span><span class="op">~</span><span class="va">Student</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_line</span><span class="op">(</span><span class="va">.fitted</span><span class="op">~</span><span class="va">Income</span>,data<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">credit_mod1</span><span class="op">)</span>, <span class="va">Student</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span>,color<span class="op">=</span><span class="op">~</span><span class="va">Student</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -847,9 +847,9 @@ Write the equation for the regression model.</p>
 \]</span></p>
 <p>If the observation is a student, then the intercept is increased by 382.67.</p>
 <p>In this next case, we would want to include an interaction term in the model: an <strong>interaction</strong> term allows the slope to change as well. To include an interaction term when building a model in <code>R</code>, we use <code>*</code>.</p>
-<div class="sourceCode" id="cb1033"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1036"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">credit_mod2</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Balance</span><span class="op">~</span><span class="va">Income</span><span class="op">*</span><span class="va">Student</span>,data<span class="op">=</span><span class="va">Credit</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb1034"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1037"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">credit_mod2</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -871,7 +871,7 @@ Write the equation for the regression model.</p>
 ## Residual standard error: 391.6 on 396 degrees of freedom
 ## Multiple R-squared:  0.2799, Adjusted R-squared:  0.2744 
 ## F-statistic:  51.3 on 3 and 396 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb1036"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1039"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">credit_mod2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_point</span><span class="op">(</span><span class="va">Balance</span><span class="op">~</span><span class="va">Income</span>,color<span class="op">=</span><span class="op">~</span><span class="va">Student</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_line</span><span class="op">(</span><span class="va">.fitted</span><span class="op">~</span><span class="va">Income</span>,data<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">credit_mod2</span><span class="op">)</span>, <span class="va">Student</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">)</span>,color<span class="op">=</span><span class="op">~</span><span class="va">Student</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -885,9 +885,9 @@ Figure 29.9: Scatterplot of credit card balance for income and student status wi
 </div>
 <p>Now we have a different slope and intercept for each case of the <code>Student</code> variable, Figure <a href="LRMULTI.html#fig:scat306-fig">29.9</a>. Thus there is a synergy or interaction between these variables. The student status changes the impact of <code>Income</code> on <code>Balance</code>. If you are a student, then for every increase in income of 1 the balance increase by 4.219 on average. If you are not a student, every increase in income of 1 increases the average balance by 6.2182.</p>
 <p>Furthermore, if you suspect that perhaps a curved relationship exists between two variables, we could include a higher order term. As an example, let’s add a quadratic term for <code>Income</code> to our model (without the interaction). To do this in <code>R</code>, we need to wrap the higher order term in <code><a href="https://rdrr.io/r/base/AsIs.html">I()</a></code>. If we include a higher order term, we usually want to include the lower order terms as well; a better approach is to make the decision on what to include using predictive performance.</p>
-<div class="sourceCode" id="cb1037"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1040"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">credit_mod3</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Balance</span><span class="op">~</span><span class="va">Income</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">Income</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>,data<span class="op">=</span><span class="va">Credit</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb1038"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1041"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">credit_mod3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -908,7 +908,7 @@ Figure 29.9: Scatterplot of credit card balance for income and student status wi
 ## Residual standard error: 408 on 397 degrees of freedom
 ## Multiple R-squared:  0.2166, Adjusted R-squared:  0.2127 
 ## F-statistic: 54.88 on 2 and 397 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb1040"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1043"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">credit_mod3</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_point</span><span class="op">(</span><span class="va">Balance</span><span class="op">~</span><span class="va">Income</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_line</span><span class="op">(</span><span class="va">.fitted</span><span class="op">~</span><span class="va">Income</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -975,8 +975,8 @@ Figure 29.10: Scatterplot of credit card balance for income with a quadratic fit
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/blob/master/31-Multiple-Linear-Regression.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/edit/master/31-Multiple-Linear-Regression.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/blob/main/31-Multiple-Linear-Regression.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/edit/main/31-Multiple-Linear-Regression.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -988,7 +988,7 @@ Figure 29.10: Scatterplot of credit card balance for income with a quadratic fit
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-09-25.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-11-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

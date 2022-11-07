@@ -163,7 +163,7 @@
 <h2>
 <span class="header-section-number">1.4</span> Case study<a class="anchor" aria-label="anchor" href="#case-study"><i class="fas fa-link"></i></a>
 </h2>
-<p>In this chapter, we will consider an experiment that studies effectiveness of stents in treating patients at risk of stroke. <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.nejm.org/doi/full/10.1056/NEJMoa1105335"&gt;Chimowitz MI, Lynn MJ, Derdeyn CP, et al. 2011. Stenting versus Aggressive Medical Therapy for Intracranial Arterial Stenosis. New England Journal of Medicine 365:993-1003.&lt;/a&gt;&lt;/p&gt;'><sup>1</sup></a> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.nytimes.com/2011/09/08/health/research/08stent.html"&gt;NY Times article reporting on the study&lt;/a&gt;&lt;/p&gt;'><sup>2</sup></a> Stents are small mesh tubes that are placed inside narrow or weak arteries to assist in patient recovery after cardiac events and reduce the risk of an additional heart attack or death. Many doctors have hoped that there would be similar benefits for patients at risk of stroke. We start by writing the principal question the researchers hope to answer:</p>
+<p>In this chapter, we will consider an experiment that studies effectiveness of stents in treating patients at risk of stroke. <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Chimowitz MI, Lynn MJ, Derdeyn CP, et al. 2011. Stenting versus Aggressive Medical Therapy for Intracranial Arterial Stenosis. New England Journal of Medicine 365:993-1003.&lt;/p&gt;"><sup>1</sup></a> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;NY Times article reporting on the study: &lt;a href="http://www.nytimes.com/2011/09/08/health/research/08stent.html" class="uri"&gt;http://www.nytimes.com/2011/09/08/health/research/08stent.html&lt;/a&gt;&lt;/p&gt;'><sup>2</sup></a> Stents are small mesh tubes that are placed inside narrow or weak arteries to assist in patient recovery after cardiac events and reduce the risk of an additional heart attack or death. Many doctors have hoped that there would be similar benefits for patients at risk of stroke. We start by writing the principal question the researchers hope to answer:</p>
 <div id="research-question" class="section level3" number="1.4.1">
 <h3>
 <span class="header-section-number">1.4.1</span> Research question<a class="anchor" aria-label="anchor" href="#research-question"><i class="fas fa-link"></i></a>
@@ -214,7 +214,7 @@ a package can be used, it must be installed on the computer (once per computer o
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">'C:/Users/Brianna.Hitt/Documents/ProbStat/Another Folder'</span><span class="op">)</span></span></code></pre></div>
 <p>In <code>R</code> if you use the <code><a href="https://tibble.tidyverse.org/reference/view.html">view()</a></code>, you will see the data in what looks like a standard spreadsheet.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://tibble.tidyverse.org/reference/view.html">view</a></span><span class="op">(</span><span class="va">stent_study</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">stent_study</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="explore-data" class="section level3" number="1.4.4">
 <h3>
@@ -289,7 +289,7 @@ What proportion of the control group had a stroke in the first 30 days of the st
 <span class="header-section-number">1.4.5</span> Visualize the data<a class="anchor" aria-label="anchor" href="#visualize-the-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>It is often important to visualize the data. The table is a type of visualization, but in this section we will introduce a graphical method called bar charts.</p>
-<p>We will use the <a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html"><strong>ggformula</strong></a> package to visualize the data. It is a wrapper to the <strong>ggplot2</strong> package which is becoming the industry standard for generating professional graphics. However, the interface for <strong>ggplot2</strong> can be difficult to learn and we will ease into it by using <code>ggformula</code>, which makes use of the formula notation introduced above. The <strong>ggformula</strong> package was loaded when we loaded <code>mosaic</code>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html" class="uri"&gt;https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html&lt;/a&gt;&lt;/p&gt;'><sup>4</sup></a></p>
+<p>We will use the <a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula.html"><strong>ggformula</strong></a> package to visualize the data. It is a wrapper to the <strong>ggplot2</strong> package which is becoming the industry standard for generating professional graphics. However, the interface for <strong>ggplot2</strong> can be difficult to learn and we will ease into it by using <code>ggformula</code>, which makes use of the formula notation introduced above. The <strong>ggformula</strong> package was loaded when we loaded <code>mosaic</code>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html" class="uri"&gt;https://cran.r-project.org/web/packages/ggformula/vignettes/ggformula-blog.html&lt;/a&gt;&lt;/p&gt;'><sup>4</sup></a></p>
 <p>To generate a basic graphic, we need to ask ourselves what information we are trying to see, what particular type of graph is best, what corresponding <code>R</code> function to use, and what information that <code>R</code> function needs in order to build a plot. For categorical data, we want a bar chart and the <code>R</code> function <code>gf_bar()</code> needs the data object and the variable(s) of interest.</p>
 <p>Here is our first attempt. In Figure <a href="CS1.html#fig:first-fig">1.1</a>, we leave the <code>y</code> portion of our formula blank. Doing this implies that we simply want to view the number/count of <code>outcome30</code> by type. We will see the two levels of <code>outcome30</code> on the x-axis and counts on the y-axis.</p>
 
@@ -343,7 +343,7 @@ Figure 1.3: Better graph.
 <h3>
 <span class="header-section-number">1.4.6</span> Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"><i class="fas fa-link"></i></a>
 </h3>
-<p>These two summary statistics (the proportions of people who had a stroke) are useful in looking for differences in the groups, and we are in for a surprise: an additional 9% of patients in the treatment group had a stroke! This is important for two reasons. First, it is contrary to what doctors expected, which was that stents would <em>reduce</em> the rate of strokes. Second, it leads to a statistical question: do the data show a <strong>real</strong> difference due to the treatment?</p>
+<p>These two summary statistics (the proportions of people who had a stroke) are useful in looking for differences in the groups, and we are in for a surprise: an additional 9% of patients in the treatment group had a stroke! This is important for two reasons. First, it is contrary to what doctors expected, which was that stents would <em>reduce</em> the rate of strokes. Second, it leads to a statistical question: do the data show a real difference due to the treatment?</p>
 <p>This second question is subtle. Suppose you flip a coin 100 times. While the chance a coin lands heads in any given coin flip is 50%, we probably won’t observe exactly 50 heads. This type of fluctuation is part of almost any type of data generating process. It is possible that the 9% difference in the stent study is due to this natural variation. However, the larger the difference we observe (for a particular sample size), the less believable it is that the difference is due to chance. So what we are really asking is the following: is the difference so large that we should reject the notion that it was due to chance?</p>
 <p>This is a preview of step 4, analyze the data, and step 5, form a conclusion, of the analysis cycle. While we haven’t yet covered statistical tools to fully address these steps, we can comprehend the conclusions of the published analysis: there was compelling evidence of harm by stents in this study of stroke patients.</p>
 <p><strong>Be careful:</strong> do not generalize the results of this study to all patients and all stents. This study looked at patients with very specific characteristics who volunteered to be a part of this study and who may not be representative of all stroke patients. In addition, there are many types of stents and this study only considered the self-expanding Wingspan stent (Boston Scientific). However, this study does leave us with an important lesson: we should keep our eyes open for surprises.</p>
@@ -365,16 +365,13 @@ Figure 1.3: Better graph.
 </ol>
 <pre><code>stent_study &lt;- read_csv(___)</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
-<li>Complete the steps below. The start of code is provided below.<br>
-i. Use <code>inspect</code> on the data.<br>
-ii. Create a table of <code>outcome365</code> and <code>group</code>. Comment on the results.<br>
-iii. Create a barchart of the data.</li>
+<li>Complete the steps below. The start of code is provided below. You will need to add <code>{r}</code> to the start of each code chunk or insert your own code chunks to use the code.</li>
 </ol>
-<p>Using <code>inspect</code>:</p>
+<pre><code>i. Use `inspect` on the data.  </code></pre>
 <pre><code>inspect(___)</code></pre>
-<p>The table:</p>
+<pre><code>ii. Create a table of `outcome365` and `group`. Comment on the results.  </code></pre>
 <pre><code>tally(outcome365 ~ ___, data = stent_study, format = ___, margins = TRUE)</code></pre>
-<p>Barchart:</p>
+<pre><code>iii. Create a barchart of the data.  </code></pre>
 <pre><code>stent_study %&gt;%
   gf_props(~___, fill = ~___, position = 'fill') %&gt;%
   gf_labs(title = ___,
@@ -383,11 +380,10 @@ iii. Create a barchart of the data.</li>
           y = ___)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>
-<strong>Migraine and acupuncture</strong>. A migraine is a particularly painful type of headache, which patients sometimes wish to treat with acupuncture. To determine whether acupuncture relieves migraine pain, researchers conducted a randomized controlled study where 89 females diagnosed with migraine headaches were randomly assigned to one of two groups: treatment or control. The 43 patients in the treatment group received acupuncture that is specifically designed to treat migraines. The 46 patients in the control group received placebo acupuncture (needle insertion at nonacupoint locations). Then 24 hours after patients received acupuncture, they were asked if they were pain free.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;G. Allais et al. &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/21533739"&gt;“Ear acupuncture in the treatment of migraine attacks: a randomized trial on the efficacy of appropriate versus inappropriate acupoints”.&lt;/a&gt; In: Neurological Sci. 32.1 (2011), pp. 173–175.&lt;/p&gt;'><sup>5</sup></a>
+<p><strong>Migraine and acupuncture</strong>. A migraine is a particularly painful type of headache, which patients sometimes wish to treat with acupuncture. To determine whether acupuncture relieves migraine pain, researchers conducted a randomized controlled study where 89 females diagnosed with migraine headaches were randomly assigned to one of two groups: treatment or control. The 43 patients in the treatment group received acupuncture that is specifically designed to treat migraines. The 46 patients in the control group received placebo acupuncture (needle insertion at nonacupoint locations). Then 24 hours after patients received acupuncture, they were asked if they were pain free.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;G. Allais et al. “Ear acupuncture in the treatment of migraine attacks: a randomized trial on the efficacy of appropriate versus inappropriate acupoints”. &lt;a href="http://www.ncbi.nlm.nih.gov/pubmed/21533739" class="uri"&gt;http://www.ncbi.nlm.nih.gov/pubmed/21533739&lt;/a&gt; In: Neurological Sci. 32.1 (2011), pp. 173–175.&lt;/p&gt;'><sup>5</sup></a></p>
+<p>The data is in the file <code>migraine_study.csv</code> in the <code>data</code> folder. Complete the following work:</p>
 </li>
 </ol>
-<p>The data is in the file <code>migraine_study.csv</code> in the <code>data</code> folder.</p>
-<p>Complete the following work:</p>
 <ol style="list-style-type: lower-alpha">
 <li>Read the data into an object called <code>migraine_study</code>.</li>
 </ol>
@@ -398,15 +394,15 @@ iii. Create a barchart of the data.</li>
 </ol>
 <pre><code>tally(___)</code></pre>
 <ol start="3" style="list-style-type: lower-alpha">
-<li>Report the percent of patients in the treatment group who were pain free 24 hours after receiving acupuncture.<br>
-</li>
-<li>Repeat for the control group.<br>
-</li>
-<li>At first glance, does acupuncture appear to be an effective treatment for migraines? Explain your reasoning.<br>
-</li>
-<li>Do the data provide convincing evidence that there is a real pain reduction for those patients in the treatment group? Or do you think that the observed difference might just be due to chance?</li>
+<li><p>Report the percent of patients in the treatment group who were pain free 24 hours after receiving acupuncture.</p></li>
+<li><p>Repeat for the control group.</p></li>
+<li><p>At first glance, does acupuncture appear to be an effective treatment for migraines? Explain your reasoning.</p></li>
+<li><p>Do the data provide convincing evidence that there is a real pain reduction for those patients in the treatment group? Or do you think that the observed difference might just be due to chance?</p></li>
 </ol>
-<p>Compile, <code>knit</code>, this report into an html and a pdf. In order to <code>knit</code> the report into a pdf, you may need to install the <code>knitr</code> and <code>tinytex</code> packages in <code>R</code>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Compile, <code>knit</code>, this report into an html and a pdf. In order to <code>knit</code> the report into a pdf, you may need to install the <code>knitr</code> and <code>tinytex</code> packages in <code>R</code>.</li>
+</ol>
+<p><a href="https://ds-usafa.github.io/CPS-Solutions-Manual/CS1.html">Solutions Manual</a></p>
 
 </div>
 </div>
@@ -436,8 +432,8 @@ iii. Create a barchart of the data.</li>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/blob/master/01-Data-Case-Study.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/edit/master/01-Data-Case-Study.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/blob/main/01-Data-Case-Study.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/edit/main/01-Data-Case-Study.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -449,7 +445,7 @@ iii. Create a barchart of the data.</li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-09-25.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-11-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -143,7 +143,7 @@
 <p>While the proportions would probably be close to each other, they are probably not exactly the same. We would probably observe a small difference due to <em>chance</em>.</p>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
-If we don’t think the side of the room a person sits on in class is related to whether the person owns an Apple product, what assumption are we making about the relationship between these two variables?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;We would be assuming that these two variables are &lt;strong&gt;independent&lt;/strong&gt;, meaning they are unrelated.&lt;/p&gt;"><sup>69</sup></a></p>
+If we don’t think the side of the room a person sits on in class is related to whether the person owns an Apple product, what assumption are we making about the relationship between these two variables?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;We would be assuming that these two variables are &lt;strong&gt;independent&lt;/strong&gt;, meaning they are unrelated.&lt;/p&gt;"><sup>77</sup></a></p>
 </blockquote>
 <p>Studying randomness of this form is a key focus of statistical modeling. In this block, we’ll explore this type of randomness in the context of several applications, and we’ll learn new tools and ideas that can be applied to help make decisions from data.</p>
 </div>
@@ -151,7 +151,7 @@ If we don’t think the side of the room a person sits on in class is related to
 <h2>
 <span class="header-section-number">16.4</span> Randomization case study: gender discrimination<a class="anchor" aria-label="anchor" href="#randomization-case-study-gender-discrimination"><i class="fas fa-link"></i></a>
 </h2>
-<p>We consider a study investigating gender discrimination in the 1970s, which is set in the context of personnel decisions within a bank.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Rosen B and Jerdee T. 1974. “Influence of sex role stereotypes on personnel decisions.” Journal of Applied Psychology 59(1):9-14.&lt;/p&gt;"><sup>70</sup></a> The research question we hope to answer is, “Are females discriminated against in promotion decisions made by male managers?”</p>
+<p>We consider a study investigating gender discrimination in the 1970s, which is set in the context of personnel decisions within a bank.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Rosen B and Jerdee T. 1974. “Influence of sex role stereotypes on personnel decisions.” Journal of Applied Psychology 59(1):9-14.&lt;/p&gt;"><sup>78</sup></a> The research question we hope to answer is, “Are females discriminated against in promotion decisions made by male managers?”</p>
 <div id="variability-within-data" class="section level3" number="16.4.1">
 <h3>
 <span class="header-section-number">16.4.1</span> Variability within data<a class="anchor" aria-label="anchor" href="#variability-within-data"><i class="fas fa-link"></i></a>
@@ -159,7 +159,7 @@ If we don’t think the side of the room a person sits on in class is related to
 <p>The participants in this study were 48 male bank supervisors attending a management institute at the University of North Carolina in 1972. They were asked to assume the role of the personnel director of a bank and were given a personnel file to judge whether the person should be promoted to a branch manager position. The files given to the participants were identical, except that half of them indicated the candidate was male and the other half indicated the candidate was female. These files were randomly assigned to the subjects.</p>
 <blockquote>
 <p><strong>Exercise</strong>:<br>
-Is this an observational study or an experiment? How does the type of study impact what can be inferred from the results?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The study is an experiment, as subjects were randomly assigned a male personnel file or a female personnel file. Since this is an experiment, the results can be used to evaluate a causal relationship between gender of a candidate and the promotion decision.&lt;/p&gt;"><sup>71</sup></a></p>
+Is this an observational study or an experiment? How does the type of study impact what can be inferred from the results?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The study is an experiment, as subjects were randomly assigned a male personnel file or a female personnel file. Since this is an experiment, the results can be used to evaluate a causal relationship between gender of a candidate and the promotion decision.&lt;/p&gt;"><sup>79</sup></a></p>
 </blockquote>
 <p>For each supervisor, we recorded the gender associated with the assigned file and the promotion decision. Using the results of the study summarized in the table below, we would like to evaluate whether females are unfairly discriminated against in promotion decisions. In this study, a smaller proportion of females are promoted than males (0.583 versus 0.875), but it is unclear whether the difference provides <strong>convincing evidence</strong> that females are unfairly discriminated against.</p>
 <p><span class="math display">\[
@@ -190,12 +190,12 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 <h3>
 <span class="header-section-number">16.4.2</span> Simulating the study<a class="anchor" aria-label="anchor" href="#simulating-the-study"><i class="fas fa-link"></i></a>
 </h3>
-<p>The table of data shows that 35 bank supervisors recommended promotion and 13 did not. Now, suppose the bankers’ decisions were independent of gender, that is the null hypothesis is true. Then, if we conducted the experiment again with a different random assignment of files, differences in promotion rates would be based only on random fluctuation. We can actually perform this <strong>randomization</strong>, which simulates what would have happened if the bankers’ decisions had been independent of gender but we had distributed the files differently.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The test procedure we employ in this section is formally called a &lt;strong&gt;permutation test&lt;/strong&gt;.&lt;/p&gt;"><sup>72</sup></a> We will walk through the steps next.</p>
+<p>The table of data shows that 35 bank supervisors recommended promotion and 13 did not. Now, suppose the bankers’ decisions were independent of gender, that is the null hypothesis is true. Then, if we conducted the experiment again with a different random assignment of files, differences in promotion rates would be based only on random fluctuation. We can actually perform this <strong>randomization</strong>, which simulates what would have happened if the bankers’ decisions had been independent of gender but we had distributed the files differently.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;The test procedure we employ in this section is formally called a &lt;strong&gt;permutation test&lt;/strong&gt;.&lt;/p&gt;"><sup>80</sup></a> We will walk through the steps next.</p>
 <p>First let’s import the data.</p>
-<div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">discrim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/discrimination_study.csv"</span><span class="op">)</span></span></code></pre></div>
 <p>Let’s inspect the data set.</p>
-<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb411"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/inspect.html">inspect</a></span><span class="op">(</span><span class="va">discrim</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## categorical variables:  
@@ -206,7 +206,7 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 ## 1 female (50%), male (50%)                     
 ## 2 promoted (72.9%), not_promoted (27.1%)</code></pre>
 <p>Let’s look at a table of the data, showing <em>gender</em> versus <em>decision</em>.</p>
-<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb413"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">gender</span> <span class="op">+</span> <span class="va">decision</span>, <span class="va">discrim</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##         decision
 ## gender   not_promoted promoted Total
@@ -215,12 +215,12 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 ##   Total            13       35    48</code></pre>
 <p>Let’s do some categorical data cleaning. To get the <code><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally()</a></code> results to look like our initial table, we need to change the variables from characters to factors and reorder the levels. By default, factor levels are ordered alphabetically, but we want <em>promoted</em> and <em>male</em> to appear as the first levels in the table.</p>
 <p>We will use <code><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_if()</a></code> to convert character variables to factors and <code><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel()</a></code> to reorder the levels.</p>
-<div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb415"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">discrim</span> <span class="op">&lt;-</span> <span class="va">discrim</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_if</a></span><span class="op">(</span><span class="va">is.character</span>, <span class="va">as.factor</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>gender <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">gender</span>, <span class="st">"male"</span><span class="op">)</span>,</span>
 <span>         decision <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">decision</span>, <span class="st">"promoted"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb413"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb416"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">discrim</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   gender decision    
@@ -231,7 +231,7 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 ## 4 female promoted    
 ## 5 female promoted    
 ## 6 female promoted</code></pre>
-<div class="sourceCode" id="cb415"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb418"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="va">gender</span> <span class="op">+</span> <span class="va">decision</span>, <span class="va">discrim</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##         decision
 ## gender   promoted not_promoted Total
@@ -240,7 +240,7 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 ##   Total        35           13    48</code></pre>
 <p>Now that we have the data in the form that we want, we are ready to conduct the <em>permutation test</em>, a simulation of what would have happened if the bankers’ decisions had been independent of gender but we had distributed the files differently. To think about this <em>simulation</em>, imagine we actually had the personnel files. We thoroughly shuffle 48 personnel files, 24 labeled <em>male</em> and 24 labeled <em>female</em>, and deal these files into two stacks. We will deal 35 files into the first stack, which will represent the 35 supervisors who recommended promotion. The second stack will have 13 files, and it will represent the 13 supervisors who recommended against promotion. That is, we keep the same number of files in the <em>promoted</em> and <em>not_promoted</em> categories, and imagine simply shuffling the <em>male</em> and <em>female</em> labels around. Remember that the files are identical except for the listed gender. This simulation then assumes that gender is not important and, thus, we can randomly assign the files to any of the supervisors. Then, as we did with the original data, we tabulate the results and determine the fraction of <em>male</em> and <em>female</em> candidates who were promoted. Since we don’t actually physically have the files, we will do this shuffle via computer code.</p>
 <p>Since the randomization of files in this simulation is independent of the promotion decisions, any difference in the two fractions is entirely due to chance. The following code shows the results of such a simulation.</p>
-<div class="sourceCode" id="cb417"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb420"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCore/man/tally.html">tally</a></span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">gender</span><span class="op">)</span> <span class="op">+</span> <span class="va">decision</span>, <span class="va">discrim</span>, margins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##                decision
@@ -251,15 +251,15 @@ These hypotheses are part of what is called a <strong>hypothesis test</strong>. 
 <p>The <code><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle()</a></code> function randomly rearranges the gender column while keeping the decision column the same. It is really a sampling without replacement. That is, we randomly sample 35 personnel files to be <em>promoted</em> and the other 13 personnel files are <em>not_promoted</em>.</p>
 <blockquote>
 <p><strong>Exercise</strong>:
-What is the difference in promotion rates between the two simulated groups? How does this compare to the observed difference, 29.2%, from the actual study?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(18/24 - 17/24 = 0.042\)&lt;/span&gt; or about 4.2% in favor of the men. This difference due to chance is much smaller than the difference observed in the actual groups.&lt;/p&gt;'><sup>73</sup></a></p>
+What is the difference in promotion rates between the two simulated groups? How does this compare to the observed difference, 29.2%, from the actual study?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span class="math inline"&gt;\(18/24 - 17/24 = 0.042\)&lt;/span&gt; or about 4.2% in favor of the men. This difference due to chance is much smaller than the difference observed in the actual groups.&lt;/p&gt;'><sup>81</sup></a></p>
 </blockquote>
 <p>Calculating by hand will not help in a simulation, so we must write a function or use an existing one. We will use <code><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffprop()</a></code> from the <strong>mosaic</strong> package. The code to find the difference for the original data is:</p>
-<div class="sourceCode" id="cb419"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffprop</a></span><span class="op">(</span><span class="va">decision</span> <span class="op">~</span> <span class="va">gender</span>, data <span class="op">=</span> <span class="va">discrim</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   diffprop 
 ## -0.2916667</code></pre>
 <p>Notice that this is subtracting the proportion of males promoted from the proportion of females promoted. This does not impact our results as this is an arbitrary decision. We just need to be consistent in our analysis. If we prefer to use positive values, we can adjust the order easily.</p>
-<div class="sourceCode" id="cb421"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffprop</a></span><span class="op">(</span><span class="va">decision</span> <span class="op">~</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span><span class="va">gender</span>, <span class="st">"female"</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">discrim</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##  diffprop 
 ## 0.2916667</code></pre>
@@ -273,16 +273,16 @@ What is the difference in promotion rates between the two simulated groups? How 
 <p><span class="math display">\[
 \frac{48!}{24!\cdot24!} \approx 3.2 \cdot 10^{13}
 \]</span></p>
-<div class="sourceCode" id="cb423"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">48</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">24</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">24</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 3.22476e+13</code></pre>
 <p>As is often the case, the number of all possible permutations is too large to find by hand or even via code. Thus, we will use a simulation, a subset of all possible permutations, to approximate the permutation test. Using simulation in this way is called a <em>randomization test</em>.</p>
 <p>Let’s simulate the experiment and plot the simulated values of the difference in the proportions of male and female files recommended for promotion.</p>
-<div class="sourceCode" id="cb425"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2022</span><span class="op">)</span></span>
-<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffprop</a></span><span class="op">(</span><span class="va">decision</span> <span class="op">~</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">gender</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">discrim</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">do</span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/diffmean.html">diffprop</a></span><span class="op">(</span><span class="va">decision</span> <span class="op">~</span> <span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">shuffle</a></span><span class="op">(</span><span class="va">gender</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">discrim</span><span class="op">)</span></span></code></pre></div>
 <p>In Figure <a href="CS3.html#fig:teststat1-fig">16.1</a>, we will insert a vertical line at the value of our observed difference.</p>
-<div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb429"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_histogram</span><span class="op">(</span><span class="op">~</span><span class="va">diffprop</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="op">-</span><span class="fl">0.2916667</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -302,20 +302,20 @@ Figure 16.1: Distribution of test statistic.
 How often would you observe a difference as extreme as -29.2% (-0.292) according to the figure? (Often, sometimes, rarely, or never?)</p>
 </blockquote>
 <p>It appears that a difference as extreme as -29.2% due to chance alone would only happen rarely. We can estimate the probability using the <code>results</code> object.</p>
-<div class="sourceCode" id="cb427"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>p_value <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">diffprop</span> <span class="op">&lt;=</span> <span class="va">obs</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   p_value
 ## 1  0.0257</code></pre>
 <p>In our simulations, only 2.6% of the simulated test statistics were less than or equal to the observed test statistic, as or more extreme relative to the null hypothesis. Such a low probability indicates that observing such a large difference in proportions from chance alone is rare. This probability is known as a <strong><span class="math inline">\(p\)</span>-value</strong>. The <span class="math inline">\(p\)</span>-value is a conditional probability, the probability of the observed value or more extreme given that the null hypothesis is true.</p>
 <p>We could have also found the exact <span class="math inline">\(p\)</span>-value using the hypergeometric distribution. We have 13 <em>not_promoted</em> positions, so we could have anywhere between 0 and 13 females not promoted. We observed 10 females not promoted. Thus, the exact <span class="math inline">\(p\)</span>-value from the hypergeometric distribution is the probability of 10 or more females not promoted (as or more extreme than the observed) when we select 13 people from a pool of 24 males and 24 females, and the selection is done without replacement.</p>
-<div class="sourceCode" id="cb429"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb432"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Hypergeometric.html">phyper</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">24</span>, <span class="fl">24</span>, <span class="fl">13</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.02449571</code></pre>
 <p>Again, we see a low probability, only 2.4%, of observing 10 or more females not promoted, given that the null hypothesis is true.</p>
 <p>The observed difference of -29.2% is a rare (low probability) event if there truly is no impact from listing gender in the personnel files. This provides us with two possible interpretations of the study results, in context of our hypotheses:</p>
 <p><span class="math inline">\(H_0\)</span>: <strong>Null hypothesis.</strong> Gender has no effect on promotion decision, and we observed a difference that is so large that it would only happen rarely.<br><span class="math inline">\(H_A\)</span>: <strong>Alternative hypothesis.</strong> Gender has an effect on promotion decision, and what we observed was actually due to equally qualified women being discriminated against in promotion decisions, which explains the large difference of -29.2%.</p>
-<p>When we conduct formal studies, we reject a skeptical position (<span class="math inline">\(H_0\)</span>) if the data strongly conflict with that position.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;This reasoning does not generally extend to anecdotal observations. Each of us observes incredibly rare events every day, events we could not possibly hope to predict. However, in the non-rigorous setting of anecdotal evidence, almost anything may appear to be a rare event, so the idea of looking for rare events in day-to-day activities is treacherous. For example, we might look at the lottery: there was only a 1 in 176 million chance that the Mega Millions numbers for the largest jackpot in history (March 30, 2012) would be (2, 4, 23, 38, 46) with a Mega ball of (23), but nonetheless those numbers came up! However, no matter what numbers had turned up, they would have had the same incredibly rare odds. That is, &lt;strong&gt;any set of numbers we could have observed would ultimately be incredibly rare&lt;/strong&gt;. This type of situation is typical of our daily lives: each possible event in itself seems incredibly rare, but if we consider every alternative, those outcomes are also incredibly rare. We should be cautious not to misinterpret such anecdotal evidence.&lt;/p&gt;"><sup>74</sup></a></p>
+<p>When we conduct formal studies, we reject a skeptical position (<span class="math inline">\(H_0\)</span>) if the data strongly conflict with that position.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;This reasoning does not generally extend to anecdotal observations. Each of us observes incredibly rare events every day, events we could not possibly hope to predict. However, in the non-rigorous setting of anecdotal evidence, almost anything may appear to be a rare event, so the idea of looking for rare events in day-to-day activities is treacherous. For example, we might look at the lottery: there was only a 1 in 176 million chance that the Mega Millions numbers for the largest jackpot in history (March 30, 2012) would be (2, 4, 23, 38, 46) with a Mega ball of (23), but nonetheless those numbers came up! However, no matter what numbers had turned up, they would have had the same incredibly rare odds. That is, &lt;strong&gt;any set of numbers we could have observed would ultimately be incredibly rare&lt;/strong&gt;. This type of situation is typical of our daily lives: each possible event in itself seems incredibly rare, but if we consider every alternative, those outcomes are also incredibly rare. We should be cautious not to misinterpret such anecdotal evidence.&lt;/p&gt;"><sup>82</sup></a></p>
 <p>In our analysis, we determined that there was only a ~ 2% probability of obtaining a test statistic where the difference between female and male promotion proportions was 29.2% or larger assuming gender had no impact. So we conclude the data provide sufficient evidence of gender discrimination against women by the supervisors. In this case, we reject the null hypothesis in favor of the alternative hypothesis.</p>
 <p>Statistical inference is the practice of making decisions and conclusions from data in the context of uncertainty. Errors do occur, just like rare events, and the data set at hand might lead us to the wrong conclusion. While a given data set may not always lead us to a correct conclusion, statistical inference gives us tools to control and evaluate how often these errors occur.</p>
 <p>Let’s summarize what we did in this case study. We had a research question and some data to test the question. We then performed 4 steps:</p>
@@ -421,8 +421,8 @@ There were 48 files and 48 supervisors. A total of 35 files were recommended for
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/blob/master/18-Hypothesis-Testing-Case-Study.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/edit/master/18-Hypothesis-Testing-Case-Study.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/blob/main/18-Hypothesis-Testing-Case-Study.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DS-USAFA/Computational-Probability-and-Statistics/edit/main/18-Hypothesis-Testing-Case-Study.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -434,7 +434,7 @@ There were 48 files and 48 supervisors. A total of 35 files were recommended for
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-09-25.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-11-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

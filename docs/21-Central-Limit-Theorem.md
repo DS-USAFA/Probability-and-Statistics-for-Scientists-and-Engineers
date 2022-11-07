@@ -205,8 +205,8 @@ gf_dist("norm", color = "red") %>%
 ```
 
 <div class="figure">
-<img src="21-Central-Limit-Theorem_files/figure-html/t211-fig-1.png" alt="The distibtion of t." width="672" />
-<p class="caption">(\#fig:t211-fig)The distibtion of t.</p>
+<img src="21-Central-Limit-Theorem_files/figure-html/t211-fig-1.png" alt="The distribution of t." width="672" />
+<p class="caption">(\#fig:t211-fig)The distribution of t.</p>
 </div>
 
 ### Important Note
