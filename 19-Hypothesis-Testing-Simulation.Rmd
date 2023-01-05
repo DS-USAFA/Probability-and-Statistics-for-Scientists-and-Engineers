@@ -229,7 +229,7 @@ Notice that this distribution is centered on 1 and appears to be roughly symmetr
 
 ```{r}
 results %>%
-  summarise(p_value = mean(test_stat >= obs))
+  summarize(p_value = mean(test_stat >= obs))
 ```
 
 Before proceeding, we have a technical question: Should we include the observed data in the calculation of the $p$-value?  

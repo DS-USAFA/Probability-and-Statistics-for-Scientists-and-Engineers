@@ -113,7 +113,7 @@ As a way to determine the impact of the sample size on inference to the populati
 
 ```{r}
 results %>%
- summarise(low_result = mean(~mean <= 0.5))
+ summarize(low_result = mean(~mean <= 0.5))
 ```
 
 Even though we know that 65% of Colorado voters support the measure, a sample of size 10 failed to indicate support 25.05% of the time. 
@@ -136,7 +136,7 @@ results %>%
 
 ```{r}
 results %>%
- summarise(low_result = mean(~mean <= 0.5))
+ summarize(low_result = mean(~mean <= 0.5))
 ```
 
 When increasing the sample size to 25, the standard deviation of our sample proportion decreased. According to the central limit theorem, it should have decreased to $\sigma/\sqrt{25} = \sqrt{\frac{p(1 - p)}{25}} = 0.095$. Also, the skew became less severe (the shape became "more normal"). Further, the sample of size 25 failed to indicate support only 6.23% of the time. It reasonably follows that an even larger sample would continue these trends. Figure \@ref(fig:dens216-fig) demonstrates these trends.
@@ -247,7 +247,7 @@ favstats(~temperature, data = temperature)
 
 ```{r}
 temperature %>%
-  summarise(mean = mean(temperature), sd = sd(temperature), 
+  summarize(mean = mean(temperature), sd = sd(temperature), 
             test_stat = (mean - 98.6) / (sd / sqrt(130)))
 ```
 

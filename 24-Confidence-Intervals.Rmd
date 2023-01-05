@@ -171,7 +171,7 @@ We need the mean, standard deviation, and sample size from this data. We can fin
 temperature %>%
   favstats(~temperature, data = .) %>%
   select(mean, sd, n) %>%
-  summarise(lower_bound = mean - qt(0.975, 129)*sd/sqrt(n),
+  summarize(lower_bound = mean - qt(0.975, 129)*sd/sqrt(n),
             upper_bound = mean + qt(0.975, 129)*sd/sqrt(n))
 ```
 
@@ -215,7 +215,7 @@ We now repeat the analysis with this in mind.
 temperature %>%
   favstats(~temperature, data = .) %>%
   select(mean, sd, n) %>%
-  summarise(upper_bound = mean + qt(0.95, 129)*sd/sqrt(n))
+  summarize(upper_bound = mean + qt(0.95, 129)*sd/sqrt(n))
 ```
 
 ```{r}

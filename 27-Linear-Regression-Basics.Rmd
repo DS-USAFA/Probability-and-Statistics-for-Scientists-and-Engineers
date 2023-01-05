@@ -234,7 +234,7 @@ Find the slope from the correlation and standard deviations.
 
 ```{r}
 possum %>%
-  summarise(correlation=cor(head_l,total_l),sd_head=sd(head_l),
+  summarize(correlation=cor(head_l,total_l),sd_head=sd(head_l),
             sd_total=sd(total_l),slope=correlation*sd_head/sd_total)
 ```
 
