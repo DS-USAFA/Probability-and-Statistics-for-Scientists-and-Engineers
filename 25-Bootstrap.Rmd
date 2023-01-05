@@ -594,3 +594,7 @@ g. How does the $p$-value compare with those in the reading?
 
     Repeat the analysis of the MLB data from Chapter \@ref(ANOVA), but this time generate a bootstrap distribution of the $F$ statistic.  
 
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/BOOT.html) {-}
+

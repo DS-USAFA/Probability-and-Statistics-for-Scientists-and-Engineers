@@ -505,3 +505,6 @@ b. Given your model, what is the expected mpg for a vehicle with a displacement 
 c. Repeat part (b) with a bootstrap for the confidence interval.
 
 2. Is that the best model for predicting mpg? Try a variety of different models. You could explore higher order terms or even interactions. One place to start is by using the `pairs()` function on `mtcars` to plot a large pairwise scatterplot. How high could you get adjusted $R$-squared? Keep in mind that is only one measure of fit. 
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/LRMULTI.html) {-}

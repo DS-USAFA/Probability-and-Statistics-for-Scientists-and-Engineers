@@ -302,5 +302,5 @@ b. The Buteyko method is a shallow breathing technique developed by Konstantin B
 2. In the **openintro** package is a data set called `ames`, containing information on individual residential properties sold in Ames, IA between 2006 and 2010. Create a scatterplot for the above ground living area square feet versus sale price in US dollars. Describe the relationship between these two variables. Note: you may have to load the library and data set.
 
 
-[Solutions Manual](https://ds-usafa.github.io/CPS-Solutions-Manual/DB.html)
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/DB.html) {-}
 

@@ -323,4 +323,4 @@ tally(___)
 3. Compile, `knit`, this report into an html and a pdf. In order to `knit` the report into a pdf, you may need to install the `knitr` and `tinytex` packages in `R`.
 
 
-[Solutions Manual](https://ds-usafa.github.io/CPS-Solutions-Manual/CS1.html)
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/CS1.html) {-}

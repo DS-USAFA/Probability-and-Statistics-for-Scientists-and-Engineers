@@ -645,3 +645,6 @@ f. If there is really no difference between book sources, the variable `more` is
 g. Could you use a permutation test on this example? Explain.  
 
  
+ 
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/ADDTESTS.html) {-}
+

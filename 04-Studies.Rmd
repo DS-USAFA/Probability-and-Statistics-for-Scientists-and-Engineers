@@ -515,3 +515,6 @@ e. Comment on whether or not the results of the study can be used to establish a
 f. Suppose you are given the task of determining if this proposed study should get funding. Would you have any reservations about the study proposal?  
 
 
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/STUDY.html) {-}
+

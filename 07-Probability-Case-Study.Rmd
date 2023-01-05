@@ -420,3 +420,7 @@ b. Generalize your solution to any number `n` people in the room and create a fu
 c. Vectorize the function.  
 d. Plot the probability of exactly 2 people having the same birthday versus number of people in the room.  
 e. Comment on the shape of the curve and explain it.  
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/CS2.html) {-}
+

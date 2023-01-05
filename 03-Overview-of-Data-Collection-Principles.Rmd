@@ -286,6 +286,6 @@ b. Describe the relationship between the two variables. Make sure to discuss unu
 c. Can we conclude that having a bachelor's degree increases one's income?  
 
 
-
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/ODCP.html) {-}
 
 

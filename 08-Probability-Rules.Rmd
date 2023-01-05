@@ -508,6 +508,6 @@ b.  What is the probability of drawing a "four of a kind" (four cards of the sam
 
 
 
-
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/PROBRULES.html) {-}
 
 

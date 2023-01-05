@@ -412,3 +412,7 @@ include_graphics("figures/outInf3.png")
 include_graphics("figures/outOut2.png")
 ```
 
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/LRDIAG.html) {-}
+

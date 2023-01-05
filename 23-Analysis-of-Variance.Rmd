@@ -347,3 +347,6 @@ census %>%
 ```
 
 
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/ANOVA.html) {-}
+

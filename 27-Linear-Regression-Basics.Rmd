@@ -424,3 +424,6 @@ j. Does the assumption of constant variance seem reasonable for this problem?
 k. Verify that the line passes through the mean carb and mean calories, do this mathematically.  
 l. What is the estimate of the standard deviation of the residuals? How could you use this information?
 
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/LRBASICS.html) {-}
+

@@ -589,3 +589,6 @@ i. Plot the data points with a regression line, confidence band, and prediction 
 
 3. Suppose I build a regression fitting a response variable to one predictor variable. I build a 95% confidence interval on $\beta_1$ and find that it contains 0, meaning that a slope of 0 is feasible. Does this mean that the response and the predictor are independent? 
 
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/LRINF.html) {-}
+

@@ -658,4 +658,5 @@ f. Generate a confusion matrix for the best model you have developed.
 g. Find a 95% confidence interval for the probability a female student with a 3.5 GPA, a `BCPM` of 3.8, a verbal reasoning score of 10, a physical sciences score of 9, a writing sample score of 8, a biological score of 10, a MCAT score of 40, and who applied to 5 medical schools.  
 
 
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/LOGREG.html) {-}
 

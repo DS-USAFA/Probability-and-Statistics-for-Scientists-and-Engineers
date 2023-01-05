@@ -362,3 +362,6 @@ c. Find the probability that at least 5 minutes will pass before the next arriva
 
 a. Find the probability I select no female cadets.  
 b. Find the probability I select more than 2 female cadets. 
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/DISCRETENAMED.html) {-}

@@ -333,3 +333,6 @@ heart <- heart %>%
   
   h. Decide if the treatment is effective.  
   
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/CS3.html) {-}
+

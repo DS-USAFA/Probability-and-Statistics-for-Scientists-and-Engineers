@@ -536,3 +536,7 @@ f. The traditional belief is that yawning is contagious -- one yawn can lead to 
 
 g. How did you select your level of significance? Explain in 1-3 sentences.  
 
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/HYPTESTSIM.html) {-}
+

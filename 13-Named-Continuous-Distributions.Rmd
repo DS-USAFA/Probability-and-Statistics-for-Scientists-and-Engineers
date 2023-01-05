@@ -374,3 +374,7 @@ The `dgamma` function exists in `R` too. In plain language, explain what `dgamma
 
 
 7. Derive the mean of a general uniform distribution, $U(a,b)$.  
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/CONTNNAMED.html) {-}
+

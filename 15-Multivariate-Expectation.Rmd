@@ -552,3 +552,6 @@ Let $S=X_1+X_2+...+X_n=\sum_{i=1}^n X_i$. And let $\bar{X}={\sum_{i=1}^n X_i \ov
 Find $\E(S)$, $\Var(S)$, $\E(\bar{X})$ and $\Var(\bar{X})$. 
 
 
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/MULTIEXP.html) {-}
+
