@@ -137,20 +137,20 @@ To do the simulation, we can think of it as flipping a coin. First let's assume 
 
 ```{r}
 set.seed(43)
-results <- rflip(1000000,0.0001,summarize = TRUE)
+results <- rflip(1000000, 0.0001, summarize = TRUE)
 results
 ```
 
 In this case 100 people had the disease. Now let's find the positive test results. Of the 100 with the disease, all will test positive. Of those without disease, there is a 0.001 probability of testing positive.
 
 ```{r}
-rflip(as.numeric(results['tails']),prob=.001,summarize = TRUE)
+rflip(as.numeric(results['tails']), prob = 0.001, summarize = TRUE)
 ```
 
 Now 959 tested positive. Thus the probability of having the disease given a positive test result is approximately:
 
 ```{r}
-100/(100+959)
+100/(100 + 959)
 ```
 
 ## Homework Problems

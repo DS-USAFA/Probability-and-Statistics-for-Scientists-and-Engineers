@@ -107,9 +107,9 @@ These two axioms essentially say that probability must be positive, and the prob
 
 Let $A$ and $B$ be events in a random experiment. Most of these can be proven fairly easily. 
 
-1) $\Prob(\emptyset)=0$
+1) $\Prob(\emptyset) = 0$
 
-2) $\Prob(A')=1-\Prob(A)$ We used this in the case study.
+2) $\Prob(A') = 1 - \Prob(A)$ We used this in the case study.
 
 3) If $A\subset B$, then $\Prob(A)\leq \Prob(B)$. 
 
@@ -129,16 +129,16 @@ Consider rolling a six sided die. Let event $A$ be the number showing is less th
 $$\Prob(A)=\Prob(A \cap B) + \Prob(A \cap B')$$ 
 
 $$
-\Prob(< 5)=\Prob(<5 \cap Even)+\Prob(<5 \cap Odd)
+\Prob(< 5) = \Prob(<5 \cap Even) + \Prob(<5 \cap Odd)
 $$
 
 
 6) DeMorgan's Laws: 
 $$
-\Prob((A \cup B)')=\Prob(A' \cap B')
+\Prob((A \cup B)') = \Prob(A' \cap B')
 $$
 $$
-\Prob((A \cap B)')=\Prob(A' \cup B')
+\Prob((A \cap B)') = \Prob(A' \cup B')
 $$
 
 ### Equally likely scenarios
@@ -186,7 +186,7 @@ Next we can visualize the distribution of the number of girls, heads, in Figure 
 results %>%
   gf_bar(~heads) %>%
   gf_theme(theme_bw()) %>%
-  gf_labs(x="NUmber of girls",y="Count")
+  gf_labs(x = "NUmber of girls", y = "Count")
 ```
 
 Finally we can estimate the probability of exactly 2 girls. We need the **tidyverse** library.
@@ -200,8 +200,8 @@ library(tidyverse)
 
 ```{r}
 results %>%
-  filter(heads==2) %>%
-  summarize(prob=n()/10000)
+  filter(heads == 2) %>%
+  summarize(prob = n()/10000)
 ```
 
 Or slightly different code.
@@ -209,7 +209,7 @@ Or slightly different code.
 ```{r warning=FALSE,message=FALSE}
 results %>%
   count(heads) %>%
-  mutate(prop=n/sum(n))
+  mutate(prop = n/sum(n))
 ```
 
 
@@ -238,7 +238,7 @@ Let's find all the Clubs.
 ```{r}
 Cards %>%
   filter(suit == "Club") %>%
-  select(rank,suit)
+  select(rank, suit)
 ```
 
 So just by counting, we find the probability of drawing a Club is $\frac{13}{52}$ or `r 13/52`.
@@ -248,20 +248,20 @@ We can do this by simulation, this is over kill but gets the idea of simulation 
 Remember, ask what do we want `R` to do and what does `R` need to do this?
 
 ```{r cache=TRUE}
-results <- do(10000)*sample(Cards,1)
+results <- do(10000)*sample(Cards, 1)
 head(results)
 ```
 
 ```{r}
 results %>%
   filter(suit == "Club") %>%
-  summarize(prob=n()/10000)
+  summarize(prob = n()/10000)
 ```
 
 ```{r}
 results %>%
   count(suit) %>%
-  mutate(prob=n/sum(n))
+  mutate(prob = n/sum(n))
 ```
 
 
@@ -270,7 +270,7 @@ Now let's count the number of outcomes in $B$.
 ```{r}
 Cards %>%
   filter(rank %in% c(10, "J", "Q", "K", "A")) %>%
-  select(rank,suit)
+  select(rank, suit)
 ```
 
 So just by counting, we find the probability of drawing a 10 or greater is $\frac{20}{52}$ or `r 20/52`.
@@ -279,22 +279,22 @@ So just by counting, we find the probability of drawing a 10 or greater is $\fra
 Using simulation to estimate the probability of 10 or higher.
 
 ```{r cache=TRUE}
-results <- do(10000)*sample(Cards,1)
+results <- do(10000)*sample(Cards, 1)
 head(results)
 ```
 
 ```{r}
 results %>%
   filter(rank %in% c(10, "J", "Q", "K", "A")) %>%
-  summarize(prob=n()/10000)
+  summarize(prob = n()/10000)
 ```
 
 Notice that this code is not robust to change the number of simulations. If we change from 10000, then we have to change the denominator in the `summarize()` function. We can change this by using `mutate()` instead of `filter()`.
 
 ```{r}
 results %>%
-  mutate(face=rank %in% c(10, "J", "Q", "K", "A"))%>%
-  summarize(prob=mean(face))
+  mutate(face = rank %in% c(10, "J", "Q", "K", "A"))%>%
+  summarize(prob = mean(face))
 ```
 
 Notice that in the `mutate()` function, we are creating a new logical variable called `face`. This variable takes on the values of TRUE and FALSE. In the next line we use a `summarize()` command with the function `mean()`. In `R` a function that requires numeric input takes a logical variable and converts the TRUE into 1 and the FALSE into 0. Thus the `mean()` will find the proportion of TRUE values and that is why we report it as a probability.
@@ -303,8 +303,8 @@ Next, let's find a card that is 10 or greater **and** a club.
 
 ```{r}
 Cards %>%
-  filter(rank %in% c(10, "J", "Q", "K", "A"),suit=="Club") %>%
-  select(rank,suit)
+  filter(rank %in% c(10, "J", "Q", "K", "A"), suit == "Club") %>%
+  select(rank, suit)
 ```
 
 
@@ -316,8 +316,9 @@ Simulate drawing one card and estimate the probability of a club that is 10 or g
 
 ```{r}
 results %>%
-  mutate(face=(rank %in% c(10, "J", "Q", "K", "A"))&(suit=="Club"))%>%
-  summarize(prob=mean(face))
+  mutate(face = (rank %in% c(10, "J", "Q", "K", "A")) & 
+           (suit == "Club"))%>%
+  summarize(prob = mean(face))
 ```
 
 
@@ -356,8 +357,8 @@ $$
 Dividing this number by the total number of possible license plates yields the probability of this event occurring. 
 
 ```{r}
-denom<-10*10*10*26*26*26
-num<-2*10*10*26*26*1
+denom <- 10*10*10*26*26*26
+num <- 2*10*10*26*26*1
 num/denom
 ```
 
@@ -394,9 +395,9 @@ $$
 
 The probability Tom doesn't get a prize is simply the second number divided by the first:
 ```{r}
-denom<-factorial(25)/factorial(25-3)
+denom <- factorial(25)/factorial(25 - 3)
 # Or, denom<-25*24*23
-num<-24*23*22
+num <- 24*23*22
 num/denom
 ```
 
@@ -433,8 +434,8 @@ $$
 $$
 
 ```{r}
-num<-4*choose(13,5)*1
-denom<-choose(52,5)
+num <- 4*choose(13, 5)*1
+denom <- choose(52, 5)
 num/denom
 ```
 
@@ -450,8 +451,8 @@ $$
 $$
 
 ```{r}
-num<-choose(13,1)*choose(4,3)*choose(12,1)*choose(4,2)
-denom<-choose(52,5)
+num <- choose(13, 1)*choose(4, 3)*choose(12, 1)*choose(4, 2)
+denom <- choose(52, 5)
 num/denom
 ```
 

@@ -156,7 +156,7 @@ $$
 Or using `R`
 
 ```{r}
-fractions(integrate(function(x){x^2/2},0,2)$value)
+fractions(integrate(function(x){x^2/2}, 0, 2)$value)
 ```
 
 
@@ -176,7 +176,8 @@ $$
 Or using `R`: 
 
 ```{r}
-adaptIntegrate(function(x){(x[1]+x[2])*x[1]*x[2]},lowerLimit = c(0,0),upperLimit = c(1,2))$integral
+adaptIntegrate(function(x){ (x[1]+x[2])*x[1]*x[2] },
+               lowerLimit = c(0,0), upperLimit = c(1,2))$integral
 ```
 
 
@@ -186,10 +187,10 @@ The cdf for $X$ is $\frac{x^2}{4}$ so we simulate a random variable from $X$ by 
 
 ```{r}
 set.seed(1820)
-new_data <- data.frame(x=2*sqrt(runif(10000)),y=sqrt(runif(10000)))
+new_data <- data.frame(x = 2*sqrt(runif(10000)), y = sqrt(runif(10000)))
 new_data %>%
-  mutate(z=x+y) %>%
-  summarize(Ex=mean(x),Ey=mean(y),Explusy = mean(z))
+  mutate(z = x + y) %>%
+  summarize(Ex = mean(x), Ey = mean(y), Explusy = mean(z))
 ```
 
 We can see that $E(X + Y) = E(X) + E(Y)$.
@@ -208,17 +209,18 @@ $$
 Using `R`: 
 
 ```{r}
-fractions(adaptIntegrate(function(x){(x[1]*x[2])*x[1]*x[2]},lowerLimit = c(0,0),upperLimit = c(1,2))$integral)
+fractions(adaptIntegrate(function(x){ (x[1]*x[2])*x[1]*x[2] },
+                         lowerLimit = c(0,0), upperLimit = c(1,2))$integral)
 ```
 
 Or by simulating, we have: 
 
 ```{r}
 set.seed(191)
-new_data <- data.frame(x=2*sqrt(runif(10000)),y=sqrt(runif(10000)))
+new_data <- data.frame(x = 2*sqrt(runif(10000)), y = sqrt(runif(10000)))
 new_data %>%
-  mutate(z=x*y) %>%
-  summarize(Ex=mean(x),Ey=mean(y),Extimesy = mean(z))
+  mutate(z = x*y) %>%
+  summarize(Ex = mean(x), Ey = mean(y), Extimesy = mean(z))
 ```
 
 ### V(XY)  
@@ -256,16 +258,17 @@ $$
 Using `R`: 
 
 ```{r}
-fractions(adaptIntegrate(function(x){(x[1]*x[2]-8/9)^2*x[1]*x[2]},lowerLimit = c(0,0),upperLimit = c(1,2))$integral)
+fractions(adaptIntegrate(function(x){ (x[1]*x[2]-8/9)^2*x[1]*x[2] },
+                         lowerLimit = c(0,0), upperLimit = c(1,2))$integral)
 ```
 
 Next we will estimate the variance using a simulation: 
 
 ```{r}
 set.seed(816)
-new_data <- data.frame(x=2*sqrt(runif(10000)),y=sqrt(runif(10000)))
+new_data <- data.frame(x = 2*sqrt(runif(10000)), y = sqrt(runif(10000)))
 new_data %>%
-  mutate(z=(x*y-8/9)^2) %>%
+  mutate(z = (x*y - 8/9)^2) %>%
   summarize(Var = mean(z))
 ```
 
@@ -449,7 +452,7 @@ Simulate 5000 reads from the history book and 5000 from philosophy and combine:
 
 ```{r}
 set.seed(2011)
-my_data<-data.frame(misprints=c(rpois(5000,2),rpois(5000,5)))
+my_data<-data.frame(misprints = c(rpois(5000, 2), rpois(5000, 5)))
 
 ```
 
@@ -465,24 +468,24 @@ dim(my_data)
 Figure \@ref(fig:hist151-fig) is a histogram of the data.
 
 ```{r hist151-fig,fig.cap="Misprints from combined history and philosphy books."}
-gf_histogram(~misprints,data=my_data,breaks=seq(-0.5, 15.5, by=1)) %>%
+gf_histogram(~misprints, data = my_data,breaks = seq(-0.5, 15.5, by = 1)) %>%
   gf_theme(theme_classic()) %>%
-  gf_labs(x="Number of Misprints")
+  gf_labs(x = "Number of Misprints")
 ```
 
 Or as a bar chart in Figure \@ref(fig:bar151-fig)
 
 ```{r bar151-fig,fig.cap="Misprints from combined history and philosphy books as a bar chart."}
-gf_bar(~misprints,data=my_data)%>%
+gf_bar(~misprints, data = my_data)%>%
   gf_theme(theme_classic()) %>%
-  gf_labs(x="Number of Misprints")
+  gf_labs(x = "Number of Misprints")
 ```
 
 
 And now find the average.
 
 ```{r}
-mean(~misprints,data=my_data)
+mean(~misprints, data = my_data)
 ```
 
 Now for a mathematical solution. Let $X$ stand for the number of misprints and $Y$ for the book, to make $Y$ a random variable let's call 0 history and 1 philosophy. Then $E[X|Y]$ is the expected number of misprints given the book. This is a conditional expectation. For example $E[X|Y=0]$ is the expected number of misprints in the history book.  

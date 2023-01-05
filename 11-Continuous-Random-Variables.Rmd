@@ -53,7 +53,7 @@ To verify that $f$ is a valid pdf, we simply note that $f_X(x) \geq 0$ on the ra
 Using `R`, we find
 
 ```{r}
-integrate(function(x)2*x,0,1)
+integrate(function(x)2*x, 0, 1)
 ```
 
 Or we can use the **mosaicCalc** package to find the anti-derivative. If the package is not installed, you can use the `Packages` tab in `RStudio` or type `install.packages("mosaicCalc")` at the command prompt. Load the library.
@@ -63,17 +63,17 @@ library(mosaicCalc)
 ```
 
 ```{r}
-(Fx<-antiD(2*x~x))
+(Fx <- antiD(2*x ~ x))
 ```
 
 ```{r}
-Fx(1)-Fx(0)
+Fx(1) - Fx(0)
 ```
 
 
 Graphically, the pdf is displayed in Figure \@ref(fig:plot111-fig):
 ```{r plot111-fig,fig.align='center',echo=F,fig.cap="pdf of $X$"}
-curve(2*x,from=0,to=1,ylab="f(x)",main="pdf of X")
+curve(2*x, from = 0, to = 1, ylab = "f(x)", main = "pdf of X")
 ```
 
 \newpage 
@@ -91,9 +91,9 @@ $$
 The plot of the cdf of $X$ is shown in Figure \@ref(fig:plot112-fig).  
 
 ```{r plot112-fig,fig.align='center',echo=F,fig.cap="cdf of $X$"}
-x<-seq(-0.2,1.2,0.001)
-y<-pmin(x^2*(x>0),1)
-plot(x,y,type="l",ylab="F(x)",main="cdf of X")
+x <- seq(-0.2, 1.2, 0.001)
+y <- pmin(x^2*(x > 0), 1)
+plot(x, y, type = "l", ylab = "F(x)", main = "cdf of X")
 ```
 
 Probabilities are found either by integrating the pdf or using the cdf:
@@ -101,10 +101,10 @@ Probabilities are found either by integrating the pdf or using the cdf:
 $\Prob(X < 0.5)=\Prob(X\leq 0.5)=F_X(0.5)=0.5^2=0.25$. See Figure \@ref(fig:plot113-fig).
 
 ```{r plot113-fig,fig.align='center',echo=F,fig.cap="Probability represented by shaded area"}
-x<-seq(0,1,0.001)
-y<-2*x
-plot(x,y,type="l",ylab="f(x)",main="P(X<0.5)")
-polygon(c(0,0.5,0.5),c(0,0,1),density=15,angle=135)
+x <- seq(0, 1, 0.001)
+y <- 2*x
+plot(x, y, type = "l", ylab = "f(x)", main = "P(X < 0.5)")
+polygon(c(0, 0.5, 0.5), c(0, 0, 1), density = 15, angle = 135)
 ``` 
 
 $\Prob(X > 0.5) = 1-\Prob(X\leq 0.5)=1-0.25 = 0.75$ See Figure \@ref(fig:plot114-fig).
@@ -120,14 +120,14 @@ polygon(c(0.5,1,1,0.5),c(0,0,2,1),density=15,angle=135)
 $\Prob(0.1\leq X < 0.75) = \int_{0.1}^{0.75}2x\diff x = 0.75^2 - 0.1^2 = 0.5525$ See Figure \@ref(fig:plot115-fig).
 
 ```{r}
-integrate(function(x)2*x,.1,.75)
+integrate(function(x)2*x, 0.1, 0.75)
 ```
 
 
 Alternatively, $\Prob(0.1\leq X < 0.75) = \Prob(X < 0.75) -\Prob(x \leq  0.1) = F(0.75)-F(0.1)=0.75^2-0.1^2 =0.5525$
 
 ```{r}
-Fx(0.75)-Fx(0.1)
+Fx(0.75) - Fx(0.1)
 ```
 
 Notice for a continuous random variable, we are loose with the use of the `=` sign. This is because for a continuous random variable $\Prob(X=x)=0$. Do not get sloppy when working with discrete random variables.
@@ -145,7 +145,7 @@ Or using `R`
 
 
 ```{r}
-uniroot(function(x)(Fx(x)-.5),c(0,1))$root
+uniroot(function(x)(Fx(x) - 0.5), c(0, 1))$root
 ```
 
 
@@ -180,9 +180,9 @@ Figure \@ref(fig:plot116-fig) is a density plot of the simulated density functio
 
 ```{r plot116-fig,fig.cap="Density plot of the simulated random variable."}
 results %>%
-  gf_density(~sqrt,xlab="X") %>%
+  gf_density(~sqrt, xlab = "X") %>%
   gf_theme(theme_bw()) %>%
-  gf_labs(x="X",y="")
+  gf_labs(x = "X", y = "")
 ```
 
 
@@ -223,21 +223,21 @@ Side note: Since the mean of $X$ is smaller than the median of $X$, we say that 
 Using `R`.
 
 ```{r}
-integrate(function(x)x*2*x,0,1)
+integrate(function(x)x*2*x, 0, 1)
 ```
 
 Or using `antiD()`
 
 ```{r}
-Ex<-antiD(2*x^2~x)
-Ex(1)-Ex(0)
+Ex <- antiD(2*x^2 ~ x)
+Ex(1) - Ex(0)
 ```
 
 
 Using our simulation.
 
 ```{r}
-mean(~sqrt,data=results)
+mean(~sqrt, data = results)
 ```
 
 
@@ -246,19 +246,19 @@ $$
 $$
 
 ```{r}
-integrate(function(x)x^2*2*x,0,1)$value-(2/3)^2
+integrate(function(x)x^2*2*x, 0, 1)$value - (2/3)^2
 ```
 
 or
 
 ```{r}
-Vx<-antiD(x^2*2*x~x)
-Vx(1)-Vx(0)-(2/3)^2
+Vx <- antiD(x^2*2*x ~ x)
+Vx(1) - Vx(0) - (2/3)^2
 ```
 
 
 ```{r}
-var(~sqrt,data=results)*9999/10000
+var(~sqrt, data = results)*9999/10000
 ```
 
 
