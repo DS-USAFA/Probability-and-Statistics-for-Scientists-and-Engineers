@@ -315,7 +315,7 @@ We could of course use `tidyverse` but we must change the column name so that th
 ```r
 boot_results %>%
   mutate(stat = mean) %>%
-  summarise(mean = mean(stat), stand_dev = sd(stat), 
+  summarize(mean = mean(stat), stand_dev = sd(stat), 
             ci = mean + c(-1,1)*qt(0.975, 49)*stand_dev)
 ```
 
@@ -876,4 +876,8 @@ g. How does the $p$-value compare with those in the reading?
 3. Bootstrap for the $F$ statistic.  
 
     Repeat the analysis of the MLB data from Chapter \@ref(ANOVA), but this time generate a bootstrap distribution of the $F$ statistic.  
+
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/BOOT.html) {-}
 

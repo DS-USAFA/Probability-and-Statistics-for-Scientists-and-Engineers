@@ -11,7 +11,7 @@
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
 <meta name="description" content="11.1 Objectives Define and properly use in context all new terminology, to include: probability density function (pdf) and cumulative distribution function (cdf) for continuous random variables....">
-<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta name="generator" content="bookdown 0.31 with bs4_book()">
 <meta property="og:title" content="Chapter 11 Continuous Random Variables | Probability and Statistics for Scientists and Engineers">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Engineers.png">
@@ -22,7 +22,7 @@
 <meta name="twitter:image" content="/figures/Cover_Engineers.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
@@ -172,17 +172,17 @@ Let <span class="math inline">\(X\)</span> be a continuous random variable with 
 <p>To verify that <span class="math inline">\(f\)</span> is a valid pdf, we simply note that <span class="math inline">\(f_X(x) \geq 0\)</span> on the range <span class="math inline">\(0 \leq x \leq 1\)</span>. Also, we note that <span class="math inline">\(\int_0^1 2x \mathop{}\!\mathrm{d}x = x^2\bigg|_0^1 = 1\)</span>.</p>
 <p>Using <code>R</code>, we find</p>
 <div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 1 with absolute error &lt; 1.1e-14</code></pre>
 <p>Or we can use the <strong>mosaicCalc</strong> package to find the anti-derivative. If the package is not installed, you can use the <code>Packages</code> tab in <code>RStudio</code> or type <code>install.packages("mosaicCalc")</code> at the command prompt. Load the library.</p>
 <div class="sourceCode" id="cb258"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ProjectMOSAIC/mosaicCalc">mosaicCalc</a></span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">Fx</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCalc/man/Calculus.html">antiD</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span><span class="op">~</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">Fx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mosaicCalc/man/Calculus.html">antiD</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span> <span class="op">~</span> <span class="va">x</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## function (x, C = 0) 
 ## x^2 + C</code></pre>
 <div class="sourceCode" id="cb261"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">Fx</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">-</span><span class="fu">Fx</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">Fx</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">-</span> <span class="fu">Fx</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 Graphically, the pdf is displayed in Figure <a href="CONRANDVAR.html#fig:plot111-fig">11.1</a>:
 <div class="figure" style="text-align: center">
@@ -225,11 +225,11 @@ Figure 11.4: Probability represented by shaded area
 </div>
 <p><span class="math inline">\(\mbox{P}(0.1\leq X &lt; 0.75) = \int_{0.1}^{0.75}2x\mathop{}\!\mathrm{d}x = 0.75^2 - 0.1^2 = 0.5525\)</span> See Figure <a href="CONRANDVAR.html#fig:plot115-fig">11.5</a>.</p>
 <div class="sourceCode" id="cb263"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span>,<span class="fl">.1</span>,<span class="fl">.75</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span>, <span class="fl">0.1</span>, <span class="fl">0.75</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 0.5525 with absolute error &lt; 6.1e-15</code></pre>
 <p>Alternatively, <span class="math inline">\(\mbox{P}(0.1\leq X &lt; 0.75) = \mbox{P}(X &lt; 0.75) -\mbox{P}(x \leq 0.1) = F(0.75)-F(0.1)=0.75^2-0.1^2 =0.5525\)</span></p>
 <div class="sourceCode" id="cb265"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">Fx</span><span class="op">(</span><span class="fl">0.75</span><span class="op">)</span><span class="op">-</span><span class="fu">Fx</span><span class="op">(</span><span class="fl">0.1</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">Fx</span><span class="op">(</span><span class="fl">0.75</span><span class="op">)</span> <span class="op">-</span> <span class="fu">Fx</span><span class="op">(</span><span class="fl">0.1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.5525</code></pre>
 <p>Notice for a continuous random variable, we are loose with the use of the <code>=</code> sign. This is because for a continuous random variable <span class="math inline">\(\mbox{P}(X=x)=0\)</span>. Do not get sloppy when working with discrete random variables.</p>
 <div class="figure" style="text-align: center">
@@ -241,7 +241,7 @@ Figure 11.5: Probability represented by shaded area
 <p>The median of <span class="math inline">\(X\)</span> is the value <span class="math inline">\(x\)</span> such that <span class="math inline">\(\mbox{P}(X\leq x)=0.5\)</span>, the area under a single point is 0. So we simply solve <span class="math inline">\(x^2=0.5\)</span> for <span class="math inline">\(x\)</span>. Thus, the median of <span class="math inline">\(X\)</span> is <span class="math inline">\(\sqrt{0.5}=0.707\)</span>.</p>
 <p>Or using <code>R</code></p>
 <div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/uniroot.html">uniroot</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">(</span><span class="fu">Fx</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">-</span><span class="fl">.5</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">root</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/uniroot.html">uniroot</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">(</span><span class="fu">Fx</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">root</span></span></code></pre></div>
 <pre><code>## [1] 0.7071067</code></pre>
 </div>
 <div id="simulation-1" class="section level3" number="11.2.4">
@@ -270,9 +270,9 @@ In <code>R</code> for our example, this looks like the following.</p>
 <p>Figure <a href="CONRANDVAR.html#fig:plot116-fig">11.6</a> is a density plot of the simulated density function.</p>
 <div class="sourceCode" id="cb274"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">gf_density</span><span class="op">(</span><span class="op">~</span><span class="va">sqrt</span>,xlab<span class="op">=</span><span class="st">"X"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">gf_density</span><span class="op">(</span><span class="op">~</span><span class="va">sqrt</span>, xlab <span class="op">=</span> <span class="st">"X"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"X"</span>,y<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"X"</span>, y <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:plot116-fig"></span>
 <img src="11-Continuous-Random-Variables_files/figure-html/plot116-fig-1.png" alt="Density plot of the simulated random variable." width="672"><p class="caption">
@@ -316,30 +316,30 @@ Consider the random variable <span class="math inline">\(X\)</span> from above. 
 <p>Side note: Since the mean of <span class="math inline">\(X\)</span> is smaller than the median of <span class="math inline">\(X\)</span>, we say that <span class="math inline">\(X\)</span> is skewed to the left, or negatively skewed.</p>
 <p>Using <code>R</code>.</p>
 <div class="sourceCode" id="cb275"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="va">x</span><span class="op">*</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="va">x</span><span class="op">*</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 0.6666667 with absolute error &lt; 7.4e-15</code></pre>
 <p>Or using <code><a href="https://rdrr.io/pkg/mosaicCalc/man/Calculus.html">antiD()</a></code></p>
 <div class="sourceCode" id="cb277"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Ex</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCalc/man/Calculus.html">antiD</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">~</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="fu">Ex</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">-</span><span class="fu">Ex</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">Ex</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mosaicCalc/man/Calculus.html">antiD</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span> <span class="op">~</span> <span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu">Ex</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">-</span> <span class="fu">Ex</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.6666667</code></pre>
 <p>Using our simulation.</p>
 <div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">mean</span><span class="op">(</span><span class="op">~</span><span class="va">sqrt</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">mean</span><span class="op">(</span><span class="op">~</span><span class="va">sqrt</span>, data <span class="op">=</span> <span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.6669452</code></pre>
 <p><span class="math display">\[
 \sigma^2_X = \mbox{Var}(X)= \mbox{E}(X^2)-\mbox{E}(X)^2 = \int_0^1 x^2\cdot 2x\mathop{}\!\mathrm{d}x - \left(\frac{2}{3}\right)^2 = \frac{2x^4}{4}\bigg|_0^1-\frac{4}{9}=\frac{1}{2}-\frac{4}{9}=\frac{1}{18}=0.056
 \]</span></p>
 <div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">$</span><span class="va">value</span><span class="op">-</span><span class="op">(</span><span class="fl">2</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/integrate.html">integrate</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">$</span><span class="va">value</span> <span class="op">-</span> <span class="op">(</span><span class="fl">2</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span></span></code></pre></div>
 <pre><code>## [1] 0.05555556</code></pre>
 <p>or</p>
 <div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Vx</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/mosaicCalc/man/Calculus.html">antiD</a></span><span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span><span class="op">~</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="fu">Vx</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">-</span><span class="fu">Vx</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">-</span><span class="op">(</span><span class="fl">2</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">Vx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mosaicCalc/man/Calculus.html">antiD</a></span><span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fl">2</span><span class="op">*</span><span class="va">x</span> <span class="op">~</span> <span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu">Vx</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">-</span> <span class="fu">Vx</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="fl">2</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span></span></code></pre></div>
 <pre><code>## [1] 0.05555556</code></pre>
 <div class="sourceCode" id="cb285"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">var</a></span><span class="op">(</span><span class="op">~</span><span class="va">sqrt</span>,data<span class="op">=</span><span class="va">results</span><span class="op">)</span><span class="op">*</span><span class="fl">9999</span><span class="op">/</span><span class="fl">10000</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">var</a></span><span class="op">(</span><span class="op">~</span><span class="va">sqrt</span>, data <span class="op">=</span> <span class="va">results</span><span class="op">)</span><span class="op">*</span><span class="fl">9999</span><span class="op">/</span><span class="fl">10000</span></span></code></pre></div>
 <pre><code>## [1] 0.05559873</code></pre>
 <p>And finally, the standard deviation of <span class="math inline">\(X\)</span> is <span class="math inline">\(\sigma_X = \sqrt{\sigma^2_X}=\sqrt{1/18}=0.236\)</span>.</p>
 </div>
@@ -374,6 +374,12 @@ Consider the random variable <span class="math inline">\(X\)</span> from above. 
 <li>Let <span class="math inline">\(X\)</span> be a continuous random variable. Prove that the cdf of <span class="math inline">\(X\)</span>, <span class="math inline">\(F_X(x)\)</span> is a non-decreasing function. (Hint: show that for any <span class="math inline">\(a &lt; b\)</span>, <span class="math inline">\(F_X(a) \leq F_X(b)\)</span>.)</li>
 </ol>
 </div>
+<div id="solutions-manual-10" class="section level2 unnumbered">
+<h2>
+<a href="https://ds-usafa.github.io/PSSE-Solutions-Manual/CONRANDVAR.html">Solutions Manual</a><a class="anchor" aria-label="anchor" href="#solutions-manual-10"><i class="fas fa-link"></i></a>
+</h2>
+
+</div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="RANDVAR.html"><span class="header-section-number">10</span> Random Variables</a></div>
@@ -395,6 +401,7 @@ Consider the random variable <span class="math inline">\(X\)</span> from above. 
 <a class="nav-link" href="#moments-1"><span class="header-section-number">11.3</span> Moments</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#mean-and-variance"><span class="header-section-number">11.3.1</span> Mean and variance</a></li></ul>
 </li>
 <li><a class="nav-link" href="#homework-problems-10"><span class="header-section-number">11.4</span> Homework Problems</a></li>
+<li><a class="nav-link" href="#solutions-manual-10">Solutions Manual</a></li>
 </ul>
 
       <div class="book-extra">
@@ -412,7 +419,7 @@ Consider the random variable <span class="math inline">\(X\)</span> from above. 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-11-07.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2023-01-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -425,7 +432,7 @@ Consider the random variable <span class="math inline">\(X\)</span> from above. 
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

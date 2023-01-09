@@ -33,19 +33,21 @@ head(mariokart,n=10)
 
 ```
 ## # A tibble: 10 x 12
-##    id        duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
-##    <chr>        <dbl>  <dbl> <chr>    <dbl>   <dbl>    <dbl> <chr>         <dbl>
-##  1 15037742~        3     20 new       0.99    4        51.6 standa~        1580
-##  2 26048337~        7     13 used      0.99    3.99     37.0 firstC~         365
-##  3 32043234~        3     16 new       0.99    3.5      45.5 firstC~         998
-##  4 28040522~        3     18 new       0.99    0        44   standa~           7
-##  5 17039222~        1     20 new       0.01    0        71   media           820
-##  6 36019515~        3     19 new       0.99    4        45   standa~      270144
-##  7 12047772~        1     13 used      0.01    0        37.0 standa~        7284
-##  8 30035550~        1     15 new       1       2.99     54.0 upsGro~        4858
-##  9 20039206~        3     29 used      0.99    4        47   priori~          27
-## 10 33036416~        7      8 used     20.0     4        50   firstC~         201
-## # ... with 3 more variables: stock_photo <chr>, wheels <dbl>, title <chr>
+##    id       durat~1 n_bids cond  start~2 ship_pr total~3 ship_sp selle~4 stock~5
+##    <chr>      <dbl>  <dbl> <chr>   <dbl>   <dbl>   <dbl> <chr>     <dbl> <chr>  
+##  1 1503774~       3     20 new      0.99    4       51.6 standa~    1580 yes    
+##  2 2604833~       7     13 used     0.99    3.99    37.0 firstC~     365 yes    
+##  3 3204323~       3     16 new      0.99    3.5     45.5 firstC~     998 no     
+##  4 2804052~       3     18 new      0.99    0       44   standa~       7 yes    
+##  5 1703922~       1     20 new      0.01    0       71   media       820 yes    
+##  6 3601951~       3     19 new      0.99    4       45   standa~  270144 yes    
+##  7 1204777~       1     13 used     0.01    0       37.0 standa~    7284 yes    
+##  8 3003555~       1     15 new      1       2.99    54.0 upsGro~    4858 yes    
+##  9 2003920~       3     29 used     0.99    4       47   priori~      27 yes    
+## 10 3303641~       7      8 used    20.0     4       50   firstC~     201 no     
+## # ... with 2 more variables: wheels <dbl>, title <chr>, and abbreviated
+## #   variable names 1: duration, 2: start_pr, 3: total_pr, 4: seller_rate,
+## #   5: stock_photo
 ```
 
 We are only interested in `total_pr`, `cond`, `stock_photo`, `duration`, and `wheels`. These variables are described in the following list:
@@ -208,11 +210,13 @@ mariokart %>%
 
 ```
 ## # A tibble: 2 x 12
-##   id         duration n_bids cond  start_pr ship_pr total_pr ship_sp seller_rate
-##   <chr>         <dbl>  <dbl> <fct>    <dbl>   <dbl>    <dbl> <chr>         <dbl>
-## 1 110439174~        7     22 used      1       25.5     327. parcel          115
-## 2 130335427~        3     27 used      6.95     4       118. parcel           41
-## # ... with 3 more variables: stock_photo <fct>, wheels <dbl>, title <chr>
+##   id        durat~1 n_bids cond  start~2 ship_pr total~3 ship_sp selle~4 stock~5
+##   <chr>       <dbl>  <dbl> <fct>   <dbl>   <dbl>   <dbl> <chr>     <dbl> <fct>  
+## 1 11043917~       7     22 used     1       25.5    327. parcel      115 no     
+## 2 13033542~       3     27 used     6.95     4      118. parcel       41 no     
+## # ... with 2 more variables: wheels <dbl>, title <chr>, and abbreviated
+## #   variable names 1: duration, 2: start_pr, 3: total_pr, 4: seller_rate,
+## #   5: stock_photo
 ```
 
 If you look at the variable `title` there were additional items in the sale for these two observations. Let's remove those two outliers and run the model again. Note that the reason we are removing them is not because they are annoying us and messing up our model. It is because we don't think they are representative of the population of interest. Figure \@ref(fig:scat302-fig) is a boxplot of the data with the outliers dropped.
@@ -523,10 +527,11 @@ augment(mario_mod_multi) %>%
 
 ```
 ## # A tibble: 1 x 11
-##   total_pr cond  stock_photo duration wheels .fitted .resid   .hat .sigma
-##      <dbl> <fct> <fct>          <dbl>  <dbl>   <dbl>  <dbl>  <dbl>  <dbl>
-## 1     51.6 new   yes                3      1    49.6   1.92 0.0215   4.92
-## # ... with 2 more variables: .cooksd <dbl>, .std.resid <dbl>
+##   total_pr cond  stock_photo durat~1 wheels .fitted .resid   .hat .sigma .cooksd
+##      <dbl> <fct> <fct>         <dbl>  <dbl>   <dbl>  <dbl>  <dbl>  <dbl>   <dbl>
+## 1     51.6 new   yes               3      1    49.6   1.92 0.0215   4.92 6.91e-4
+## # ... with 1 more variable: .std.resid <dbl>, and abbreviated variable name
+## #   1: duration
 ```
 
 
@@ -983,3 +988,6 @@ b. Given your model, what is the expected mpg for a vehicle with a displacement 
 c. Repeat part (b) with a bootstrap for the confidence interval.
 
 2. Is that the best model for predicting mpg? Try a variety of different models. You could explore higher order terms or even interactions. One place to start is by using the `pairs()` function on `mtcars` to plot a large pairwise scatterplot. How high could you get adjusted $R$-squared? Keep in mind that is only one measure of fit. 
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/LRMULTI.html) {-}

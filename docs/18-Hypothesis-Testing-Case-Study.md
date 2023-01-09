@@ -270,7 +270,7 @@ It appears that a difference as extreme as -29.2\% due to chance alone would onl
 
 ```r
 results %>%
-  summarise(p_value = mean(diffprop <= obs))
+  summarize(p_value = mean(diffprop <= obs))
 ```
 
 ```
@@ -390,3 +390,6 @@ $$
   
   h. Decide if the treatment is effective.  
   
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/CS3.html) {-}
+

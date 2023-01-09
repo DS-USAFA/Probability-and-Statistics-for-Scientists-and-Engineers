@@ -54,7 +54,7 @@ Using `R`, we find
 
 
 ```r
-integrate(function(x)2*x,0,1)
+integrate(function(x)2*x, 0, 1)
 ```
 
 ```
@@ -70,7 +70,7 @@ library(mosaicCalc)
 
 
 ```r
-(Fx<-antiD(2*x~x))
+(Fx <- antiD(2*x ~ x))
 ```
 
 ```
@@ -80,7 +80,7 @@ library(mosaicCalc)
 
 
 ```r
-Fx(1)-Fx(0)
+Fx(1) - Fx(0)
 ```
 
 ```
@@ -134,7 +134,7 @@ $\Prob(0.1\leq X < 0.75) = \int_{0.1}^{0.75}2x\diff x = 0.75^2 - 0.1^2 = 0.5525$
 
 
 ```r
-integrate(function(x)2*x,.1,.75)
+integrate(function(x)2*x, 0.1, 0.75)
 ```
 
 ```
@@ -146,7 +146,7 @@ Alternatively, $\Prob(0.1\leq X < 0.75) = \Prob(X < 0.75) -\Prob(x \leq  0.1) = 
 
 
 ```r
-Fx(0.75)-Fx(0.1)
+Fx(0.75) - Fx(0.1)
 ```
 
 ```
@@ -167,7 +167,7 @@ Or using `R`
 
 
 ```r
-uniroot(function(x)(Fx(x)-.5),c(0,1))$root
+uniroot(function(x)(Fx(x) - 0.5), c(0, 1))$root
 ```
 
 ```
@@ -221,9 +221,9 @@ Figure \@ref(fig:plot116-fig) is a density plot of the simulated density functio
 
 ```r
 results %>%
-  gf_density(~sqrt,xlab="X") %>%
+  gf_density(~sqrt, xlab = "X") %>%
   gf_theme(theme_bw()) %>%
-  gf_labs(x="X",y="")
+  gf_labs(x = "X", y = "")
 ```
 
 <div class="figure">
@@ -270,7 +270,7 @@ Using `R`.
 
 
 ```r
-integrate(function(x)x*2*x,0,1)
+integrate(function(x)x*2*x, 0, 1)
 ```
 
 ```
@@ -281,8 +281,8 @@ Or using `antiD()`
 
 
 ```r
-Ex<-antiD(2*x^2~x)
-Ex(1)-Ex(0)
+Ex <- antiD(2*x^2 ~ x)
+Ex(1) - Ex(0)
 ```
 
 ```
@@ -294,7 +294,7 @@ Using our simulation.
 
 
 ```r
-mean(~sqrt,data=results)
+mean(~sqrt, data = results)
 ```
 
 ```
@@ -308,7 +308,7 @@ $$
 
 
 ```r
-integrate(function(x)x^2*2*x,0,1)$value-(2/3)^2
+integrate(function(x)x^2*2*x, 0, 1)$value - (2/3)^2
 ```
 
 ```
@@ -319,8 +319,8 @@ or
 
 
 ```r
-Vx<-antiD(x^2*2*x~x)
-Vx(1)-Vx(0)-(2/3)^2
+Vx <- antiD(x^2*2*x ~ x)
+Vx(1) - Vx(0) - (2/3)^2
 ```
 
 ```
@@ -330,7 +330,7 @@ Vx(1)-Vx(0)-(2/3)^2
 
 
 ```r
-var(~sqrt,data=results)*9999/10000
+var(~sqrt, data = results)*9999/10000
 ```
 
 ```
@@ -357,3 +357,5 @@ i. Simulate 10000 values from this distribution and plot the density.
 
 2. Let $X$ be a continuous random variable. Prove that the cdf of $X$, $F_X(x)$ is a non-decreasing function. (Hint: show that for any $a < b$, $F_X(a) \leq F_X(b)$.)
 
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/CONRANDVAR.html) {-}

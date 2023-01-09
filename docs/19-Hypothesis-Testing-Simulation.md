@@ -346,7 +346,7 @@ Notice that this distribution is centered on 1 and appears to be roughly symmetr
 
 ```r
 results %>%
-  summarise(p_value = mean(test_stat >= obs))
+  summarize(p_value = mean(test_stat >= obs))
 ```
 
 ```
@@ -709,4 +709,8 @@ e. Determine the conclusion of the hypothesis test.
 f. The traditional belief is that yawning is contagious -- one yawn can lead to another yawn, which might lead to another, and so on. In this exercise, there was the option of selecting a one-sided or two-sided test. Which would you recommend (or which did you choose)? Justify your answer in 1-3 sentences.  
 
 g. How did you select your level of significance? Explain in 1-3 sentences.  
+
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/HYPTESTSIM.html) {-}
 

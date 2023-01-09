@@ -205,6 +205,7 @@ adaptIntegrate(f, lowerLimit = c(0, 0), upperLimit = c(1, 2))
 Notice the function `adaptIntegrate` returned four objects. You can read the help menu to learn more about them but we are only interested in the result contained in the object `integral`.
 
 b) Find $\Prob(X > 1, Y \leq 0.5)$.
+
 $$
 \Prob(X>1,Y\leq 0.5)=\int_0^{0.5}\int_1^2 xy \diff x \diff y = \int_0^{0.5} \frac{x^2 y}{2}\bigg|_1^2 \diff y = \int_0^{0.5}2y - \frac{y}{2}\diff y 
 $$
@@ -326,3 +327,6 @@ b. Find the marginal pdfs of $X$ and $Y$.
 c. Find the conditional pdfs of $X|Y=y$ and $Y|X=x$.   
 d. Find the following probabilities: $\Prob(X<0.5)$; $\Prob(Y>1)$; $\Prob(X<0.5,Y\leq 0.8)$; Optional $\Prob(X<0.5|Y= 0.8)$; $\Prob(Y\leq 1-X)$. (It would probably help to draw some pictures.)
 
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/MULTIDISTS.html) {-}

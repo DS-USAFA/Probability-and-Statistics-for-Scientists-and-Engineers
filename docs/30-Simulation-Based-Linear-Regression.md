@@ -607,7 +607,7 @@ How would we interpret this output? Since `MORTGAGE` is the reference category, 
 ```r
 loans100 %>%
   filter(homeownership == "MORTGAGE") %>%
-  summarise(average=mean(interest_rate))
+  summarize(average=mean(interest_rate))
 ```
 
 ```
@@ -623,7 +623,7 @@ The other terms represent the expected difference in average interest rates for 
 ```r
 loans100 %>%
   group_by(homeownership) %>%
-  summarise(average=mean(interest_rate),std_dev=sd(interest_rate))
+  summarize(average=mean(interest_rate),std_dev=sd(interest_rate))
 ```
 
 ```
@@ -877,3 +877,6 @@ b. Build a linear model fitting interest rate against term. Does there appear to
 c. Write out the estimated linear model. In words, interpret the coefficient estimate.     
 d. Construct a bootstrap confidence interval on the coefficient.  
 e. Check model assumptions.  
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/LRSIM.html) {-}

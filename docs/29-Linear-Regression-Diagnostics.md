@@ -360,3 +360,7 @@ Identify the outliers in the scatterplots shown in Figure \@ref(fig:hw3) and det
 <p class="caption">(\#fig:hw3)Homework problem 3.</p>
 </div>
 
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/LRDIAG.html) {-}
+

@@ -302,7 +302,7 @@ Find the slope from the correlation and standard deviations.
 
 ```r
 possum %>%
-  summarise(correlation=cor(head_l,total_l),sd_head=sd(head_l),
+  summarize(correlation=cor(head_l,total_l),sd_head=sd(head_l),
             sd_total=sd(total_l),slope=correlation*sd_head/sd_total)
 ```
 
@@ -501,4 +501,7 @@ i. Could we use the model for a menu item with 100 g of carbs?
 j. Does the assumption of constant variance seem reasonable for this problem?  
 k. Verify that the line passes through the mean carb and mean calories, do this mathematically.  
 l. What is the estimate of the standard deviation of the residuals? How could you use this information?
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/LRBASICS.html) {-}
 

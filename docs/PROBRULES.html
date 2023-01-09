@@ -11,7 +11,7 @@
 <meta name="author" content="Kris Pruitt">
 <meta name="author" content="Bradley Warner">
 <meta name="description" content="8.1 Objectives Define and use properly in context all new terminology related to probability, including: sample space, outcome, event, subset, intersection, union, complement, probability,...">
-<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta name="generator" content="bookdown 0.31 with bs4_book()">
 <meta property="og:title" content="Chapter 8 Probability Rules | Probability and Statistics for Scientists and Engineers">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/figures/Cover_Engineers.png">
@@ -22,7 +22,7 @@
 <meta name="twitter:image" content="/figures/Cover_Engineers.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
@@ -221,8 +221,8 @@ Consider our rental car example above. Let <span class="math inline">\(A\)</span
 </h3>
 <p>Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> be events in a random experiment. Most of these can be proven fairly easily.</p>
 <ol style="list-style-type: decimal">
-<li><p><span class="math inline">\(\mbox{P}(\emptyset)=0\)</span></p></li>
-<li><p><span class="math inline">\(\mbox{P}(A')=1-\mbox{P}(A)\)</span> We used this in the case study.</p></li>
+<li><p><span class="math inline">\(\mbox{P}(\emptyset) = 0\)</span></p></li>
+<li><p><span class="math inline">\(\mbox{P}(A') = 1 - \mbox{P}(A)\)</span> We used this in the case study.</p></li>
 <li><p>If <span class="math inline">\(A\subset B\)</span>, then <span class="math inline">\(\mbox{P}(A)\leq \mbox{P}(B)\)</span>.</p></li>
 <li><p><span class="math inline">\(\mbox{P}(A\cup B) = \mbox{P}(A)+\mbox{P}(B)-\mbox{P}(A\cap B)\)</span>. This property can be generalized to more than two events. The intersection is subtracted because outcomes in both events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> get counted twice in the first sum.</p></li>
 <li><p>Law of Total Probability: Let <span class="math inline">\(B_1, B_2,...,B_n\)</span> be <strong>mutually exclusive</strong>, this means disjoint or no outcomes in common, and <strong>exhaustive</strong>, this means the union of all the events labeled with a <span class="math inline">\(B\)</span> is the sample space. Then</p></li>
@@ -237,15 +237,15 @@ Consider rolling a six sided die. Let event <span class="math inline">\(A\)</spa
 </blockquote>
 <p><span class="math display">\[\mbox{P}(A)=\mbox{P}(A \cap B) + \mbox{P}(A \cap B')\]</span></p>
 <p><span class="math display">\[
-\mbox{P}(&lt; 5)=\mbox{P}(&lt;5 \cap Even)+\mbox{P}(&lt;5 \cap Odd)
+\mbox{P}(&lt; 5) = \mbox{P}(&lt;5 \cap Even) + \mbox{P}(&lt;5 \cap Odd)
 \]</span></p>
 <ol start="6" style="list-style-type: decimal">
 <li>DeMorgan’s Laws:
 <span class="math display">\[
-\mbox{P}((A \cup B)')=\mbox{P}(A' \cap B')
+\mbox{P}((A \cup B)') = \mbox{P}(A' \cap B')
 \]</span>
 <span class="math display">\[
-\mbox{P}((A \cap B)')=\mbox{P}(A' \cup B')
+\mbox{P}((A \cap B)') = \mbox{P}(A' \cup B')
 \]</span>
 </li>
 </ol>
@@ -304,7 +304,7 @@ Use <code>R</code> to simulate the family of three children where each child has
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_bar</span><span class="op">(</span><span class="op">~</span><span class="va">heads</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">gf_theme</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">gf_labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"NUmber of girls"</span>,y<span class="op">=</span><span class="st">"Count"</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu">gf_labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"NUmber of girls"</span>, y <span class="op">=</span> <span class="st">"Count"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:bar81-fig"></span>
 <img src="08-Probability-Rules_files/figure-html/bar81-fig-1.png" alt="Number of girls in a family of size 3." width="672"><p class="caption">
@@ -316,15 +316,15 @@ Figure 8.2: Number of girls in a family of size 3.
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">heads</span><span class="op">==</span><span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">heads</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##     prob
 ## 1 0.3782</code></pre>
 <p>Or slightly different code.</p>
 <div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">heads</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prop<span class="op">=</span><span class="va">n</span><span class="op">/</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prop <span class="op">=</span> <span class="va">n</span><span class="op">/</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   heads    n   prop
 ## 1     0 1241 0.1241
 ## 2     1 3786 0.3786
@@ -369,7 +369,7 @@ Suppose we draw one card out of a standard deck. Let <span class="math inline">\
 <div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Cards</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">suit</span> <span class="op">==</span> <span class="st">"Club"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">rank</span>,<span class="va">suit</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">rank</span>, <span class="va">suit</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 13 x 2
 ##    rank  suit 
 ##    &lt;chr&gt; &lt;chr&gt;
@@ -390,7 +390,7 @@ Suppose we draw one card out of a standard deck. Let <span class="math inline">\
 <p>We can do this by simulation, this is over kill but gets the idea of simulation across.</p>
 <p>Remember, ask what do we want <code>R</code> to do and what does <code>R</code> need to do this?</p>
 <div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">Cards</span>,<span class="fl">1</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">Cards</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##   rank  suit   probs orig.id  .row .index
@@ -404,7 +404,7 @@ Suppose we draw one card out of a standard deck. Let <span class="math inline">\
 <div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">suit</span> <span class="op">==</span> <span class="st">"Club"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##    prob
 ##   &lt;dbl&gt;
@@ -412,7 +412,7 @@ Suppose we draw one card out of a standard deck. Let <span class="math inline">\
 <div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">suit</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prob<span class="op">=</span><span class="va">n</span><span class="op">/</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="va">n</span><span class="op">/</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/aggregating.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##   suit        n  prob
 ##   &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt;
@@ -424,7 +424,7 @@ Suppose we draw one card out of a standard deck. Let <span class="math inline">\
 <div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Cards</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="st">"J"</span>, <span class="st">"Q"</span>, <span class="st">"K"</span>, <span class="st">"A"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">rank</span>,<span class="va">suit</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">rank</span>, <span class="va">suit</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 20 x 2
 ##    rank  suit   
 ##    &lt;chr&gt; &lt;chr&gt;  
@@ -454,7 +454,7 @@ Suppose we draw one card out of a standard deck. Let <span class="math inline">\
 Using simulation to estimate the probability of 10 or higher.</p>
 </blockquote>
 <div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">Cards</span>,<span class="fl">1</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://www.mosaic-web.org/mosaic/reference/resample.html">sample</a></span><span class="op">(</span><span class="va">Cards</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##   rank  suit   probs orig.id  .row .index
@@ -468,7 +468,7 @@ Using simulation to estimate the probability of 10 or higher.</p>
 <div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="st">"J"</span>, <span class="st">"Q"</span>, <span class="st">"K"</span>, <span class="st">"A"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##    prob
 ##   &lt;dbl&gt;
@@ -476,8 +476,8 @@ Using simulation to estimate the probability of 10 or higher.</p>
 <p>Notice that this code is not robust to change the number of simulations. If we change from 10000, then we have to change the denominator in the <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> function. We can change this by using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> instead of <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>.</p>
 <div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>face<span class="op">=</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="st">"J"</span>, <span class="st">"Q"</span>, <span class="st">"K"</span>, <span class="st">"A"</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu">mean</span><span class="op">(</span><span class="va">face</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>face <span class="op">=</span> <span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="st">"J"</span>, <span class="st">"Q"</span>, <span class="st">"K"</span>, <span class="st">"A"</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">face</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##    prob
 ##   &lt;dbl&gt;
@@ -486,8 +486,8 @@ Using simulation to estimate the probability of 10 or higher.</p>
 <p>Next, let’s find a card that is 10 or greater <strong>and</strong> a club.</p>
 <div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Cards</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="st">"J"</span>, <span class="st">"Q"</span>, <span class="st">"K"</span>, <span class="st">"A"</span><span class="op">)</span>,<span class="va">suit</span><span class="op">==</span><span class="st">"Club"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">rank</span>,<span class="va">suit</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="st">"J"</span>, <span class="st">"Q"</span>, <span class="st">"K"</span>, <span class="st">"A"</span><span class="op">)</span>, <span class="va">suit</span> <span class="op">==</span> <span class="st">"Club"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">rank</span>, <span class="va">suit</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 5 x 2
 ##   rank  suit 
 ##   &lt;chr&gt; &lt;chr&gt;
@@ -503,8 +503,9 @@ Simulate drawing one card and estimate the probability of a club that is 10 or g
 </blockquote>
 <div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>face<span class="op">=</span><span class="op">(</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="st">"J"</span>, <span class="st">"Q"</span>, <span class="st">"K"</span>, <span class="st">"A"</span><span class="op">)</span><span class="op">)</span><span class="op">&amp;</span><span class="op">(</span><span class="va">suit</span><span class="op">==</span><span class="st">"Club"</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob<span class="op">=</span><span class="fu">mean</span><span class="op">(</span><span class="va">face</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>face <span class="op">=</span> <span class="op">(</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="st">"J"</span>, <span class="st">"Q"</span>, <span class="st">"K"</span>, <span class="st">"A"</span><span class="op">)</span><span class="op">)</span> <span class="op">&amp;</span> </span>
+<span>           <span class="op">(</span><span class="va">suit</span> <span class="op">==</span> <span class="st">"Club"</span><span class="op">)</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">face</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##     prob
 ##    &lt;dbl&gt;
@@ -547,8 +548,8 @@ What is the probability a license plate starts with the number “8” or “0�
 \]</span></p>
 <p>Dividing this number by the total number of possible license plates yields the probability of this event occurring.</p>
 <div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">denom</span><span class="op">&lt;-</span><span class="fl">10</span><span class="op">*</span><span class="fl">10</span><span class="op">*</span><span class="fl">10</span><span class="op">*</span><span class="fl">26</span><span class="op">*</span><span class="fl">26</span><span class="op">*</span><span class="fl">26</span></span>
-<span><span class="va">num</span><span class="op">&lt;-</span><span class="fl">2</span><span class="op">*</span><span class="fl">10</span><span class="op">*</span><span class="fl">10</span><span class="op">*</span><span class="fl">26</span><span class="op">*</span><span class="fl">26</span><span class="op">*</span><span class="fl">1</span></span>
+<code class="sourceCode R"><span><span class="va">denom</span> <span class="op">&lt;-</span> <span class="fl">10</span><span class="op">*</span><span class="fl">10</span><span class="op">*</span><span class="fl">10</span><span class="op">*</span><span class="fl">26</span><span class="op">*</span><span class="fl">26</span><span class="op">*</span><span class="fl">26</span></span>
+<span><span class="va">num</span> <span class="op">&lt;-</span> <span class="fl">2</span><span class="op">*</span><span class="fl">10</span><span class="op">*</span><span class="fl">10</span><span class="op">*</span><span class="fl">26</span><span class="op">*</span><span class="fl">26</span><span class="op">*</span><span class="fl">1</span></span>
 <span><span class="va">num</span><span class="op">/</span><span class="va">denom</span></span></code></pre></div>
 <pre><code>## [1] 0.007692308</code></pre>
 <p>The probability of obtaining a license plate starting with “8” or “0” and ending with “B” is 0.0077. Simulating this would be difficult because we would need special functions to check the first number and last letter. This gets into <strong>text mining</strong> an important subject in data science but unfortunately we don’t have much time in this book for the topic.</p>
@@ -582,9 +583,9 @@ Assume that all 25 participants are equally likely to win any one of the three p
 \]</span></p>
 <p>The probability Tom doesn’t get a prize is simply the second number divided by the first:</p>
 <div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">denom</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">25</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">25</span><span class="op">-</span><span class="fl">3</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">denom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">25</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="fl">25</span> <span class="op">-</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co"># Or, denom&lt;-25*24*23</span></span>
-<span><span class="va">num</span><span class="op">&lt;-</span><span class="fl">24</span><span class="op">*</span><span class="fl">23</span><span class="op">*</span><span class="fl">22</span></span>
+<span><span class="va">num</span> <span class="op">&lt;-</span> <span class="fl">24</span><span class="op">*</span><span class="fl">23</span><span class="op">*</span><span class="fl">22</span></span>
 <span><span class="va">num</span><span class="op">/</span><span class="va">denom</span></span></code></pre></div>
 <pre><code>## [1] 0.88</code></pre>
 </div>
@@ -619,8 +620,8 @@ When drawing 5 cards, what is the probability of drawing a “flush” (5 cards 
 \mbox{P}(\mbox{flush})=\frac{\binom{4}{1}\binom{13}{5}\binom{39}{0}}{\binom{52}{5}}
 \]</span></p>
 <div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">num</span><span class="op">&lt;-</span><span class="fl">4</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">13</span>,<span class="fl">5</span><span class="op">)</span><span class="op">*</span><span class="fl">1</span></span>
-<span><span class="va">denom</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">52</span>,<span class="fl">5</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">num</span> <span class="op">&lt;-</span> <span class="fl">4</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">13</span>, <span class="fl">5</span><span class="op">)</span><span class="op">*</span><span class="fl">1</span></span>
+<span><span class="va">denom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">52</span>, <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="va">num</span><span class="op">/</span><span class="va">denom</span></span></code></pre></div>
 <pre><code>## [1] 0.001980792</code></pre>
 <p>There is a probability of 0.0020 of drawing a flush in a draw of 5 cards from a standard deck of cards.</p>
@@ -633,8 +634,8 @@ When drawing 5 cards, what is the probability of drawing a “full house” (3 c
 \mbox{P}(\mbox{full house})=\frac{\binom{13}{1}\binom{4}{3}\binom{12}{1}\binom{4}{2}}{\binom{52}{5}}
 \]</span></p>
 <div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">num</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">13</span>,<span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">3</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">12</span>,<span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">2</span><span class="op">)</span></span>
-<span><span class="va">denom</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">52</span>,<span class="fl">5</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">13</span>, <span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">3</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">denom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Special.html">choose</a></span><span class="op">(</span><span class="fl">52</span>, <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="va">num</span><span class="op">/</span><span class="va">denom</span></span></code></pre></div>
 <pre><code>## [1] 0.001440576</code></pre>
 <p>Why not use <span class="math inline">\(\binom{13}{2}\)</span> instead of <span class="math inline">\(\binom{13}{1}\binom{12}{1}\)</span>?<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Because this implies the order selection of the ranks does not matter. In other words, this assumes that for example 3 Kings and 2 fours is the same full house as 3 fours and 2 Kings. This is not true so we break the rank selection about essentially making it a permutation.&lt;/p&gt;"><sup>76</sup></a></p>
@@ -710,6 +711,12 @@ When drawing 5 cards, what is the probability of drawing a “full house” (3 c
 <li>Advanced Question: Consider rolling 5 dice. What is the <strong>probability</strong> of a pour resulting in a full house?</li>
 </ol>
 </div>
+<div id="solutions-manual-7" class="section level2 unnumbered">
+<h2>
+<a href="https://ds-usafa.github.io/PSSE-Solutions-Manual/PROBRULES.html">Solutions Manual</a><a class="anchor" aria-label="anchor" href="#solutions-manual-7"><i class="fas fa-link"></i></a>
+</h2>
+
+</div>
 </div>
 
   <div class="chapter-nav">
@@ -743,6 +750,7 @@ When drawing 5 cards, what is the probability of drawing a “full house” (3 c
 </ul>
 </li>
 <li><a class="nav-link" href="#homework-problems-7"><span class="header-section-number">8.6</span> Homework Problems</a></li>
+<li><a class="nav-link" href="#solutions-manual-7">Solutions Manual</a></li>
 </ul>
 
       <div class="book-extra">
@@ -760,7 +768,7 @@ When drawing 5 cards, what is the probability of drawing a “full house” (3 c
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2022-11-07.</p>
+    <p>"<strong>Probability and Statistics for Scientists and Engineers</strong>" was written by Matthew Davis, Brianna Hitt, Ken Horton, Kris Pruitt, Bradley Warner. It was last built on 2023-01-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -773,7 +781,7 @@ When drawing 5 cards, what is the probability of drawing a “full house” (3 c
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

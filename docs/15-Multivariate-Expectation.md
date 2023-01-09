@@ -153,7 +153,7 @@ Or using `R`
 
 
 ```r
-fractions(integrate(function(x){x^2/2},0,2)$value)
+fractions(integrate(function(x){x^2/2}, 0, 2)$value)
 ```
 
 ```
@@ -178,7 +178,8 @@ Or using `R`:
 
 
 ```r
-adaptIntegrate(function(x){(x[1]+x[2])*x[1]*x[2]},lowerLimit = c(0,0),upperLimit = c(1,2))$integral
+adaptIntegrate(function(x){ (x[1]+x[2])*x[1]*x[2] },
+               lowerLimit = c(0,0), upperLimit = c(1,2))$integral
 ```
 
 ```
@@ -193,10 +194,10 @@ The cdf for $X$ is $\frac{x^2}{4}$ so we simulate a random variable from $X$ by 
 
 ```r
 set.seed(1820)
-new_data <- data.frame(x=2*sqrt(runif(10000)),y=sqrt(runif(10000)))
+new_data <- data.frame(x = 2*sqrt(runif(10000)), y = sqrt(runif(10000)))
 new_data %>%
-  mutate(z=x+y) %>%
-  summarize(Ex=mean(x),Ey=mean(y),Explusy = mean(z))
+  mutate(z = x + y) %>%
+  summarize(Ex = mean(x), Ey = mean(y), Explusy = mean(z))
 ```
 
 ```
@@ -221,7 +222,8 @@ Using `R`:
 
 
 ```r
-fractions(adaptIntegrate(function(x){(x[1]*x[2])*x[1]*x[2]},lowerLimit = c(0,0),upperLimit = c(1,2))$integral)
+fractions(adaptIntegrate(function(x){ (x[1]*x[2])*x[1]*x[2] },
+                         lowerLimit = c(0,0), upperLimit = c(1,2))$integral)
 ```
 
 ```
@@ -233,10 +235,10 @@ Or by simulating, we have:
 
 ```r
 set.seed(191)
-new_data <- data.frame(x=2*sqrt(runif(10000)),y=sqrt(runif(10000)))
+new_data <- data.frame(x = 2*sqrt(runif(10000)), y = sqrt(runif(10000)))
 new_data %>%
-  mutate(z=x*y) %>%
-  summarize(Ex=mean(x),Ey=mean(y),Extimesy = mean(z))
+  mutate(z = x*y) %>%
+  summarize(Ex = mean(x), Ey = mean(y), Extimesy = mean(z))
 ```
 
 ```
@@ -280,7 +282,8 @@ Using `R`:
 
 
 ```r
-fractions(adaptIntegrate(function(x){(x[1]*x[2]-8/9)^2*x[1]*x[2]},lowerLimit = c(0,0),upperLimit = c(1,2))$integral)
+fractions(adaptIntegrate(function(x){ (x[1]*x[2]-8/9)^2*x[1]*x[2] },
+                         lowerLimit = c(0,0), upperLimit = c(1,2))$integral)
 ```
 
 ```
@@ -292,9 +295,9 @@ Next we will estimate the variance using a simulation:
 
 ```r
 set.seed(816)
-new_data <- data.frame(x=2*sqrt(runif(10000)),y=sqrt(runif(10000)))
+new_data <- data.frame(x = 2*sqrt(runif(10000)), y = sqrt(runif(10000)))
 new_data %>%
-  mutate(z=(x*y-8/9)^2) %>%
+  mutate(z = (x*y - 8/9)^2) %>%
   summarize(Var = mean(z))
 ```
 
@@ -479,7 +482,7 @@ Simulate 5000 reads from the history book and 5000 from philosophy and combine:
 
 ```r
 set.seed(2011)
-my_data<-data.frame(misprints=c(rpois(5000,2),rpois(5000,5)))
+my_data<-data.frame(misprints = c(rpois(5000, 2), rpois(5000, 5)))
 ```
 
 
@@ -511,9 +514,9 @@ Figure \@ref(fig:hist151-fig) is a histogram of the data.
 
 
 ```r
-gf_histogram(~misprints,data=my_data,breaks=seq(-0.5, 15.5, by=1)) %>%
+gf_histogram(~misprints, data = my_data,breaks = seq(-0.5, 15.5, by = 1)) %>%
   gf_theme(theme_classic()) %>%
-  gf_labs(x="Number of Misprints")
+  gf_labs(x = "Number of Misprints")
 ```
 
 <div class="figure">
@@ -525,9 +528,9 @@ Or as a bar chart in Figure \@ref(fig:bar151-fig)
 
 
 ```r
-gf_bar(~misprints,data=my_data)%>%
+gf_bar(~misprints, data = my_data)%>%
   gf_theme(theme_classic()) %>%
-  gf_labs(x="Number of Misprints")
+  gf_labs(x = "Number of Misprints")
 ```
 
 <div class="figure">
@@ -540,7 +543,7 @@ And now find the average.
 
 
 ```r
-mean(~misprints,data=my_data)
+mean(~misprints, data = my_data)
 ```
 
 ```
@@ -613,4 +616,7 @@ Let $S=X_1+X_2+...+X_n=\sum_{i=1}^n X_i$. And let $\bar{X}={\sum_{i=1}^n X_i \ov
 
 Find $\E(S)$, $\Var(S)$, $\E(\bar{X})$ and $\Var(\bar{X})$. 
 
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/MULTIEXP.html) {-}
 

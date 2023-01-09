@@ -71,7 +71,7 @@ An easy solution is to just label the days from 1 to 365. The function `seq()` d
 
 
 ```r
-days <- seq(1,365)
+days <- seq(1, 365)
 ```
 
 Next we need to pick one of the days using the sample function. Note that we set the seed to get repeatable results, this is not required.
@@ -79,7 +79,7 @@ Next we need to pick one of the days using the sample function. Note that we set
 
 ```r
 set.seed(2022)
-sample(days,1)
+sample(days, 1)
 ```
 
 ```
@@ -92,7 +92,7 @@ Since `R` works on vectors, we don't have to write a loop to select 18 days, we 
 
 
 ```r
-class <- sample(days,size=18,replace = TRUE)
+class <- sample(days, size = 18, replace = TRUE)
 class
 ```
 
@@ -133,7 +133,7 @@ Since we only have 17 unique values in a vector of size 18, we have a match. Now
 
 
 ```r
-length(unique(sample(days,size=18,replace = TRUE)))
+length(unique(sample(days, size = 18, replace = TRUE)))
 ```
 
 ```
@@ -161,7 +161,7 @@ library(tidyverse)
 
 
 ```r
-do(5)*length(unique(sample(days,size=18,replace = TRUE)))
+do(5)*length(unique(sample(days, size = 18, replace = TRUE)))
 ```
 
 ```
@@ -181,9 +181,9 @@ Let's repeat for a larger number of simulated classroom, remember you should be 
 
 
 ```r
-(do(1000)*length(unique(sample(days,size=18,replace = TRUE)))) %>%
-  mutate(match=if_else(length==18,0,1)) %>%
-  summarise(prob=mean(match))
+(do(1000)*length(unique(sample(days, size = 18, replace = TRUE)))) %>%
+  mutate(match = if_else(length == 18, 0, 1)) %>%
+  summarize(prob = mean(match))
 ```
 
 ```
@@ -198,9 +198,9 @@ How many classrooms do we need to simulate to get an accurate estimate of the pr
 
 
 ```r
-(do(10000)*length(unique(sample(days,size=18,replace = TRUE)))) %>%
-  mutate(match=if_else(length==18,0,1)) %>%
-  summarise(prob=mean(match))
+(do(10000)*length(unique(sample(days, size = 18, replace = TRUE)))) %>%
+  mutate(match = if_else(length == 18, 0, 1)) %>%
+  summarize(prob = mean(match))
 ```
 
 ```
@@ -214,8 +214,8 @@ By the way, the method we have used to create the data allows us to summarize th
 
 
 ```r
-(do(1000)*length(unique(sample(days,size=18,replace = TRUE)))) %>%
-  tally(~length,data=.)
+(do(1000)*length(unique(sample(days, size = 18, replace = TRUE)))) %>%
+  tally(~length, data = .)
 ```
 
 ```
@@ -228,10 +228,10 @@ Figure \@ref(fig:bar71-fig) is a plot of the number of unique birthdays in our s
 
 
 ```r
-(do(1000)*length(unique(sample(days,size=18,replace = TRUE)))) %>%
+(do(1000)*length(unique(sample(days, size = 18, replace = TRUE)))) %>%
   gf_bar(~length) %>%
   gf_theme(theme_bw()) %>%
-  gf_labs(x="Number of unique birthdays",y="Count")
+  gf_labs(x = "Number of unique birthdays", y = "Count")
 ```
 
 <div class="figure">
@@ -300,7 +300,7 @@ prod(365:364)
 
 
 ```r
-1- prod(365:348)/(365^18)
+1 - prod(365:348)/(365^18)
 ```
 
 ```
@@ -322,8 +322,8 @@ For this problem we will call the function `birthday_prob()`. The only parameter
 
 
 ```r
-birthday_prob <- function(n=20){
-  1- prod(365:(365-(n-1)))/(365^n)
+birthday_prob <- function(n = 20){
+  1 - prod(365:(365 - (n - 1)))/(365^n)
 }
 ```
 
@@ -377,7 +377,7 @@ It only uses the first value. There are several ways to solve this problem. We c
 
 
 ```r
-map_dbl(1:20,birthday_prob)
+map_dbl(1:20, birthday_prob)
 ```
 
 ```
@@ -413,10 +413,10 @@ We are good to go. Let's create our line plot, Figure \@ref(fig:line71-fig).
 
 
 ```r
-gf_line(birthday_prob(1:100)~ seq(1,100),
-        xlab="Number of People",
-        ylab="Probability of Match",
-        title="Probability of at least 2 people with matching birthdays") %>%
+gf_line(birthday_prob(1:100) ~ seq(1, 100),
+        xlab = "Number of People",
+        ylab = "Probability of Match",
+        title = "Probability of at least 2 people with matching birthdays") %>%
   gf_theme(theme_bw())
 ```
 
@@ -472,9 +472,9 @@ It could be argued that we could randomly pick one year and use it. Let's see wh
 ```r
 Births %>%
   filter(year == 1969) %>%
-  gf_point(births~day_of_year) %>%
+  gf_point(births ~ day_of_year) %>%
   gf_theme(theme_bw()) %>%
-  gf_labs(x="Day of the Year",y="Number of Births")
+  gf_labs(x = "Day of the Year", y = "Number of Births")
 ```
 
 <div class="figure">
@@ -493,8 +493,8 @@ Quickly, let's look at the impact of day of the week by using color for day of t
 ```r
 Births %>%
   filter(year == 1969) %>%
-  gf_point(births~day_of_year,color=~factor(day_of_week)) %>%
-  gf_labs(x="Day of the Year",col="Day of Week") %>%
+  gf_point(births ~ day_of_year, color = ~factor(day_of_week)) %>%
+  gf_labs(x = "Day of the Year", col = "Day of Week") %>%
   gf_theme(theme_bw())
 ```
 
@@ -510,7 +510,7 @@ By only using one year, this data might give poor results since holidays will fa
 ```r
 Births %>%
   group_by(year) %>%
-  summarise(n=n())
+  summarize(n = n())
 ```
 
 ```
@@ -544,9 +544,9 @@ The years 1972, 1976, 1980, 1984, and 1988 are all leap years. At this point, to
 
 ```r
 Births %>%
-  filter(!(year %in% c(1972,1976,1980,1984,1988))) %>%
+  filter(!(year %in% c(1972, 1976, 1980, 1984, 1988))) %>%
   group_by(year) %>%
-  summarise(n=n())
+  summarize(n = n())
 ```
 
 ```
@@ -578,9 +578,9 @@ We are almost ready to simulate. We need to get the count of `births` on each da
 
 ```r
 birth_data <- Births %>%
-  filter(!(year %in% c(1972,1976,1980,1984,1988))) %>%
+  filter(!(year %in% c(1972, 1976, 1980, 1984, 1988))) %>%
   group_by(day_of_year) %>%
-  summarise(n=sum(births)) 
+  summarize(n = sum(births)) 
 ```
 
 
@@ -606,9 +606,9 @@ Let's look at a plot of the number of births versus day of the year. We combined
 
 ```r
 birth_data %>%
-  gf_point(n~day_of_year,
-          xlab="Day of the year",
-          ylab="Number of births") %>%
+  gf_point(n ~ day_of_year,
+          xlab = "Day of the year",
+          ylab = "Number of births") %>%
   gf_theme(theme_bw())
 ```
 
@@ -635,9 +635,10 @@ Now let's simulate the problem. The probability of a match should change slightl
 
 ```r
 set.seed(20)
-(do(1000)*length(unique(sample(days,size=18,replace = TRUE,prob=birth_data_weights)))) %>%
-  mutate(match=if_else(length==18,0,1)) %>%
-  summarise(prob=mean(match))
+(do(1000)*length(unique(sample(days, size = 18,replace = TRUE, 
+                               prob = birth_data_weights)))) %>%
+  mutate(match = if_else(length == 18, 0, 1)) %>%
+  summarize(prob = mean(match))
 ```
 
 ```
@@ -667,3 +668,7 @@ b. Generalize your solution to any number `n` people in the room and create a fu
 c. Vectorize the function.  
 d. Plot the probability of exactly 2 people having the same birthday versus number of people in the room.  
 e. Comment on the shape of the curve and explain it.  
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/CS2.html) {-}
+

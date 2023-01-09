@@ -678,3 +678,6 @@ e. Determine the $p$-value.
 f. Draw a conclusion.  
 
 
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/HYPTESTDIST.html) {-}
+

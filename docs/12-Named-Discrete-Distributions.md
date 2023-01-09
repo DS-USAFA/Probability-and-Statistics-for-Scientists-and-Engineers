@@ -65,7 +65,7 @@ To simulate rolling a die 4 times, we use `sample()`.
 
 ```r
 set.seed(61)
-sample(1:6,4,replace=TRUE)
+sample(1:6, 4, replace = TRUE)
 ```
 
 ```
@@ -77,12 +77,12 @@ Let's roll it 10,000 times and find
 
 
 ```r
-results<-do(10000)*sample(1:6,1,replace=TRUE)
+results <- do(10000)*sample(1:6, 1, replace = TRUE)
 ```
 
 
 ```r
-tally(~sample,data=results,format="percent")
+tally(~sample, data = results, format = "percent")
 ```
 
 ```
@@ -93,7 +93,7 @@ tally(~sample,data=results,format="percent")
 
 
 ```r
-mean(~sample,data=results)
+mean(~sample, data = results)
 ```
 
 ```
@@ -102,7 +102,7 @@ mean(~sample,data=results)
 
 
 ```r
-var(~sample,data=results)*(10000-1)/10000
+var(~sample, data = results)*(10000 - 1)/10000
 ```
 
 ```
@@ -144,7 +144,7 @@ $$
 $$
 
 ```r
-choose(20,8)*0.5^8*(1-0.5)^12
+choose(20, 8)*0.5^8*(1 - 0.5)^12
 ```
 
 ```
@@ -157,8 +157,8 @@ $$
 $$
 
 ```r
-x<-0:8
-sum(choose(20,x)*0.5^x*(1-.5)^(20-x))
+x <- 0:8
+sum(choose(20, x)*0.5^x*(1 - 0.5)^(20 - x))
 ```
 
 ```
@@ -192,9 +192,9 @@ Figure \@ref(fig:binom-fig)
 
 
 ```r
-gf_dist("binom",size=20,prob=.5) %>%
+gf_dist("binom", size = 20, prob = 0.5) %>%
   gf_theme(theme_bw()) %>%
-  gf_labs(x="X",y="P(X=x)")
+  gf_labs(x = "X", y = "P(X = x)")
 ```
 
 <div class="figure" style="text-align: center">
@@ -206,7 +206,7 @@ gf_dist("binom",size=20,prob=.5) %>%
 
 ```r
 ###P(X=8)
-dbinom(8,20,0.5)
+dbinom(8, 20, 0.5)
 ```
 
 ```
@@ -215,7 +215,7 @@ dbinom(8,20,0.5)
 
 ```r
 ###P(X<=8)
-pbinom(8,20,0.5)
+pbinom(8, 20, 0.5)
 ```
 
 ```
@@ -224,7 +224,7 @@ pbinom(8,20,0.5)
 
 ```r
 ## or 
-sum(dbinom(0:8,20,0.5))
+sum(dbinom(0:8, 20, 0.5))
 ```
 
 ```
@@ -264,7 +264,7 @@ Alternatively, we can use the built-in `R` functions for the Poisson distributio
 
 ```r
 ##P(X=0)
-dpois(0,2.8)
+dpois(0, 2.8)
 ```
 
 ```
@@ -273,7 +273,7 @@ dpois(0,2.8)
 
 ```r
 ##P(X<=6)
-ppois(6,2.8)
+ppois(6, 2.8)
 ```
 
 ```
@@ -282,7 +282,7 @@ ppois(6,2.8)
 
 ```r
 ## or
-sum(dpois(0:6,2.8))
+sum(dpois(0:6, 2.8))
 ```
 
 ```
@@ -291,7 +291,7 @@ sum(dpois(0:6,2.8))
 
 ```r
 ##P(X>=2)=1-P(X<2)=1-P(X<=1)
-1-ppois(1,2.8)
+1 - ppois(1, 2.8)
 ```
 
 ```
@@ -300,7 +300,7 @@ sum(dpois(0:6,2.8))
 
 ```r
 ## or
-sum(dpois(2:1000,2.8))
+sum(dpois(2:1000, 2.8))
 ```
 
 ```
@@ -313,7 +313,7 @@ When considering $\Prob(2\leq X \leq 8)$, we need to make sure we formulate this
 
 ```r
 ##P(2 <= X <= 8) = P(X <= 8)-P(X <= 1)
-ppois(8,2.8)-ppois(1,2.8)
+ppois(8, 2.8) - ppois(1, 2.8)
 ```
 
 ```
@@ -322,7 +322,7 @@ ppois(8,2.8)-ppois(1,2.8)
 
 ```r
 ## or
-sum(dpois(2:8,2.8))
+sum(dpois(2:8, 2.8))
 ```
 
 ```
@@ -332,7 +332,7 @@ sum(dpois(2:8,2.8))
 To find the median and the 95th percentiles, we use `qpois`:
 
 ```r
-qpois(0.5,2.8)
+qpois(0.5, 2.8)
 ```
 
 ```
@@ -340,7 +340,7 @@ qpois(0.5,2.8)
 ```
 
 ```r
-qpois(0.95,2.8)
+qpois(0.95, 2.8)
 ```
 
 ```
@@ -351,9 +351,9 @@ Figure \@ref(fig:pois-fig) is a plot of the pmf of a Poisson random variable.
 
 
 ```r
-gf_dist("pois",lambda=2.8) %>%
+gf_dist("pois", lambda = 2.8) %>%
   gf_theme(theme_bw()) %>%
-  gf_labs(x="X",y="P(X=x)")
+  gf_labs(x = "X", y = "P(X = x)")
 ```
 
 <div class="figure" style="text-align: center">
@@ -367,9 +367,9 @@ Figure \@ref(fig:pois2-fig) is the cdf of the same Poisson random variable in Fi
 
 
 ```r
-gf_dist("pois",lambda=2.8,kind="cdf") %>%
+gf_dist("pois", lambda = 2.8, kind = "cdf") %>%
   gf_theme(theme_bw()) %>%
-  gf_labs(x="X",y="P(X<=x)")
+  gf_labs(x = "X", y = "P(X <= x)")
 ```
 
 <div class="figure" style="text-align: center">
@@ -399,9 +399,9 @@ First, the plot of the pmf of the hypergeometric is in Figure \@ref(fig:hyper-fi
 
 
 ```r
-gf_dist("hyper",m=8,n=12,k=6) %>%
+gf_dist("hyper", m = 8, n = 12, k = 6) %>%
   gf_theme(theme_bw()) %>%
-  gf_labs(x="X",y="P(X=x)")
+  gf_labs(x = "X", y = "P(X = x)")
 ```
 
 <div class="figure" style="text-align: center">
@@ -413,7 +413,7 @@ gf_dist("hyper",m=8,n=12,k=6) %>%
 
 ```r
 ##P(X=0)
-dhyper(0,8,12,6)
+dhyper(0, 8, 12, 6)
 ```
 
 ```
@@ -422,7 +422,7 @@ dhyper(0,8,12,6)
 
 ```r
 ##P(X=6)
-dhyper(6,8,12,6)
+dhyper(6, 8, 12, 6)
 ```
 
 ```
@@ -431,7 +431,7 @@ dhyper(6,8,12,6)
 
 ```r
 ##P(2 <= X <=5)
-sum(dhyper(2:5,8,12,6))
+sum(dhyper(2:5, 8, 12, 6))
 ```
 
 ```
@@ -467,7 +467,7 @@ $\Prob(\mbox{No mainteance failures})=\Prob(X=0)={15\choose 0}0.01^0(1-0.01)^{15
 
 ```r
 ## or 
-dbinom(0,15,0.01)
+dbinom(0, 15, 0.01)
 ```
 
 ```
@@ -478,9 +478,9 @@ This probability makes sense, since the expected value is fairly low. Because, o
 
 
 ```r
-gf_dist("binom",size=15,prob=0.01) %>%
+gf_dist("binom", size = 15, prob = 0.01) %>%
   gf_theme(theme_bw()) %>%
-  gf_labs(x="X",y="P(X=x)")
+  gf_labs(x = "X", y = "P(X = x)")
 ```
 
 <div class="figure" style="text-align: center">
@@ -494,7 +494,7 @@ We can use the same $X$ as above. Now, we are looking for $\Prob(X\geq 2)$. This
 
 ```r
 ## Directly
-1-(0.99^15 + 15*0.01*0.99^14)
+1 - (0.99^15 + 15*0.01*0.99^14)
 ```
 
 ```
@@ -503,7 +503,7 @@ We can use the same $X$ as above. Now, we are looking for $\Prob(X\geq 2)$. This
 
 ```r
 ## or, using R
-sum(dbinom(2:15,15,0.01))
+sum(dbinom(2:15, 15, 0.01))
 ```
 
 ```
@@ -512,7 +512,7 @@ sum(dbinom(2:15,15,0.01))
 
 ```r
 ## or
-1-sum(dbinom(0:1,15,0.01))
+1 - sum(dbinom(0:1, 15, 0.01))
 ```
 
 ```
@@ -521,7 +521,7 @@ sum(dbinom(2:15,15,0.01))
 
 ```r
 ## or
-1-pbinom(1,15,0.01)
+1 - pbinom(1, 15, 0.01)
 ```
 
 ```
@@ -530,7 +530,7 @@ sum(dbinom(2:15,15,0.01))
 
 ```r
 ## or 
-pbinom(1,15,0.01,lower.tail = F)
+pbinom(1, 15, 0.01, lower.tail = F)
 ```
 
 ```
@@ -551,3 +551,6 @@ c. Find the probability that at least 5 minutes will pass before the next arriva
 
 a. Find the probability I select no female cadets.  
 b. Find the probability I select more than 2 female cadets. 
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/DISCRETENAMED.html) {-}

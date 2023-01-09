@@ -466,3 +466,6 @@ census %>%
 <img src="23-Analysis-of-Variance_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 
 
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/ANOVA.html) {-}
+

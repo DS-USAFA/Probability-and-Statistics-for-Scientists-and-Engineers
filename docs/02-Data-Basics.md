@@ -88,22 +88,22 @@ head(email50, n = 10)
 
 ```
 ## # A tibble: 10 x 21
-##    spam  to_multiple from     cc sent_email time                image attach
-##    <fct> <fct>       <fct> <int> <fct>      <dttm>              <dbl>  <dbl>
-##  1 0     0           1         0 1          2012-01-04 06:19:16     0      0
-##  2 0     0           1         0 0          2012-02-16 13:10:06     0      0
-##  3 1     0           1         4 0          2012-01-04 08:36:23     0      2
-##  4 0     0           1         0 0          2012-01-04 10:49:52     0      0
-##  5 0     0           1         0 0          2012-01-27 02:34:45     0      0
-##  6 0     0           1         0 0          2012-01-17 10:31:57     0      0
-##  7 0     0           1         0 0          2012-03-17 22:18:55     0      0
-##  8 0     0           1         0 1          2012-03-31 07:58:56     0      0
-##  9 0     0           1         1 1          2012-01-10 18:57:54     0      0
-## 10 0     0           1         0 0          2012-01-07 12:29:16     0      0
-## # ... with 13 more variables: dollar <dbl>, winner <fct>, inherit <dbl>,
-## #   viagra <dbl>, password <dbl>, num_char <dbl>, line_breaks <int>,
-## #   format <fct>, re_subj <fct>, exclaim_subj <dbl>, urgent_subj <fct>,
-## #   exclaim_mess <dbl>, number <fct>
+##    spam  to_multiple from     cc sent_~1 time                image attach dollar
+##    <fct> <fct>       <fct> <int> <fct>   <dttm>              <dbl>  <dbl>  <dbl>
+##  1 0     0           1         0 1       2012-01-04 06:19:16     0      0      0
+##  2 0     0           1         0 0       2012-02-16 13:10:06     0      0      0
+##  3 1     0           1         4 0       2012-01-04 08:36:23     0      2      0
+##  4 0     0           1         0 0       2012-01-04 10:49:52     0      0      0
+##  5 0     0           1         0 0       2012-01-27 02:34:45     0      0      9
+##  6 0     0           1         0 0       2012-01-17 10:31:57     0      0      0
+##  7 0     0           1         0 0       2012-03-17 22:18:55     0      0      0
+##  8 0     0           1         0 1       2012-03-31 07:58:56     0      0      0
+##  9 0     0           1         1 1       2012-01-10 18:57:54     0      0      0
+## 10 0     0           1         0 0       2012-01-07 12:29:16     0      0     23
+## # ... with 12 more variables: winner <fct>, inherit <dbl>, viagra <dbl>,
+## #   password <dbl>, num_char <dbl>, line_breaks <int>, format <fct>,
+## #   re_subj <fct>, exclaim_subj <dbl>, urgent_subj <fct>, exclaim_mess <dbl>,
+## #   number <fct>, and abbreviated variable name 1: sent_email
 ```
 
 In practice, it is especially important to ask clarifying questions to ensure important aspects of the data are understood. For instance, it is always important to be sure we know what each variable means and the units of measurement. Descriptions of all variables in the `email50` data set are given in its documentation which can be accessed in `R` by using the `?` command:
@@ -346,5 +346,5 @@ b. The Buteyko method is a shallow breathing technique developed by Konstantin B
 2. In the **openintro** package is a data set called `ames`, containing information on individual residential properties sold in Ames, IA between 2006 and 2010. Create a scatterplot for the above ground living area square feet versus sale price in US dollars. Describe the relationship between these two variables. Note: you may have to load the library and data set.
 
 
-[Solutions Manual](https://ds-usafa.github.io/CPS-Solutions-Manual/DB.html)
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/DB.html) {-}
 

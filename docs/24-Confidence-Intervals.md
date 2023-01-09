@@ -185,7 +185,7 @@ We need the mean, standard deviation, and sample size from this data. We can fin
 temperature %>%
   favstats(~temperature, data = .) %>%
   select(mean, sd, n) %>%
-  summarise(lower_bound = mean - qt(0.975, 129)*sd/sqrt(n),
+  summarize(lower_bound = mean - qt(0.975, 129)*sd/sqrt(n),
             upper_bound = mean + qt(0.975, 129)*sd/sqrt(n))
 ```
 
@@ -256,7 +256,7 @@ We now repeat the analysis with this in mind.
 temperature %>%
   favstats(~temperature, data = .) %>%
   select(mean, sd, n) %>%
-  summarise(upper_bound = mean + qt(0.95, 129)*sd/sqrt(n))
+  summarize(upper_bound = mean + qt(0.95, 129)*sd/sqrt(n))
 ```
 
 ```
@@ -680,3 +680,7 @@ c. Use `prop.test()` with `correct = TRUE` to conduct the hypothesis test and fi
 
 d. Which test should you use?  
  
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/CI.html) {-}
+

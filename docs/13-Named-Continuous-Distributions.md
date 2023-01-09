@@ -34,7 +34,7 @@ The most common uniform distribution is $U(0,1)$ which we have already used seve
 
 
 ```r
-gf_dist("unif",title="Pdf of Uniform random variable",ylab="f(x)") %>%
+gf_dist("unif", title = "Pdf of Uniform random variable", ylab = "f(x)") %>%
   gf_theme(theme_bw())
 ```
 
@@ -47,7 +47,7 @@ To check that it is a proper pdf, all values must be non-negative and the total 
 
 
 ```r
-integrate(function(x)dunif(x),0,1)
+integrate(function(x)dunif(x), 0, 1)
 ```
 
 ```
@@ -95,7 +95,7 @@ Alternatively, we could use `R`:
 
 ```r
 ##Prob(Y>5)=1-Prob(Y<=5)
-1-pexp(5,1/3)
+1 - pexp(5, 1/3)
 ```
 
 ```
@@ -106,7 +106,7 @@ Or using `integrate()`
 
 
 ```r
-integrate(function(x)1/3*exp(-1/3*x),5,Inf)
+integrate(function(x)1/3*exp(-1/3*x), 5, Inf)
 ```
 
 ```
@@ -118,7 +118,7 @@ For the remaining probabilities, we will use `R`:
 
 ```r
 ##Prob(Y<=3)
-pexp(3,1/3)
+pexp(3, 1/3)
 ```
 
 ```
@@ -127,7 +127,7 @@ pexp(3,1/3)
 
 ```r
 ##Prob(1<=Y<5)
-pexp(5,1/3)-pexp(1,1/3)
+pexp(5, 1/3) - pexp(1, 1/3)
 ```
 
 ```
@@ -143,7 +143,7 @@ Alternatively, we can use `qexp` in `R`:
 
 ```r
 ##median
-qexp(0.5,1/3)
+qexp(0.5, 1/3)
 ```
 
 ```
@@ -152,7 +152,7 @@ qexp(0.5,1/3)
 
 ```r
 ##95th percentile
-qexp(0.95,1/3)
+qexp(0.95, 1/3)
 ```
 
 ```
@@ -238,7 +238,7 @@ The mean and variance of $X$ are $\E(X)=5$ and $\Var(X)=5$. To find probabilitie
 
 ```r
 ## Prob(X<=2)
-pgamma(2,5,1)
+pgamma(2, 5, 1)
 ```
 
 ```
@@ -247,7 +247,7 @@ pgamma(2,5,1)
 
 ```r
 ##Prob(1 <= X < 8)
-pgamma(8,5,1)-pgamma(1,5,1)
+pgamma(8, 5, 1) - pgamma(1, 5, 1)
 ```
 
 ```
@@ -256,7 +256,7 @@ pgamma(8,5,1)-pgamma(1,5,1)
 
 ```r
 ## median
-qgamma(0.5,5,1)
+qgamma(0.5, 5, 1)
 ```
 
 ```
@@ -265,7 +265,7 @@ qgamma(0.5,5,1)
 
 ```r
 ## 95th percentile
-qgamma(0.95,5,1)
+qgamma(0.95, 5, 1)
 ```
 
 ```
@@ -326,7 +326,7 @@ As with the gamma distribution, to find probabilities and quantiles, integration
 
 ```r
 ## Prob(X<=160)
-pnorm(160,200,15)
+pnorm(160, 200, 15)
 ```
 
 ```
@@ -335,7 +335,7 @@ pnorm(160,200,15)
 
 ```r
 ##Prob(180 <= X < 230)
-pnorm(230,200,15)-pnorm(180,200,15)
+pnorm(230, 200, 15) - pnorm(180, 200, 15)
 ```
 
 ```
@@ -344,7 +344,7 @@ pnorm(230,200,15)-pnorm(180,200,15)
 
 ```r
 ##Prob(X>mu+sig)
-1-pnorm(215,200,15)
+1 - pnorm(215, 200, 15)
 ```
 
 ```
@@ -353,7 +353,7 @@ pnorm(230,200,15)-pnorm(180,200,15)
 
 ```r
 ## median
-qnorm(0.5,200,15)
+qnorm(0.5, 200, 15)
 ```
 
 ```
@@ -362,7 +362,7 @@ qnorm(0.5,200,15)
 
 ```r
 ## 95th percentile
-qnorm(0.95,200,15)
+qnorm(0.95, 200, 15)
 ```
 
 ```
@@ -441,3 +441,7 @@ The `dgamma` function exists in `R` too. In plain language, explain what `dgamma
 
 
 7. Derive the mean of a general uniform distribution, $U(a,b)$.  
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/CONTNNAMED.html) {-}
+

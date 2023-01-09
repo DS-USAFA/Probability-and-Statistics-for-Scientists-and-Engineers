@@ -119,9 +119,9 @@ These two axioms essentially say that probability must be positive, and the prob
 
 Let $A$ and $B$ be events in a random experiment. Most of these can be proven fairly easily. 
 
-1) $\Prob(\emptyset)=0$
+1) $\Prob(\emptyset) = 0$
 
-2) $\Prob(A')=1-\Prob(A)$ We used this in the case study.
+2) $\Prob(A') = 1 - \Prob(A)$ We used this in the case study.
 
 3) If $A\subset B$, then $\Prob(A)\leq \Prob(B)$. 
 
@@ -141,16 +141,16 @@ Consider rolling a six sided die. Let event $A$ be the number showing is less th
 $$\Prob(A)=\Prob(A \cap B) + \Prob(A \cap B')$$ 
 
 $$
-\Prob(< 5)=\Prob(<5 \cap Even)+\Prob(<5 \cap Odd)
+\Prob(< 5) = \Prob(<5 \cap Even) + \Prob(<5 \cap Odd)
 $$
 
 
 6) DeMorgan's Laws: 
 $$
-\Prob((A \cup B)')=\Prob(A' \cap B')
+\Prob((A \cup B)') = \Prob(A' \cap B')
 $$
 $$
-\Prob((A \cap B)')=\Prob(A' \cup B')
+\Prob((A \cap B)') = \Prob(A' \cup B')
 $$
 
 ### Equally likely scenarios
@@ -220,7 +220,7 @@ Next we can visualize the distribution of the number of girls, heads, in Figure 
 results %>%
   gf_bar(~heads) %>%
   gf_theme(theme_bw()) %>%
-  gf_labs(x="NUmber of girls",y="Count")
+  gf_labs(x = "NUmber of girls", y = "Count")
 ```
 
 <div class="figure">
@@ -241,8 +241,8 @@ library(tidyverse)
 
 ```r
 results %>%
-  filter(heads==2) %>%
-  summarize(prob=n()/10000)
+  filter(heads == 2) %>%
+  summarize(prob = n()/10000)
 ```
 
 ```
@@ -256,7 +256,7 @@ Or slightly different code.
 ```r
 results %>%
   count(heads) %>%
-  mutate(prop=n/sum(n))
+  mutate(prop = n/sum(n))
 ```
 
 ```
@@ -325,7 +325,7 @@ Let's find all the Clubs.
 ```r
 Cards %>%
   filter(suit == "Club") %>%
-  select(rank,suit)
+  select(rank, suit)
 ```
 
 ```
@@ -355,7 +355,7 @@ Remember, ask what do we want `R` to do and what does `R` need to do this?
 
 
 ```r
-results <- do(10000)*sample(Cards,1)
+results <- do(10000)*sample(Cards, 1)
 head(results)
 ```
 
@@ -375,7 +375,7 @@ head(results)
 ```r
 results %>%
   filter(suit == "Club") %>%
-  summarize(prob=n()/10000)
+  summarize(prob = n()/10000)
 ```
 
 ```
@@ -389,7 +389,7 @@ results %>%
 ```r
 results %>%
   count(suit) %>%
-  mutate(prob=n/sum(n))
+  mutate(prob = n/sum(n))
 ```
 
 ```
@@ -409,7 +409,7 @@ Now let's count the number of outcomes in $B$.
 ```r
 Cards %>%
   filter(rank %in% c(10, "J", "Q", "K", "A")) %>%
-  select(rank,suit)
+  select(rank, suit)
 ```
 
 ```
@@ -445,7 +445,7 @@ Using simulation to estimate the probability of 10 or higher.
 
 
 ```r
-results <- do(10000)*sample(Cards,1)
+results <- do(10000)*sample(Cards, 1)
 head(results)
 ```
 
@@ -465,7 +465,7 @@ head(results)
 ```r
 results %>%
   filter(rank %in% c(10, "J", "Q", "K", "A")) %>%
-  summarize(prob=n()/10000)
+  summarize(prob = n()/10000)
 ```
 
 ```
@@ -480,8 +480,8 @@ Notice that this code is not robust to change the number of simulations. If we c
 
 ```r
 results %>%
-  mutate(face=rank %in% c(10, "J", "Q", "K", "A"))%>%
-  summarize(prob=mean(face))
+  mutate(face = rank %in% c(10, "J", "Q", "K", "A"))%>%
+  summarize(prob = mean(face))
 ```
 
 ```
@@ -498,8 +498,8 @@ Next, let's find a card that is 10 or greater **and** a club.
 
 ```r
 Cards %>%
-  filter(rank %in% c(10, "J", "Q", "K", "A"),suit=="Club") %>%
-  select(rank,suit)
+  filter(rank %in% c(10, "J", "Q", "K", "A"), suit == "Club") %>%
+  select(rank, suit)
 ```
 
 ```
@@ -523,8 +523,9 @@ Simulate drawing one card and estimate the probability of a club that is 10 or g
 
 ```r
 results %>%
-  mutate(face=(rank %in% c(10, "J", "Q", "K", "A"))&(suit=="Club"))%>%
-  summarize(prob=mean(face))
+  mutate(face = (rank %in% c(10, "J", "Q", "K", "A")) & 
+           (suit == "Club"))%>%
+  summarize(prob = mean(face))
 ```
 
 ```
@@ -571,8 +572,8 @@ Dividing this number by the total number of possible license plates yields the p
 
 
 ```r
-denom<-10*10*10*26*26*26
-num<-2*10*10*26*26*1
+denom <- 10*10*10*26*26*26
+num <- 2*10*10*26*26*1
 num/denom
 ```
 
@@ -614,9 +615,9 @@ $$
 The probability Tom doesn't get a prize is simply the second number divided by the first:
 
 ```r
-denom<-factorial(25)/factorial(25-3)
+denom <- factorial(25)/factorial(25 - 3)
 # Or, denom<-25*24*23
-num<-24*23*22
+num <- 24*23*22
 num/denom
 ```
 
@@ -658,8 +659,8 @@ $$
 
 
 ```r
-num<-4*choose(13,5)*1
-denom<-choose(52,5)
+num <- 4*choose(13, 5)*1
+denom <- choose(52, 5)
 num/denom
 ```
 
@@ -680,8 +681,8 @@ $$
 
 
 ```r
-num<-choose(13,1)*choose(4,3)*choose(12,1)*choose(4,2)
-denom<-choose(52,5)
+num <- choose(13, 1)*choose(4, 3)*choose(12, 1)*choose(4, 2)
+denom <- choose(52, 5)
 num/denom
 ```
 
@@ -742,6 +743,6 @@ b.  What is the probability of drawing a "four of a kind" (four cards of the sam
 
 
 
-
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/PROBRULES.html) {-}
 
 

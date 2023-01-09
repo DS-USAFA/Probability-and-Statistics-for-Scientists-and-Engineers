@@ -139,7 +139,7 @@ To do the simulation, we can think of it as flipping a coin. First let's assume 
 
 ```r
 set.seed(43)
-results <- rflip(1000000,0.0001,summarize = TRUE)
+results <- rflip(1000000, 0.0001, summarize = TRUE)
 results
 ```
 
@@ -152,7 +152,7 @@ In this case 100 people had the disease. Now let's find the positive test result
 
 
 ```r
-rflip(as.numeric(results['tails']),prob=.001,summarize = TRUE)
+rflip(as.numeric(results['tails']), prob = 0.001, summarize = TRUE)
 ```
 
 ```
@@ -164,7 +164,7 @@ Now 959 tested positive. Thus the probability of having the disease given a posi
 
 
 ```r
-100/(100+959)
+100/(100 + 959)
 ```
 
 ```
@@ -196,3 +196,8 @@ f. What is the probability the result is exactly 2 heads (out of 5 flips)?
 
 a. Use Bayes formula to solve this problem.  
 b. Use simulation to solve this problem.
+
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/CONDPROB.html) {-}
+

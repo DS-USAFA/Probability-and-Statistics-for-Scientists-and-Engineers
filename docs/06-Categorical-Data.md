@@ -712,3 +712,5 @@ c. Create side-by-side boxplots of survival time for the control and treatment g
 
 d. What do the box plots suggest about the efficacy (effectiveness) of transplants?  
 
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/CATDATA.html) {-}

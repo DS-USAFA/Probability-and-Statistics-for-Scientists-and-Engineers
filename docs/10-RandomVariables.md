@@ -152,8 +152,8 @@ First we will create the pmf.
 
 
 ```r
-pmf <- c(1/8,3/8,3/8,1/8)
-values <- c(0,1,2,3)
+pmf <- c(1/8, 3/8, 3/8, 1/8)
+values <- c(0, 1, 2, 3)
 pmf
 ```
 
@@ -228,7 +228,7 @@ Let's make this a function.
 
 
 ```r
-simple_rv <- function(values,cdf){
+simple_rv <- function(values, cdf){
 ran_num <- runif(1)
 return(values[which(ran_num < cdf)[1]])
 }
@@ -238,7 +238,7 @@ Now let's generate 10000 values from this random variable.
 
 
 ```r
-results <- do(10000)*simple_rv(values,cdf)
+results <- do(10000)*simple_rv(values, cdf)
 inspect(results)
 ```
 
@@ -251,7 +251,7 @@ inspect(results)
 
 
 ```r
-tally(~simple_rv,data=results,format="proportion")
+tally(~simple_rv, data = results, format = "proportion")
 ```
 
 ```
@@ -261,6 +261,8 @@ tally(~simple_rv,data=results,format="proportion")
 ```
 
 Not a bad approximation.
+
+
 
 ## Moments
 
@@ -295,7 +297,7 @@ From our simulation above, we can find the mean as an estimate of the expected v
 
 
 ```r
-mean(~simple_rv,data=results)
+mean(~simple_rv, data = results)
 ```
 
 ```
@@ -345,7 +347,7 @@ We can find the variance of the simulation but `R` uses the sample variance and 
 
 
 ```r
-var(~simple_rv,data=results)*(10000-1)/10000
+var(~simple_rv, data = results)*(10000 - 1)/10000
 ```
 
 ```
@@ -390,7 +392,6 @@ d. Find the theoretical distribution, use math to come up with a closed for solu
 
 &nbsp;
 
-\pagebreak 
 
 3. Suppose you are a data analyst for a large international airport. Your boss, the head of the airport, is dismayed that this airport has received negative attention in the press for inefficiencies and sluggishness. In a staff meeting, your boss gives you a week to build a report addressing the "timeliness" at the airport. Your boss is in a big hurry and gives you no further information or guidance on this task. 
 
@@ -405,6 +406,8 @@ We will provide one example:
 
 Let $D$ be the difference between a flight's actual departure and its scheduled departure. This is a continuous random variable, since time can be measured in fractions of minutes. A flight can be early or late, so domain is any real number. The experimental unit is each individual (non-canceled) flight. This is a useful random variable because the average value of $D$ will describe whether flights take off on time. We could also find out how often $D$ exceeds 0 (implying late departure) or how often $D$ exceeds 30 minutes, which could indicate a "very late" departure. 
 
+&nbsp;
+
 4. Consider the experiment of rolling two fair six-sided dice. Let the random variable $Y$ be the absolute difference between the two numbers that appear upon rolling the dice. 
 
 a. What is the domain/support of $Y$?   
@@ -413,15 +416,12 @@ c. Find the probability mass function and cumulative distribution function of $Y
 d. Find the expected value and variance of $Y$.   
 e. Advanced: In `R`, obtain 10,000 realizations of $Y$. In other words, simulate the roll of two fair dice, record the absolute difference and repeat this 10,000 times. Construct a frequency table of your results (what percentage of time did you get a difference of 0? difference of 1? etc.) Find the mean and variance of your simulated sample of $Y$. Were they close to your answers in part d? 
 
-
 &nbsp;
-
 
 5. Prove the Lemma from the Notes: Let $X$ be a discrete random variable, and let $a$ and $b$ be constants. Show $\E(aX + b)=a\E(X)+b$.   
-
-
-
 &nbsp;
 
-
 6. We saw that $\Var(X)=\E[(X-\mu_X)^2]$. Show that $\Var(X)$ is also equal to $\E(X^2)-[\E(X)]^2$. 
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/RANDVAR.html) {-}

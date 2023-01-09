@@ -114,7 +114,7 @@ As a way to determine the impact of the sample size on inference to the populati
 
 ```r
 results %>%
- summarise(low_result = mean(~mean <= 0.5))
+ summarize(low_result = mean(~mean <= 0.5))
 ```
 
 ```
@@ -140,7 +140,7 @@ results <- do(10000)*mean(rbinom(25, 1, 0.65))
 
 ```r
 results %>%
- summarise(low_result = mean(~mean <= 0.5))
+ summarize(low_result = mean(~mean <= 0.5))
 ```
 
 ```
@@ -260,7 +260,7 @@ favstats(~temperature, data = temperature)
 
 ```r
 temperature %>%
-  summarise(mean = mean(temperature), sd = sd(temperature), 
+  summarize(mean = mean(temperature), sd = sd(temperature), 
             test_stat = (mean - 98.6) / (sd / sqrt(130)))
 ```
 
@@ -540,4 +540,7 @@ e. Calculate a $p$-value.
 
 f. Draw a conclusion.  
 
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/HYPTESTCLT.html) {-}
 

@@ -138,7 +138,7 @@ relationship with the correlation coefficient.
 
 ```r
 hfi %>%
-  summarise(cor(pf_expression_control, pf_score, use = "complete.obs"))
+  summarize(cor(pf_expression_control, pf_score, use = "complete.obs"))
 ```
 
 ```
@@ -558,3 +558,7 @@ c. Fit a linear model. At a glance, does there seem to be a linear relationship?
 d. How does this relationship compare to the relationship between `pf_expression_control` and `pf_score`? Use the $R^2$ values from the two model summaries to compare. Does your independent variable seem to predict your dependent one better? Why or why not?  
 e. Display the model diagnostics for the regression model analyzing this relationship.  
 f. Predict the response from your explanatory variable for a value between the median and third quartile. Is this an overestimate or an underestimate, and by how much? In other words, what is the residual for this prediction?  
+
+
+
+## [Solutions Manual](https://ds-usafa.github.io/PSSE-Solutions-Manual/CS4.html) {-}
