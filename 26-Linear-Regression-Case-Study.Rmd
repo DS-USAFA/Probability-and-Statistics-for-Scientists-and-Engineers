@@ -86,7 +86,7 @@ relationship with the correlation coefficient.
 
 ```{r}
 hfi %>%
-  summarise(cor(pf_expression_control, pf_score, use = "complete.obs"))
+  summarize(cor(pf_expression_control, pf_score, use = "complete.obs"))
 ```
 
 The sample correlation coefficient, indicates a strong positive linear relationship between the variables. 
